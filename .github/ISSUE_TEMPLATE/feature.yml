@@ -1,7 +1,7 @@
 name: "🔔 새로운 기능"
 description: "새로운 기능을 만들어주세요"
-title: "[새 기능] "
-labels: "새 기능"
+title: "[Feature] "
+labels: "Fearture"
 body:
   - type: input
     attributes:
