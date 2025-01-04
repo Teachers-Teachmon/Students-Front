@@ -1,7 +1,7 @@
 name: "🙌 개선하기"
 description: "이 기능을 개선해주세요"
-title: "[개선] "
-labels: "개선"
+title: "[🔨 Refactor] "
+labels: "🔨 Refactor"
 body:
   - type: textarea
     attributes:
