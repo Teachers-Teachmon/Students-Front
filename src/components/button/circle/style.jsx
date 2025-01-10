@@ -18,5 +18,5 @@ export const CircleContainer = styled.div`
     }
 `
 export const Name = styled.p`
-    font-weight: 550;
+    font-weight: 500;
 `
