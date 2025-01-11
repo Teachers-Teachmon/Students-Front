@@ -1,9 +1,38 @@
+import { useNavigate, useLocation } from 'react-router-dom'
 import * as S from './style.jsx'
+import teachmonLogo from '../../assets/teachmon.svg'
+import BookLogo from '../../assets/Book.svg'
+import EyesLogo from '../../assets/Eyes.svg'
+import HouseLogo from '../../assets/House.svg'
+import ListChecksLogo from '../../assets/ListChecks.svg'
+
+const MENU = [
+  { label: '메인', path: '/main', logo: HouseLogo },
+  { label: '자습감독', path: '/supervision', logo: EyesLogo },
+  { label: '학생관리', path: '/manage', logo: ListChecksLogo },
+  { label: '방과후 수업', path: '/after-school', logo: BookLogo },
+]
 
 export default function Header() {
-    return (
-        <S.HeaderContainer>
+  const navigate = useNavigate();
+  const location = useLocation();
+  return (
+    <S.HeaderContainer>
+      <S.Logo src={teachmonLogo} onClick={() => { navigate('/main') }} />
+      <S.NavList>
+        {
+          MENU.map((menu, index) => {
+            const isActive = location.pathname === menu.path;
+            return (
+              <S.MenuItem key={index} onClick={() => { navigate(menu.path) }} $active={isActive}>
+                <S.MenuIcon src={menu.logo} $active={isActive}/>
+                {menu.label}
+              </S.MenuItem>
+            )
+          })
+        }
+        </S.NavList>
 
-        </S.HeaderContainer>
-    )
+    </S.HeaderContainer>
+  )
 }
