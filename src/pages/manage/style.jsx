@@ -41,7 +41,6 @@ export const MainNav = styled.div`
     align-items: center;
     padding: 30px 20px;
     justify-content: space-between;
-    
 `
 
 export const MainBox = styled.div`

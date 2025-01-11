@@ -10,7 +10,7 @@ export default function Write({setIsModal}){
     const [time, setTime] = useState("시간");
     const [place, setPlace] = useState("장소");
     const [floor, setFloor] = useState("층");
-    const [isIsuck, setIsIsuck] = useState([
+    const [isMovement, setIsMovement] = useState([
         true, false
     ]);
     const [isOpen, setIsOpen] = useState([
@@ -19,10 +19,10 @@ export default function Write({setIsModal}){
     const [cause, setCause] = useState("");
     const [search, setSearch] = useState("");
     const [search2, setSearch2] = useState("학생");
-    const changeIsuck = (idx) => {
-        const newIsuck = [false, false];
-        newIsuck[idx] = !newIsuck[idx];
-        setIsIsuck(newIsuck);
+    const changeMovement = (idx) => {
+        const newMovement = [false, false];
+        newMovement[idx] = !newMovement[idx];
+        setIsMovement(newMovement);
     }
     const t = ["7교시", "8~9교시", "10~11교시"];
     const f = ["1층", "2층", "3층", "4층"];
@@ -55,11 +55,11 @@ export default function Write({setIsModal}){
     return(
         <S.WriteContainer>
             <S.Info>
-                <CircleBtn name={"이석"} status={isIsuck[0]} On={()=>changeIsuck(0)} />
-                <CircleBtn name={"자퇴"} status={isIsuck[1]} On={()=>changeIsuck(1)}/>
+                <CircleBtn name={"이석"} status={isMovement[0]} On={()=>changeMovement(0)} />
+                <CircleBtn name={"자퇴"} status={isMovement[1]} On={()=>changeMovement(1)}/>
             </S.Info>
-            <h1>{isIsuck[0] ? "이석" : "자퇴"}</h1>
-            {isIsuck[0] ? <><S.Place>
+            <h1>{isMovement[0] ? "이석" : "자퇴"}</h1>
+            {isMovement[0] ? <><S.Place>
                 <Dropdown
                     name={time}
                     item={t}
