@@ -3,33 +3,41 @@ import CircleBtn from "../../button/circle";
 import { useState } from "react";
 import Dropdown from "../../dropdown/nosearch";
 import SquareBtn from "../../button/square";
-import Search from '../../../assets/Search.svg'
+import Search from '../../../assets/Search.svg';
 import SearchDropdown from '../../dropdown/search';
+import ConfirmModal from "../confirm/index.jsx";
 
-export default function Write({setIsModal}){
+export default function Write({ setIsModal }) {
     const [time, setTime] = useState("시간");
     const [place, setPlace] = useState("장소");
     const [floor, setFloor] = useState("층");
-    const [isIsuck, setIsIsuck] = useState([
-        true, false
-    ]);
-    const [isOpen, setIsOpen] = useState([
-        false, false, false
-        ]);
+    /* isIsuck[0] : 이석, isIsuck[1] : 전학/자퇴, isIsuck[2] : 전학/자퇴 확인 */
+    const [isIsuck, setIsIsuck] = useState([true, false, false]);
+    /* isOpen[0] : 시간,학생, isOpen[1] : 층, isOpen[2] : 장소 */
+    const [isOpen, setIsOpen] = useState([false, false, false]);
     const [cause, setCause] = useState("");
     const [search, setSearch] = useState("");
     const [search2, setSearch2] = useState("학생");
+    const [selectStudent, setSelectStudent] = useState([]);
+
     const changeIsuck = (idx) => {
-        const newIsuck = [false, false];
+        if(idx === 2 && search2 === "학생"){
+            alert('학생을 선택해주세요');
+            return ;
+        }
+        const newIsuck = [false, false, false];
         newIsuck[idx] = !newIsuck[idx];
         setIsIsuck(newIsuck);
     }
+
+    // 시간, 층, 장소 정보
     const t = ["7교시", "8~9교시", "10~11교시"];
     const f = ["1층", "2층", "3층", "4층"];
-    const p = (floor)=>{
-        switch(floor){
+
+    const p = (floor) => {
+        switch (floor) {
             case "1층":
-                return ["창의디자인실", "과학실", "프로그래밍실2", "인공지능개발실", "1-1", "1-2", "1-3", "1-4","데이터 네트워크실", "소프트웨어 공학실", "모바일웹 개발실"];
+                return ["창의디자인실", "과학실", "프로그래밍실2", "인공지능개발실", "1-1", "1-2", "1-3", "1-4", "데이터 네트워크실", "소프트웨어 공학실", "모바일웹 개발실"];
             case "2층":
                 return ["IOT 자동제어실", "마이크로 프로세서실", "임베디드 시스템실", "공간 - AriSori", "프로그래밍실1", "객체지향프로그래밍실", "위클래스실", "2-1", "2-2", "2-3", "2-4", "글가람", "글누리"];
             case "3층":
@@ -40,6 +48,7 @@ export default function Write({setIsModal}){
                 return [""];
         }
     }
+
     // 임시 데이터
     const student = [
         "1410 윤도훈",
@@ -49,91 +58,113 @@ export default function Write({setIsModal}){
         "1414 김현준",
         "1415 김현준",
         "1416 김현준",
-    ]
+    ];
 
-    const [selectStudent, setSelectStudent] = useState([]);
-    return(
-        <S.WriteContainer>
-            <S.Info>
-                <CircleBtn name={"이석"} status={isIsuck[0]} On={()=>changeIsuck(0)} />
-                <CircleBtn name={"자퇴"} status={isIsuck[1]} On={()=>changeIsuck(1)}/>
-            </S.Info>
-            <h1>{isIsuck[0] ? "이석" : "자퇴"}</h1>
-            {isIsuck[0] ? <><S.Place>
-                <Dropdown
-                    name={time}
-                    item={t}
-                    change={(event) => setTime(event)}
-                    isOpen={isOpen[0]}
-                    click={() => setIsOpen([!isOpen[0], false, false])}
-                />
-                <Dropdown
-                    name={floor}
-                    item={f}
-                    change={(event) => setFloor(event)}
-                    isOpen={isOpen[1]}
-                    click={() => setIsOpen([false, !isOpen[1], false])}
-                />
-                <Dropdown
-                    name={place}
-                    item={p(floor)}
-                    change={(event) => setPlace(event)}
-                    isOpen={isOpen[2]} click={() => setIsOpen([false, false, !isOpen[2]])}
-                />
-            </S.Place>
-                <S.Reason
-                type={"text"}
-            value={cause}
-            onChange={(event) => setCause(event.target.value)}
-            placeholder={"사유를 입력해주세요"}
-        />
-    <S.InputBox>
-        <img src={Search} alt={"검색아이콘"} width={20}></img>
-        <S.Input
-            type={"text"}
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder={"학번을 입력해주세요"}
-        />
-        <S.StudentList>
-            {search ? student.map((currentItem, index) => {
-                if (currentItem.indexOf(search) > -1 && !selectStudent.includes(currentItem)) {
-                    return (
-                        <S.StudentItem
-                            onClick={() => {
-                                setSelectStudent((prev) => [...prev, currentItem])
-                                setSearch("");
-                            }}
-                            key={index}
-                            value={currentItem}
-                        >{currentItem}
-                        </S.StudentItem>
-                    );
-                }
-            }) : null}
-        </S.StudentList>
-    </S.InputBox>
-    <S.StudentBox>
-        {selectStudent ? selectStudent.map((item, idx) => {
-            return (
-                <S.Student key={idx}
-                           onClick={() => setSelectStudent(selectStudent.filter((currentItem) => currentItem !== item))}>
-                    <p>{item}</p>
-                </S.Student>
-            )
-        }) : null}
-    </S.StudentBox>
-    <S.Submit>
-        <SquareBtn name={"취소"} status={false} On={() => setIsModal(false)}/>
-        <SquareBtn name={"작성완료"} status={true}/>
-    </S.Submit> </>
- : <>
-                    <SearchDropdown name={search2} isOpen={isOpen[0]} item={student} change={(event) => setSearch2(event)} click={() => setIsOpen([!isOpen[0]])} />
-                    <S.Reason type={"text"}
-                              value={cause}
-                              onChange={(event) => setCause(event.target.value)}
-                              placeholder={"사유를 입력해주세요"} />
-                </>}
-        </S.WriteContainer>
-    )
+    return (
+        isIsuck[2] ? (
+            /* 전학/자퇴 확인하기 상태 */
+            <ConfirmModal text={`정말로 ${search2} 님을 전학/자퇴 시키시겠습니까?`} redText={"학생 데이터가 삭제되어 되돌릴 수 없습니다"} cancel={() => setIsModal(false)}/>
+        ) : (
+            /* 이석작성 상태 */
+            <S.WriteContainer>
+                <S.Info>
+                    <CircleBtn name={"이석"} status={isIsuck[0]} On={() => changeIsuck(0)} />
+                    <CircleBtn name={"전학/자퇴"} status={isIsuck[1]} On={() => changeIsuck(1)} />
+                </S.Info>
+                <h1>{isIsuck[0] ? "이석" : "전학/자퇴"}</h1>
+                {isIsuck[0] ? (
+                    <>
+                        <S.Place>
+                            <Dropdown
+                                name={time}
+                                item={t}
+                                change={setTime}
+                                isOpen={isOpen[0]}
+                                click={() => setIsOpen([!isOpen[0], false, false])}
+                            />
+                            <Dropdown
+                                name={floor}
+                                item={f}
+                                change={setFloor}
+                                isOpen={isOpen[1]}
+                                click={() => setIsOpen([false, !isOpen[1], false])}
+                            />
+                            <Dropdown
+                                name={place}
+                                item={p(floor)}
+                                change={setPlace}
+                                isOpen={isOpen[2]}
+                                click={() => setIsOpen([false, false, !isOpen[2]])}
+                            />
+                        </S.Place>
+                        <S.Reason
+                            type={"text"}
+                            value={cause}
+                            onChange={(event) => setCause(event.target.value)}
+                            placeholder={"사유를 입력해주세요"}
+                        />
+                        <S.InputBox>
+                            <img src={Search} alt={"검색아이콘"} width={20} />
+                            <S.Input
+                                type={"text"}
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)}
+                                placeholder={"학번을 입력해주세요"}
+                            />
+                            <S.StudentList>
+                                {search && student.map((currentItem, index) => {
+                                    if (currentItem.includes(search) && !selectStudent.includes(currentItem)) {
+                                        return (
+                                            <S.StudentItem
+                                                onClick={() => {
+                                                    setSelectStudent((prev) => [...prev, currentItem]);
+                                                    setSearch("");
+                                                }}
+                                                key={index}
+                                                value={currentItem}
+                                            >
+                                                {currentItem}
+                                            </S.StudentItem>
+                                        );
+                                    }
+                                    return null; // No match found, return null
+                                })}
+                            </S.StudentList>
+                        </S.InputBox>
+                        <S.StudentBox>
+                            {selectStudent.map((item, idx) => (
+                                <S.Student key={idx} onClick={() => setSelectStudent(selectStudent.filter(currentItem => currentItem !== item))}>
+                                    <p>{item}</p>
+                                </S.Student>
+                            ))}
+                        </S.StudentBox>
+                        <S.Submit>
+                            <SquareBtn name={"취소"} status={false} On={() => setIsModal(false)} />
+                            <SquareBtn name={"작성완료"} status={true} />
+                        </S.Submit>
+                    </>
+                ) : ( /* 전학/자퇴상태 */
+                    <>
+                        <SearchDropdown
+                            name={search2}
+                            isOpen={isOpen[0]}
+                            item={student}
+                            change={setSearch2}
+                            click={() => setIsOpen([!isOpen[0]])}
+                        />
+                        <S.Reason
+                            type={"text"}
+                            value={cause}
+                            onChange={(event) => setCause(event.target.value)}
+                            placeholder={"사유를 입력해주세요"}
+                        />
+                        <S.Submit>
+                            <SquareBtn name={"취소"} status={false} On={() => setIsModal(false)} />
+                            <SquareBtn name={"작성완료"} status={true} On={() => changeIsuck(2)} />
+                        </S.Submit>
+                    </>
+                )}
+            </S.WriteContainer>
+        )
+    );
 }
