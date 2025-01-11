@@ -1,4 +1,4 @@
-import Header from "../../components/header";
+import Header from '../../components/Header'
 import * as S from './style.jsx'
 
 export default function Main(){

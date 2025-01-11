@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import checkIcon from './assets/check.svg';
-import flyIcon from './assets/paper-plane.svg';
-import rejectIcon from './assets/xmark.svg';
+import flyIcon from '../../../assets/paper-plane.svg';
+import rejectIcon from '../../../assets/xmark.svg';
+import checkIcon from '../../../assets/check.svg';
 
 export const ConfirmContainer = styled.div`
   width: 120px;

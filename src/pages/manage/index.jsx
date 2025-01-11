@@ -1,5 +1,5 @@
 import * as S from './style.jsx'
-import Header from "../../components/header"
+import Header from '../../components/Header/index.jsx'
 import CircleBtn from "../../components/button/circle"
 import SquareBtn from "../../components/button/square/index.jsx";
 
