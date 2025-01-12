@@ -16,6 +16,8 @@ const MENU = [
 export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
+  let username = '오주현'; //String
+  let userprofile = 'https://avatars.githubusercontent.com/u/177971300?v=4'; //URL일듯
   return (
     <S.HeaderContainer>
       <S.Logo src={teachmonLogo} onClick={() => { navigate('/main') }} />
@@ -25,14 +27,17 @@ export default function Header() {
             const isActive = location.pathname === menu.path;
             return (
               <S.MenuItem key={index} onClick={() => { navigate(menu.path) }} $active={isActive}>
-                <S.MenuIcon src={menu.logo} $active={isActive}/>
+                <S.MenuIcon src={menu.logo} $active={isActive} />
                 {menu.label}
               </S.MenuItem>
             )
           })
         }
-        </S.NavList>
-
+      </S.NavList>
+      <S.Bottom>
+        <S.BottomProfile src={userprofile} />
+        {username}
+      </S.Bottom>
     </S.HeaderContainer>
   )
 }
