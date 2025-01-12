@@ -80,7 +80,7 @@ export default function Manage(){
                 <S.Info>
                     <h1>{day}</h1>
                     <S.InfoBtn>
-                        <SquareBtn name={"학생위치"} status={true} On={()=>navigate('/')} />
+                        <SquareBtn name={"학생위치"} status={true} On={()=>navigate('/manage/location')} />
                         <SquareBtn name={"이석작성"} status={true} On={()=>setIsModal(!isModal)} />
                     </S.InfoBtn>
                 </S.Info>
