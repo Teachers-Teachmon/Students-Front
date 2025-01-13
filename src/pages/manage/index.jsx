@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import Record from "../../assets/record.svg";
-import StudentGraph from '../../components/StudentGraph'
+import StudentGraph from '../../components/student-graph'
 import Write from '../../components/modal/write';
 
 export default function Manage(){
@@ -80,7 +80,7 @@ export default function Manage(){
                 <S.Info>
                     <h1>{day}</h1>
                     <S.InfoBtn>
-                        <SquareBtn name={"학생위치"} status={true} On={()=>navigate('/')} />
+                        <SquareBtn name={"학생위치"} status={true} On={()=>navigate('/manage/location')} />
                         <SquareBtn name={"이석작성"} status={true} On={()=>setIsModal(!isModal)} />
                     </S.InfoBtn>
                 </S.Info>
@@ -115,7 +115,7 @@ export default function Manage(){
                                 </S.Colors>
                             </S.Color>
                         </S.MainBox>
-                        <S.Record onClick={()=>navigate('/')}>
+                        <S.Record onClick={()=>navigate('/manage/record')}>
                             <img src={Record} alt="" />
                             <p>기록</p>
                         </S.Record>

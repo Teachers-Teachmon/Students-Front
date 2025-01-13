@@ -24,7 +24,7 @@ export default function Header() {
       <S.NavList>
         {
           MENU.map((menu, index) => {
-            const isActive = location.pathname === menu.path;
+            const isActive = location.pathname.includes(menu.path);
             return (
               <S.MenuItem key={index} onClick={() => { navigate(menu.path) }} $active={isActive}>
                 <S.MenuIcon src={menu.logo} $active={isActive} />
