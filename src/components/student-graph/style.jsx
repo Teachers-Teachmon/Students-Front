@@ -38,44 +38,6 @@ export const Student = styled.div`
     }
 `
 
-export const StatusBox = styled.div`
-    width: 250px;
-    height: 50px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: row;
-    position: absolute;
-    border: 2px solid #F5F5F5;
-    border-radius: 8px;
-    top: -60px;
-    color: white;
-    font-size: 12px;
-    font-weight: 500;
-    background: white;
-    padding: 10px;
-    z-index: 2;
-`
-export const Status = styled.div`
-    display: flex;
-    align-items: center;
-    background: ${(props)=> props.color};
-    gap: 8px;
-    border-radius: 22px;
-    padding: 2px 5px;
-`
-
-export const Circle = styled.div`
-    width: 10px;
-    height: 10px;
-    border-radius: 100%;
-    background: ${(props)=> props.color};
-`
-export const StatusText = styled.p`
-    color: ${props=>props.color};
-    font-size: 16px;
-    
-`
 export const Black = styled.div`
     position: absolute;
     width: 100vw;

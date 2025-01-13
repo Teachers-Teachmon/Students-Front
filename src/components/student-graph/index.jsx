@@ -1,5 +1,6 @@
 import * as S from './style.jsx'
 import {useState} from "react";
+import StatusUpdate from "../status-update/index.jsx";
 
 export default function StudentGraph({data}){
     const [isOpen, setIsOpen] = useState([
@@ -14,7 +15,7 @@ export default function StudentGraph({data}){
 
     // 상태 업데이트 하는 함수, 상태업데이트하고 다시 불러오기
     const changeStatus= (idx, status) => {
-
+        console.log(idx, status)
     }
 
     // 상태에 따라 색깔변환
@@ -42,20 +43,8 @@ export default function StudentGraph({data}){
                             <p>{el.id}</p>
                             <p>{el.name}</p>
                             {isOpen[idx] ?
-                                <S.StatusBox>
-                                    <S.Status color={"#FFF6E4"} onClick={changeStatus(idx, "조퇴")}>
-                                        <S.Circle color={"#FF9000"}></S.Circle>
-                                        <S.StatusText color={"#FF9000"}>조퇴</S.StatusText>
-                                    </S.Status>
-                                    <S.Status color={"#ECFDF3"} onClick={changeStatus(idx, "자습")}>
-                                        <S.Circle color={"#14BA6D"}></S.Circle>
-                                        <S.StatusText color={"#14BA6D"}>자습</S.StatusText>
-                                    </S.Status>
-                                    <S.Status color={"#FDF0EC"} onClick={changeStatus(idx, "이탈")}>
-                                        <S.Circle color={"#F87067"}></S.Circle>
-                                        <S.StatusText color={"#F87067"}>이탈</S.StatusText>
-                                    </S.Status>
-                                </S.StatusBox> : null
+                                <StatusUpdate changeStatus={changeStatus} idx={el.id} />
+                                 : null
                             }
                         </S.Student>
                         { isOpen.some((value) => value === true) ? <S.Black onClick={()=>setIsOpen(isOpen.map(() => false))}></S.Black> : null}

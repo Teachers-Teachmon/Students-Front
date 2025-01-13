@@ -2,12 +2,18 @@ import * as S from './style.jsx'
 import Header from "../../../components/header/index.jsx";
 import CircleBtn from "../../../components/button/circle/index.jsx";
 import SquareBtn from "../../../components/button/square/index.jsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
-
+import First from "../../../components/map/1st/index.jsx";
+import Second from "../../../components/map/2nd/index.jsx";
+import Third from "../../../components/map/3rd/index.jsx";
+import Fourth from "../../../components/map/4th/index.jsx";
+import DetailStudentLocation from "../../../components/modal/detail-student-location/index.jsx";
+import FirstModal from "../../../components/modal/location-first";
 
 export default function Location() {
+    const [isFirstModal, setIsFirstModal] = useState(true);
     const navigate = useNavigate();
     const [isFloor, setFloor] = useState([
         true, false, false, false
@@ -17,14 +23,7 @@ export default function Location() {
         newFloor[idx] = true;
         setFloor(newFloor);
     }
-    const elements = [
-        { id: 1, name: "Element 1", x: 100, y: 200 },
-        { id: 2, name: "Element 2", x: 300, y: 400 },
-    ];
-
-    const handleClick = (element) => {
-        alert(`You clicked on: ${element.name}`);
-    };
+    const [isModal,setIsModal] = useState(false);
     return (
         <S.LocationContainer>
             <Header />
@@ -40,30 +39,21 @@ export default function Location() {
             <TransformWrapper>
                 <TransformComponent>
             <S.Wrap>
-                        {elements.map((el) => (
-                            <div
-                                key={el.id}
-                                onClick={() => handleClick(el)}
-                                style={{
-                                    position: "absolute",
-                                    top: el.y,
-                                    left: el.x,
-                                    width: "50px",
-                                    height: "50px",
-                                    backgroundColor: "lightblue",
-                                    borderRadius: "50%",
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    cursor: "pointer",
-                                }}
-                            >
-                                {el.name}
-                            </div>
-                        ))}
+                {isFloor[0] ? (
+                    <First set = {setIsModal}/>
+                ) : isFloor[1] ? (
+                    <Second set = {setIsModal}/>
+                ) : isFloor[2] ? (
+                    <Third set = {setIsModal}/>
+                ) : isFloor[3] ? (
+                    <Fourth set = {setIsModal} />
+                ) : null
+                }
             </S.Wrap>
         </TransformComponent>
 </TransformWrapper>
+            {isModal ? <DetailStudentLocation setIsModal={setIsModal}/> : null}
+            {isFirstModal ? <FirstModal set={setIsFirstModal}/> : null}
         </S.LocationContainer>
     )
 }
