@@ -1,0 +1,60 @@
+import styled from "styled-components";
+export default function StatusUpdate({changeStatus, idx}) {
+    return (
+        <StatusBox>
+            <Status color={"#FFF6E4"} onClick={()=>changeStatus(idx, "조퇴")}>
+                <Circle color={"#FF9000"}></Circle>
+                <StatusText color={"#FF9000"}>조퇴</StatusText>
+            </Status>
+            <Status color={"#ECFDF3"} onClick={()=>changeStatus(idx, "자습")}>
+                <Circle color={"#14BA6D"}></Circle>
+                <StatusText color={"#14BA6D"}>자습</StatusText>
+            </Status>
+            <Status color={"#FDF0EC"} onClick={()=>changeStatus(idx, "이탈")}>
+                <Circle color={"#F87067"}></Circle>
+                <StatusText color={"#F87067"}>이탈</StatusText>
+            </Status>
+        </StatusBox>
+    )
+}
+
+export const StatusBox = styled.div`
+    width: 250px;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    position: absolute;
+    border: 2px solid #F5F5F5;
+    border-radius: 8px;
+    top: -60px;
+    left: -90px;
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    background: white;
+    padding: 10px;
+    z-index: 15;
+`
+export const Status = styled.div`
+    display: flex;
+    align-items: center;
+    background: ${(props)=> props.color};
+    gap: 8px;
+    border-radius: 22px;
+    padding: 2px 5px;
+    cursor: pointer;
+`
+
+export const Circle = styled.div`
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    background: ${(props)=> props.color};
+`
+export const StatusText = styled.p`
+    color: ${props=>props.color};
+    font-size: 16px;
+    
+`

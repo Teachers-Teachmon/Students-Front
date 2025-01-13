@@ -7,7 +7,7 @@ export const ManageContainer = styled.div`
     justify-content: flex-start;
 `
 export const Wrap = styled.div`
-    width : 85%;
+    width : 87%;
     height: 100%;
     padding: 40px 6%;
     display: flex;

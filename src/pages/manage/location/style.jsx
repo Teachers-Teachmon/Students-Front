@@ -7,7 +7,7 @@ export const LocationContainer = styled.div`
     justify-content: flex-start;
 `
 export const Wrap = styled.div`
-    width : 85vw;
+    width : 87vw;
     z-index: 3;
     height: 100vh;
     padding: 40px 6%;
@@ -30,4 +30,20 @@ export const Info = styled.div`
     justify-content: space-between;
     align-items: center;
     z-index: 5;
+`
+export const Element = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: ${(props)=>props.$top}px;
+    left: ${(props)=>props.$left}px;
+    width: ${(props)=>props.$width}px;
+    height: ${(props)=>props.$height}px;
+    background: ${(props)=>props.$color};
+    cursor: ${(props)=>props.$cursor};
+    font-weight: 550;
+    font-size: 10px;
+    border: 1px solid black;
+    text-align: center;
 `
