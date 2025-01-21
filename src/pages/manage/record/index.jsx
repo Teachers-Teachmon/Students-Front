@@ -8,6 +8,8 @@ import Leave from "../../../components/record/leave/index.jsx";
 import Movement from "../../../components/record/movement/index.jsx";
 import Student from "../../../components/record/student/index.jsx";
 import Search from "../../../assets/Search.svg";
+import {useGetMovement, useGetStudent, useGetLeave} from "../../../hooks/useData.js";
+import useDay from "../../../zustand/day";
 
 export default function Record() {
     const navigate = useNavigate();
@@ -21,6 +23,12 @@ export default function Record() {
         {id : 4, name : "1410 윤도훈"},
     ]
     const [searchStudent, setSearchStudent] = useState("");
+    const {day: today} = useDay();
+    const [day, setDay] = useState(today);
+    const {movement, movementLoading, movementError} = useGetMovement(day);
+    const {leave, leaveLoading, leaveError} = useGetLeave(day);
+    const {student, studentLoading, studentError} = useGetStudent(day);
+
     return (
         <S.ManageContainer>
             <Header/>
@@ -53,9 +61,35 @@ export default function Record() {
                             : null}
                     </S.MainNav>
                     {isMovement[0] ? (
-                        <Movement data={[1,2]}/>
+                        <Movement data={
+                            [{
+                                teacher_name: "박건우",
+                                place: "전기전자 회로실",
+                                cause: "납뗌해야함",
+                                day: "2024-12-25",
+                                period: 8,
+                                students: [
+                                    {
+                                        id: 1401,
+                                        name: "김동욱"
+                                    },
+                                    {
+                                        id: 1416,
+                                        name: "허온"
+                                    }
+                                ]
+                            },]
+                        }/>
                     ) : isMovement[1] ? (
-                        <Leave data={[1,2]}/>
+                        <Leave data={[
+                            {
+                                studentID: 1401,
+                                name: "김동욱",
+                                day: "2024-12-25",
+                                period: 10,
+                                teacher_name: "이정하"
+                            }
+                        ]}/>
                     ) : isMovement[2] ? (
                         <Student data={data} search = {searchStudent} />
                     ) : null}

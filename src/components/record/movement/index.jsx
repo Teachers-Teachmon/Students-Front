@@ -1,9 +1,11 @@
 import * as S from './style.jsx'
 import { useState } from "react";
 import DetailMovement from "../../modal/detail-movement/index.jsx";
+import {useDeleteMovement} from "../../../hooks/useData.js";
 
 export default function Movement({data}) {
     const [isModal, setIsModal] = useState(false);
+    const {mutate : deleteMovement} = useDeleteMovement();
     return (
         <S.MovementContainer>
             <S.Standard>
@@ -16,19 +18,27 @@ export default function Movement({data}) {
             </S.Standard>
             {data.map((item, index) => {
                 return(
-                    <S.Content onClick={()=>setIsModal(!isModal)}>
-                        <S.UnBox></S.UnBox>
-                        <S.Box2 $length={110}>8~9교시</S.Box2>
-                        <S.Box2 $length={110}>이정하</S.Box2>
-                        <S.Box2 $length={110}>7명</S.Box2>
-                        <S.Box2 $length={200}>객체지향프로그래밍실</S.Box2>
-                        <S.Box2 $length={240}>전공동아리</S.Box2>
-                        {/*자신이 쓴 이석기록이라면 삭제해야함*/}
-                        <S.DeleteBox onClick={()=>console.log(1)}>삭제</S.DeleteBox>
-                    </S.Content>
+                    <>
+                        <S.Content onClick={()=>setIsModal(!isModal)}>
+                            <S.UnBox></S.UnBox>
+                            <S.Box2 $length={110}>{item.period}</S.Box2>
+                            <S.Box2 $length={110}>{item.teacher_name}</S.Box2>
+                            <S.Box2 $length={110}>{item.students.length}명</S.Box2>
+                            <S.Box2 $length={200}>{item.place}</S.Box2>
+                            <S.Box2 $length={240}>{item.cause}</S.Box2>
+                            {/*자신이 쓴 이석기록이라면 삭제해야함*/}
+                            <S.DeleteBox
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    if(window.confirm('정말 삭제하시겠습니까?')) deleteMovement(item);
+                                }}
+                            >삭제</S.DeleteBox>
+                        </S.Content>
+                        {isModal ?<DetailMovement data={item} setIsModal={setIsModal} /> : null}
+                    </>
                 )
             })}
-            {isModal ?<DetailMovement setIsModal={setIsModal} /> : null}
+
         </S.MovementContainer>
     )
 }
