@@ -1,2 +1,2 @@
-import {API_ENDPOINTS} from "./endpoints.js";
-import axiosInstance from "./axiosInstance.js";
+import {API_ENDPOINTS} from "../lib/endpoints.js";
+import axiosInstance from "../lib/axiosInstance.js";
