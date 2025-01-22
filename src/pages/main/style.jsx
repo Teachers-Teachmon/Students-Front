@@ -128,16 +128,22 @@ export const Row = styled.div`
 export const MainBottom = styled.div`
     width: 100%;
     display: flex;
-    margin-top: 0.3%;
+    margin-top: 1%;
 `
 
 export const BottomLeft = styled.div`
     width: 50%;
     margin-right: 2%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 `
 
 export const BottomRight = styled.div`
     width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 `
 
 export const BottomLeftContent = styled.div`
@@ -175,6 +181,7 @@ export const TeacherTable = styled.div`
     text-align: center;
     background-color: white;
     border-bottom: 1px solid #E2E2E2;
+    padding: 0.5rem;
 
     p {
         margin: 0;
