@@ -74,6 +74,9 @@ export default function Write({setIsModal}){
                     <h1>{isMovement[0] ? "이석" : "자퇴"}</h1>
                     {isMovement[0] ? (
                         <>
+                            {isOpen.some((status) => status === true) ?
+                                <S.Black onClick={()=>setIsOpen([false, false, false])}/> : null
+                            }
                             <S.Place>
                                 <Dropdown
                                     name={time}
@@ -167,6 +170,9 @@ export default function Write({setIsModal}){
                         </>
                     ) : (
                         <>
+                            {isOpen.some((status) => status === true) ?
+                                <S.Black onClick={()=>setIsOpen([false, false, false])}/> : null
+                            }
                             <SearchDropdown
                                 name={search2}
                                 isOpen={isOpen[0]}
