@@ -3,7 +3,7 @@ import flyIcon from '../../../assets/paper-plane.svg';
 import rejectIcon from '../../../assets/xmark.svg';
 import checkIcon from '../../../assets/check.svg';
 
-export const ConfirmContainer = styled.div`
+export const ConfirmContainer = styled.button`
   width: 120px;
   height: 42px;
   color: white;
@@ -12,6 +12,7 @@ export const ConfirmContainer = styled.div`
   align-items: center;
   gap: 10px;
   border-radius: 10px;
+  border: none;
   background-color: ${(props) => (props.color === 'red' ? '#F87067' : props.color === 'blue' ? '#2E6FF2' : '')};
   cursor: pointer;
   &:hover {
