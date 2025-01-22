@@ -5,9 +5,16 @@ import RedPeople from '../../../assets/RedPeople.svg';
 import OrangePeople from '../../../assets/OrangePeople.svg';
 import {useEffect, useState} from "react";
 import StatusUpdate from "../../status-update";
+import useLocation from "../../../zustand/locationDetail.js";
 
 export default function DetailStudentLocation({setIsModal, data}) {
     const [isOpen, setIsOpen] = useState([]);
+    const location = useLocation.getState();
+
+    const setLocation = () => {
+        return data.filter((item) => item.place === location.place);
+    };
+
     // 임시 데이터
     const d = {
         place: "객체지향프로그래밍실",
@@ -37,26 +44,26 @@ export default function DetailStudentLocation({setIsModal, data}) {
         <S.Black onClick={()=>setIsModal(false)}>
             <S.Content  onClick={(e) => e.stopPropagation()}>
                 <S.Title>
-                    <h1>{d.place}(자습중)</h1>
+                    <h1>{setLocation()[0].place}({setLocation()[0].status})</h1>
                     <img src={X} alt={"엑스"} onClick={()=>setIsModal(false)}/>
                 </S.Title>
                 <S.Box>
                     <S.BlueText>담당교사</S.BlueText>
                     <S.Teacher>
                         <img src={People} alt={"people"} width={28}/>
-                        <S.Name>이정하</S.Name>
+                        <S.Name>{setLocation()[0].teacher}</S.Name>
                     </S.Teacher>
                 </S.Box>
                 <S.Box>
-                    <S.BlueText>학생{d.student.length}명</S.BlueText>
+                    <S.BlueText>학생{setLocation()[0].students.length}명</S.BlueText>
                     <S.RedText>* 결석한 학생이 있다면 학생을 클릭하여 상태를 바꿔주세요</S.RedText>
                     <S.Students>
-                        {d.student.map((item, idx)=>{
+                        {setLocation()[0].students.map((item, idx)=>{
                             return(
                                 <>
                                     <S.Teacher key={idx} onClick={()=>isClick(idx)}>
                                         <img src={item.status === "자습" ? People : item.status === "조퇴" ? OrangePeople : RedPeople} alt={"people"} width={28}/>
-                                        <S.Name $color={item.status === "자습" ? "black" : item.status === "조퇴" ? "#FF9000" : "#FF938C"}>{item.name}</S.Name>
+                                        <S.Name $color={item.status === "자습" ? "black" : item.status === "조퇴" ? "#FF9000" : "#FF938C"}>{item.studentNumber}{item.name}</S.Name>
                                         {isOpen[idx] ? <StatusUpdate changeStatus={changeStatus} idx={item.name}/> : null}
                                     </S.Teacher>
                                     { isOpen.some((value) => value === true) ? <S.UnBox onClick={()=>setIsOpen(isOpen.map(() => false))}></S.UnBox> : null}

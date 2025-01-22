@@ -1,6 +1,7 @@
 import * as S from '../../../pages/manage/location/style.jsx'
+import useLocation from "../../../zustand/locationDetail.js";
 
-export default function Second({set}) {
+export default function Second({set, data}) {
     const elements = [
         { id: 1, name: "공간-Arisori", x: 280, y: 100, width: 60, height: 50, backgroundColor: "#DDDDDD", cursor: "pointer" },
         { id: 3, name: "취업상담실", x: 340, y: 100, width: 35, height: 50, backgroundColor: "#DDDDDD", cursor: "pointer" },
@@ -46,17 +47,24 @@ export default function Second({set}) {
         { id: 42, name: "방풍실", x: 280, y: 165, width: 45, height: 55, backgroundColor: "#DDDDDD", cursor: "pointer" },
 
     ];
+    const setPlace = useLocation((state) => state.setPlace);
+    const selectPlace = (data.map((item)=>{return item.place;}))
     return(
         elements.map((el) => (
             <S.Element
-                onClick={()=>set(true)}
+                onClick={()=>{
+                    if(selectPlace.includes(el.name)) {
+                        set(true)
+                        setPlace(el.name)
+                    }
+                }}
                 key={el.id}
                 $left={el.x}
                 $top={el.y}
                 $width={el.width}
                 $height={el.height}
-                $color={el.backgroundColor}
-                $cursor={el.cursor}
+                $color={selectPlace.includes(el.name)}
+                $cursor={selectPlace.includes(el.name)}
             >
                 {el.name}
             </S.Element>

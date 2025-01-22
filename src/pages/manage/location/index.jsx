@@ -11,6 +11,7 @@ import Third from "../../../components/map/3rd/index.jsx";
 import Fourth from "../../../components/map/4th/index.jsx";
 import DetailStudentLocation from "../../../components/modal/detail-student-location/index.jsx";
 import FirstModal from "../../../components/modal/location-first";
+import {useGetLocationAll, useGetLocationFloor} from "../../../hooks/useStudent.js";
 
 export default function Location() {
     const [isFirstModal, setIsFirstModal] = useState(true);
@@ -23,7 +24,40 @@ export default function Location() {
         newFloor[idx] = true;
         setFloor(newFloor);
     }
+    const floor = () =>{
+        return isFloor
+            .map((item, idx) => (item ? idx+1 : null))
+            .filter((idx) => idx !== null);
+    };
     const [isModal,setIsModal] = useState(false);
+    const {data : locationAll, isAllLoading} = useGetLocationAll();
+    const {data : locationFloor, isFloorLoading} = useGetLocationFloor(floor()[0]);
+    const data = [
+        {
+            "place" : "과학실",
+            "status": "이석",
+            "teacher": "박건우",
+            "students": [
+                {
+                    "studentNumber": 1401,
+                    "name": "김동욱",
+                    "status":"자습"
+                },
+            ]
+        },
+        {
+            "place" : "디자인실",
+            "status": "이석",
+            "선생님": "정유진",
+            "학생": [
+                {
+                    "studentNumber": 1401,
+                    "name": "김동욱",
+                    "status":"자습"
+                },
+            ]
+        }
+    ]
     return (
         <S.LocationContainer>
             <Header />
@@ -40,20 +74,20 @@ export default function Location() {
                 <TransformComponent>
             <S.Wrap>
                 {isFloor[0] ? (
-                    <First set = {setIsModal}/>
+                    <First data = {data} set = {setIsModal}/>
                 ) : isFloor[1] ? (
-                    <Second set = {setIsModal}/>
+                    <Second data = {data} set = {setIsModal}/>
                 ) : isFloor[2] ? (
-                    <Third set = {setIsModal}/>
+                    <Third data = {data} set = {setIsModal}/>
                 ) : isFloor[3] ? (
-                    <Fourth set = {setIsModal} />
+                    <Fourth data = {data} set = {setIsModal} />
                 ) : null
                 }
             </S.Wrap>
         </TransformComponent>
 </TransformWrapper>
-            {isModal ? <DetailStudentLocation setIsModal={setIsModal}/> : null}
-            {isFirstModal ? <FirstModal set={setIsFirstModal}/> : null}
+            {isModal ? <DetailStudentLocation data ={data} setIsModal={setIsModal}/> : null}
+            {isFirstModal ? <FirstModal data ={locationAll} set={setIsFirstModal}/> : null}
         </S.LocationContainer>
     )
 }

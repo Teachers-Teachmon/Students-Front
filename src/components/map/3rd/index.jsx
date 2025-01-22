@@ -1,6 +1,7 @@
 import * as S from '../../../pages/manage/location/style.jsx'
+import useLocation from "../../../zustand/locationDetail.js";
 
-export default function Third({set}) {
+export default function Third({set, data}) {
     const elements = [
         { id: 30, name: "", x: 150, y: 80, width: 200, height: 500, backgroundColor: "#DDDDDD", cursor: "pointer" },
         { id: 30, name: "", x: 50, y: 80, width: 100, height: 100, backgroundColor: "#DDDDDD", cursor: "pointer" },
@@ -31,17 +32,24 @@ export default function Third({set}) {
         { id: 36, name: "기숙사", x: 150, y: 180, width: 200, height: 400, backgroundColor: "#DDDDDD", cursor: "pointer" },
 
     ];
+    const setPlace = useLocation((state) => state.setPlace);
+    const selectPlace = (data.map((item)=>{return item.place;}))
     return(
         elements.map((el) => (
             <S.Element
-                onClick={()=>set(true)}
+                onClick={()=>{
+                    if(selectPlace.includes(el.name)) {
+                        set(true)
+                        setPlace(el.name)
+                    }
+                }}
                 key={el.id}
                 $left={el.x}
                 $top={el.y}
                 $width={el.width}
                 $height={el.height}
-                $color={el.backgroundColor}
-                $cursor={el.cursor}
+                $color={selectPlace.includes(el.name)}
+                $cursor={selectPlace.includes(el.name)}
             >
                 {el.name}
             </S.Element>

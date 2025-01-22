@@ -18,7 +18,7 @@ export const DropdownContainer = styled.div`
         border-color: #aaa;
     }
     position: relative;
-    z-index: 2;
+    z-index: 12;
 `
 
 
