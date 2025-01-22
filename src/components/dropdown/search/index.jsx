@@ -2,6 +2,7 @@ import * as S from './style.jsx'
 import Down from '../../../assets/down.svg'
 import {useState, useRef} from "react";
 
+// target = 학생인지 선생님인지 구별
 // name = 선택되어있는 요소
 // item = 드랍다운했을때 나오는 요소들
 // change = 선택된 요소로 name 을 바꾸는 함수
@@ -9,7 +10,7 @@ import {useState, useRef} from "react";
 // click = 드랍다운을 했다가 다시 누르면 닫히게 하는 함수
 // 예 : <SearchDropdown name={search2} isOpen={isOpen[0]} item={student} change={(event) => setSearch2(event)} click={() => setIsOpen([!isOpen[0]])} />
 
-export default function SearchDropdown({name, item, change, click, isOpen}) {
+export default function SearchDropdown({target, name, item, change, click, isOpen}) {
     const [value, setValue] = useState('');
     const inputRef = useRef();
     return (
@@ -28,7 +29,7 @@ export default function SearchDropdown({name, item, change, click, isOpen}) {
                         onClick={(e) => e.stopPropagation()}
                         type={"text"}
                         value={value}
-                        placeholder={"학생을 입력해주세요"}
+                        placeholder={`${target}을 입력해주세요`}
                         onChange={(e) => setValue(e.target.value)}
                     ></S.Input>
                     {item.map((currentItem, index) => {
