@@ -2,7 +2,7 @@ import * as S from './style.jsx'
 import Header from '../../components/header/index.jsx'
 import CircleBtn from "../../components/button/circle"
 import SquareBtn from "../../components/button/square/index.jsx";
-import dayjs from 'dayjs';
+import useDay from "../../zustand/day.js";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import Record from "../../assets/record.svg";
@@ -10,7 +10,7 @@ import StudentGraph from '../../components/student-graph'
 import Write from '../../components/modal/write';
 
 export default function Manage(){
-    const today = dayjs().format('YYYY-MM-DD dddd');
+    const {day: today} = useDay();
     const [day, setDay] = useState('');
     const navigate = useNavigate()
     const [grade, setGrade] = useState([

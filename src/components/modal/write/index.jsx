@@ -5,6 +5,8 @@ import Dropdown from "../../dropdown/nosearch";
 import SquareBtn from "../../button/square";
 import Search from '../../../assets/Search.svg'
 import SearchDropdown from '../../dropdown/search';
+import {usePostMovement} from '../../../hooks/useData.js';
+import useDay from "../../../zustand/day.js";
 
 export default function Write({setIsModal}){
     const [time, setTime] = useState("시간");
@@ -52,6 +54,9 @@ export default function Write({setIsModal}){
     ]
 
     const [selectStudent, setSelectStudent] = useState([]);
+    const {mutate : postMovement} = usePostMovement();
+    const {day} = useDay();
+
     return(
         <S.WriteContainer>
             <S.Info>
@@ -125,7 +130,9 @@ export default function Write({setIsModal}){
     </S.StudentBox>
     <S.Submit>
         <SquareBtn name={"취소"} status={false} On={() => setIsModal(false)}/>
-        <SquareBtn name={"작성완료"} status={true}/>
+        <SquareBtn name={"작성완료"} status={true} On={()=>{
+            postMovement({selectStudent,day, time, place, cause});
+        }}/>
     </S.Submit> </>
  : <>
                     <SearchDropdown name={search2} isOpen={isOpen[0]} item={student} change={(event) => setSearch2(event)} click={() => setIsOpen([!isOpen[0]])} />

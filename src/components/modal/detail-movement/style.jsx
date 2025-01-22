@@ -14,7 +14,7 @@ export const Black = styled.div`
 `
 export const Content = styled.div`
     width: 43%;
-    padding: 20px 30px;
+    padding: 30px;
     border-radius: 8px;
     background: white;
     display: flex;
