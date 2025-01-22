@@ -1,14 +1,17 @@
 import styled from "styled-components";
 import Confirm from "../../../button/confirm/index.jsx";
+import {useDeleteSchoolOut} from "../../../../hooks/useStudent.js";
 
 export default function SchoolOut({name, On}){
+    const {mutate : out} = useDeleteSchoolOut()
+
     return(
         <Content>
             <h2>정말로 {name} 님을 자퇴/전학 시키시겠습니까?</h2>
             <RedText>학생 데이터가 삭제되어 되돌릴 수 없습니다</RedText>
             <Submit>
                 <Confirm text={"거절"} color={"red"} image={"reject"} onClick={On} />
-                <Confirm text={"수락"} color={"blue"} image={"check"} onClick={()=>console.log(1)} />
+                <Confirm text={"수락"} color={"blue"} image={"check"} onClick={()=>out(name)} />
             </Submit>
         </Content>
     )

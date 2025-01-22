@@ -174,6 +174,7 @@ export default function Write({setIsModal}){
                                 <S.Black onClick={()=>setIsOpen([false, false, false])}/> : null
                             }
                             <SearchDropdown
+                                target={"학생"}
                                 name={search2}
                                 isOpen={isOpen[0]}
                                 item={student}

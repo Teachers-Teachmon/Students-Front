@@ -45,7 +45,7 @@ export default function StudentGraph({data}){
                             <p>{el.id}</p>
                             <p>{el.name}</p>
                             {isOpen[idx] ?
-                                <StatusUpdate changeStatus={changeStatus} idx={el.id} />
+                                <StatusUpdate changeStatus={changeStatus} name={el.id} />
                                  : null
                             }
                         </S.Student>

@@ -6,6 +6,7 @@ import OrangePeople from '../../../assets/OrangePeople.svg';
 import {useEffect, useState} from "react";
 import StatusUpdate from "../../status-update";
 import useLocation from "../../../zustand/locationDetail.js";
+import {usePatchStudent} from "../../../hooks/useData.js";
 
 export default function DetailStudentLocation({setIsModal, data}) {
     const [isOpen, setIsOpen] = useState([]);
@@ -14,6 +15,8 @@ export default function DetailStudentLocation({setIsModal, data}) {
     const setLocation = () => {
         return data.filter((item) => item.place === location.place);
     };
+
+    const {mutate : patchStudent} = usePatchStudent();
 
     // 임시 데이터
     const d = {
@@ -32,13 +35,14 @@ export default function DetailStudentLocation({setIsModal, data}) {
         setIsOpen(newIsOpen);
     }
     useEffect(()=>{
-        const newOpen = d.student.map(()=> false);
+        const newOpen = setLocation()[0].students.map(()=> false);
         setIsOpen(newOpen)
     }, []);
 
     // 상태 업데이트 하는 함수, 상태업데이트하고 다시 불러오기
     const changeStatus= (idx, status) => {
         console.log(idx, status)
+        patchStudent({studentID: idx, status: status})
     }
     return (
         <S.Black onClick={()=>setIsModal(false)}>
@@ -64,7 +68,7 @@ export default function DetailStudentLocation({setIsModal, data}) {
                                     <S.Teacher key={idx} onClick={()=>isClick(idx)}>
                                         <img src={item.status === "자습" ? People : item.status === "조퇴" ? OrangePeople : RedPeople} alt={"people"} width={28}/>
                                         <S.Name $color={item.status === "자습" ? "black" : item.status === "조퇴" ? "#FF9000" : "#FF938C"}>{item.studentNumber}{item.name}</S.Name>
-                                        {isOpen[idx] ? <StatusUpdate changeStatus={changeStatus} idx={item.name}/> : null}
+                                        {isOpen[idx] ? <StatusUpdate changeStatus={changeStatus} name={item.name}/> : null}
                                     </S.Teacher>
                                     { isOpen.some((value) => value === true) ? <S.UnBox onClick={()=>setIsOpen(isOpen.map(() => false))}></S.UnBox> : null}
                                 </>
