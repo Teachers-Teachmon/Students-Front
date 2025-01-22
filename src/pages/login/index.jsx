@@ -23,7 +23,7 @@ export default function Login(){
 
 export const LoginContainer = styled.div`
     width: 100%;
-    height: 100%;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;

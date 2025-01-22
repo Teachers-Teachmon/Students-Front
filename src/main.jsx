@@ -4,6 +4,8 @@ import {
     Routes,
     Route
 } from "react-router-dom";
+import {QueryClientProvider, QueryClient} from '@tanstack/react-query';
+
 import Landing from './pages/landing'
 import Main from './pages/main'
 import Manage from './pages/manage'
@@ -15,19 +17,23 @@ import Login from "./pages/login"
 import SupervisionDetail from "./pages/supervision/detail";
 import SupervisionChange from "./pages/supervision/change";
 
+const client = new QueryClient();
+
 createRoot(document.getElementById('root')).render(
-    <BrowserRouter>
-        <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path={"/login"} element={<Login />} />
-            <Route path="/main" element={<Main />} />
-            <Route path="/manage" element={<Manage />} />
-            <Route path="/manage/record" element={<Record />} />
-            <Route path={"/manage/location"} element={<Location />} />
-            <Route path="/supervision" element={<Supervision />} />
-            <Route path="/supervision/detail" element={<SupervisionDetail />} />
-            <Route path="/supervision/change" element={<SupervisionChange />} />
-            <Route path="/after-school" element={<After />} />
-        </Routes>
-    </BrowserRouter>
+    <QueryClientProvider client={client} >
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Landing />} />
+                <Route path={"/login"} element={<Login />} />
+                <Route path="/main" element={<Main />} />
+                <Route path="/manage" element={<Manage />} />
+                <Route path="/manage/record" element={<Record />} />
+                <Route path={"/manage/location"} element={<Location />} />
+                <Route path="/supervision" element={<Supervision />} />
+                <Route path="/supervision/detail" element={<SupervisionDetail />} />
+                <Route path="/supervision/change" element={<SupervisionChange />} />
+                <Route path="/after-school" element={<After />} />
+            </Routes>
+        </BrowserRouter>
+    </QueryClientProvider>
 )
