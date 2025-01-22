@@ -8,7 +8,7 @@ export const DropdownContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    padding: 5px 5px;
+    padding: 5px;
     cursor: pointer;
     align-items: center;
     transition: all 0.3s ease;
@@ -35,6 +35,8 @@ export const DropdownItem = styled.li`
   padding: 10px;
   cursor: pointer;
   transition: all 0.2s ease;
+    display: flex;
+    justify-content: flex-start;
     width: 150px;
     background: white;
     z-index: 10;

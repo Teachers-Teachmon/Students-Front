@@ -8,7 +8,7 @@ export const DropdownContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    padding: 5px 15px;
+    padding: 5px;
     cursor: pointer;
     align-items: center;
     transition: all 0.3s ease;
