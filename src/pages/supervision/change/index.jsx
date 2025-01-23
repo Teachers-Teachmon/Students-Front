@@ -186,81 +186,116 @@ export default function SupervisionChange() {
         });
     };
 
+    const [currentMonth, setCurrentMonth] = useState(2);
+    const [weeks, setWeeks] = useState(TeacherList[0].data);
+
+    const handleNextMonth = () => {
+        if (currentMonth < 12) {
+            const nextMonth = currentMonth + 1;
+            setCurrentMonth(nextMonth);
+            updateWeeks(nextMonth);
+        }
+    };
+
+    const handlePrevMonth = () => {
+        if (currentMonth > 1) {
+            const prevMonth = currentMonth - 1;
+            setCurrentMonth(prevMonth);
+            updateWeeks(prevMonth);
+        }
+    };
+
+    const updateWeeks = (month) => {
+        // API호출해야함
+        const monthName = `${month}월`;
+        const newWeeks = [
+            { week: `${monthName} 1주차`, schedule: weeks[0].schedule },
+            { week: `${monthName} 2주차`, schedule: weeks[1].schedule },
+        ];
+        setWeeks(newWeeks);
+    };
+
+
     return (
         <S.Wrapper>
             <Header />
             <S.MainWrap>
-                <S.MainHeader>
-                    <h1>자습감독 교체요청 <S.Warning>* 바꾸고 싶은 자신의 시간을 선택해 주세요.</S.Warning></h1>
-                    <SquareBtn name="돌아가기" status={true} On={() => { navigate('/supervision') }} />
-                </S.MainHeader>
-                <S.TableWrap>
-                    {TeacherList[0].data.map((weekData, weekIndex) => (
-                        <S.Table key={weekIndex}>
-                            <h2>{weekData.week}</h2>
-                            <S.TableContent>
-                                <S.TableLeft>
-                                    <div>날짜</div>
-                                    <div>학년</div>
-                                    <div>7교시</div>
-                                    <div>8~9교시</div>
-                                    <div>10~11교시</div>
-                                </S.TableLeft>
-                                <S.TableRight>
-                                    {weekData.schedule.map((dayData, dayIndex) => (
-                                        <S.TableRightContent key={dayIndex}>
-                                            <h3>{dayData.day}</h3>
-                                            <S.TableRightHeader>
-                                                <div>1학년</div>
-                                                <div>2학년</div>
-                                                <div>3학년</div>
-                                            </S.TableRightHeader>
-                                            <S.TeacherList>
-                                                {['7th_teacher', '8th_teacher', '10th_teacher'].map((classKey) =>
-                                                    ['first_grade', 'second_grade', 'third_grade'].map((gradeKey) => {
-                                                        const teacherInfo = dayData[gradeKey][classKey];
-                                                        const teacherName = teacherInfo.split('/')[0];
-                                                        const uniqueKey = `${dayData.day}-${gradeKey}-${classKey}`;
+                <S.NavButton onClick={handlePrevMonth}>{'<'}</S.NavButton>
+                <S.MainContent>
+                    <S.MainHeader>
+                        <h1>자습감독 교체요청 <S.Warning>* 바꾸고 싶은 자신의 시간을 선택해 주세요.</S.Warning></h1>
+                        <SquareBtn name="돌아가기" status={true} On={() => { navigate('/supervision') }} />
+                    </S.MainHeader>
+                    <S.TableWrap>
+                        {weeks.map((weekData, weekIndex) => (
+                            <S.Table key={weekIndex}>
+                                <h2>{weekData.week}</h2>
+                                <S.TableContent>
+                                    <S.TableLeft>
+                                        <div>날짜</div>
+                                        <div>학년</div>
+                                        <div>7교시</div>
+                                        <div>8~9교시</div>
+                                        <div>10~11교시</div>
+                                    </S.TableLeft>
+                                    <S.TableRight>
+                                        {weekData.schedule.map((dayData, dayIndex) => (
+                                            <S.TableRightContent key={dayIndex}>
+                                                <h3>{dayData.day}</h3>
+                                                <S.TableRightHeader>
+                                                    <div>1학년</div>
+                                                    <div>2학년</div>
+                                                    <div>3학년</div>
+                                                </S.TableRightHeader>
+                                                <S.TeacherList>
+                                                    {['7th_teacher', '8th_teacher', '10th_teacher'].map((classKey) =>
+                                                        ['first_grade', 'second_grade', 'third_grade'].map((gradeKey) => {
+                                                            const teacherInfo = dayData[gradeKey][classKey];
+                                                            const teacherName = teacherInfo.split('/')[0];
+                                                            const uniqueKey = `${dayData.day}-${gradeKey}-${classKey}`;
 
-                                                        return (
-                                                            <div
-                                                                key={uniqueKey}
-                                                                onClick={() => handleSelectTeacher(uniqueKey)}
-                                                                style={{
-                                                                    backgroundColor: selectedTeacher.includes(uniqueKey) ? '#2E6FF2' : '#FFF',
-                                                                    color: selectedTeacher.includes(uniqueKey) ? '#FFF' : '#000',
-                                                                    cursor: 'pointer',
-                                                                }}
-                                                            >
-                                                                {teacherName}
-                                                            </div>
-                                                        );
-                                                    })
-                                                )}
-                                            </S.TeacherList>
+                                                            return (
+                                                                <div
+                                                                    key={uniqueKey}
+                                                                    onClick={() => handleSelectTeacher(uniqueKey)}
+                                                                    style={{
+                                                                        backgroundColor: selectedTeacher.includes(uniqueKey) ? '#2E6FF2' : '#FFF',
+                                                                        color: selectedTeacher.includes(uniqueKey) ? '#FFF' : '#000',
+                                                                        cursor: 'pointer',
+                                                                    }}
+                                                                >
+                                                                    {teacherName}
+                                                                </div>
+                                                            );
+                                                        })
+                                                    )}
+                                                </S.TeacherList>
 
-                                        </S.TableRightContent>
-                                    ))}
-                                </S.TableRight>
-                            </S.TableContent>
-                        </S.Table>
-                    ))}
-                </S.TableWrap>
+                                            </S.TableRightContent>
+                                        ))}
+                                    </S.TableRight>
+                                </S.TableContent>
+                            </S.Table>
+                        ))}
+                    </S.TableWrap>
+                </S.MainContent>
+                <S.NavButton onClick={handleNextMonth}>{'>'}</S.NavButton>
             </S.MainWrap>
+
             {isModalOpen && (
                 <S.ModalOverlay>
                     <S.Modal>
                         <h2>교체요청을 보내시겠습니까?</h2>
                         <S.ExchangeInfo>
                             <div>
-                                <h3>{selectedTeacher[0].split('-')[0]}</h3>
+                                <span>{selectedTeacher[0].split('-')[0]}</span>
                                 <p>{selectedTeacher[0].split('-')[1].includes('first') ? '7교시' : selectedTeacher[0].split('-')[1].includes('second') ? '8~9교시' : '10~11교시'}</p>
                                 <p>학년</p>
                                 <p>{selectedTeacher[0]} 선생님</p>
                             </div>
                             <S.Arrow><img src={Rotate} /></S.Arrow>
                             <div>
-                                <h3>{selectedTeacher[1].split('-')[0]}</h3>
+                                <span>{selectedTeacher[1].split('-')[0]}</span>
                                 <p>{selectedTeacher[1].split('-')[1].includes('first') ? '7교시' : selectedTeacher[1].split('-')[1].includes('second') ? '8~9교시' : '10~11교시'}</p>
                                 <p>학년</p>
                                 <p>{selectedTeacher[1]} 선생님</p>

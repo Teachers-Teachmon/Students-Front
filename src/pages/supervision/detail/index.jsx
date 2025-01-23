@@ -1,10 +1,10 @@
-import Header from '../../../components/header/index.jsx';
+import Header from '../../../components/Header/index.jsx';
 import * as S from './style.jsx';
 import Circle from '../../../components/button/circle/index.jsx';
 import SquareBtn from '../../../components/button/square/index.jsx';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import SupervisionCreate from '../../../components/supervisionCreate/index.jsx';
+import SupervisionCreate from '../../../components/modal/supervisionCreate/index.jsx';
 import SearchDropdown from '../../../components/dropdown/search/index.jsx';
 
 export default function SupervisionDetail() {

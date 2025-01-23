@@ -5,8 +5,31 @@ export const Wrapper = styled.div`
 `;
 
 export const MainWrap = styled.div`
-    padding: 3rem;
+    padding: 1rem 1rem;
     width: 87%;
+    display: flex;
+    align-items: center;
+`;
+
+export const MainContent = styled.div`
+    margin: 0 auto;
+`;
+
+export const NavButton = styled.button`
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.5rem;
+    color: #2E6FF2;
+    border-radius: 50%;
+    background: none;
+    border: 1px solid #2E6FF2;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background: #2E6FF2;
+        color: white;
+    }
 `;
 
 export const MainHeader = styled.div`
@@ -17,11 +40,12 @@ export const MainHeader = styled.div`
     h1 {
         display: flex;
         align-items: baseline;
+        gap: 12px;
     }
 `;
 
 export const Warning = styled.p`
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 600;
     color: #F87067;
 `;
@@ -78,6 +102,7 @@ export const TableRightHeader = styled.div`
     margin-top: 1.7rem;
 
     div {
+        white-space: nowrap;
         background-color: #EBF1FF;
         padding: 0.6rem 1rem;
         border-radius: 10px;
@@ -108,6 +133,9 @@ export const Modal = styled.div`
     padding: 2rem;
     width: 40%;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     h2 {
         text-align: center;
@@ -115,13 +143,14 @@ export const Modal = styled.div`
     }
 
     textarea {
-        width: 100%;
+        width: 80%;
         height: 100px;
         margin: 1rem 0;
         border-radius: 5px;
         padding: 0.8rem;
-        font-size: 1rem;
         border: 1px solid #ccc;
+        outline: none;
+        resize: vertical;
     }
 `;
 
@@ -133,10 +162,13 @@ export const ExchangeInfo = styled.div`
 
     div {
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
     }
 
-    h3 {
-        font-weight: bold;
+    span {
+        font-size: 1.4rem;
     }
 `;
 
@@ -147,7 +179,9 @@ export const Arrow = styled.div`
 
 export const ModalButtons = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 5rem;
+    margin-top: 1rem;
 `;
 
 export const TeacherList = styled.div`
