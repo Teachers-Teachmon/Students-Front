@@ -26,8 +26,8 @@ export const Wrapper = styled.div`
 `
 
 export const HandleButton = styled.button`
-    width: 2rem;
-    height: 2rem;
+    width: 3rem;
+    height: 3rem;
     font-size: 1.5rem;
     cursor: pointer;
     border: none;

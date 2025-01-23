@@ -3,5 +3,5 @@ export const API_ENDPOINTS = {
     CHANGE:'/change',
     DATA : '/data',
     STUDENT:'/student',
-    AFTER_SCHOOL : '/afterschool',
+    AFTER_SCHOOL : '/after-school',
 };

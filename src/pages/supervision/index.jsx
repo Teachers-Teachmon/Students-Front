@@ -1,8 +1,7 @@
 import * as S from './style.jsx';
 import Header from '../../components/header/index.jsx';
 import SquareBtn from "../../components/button/square";
-import TeacherList from "../../components/teacherList/index.jsx";
-import SupervisionCreate from '../../components/supervisionCreate/index.jsx';
+import TeacherList from "../../components/modal/teacherList/index.jsx";
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -14,6 +13,8 @@ export default function Supervision() {
     let [currentDate, setCurrentDate] = useState(new Date());
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
+
+    const today = new Date().toLocaleDateString();
 
     // 바로 1일로 시작하지 않고 빈공간이 있다면 저번달의 날짜를 표시하기 위해서
     const firstDayofMonth = new Date(year, month, 1); //현재 달의 첫날
@@ -49,28 +50,42 @@ export default function Supervision() {
     const weeks = groupDatesByWeek(startDay, endDay);
 
     const handlePrevMonth = () => {
-        // 이전 달로 이동
         setCurrentDate(
             new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1)
         );
     };
 
     const handleNextMonth = () => {
-        // 다음 달로 이동
         setCurrentDate(
             new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1)
         );
     };
 
     const handleDateClick = (date) => {
-        const selectedSupervision = supervisionList.find(
-            (s) => s.day === date.getDate() && s.month === month + 1 && s.year === year
-        );
-        setSelectedDate(selectedSupervision);
+        const formattedDate = date.toLocaleDateString('ko-KR', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    
+        const weekdayMap = {
+            '일요일': '(일)',
+            '월요일': '(월)',
+            '화요일': '(화)',
+            '수요일': '(수)',
+            '목요일': '(목)',
+            '금요일': '(금)',
+            '토요일': '(토)'
+        };
+    
+        const weekday = date.toLocaleDateString('ko-KR', { weekday: 'long' });
+        const formattedWithWeekday = `${formattedDate} ${weekdayMap[weekday]}`;
+    
+        setSelectedDate(formattedWithWeekday);
         setIsModalOpen(true);
-    };
+    };    
 
-    let supervisionList = [
+    const supervisionList = [
         {
             "year": 2025,
             "month": 1,
@@ -127,21 +142,27 @@ export default function Supervision() {
                     <S.Calendar>
                         {weeks.map((week, weekIdx) => (
                             <S.Week key={weekIdx}>
-                                {week.map((date, dateIdx) => (
-                                    <S.CalendarDay key={dateIdx} onClick={() => { handleDateClick(date) }} isCurrentMonth={date.getMonth() === month} isSupervised={supervisionList.some(s => s.day === date.getDate() && s.month === month + 1 && s.year === year)}>
-                                        <span>{date.getDate()}</span>
-                                        {supervisionList.map((s, index) => {
-                                            if (s.day === date.getDate() && s.year == year && s.month === month + 1) {
-                                                return s.schedule.map((schedule, idx) => (
-                                                    <S.ScheduleItem key={idx} period={schedule.period}>
-                                                        <span>{schedule.period}</span>
-                                                        <span>{schedule.grade}학년</span>
-                                                    </S.ScheduleItem>
-                                                ));
-                                            }
-                                        })}
-                                    </S.CalendarDay>
-                                ))}
+                                {week.map((date, dateIdx) => {
+                                    const localDate = date.toLocaleDateString();
+                                    return (
+                                        <S.CalendarDay key={dateIdx} onClick={() => { handleDateClick(date) }} isCurrentMonth={date.getMonth() === month} isSupervised={supervisionList.some(s => s.day === date.getDate() && s.month === month + 1 && s.year === year)}>
+                                            <S.Day style={{
+                                                backgroundColor: localDate === today ? '#ECF3FD' : '',
+                                                color: localDate === today ? '#5288F4' : '',
+                                            }}>{date.getDate()}</S.Day>
+                                            {supervisionList.map((s, index) => {
+                                                if (s.day === date.getDate() && s.year == year && s.month === month + 1) {
+                                                    return s.schedule.map((schedule, idx) => (
+                                                        <S.ScheduleItem key={idx} period={schedule.period}>
+                                                            <span>{schedule.period}</span>
+                                                            <span>{schedule.grade}학년</span>
+                                                        </S.ScheduleItem>
+                                                    ));
+                                                }
+                                            })}
+                                        </S.CalendarDay>
+                                    );
+                                })}
                             </S.Week>
                         ))}
                     </S.Calendar>
@@ -155,7 +176,7 @@ export default function Supervision() {
             {isModalOpen && (
                 <S.ModalOverlay>
                     <S.Modal>
-                        <TeacherList closeModal={() => { setIsModalOpen(false) }} />
+                        <TeacherList closeModal={() => { setIsModalOpen(false) }} selectedDate={selectedDate} />
                     </S.Modal>
                 </S.ModalOverlay>
             )}

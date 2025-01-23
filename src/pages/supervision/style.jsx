@@ -15,7 +15,7 @@ export const MainContent = styled.div`
 export const CalendarWrapper = styled.div`
     margin: 0 auto;
     width: 80%;
-    max-height: 600px;
+    max-height: 760px;
     overflow-y: auto;
     padding-right: 0.5rem;
 `
@@ -23,6 +23,7 @@ export const CalendarWrapper = styled.div`
 export const CalendarHeader = styled.div`
     display: flex;
     justify-content: center;
+    margin-top: 0.3rem;
     gap: 7%;
     margin-bottom: 1rem;
     color: #667289;
@@ -30,11 +31,15 @@ export const CalendarHeader = styled.div`
     font-weight: 600;
 
     button {
+        width: 2.7rem;
+        height: 2.7rem;
         color: #667289;
         background: none;
         border: none; 
-        font-size: 1.5rem;
+        font-size: 2rem;
         cursor: pointer;
+        border-radius: 50%;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     }
 `;
 
@@ -66,14 +71,9 @@ export const CalendarDay = styled.div`
     border: 1px solid #e2e2e2;
     padding: 0.5rem;
     aspect-ratio: 1; // 이거 정사각형으로 해주는거임
-    text-align: end;
     display: flex;
     flex-direction: column;
-    span {
-        font-size: 1rem;
-        font-weight: 600;
-        color: ${(props) => (props.isCurrentMonth ? '#000' : '#bbb')};
-    }
+    align-items: end;
 `
 
 export const ScheduleItem = styled.div`
@@ -105,6 +105,15 @@ export const Actions = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
+`
+
+export const Day = styled.div`
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 1.5rem;
+    font-weight: 600;
 `
 
 export const ModalOverlay = styled.div`

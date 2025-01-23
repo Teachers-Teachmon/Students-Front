@@ -1,8 +1,10 @@
 import * as S from './style.jsx';
+import { useState } from 'react';
 
-export default function TeacherList({ closeModal }) {
+export default function TeacherList({ closeModal, selectedDate }) {
+    const [currentDate, setCurrentDate] = useState(selectedDate);
 
-    let todayTeacher = [
+    const todayTeacher = [
         {
             "day": "2025년 1월 8일 (수)",
             "1학년": {
@@ -23,13 +25,25 @@ export default function TeacherList({ closeModal }) {
         }
     ];
 
-    const handlePrevDay = () => {
-        // 요청 보내서 값 불러오고 todayTeacher에 저장
-        console.log('prev');
+    const fetchTeacherData = (newDate) => {
+        console.log(`새로운 날이다: ${newDate}`);
+        // API 호출하기
     };
+
+    const handlePrevDay = () => {
+        const [year, month, day] = currentDate.match(/\d+/g).map(Number);
+        const newDate = new Date(year, month - 1, day - 1);
+        const formattedDate = `${newDate.getFullYear()}년 ${newDate.getMonth() + 1}월 ${newDate.getDate()}일 (${['일', '월', '화', '수', '목', '금', '토'][newDate.getDay()]})`;
+        setCurrentDate(formattedDate);
+        fetchTeacherData(formattedDate);
+    };
+
     const handleNextDay = () => {
-        // 요청 보내서 값 불러오고 todayTeacher에 저장
-        console.log('next');
+        const [year, month, day] = currentDate.match(/\d+/g).map(Number);
+        const newDate = new Date(year, month - 1, day + 1);
+        const formattedDate = `${newDate.getFullYear()}년 ${newDate.getMonth() + 1}월 ${newDate.getDate()}일 (${['일', '월', '화', '수', '목', '금', '토'][newDate.getDay()]})`;
+        setCurrentDate(formattedDate);
+        fetchTeacherData(formattedDate);
     };
 
     return (
@@ -37,7 +51,7 @@ export default function TeacherList({ closeModal }) {
             <S.HandleButton onClick={handlePrevDay}>{'<'}</S.HandleButton>
             <S.Wrapper>
                 <S.Header>
-                    <S.MainText>{todayTeacher[0].day}</S.MainText>
+                    <S.MainText>{currentDate}</S.MainText>
                     <S.CloseButton onClick={closeModal}>X</S.CloseButton>
                 </S.Header>
                 <S.Content>
