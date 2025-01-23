@@ -2,10 +2,11 @@ import { useNavigate } from "react-router-dom";
 import ProgressBar from "../../components/progressBar";
 import SquareBtn from "../../components/button/square";
 import Header from "../../components/header";
+import RequestBox from "../../components/modal/requestBox";
 import * as S from './style.jsx'
 import Arrow from '../../assets/arrow.svg'
-import retate from '../../assets/rotate.svg';
-import { useState, useEffect } from "react";
+import Rotate from '../../assets/rotate.svg';
+import { useState } from "react";
 
 export default function Main() {
     let navigate = useNavigate();
@@ -13,10 +14,7 @@ export default function Main() {
     let supCount = 9;
     let supTotal = 10;
     let supRate = supTotal > 0 ? Math.round(supCount / supTotal * 100) : 0;
-
-    // let [studentInfo, setStudentInfo] = useState([]);
-    // let [changeDay, setChangDay] = useState([]);
-    // let [todayTeacher, setTodayTeacher] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     let studentInfo = [
         {
@@ -40,38 +38,35 @@ export default function Main() {
     ]
     let changeDay = [
         {
-            "request_to_me": [
-                {
-                    "change_id": 10393,
-                    "sender": "최병준/24.061.bssm.hs.kr",
-                    "sender_day": "11월 27일 (수)",
-                    "sender_period": "7교시",
-                    "sender_grade": 2,
-                    "recipient": "정유진/24.061.bssm.hs.kr",
-                    "recipient_day": "11월 27일 (수)",
-                    "recipient_period": "7교시",
-                    "recipient_grade": 1,
-                    "cause": "유진쌤 제가 이날 밤에 출장이 있어서 교체해야할 거 같아요",
-                    "result": "hold",
-                }
-            ],
-            "request_to_other": [
-                {
-                    "change_id": 34384883,
-                    "sender": "정유진/24.061.bssm.hs.kr",
-                    "sender_day": "11월 27일 (수)",
-                    "sender_period": "7교시",
-                    "sender_grade": 2,
-                    "recipient": "최병준/24.061.bssm.hs.kr",
-                    "recipient_day": "11월 27일 (수)",
-                    "recipient_period": "7교시",
-                    "recipient_grade": 1,
-                    "cause": "병준쌤 제가 이날 밤에 출장이 있어서 교체해야할 거 같아요",
-                    "result": "hold",
-                }
-            ]
+            "change_id": 10393,
+            "sender": "최병준/24.061.bssm.hs.kr",
+            "sender_day": "11월 27일 (수)",
+            "sender_period": "7교시",
+            "sender_grade": 2,
+            "recipient": "정유진/24.061.bssm.hs.kr",
+            "recipient_day": "11월 27일 (수)",
+            "recipient_period": "7교시",
+            "recipient_grade": 1,
+            "cause": "유진쌤 제가 이날 밤에 출장이 있어서 교체해야할 거 같아요",
+            "result": "hold",
+            "to_me": true,
+        },
+        {
+            "change_id": 34384883,
+            "sender": "정유진/24.061.bssm.hs.kr",
+            "sender_day": "11월 27일 (수)",
+            "sender_period": "7교시",
+            "sender_grade": 2,
+            "recipient": "최병준/24.061.bssm.hs.kr",
+            "recipient_day": "11월 27일 (수)",
+            "recipient_period": "7교시",
+            "recipient_grade": 1,
+            "cause": "병준쌤 제가 이날 밤에 출장이 있어서 교체해야할 거 같아요",
+            "result": "hold",
+            "to_me": false,
         }
     ]
+
     let todayTeacher = [
         {
             "day": "11월 27일 (수)",
@@ -92,41 +87,6 @@ export default function Main() {
             }
         }
     ]
-
-    // 학생 정보 요청 받기
-    // useEffect(() => {
-    //     axios.get("어딘가?")
-    //     .then((res) => {
-    //         setStudentInfo(res.data);
-    //     })
-    //     .catch((e) => {
-    //         console.error(e);
-    //     })
-    // },[])
-
-    // 교체 요청 받기
-    // useEffect(() => {
-    //     axios.get("어딘가?")
-    //     .then((res) => {
-    //         setChangeDay(res.data);
-    //     })
-    //     .catch((e) => {
-    //         console.error(e);
-    //     })
-    // },[])
-
-    // 오늘의 자습감독 선생님 요청 받기
-    // useEffect(() => {
-    //     axios.get("어딘가?")
-    //     .then((res) => {
-    //         setTodayTeacher(res.data);
-    //     })
-    //     .catch((e) => {
-    //         console.error(e);
-    //     })
-    // },[])
-
-
 
     let nextDay = 2;
     let day = "11월 27일 (수)";
@@ -184,7 +144,36 @@ export default function Main() {
                     <S.BottomLeft>
                         <h2>교체 요청</h2>
                         <S.BottomLeftContent>
-                            
+                            {changeDay.map((data) => {
+                                const senderName = data.sender.split('/')[0];
+
+                                const leftName = data.to_me ? "(나)" : `(${senderName} 선생님)`;
+                                const leftDay = data.to_me ? data.recipient_day : data.sender_day;
+                                const leftPeriod = data.to_me ? data.recipient_period : data.sender_period;
+                                const leftGrade = data.to_me ? data.recipient_grade : data.sender_grade;
+
+                                const rightName = data.to_me ? `(${senderName} 선생님)` : "(나)";
+                                const rightDay = data.to_me ? data.sender_day : data.recipient_day;
+                                const rightPeriod = data.to_me ? data.sender_period : data.recipient_period;
+                                const rightGrade = data.to_me ? data.sender_grade : data.recipient_grade;
+
+                                return (
+                                    <S.ChangeCard key={data.change_id} style={{ backgroundColor: data.to_me ? "#C8DBFF" : "" }}>
+                                        <S.ChangeWrap>
+                                            <S.ChangeSide>
+                                                <p>{leftName}</p>
+                                                <p>{leftDay} {leftPeriod} {leftGrade}학년</p>
+                                            </S.ChangeSide>
+                                            <S.RotateIcon src={Rotate} />
+                                            <S.ChangeSide>
+                                                <p>{rightName}</p>
+                                                <p>{rightDay} {rightPeriod} {rightGrade}학년</p>
+                                            </S.ChangeSide>
+                                        </S.ChangeWrap>
+                                        <S.DetailButton onClick={() => { setIsModalOpen(true) }}>자세히 보기</S.DetailButton>
+                                    </S.ChangeCard>
+                                );
+                            })}
                         </S.BottomLeftContent>
                     </S.BottomLeft>
                     <S.BottomRight>
@@ -224,6 +213,13 @@ export default function Main() {
                     </S.BottomRight>
                 </S.MainBottom>
             </S.MainContent>
+            {isModalOpen && (
+                <S.ModalOverlay>
+                    <S.Modal>
+                        <RequestBox closeModal={() => { setIsModalOpen(false) }} />
+                    </S.Modal>
+                </S.ModalOverlay>
+            )}
         </S.MainContainer>
     )
 }

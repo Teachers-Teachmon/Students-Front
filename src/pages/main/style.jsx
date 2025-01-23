@@ -147,9 +147,60 @@ export const BottomRight = styled.div`
 `
 
 export const BottomLeftContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     background-color: #F9F9F9;
     border-radius: 30px;
+    padding: 2%;
+    overflow-y: auto;
 `
+
+export const ChangeWrap = styled.div`
+    display: flex;
+    gap: 4rem;
+`;
+
+export const ChangeCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
+`;
+
+export const ChangeSide = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  p:first-child {
+    text-align: center;
+    font-weight: 500;
+  }
+  p:not(:first-child) {
+    font-size: 14px;
+    color: #444;
+  }
+`;
+
+export const RotateIcon = styled.img`
+  width: 2rem;
+  height: 2rem;
+  margin: 0 0.6rem;
+`;
+
+export const DetailButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #888;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 
 export const BottomRightContent = styled.div`
     border-radius: 30px;
@@ -187,4 +238,22 @@ export const TeacherTable = styled.div`
         margin: 0;
         padding: 0.5rem;
     }
+`
+
+export const ModalOverlay = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const Modal = styled.div`
+    width: 50%;
+    border-radius: 10px;
+    padding: 2rem;
 `
