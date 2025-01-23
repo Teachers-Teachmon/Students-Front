@@ -120,3 +120,11 @@ export const StudentItem = styled.div`
         background: #F2F3F6;
     }
 `
+export const Black = styled.div`
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+`

@@ -8,6 +8,7 @@ import {useNavigate} from "react-router-dom";
 import Record from "../../assets/record.svg";
 import StudentGraph from '../../components/student-graph'
 import Write from '../../components/modal/write';
+import {useGetNowStudent} from "../../hooks/useStudent.js";
 
 export default function Manage(){
     const {day: today} = useDay();
@@ -16,6 +17,13 @@ export default function Manage(){
     const [grade, setGrade] = useState([
         true,false,false
     ]);
+    const gradeIndex = () => {
+        return grade
+            .map((item, idx) => (item ? idx+1 : null))
+            .filter((idx) => idx !== null);
+    };
+    const {data : student, isLoading} = useGetNowStudent(gradeIndex()[0]);
+
 
     // 렌더링시 오늘의 날짜를 계산해서 보여줌
     useEffect(() => {

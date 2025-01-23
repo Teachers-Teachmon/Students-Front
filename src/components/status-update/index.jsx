@@ -1,16 +1,16 @@
 import styled from "styled-components";
-export default function StatusUpdate({changeStatus, idx}) {
+export default function StatusUpdate({changeStatus, name}) {
     return (
         <StatusBox>
-            <Status color={"#FFF6E4"} onClick={()=>changeStatus(idx, "조퇴")}>
+            <Status color={"#FFF6E4"} onClick={()=>changeStatus(name, "조퇴")}>
                 <Circle color={"#FF9000"}></Circle>
                 <StatusText color={"#FF9000"}>조퇴</StatusText>
             </Status>
-            <Status color={"#ECFDF3"} onClick={()=>changeStatus(idx, "자습")}>
+            <Status color={"#ECFDF3"} onClick={()=>changeStatus(name, "자습")}>
                 <Circle color={"#14BA6D"}></Circle>
                 <StatusText color={"#14BA6D"}>자습</StatusText>
             </Status>
-            <Status color={"#FDF0EC"} onClick={()=>changeStatus(idx, "이탈")}>
+            <Status color={"#FDF0EC"} onClick={()=>changeStatus(name, "이탈")}>
                 <Circle color={"#F87067"}></Circle>
                 <StatusText color={"#F87067"}>이탈</StatusText>
             </Status>
