@@ -4,8 +4,7 @@ export const DateInputContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
+    max-width: 260px;
     background: #FAFAFA;
     padding-top: 0.4rem;
 `;
@@ -23,14 +22,14 @@ export const Label = styled.label`
     position: absolute;
     top: ${({ isFocused }) => (isFocused ? '0px' : '24px')};
     left: 10px;
-    font-size: ${({ isFocused }) => (isFocused ? '14px' : '20px')};
+    font-size: ${({ isFocused }) => (isFocused ? '12px' : '18px')};
     color: ${({ isFocused }) => (isFocused ? '#1A73E8' : '#999')};
     transition: all 0.15s ease-in-out;
     pointer-events: none;
 `;
 
 export const StyledInput = styled.input`
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
     border: none;
     outline: none;

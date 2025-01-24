@@ -32,8 +32,13 @@ export const MainNav = styled.div`
     display: flex;
     align-items: center;
     padding: 30px 20px;
-    justify-content: flex-start;
-    gap: 15px;
+    justify-content: space-between;
+    &>div:first-child{
+        width: 70%;
+        display: flex;
+        gap: 15px;
+        align-items: center;
+    }
 `
 export const InputBox= styled.div`
     border: 1px solid #ccc;
