@@ -142,8 +142,12 @@ export default function Main() {
                 </S.MainMiddle>
                 <S.MainBottom>
                     <S.BottomLeft>
-                        <h2>교체 요청</h2>
+                        <h2>교체 요청 ({changeDay.length})</h2>
                         <S.BottomLeftContent>
+                            <S.BottomLeftHeader>
+                                <span>받는 사람</span>
+                                <span>보내는 사람</span>
+                            </S.BottomLeftHeader>
                             {changeDay.map((data) => {
                                 const senderName = data.sender.split('/')[0];
 
