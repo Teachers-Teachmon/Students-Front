@@ -11,7 +11,7 @@ import Write from '../../components/modal/write';
 import {useGetNowStudent} from "../../hooks/useStudent.js";
 
 export default function Manage(){
-    const {day: today} = useDay();
+    const {today} = useDay();
     const [day, setDay] = useState('');
     const navigate = useNavigate()
     const [grade, setGrade] = useState([

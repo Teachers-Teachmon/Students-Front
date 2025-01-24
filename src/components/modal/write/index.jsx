@@ -56,7 +56,7 @@ export default function Write({setIsModal}){
 
     const [selectStudent, setSelectStudent] = useState([]);
     const {mutate : postMovement} = usePostMovement();
-    const {day} = useDay();
+    const {today: day} = useDay();
 
     return(
         <S.WriteContainer>

@@ -3,13 +3,14 @@ import Header from "../../../components/header/index.jsx";
 import SquareBtn from "../../../components/button/square/index.jsx";
 import {useNavigate} from "react-router-dom";
 import CircleBtn from "../../../components/button/circle/index.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Leave from "../../../components/record/leave/index.jsx";
 import Movement from "../../../components/record/movement/index.jsx";
 import Student from "../../../components/record/student/index.jsx";
 import Search from "../../../assets/Search.svg";
 import {useGetMovement, useGetStudent, useGetLeave} from "../../../hooks/useData.js";
 import useDay from "../../../zustand/day";
+import DateInput from "../../../components/dateInput/index.jsx";
 
 export default function Record() {
     const navigate = useNavigate();
@@ -23,11 +24,15 @@ export default function Record() {
         {id : 4, name : "1410 윤도훈"},
     ]
     const [searchStudent, setSearchStudent] = useState("");
-    const {day: today} = useDay();
+    const {today, day:dayComponent} = useDay();
     const [day, setDay] = useState(today);
     const {movement, movementLoading, movementError} = useGetMovement(day);
     const {leave, leaveLoading, leaveError} = useGetLeave(day);
     const {student, studentLoading, studentError} = useGetStudent(day);
+    console.log(dayComponent);
+    useEffect(() => {
+        setDay(dayComponent);
+    }, [dayComponent]);
 
     return (
         <S.ManageContainer>
@@ -45,9 +50,13 @@ export default function Record() {
                 </S.Info>
                 <S.Main>
                     <S.MainNav>
-                        <CircleBtn name={"이석"} status={isMovement[0]}  On={()=>setIsMovement([true, false, false])}/>
-                        <CircleBtn name={"이탈"} status={isMovement[1]} On={()=>setIsMovement([false, true, false])}/>
-                        <CircleBtn name={"학생"} status={isMovement[2]} On={()=>setIsMovement([false, false, true])}/>
+                        <div>
+                            <DateInput />
+                            <CircleBtn name={"이석"} status={isMovement[0]}  On={()=>setIsMovement([true, false, false])}/>
+                            <CircleBtn name={"이탈"} status={isMovement[1]} On={()=>setIsMovement([false, true, false])}/>
+                            <CircleBtn name={"학생"} status={isMovement[2]} On={()=>setIsMovement([false, false, true])}/>
+                        </div>
+
                         {isMovement[2] ?
                             <S.InputBox>
                                 <img src={Search} alt={"검색아이콘"} width={20}></img>

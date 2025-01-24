@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import {useRef, useState} from 'react';
 import * as S from './style.jsx';
+import useDay from "../../zustand/day";
+import {useLocation} from "react-router-dom";
 
 export default function DateInput() {
-    const [date, setDate] = useState('');
     const [inputValue, setInputValue] = useState('');
     const [isFocused, setIsFocused] = useState(false);
+    const {setDay, day, setStart, setEnd} = useDay();
+    const params = useLocation();
+    const select = useRef(false);
 
     const handleDateChange = (e) => {
         const inputDate = new Date(e.target.value);
@@ -14,8 +18,16 @@ export default function DateInput() {
             }월 ${
                 String(inputDate.getDate()).padStart(2, '0')
             }일`;
-
-            setDate(e.target.value);
+            if(params.pathname === "/supervision/detail" && !select.current){
+                setStart(e.target.value);
+                select.current = true;
+            }
+            else if(params.pathname === "/supervision/detail" && select.current){
+                setEnd(e.target.value);
+            }
+            else{
+                setDay(e.target.value);
+            }
             setInputValue(formattedDate);
         }
     };
@@ -35,7 +47,7 @@ export default function DateInput() {
                 />
                 <S.HiddenDateInput
                     type="date"
-                    value={date}
+                    value={day}
                     onChange={handleDateChange}
                 />
             </S.InputWrapper>
