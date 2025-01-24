@@ -139,6 +139,12 @@ export const BottomLeft = styled.div`
     gap: 10px;
 `
 
+export const BottomLeftHeader = styled.div`
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5rem;
+`;
+
 export const BottomRight = styled.div`
     width: 50%;
     display: flex;
@@ -165,7 +171,7 @@ export const ChangeCard = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 0.6rem;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
