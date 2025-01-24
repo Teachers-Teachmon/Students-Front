@@ -5,6 +5,8 @@ import BookLogo from '../../assets/Book.svg'
 import EyesLogo from '../../assets/Eyes.svg'
 import HouseLogo from '../../assets/House.svg'
 import ListChecksLogo from '../../assets/ListChecks.svg'
+import Logout from '../../assets/logout.svg'
+import {useLogout} from "../../hooks/useAuth.js";
 
 const MENU = [
   { label: '메인', path: '/main', logo: HouseLogo },
@@ -16,6 +18,7 @@ const MENU = [
 export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
+  const {mutate:logout} = useLogout();
   let username = '오주현'; //String
   let userprofile = 'https://avatars.githubusercontent.com/u/177971300?v=4'; //URL일듯
   return (
@@ -38,6 +41,10 @@ export default function Header() {
         <S.BottomProfile src={userprofile} />
         {username}
       </S.Bottom>
+        <S.Logout onClick={() => { logout() }}>
+            <img src={Logout} alt={"logoutIcon"} width={24}/>
+            <p>로그아웃</p>
+        </S.Logout>
     </S.HeaderContainer>
   )
 }

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const HeaderContainer = styled.div`
     width: 13%;
     height: 100vh;
-    padding: 5% 0;
+    padding: 3% 0;
     background-color: #EBF1FF;
     display: flex;
     flex-direction: column;
@@ -32,6 +32,7 @@ export const MenuItem = styled.div`
     cursor: pointer;
     display: flex;
     align-items: center;
+    transition: 0.2s;
     &:hover {
         background-color: #dce4ff;
     }
@@ -60,6 +61,21 @@ export const Bottom = styled.div`
 `
 
 export const BottomProfile = styled.img`
-    width: 20%;
+    width: 24%;
     border-radius: 50%;
+`
+export  const Logout = styled.div`
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    width: 100%;
+    padding: 7% 20%;
+    justify-content: center;
+    transition: 0.2s;
+    font-size: 16px;
+    &:hover {
+        background-color: #dce4ff;
+    }
 `
