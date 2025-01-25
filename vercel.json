@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "http://34.64.80.87:8080/:path*"
+      "destination": "https://teachmon.kro.kr/:path*"
     },
     {
       "source": "/(.*)",
