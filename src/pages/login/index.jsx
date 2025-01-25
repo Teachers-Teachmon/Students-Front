@@ -1,11 +1,9 @@
 import styled from "styled-components";
 import Logo from '../../assets/teachmon.svg';
 import Google from '../../assets/google.svg';
-import {useLogin} from '../../hooks/useAuth.js';
 
 export default function Login(){
 
-    const {data : url } = useLogin();
     // 로그인 되있는 유저인지 확인 후 유저 정보 받아와야함
     return(
         <LoginContainer>
