@@ -6,8 +6,6 @@ import {useLogin} from '../../hooks/useAuth.js';
 export default function Login(){
 
     const {data : url } = useLogin();
-    console.log(url);
-
     // 로그인 되있는 유저인지 확인 후 유저 정보 받아와야함
     return(
         <LoginContainer>
