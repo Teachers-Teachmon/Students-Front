@@ -1,4 +1,4 @@
-import {useRef, useState} from 'react';
+import { useState} from 'react';
 import * as S from './style.jsx';
 import useDay from "../../zustand/day";
 import {useLocation} from "react-router-dom";
@@ -6,9 +6,9 @@ import {useLocation} from "react-router-dom";
 export default function DateInput() {
     const [inputValue, setInputValue] = useState('');
     const [isFocused, setIsFocused] = useState(false);
-    const {setDay, day, setStart, setEnd} = useDay();
+    const {setDay, select, day, setSelect, setStart, setEnd} = useDay();
     const params = useLocation();
-    const select = useRef(false);
+
 
     const handleDateChange = (e) => {
         const inputDate = new Date(e.target.value);
@@ -18,12 +18,13 @@ export default function DateInput() {
             }월 ${
                 String(inputDate.getDate()).padStart(2, '0')
             }일`;
-            if(params.pathname === "/supervision/detail" && !select.current){
+            if(params.pathname === "/supervision/detail" && !select){
                 setStart(e.target.value);
-                select.current = true;
+                setSelect(true);
             }
-            else if(params.pathname === "/supervision/detail" && select.current){
+            else if(params.pathname === "/supervision/detail" && select){
                 setEnd(e.target.value);
+                setSelect(false);
             }
             else{
                 setDay(e.target.value);
