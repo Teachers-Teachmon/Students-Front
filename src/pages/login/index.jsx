@@ -11,7 +11,7 @@ export default function Login(){
         <LoginContainer>
             <Main>
                 <img src={Logo} alt={"logo"} width={300} />
-                <LoginBtn onClick={()=>window.location.href = url}>
+                <LoginBtn onClick={()=>window.location.href = "https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=72159076218-1cc0brmpr67mtbb1lk2hpn78cumqca42.apps.googleusercontent.com&scope=profile%20email&state=JWZAIiVqTQnUTkoZ1clJ8Z-TgkTW3lfl9vD0Sb1-Bio%3D&redirect_uri=https://teachmon.kro.kr/login/oauth2/code/google\n"}>
                     Google로 로그인
                     <GoogleIcon src={Google} alt={"googleIcon"} width={24} />
                 </LoginBtn>
