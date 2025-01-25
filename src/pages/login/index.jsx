@@ -1,18 +1,19 @@
 import styled from "styled-components";
 import Logo from '../../assets/teachmon.svg';
 import Google from '../../assets/google.svg';
+import {useLogin} from '../../hooks/useAuth.js';
 
 export default function Login(){
-    const handleLogin = ()=>{
-        // 백엔드가 주는 로그인 url로 수정필요
-        window.location.href = 'http://localhost:5173/main';
-    }
+
+    const {data : url } = useLogin();
+    console.log(url);
+
     // 로그인 되있는 유저인지 확인 후 유저 정보 받아와야함
     return(
         <LoginContainer>
             <Main>
                 <img src={Logo} alt={"logo"} width={300} />
-                <LoginBtn onClick={handleLogin}>
+                <LoginBtn onClick={()=>window.location.href = url}>
                     Google로 로그인
                     <GoogleIcon src={Google} alt={"googleIcon"} width={24} />
                 </LoginBtn>
