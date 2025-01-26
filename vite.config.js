@@ -5,15 +5,18 @@ export default defineConfig({
   plugins: [react()],
   base: '/',
   server: {
+    allowedHosts: ['teachmon.kro.kr'],
     host: '0.0.0.0',
     port: 5173,
     proxy: {
       '/api': {
         // 서버 url 삽입필요
-        target: 'https://teachmon.kro.kr',
+        target: 'http://localhost:3000',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
   },
 });
+
+//http://localhost:3000

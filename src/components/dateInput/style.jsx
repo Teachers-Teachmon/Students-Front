@@ -13,17 +13,17 @@ export const InputWrapper = styled.div`
     position: relative;
     display: flex;
     flex-direction: column;
-    border-bottom: 2px solid ${({ isFocused }) => (isFocused ? '#1A73E8' : '#ccc')};
+    border-bottom: 2px solid ${({ $isFocused }) => ($isFocused ? '#1A73E8' : '#ccc')};
     transition: border-color 0.2s ease-in-out;
     padding-top: 1rem;
 `;
 
 export const Label = styled.label`
     position: absolute;
-    top: ${({ isFocused }) => (isFocused ? '0px' : '24px')};
+    top: ${({ $isFocused }) => ($isFocused ? '0px' : '24px')};
     left: 10px;
-    font-size: ${({ isFocused }) => (isFocused ? '12px' : '18px')};
-    color: ${({ isFocused }) => (isFocused ? '#1A73E8' : '#999')};
+    font-size: ${({ $isFocused }) => ($isFocused ? '12px' : '18px')};
+    color: ${({ $isFocused }) => ($isFocused ? '#1A73E8' : '#999')};
     transition: all 0.15s ease-in-out;
     pointer-events: none;
 `;

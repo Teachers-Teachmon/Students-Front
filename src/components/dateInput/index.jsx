@@ -35,8 +35,8 @@ export default function DateInput() {
 
     return (
         <S.DateInputContainer>
-            <S.InputWrapper isFocused={isFocused || inputValue}>
-                <S.Label isFocused={isFocused || inputValue}>Date</S.Label>
+            <S.InputWrapper $isFocused={isFocused || inputValue}>
+                <S.Label $isFocused={isFocused || inputValue}>Date</S.Label>
                 <S.StyledInput
                     type="text"
                     value={inputValue}

@@ -16,7 +16,7 @@ export default function Movement({data}) {
                 <S.Box $length={200}>장소</S.Box>
                 <S.Box $length={240}>사유</S.Box>
             </S.Standard>
-            {data.map((item, index) => {
+            {data && data.map((item, index) => {
                 return(
                     <>
                         <S.Content onClick={()=>setIsModal(!isModal)}>

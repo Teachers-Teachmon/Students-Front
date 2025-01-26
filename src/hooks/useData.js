@@ -7,8 +7,9 @@ export const useGetMovement = (day) => {
     return useQuery({
         queryKey: ['getMovement', day],
         queryFn: async () => {
-            const res = await API.getMovement(day);
-            return res.data;
+            const res = await API.getMovement(day); // 비동기적으로 API 호출
+            console.log("이석", res.data);
+            return res.data || []; // 데이터가 없을 경우 빈 배열 반환
         },
         enabled: !!day
     });
@@ -20,7 +21,7 @@ export const useGetLeave = (day) => {
         queryKey: ['getLeave', day],
         queryFn: async () => {
             const res = await API.getLeave(day);
-            return res.data;
+            return res;
         },
         enabled: !!day
     });
@@ -32,7 +33,7 @@ export const useGetStudent = (day) => {
         queryKey: ['getStudent', day],
         queryFn: async () => {
             const res = await API.getStudent(day);
-            return res.data;
+            return res;
         },
         enabled: !!day
     });
