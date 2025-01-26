@@ -19,7 +19,7 @@ export default function LoginLoading(){
         deleteCookie('access');
         console.log(access.id)
         const data = getInfo(access.id);
-
+        console.log(data);
         if(data){
             localStorage.setItem('name', data.name);
             localStorage.setItem('profile', data.profile);
