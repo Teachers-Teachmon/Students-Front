@@ -19,8 +19,8 @@ export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
   const {mutate:logout} = useLogout();
-  let username = '오주현'; //String
-  let userprofile = 'https://avatars.githubusercontent.com/u/177971300?v=4'; //URL일듯
+  let username = localStorage.getItem('name');
+  let userprofile = localStorage.getItem('profile');
   return (
     <S.HeaderContainer>
       <S.Logo src={teachmonLogo} onClick={() => { navigate('/main') }} />
