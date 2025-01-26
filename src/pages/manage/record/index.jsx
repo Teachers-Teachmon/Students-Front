@@ -26,10 +26,11 @@ export default function Record() {
     const [searchStudent, setSearchStudent] = useState("");
     const {today, day:dayComponent} = useDay();
     const [day, setDay] = useState(today);
-    const {movement, movementLoading, movementError} = useGetMovement(day);
-    const {leave, leaveLoading, leaveError} = useGetLeave(day);
-    const {student, studentLoading, studentError} = useGetStudent(day);
-    console.log(dayComponent);
+    const { data: movement, isLoading: movementLoading, isError: movementError } = useGetMovement(day);
+    console.log(movement);
+    const {data :leave, leaveLoading, leaveError} = useGetLeave(day);
+    const {data :student, studentLoading, studentError} = useGetStudent(day);
+
     useEffect(() => {
         setDay(dayComponent);
     }, [dayComponent]);
@@ -70,25 +71,7 @@ export default function Record() {
                             : null}
                     </S.MainNav>
                     {isMovement[0] ? (
-                        <Movement data={
-                            [{
-                                teacher_name: "박건우",
-                                place: "전기전자 회로실",
-                                cause: "납뗌해야함",
-                                day: "2024-12-25",
-                                period: 8,
-                                students: [
-                                    {
-                                        id: 1401,
-                                        name: "김동욱"
-                                    },
-                                    {
-                                        id: 1416,
-                                        name: "허온"
-                                    }
-                                ]
-                            },]
-                        }/>
+                        <Movement data={movement}/>
                     ) : isMovement[1] ? (
                         <Leave data={[
                             {

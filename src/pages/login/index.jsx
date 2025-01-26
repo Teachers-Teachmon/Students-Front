@@ -1,17 +1,15 @@
 import styled from "styled-components";
 import Logo from '../../assets/teachmon.svg';
 import Google from '../../assets/google.svg';
-import {useLogin} from '../../hooks/useAuth.js';
 
 export default function Login(){
 
-    const {data : url } = useLogin();
     // 로그인 되있는 유저인지 확인 후 유저 정보 받아와야함
     return(
         <LoginContainer>
             <Main>
                 <img src={Logo} alt={"logo"} width={300} />
-                <LoginBtn onClick={()=>window.location.href = url}>
+                <LoginBtn onClick={()=>window.location.href = "https://teachmon.kro.kr/oauth2/authorization/google"}>
                     Google로 로그인
                     <GoogleIcon src={Google} alt={"googleIcon"} width={24} />
                 </LoginBtn>

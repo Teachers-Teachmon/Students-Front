@@ -4,7 +4,7 @@ import SquareBtn from "../../components/button/square";
 import Header from "../../components/header";
 import RequestBox from "../../components/modal/requestBox";
 import * as S from './style.jsx'
-import Arrow from '../../assets/arrow.svg'
+import Arrow from '../../assets/Arrow.svg'
 import Rotate from '../../assets/rotate.svg';
 import { useState } from "react";
 

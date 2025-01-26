@@ -1,0 +1,50 @@
+{
+  "leaveseat": [
+    {
+      "teacher_name": "박건우",
+      "place": "전기전자 회로실",
+      "cause": "납뗌해야함",
+      "day": "2024-12-25",
+      "period": 8,
+      "stduents": [
+        {
+          "id": 1401,
+          "name": "김동욱"
+        },
+        {
+          "id": 1416,
+          "name": "허온"
+        }
+      ]
+    },
+    {
+      "teacher_name": "박건우",
+      "place": "프로그래밍실",
+      "cause": "프로그래밍 수행평가",
+      "day": "2024-12-31",
+      "period": 10,
+      "stduents": [
+        {
+          "id": 1401,
+          "name": "김동욱"
+        },
+        {
+          "id": 1101,
+          "name": "공덕현"
+        }
+      ]
+    }
+  ],
+  "seat": [
+    { "id": 1, "name": "Alice" },
+    { "id": 2, "name": "Bob" }
+  ],
+  "leave": [
+    { "id": 1, "name": "Alice", "period": 2, "teacher_name": "Alice" },
+    { "id": 2, "name": "Bob", "period": 2, "teacher_name": "Bob" }
+  ],
+  "student": [
+    { "id": 1, "name": "Alice", "period": 2, "teacher_name": "Alice" },
+    { "id": 2, "name": "Bob", "period": 2, "teacher_name": "Bob" }
+  ]
+}

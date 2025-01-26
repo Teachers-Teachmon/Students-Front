@@ -27,6 +27,7 @@ export default function LoginLoading(){
         else{
             throw new Error();
         }
+      
     }, []);
 
     return(
