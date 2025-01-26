@@ -1,5 +1,5 @@
 import * as S from './style.jsx'
-import Header from '../../components/Header/index.jsx'
+import Header from '../../components/header/index.jsx'
 
 export default function After_school(){
     return(
