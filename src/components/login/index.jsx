@@ -1,5 +1,6 @@
 import {useEffect} from "react";
 import {getInfo} from "../../api/auth.js";
+import {decodeJWT} from '../../zustand/auth.js';
 
 export default function LoginLoading(){
 
@@ -17,8 +18,10 @@ export default function LoginLoading(){
         const access = getCookie('access');
         localStorage.setItem('accessToken', access);
         deleteCookie('access');
-        console.log(access.id)
-        const data = getInfo(access.id);
+
+        const value = decodeJWT(access);
+        console.log(value);
+        const data = getInfo(value.id);
         console.log(data);
         if(data){
             localStorage.setItem('name', data.name);
