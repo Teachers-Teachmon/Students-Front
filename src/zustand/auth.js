@@ -16,10 +16,11 @@ const token = localStorage.getItem('accessToken');
 const decodedToken = token ? decodeJWT(token) : null;
 
 const useAuth = create(() => ({
-    name:decodedToken.name,
-    profile:decodedToken.profile,
+    name:localStorage.getItem('name'),
+    profile:localStorage.getItem('profile'),
     email: decodedToken.email,
     role:decodedToken.role,
+    id:decodedToken.id
 }));
 
 export default useAuth;

@@ -28,3 +28,14 @@ export const logout = async () => {
         return Promise.reject(err);
     }
 }
+
+export const getInfo = async (teacherId) =>{
+    try{
+        const res = await axiosInstance.get(`/teacher/view/${teacherId}`);
+        if(res.status === 200){
+            return res.data;
+        }
+    }catch(err){
+        return Promise.reject(err);
+    }
+}

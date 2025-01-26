@@ -11,7 +11,7 @@ export default defineConfig({
     proxy: {
       '/api': {
         // 서버 url 삽입필요
-        target: 'http://localhost:3000',
+        target: 'https://teachmon.kro.kr',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
