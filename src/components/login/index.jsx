@@ -1,4 +1,5 @@
 import {useEffect} from "react";
+import {getInfo} from "../../api/auth.js";
 
 export default function LoginLoading(){
 
@@ -13,9 +14,19 @@ export default function LoginLoading(){
             document.cookie = `${name}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;`;
         }
 
-        localStorage.setItem('accessToken', getCookie('accessToken'));
+        const access = getCookie('accessToken');
+        localStorage.setItem('accessToken', access);
         deleteCookie('accessToken');
-        window.location.href = '/main';
+        const data = getInfo(access.id);
+
+        if(data){
+            localStorage.setItem('name', data.name);
+            localStorage.setItem('profile', data.profile);
+            window.location.href = '/main';
+        }
+        else{
+            throw new Error();
+        }
     }, []);
 
     return(
