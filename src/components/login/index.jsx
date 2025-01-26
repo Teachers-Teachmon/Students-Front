@@ -17,7 +17,7 @@ export default function LoginLoading(){
         console.log(getCookie('access'))
         console.log(document.cookie);
         // deleteCookie('access');
-        window.location.href = '/main';
+        // window.location.href = '/main';
     }, []);
 
     return(
