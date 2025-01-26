@@ -33,9 +33,8 @@ export const getInfo = async (teacherId) =>{
     try{
         const res = await axiosInstance.get(`/teacher/view/${teacherId}`);
         console.log(res);
-        if(res.status === 200){
-            return res.data;
-        }
+        console.log(res.data);
+        return res.data;
     }catch(err){
         return Promise.reject(err);
     }

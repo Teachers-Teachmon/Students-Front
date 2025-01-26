@@ -20,17 +20,26 @@ export default function LoginLoading(){
         deleteCookie('access');
 
         const value = decodeJWT(access);
-        console.log(value);
-        const data = getInfo(value.id);
-        console.log(data);
-        if(data){
-            localStorage.setItem('name', data.name);
-            localStorage.setItem('profile', data.profile);
-            // window.location.href = '/main';
-        }
-        else{
-            throw new Error();
-        }
+
+        const fetchTeacherInfo = async (teacherId) => {
+            try {
+                const data = await getInfo(teacherId);
+                console.log(data);
+                if(data){
+                    localStorage.setItem('name', data.name);
+                    localStorage.setItem('profile', data.profile);
+                    window.location.href = '/main';
+                }
+                else{
+                    throw new Error();
+                }
+            } catch (error) {
+                console.error('Error fetching teacher info:', error);
+            }
+        };
+
+        fetchTeacherInfo(value.id);
+
       
     }, []);
 
