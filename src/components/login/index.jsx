@@ -23,7 +23,6 @@ export default function LoginLoading(){
         if(data){
             localStorage.setItem('name', data.name);
             localStorage.setItem('profile', data.profile);
-            window.location.href = '/main';
         }
         else{
             throw new Error();
