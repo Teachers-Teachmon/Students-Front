@@ -14,9 +14,10 @@ export default function LoginLoading(){
             document.cookie = `${name}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;`;
         }
 
-        const access = getCookie('accessToken');
+        const access = getCookie('access');
         localStorage.setItem('accessToken', access);
-        deleteCookie('accessToken');
+        deleteCookie('access');
+        console.log(access.id)
         const data = getInfo(access.id);
 
         if(data){

@@ -32,6 +32,7 @@ export const logout = async () => {
 export const getInfo = async (teacherId) =>{
     try{
         const res = await axiosInstance.get(`/teacher/view/${teacherId}`);
+        console.log(res);
         if(res.status === 200){
             return res.data;
         }
