@@ -18,9 +18,9 @@ const decodedToken = token ? decodeJWT(token) : null;
 const useAuth = create(() => ({
     name:localStorage.getItem('name'),
     profile:localStorage.getItem('profile'),
-    email: decodedToken.email || '',
-    role:decodedToken.role || '',
-    id:decodedToken.id || ''
+    email: decodedToken?.email || '',
+    role:decodedToken?.role || '',
+    id:decodedToken?.id || ''
 }));
 
 export default useAuth;
