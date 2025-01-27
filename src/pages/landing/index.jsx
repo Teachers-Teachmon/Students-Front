@@ -32,6 +32,10 @@ const FullPageComponent = () => {
     const [currentSection, setCurrentSection] = useState(0);
 
     useEffect(() => {
+        if(localStorage.getItem("accessToken")){
+            window.location.href = '/main';
+            return ;
+        }
         const instance = new fullpage('#fullpage', {
             licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE', // 무료 라이센스 키
             autoScrolling: true,
