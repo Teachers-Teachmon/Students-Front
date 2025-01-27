@@ -17,6 +17,12 @@ const refreshAccessToken = async () => {
         },
         withCredentials: true,
     });
+    if(response.status !== 200){
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem("name");
+        localStorage.removeItem("profile");
+        window.location.href = '/login';
+    }
     return response.headers['Authorization'];
 };
 
@@ -51,8 +57,10 @@ axiosInstance.interceptors.response.use(
                 return axiosInstance(originalRequest);
             } catch (refreshError) {
                 console.error("Refresh token expired or invalid", refreshError);
+                localStorage.removeItem('accessToken');
+                localStorage.removeItem("name");
+                localStorage.removeItem("profile");
                 window.location.href = '/login';
-                localStorage.removeItem("AT");
                 return Promise.reject(refreshError);
             }
         }
