@@ -2,10 +2,12 @@ import * as S from './style.jsx'
 import { useState } from "react";
 import DetailMovement from "../../modal/detail-movement/index.jsx";
 import {useDeleteMovement} from "../../../hooks/useData.js";
+import useAuth from "../../../zustand/auth.js"
 
 export default function Movement({data}) {
     const [isModal, setIsModal] = useState(false);
     const {mutate : deleteMovement} = useDeleteMovement();
+    const {name, role} = useAuth();
     return (
         <S.MovementContainer>
             <S.Standard>
@@ -26,13 +28,15 @@ export default function Movement({data}) {
                             <S.Box2 $length={110}>{item.students.length}명</S.Box2>
                             <S.Box2 $length={200}>{item.place}</S.Box2>
                             <S.Box2 $length={240}>{item.cause}</S.Box2>
-                            {/*자신이 쓴 이석기록이라면 삭제해야함*/}
-                            <S.DeleteBox
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    if(window.confirm('정말 삭제하시겠습니까?')) deleteMovement(item);
-                                }}
-                            >삭제</S.DeleteBox>
+
+                            {name === item.teacher_name || role === "admin" ?
+                                <S.DeleteBox
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        if(window.confirm('정말 삭제하시겠습니까?')) deleteMovement(item);
+                                    }}
+                                >삭제</S.DeleteBox>  : null
+                            }
                         </S.Content>
                         {isModal ?<DetailMovement data={item} setIsModal={setIsModal} /> : null}
                     </>

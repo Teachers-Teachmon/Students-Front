@@ -13,12 +13,12 @@ export default function Student({ data, search }) {
             </S.Standard>
 
 
-            {data.map((item) => {
+            {data && data.map((item) => {
                 if(item.name.indexOf(search) > -1){
                     return(
                         <S.Content key={item.id}>
                             <S.UnBox></S.UnBox>
-                            <S.Box2 $length={510}>{item.name}</S.Box2>
+                            <S.Box2 $length={510}>{item.studentNumber} {item.name}</S.Box2>
                             <S.Box2 $length={110}>
                                 <S.Status color={"#FFF6E4"}>
                                     <S.Circle color={"#FF9000"}></S.Circle>

@@ -1,9 +1,9 @@
 import {API_ENDPOINTS} from "../lib/endpoints.js";
 import axiosInstance from "../lib/axiosInstance.js";
-//${API_ENDPOINTS.DATA}
+
 export const getMovement = async (day) =>{
     try{
-        const res = await axiosInstance.get(`/leaveseat`, {
+        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/leaveseat`, {
             day:day
         });
         if(res.status !== 200 && res.status !== 201){
@@ -12,7 +12,6 @@ export const getMovement = async (day) =>{
                 message: res.message || 'Request failed'
             });
         }
-        console.log(res);
         return res;
 
     }catch (err){
@@ -22,7 +21,7 @@ export const getMovement = async (day) =>{
 
 export const getStudent = async (day) =>{
     try{
-        const res = await axiosInstance.get(`/student`, {
+        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/student`, {
             day:day
         });
         if(res.status !== 200 && res.status !== 201){
@@ -40,7 +39,7 @@ export const getStudent = async (day) =>{
 
 export const getLeave = async (day) =>{
     try{
-        const res = await axiosInstance.get(`/leave`, {
+        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/leave`, {
             day:day
         });
         if(res.status !== 200 && res.status !== 201){

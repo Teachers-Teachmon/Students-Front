@@ -23,7 +23,7 @@ export default function Manage(){
             .filter((idx) => idx !== null);
     };
     const {data : student, isLoading} = useGetNowStudent(gradeIndex()[0]);
-
+    console.log(student);
 
     // 렌더링시 오늘의 날짜를 계산해서 보여줌
     useEffect(() => {
@@ -55,25 +55,6 @@ export default function Manage(){
     }, []);
     const [isModal, setIsModal] = useState(false);
 
-    // data 의 임시 데이터
-    const data = [
-        {id:1, name:'김동욱', status : '조퇴'},
-        {id:2, name:'김동욱', status : '조퇴'},
-        {id:3, name:'김동욱', status : '조퇴'},
-        {id:4, name:'김동욱', status : '조퇴'},
-        {id:5, name:'김동욱', status : '조퇴'},
-        {id:6, name:'김동욱', status : '조퇴'},
-        {id:7, name:'김동욱', status : '조퇴'},
-        {id:8, name:'김동욱', status : '조퇴'},
-        {id:9, name:'김동욱', status : '조퇴'},
-        {id:10, name:'김동욱', status : '조퇴'},
-        {id:11, name:'김동욱', status : '자습'},
-        {id:12, name:'김동욱', status : '이석'},
-        {id:13, name:'김동욱', status : '자습'},
-        {id:14, name:'김동욱', status : '방과후'},
-        {id:15, name:'김동욱', status : '자습'},
-        {id:16, name:'김동욱', status : '조퇴'},
-    ]
 
     // 이함수가 실행될때마다 학년이 바뀌고 그 데이터가 바뀌어야함
     const changeGrade = (idx) => {
@@ -129,10 +110,14 @@ export default function Manage(){
                         </S.Record>
                     </S.MainNav>
                     <S.Section>
-                        <StudentGraph data={data}/>
-                        <StudentGraph data={data}/>
-                        <StudentGraph data={data}/>
-                        <StudentGraph data={[{id:1, name:'김동욱', status:'조퇴'}]}/>
+                        {!isLoading &&
+                            <>
+                                <StudentGraph data={student['1반']} grade={gradeIndex()[0]} classNum = {1}/>
+                                <StudentGraph data={student['2반']} grade={gradeIndex()[0]} classNum = {2}/>
+                                <StudentGraph data={student['3반']} grade={gradeIndex()[0]}  classNum = {3}/>
+                                <StudentGraph data={student['4반']} grade={gradeIndex()[0]}  classNum = {4}/>
+                            </>
+                        }
                     </S.Section>
                 </S.Main>
             </S.Wrap>

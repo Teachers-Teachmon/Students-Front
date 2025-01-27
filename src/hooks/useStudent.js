@@ -6,9 +6,8 @@ export const useGetNowStudent = (grade) =>{
         queryKey:['nowStudent', grade],
         queryFn: async () =>{
             const res = await API.getNowStudent(grade);
-            return res;
-        },
-        enabled:!!grade
+            return res.data;
+        }
     })
 }
 
@@ -26,7 +25,7 @@ export const useGetLocationAll = ()=>{
         queryKey:['locationAll'],
         queryFn: async () =>{
             const res = await API.getLocationAll();
-            return res;
+            return res.data;
         }
     })
 }
@@ -38,6 +37,5 @@ export const useGetLocationFloor = (floor) =>{
             const res = await API.getLocation(floor);
             return res;
         },
-        enabled:!!floor
     })
 }
