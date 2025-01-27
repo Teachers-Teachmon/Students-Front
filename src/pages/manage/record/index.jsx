@@ -11,29 +11,32 @@ import Search from "../../../assets/Search.svg";
 import {useGetMovement, useGetStudent, useGetLeave} from "../../../hooks/useData.js";
 import useDay from "../../../zustand/day";
 import DateInput from "../../../components/dateInput/index.jsx";
+import {useDebounce} from "../../../hooks/useDebounce.js";
+import {searchStudent} from "../../../api/data.js";
 
 export default function Record() {
     const navigate = useNavigate();
     const [isMovement, setIsMovement] = useState([
         true, false, false
     ]);
-    const data = [
-        {id : 1, name : "1410 윤도훈"},
-        {id : 2, name : "1410 윤도훈"},
-        {id : 3, name : "1410 윤도훈"},
-        {id : 4, name : "1410 윤도훈"},
-    ]
-    const [searchStudent, setSearchStudent] = useState("");
+
+    const [search, setSearch] = useState("");
     const {today, day:dayComponent} = useDay();
     const [day, setDay] = useState(today);
     const { data: movement, isLoading: movementLoading, isError: movementError } = useGetMovement(day);
-    console.log(movement);
     const {data :leave, leaveLoading, leaveError} = useGetLeave(day);
     const {data :student, studentLoading, studentError} = useGetStudent(day);
+    const debounce = useDebounce(search, 300);
+    const [data, setData] = useState([]);
 
     useEffect(() => {
         setDay(dayComponent);
     }, [dayComponent]);
+
+    useEffect( async ()=>{
+        const students = await searchStudent(search);
+        setData(students);
+    }, [debounce])
 
     return (
         <S.ManageContainer>
@@ -64,8 +67,8 @@ export default function Record() {
                                 <S.Input
                                     type={"text"}
                                     placeholder={"학번을 입력해주세요"}
-                                    value={searchStudent}
-                                    onChange={(e)=>setSearchStudent(e.target.value)}
+                                    value={search}
+                                    onChange={(e)=>setSearch(e.target.value)}
                                 />
                             </S.InputBox>
                             : null}
@@ -73,17 +76,9 @@ export default function Record() {
                     {isMovement[0] ? (
                         <Movement data={movement}/>
                     ) : isMovement[1] ? (
-                        <Leave data={[
-                            {
-                                studentID: 1401,
-                                name: "김동욱",
-                                day: "2024-12-25",
-                                period: 10,
-                                teacher_name: "이정하"
-                            }
-                        ]}/>
+                        <Leave data={leave}/>
                     ) : isMovement[2] ? (
-                        <Student data={data} search = {searchStudent} />
+                        <Student data={student} search = {setSearch} searchValue = {data} />
                     ) : null}
                 </S.Main>
             </S.Wrap>

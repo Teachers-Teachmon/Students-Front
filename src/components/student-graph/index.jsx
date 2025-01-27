@@ -3,7 +3,7 @@ import {useState} from "react";
 import StatusUpdate from "../status-update/index.jsx";
 import {usePatchStudent} from "../../hooks/useData.js";
 
-export default function StudentGraph({data}){
+export default function StudentGraph({data, grade, classNum}){
     const [isOpen, setIsOpen] = useState([
         false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
     ]);
@@ -19,7 +19,11 @@ export default function StudentGraph({data}){
         console.log(idx, status)
         patchStudent({studentID: idx, status: status})
     }
-
+    const makeNumber = (grade, classNum, number, name) =>{
+        number = String(number).startsWith(1) ? number : `0${number}`
+        console.log(grade, classNum, number, name);
+        return String(grade) + String(classNum) + number + name
+    }
     // 상태에 따라 색깔변환
     const studentColor = (status) => {
         switch (status) {
@@ -37,15 +41,15 @@ export default function StudentGraph({data}){
     }
     return(
         <S.StudentContainer>
-            <S.Class>data.class반</S.Class>
+            <S.Class>{classNum}반</S.Class>
             <S.Graph>
-                {data.map((el, idx) =>
+                {data && data.map((el, idx) =>
                     <>
                         <S.Student color = {studentColor(el.status)} onClick={()=>isClick(idx)} key = {idx}>{/* 칸 색깔도 data에서 추출해서 사용*/}
-                            <p>{el.id}</p>
+                            <p>{idx+1}</p>
                             <p>{el.name}</p>
                             {isOpen[idx] ?
-                                <StatusUpdate changeStatus={changeStatus} name={el.id} />
+                                <StatusUpdate changeStatus={changeStatus} name={makeNumber(grade, classNum, idx+1, el.name)} />
                                  : null
                             }
                         </S.Student>

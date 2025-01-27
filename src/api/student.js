@@ -1,6 +1,7 @@
 import {API_ENDPOINTS} from "../lib/endpoints.js";
 import axiosInstance from "../lib/axiosInstance.js";
 
+
 export const getNowStudent = async (grade) =>{
     console.log(grade);
     try{
@@ -13,6 +14,7 @@ export const getNowStudent = async (grade) =>{
                 message:res.message
             })
         }
+        console.log(res);
         return res;
     }catch (err){
         return new Promise.reject(err);

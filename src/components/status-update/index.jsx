@@ -1,5 +1,6 @@
 import styled from "styled-components";
 export default function StatusUpdate({changeStatus, name}) {
+    console.log(name);
     return (
         <StatusBox>
             <Status color={"#FFF6E4"} onClick={()=>changeStatus(name, "조퇴")}>
