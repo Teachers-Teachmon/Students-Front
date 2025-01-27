@@ -137,7 +137,7 @@ export const patchStudent = async ({studentID, status}) =>{
 }
 export const searchStudent = async (search) =>{
     try{
-        const res = await axiosInstance.post(`${API_ENDPOINTS.STUDENT}/search`, {
+        const res = await axiosInstance.post(`${API_ENDPOINTS.DATA}/search`, {
             search:search
         });
         if(res.status!==200){
