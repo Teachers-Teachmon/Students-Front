@@ -4,7 +4,6 @@ import Google from '../../assets/google.svg';
 
 export default function Login(){
 
-    // 로그인 되있는 유저인지 확인 후 유저 정보 받아와야함
     return(
         <LoginContainer>
             <Main>

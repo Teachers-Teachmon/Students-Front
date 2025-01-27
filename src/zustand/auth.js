@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-function decodeJWT(token) {
+export function decodeJWT(token) {
     try {
         const payload = token.split('.')[1];
 

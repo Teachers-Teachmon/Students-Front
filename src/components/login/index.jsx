@@ -1,5 +1,6 @@
 import {useEffect} from "react";
 import {getInfo} from "../../api/auth.js";
+import {decodeJWT} from '../../zustand/auth.js';
 
 export default function LoginLoading(){
 
@@ -14,19 +15,31 @@ export default function LoginLoading(){
             document.cookie = `${name}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;`;
         }
 
-        const access = getCookie('accessToken');
+        const access = getCookie('access');
         localStorage.setItem('accessToken', access);
-        deleteCookie('accessToken');
-        const data = getInfo(access.id);
+        deleteCookie('access');
 
-        if(data){
-            localStorage.setItem('name', data.name);
-            localStorage.setItem('profile', data.profile);
-            window.location.href = '/main';
-        }
-        else{
-            throw new Error();
-        }
+        const value = decodeJWT(access);
+
+        const fetchTeacherInfo = async (teacherId) => {
+            try {
+                const data = await getInfo(teacherId);
+                console.log(data);
+                if(data){
+                    localStorage.setItem('name', data.name);
+                    localStorage.setItem('profile', data.profile);
+                    window.location.href = '/main';
+                }
+                else{
+                    throw new Error();
+                }
+            } catch (error) {
+                console.error('Error fetching teacher info:', error);
+            }
+        };
+
+        fetchTeacherInfo(value.id);
+
       
     }, []);
 
