@@ -11,6 +11,8 @@ import Search from "../../../assets/Search.svg";
 import {useGetMovement, useGetStudent, useGetLeave} from "../../../hooks/useData.js";
 import useDay from "../../../zustand/day";
 import DateInput from "../../../components/dateInput/index.jsx";
+import {useDebounce} from "../../../hooks/useDebounce.js";
+import {searchStudent} from "../../../api/data.js";
 
 export default function Record() {
     const navigate = useNavigate();
@@ -18,17 +20,23 @@ export default function Record() {
         true, false, false
     ]);
 
-    const [searchStudent, setSearchStudent] = useState("");
+    const [search, setSearch] = useState("");
     const {today, day:dayComponent} = useDay();
     const [day, setDay] = useState(today);
     const { data: movement, isLoading: movementLoading, isError: movementError } = useGetMovement(day);
     const {data :leave, leaveLoading, leaveError} = useGetLeave(day);
     const {data :student, studentLoading, studentError} = useGetStudent(day);
+    const debounce = useDebounce(search, 300);
+    const [data, setData] = useState([]);
 
-    console.log(movement, leave, student);
     useEffect(() => {
         setDay(dayComponent);
     }, [dayComponent]);
+
+    useEffect( async ()=>{
+        const students = await searchStudent(search);
+        setData(students);
+    }, [debounce])
 
     return (
         <S.ManageContainer>
@@ -59,8 +67,8 @@ export default function Record() {
                                 <S.Input
                                     type={"text"}
                                     placeholder={"학번을 입력해주세요"}
-                                    value={searchStudent}
-                                    onChange={(e)=>setSearchStudent(e.target.value)}
+                                    value={search}
+                                    onChange={(e)=>setSearch(e.target.value)}
                                 />
                             </S.InputBox>
                             : null}
@@ -70,7 +78,7 @@ export default function Record() {
                     ) : isMovement[1] ? (
                         <Leave data={leave}/>
                     ) : isMovement[2] ? (
-                        <Student data={student} search = {searchStudent} />
+                        <Student data={student} search = {setSearch} searchValue = {data} />
                     ) : null}
                 </S.Main>
             </S.Wrap>
