@@ -1,6 +1,6 @@
 import * as S from './style.jsx';
 import CircleBtn from "../../button/circle";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Dropdown from "../../dropdown/nosearch";
 import SquareBtn from "../../button/square";
 import Search from '../../../assets/Search.svg'
@@ -8,6 +8,8 @@ import SearchDropdown from '../../dropdown/search';
 import {usePostMovement} from '../../../hooks/useData.js';
 import useDay from "../../../zustand/day.js";
 import SchoolOut from "../confirm/schoolOut/index.jsx";
+import {useDebounce} from "../../../hooks/useDebounce.js";
+import {searchStudent} from "../../../api/student.js";
 
 export default function Write({setIsModal}){
     const [time, setTime] = useState("시간");
@@ -44,19 +46,18 @@ export default function Write({setIsModal}){
         }
     }
     // 임시 데이터
-    const student = [
-        "1410 윤도훈",
-        "1411 김현준",
-        "1412 김현준",
-        "1413 김현준",
-        "1414 김현준",
-        "1415 김현준",
-        "1416 김현준",
-    ]
+    const [student, setStudent] = useState([]);
 
     const [selectStudent, setSelectStudent] = useState([]);
     const {mutate : postMovement} = usePostMovement();
     const {today: day} = useDay();
+    const debounce = useDebounce(search, 300);
+
+    useEffect( async ()=>{
+        console.log(search);
+        const students = await searchStudent(search);
+        setStudent(students);
+    }, [debounce])
 
     return(
         <S.WriteContainer>

@@ -68,3 +68,20 @@ export const getLocation = async (floor) =>{
         return Promise.reject(err);
     }
 }
+
+export const searchStudent = async (name) =>{
+    try{
+        const res = await axiosInstance.get(`${API_ENDPOINTS.STUDENT}/search`, {
+            name:name
+        });
+        if(res.status!==200){
+            return new Promise.reject({
+                status:res.status,
+                message:res.message
+            })
+        }
+        return res;
+    }catch (err){
+        return Promise.reject(err);
+    }
+}
