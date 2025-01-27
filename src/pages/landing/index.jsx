@@ -7,6 +7,7 @@ import Introduce from "../../components/landing/introduce/index.jsx";
 import Role from "../../components/landing/role/index.jsx";
 import Skill from "../../components/landing/skill/index.jsx";
 import Method from "../../components/landing/method/index.jsx";
+import {refreshAccessToken} from "../../lib/axiosInstance.js";
 
 // 스타일 정의
 const FullPageWrapper = styled.div`
@@ -31,8 +32,17 @@ const FullPageComponent = () => {
     const [isScrolling, setIsScrolling] = useState(false); // 스크롤 상태 추가
     const [currentSection, setCurrentSection] = useState(0);
 
+    const certification = async () =>{
+        const access = await refreshAccessToken();
+        if(access){
+            localStorage.setItem('accessToken', access);
+            return true;
+        }
+        return false;
+    }
+
     useEffect(() => {
-        if(localStorage.getItem("accessToken")){
+        if(certification){
             window.location.href = '/main';
             return ;
         }

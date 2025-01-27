@@ -9,7 +9,7 @@ const axiosInstance = axios.create({
     withCredentials: true,
 });
 
-const refreshAccessToken = async () => {
+export const refreshAccessToken = async () => {
     const response = await axios.post('/api/reissue', null, {
         headers: {
             'Content-Type': 'application/json',
@@ -22,6 +22,7 @@ const refreshAccessToken = async () => {
         localStorage.removeItem("name");
         localStorage.removeItem("profile");
         window.location.href = '/login';
+        return false;
     }
     return response.headers['Authorization'];
 };
