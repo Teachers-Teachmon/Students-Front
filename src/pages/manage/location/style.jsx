@@ -36,10 +36,10 @@ export const Element = styled.div`
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: ${(props)=>props.$top}px;
-    left: ${(props)=>props.$left}px;
-    width: ${(props)=>props.$width}px;
-    height: ${(props)=>props.$height}px;
+    top: ${(props)=>props.$top}%;
+    left: ${(props)=>props.$left}%;
+    width: ${(props)=>props.$width}%;
+    height: ${(props)=>props.$height}%;
     color: ${(props)=>props.$color ? "white" : "black"};
     background: ${(props)=>props.$color ? "#F87067" : "#DDDDDD"};
     cursor: ${(props)=>props.$cursor ? "pointer" : null};
