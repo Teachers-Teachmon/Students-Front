@@ -1,11 +1,11 @@
 import {API_ENDPOINTS} from "../lib/endpoints.js";
 import axiosInstance from "../lib/axiosInstance.js";
 
-
+//${API_ENDPOINTS.STUDENT}
 export const getNowStudent = async (grade) =>{
     console.log(grade);
     try{
-        const res = await axiosInstance.get(`${API_ENDPOINTS.STUDENT}/schedule`, {
+        const res = await axiosInstance.get(`/schedule`, {
             grade:grade
         });
         if(res.status!==200){

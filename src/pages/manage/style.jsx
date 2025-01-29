@@ -98,6 +98,7 @@ export const Section = styled.section`
     height: 90%;
     display: flex;
     flex-flow: wrap row;
+    
 `
 
 export const Black = styled.div`
