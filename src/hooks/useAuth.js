@@ -13,7 +13,7 @@ export const useLogin = () =>{
 
 export const useLogout = () => {
     return useMutation({
-        mutationFn: (props) => API.logout(props),
+        mutationFn: () => API.logout(),
         onSuccess: () => {
             window.location.href = '/';
         },

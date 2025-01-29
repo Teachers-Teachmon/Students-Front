@@ -21,7 +21,9 @@ export const logout = async () => {
     try{
         const res = await axiosInstance.post('/oauth2/logout');
         if(res.status === 200){
-            localStorage.removeItem('AT');
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem("name");
+            localStorage.removeItem("profile");
             navigate('/');
         }
         else{
