@@ -7,13 +7,11 @@ import * as S from './style.jsx'
 import Arrow from '../../assets/Arrow.svg'
 import Rotate from '../../assets/rotate.svg';
 import { useState } from "react";
+import { useGetCompleteRate, useGetNextSupervision } from "../../hooks/useSupervision.js";
 
 export default function Main() {
     let navigate = useNavigate();
     let userName = '정유진';
-    let supCount = 9;
-    let supTotal = 10;
-    let supRate = supTotal > 0 ? Math.round(supCount / supTotal * 100) : 0;
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     let studentInfo = [
@@ -88,9 +86,14 @@ export default function Main() {
         }
     ]
 
-    let nextDay = 2;
-    let day = "11월 27일 (수)";
-    let period = "8교시 ~ 9교시";
+    const { data: nextData, isLoading: isLoadingNext, isError: isErrorNext } = useGetNextSupervision();
+    let nextDay = nextData?.reminder || 0;
+    let day = nextData?.day || "";
+    let period = nextData?.period || "";
+    const { data: completeRateData, isLoading: isLoadingRate, isError: IsErrorRate } = useGetCompleteRate();
+    let supCount = completeRateData?.completed || 0;
+    let supTotal = completeRateData?.total || 0;
+    let supRate = completeRateData?.percentage || 0;
     return (
         <S.MainContainer>
             <Header />

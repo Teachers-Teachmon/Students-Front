@@ -1,2 +1,79 @@
 import * as API from '../api/supervision.js';
 import { useMutation, useQuery } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
+
+export const useAutoAssignment = () => {
+    const navigate = useNavigate();
+    return useMutation({
+        mutationFn: (props) => API.autoAssignment(props),
+        onSuccess: () => {
+            navigate('/supervision/detail');
+        },
+        onError: (err) => {
+            console.error('Assignment 실패:', err);
+        }
+    });
+};
+
+export const useGetAssignment = (month) => {
+    return useQuery({
+        queryKey: ['getAssignment', month],
+        queryFn: async () => {
+            const res = await API.getAssignment(month);
+            return res.data || [];
+        }
+    });
+}
+
+export const useSaveAutoAssignment = () => {
+    const navigate = useNavigate();
+    return useMutation({
+        mutationFn: (props) => API.saveAutoAssignment(props),
+        onSuccess: () => {
+            navigate('/supervision');
+        },
+        onError: (err) => {
+            console.error('Assignment 저장 실패:', err);
+        }
+    });
+};
+
+export const useGetNextSupervision = () => {
+    return useQuery({
+        queryKey: ['getNextSupervision'],
+        queryFn: async () => {
+            const res = await API.getNextSupervision();
+            return res.data || [];
+        }
+    });
+}
+
+export const useGetMonthlySupervision = (day, period, remainder) => {
+    return useQuery({
+        queryKey: ['getMonthlySupervision', day, period, remainder],
+        queryFn: async () => {
+            const res = await API.getMonthlySupervision({day, period, remainder});
+            return res.data || [];
+        }
+    });
+}
+
+export const useGetDailySupervision = (day, period, remainder) => {
+    return useQuery({
+        queryKey: ['getDailySupervision', day, period, remainder],
+        queryFn: async () => {
+            const res = await API.getDailySupervision({day, period, remainder});
+            return res.data || [];
+        }
+    });
+}
+
+export const useGetCompleteRate = (percentage, total, completed) => {
+    return useQuery({
+        queryKey: ['getCompleteRate', percentage, total, completed],
+        queryFn: async () => {
+            const res = await API.getCompleteRate({percentage, total, completed});
+            return res.data || [];
+        }
+    });
+}

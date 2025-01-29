@@ -4,6 +4,7 @@ import SquareBtn from "../../components/button/square";
 import TeacherList from "../../components/modal/teacherList/index.jsx";
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useGetMonthlySupervision } from '../../hooks/useSupervision.js';
 
 export default function Supervision() {
     let navigate = useNavigate();
@@ -64,26 +65,16 @@ export default function Supervision() {
     const handleDateClick = (date) => {
         const formattedDate = date.toLocaleDateString('ko-KR', {
             year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
+            month: '2-digit',
+            day: '2-digit'
+        }).replace(/\. /g, '-').replace('.', '');
     
-        const weekdayMap = {
-            '일요일': '(일)',
-            '월요일': '(월)',
-            '화요일': '(화)',
-            '수요일': '(수)',
-            '목요일': '(목)',
-            '금요일': '(금)',
-            '토요일': '(토)'
-        };
-    
-        const weekday = date.toLocaleDateString('ko-KR', { weekday: 'long' });
-        const formattedWithWeekday = `${formattedDate} ${weekdayMap[weekday]}`;
-    
-        setSelectedDate(formattedWithWeekday);
+        setSelectedDate(formattedDate);
         setIsModalOpen(true);
-    };    
+    };
+    
+
+    // const { data: supervisionList, isLoading, isError } = useGetMonthlySupervision(month + 1);
 
     const supervisionList = [
         {
@@ -120,7 +111,7 @@ export default function Supervision() {
                 }
             ]
         }
-    ]
+    ];
 
     return (
         <S.Wrapper>
