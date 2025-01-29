@@ -3,17 +3,16 @@ import useLocation from "../../../zustand/locationDetail.js";
 
 export default function Fourth({set, data}) {
     const elements = [
-        { id: 30, name: "", x: 150, y: 80, width: 200, height: 500, backgroundColor: "#DDDDDD", cursor: "pointer" },
-        { id: 30, name: "X", x: 50, y: 80, width: 100, height: 100, backgroundColor: "#DDDDDD", cursor: "pointer" },
-        { id: 36, name: "X", x: 150, y: 80, width: 130, height:70, backgroundColor: "#DDDDDD", cursor: "pointer" },
-        { id: 1, name: "X", x: 310, y: 80, width: 700, height: 70, backgroundColor: "#DDDDDD", cursor: "pointer" },
-        { id: 14, name: "X", x: 1010, y: 80, width: 110, height: 40, backgroundColor: "#DDDDDD", cursor: "pointer" },
-        { id: 15, name: "X", x: 1040, y: 120, width: 80, height: 610, backgroundColor: "#DDDDDD", cursor: "pointer" },
-        { id: 31, name: "X", x: 370, y: 620, width: 300, height: 90, backgroundColor: "#DDDDDD", cursor: "pointer" },
-        { id: 36, name: "기숙사", x: 150, y: 180, width: 200, height: 400, backgroundColor: "#DDDDDD", cursor: "pointer" },
-        { id: 36, name: "베르실7", x: 150, y: 150, width: 65, height: 30, backgroundColor: "#DDDDDD", cursor: "pointer" },
-        { id: 36, name: "베르실8", x: 215, y: 150, width: 65, height: 30, backgroundColor: "#DDDDDD", cursor: "pointer" },
-        { id: 36, name: "베르실9", x: 310, y: 150, width: 40, height: 30, backgroundColor: "#DDDDDD", cursor: "pointer" },
+        { id: 30, name: "", x: 12, y: 10.5, width: 16, height: 12.5, backgroundColor: "#DDDDDD", cursor: "pointer" },
+        { id: 36, name: "X", x: 12, y: 10.5, width: 11, height:8.5, backgroundColor: "#DDDDDD", cursor: "pointer" },
+        { id: 1, name: "X", x: 25, y: 10.5, width: 54, height: 8.5, backgroundColor: "#DDDDDD", cursor: "pointer" },
+        { id: 14, name: "X", x: 4, y: 10.5, width: 8, height: 12.5, backgroundColor: "#DDDDDD", cursor: "pointer" },
+        { id: 27, name: "X", x: 81, y: 15.5, width: 7, height: 76, backgroundColor: "#DDDDDD", cursor: "pointer" },
+        { id: 14, name: "X", x: 79, y: 10.5, width: 9, height: 5, backgroundColor: "#DDDDDD", cursor: "pointer" },
+        { id: 36, name: "기숙사", x: 12, y: 23, width: 16, height: 47.5, backgroundColor: "#DDDDDD", cursor: "pointer" },
+        { id: 36, name: "베르실7", x: 12, y: 19, width: 5.5, height: 4, backgroundColor: "#DDDDDD", cursor: "pointer" },
+        { id: 36, name: "베르실8", x: 17.5, y: 19, width: 5.5, height: 4, backgroundColor: "#DDDDDD", cursor: "pointer" },
+        { id: 36, name: "베르실9", x: 25, y: 19, width: 3, height: 4, backgroundColor: "#DDDDDD", cursor: "pointer" },
 
     ];
     const setPlace = useLocation((state) => state.setPlace);
