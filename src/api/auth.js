@@ -24,6 +24,12 @@ export const logout = async () => {
             localStorage.removeItem('AT');
             navigate('/');
         }
+        else{
+            return Promise.reject({
+                status : res.status,
+                message : res.message || 'Request failed'
+            })
+        }
     }catch(err){
         return Promise.reject(err);
     }
