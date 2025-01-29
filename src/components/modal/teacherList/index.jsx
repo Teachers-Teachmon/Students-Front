@@ -1,8 +1,38 @@
 import * as S from './style.jsx';
 import { useState } from 'react';
+import { useGetDailySupervision } from '../../../hooks/useSupervision.js';
 
 export default function TeacherList({ closeModal, selectedDate }) {
-    const [currentDate, setCurrentDate] = useState(selectedDate);
+    const formatDateForUI = (date) => {
+        const dayNames = ['일', '월', '화', '수', '목', '금', '토'];
+        return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일 (${dayNames[date.getDay()]})`;
+    };
+
+    const formatDateForRequest = (date) => {
+        return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+    };
+
+    const [currentDate, setCurrentDate] = useState(new Date(selectedDate));
+
+    const fetchTeacherData = (newDate) => {
+        console.log(`API 요청: ${formatDateForRequest(newDate)}`);
+    };
+
+    const handlePrevDay = () => {
+        const newDate = new Date(currentDate);
+        newDate.setDate(newDate.getDate() - 1);
+        setCurrentDate(newDate);
+        fetchTeacherData(newDate);
+    };
+
+    const handleNextDay = () => {
+        const newDate = new Date(currentDate);
+        newDate.setDate(newDate.getDate() + 1);
+        setCurrentDate(newDate);
+        fetchTeacherData(newDate);
+    };
+
+    // const { data: todayTeacher, isLoading, isError } = useGetDailySupervision(formatDateForRequest(currentDate));
 
     const todayTeacher = [
         {
@@ -25,33 +55,12 @@ export default function TeacherList({ closeModal, selectedDate }) {
         }
     ];
 
-    const fetchTeacherData = (newDate) => {
-        console.log(`새로운 날이다: ${newDate}`);
-        // API 호출하기
-    };
-
-    const handlePrevDay = () => {
-        const [year, month, day] = currentDate.match(/\d+/g).map(Number);
-        const newDate = new Date(year, month - 1, day - 1);
-        const formattedDate = `${newDate.getFullYear()}년 ${newDate.getMonth() + 1}월 ${newDate.getDate()}일 (${['일', '월', '화', '수', '목', '금', '토'][newDate.getDay()]})`;
-        setCurrentDate(formattedDate);
-        fetchTeacherData(formattedDate);
-    };
-
-    const handleNextDay = () => {
-        const [year, month, day] = currentDate.match(/\d+/g).map(Number);
-        const newDate = new Date(year, month - 1, day + 1);
-        const formattedDate = `${newDate.getFullYear()}년 ${newDate.getMonth() + 1}월 ${newDate.getDate()}일 (${['일', '월', '화', '수', '목', '금', '토'][newDate.getDay()]})`;
-        setCurrentDate(formattedDate);
-        fetchTeacherData(formattedDate);
-    };
-
     return (
         <S.Container>
             <S.HandleButton onClick={handlePrevDay}>{'<'}</S.HandleButton>
             <S.Wrapper>
                 <S.Header>
-                    <S.MainText>{currentDate}</S.MainText>
+                    <S.MainText>{formatDateForUI(currentDate)}</S.MainText>
                     <S.CloseButton onClick={closeModal}>X</S.CloseButton>
                 </S.Header>
                 <S.Content>
