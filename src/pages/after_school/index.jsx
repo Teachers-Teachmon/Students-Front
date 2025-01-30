@@ -1,5 +1,10 @@
 import * as S from './style.jsx'
 import Header from '../../components/header/index.jsx'
+import OptionButton from '../../assets/OptionButton.svg';
+import { useState } from 'react';
+import BusinessTrip from '../../components/modal/businessTrip/index.jsx';
+import ClassEnd from '../../components/modal/classEnd/index.jsx';
+import ClassPrep from '../../components/modal/classPrep/index.jsx';
 
 export default function After_school() {
 
