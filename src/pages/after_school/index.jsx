@@ -1,10 +1,14 @@
-import * as S from './style.jsx'
-import Header from '../../components/header/index.jsx'
+import * as S from './style.jsx';
+import Header from '../../components/header/index.jsx';
 import OptionButton from '../../assets/OptionButton.svg';
 import { useState } from 'react';
 import BusinessTrip from '../../components/modal/businessTrip/index.jsx';
 import ClassEnd from '../../components/modal/classEnd/index.jsx';
 import ClassPrep from '../../components/modal/classPrep/index.jsx';
+import { useNavigate } from "react-router-dom";
+import Circle from '../../components/button/circle/index.jsx'
+import CaretLeft from '../../assets/CaretLeft.svg';
+import CaretRight from '../../assets/CaretRight.svg';
 
 export default function After_school() {
 
@@ -13,70 +17,211 @@ export default function After_school() {
     const [isModal2, setIsModal2] = useState(false);
     const [isModal3, setIsModal3] = useState(false);
     const [selectedClass, setSelectedClass] = useState(null);
+    const [grade, setGrade] = useState([true, false, false]);
+    const [selectedDay, setSelectedDay] = useState("월");
+    const navigate = useNavigate()
+
+    const weekDays = ["월", "화", "수", "목"];
 
     const myTodayClasses = [
         {
-            time: "8~9",
-            grade: "1학년",
-            name: "리액트",
-            location: "객체지향 프로그래밍실"
+            "period" : "8~9교시",
+            "grade" : 1,
+            "name" : "리액트",
+            "placeName" : "객체지향 프로그래밍실"
         },
         {
-            time: "10~11",
-            grade: "1학년",
-            name: "파이썬을 이용한 문제해결",
-            location: "프로그래밍실"
+            "period" : "10~11교시",
+            "grade" : 1,
+            "name" : "파이썬을 이용한 문제해결",
+            "placeName": "프로그래밍실"
         }
     ];
 
     const myClasses = [
         {
-            day: "월",
-            time: "8~9교시",
-            grade: "1",
-            name: "스프링 부트를 이용한 웹서비스 개발",
-            location: "객체지향 프로그래밍실"
+            "weekday" : "월",
+            "period" : "8~9교시",
+            "grade" : 1,
+            "name" : "스프링 부트를 이용한 웹서비스 개발",
+            "placeName" : "객체지향 프로그래밍실"
         },
         {
-            day: "월",
-            time: "8~9교시",
-            grade: "1",
-            name: "파이썬",
-            location: "객체지향 프로그래밍실"
+            "weekday" : "월",
+            "period" : "8~9교시",
+            "grade" : 1,
+            "name" : "파이썬",
+            "placeName" : "객체지향 프로그래밍실"
         },
         {
-            day: "월",
-            time: "8~9교시",
-            grade: "1",
-            name: "파이썬을 이용한 문제해결",
-            location: "객체지향 프로그래밍실"
+            "weekday" : "월",
+            "period" : "8~9교시",
+            "grade" : 1,
+            "name" : "파이썬을 이용한 문제해결",
+            "placeName": "객체지향 프로그래밍실"
         },
         {
-            day: "월",
-            time: "8~9교시",
-            grade: "1",
-            name: "파이썬을 이용한 문제해결",
-            location: "프로그래밍실"
+            "weekday" : "월",
+            "period" : "8~9교시",
+            "grade" : "1",
+            "name" : "파이썬을 이용한 문제해결",
+            "placeName" : "프로그래밍실"
         },
         {
-            day: "월",
-            time: "8~9교시",
-            grade: "1",
-            name: "파이썬을 이용한 문제해결",
-            location: "프로그래밍실"
+            "weekday" : "월",
+            "period" : "8~9교시",
+            "grade" : 1,
+            "name" : "파이썬을 이용한 문제해결",
+            "placeName" : "프로그래밍실"
         },
         {
-            day: "월",
-            time: "8~9교시",
-            grade: "1",
-            name: "파이썬을 이용한 문제해결",
-            location: "프로그래밍실"
+            "weekday": "월",
+            "period": "8~9교시",
+            "grade" : "1",
+            "name" : "파이썬을 이용한 문제해결",
+            "placeName": "프로그래밍실"
+        }
+    ];
+
+    const classList = [
+        {
+            "weekday": "월",
+            "period": "8~9교시",
+            "afterschool": [
+                {
+                    "name": "파이썬을 이용한 문제해결",
+                    "teacherName": "김동욱",
+                    "placeName": "프로그래밍실"
+                },
+                {
+                    "name": "파이썬을 이용한 문제해결",
+                    "teacherName": "김동욱",
+                    "placeName": "프로그래밍실"
+                },
+                {
+                    "name": "스프링 부트를 이용한 웹서비스 개발",
+                    "teacherName": "곽상미",
+                    "placeName": "객체지향 프로그래밍실"
+                },
+                {
+                    "name": "스프링 부트를 이용한 웹서비스 개발",
+                    "teacherName": "곽상미",
+                    "placeName": "객체지향 프로그래밍실"
+                },
+                {
+                    "name": "스프링 부트를 이용한 웹서비스 개발",
+                    "teacherName": "곽상미",
+                    "placeName": "객체지향 프로그래밍실"
+                }
+            ],
+        },
+        {
+            "weekday": "월",
+            "period": "10~11교시",
+            "afterschool": [
+                {
+                    "name": "스프링 부트를 이용한 웹서비스 개발",
+                    "teacherName": "곽상미",
+                    "placeName": "객체지향 프로그래밍실"
+                },
+                {
+                    "name": "파이썬을 이용한 문제해결",
+                    "teacherName": "김동욱",
+                    "placeName": "1-4반"
+                },
+                {
+                    "name": "스프링 부트를 이용한 웹서비스 개발",
+                    "teacherName": "곽상미",
+                    "placeName": "객체지향 프로그래밍실"
+                },
+                {
+                    "name": "스프링 부트를 이용한 웹서비스 개발",
+                    "teacherName": "곽상미",
+                    "placeName": "객체지향 프로그래밍실"
+                },
+                {
+                    "name": "파이썬을 이용한 문제해결",
+                    "teacherName": "김동욱",
+                    "placeName": "1-4반"
+                }
+            ],
+        },
+        {
+            "weekday": "화",
+            "period": "8~9교시",
+            "afterschool": [
+                {
+                    "name": "스프링 부트",
+                    "teacherName": "김동욱",
+                    "placeName": "1-4반"
+                },
+                {
+                    "name": "스프링 부트",
+                    "teacherName": "김동욱",
+                    "placeName": "1-4반"
+                },
+                {
+                    "name": "파이썬을 이용한 문제해결",
+                    "teacherName": "김동욱",
+                    "placeName": "1-4반"
+                },
+                {
+                    "name": "스프링 부트를 이용한 웹서비스 개발",
+                    "teacherName": "곽상미",
+                    "placeName": "객체지향 프로그래밍실"
+                },
+                {
+                    "name": "파이썬을 이용한 문제해결",
+                    "teacherName": "김동욱",
+                    "placeName": "1-4반"
+                }
+            ],
+        },
+        {
+            "weekday": "화",
+            "period": "10~11교시",
+            "afterschool": [
+                {
+                    "name": "스프링 부트",
+                    "teacherName": "김동욱",
+                    "placeName": "1-4반"
+                },
+                {
+                    "name": "파이썬을 이용한 문제해결",
+                    "teacherName": "김동욱",
+                    "placeName": "1-4반"
+                },
+                {
+                    "name": "스프링 부트",
+                    "teacherName": "김동욱",
+                    "placeName": "1-4반"
+                }
+
+            ]
         }
     ];
 
     const closeModalHandler = (setModal) => {
         setModal(false);
     };
+
+    const handlePrevDay = () => { // 이전 요일로 이동
+        const currentIndex = weekDays.indexOf(selectedDay);
+        const prevIndex = (currentIndex - 1 + weekDays.length) % weekDays.length;
+        setSelectedDay(weekDays[prevIndex]);
+    };
+
+    const handleNextDay = () => { // 다음 요일로 이동
+        const currentIndex = weekDays.indexOf(selectedDay);
+        const nextIndex = (currentIndex + 1) % weekDays.length;
+        setSelectedDay(weekDays[nextIndex]);
+    };
+
+    const changeGrade = (idx) => {
+        const newGrade = [false, false, false];
+        newGrade[idx] = true;
+        setGrade(newGrade);
+    }
 
     return (
         <S.AfterSchoolContainer>
@@ -87,10 +232,10 @@ export default function After_school() {
                         <h1>나의 오늘 방과후</h1>
                         {myTodayClasses.map((cls, i) => (
                             <S.ClassCard key={i}>
-                                <S.CardTime>{cls.time}</S.CardTime>
+                                <S.CardTime>{cls.period}</S.CardTime>
                                 <div>{cls.grade}</div>
                                 <S.CardData $length={190}>{cls.name}</S.CardData>
-                                <S.CardData $length={150}>{cls.location}</S.CardData>
+                                <S.CardData $length={150}>{cls.placeName}</S.CardData>
                             </S.ClassCard>
                         ))}
                     </S.TodayClasses>
@@ -109,10 +254,10 @@ export default function After_school() {
                                 {myClasses.map((cls, i) => (
                                     <S.ClassTable key={i}>
                                         <S.TableData $length={46}>{cls.grade}</S.TableData>
-                                        <S.TableData $length={47}>{cls.day}</S.TableData>
-                                        <S.TableData $length={87}>{cls.time}</S.TableData>
+                                        <S.TableData $length={47}>{cls.weekday}</S.TableData>
+                                        <S.TableData $length={87}>{cls.period}</S.TableData>
                                         <S.TableData $length={190}>{cls.name}</S.TableData>
-                                        <S.TableData $length={170}>{cls.location}</S.TableData>
+                                        <S.TableData $length={170}>{cls.placeName}</S.TableData>
                                         <S.OptionButton src={OptionButton} onClick={() => {
                                             setOptions(options === i ? null : i);
                                             setSelectedClass(cls);
@@ -139,6 +284,67 @@ export default function After_school() {
                         </S.ClassTableContent>
                     </S.MyClasses>
                 </S.LeftContainer>
+
+                <S.ClassList>
+                    <S.ClassListTop>
+                        <S.ClassBtn>
+                            <S.SquareBtn onClick={() => navigate('/after-school/edit')}>방과후 생성/수정</S.SquareBtn>
+                        </S.ClassBtn>
+                        <h1>방과후 수업</h1>
+                        <S.GradeBtn>
+                            <Circle name={"1학년"} status={grade[0]} On={() => changeGrade(0)} />
+                            <Circle name={"2학년"} status={grade[1]} On={() => changeGrade(1)} />
+                            <Circle name={"3학년"} status={grade[2]} On={() => changeGrade(2)} />
+                        </S.GradeBtn>
+                    </S.ClassListTop>
+                    <S.ClassListContent>
+                        <S.ClassListMain>
+                            <S.ClassListMainTop>
+                                <S.CaretLeft onClick={handlePrevDay}>
+                                    <img src={CaretLeft} />
+                                </S.CaretLeft>
+                                <S.DayP>{selectedDay}요일</S.DayP>
+                                <S.CaretRight onClick={handleNextDay}>
+                                    <img src={CaretRight} />
+                                </S.CaretRight>
+                            </S.ClassListMainTop>
+
+                            <S.ClassListWrap>
+                                <S.ClassListMainContent1>
+                                    <p>8~9교시</p>
+                                    <S.ClassList1>
+                                        {classList
+                                            .filter(cls => cls.weekday === selectedDay && cls.period === "8~9교시")
+                                            .flatMap(cls => cls.afterschool)
+                                            .map((cls, i) => (
+                                                <S.List1 key={i}>
+                                                    <S.List1Data $length={200}>{cls.name}</S.List1Data>
+                                                    <S.List1Data $length={50}>{cls.teacherName}</S.List1Data>
+                                                    <S.List1Data $length={140}>{cls.placeName}</S.List1Data>
+                                                </S.List1>
+                                            ))}
+                                    </S.ClassList1>
+                                </S.ClassListMainContent1>
+
+                                <S.ClassListMainContent2>
+                                    <p>10~11교시</p>
+                                    <S.ClassList2>
+                                        {classList
+                                            .filter(cls => cls.weekday === selectedDay && cls.period === "10~11교시")
+                                            .flatMap(cls => cls.afterschool)
+                                            .map((cls, i) => (
+                                                <S.List2 key={i}>
+                                                    <S.List2Data $length={200}>{cls.name}</S.List2Data>
+                                                    <S.List2Data $length={50}>{cls.teacherName}</S.List2Data>
+                                                    <S.List2Data $length={140}>{cls.placeName}</S.List2Data>
+                                                </S.List2>
+                                            ))}
+                                    </S.ClassList2>
+                                </S.ClassListMainContent2>
+                            </S.ClassListWrap>
+                        </S.ClassListMain>
+                    </S.ClassListContent>
+                </S.ClassList>
             </S.Content>
 
             {isModal1 && (

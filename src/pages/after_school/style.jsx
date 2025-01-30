@@ -199,4 +199,187 @@ export const PrepModal = styled.div`
     width: 50%;
     border-radius: 10px;
     padding: 2rem;
+    margin-left: 150px;
+`
+
+export const ClassBtn = styled.div`
+    display: flex;
+    margin-left: 400px;
+`
+export const SquareBtn = styled.button`
+    width: 120px;
+    height: 40px;
+    background-color: #2E6FF2;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 13px;
+`
+
+export const ClassList = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 50%;
+    padding: 10px;
+    margin-top: 30px;
+`
+
+export const ClassListTop = styled.div`
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+`
+
+export const GradeBtn = styled.div`
+    display: flex;
+    gap: 10px;
+`
+
+export const ClassListContent = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+`
+
+export const ClassListMain = styled.div`
+    width: 470px;
+    height: 620px;
+    border: 1px solid #cccccc;
+    border-radius: 30px;
+    max-width: 1200px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`
+
+export const DayP = styled.p`
+    font-size: 20px;
+`
+
+export const CaretLeft = styled.button`
+    display: flex;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1.5px solid #2E6FF2;
+    background-color: #fff;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+`
+
+export const CaretRight = styled.button`
+    display: flex;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1.5px solid #2E6FF2;
+    background-color: #fff;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+`
+
+export const ClassListWrap = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+`
+
+export const ClassList1 = styled.div`
+    display: flex;
+    flex-direction: column;
+    background-color: #EBF1FF;
+    height: 230px;
+    width: 430px;
+    border-radius: 10px;
+    padding: 15px;
+    align-items: center;
+    gap: 10px;
+    overflow-y: auto;
+    max-height: 400px;
+`
+
+export const ClassList2 = styled.div`
+    display: flex;
+    flex-direction: column;
+    background-color: #EBF1FF;
+    height: 230px;
+    width: 430px;
+    border-radius: 10px;
+    padding-top: 15px;
+    align-items: center;
+    gap: 10px;
+    overflow-y: auto;
+    max-height: 400px;
+
+`
+
+export const List1 = styled.div`
+    display: flex;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1rem 0;
+    width: 410px;
+    align-items: center;
+    padding-left: 6px;
+    gap: 10px;
+
+    div {
+        font-size: 14px;
+    }
+
+`
+
+export const List2 = styled.div`
+    display: flex;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1rem 0;
+    width: 410px;
+    align-items: center;
+    padding-left: 6px;
+    gap: 10px;
+
+    div {
+        font-size: 14px;
+    }
+`
+
+export const ClassListMainTop = styled.div`
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+`
+
+export const ClassListMainContent1 = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+`
+
+export const ClassListMainContent2 = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+`
+
+export const List1Data = styled.div`
+    width: ${(props)=>props.$length}px;
+`
+
+export const List2Data = styled.div`
+    width: ${(props)=>props.$length}px;
 `
