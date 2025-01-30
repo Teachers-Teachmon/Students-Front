@@ -5,13 +5,19 @@ import ConfirmBtn from '../../../components/button/confirm/index.jsx';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Rotate from '../../../assets/rotate.svg';
+import { useGetMonthlySupervision, useGetFixedTeachers, useSendChangeRequest } from '../../../hooks/useChange.js';
 
 export default function SupervisionChange() {
 
     let navigate = useNavigate();
 
+    const [exchangeReason, setExchangeReason] = useState("");
     const [selectedTeacher, setSelectedTeacher] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    // const { data: TeacherList, isLoading, isError } = useGetMonthlySupervision(new Date().getMonth() + 1); 
+    const { data: fixedTeacherList, isLoading: isLoadingFixed, isError: isErrorFixed } = useGetFixedTeachers();
+    const { mutate: sendChangeRequest } = useSendChangeRequest();
     const [TeacherList, setTeacherList] = useState([
         {
             "data": [
@@ -20,19 +26,19 @@ export default function SupervisionChange() {
                     "day": "2월 1일 (월)",
                     "date": "2025-02-01",
                     "first_grade": {
-                        "7th_teacher": "정유진/24.061@bssm.hs.kr",
-                        "8th_teacher": "최병준/24.061@bssm.hs.kr",
-                        "10th_teacher": "장나영/24.061@bssm.hs.kr"
+                        "7th_teacher": "정유진/1/me",
+                        "8th_teacher": "최병준/2",
+                        "10th_teacher": "장나영/3"
                     },
                     "second_grade": {
-                        "7th_teacher": "정유진/24.061@bssm.hs.kr",
-                        "8th_teacher": "최병준/24.061@bssm.hs.kr",
-                        "10th_teacher": "장나영/24.061@bssm.hs.kr"
+                        "7th_teacher": "정유진/1/me",
+                        "8th_teacher": "최병준/2",
+                        "10th_teacher": "장나영/3"
                     },
                     "third_grade": {
-                        "7th_teacher": "정유진/24.061@bssm.hs.kr",
-                        "8th_teacher": "최병준/24.061@bssm.hs.kr",
-                        "10th_teacher": "장나영/24.061@bssm.hs.kr"
+                        "7th_teacher": "정유진/1/me",
+                        "8th_teacher": "최병준/2",
+                        "10th_teacher": "장나영/3"
                     }
                 },
                 {
@@ -40,19 +46,19 @@ export default function SupervisionChange() {
                     "day": "2월 2일 (화)",
                     "date": "2025-02-02",
                     "first_grade": {
-                        "7th_teacher": "정유진/24.061@bssm.hs.kr",
-                        "8th_teacher": "최병준/24.061@bssm.hs.kr",
-                        "10th_teacher": "장나영/24.061@bssm.hs.kr"
+                        "7th_teacher": "정유진/1/me",
+                        "8th_teacher": "최병준/2",
+                        "10th_teacher": "장나영/3"
                     },
                     "second_grade": {
-                        "7th_teacher": "정유진/24.061@bssm.hs.kr",
-                        "8th_teacher": "최병준/24.061@bssm.hs.kr",
-                        "10th_teacher": "장나영/24.061@bssm.hs.kr"
+                        "7th_teacher": "정유진/1/me",
+                        "8th_teacher": "최병준/2",
+                        "10th_teacher": "장나영/3"
                     },
                     "third_grade": {
-                        "7th_teacher": "정유진/24.061@bssm.hs.kr",
-                        "8th_teacher": "최병준/24.061@bssm.hs.kr",
-                        "10th_teacher": "장나영/24.061@bssm.hs.kr"
+                        "7th_teacher": "정유진/1/me",
+                        "8th_teacher": "최병준/2",
+                        "10th_teacher": "장나영/3"
                     }
                 },
                 {
@@ -60,19 +66,19 @@ export default function SupervisionChange() {
                     "day": "2월 3일 (수)",
                     "date": "2025-02-03",
                     "first_grade": {
-                        "7th_teacher": "정유진/24.061@bssm.hs.kr",
-                        "8th_teacher": "최병준/24.061@bssm.hs.kr",
-                        "10th_teacher": "장나영/24.061@bssm.hs.kr"
+                        "7th_teacher": "정유진/1/me",
+                        "8th_teacher": "최병준/2",
+                        "10th_teacher": "장나영/3"
                     },
                     "second_grade": {
-                        "7th_teacher": "정유진/24.061@bssm.hs.kr",
-                        "8th_teacher": "최병준/24.061@bssm.hs.kr",
-                        "10th_teacher": "장나영/24.061@bssm.hs.kr"
+                        "7th_teacher": "정유진/1/me",
+                        "8th_teacher": "최병준/2",
+                        "10th_teacher": "장나영/3"
                     },
                     "third_grade": {
-                        "7th_teacher": "정유진/24.061@bssm.hs.kr",
-                        "8th_teacher": "최병준/24.061@bssm.hs.kr",
-                        "10th_teacher": "장나영/24.061@bssm.hs.kr"
+                        "7th_teacher": "정유진/1/me",
+                        "8th_teacher": "최병준/2",
+                        "10th_teacher": "장나영/3"
                     }
                 },
                 {
@@ -80,19 +86,19 @@ export default function SupervisionChange() {
                     "day": "2월 4일 (목)",
                     "date": "2025-02-04",
                     "first_grade": {
-                        "7th_teacher": "정유진/24.061@bssm.hs.kr",
-                        "8th_teacher": "최병준/24.061@bssm.hs.kr",
-                        "10th_teacher": "장나영/24.061@bssm.hs.kr"
+                        "7th_teacher": "정유진/1/me",
+                        "8th_teacher": "최병준/2",
+                        "10th_teacher": "장나영/3"
                     },
                     "second_grade": {
-                        "7th_teacher": "정유진/24.061@bssm.hs.kr",
-                        "8th_teacher": "최병준/24.061@bssm.hs.kr",
-                        "10th_teacher": "장나영/24.061@bssm.hs.kr"
+                        "7th_teacher": "정유진/1/me",
+                        "8th_teacher": "최병준/2",
+                        "10th_teacher": "장나영/3"
                     },
                     "third_grade": {
-                        "7th_teacher": "정유진/24.061@bssm.hs.kr",
-                        "8th_teacher": "최병준/24.061@bssm.hs.kr",
-                        "10th_teacher": "장나영/24.061@bssm.hs.kr"
+                        "7th_teacher": "정유진/1/me",
+                        "8th_teacher": "최병준/2",
+                        "10th_teacher": "장나영/3"
                     }
                 },
                 {
@@ -100,19 +106,19 @@ export default function SupervisionChange() {
                     "day": "2월 8일 (월)",
                     "date": "2025-02-08",
                     "first_grade": {
-                        "7th_teacher": "정유진/24.061@bssm.hs.kr",
-                        "8th_teacher": "최병준/24.061@bssm.hs.kr",
-                        "10th_teacher": "장나영/24.061@bssm.hs.kr"
+                        "7th_teacher": "정유진/1/me",
+                        "8th_teacher": "최병준/2",
+                        "10th_teacher": "장나영/3"
                     },
                     "second_grade": {
-                        "7th_teacher": "정유진/24.061@bssm.hs.kr",
-                        "8th_teacher": "최병준/24.061@bssm.hs.kr",
-                        "10th_teacher": "장나영/24.061@bssm.hs.kr"
+                        "7th_teacher": "정유진/1/me",
+                        "8th_teacher": "최병준/2",
+                        "10th_teacher": "장나영/3"
                     },
                     "third_grade": {
-                        "7th_teacher": "정유진/24.061@bssm.hs.kr",
-                        "8th_teacher": "최병준/24.061@bssm.hs.kr",
-                        "10th_teacher": "장나영/24.061@bssm.hs.kr"
+                        "7th_teacher": "정유진/1/me",
+                        "8th_teacher": "최병준/2",
+                        "10th_teacher": "장나영/3"
                     }
                 },
                 {
@@ -120,19 +126,19 @@ export default function SupervisionChange() {
                     "day": "2월 9일 (화)",
                     "date": "2025-02-09",
                     "first_grade": {
-                        "7th_teacher": "정유진/24.061@bssm.hs.kr",
-                        "8th_teacher": "최병준/24.061@bssm.hs.kr",
-                        "10th_teacher": "장나영/24.061@bssm.hs.kr"
+                        "7th_teacher": "정유진/1/me",
+                        "8th_teacher": "최병준/2",
+                        "10th_teacher": "장나영/3"
                     },
                     "second_grade": {
-                        "7th_teacher": "정유진/24.061@bssm.hs.kr",
-                        "8th_teacher": "최병준/24.061@bssm.hs.kr",
-                        "10th_teacher": "장나영/24.061@bssm.hs.kr"
+                        "7th_teacher": "정유진/1/me",
+                        "8th_teacher": "최병준/2",
+                        "10th_teacher": "장나영/3"
                     },
                     "third_grade": {
-                        "7th_teacher": "정유진/24.061@bssm.hs.kr",
-                        "8th_teacher": "최병준/24.061@bssm.hs.kr",
-                        "10th_teacher": "장나영/24.061@bssm.hs.kr"
+                        "7th_teacher": "정유진/1/me",
+                        "8th_teacher": "최병준/2",
+                        "10th_teacher": "장나영/3"
                     }
                 },
                 {
@@ -140,19 +146,19 @@ export default function SupervisionChange() {
                     "day": "2월 10일 (수)",
                     "date": "2025-02-10",
                     "first_grade": {
-                        "7th_teacher": "정유진/24.061@bssm.hs.kr",
-                        "8th_teacher": "최병준/24.061@bssm.hs.kr",
-                        "10th_teacher": "장나영/24.061@bssm.hs.kr"
+                        "7th_teacher": "정유진/1/me",
+                        "8th_teacher": "최병준/2",
+                        "10th_teacher": "장나영/3"
                     },
                     "second_grade": {
-                        "7th_teacher": "정유진/24.061@bssm.hs.kr",
-                        "8th_teacher": "최병준/24.061@bssm.hs.kr",
-                        "10th_teacher": "장나영/24.061@bssm.hs.kr"
+                        "7th_teacher": "정유진/1/me",
+                        "8th_teacher": "최병준/2",
+                        "10th_teacher": "장나영/3"
                     },
                     "third_grade": {
-                        "7th_teacher": "정유진/24.061@bssm.hs.kr",
-                        "8th_teacher": "최병준/24.061@bssm.hs.kr",
-                        "10th_teacher": "장나영/24.061@bssm.hs.kr"
+                        "7th_teacher": "정유진/1/me",
+                        "8th_teacher": "최병준/2",
+                        "10th_teacher": "장나영/3"
                     }
                 },
                 {
@@ -160,184 +166,24 @@ export default function SupervisionChange() {
                     "day": "2월 11일 (목)",
                     "date": "2025-02-11",
                     "first_grade": {
-                        "7th_teacher": "정유진/24.061@bssm.hs.kr",
-                        "8th_teacher": "최병준/24.061@bssm.hs.kr",
-                        "10th_teacher": "장나영/24.061@bssm.hs.kr"
+                        "7th_teacher": "정유진/1/me",
+                        "8th_teacher": "최병준/2",
+                        "10th_teacher": "장나영/3"
                     },
                     "second_grade": {
-                        "7th_teacher": "정유진/24.061@bssm.hs.kr",
-                        "8th_teacher": "최병준/24.061@bssm.hs.kr",
-                        "10th_teacher": "장나영/24.061@bssm.hs.kr"
+                        "7th_teacher": "정유진/1/me",
+                        "8th_teacher": "최병준/2",
+                        "10th_teacher": "장나영/3"
                     },
                     "third_grade": {
-                        "7th_teacher": "정유진/24.061@bssm.hs.kr",
-                        "8th_teacher": "최병준/24.061@bssm.hs.kr",
-                        "10th_teacher": "장나영/24.061@bssm.hs.kr"
+                        "7th_teacher": "정유진/1/me",
+                        "8th_teacher": "최병준/2",
+                        "10th_teacher": "장나영/3"
                     }
                 }
             ]
         }
     ]);
-    // const [TeacherList, setTeacherList] = useState([
-    //     {
-    //         "data": [
-    //             {
-    //                 "week": "2월 1주차",
-    //                 "schedule": [
-    //                     {
-    //                         "day": "2월 1일 (월)",
-    //                         "first_grade": {
-    //                             "7th_teacher": "정유진/24.061@bssm.hs.kr/me",
-    //                             "8th_teacher": "최병준/24.061@bssm.hs.kr",
-    //                             "10th_teacher": "장나영/24.061@bssm.hs.kr"
-    //                         },
-    //                         "second_grade": {
-    //                             "7th_teacher": "정유진/24.061@bssm.hs.kr/me",
-    //                             "8th_teacher": "최병준/24.061@bssm.hs.kr",
-    //                             "10th_teacher": "장나영/24.061@bssm.hs.kr"
-    //                         },
-    //                         "third_grade": {
-    //                             "7th_teacher": "정유진/24.061@bssm.hs.kr/me",
-    //                             "8th_teacher": "최병준/24.061@bssm.hs.kr",
-    //                             "10th_teacher": "장나영/24.061@bssm.hs.kr"
-    //                         }
-    //                     },
-    //                     {
-    //                         "day": "2월 2일 (화)",
-    //                         "first_grade": {
-    //                             "7th_teacher": "정유진/24.061@bssm.hs.kr/me",
-    //                             "8th_teacher": "최병준/24.061@bssm.hs.kr",
-    //                             "10th_teacher": "장나영/24.061@bssm.hs.kr"
-    //                         },
-    //                         "second_grade": {
-    //                             "7th_teacher": "정유진/24.061@bssm.hs.kr/me",
-    //                             "8th_teacher": "최병준/24.061@bssm.hs.kr",
-    //                             "10th_teacher": "장나영/24.061@bssm.hs.kr"
-    //                         },
-    //                         "third_grade": {
-    //                             "7th_teacher": "정유진/24.061@bssm.hs.kr/me",
-    //                             "8th_teacher": "최병준/24.061@bssm.hs.kr",
-    //                             "10th_teacher": "장나영/24.061@bssm.hs.kr"
-    //                         }
-    //                     },
-    //                     {
-    //                         "day": "2월 3일 (수)",
-    //                         "first_grade": {
-    //                             "7th_teacher": "정유진/24.061@bssm.hs.kr/me",
-    //                             "8th_teacher": "최병준/24.061@bssm.hs.kr",
-    //                             "10th_teacher": "장나영/24.061@bssm.hs.kr"
-    //                         },
-    //                         "second_grade": {
-    //                             "7th_teacher": "정유진/24.061@bssm.hs.kr/me",
-    //                             "8th_teacher": "최병준/24.061@bssm.hs.kr",
-    //                             "10th_teacher": "장나영/24.061@bssm.hs.kr"
-    //                         },
-    //                         "third_grade": {
-    //                             "7th_teacher": "정유진/24.061@bssm.hs.kr/me",
-    //                             "8th_teacher": "최병준/24.061@bssm.hs.kr",
-    //                             "10th_teacher": "장나영/24.061@bssm.hs.kr"
-    //                         }
-    //                     },
-    //                     {
-    //                         "day": "2월 4일 (목)",
-    //                         "first_grade": {
-    //                             "7th_teacher": "정유진/24.061@bssm.hs.kr/me",
-    //                             "8th_teacher": "최병준/24.061@bssm.hs.kr",
-    //                             "10th_teacher": "장나영/24.061@bssm.hs.kr"
-    //                         },
-    //                         "second_grade": {
-    //                             "7th_teacher": "정유진/24.061@bssm.hs.kr/me",
-    //                             "8th_teacher": "최병준/24.061@bssm.hs.kr",
-    //                             "10th_teacher": "장나영/24.061@bssm.hs.kr"
-    //                         },
-    //                         "third_grade": {
-    //                             "7th_teacher": "정유진/24.061@bssm.hs.kr/me",
-    //                             "8th_teacher": "최병준/24.061@bssm.hs.kr",
-    //                             "10th_teacher": "장나영/24.061@bssm.hs.kr"
-    //                         }
-    //                     }
-    //                 ]
-    //             },
-    //             {
-    //                 "week": "2월 2주차",
-    //                 "schedule": [
-    //                     {
-    //                         "day": "2월 8일 (월)",
-    //                         "first_grade": {
-    //                             "7th_teacher": "정유진/24.061@bssm.hs.kr/me",
-    //                             "8th_teacher": "최병준/24.061@bssm.hs.kr",
-    //                             "10th_teacher": "장나영/24.061@bssm.hs.kr"
-    //                         },
-    //                         "second_grade": {
-    //                             "7th_teacher": "정유진/24.061@bssm.hs.kr/me",
-    //                             "8th_teacher": "최병준/24.061@bssm.hs.kr",
-    //                             "10th_teacher": "장나영/24.061@bssm.hs.kr"
-    //                         },
-    //                         "third_grade": {
-    //                             "7th_teacher": "정유진/24.061@bssm.hs.kr/me",
-    //                             "8th_teacher": "최병준/24.061@bssm.hs.kr",
-    //                             "10th_teacher": "장나영/24.061@bssm.hs.kr"
-    //                         }
-    //                     },
-    //                     {
-    //                         "day": "2월 9일 (화)",
-    //                         "first_grade": {
-    //                             "7th_teacher": "정유진/24.061@bssm.hs.kr/me",
-    //                             "8th_teacher": "최병준/24.061@bssm.hs.kr",
-    //                             "10th_teacher": "장나영/24.061@bssm.hs.kr"
-    //                         },
-    //                         "second_grade": {
-    //                             "7th_teacher": "정유진/24.061@bssm.hs.kr/me",
-    //                             "8th_teacher": "최병준/24.061@bssm.hs.kr",
-    //                             "10th_teacher": "장나영/24.061@bssm.hs.kr"
-    //                         },
-    //                         "third_grade": {
-    //                             "7th_teacher": "정유진/24.061@bssm.hs.kr/me",
-    //                             "8th_teacher": "최병준/24.061@bssm.hs.kr",
-    //                             "10th_teacher": "장나영/24.061@bssm.hs.kr"
-    //                         }
-    //                     },
-    //                     {
-    //                         "day": "2월 10일 (수)",
-    //                         "first_grade": {
-    //                             "7th_teacher": "정유진/24.061@bssm.hs.kr/me",
-    //                             "8th_teacher": "최병준/24.061@bssm.hs.kr",
-    //                             "10th_teacher": "장나영/24.061@bssm.hs.kr"
-    //                         },
-    //                         "second_grade": {
-    //                             "7th_teacher": "정유진/24.061@bssm.hs.kr/me",
-    //                             "8th_teacher": "최병준/24.061@bssm.hs.kr",
-    //                             "10th_teacher": "장나영/24.061@bssm.hs.kr"
-    //                         },
-    //                         "third_grade": {
-    //                             "7th_teacher": "정유진/24.061@bssm.hs.kr/me",
-    //                             "8th_teacher": "최병준/24.061@bssm.hs.kr",
-    //                             "10th_teacher": "장나영/24.061@bssm.hs.kr"
-    //                         }
-    //                     },
-    //                     {
-    //                         "day": "2월 11일 (목)",
-    //                         "first_grade": {
-    //                             "7th_teacher": "정유진/24.061@bssm.hs.kr/me",
-    //                             "8th_teacher": "최병준/24.061@bssm.hs.kr",
-    //                             "10th_teacher": "장나영/24.061@bssm.hs.kr"
-    //                         },
-    //                         "second_grade": {
-    //                             "7th_teacher": "정유진/24.061@bssm.hs.kr/me",
-    //                             "8th_teacher": "최병준/24.061@bssm.hs.kr",
-    //                             "10th_teacher": "장나영/24.061@bssm.hs.kr"
-    //                         },
-    //                         "third_grade": {
-    //                             "7th_teacher": "정유진/24.061@bssm.hs.kr/me",
-    //                             "8th_teacher": "최병준/24.061@bssm.hs.kr",
-    //                             "10th_teacher": "장나영/24.061@bssm.hs.kr"
-    //                         }
-    //                     }
-    //                 ]
-    //             }
-    //         ]
-    //     }
-    // ]);
 
     const handleSelectTeacher = (uniqueKey) => {
         setSelectedTeacher((prev) => {
@@ -393,6 +239,49 @@ export default function SupervisionChange() {
     const allData = TeacherList[0].data || [];
     const groupedWeeks = groupByWeek(allData);
 
+    const convertPeriod = (periodKey) => {
+        if (periodKey.includes("7th")) return "SEVEN_PERIOD";
+        if (periodKey.includes("8th")) return "EIGHT_AND_NINE_PERIOD";
+        if (periodKey.includes("10th")) return "TEN_AND_ELEVEN_PERIOD";
+        return "";
+    };
+
+    const handleSendRequest = () => {
+        if (selectedTeacher.length !== 2) {
+            alert("교체할 선생님을 두 명 선택해주세요.");
+            return;
+        }
+
+        const senderInfo = selectedTeacher[0].split("-");
+        const recipientInfo = selectedTeacher[1].split("-");
+
+        const requestBody = {
+            sender: {
+                teacher_id: parseInt(senderInfo[3]),
+                day: senderInfo[0],
+                period: convertPeriod(senderInfo[2]),
+                grade: senderInfo[1] === "first" ? 1 : senderInfo[1] === "second" ? 2 : 3
+            },
+            recipient: {
+                teacher_id: parseInt(recipientInfo[3]),
+                day: recipientInfo[0],
+                period: convertPeriod(recipientInfo[2]),
+                grade: recipientInfo[1] === "first" ? 1 : recipientInfo[1] === "second" ? 2 : 3
+            },
+            cause: exchangeReason || "사유 없음"
+        };
+
+        sendChangeRequest(requestBody, {
+            onSuccess: () => {
+                alert("교체 요청이 성공적으로 전송되었습니다.");
+                setIsModalOpen(false);
+                setSelectedTeacher([]);
+            },
+            onError: (err) => {
+                alert("교체 요청 전송 실패: " + err);
+            }
+        });
+    };
 
     return (
         <S.Wrapper>
@@ -467,22 +356,22 @@ export default function SupervisionChange() {
                         <S.ExchangeInfo>
                             <div>
                                 <span>{selectedTeacher[0].split('-')[0]}</span>
-                                <p>{selectedTeacher[0].split('-')[1].includes('first') ? '7교시' : selectedTeacher[0].split('-')[1].includes('second') ? '8~9교시' : '10~11교시'}</p>
-                                <p>학년</p>
+                                <p>{selectedTeacher[0].split('-')[2].includes('7th') ? '7교시' : selectedTeacher[0].split('-')[2].includes('8th') ? '8~9교시' : '10~11교시'}</p>
+                                <p>{selectedTeacher[0].split('-')[1].includes('first') ? '1학년' : selectedTeacher[0].split('-')[1].includes('second') ? '2학년' : '3학년'}</p>
                                 <p>{selectedTeacher[0]} 선생님</p>
                             </div>
                             <S.Arrow><img src={Rotate} /></S.Arrow>
                             <div>
                                 <span>{selectedTeacher[1].split('-')[0]}</span>
-                                <p>{selectedTeacher[1].split('-')[1].includes('first') ? '7교시' : selectedTeacher[1].split('-')[1].includes('second') ? '8~9교시' : '10~11교시'}</p>
-                                <p>학년</p>
+                                <p>{selectedTeacher[1].split('-')[2].includes('7th') ? '7교시' : selectedTeacher[1].split('-')[2].includes('8th') ? '8~9교시' : '10~11교시'}</p>
+                                <p>{selectedTeacher[1].split('-')[1].includes('first') ? '1학년' : selectedTeacher[1].split('-')[1].includes('second') ? '2학년' : '3학년'}</p>
                                 <p>{selectedTeacher[1]} 선생님</p>
                             </div>
                         </S.ExchangeInfo>
-                        <textarea placeholder="사유를 입력해 주세요"></textarea>
+                        <textarea value={exchangeReason} onChange={(e) => setExchangeReason(e.target.value)} placeholder="사유를 입력해 주세요"></textarea>
                         <S.ModalButtons>
                             <ConfirmBtn text="취소" color="red" image="reject" onClick={() => { setIsModalOpen(false); setSelectedTeacher([]); }} />
-                            <ConfirmBtn text="전송" color="blue" image="fly" onClick={() => alert("요청 전송 완료")} />
+                            <ConfirmBtn text="전송" color="blue" image="fly" onClick={handleSendRequest} />
                         </S.ModalButtons>
                     </S.Modal>
                 </S.ModalOverlay>
@@ -490,186 +379,3 @@ export default function SupervisionChange() {
         </S.Wrapper>
     );
 }
-
-// <S.TableWrap> {/* 여기 map돌려야함, 이거 만약 넣는다면 <S.MainHeader> 바로 아래에 넣어야함. */}
-//                     <S.Table>
-//                         <h2>1월 1주차</h2>
-//                         <S.TableContent>
-//                             <S.TableLeft>
-//                                 <div>날짜</div>
-//                                 <div>학년</div>
-//                                 <div>7교시</div>
-//                                 <div>8~9교시</div>
-//                                 <div>10~11교시</div>
-//                             </S.TableLeft>
-//                             <S.TableRight>
-//                                 <S.TableRightContent>
-//                                     <h3>12월 10일 (일)</h3>
-//                                     <S.TableRightHeader>
-//                                         <div>1학년</div>
-//                                         <div>2학년</div>
-//                                         <div>3학년</div>
-//                                     </S.TableRightHeader>
-//                                     <S.TeacherList>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                     </S.TeacherList>
-//                                 </S.TableRightContent>
-//                                 <S.TableRightContent>
-//                                     <h3>12월 10일 (일)</h3>
-//                                     <S.TableRightHeader>
-//                                         <div>1학년</div>
-//                                         <div>2학년</div>
-//                                         <div>3학년</div>
-//                                     </S.TableRightHeader>
-//                                     <S.TeacherList>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                     </S.TeacherList>
-//                                 </S.TableRightContent>
-//                                 <S.TableRightContent>
-//                                     <h3>12월 10일 (일)</h3>
-//                                     <S.TableRightHeader>
-//                                         <div>1학년</div>
-//                                         <div>2학년</div>
-//                                         <div>3학년</div>
-//                                     </S.TableRightHeader>
-//                                     <S.TeacherList>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                     </S.TeacherList>
-//                                 </S.TableRightContent>
-//                                 <S.TableRightContent>
-//                                     <h3>12월 10일 (일)</h3>
-//                                     <S.TableRightHeader>
-//                                         <div>1학년</div>
-//                                         <div>2학년</div>
-//                                         <div>3학년</div>
-//                                     </S.TableRightHeader>
-//                                     <S.TeacherList>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                     </S.TeacherList>
-//                                 </S.TableRightContent>
-//                             </S.TableRight>
-//                         </S.TableContent>
-//                     </S.Table>
-//                     <S.Table>
-//                         <h2>1월 1주차</h2>
-//                         <S.TableContent>
-//                             <S.TableLeft>
-//                                 <div>날짜</div>
-//                                 <div>학년</div>
-//                                 <div>7교시</div>
-//                                 <div>8~9교시</div>
-//                                 <div>10~11교시</div>
-//                             </S.TableLeft>
-//                             <S.TableRight>
-//                                 <S.TableRightContent>
-//                                     <h3>12월 10일 (일)</h3>
-//                                     <S.TableRightHeader>
-//                                         <div>1학년</div>
-//                                         <div>2학년</div>
-//                                         <div>3학년</div>
-//                                     </S.TableRightHeader>
-//                                     <S.TeacherList>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                     </S.TeacherList>
-//                                 </S.TableRightContent>
-//                                 <S.TableRightContent>
-//                                     <h3>12월 10일 (일)</h3>
-//                                     <S.TableRightHeader>
-//                                         <div>1학년</div>
-//                                         <div>2학년</div>
-//                                         <div>3학년</div>
-//                                     </S.TableRightHeader>
-//                                     <S.TeacherList>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                     </S.TeacherList>
-//                                 </S.TableRightContent>
-//                                 <S.TableRightContent>
-//                                     <h3>12월 10일 (일)</h3>
-//                                     <S.TableRightHeader>
-//                                         <div>1학년</div>
-//                                         <div>2학년</div>
-//                                         <div>3학년</div>
-//                                     </S.TableRightHeader>
-//                                     <S.TeacherList>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                     </S.TeacherList>
-//                                 </S.TableRightContent>
-//                                 <S.TableRightContent>
-//                                     <h3>12월 10일 (일)</h3>
-//                                     <S.TableRightHeader>
-//                                         <div>1학년</div>
-//                                         <div>2학년</div>
-//                                         <div>3학년</div>
-//                                     </S.TableRightHeader>
-//                                     <S.TeacherList>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                         <div>차수민</div>
-//                                     </S.TeacherList>
-//                                 </S.TableRightContent>
-//                             </S.TableRight>
-//                         </S.TableContent>
-//                     </S.Table>
-//                 </S.TableWrap>

@@ -143,6 +143,8 @@ export const BottomLeftHeader = styled.div`
     display: flex;
     justify-content: space-between;
     padding: 0 5rem;
+    position: sticky;
+    top: 0;
 `;
 
 export const BottomRight = styled.div`
@@ -160,6 +162,7 @@ export const BottomLeftContent = styled.div`
     border-radius: 30px;
     padding: 2%;
     overflow-y: auto;
+    height: 83%;
 `
 
 export const ChangeWrap = styled.div`

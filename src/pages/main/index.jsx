@@ -8,11 +8,15 @@ import Arrow from '../../assets/Arrow.svg'
 import Rotate from '../../assets/rotate.svg';
 import { useState } from "react";
 import { useGetCompleteRate, useGetNextSupervision } from "../../hooks/useSupervision.js";
+import { useGetChangeRequest } from "../../hooks/useChange.js";
 
 export default function Main() {
     let navigate = useNavigate();
     let userName = '정유진';
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedChange, setSelectedChange] = useState(null);
+
+    // const { data: changeDay, isLoading: isLoadingChange, isError: isErrorChange } = useGetChangeRequest();
 
     let studentInfo = [
         {
@@ -36,34 +40,43 @@ export default function Main() {
     ]
     let changeDay = [
         {
-            "change_id": 10393,
-            "sender": "최병준/24.061.bssm.hs.kr",
-            "sender_day": "11월 27일 (수)",
-            "sender_period": "7교시",
-            "sender_grade": 2,
-            "recipient": "정유진/24.061.bssm.hs.kr",
-            "recipient_day": "11월 27일 (수)",
-            "recipient_period": "7교시",
-            "recipient_grade": 1,
+            "changeId": 10393,
+            "sender": {
+                "teacher": "최병준/1",
+                "day": "11월 27일 (수)",
+                "period": "7교시",
+                "grade": 2,
+            },
+            "recipient": {
+                "teacher": "정유진/2",
+                "day": "11월 27일 (수)",
+                "period": "7교시",
+                "grade": 1,
+            },
             "cause": "유진쌤 제가 이날 밤에 출장이 있어서 교체해야할 거 같아요",
-            "result": "hold",
-            "to_me": true,
+            "result": "PENDING",
+            "toMe": true,
         },
         {
-            "change_id": 34384883,
-            "sender": "정유진/24.061.bssm.hs.kr",
-            "sender_day": "11월 27일 (수)",
-            "sender_period": "7교시",
-            "sender_grade": 2,
-            "recipient": "최병준/24.061.bssm.hs.kr",
-            "recipient_day": "11월 27일 (수)",
-            "recipient_period": "7교시",
-            "recipient_grade": 1,
-            "cause": "병준쌤 제가 이날 밤에 출장이 있어서 교체해야할 거 같아요",
-            "result": "hold",
-            "to_me": false,
-        }
+            "changeId": 10394,
+            "sender": {
+                "teacher": "정유진/2",
+                "day": "11월 27일 (수)",
+                "period": "7교시",
+                "grade": 1,
+            },
+            "recipient": {
+                "teacher": "최병준/1",
+                "day": "11월 27일 (수)",
+                "period": "7교시",
+                "grade": 2,
+            },
+            "cause": "유진쌤 제가 이날 밤에 출장이 있어서 교체해야할 거 같아요",
+            "result": "PENDING",
+            "toMe": false,
+        },
     ]
+    const pendingChangeRequests = changeDay?.filter(request => request.result === "PENDING") || [];
 
     let todayTeacher = [
         {
@@ -145,27 +158,28 @@ export default function Main() {
                 </S.MainMiddle>
                 <S.MainBottom>
                     <S.BottomLeft>
-                        <h2>교체 요청 ({changeDay.length})</h2>
+                        <h2>교체 요청 ({pendingChangeRequests.length})</h2>
                         <S.BottomLeftContent>
                             <S.BottomLeftHeader>
                                 <span>받는 사람</span>
                                 <span>보내는 사람</span>
                             </S.BottomLeftHeader>
-                            {changeDay.map((data) => {
-                                const senderName = data.sender.split('/')[0];
+                            {pendingChangeRequests.map((data) => {
+                                const senderInfo = data.sender.teacher.split('/');
+                                const recipientInfo = data.recipient.teacher.split('/');
 
-                                const leftName = data.to_me ? "(나)" : `(${senderName} 선생님)`;
-                                const leftDay = data.to_me ? data.recipient_day : data.sender_day;
-                                const leftPeriod = data.to_me ? data.recipient_period : data.sender_period;
-                                const leftGrade = data.to_me ? data.recipient_grade : data.sender_grade;
+                                const leftName = data.toMe ? "(나)" : `${recipientInfo[0]} 선생님`;
+                                const leftDay = data.toMe ? data.recipient.day : data.sender.day;
+                                const leftPeriod = data.toMe ? data.recipient.period : data.sender.period;
+                                const leftGrade = data.toMe ? data.recipient.grade : data.sender.grade;
 
-                                const rightName = data.to_me ? `(${senderName} 선생님)` : "(나)";
-                                const rightDay = data.to_me ? data.sender_day : data.recipient_day;
-                                const rightPeriod = data.to_me ? data.sender_period : data.recipient_period;
-                                const rightGrade = data.to_me ? data.sender_grade : data.recipient_grade;
+                                const rightName = data.toMe ? `(${senderInfo[0]} 선생님)` : "(나)";
+                                const rightDay = data.toMe ? data.sender.day : data.recipient.day;
+                                const rightPeriod = data.toMe ? data.sender.period : data.recipient.period;
+                                const rightGrade = data.toMe ? data.sender.grade : data.recipient.grade;
 
                                 return (
-                                    <S.ChangeCard key={data.change_id} style={{ backgroundColor: data.to_me ? "#C8DBFF" : "" }}>
+                                    <S.ChangeCard key={data.changeId} style={{ backgroundColor: data.toMe ? "#C8DBFF" : "" }}>
                                         <S.ChangeWrap>
                                             <S.ChangeSide>
                                                 <p>{leftName}</p>
@@ -177,7 +191,7 @@ export default function Main() {
                                                 <p>{rightDay} {rightPeriod} {rightGrade}학년</p>
                                             </S.ChangeSide>
                                         </S.ChangeWrap>
-                                        <S.DetailButton onClick={() => { setIsModalOpen(true) }}>자세히 보기</S.DetailButton>
+                                        <S.DetailButton onClick={() => { setIsModalOpen(true); setSelectedChange(data) }}>자세히 보기</S.DetailButton>
                                     </S.ChangeCard>
                                 );
                             })}
@@ -223,7 +237,7 @@ export default function Main() {
             {isModalOpen && (
                 <S.ModalOverlay>
                     <S.Modal>
-                        <RequestBox closeModal={() => { setIsModalOpen(false) }} />
+                        <RequestBox closeModal={() => { setIsModalOpen(false) }} changeData={selectedChange} />
                     </S.Modal>
                 </S.ModalOverlay>
             )}
