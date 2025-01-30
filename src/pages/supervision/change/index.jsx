@@ -5,13 +5,19 @@ import ConfirmBtn from '../../../components/button/confirm/index.jsx';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Rotate from '../../../assets/rotate.svg';
+import { useGetMonthlySupervision, useGetFixedTeachers, useSendChangeRequest } from '../../../hooks/useChange.js';
 
 export default function SupervisionChange() {
 
     let navigate = useNavigate();
 
+    const [exchangeReason, setExchangeReason] = useState("");
     const [selectedTeacher, setSelectedTeacher] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    // const { data: TeacherList, isLoading, isError } = useGetMonthlySupervision(new Date().getMonth() + 1); 
+    const { data: fixedTeacherList, isLoading: isLoadingFixed, isError: isErrorFixed } = useGetFixedTeachers();
+    const { mutate: sendChangeRequest } = useSendChangeRequest();
     const [TeacherList, setTeacherList] = useState([
         {
             "data": [
@@ -233,6 +239,49 @@ export default function SupervisionChange() {
     const allData = TeacherList[0].data || [];
     const groupedWeeks = groupByWeek(allData);
 
+    const convertPeriod = (periodKey) => {
+        if (periodKey.includes("7th")) return "SEVEN_PERIOD";
+        if (periodKey.includes("8th")) return "EIGHT_AND_NINE_PERIOD";
+        if (periodKey.includes("10th")) return "TEN_AND_ELEVEN_PERIOD";
+        return "";
+    };
+
+    const handleSendRequest = () => {
+        if (selectedTeacher.length !== 2) {
+            alert("교체할 선생님을 두 명 선택해주세요.");
+            return;
+        }
+
+        const senderInfo = selectedTeacher[0].split("-");
+        const recipientInfo = selectedTeacher[1].split("-");
+
+        const requestBody = {
+            sender: {
+                teacher_id: parseInt(senderInfo[3]),
+                day: senderInfo[0],
+                period: convertPeriod(senderInfo[2]),
+                grade: senderInfo[1] === "first" ? 1 : senderInfo[1] === "second" ? 2 : 3
+            },
+            recipient: {
+                teacher_id: parseInt(recipientInfo[3]),
+                day: recipientInfo[0],
+                period: convertPeriod(recipientInfo[2]),
+                grade: recipientInfo[1] === "first" ? 1 : recipientInfo[1] === "second" ? 2 : 3
+            },
+            cause: exchangeReason || "사유 없음"
+        };
+
+        sendChangeRequest(requestBody, {
+            onSuccess: () => {
+                alert("교체 요청이 성공적으로 전송되었습니다.");
+                setIsModalOpen(false);
+                setSelectedTeacher([]);
+            },
+            onError: (err) => {
+                alert("교체 요청 전송 실패: " + err);
+            }
+        });
+    };
 
     return (
         <S.Wrapper>
@@ -307,22 +356,22 @@ export default function SupervisionChange() {
                         <S.ExchangeInfo>
                             <div>
                                 <span>{selectedTeacher[0].split('-')[0]}</span>
-                                <p>{selectedTeacher[0].split('-')[1].includes('first') ? '7교시' : selectedTeacher[0].split('-')[1].includes('second') ? '8~9교시' : '10~11교시'}</p>
-                                <p>학년</p>
+                                <p>{selectedTeacher[0].split('-')[2].includes('7th') ? '7교시' : selectedTeacher[0].split('-')[2].includes('8th') ? '8~9교시' : '10~11교시'}</p>
+                                <p>{selectedTeacher[0].split('-')[1].includes('first') ? '1학년' : selectedTeacher[0].split('-')[1].includes('second') ? '2학년' : '3학년'}</p>
                                 <p>{selectedTeacher[0]} 선생님</p>
                             </div>
                             <S.Arrow><img src={Rotate} /></S.Arrow>
                             <div>
                                 <span>{selectedTeacher[1].split('-')[0]}</span>
-                                <p>{selectedTeacher[1].split('-')[1].includes('first') ? '7교시' : selectedTeacher[1].split('-')[1].includes('second') ? '8~9교시' : '10~11교시'}</p>
-                                <p>학년</p>
+                                <p>{selectedTeacher[1].split('-')[2].includes('7th') ? '7교시' : selectedTeacher[1].split('-')[2].includes('8th') ? '8~9교시' : '10~11교시'}</p>
+                                <p>{selectedTeacher[1].split('-')[1].includes('first') ? '1학년' : selectedTeacher[1].split('-')[1].includes('second') ? '2학년' : '3학년'}</p>
                                 <p>{selectedTeacher[1]} 선생님</p>
                             </div>
                         </S.ExchangeInfo>
-                        <textarea placeholder="사유를 입력해 주세요"></textarea>
+                        <textarea value={exchangeReason} onChange={(e) => setExchangeReason(e.target.value)} placeholder="사유를 입력해 주세요"></textarea>
                         <S.ModalButtons>
                             <ConfirmBtn text="취소" color="red" image="reject" onClick={() => { setIsModalOpen(false); setSelectedTeacher([]); }} />
-                            <ConfirmBtn text="전송" color="blue" image="fly" onClick={() => alert("요청 전송 완료")} />
+                            <ConfirmBtn text="전송" color="blue" image="fly" onClick={handleSendRequest} />
                         </S.ModalButtons>
                     </S.Modal>
                 </S.ModalOverlay>
