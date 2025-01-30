@@ -12,12 +12,12 @@ import { useGetChangeRequest } from "../../hooks/useChange.js";
 
 export default function Main() {
     let navigate = useNavigate();
-    let userName = '정유진';
+    let userName = localStorage.getItem('name');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedChange, setSelectedChange] = useState(null);
 
     const { data: changeDay, isLoading: isLoadingChange, isError: isErrorChange } = useGetChangeRequest();
-    const { data: todayTeacher, isLoading: isLoadingTeacher } = useGetDailySupervision();
+    const { data: todayTeacher, isLoading: isLoadingTeacher, isError: isErrorTeacher } = useGetDailySupervision();
 
     let studentInfo = [
         {
@@ -162,7 +162,7 @@ export default function Main() {
                     <S.BottomRight>
                         <h2>오늘의 자습감독 선생님</h2>
                         <S.BottomRightContent>
-                            {!isLoadingTeacher && todayTeacher.map((data) => (
+                            {!isLoadingTeacher && !isErrorTeacher && todayTeacher.map((data) => (
                                 <div key={data.day}>
                                     <S.TeacherListTop>
                                         <span>{data.day}</span>
