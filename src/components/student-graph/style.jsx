@@ -8,33 +8,33 @@ export const StudentContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 `
 export const Class = styled.h2`
-    margin-top: 20px;
 `
 export const Graph = styled.div`
+    ${(props)=>props.$seven ? "margin-top: 6%;" : null};
     width: 100%;
-    height: 50%;
+    height: 60%;
     display: flex;
     flex-flow: wrap row;
     justify-content: center;
-    margin-top: 20px;
+    align-content: center;
 `
-
 export const Student = styled.div`
     width: 12%;
-    height: 50%;
+    height: 40%;
     border: 2px solid #F5F5F5;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: ${({ color }) => color};
+    background-color: ${({ $color }) => $color};
     position: relative;
     cursor: pointer;
     transition: 0.1s;
     &:hover {
-        background-color: ${({ color }) => darken(0.1, color || '#ffffff')};
+        background-color: ${({ $color }) => darken(0.1, $color || '#ffffff')};
     }
 `
 

@@ -39,13 +39,13 @@ export default function StudentGraph({data, grade, classNum}){
                 return "#CCBCFF"
         }
     }
+
     return(
         <S.StudentContainer>
             <S.Class>{classNum}반</S.Class>
-            <S.Graph>
+            <S.Graph  $seven = {data.length === 17}>
                 {data && data.map((el, idx) =>
-                    <>
-                        <S.Student color = {studentColor(el.status)} onClick={()=>isClick(idx)} key = {idx}>{/* 칸 색깔도 data에서 추출해서 사용*/}
+                        <S.Student $color = {studentColor(el.status)} onClick={()=>isClick(idx)} key = {idx}>{/* 칸 색깔도 data에서 추출해서 사용*/}
                             <p>{idx+1}</p>
                             <p>{el.name}</p>
                             {isOpen[idx] ?
@@ -53,10 +53,8 @@ export default function StudentGraph({data, grade, classNum}){
                                  : null
                             }
                         </S.Student>
-                        { isOpen.some((value) => value === true) ? <S.Black onClick={()=>setIsOpen(isOpen.map(() => false))}></S.Black> : null}
-                    </>
                 )}
-
+                { isOpen.some((value) => value === true) ? <S.Black onClick={()=>setIsOpen(isOpen.map(() => false))}></S.Black> : null}
             </S.Graph>
         </S.StudentContainer>
     )
