@@ -46,16 +46,16 @@ export const useGetChangeRequest = () => {
     })
 }
 
-export const useUpateChangeRequest = () => {
-    const navigate = useNavigate();
+export const useUpdateChangeRequest = (closeModal) => {
     return useMutation({
-        mutationFn: (props) => API.updateChangeRequest(props),
+        mutationFn: (props) => API.updateChangeStatus(props),
         onSuccess: () => {
-            navigate('/supervision');
             console.log('교체요청 업데이트');
+            closeModal();
         },
         onError: (err) => {
             console.error('교체요청 업데이트 실패:', err);
+            closeModal();
         }
     })
 }
