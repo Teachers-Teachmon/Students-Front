@@ -162,7 +162,7 @@ export default function Main() {
                     <S.BottomRight>
                         <h2>오늘의 자습감독 선생님</h2>
                         <S.BottomRightContent>
-                            {!isLoadingTeacher && !isErrorTeacher && todayTeacher.map((data) => (
+                            {todayTeacher.length > 0 && todayTeacher.map((data) => (
                                 <div key={data.day}>
                                     <S.TeacherListTop>
                                         <span>{data.day}</span>
