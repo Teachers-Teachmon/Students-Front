@@ -1,16 +1,14 @@
 import axiosInstance from "../lib/axiosInstance.js";
-import {useNavigate} from "react-router-dom";
 
 
 export const logout = async () => {
-    const navigate = useNavigate();
     try{
         const res = await axiosInstance.post('/oauth2/logout');
         if(res.status === 200){
             localStorage.removeItem('accessToken');
             localStorage.removeItem("name");
             localStorage.removeItem("profile");
-            navigate('/');
+            window.location.href = '/';
         }
         else{
             return Promise.reject({
