@@ -34,6 +34,7 @@ const FullPageComponent = () => {
 
     const certification = async () =>{
         const access = await refreshAccessToken();
+        console.log(access);
         if(access){
             localStorage.setItem('accessToken', access);
             return true;
@@ -42,41 +43,41 @@ const FullPageComponent = () => {
     }
 
     useEffect(() => {
-        if(certification){
-            window.location.href = '/main';
-            return ;
-        }
-        const instance = new fullpage('#fullpage', {
-            licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE', // 무료 라이센스 키
-            autoScrolling: true,
-            navigation: true,
-            credits: false,
-            anchors: ['메인', '소개', '역할', '기능', '사용방법'], // 앵커 설정
-            onLeave: (origin, destination, direction) => {
-                if (isScrolling) return; // 현재 스크롤 중이면 이동하지 않음
-                setIsScrolling(true); // 스크롤 중으로 설
-                setCurrentSection(destination.index);
-                if (destination.index === 1) {
-                    setIsAnimation([true, false]);
-                } else if(destination.index === 2){
-                    setIsAnimation([false, true]);
-                } else {
-                    setIsAnimation([false, false]);
-                }
-
-                setTimeout(() => {
-                    setIsScrolling(false); // 1초 후 스크롤 가능하게 설정
-                }, 1000); // 1초 후 스크롤 가능하게 설정
-            },
-        });
-
-        setFpInstance(instance);
-
-        return () => {
-            if (instance) {
-                instance.destroy('all');
+        const checkAuth = async () => {
+            if (await certification()) {
+                window.location.href = '/main';
+                return;
             }
+
+            const instance = new fullpage('#fullpage', {
+                licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
+                autoScrolling: true,
+                navigation: true,
+                credits: false,
+                anchors: ['메인', '소개', '역할', '기능', '사용방법'],
+                onLeave: (origin, destination, direction) => {
+                    if (isScrolling) return;
+                    setIsScrolling(true);
+                    setCurrentSection(destination.index);
+
+                    setIsAnimation([destination.index === 1, destination.index === 2]);
+
+                    setTimeout(() => {
+                        setIsScrolling(false);
+                    }, 1000);
+                },
+            });
+
+            setFpInstance(instance);
+
+            return () => {
+                if (instance) {
+                    instance.destroy('all');
+                }
+            };
         };
+
+        checkAuth();
     }, []);
 
     const scrollToSection = (anchor) => {
