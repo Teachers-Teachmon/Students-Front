@@ -3,7 +3,7 @@ import axiosInstance from "../lib/axiosInstance.js";
 
 export const autoAssignment = async ({start, end}) => {
     try {
-        const res = axiosInstance.post(`${API_ENDPOINTS.SUPERVISION}/assignment`, {
+        const res = await axiosInstance.post(`${API_ENDPOINTS.SUPERVISION}/assignment`, {
             start: start,
             end: end
         })
@@ -38,7 +38,7 @@ export const getAssignment = async (momth) => {
 
 export const saveAutoAssignment = async (assignmentList) => {
     try {
-        const res = axiosInstance.patch(`${API_ENDPOINTS.SUPERVISION}/save`, {
+        const res = await axiosInstance.patch(`${API_ENDPOINTS.SUPERVISION}/save`, {
             assignmentList: assignmentList
         });
         if (res.status !== 200 && res.status !== 201) {
@@ -55,7 +55,7 @@ export const saveAutoAssignment = async (assignmentList) => {
 
 export const getNextSupervision = async () => {
     try {
-        const res = axiosInstance.get(`${API_ENDPOINTS.SUPERVISION}/next`);
+        const res = await axiosInstance.get(`${API_ENDPOINTS.SUPERVISION}/next`);
         if (res.status !== 200 && res.status !== 201) {
             return Promise.reject({
                 status: res.status,
@@ -70,7 +70,7 @@ export const getNextSupervision = async () => {
 
 export const getMonthlySupervision = async (month) => {
     try {
-        const res = axiosInstance.get(`${API_ENDPOINTS.SUPERVISION}/month/${month}`, {
+        const res = await axiosInstance.get(`${API_ENDPOINTS.SUPERVISION}/month/${month}`, {
             month: month
         });
         if (res.status !== 200 && res.status !== 201) {
@@ -87,7 +87,7 @@ export const getMonthlySupervision = async (month) => {
 
 export const getDailySupervision = async (day) => {
     try {
-        const res = axiosInstance.get(`${API_ENDPOINTS.SUPERVISION}/day/${day}`, {
+        const res = await axiosInstance.get(`${API_ENDPOINTS.SUPERVISION}/day/${day}`, {
             day: day
         });
         if (res.status !== 200 && res.status !== 201) {
@@ -105,7 +105,7 @@ export const getDailySupervision = async (day) => {
 export const getCompleteRate = async ({percentage, total, completed}) => {
     console.log(percentage, total, completed);
     try {
-        const res = axiosInstance.get(`${API_ENDPOINTS.SUPERVISION}/completed`, {
+        const res = await axiosInstance.get(`${API_ENDPOINTS.SUPERVISION}/completed`, {
             percentage: percentage,
             total: total,
             completed: completed

@@ -3,7 +3,7 @@ import axiosInstance from "../lib/axiosInstance.js";
 
 export const getMonthlySupervision = async (month) => {
     try {
-        const res = axiosInstance.get(`${API_ENDPOINTS.CHANGE}/schedule/${month}`, {
+        const res = await axiosInstance.get(`${API_ENDPOINTS.CHANGE}/schedule/${month}`, {
             month: month
         });
         if (res.status !== 200 && res.status !== 201) {
@@ -20,7 +20,7 @@ export const getMonthlySupervision = async (month) => {
 
 export const getFixedTeachers = async (date, grade, period) => {
     try {
-        const res = axiosInstance.get(`${API_ENDPOINTS.CHANGE}/static`, {
+        const res = await axiosInstance.get(`${API_ENDPOINTS.CHANGE}/static`, {
             date: date,
             grade: grade,
             period: period
@@ -39,7 +39,7 @@ export const getFixedTeachers = async (date, grade, period) => {
 
 export const sendChangeRequest = async (sender, recipient, cause) => {
     try {
-        const res = axiosInstance.post(`${API_ENDPOINTS.CHANGE}/send`, {
+        const res = await axiosInstance.post(`${API_ENDPOINTS.CHANGE}/send`, {
             sender,
             recipient,
             cause
@@ -58,7 +58,7 @@ export const sendChangeRequest = async (sender, recipient, cause) => {
 
 export const getChangeRequest = async () => {
     try {
-        const res = axiosInstance.get(`${API_ENDPOINTS.CHANGE}/view`);
+        const res = await axiosInstance.get(`${API_ENDPOINTS.CHANGE}/view`);
         if (res.status !== 200 && res.status !== 201) {
             return Promise.reject({
                 status: res.status,
@@ -73,7 +73,7 @@ export const getChangeRequest = async () => {
 
 export const updateChangeStatus = async (id, status) => {
     try {
-        const res = axiosInstance.patch(`${API_ENDPOINTS.CHANGE}/${id}`, {
+        const res = await axiosInstance.patch(`${API_ENDPOINTS.CHANGE}/${id}`, {
             status
         });
         if (res.status !== 200 && res.status !== 201) {
