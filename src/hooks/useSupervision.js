@@ -69,6 +69,7 @@ export const useGetDailySupervision = (day, period, remainder) => {
 }
 
 export const useGetCompleteRate = (percentage, total, completed) => {
+    console.log(percentage, total, completed);
     return useQuery({
         queryKey: ['getCompleteRate', percentage, total, completed],
         queryFn: async () => {
