@@ -7,7 +7,7 @@ import * as S from './style.jsx'
 import Arrow from '../../assets/Arrow.svg'
 import Rotate from '../../assets/rotate.svg';
 import { useState, useEffect } from "react";
-import { useGetCompleteRate, useGetNextSupervision } from "../../hooks/useSupervision.js";
+import { useGetCompleteRate, useGetNextSupervision, useGetDailySupervision } from "../../hooks/useSupervision.js";
 import { useGetChangeRequest } from "../../hooks/useChange.js";
 
 export default function Main() {
@@ -16,7 +16,8 @@ export default function Main() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedChange, setSelectedChange] = useState(null);
 
-    // const { data: changeDay, isLoading: isLoadingChange, isError: isErrorChange } = useGetChangeRequest();
+    const { data: changeDay, isLoading: isLoadingChange, isError: isErrorChange } = useGetChangeRequest();
+    const { data: todayTeacher, isLoading: isLoadingTeacher } = useGetDailySupervision();
 
     let studentInfo = [
         {
@@ -38,66 +39,7 @@ export default function Main() {
             "absent_count": 0
         }
     ]
-    let changeDay = [
-        {
-            "changeId": 10393,
-            "sender": {
-                "teacher": "최병준/1",
-                "day": "11월 27일 (수)",
-                "period": "7교시",
-                "grade": 2,
-            },
-            "recipient": {
-                "teacher": "정유진/2",
-                "day": "11월 27일 (수)",
-                "period": "7교시",
-                "grade": 1,
-            },
-            "cause": "유진쌤 제가 이날 밤에 출장이 있어서 교체해야할 거 같아요",
-            "result": "PENDING",
-            "toMe": true,
-        },
-        {
-            "changeId": 10394,
-            "sender": {
-                "teacher": "정유진/2",
-                "day": "11월 27일 (수)",
-                "period": "7교시",
-                "grade": 1,
-            },
-            "recipient": {
-                "teacher": "최병준/1",
-                "day": "11월 27일 (수)",
-                "period": "7교시",
-                "grade": 2,
-            },
-            "cause": "유진쌤 제가 이날 밤에 출장이 있어서 교체해야할 거 같아요",
-            "result": "PENDING",
-            "toMe": false,
-        },
-    ]
     const pendingChangeRequests = changeDay?.filter(request => request.result === "PENDING") || [];
-
-    let todayTeacher = [
-        {
-            "day": "11월 27일 (수)",
-            "1학년": {
-                "7th_teacher": "정유진",
-                "8th_teacher": "최병준",
-                "10th_teacher": "장나영"
-            },
-            "2학년": {
-                "7th_teacher": "정유진",
-                "8th_teacher": "최병준",
-                "10th_teacher": "장나영"
-            },
-            "3학년": {
-                "7th_teacher": "정유진",
-                "8th_teacher": "최병준",
-                "10th_teacher": "장나영"
-            }
-        }
-    ]
 
     const { data: nextData, isLoading: isLoadingNext, isError: isErrorNext } = useGetNextSupervision();
     const { data: completeRateData, isLoading: isLoadingRate, isError: IsErrorRate } = useGetCompleteRate();
@@ -220,7 +162,7 @@ export default function Main() {
                     <S.BottomRight>
                         <h2>오늘의 자습감독 선생님</h2>
                         <S.BottomRightContent>
-                            {todayTeacher.map((data) => (
+                            {!isLoadingTeacher && todayTeacher.map((data) => (
                                 <div key={data.day}>
                                     <S.TeacherListTop>
                                         <span>{data.day}</span>
@@ -229,24 +171,22 @@ export default function Main() {
                                         <span>3학년</span>
                                     </S.TeacherListTop>
                                     <S.TeacherListContent>
-                                        <S.TeacherTable>
-                                            <p>7교시</p>
-                                            <p>{data['1학년']['7th_teacher']}</p>
-                                            <p>{data['2학년']['7th_teacher']}</p>
-                                            <p>{data['3학년']['7th_teacher']}</p>
-                                        </S.TeacherTable>
-                                        <S.TeacherTable>
-                                            <p>8~9교시</p>
-                                            <p>{data['1학년']['8th_teacher']}</p>
-                                            <p>{data['2학년']['8th_teacher']}</p>
-                                            <p>{data['3학년']['8th_teacher']}</p>
-                                        </S.TeacherTable>
-                                        <S.TeacherTable>
-                                            <p>10~11교시</p>
-                                            <p>{data['1학년']['10th_teacher']}</p>
-                                            <p>{data['2학년']['10th_teacher']}</p>
-                                            <p>{data['3학년']['10th_teacher']}</p>
-                                        </S.TeacherTable>
+                                        {["7th_teacher", "8th_teacher", "10th_teacher"].map((period, index) => {
+                                            return (
+                                                <S.TeacherTable key={index}>
+                                                    <p>{index === 0 ? "7교시" : index === 1 ? "8~9교시" : "10~11교시"}</p>
+                                                    {["first_grade", "second_grade", "third_grade"].map((grade, i) => {
+                                                        const teacher = data[grade][period].replace("/me", "");
+                                                        const isMe = data[grade][period].includes("/me");
+                                                        return (
+                                                            <p key={i} style={{ color: isMe ? "#2E6FF2" : "", fontWeight: isMe ? "600" : "" }}>
+                                                                {teacher}
+                                                            </p>
+                                                        );
+                                                    })}
+                                                </S.TeacherTable>
+                                            );
+                                        })}
                                     </S.TeacherListContent>
                                 </div>
                             ))}
