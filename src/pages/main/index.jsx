@@ -6,7 +6,7 @@ import RequestBox from "../../components/modal/requestBox";
 import * as S from './style.jsx'
 import Arrow from '../../assets/Arrow.svg'
 import Rotate from '../../assets/rotate.svg';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useGetCompleteRate, useGetNextSupervision } from "../../hooks/useSupervision.js";
 import { useGetChangeRequest } from "../../hooks/useChange.js";
 
@@ -100,13 +100,32 @@ export default function Main() {
     ]
 
     const { data: nextData, isLoading: isLoadingNext, isError: isErrorNext } = useGetNextSupervision();
-    let nextDay = nextData?.reminder || 0;
-    let day = nextData?.day || "";
-    let period = nextData?.period || "";
     const { data: completeRateData, isLoading: isLoadingRate, isError: IsErrorRate } = useGetCompleteRate();
-    let supCount = completeRateData?.completed || 0;
-    let supTotal = completeRateData?.total || 0;
-    let supRate = completeRateData?.percentage || 0;
+
+    const [nextDay, setNextDay] = useState(-1);
+    const [day, setDay] = useState("");
+    const [period, setPeriod] = useState("");
+
+    const [supRate, setSupRate] = useState(0);
+    const [supCount, setSupCount] = useState(0);
+    const [supTotal, setSupTotal] = useState(0);
+
+    useEffect(() => {
+        if (!isLoadingNext && nextData) {
+            setNextDay(nextData.reminder ?? -1);
+            setDay(nextData.reminder === -1 ? "더 이상 자습감독 일정이 없습니다." : nextData.day || "");
+            setPeriod(nextData.reminder === -1 ? "" : nextData.period || "");
+        }
+    }, [nextData, isLoadingNext]);
+
+    useEffect(() => {
+        if (!isLoadingRate && completeRateData) {
+            setSupRate(completeRateData.percentage);
+            setSupCount(completeRateData.completed);
+            setSupTotal(completeRateData.total);
+        }
+    }, [completeRateData, isLoadingRate]);
+
     return (
         <S.MainContainer>
             <Header />
@@ -129,7 +148,7 @@ export default function Main() {
                     <S.NextSup>
                         <S.NexSupLeft>
                             <h3>다음 자습감독 기간</h3>
-                            <S.NextSupDate>D - {nextDay}</S.NextSupDate>
+                            <S.NextSupDate>D - {nextDay === -1 ? 0 : nextDay}</S.NextSupDate>
                             <h2>{day}</h2>
                             <h4>{period}</h4>
                         </S.NexSupLeft>
