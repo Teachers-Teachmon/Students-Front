@@ -44,11 +44,6 @@ const FullPageComponent = () => {
 
     useEffect(() => {
         const checkAuth = async () => {
-            if (await certification()) {
-                window.location.href = '/main';
-                return;
-            }
-
             const instance = new fullpage('#fullpage', {
                 licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
                 autoScrolling: true,
@@ -69,7 +64,10 @@ const FullPageComponent = () => {
             });
 
             setFpInstance(instance);
-
+            if (await certification()) {
+                window.location.href = '/main';
+                return;
+            }
             return () => {
                 if (instance) {
                     instance.destroy('all');
