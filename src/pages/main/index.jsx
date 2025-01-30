@@ -15,9 +15,11 @@ export default function Main() {
     let userName = localStorage.getItem('name');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedChange, setSelectedChange] = useState(null);
+    const today = new Date();
+    const formattedDate = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
 
     const { data: changeDay, isLoading: isLoadingChange, isError: isErrorChange } = useGetChangeRequest();
-    const { data: todayTeacher, isLoading: isLoadingTeacher, isError: isErrorTeacher } = useGetDailySupervision();
+    const { data: todayTeacher, isLoading: isLoadingTeacher, isError: isErrorTeacher } = useGetDailySupervision(formattedDate);
 
     let studentInfo = [
         {
@@ -162,7 +164,7 @@ export default function Main() {
                     <S.BottomRight>
                         <h2>오늘의 자습감독 선생님</h2>
                         <S.BottomRightContent>
-                            {todayTeacher.length > 0 && todayTeacher.map((data) => (
+                            {todayTeacher?.length > 0 && todayTeacher.map((data) => (
                                 <div key={data.day}>
                                     <S.TeacherListTop>
                                         <span>{data.day}</span>
