@@ -1,25 +1,14 @@
 import * as S from './style.jsx';
 import Confirm from "../../button/confirm/index.jsx";
 import Rotate from '../../../assets/rotate.svg';
-import { useUpateChangeRequest } from '../../../hooks/useChange.js';
+import { useUpdateChangeRequest } from '../../../hooks/useChange.js';
 
 export default function RequestBox({ closeModal, changeData }) {
 
-    const { mutate } = useUpateChangeRequest();
+    const { mutate } = useUpdateChangeRequest(closeModal);
 
     const handleUpdateStatus = (status) => {
-        mutate({ id: changeData.changeId, status }, {
-            onSuccess: () => {
-                alert(status === "ACCEPTED" ? "요청을 수락했습니다." : 
-                      status === "REJECTED" ? "요청을 거절했습니다." : 
-                      "요청을 확인 완료했습니다.");
-                closeModal();
-            },
-            onError: () => {
-                alert("요청 처리에 실패했습니다.");
-                closeModal();
-            }
-        });
+        mutate({ id: changeData.changeId, status });
     };
 
     return (
