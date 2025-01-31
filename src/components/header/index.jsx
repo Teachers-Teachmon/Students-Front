@@ -5,6 +5,7 @@ import BookLogo from '../../assets/Book.svg'
 import EyesLogo from '../../assets/Eyes.svg'
 import HouseLogo from '../../assets/House.svg'
 import ListChecksLogo from '../../assets/ListChecks.svg'
+import AdminSetting from '../../assets/adminSetting.svg'
 import Logout from '../../assets/logout.svg'
 import {useLogout} from "../../hooks/useAuth.js";
 
@@ -13,6 +14,7 @@ const MENU = [
   { label: '자습감독', path: '/supervision', logo: EyesLogo },
   { label: '학생관리', path: '/manage', logo: ListChecksLogo },
   { label: '방과후 수업', path: '/after-school', logo: BookLogo },
+  { label: '관리자', path: '/admin', logo: AdminSetting },
 ]
 
 export default function Header() {
