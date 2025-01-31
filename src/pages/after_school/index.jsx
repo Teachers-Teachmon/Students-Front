@@ -6,9 +6,10 @@ import BusinessTrip from '../../components/modal/businessTrip/index.jsx';
 import ClassEnd from '../../components/modal/classEnd/index.jsx';
 import ClassPrep from '../../components/modal/classPrep/index.jsx';
 import { useNavigate } from "react-router-dom";
-import Circle from '../../components/button/circle/index.jsx'
+import Circle from '../../components/button/circle/index.jsx';
 import CaretLeft from '../../assets/CaretLeft.svg';
 import CaretRight from '../../assets/CaretRight.svg';
+import { useGetClassList } from '../../hooks/useAfterSchool.js';
 
 export default function After_school() {
 
@@ -18,188 +19,19 @@ export default function After_school() {
     const [isModal3, setIsModal3] = useState(false);
     const [selectedClass, setSelectedClass] = useState(null);
     const [grade, setGrade] = useState([true, false, false]);
+    const [selectedGrade, setSelectedGrade] = useState(1);
     const [selectedDay, setSelectedDay] = useState("월");
     const navigate = useNavigate()
 
     const weekDays = ["월", "화", "수", "목"];
 
-    const myTodayClasses = [
-        {
-            "period" : "8~9교시",
-            "grade" : 1,
-            "name" : "리액트",
-            "placeName" : "객체지향 프로그래밍실"
-        },
-        {
-            "period" : "10~11교시",
-            "grade" : 1,
-            "name" : "파이썬을 이용한 문제해결",
-            "placeName": "프로그래밍실"
-        }
-    ];
+    const { data: myTodayClasses = [] } = useGetTodayClasses();
 
-    const myClasses = [
-        {
-            "weekday" : "월",
-            "period" : "8~9교시",
-            "grade" : 1,
-            "name" : "스프링 부트를 이용한 웹서비스 개발",
-            "placeName" : "객체지향 프로그래밍실"
-        },
-        {
-            "weekday" : "월",
-            "period" : "8~9교시",
-            "grade" : 1,
-            "name" : "파이썬",
-            "placeName" : "객체지향 프로그래밍실"
-        },
-        {
-            "weekday" : "월",
-            "period" : "8~9교시",
-            "grade" : 1,
-            "name" : "파이썬을 이용한 문제해결",
-            "placeName": "객체지향 프로그래밍실"
-        },
-        {
-            "weekday" : "월",
-            "period" : "8~9교시",
-            "grade" : "1",
-            "name" : "파이썬을 이용한 문제해결",
-            "placeName" : "프로그래밍실"
-        },
-        {
-            "weekday" : "월",
-            "period" : "8~9교시",
-            "grade" : 1,
-            "name" : "파이썬을 이용한 문제해결",
-            "placeName" : "프로그래밍실"
-        },
-        {
-            "weekday": "월",
-            "period": "8~9교시",
-            "grade" : "1",
-            "name" : "파이썬을 이용한 문제해결",
-            "placeName": "프로그래밍실"
-        }
-    ];
+    const { data: myClasses = []} = useGetMyClasses();
 
-    const classList = [
-        {
-            "weekday": "월",
-            "period": "8~9교시",
-            "afterschool": [
-                {
-                    "name": "파이썬을 이용한 문제해결",
-                    "teacherName": "김동욱",
-                    "placeName": "프로그래밍실"
-                },
-                {
-                    "name": "파이썬을 이용한 문제해결",
-                    "teacherName": "김동욱",
-                    "placeName": "프로그래밍실"
-                },
-                {
-                    "name": "스프링 부트를 이용한 웹서비스 개발",
-                    "teacherName": "곽상미",
-                    "placeName": "객체지향 프로그래밍실"
-                },
-                {
-                    "name": "스프링 부트를 이용한 웹서비스 개발",
-                    "teacherName": "곽상미",
-                    "placeName": "객체지향 프로그래밍실"
-                },
-                {
-                    "name": "스프링 부트를 이용한 웹서비스 개발",
-                    "teacherName": "곽상미",
-                    "placeName": "객체지향 프로그래밍실"
-                }
-            ],
-        },
-        {
-            "weekday": "월",
-            "period": "10~11교시",
-            "afterschool": [
-                {
-                    "name": "스프링 부트를 이용한 웹서비스 개발",
-                    "teacherName": "곽상미",
-                    "placeName": "객체지향 프로그래밍실"
-                },
-                {
-                    "name": "파이썬을 이용한 문제해결",
-                    "teacherName": "김동욱",
-                    "placeName": "1-4반"
-                },
-                {
-                    "name": "스프링 부트를 이용한 웹서비스 개발",
-                    "teacherName": "곽상미",
-                    "placeName": "객체지향 프로그래밍실"
-                },
-                {
-                    "name": "스프링 부트를 이용한 웹서비스 개발",
-                    "teacherName": "곽상미",
-                    "placeName": "객체지향 프로그래밍실"
-                },
-                {
-                    "name": "파이썬을 이용한 문제해결",
-                    "teacherName": "김동욱",
-                    "placeName": "1-4반"
-                }
-            ],
-        },
-        {
-            "weekday": "화",
-            "period": "8~9교시",
-            "afterschool": [
-                {
-                    "name": "스프링 부트",
-                    "teacherName": "김동욱",
-                    "placeName": "1-4반"
-                },
-                {
-                    "name": "스프링 부트",
-                    "teacherName": "김동욱",
-                    "placeName": "1-4반"
-                },
-                {
-                    "name": "파이썬을 이용한 문제해결",
-                    "teacherName": "김동욱",
-                    "placeName": "1-4반"
-                },
-                {
-                    "name": "스프링 부트를 이용한 웹서비스 개발",
-                    "teacherName": "곽상미",
-                    "placeName": "객체지향 프로그래밍실"
-                },
-                {
-                    "name": "파이썬을 이용한 문제해결",
-                    "teacherName": "김동욱",
-                    "placeName": "1-4반"
-                }
-            ],
-        },
-        {
-            "weekday": "화",
-            "period": "10~11교시",
-            "afterschool": [
-                {
-                    "name": "스프링 부트",
-                    "teacherName": "김동욱",
-                    "placeName": "1-4반"
-                },
-                {
-                    "name": "파이썬을 이용한 문제해결",
-                    "teacherName": "김동욱",
-                    "placeName": "1-4반"
-                },
-                {
-                    "name": "스프링 부트",
-                    "teacherName": "김동욱",
-                    "placeName": "1-4반"
-                }
-
-            ]
-        }
-    ];
+    const {
+        data : classList, //isLoading, error
+    } = useGetClassList(selectedGrade);
 
     const closeModalHandler = (setModal) => {
         setModal(false);
@@ -221,6 +53,7 @@ export default function After_school() {
         const newGrade = [false, false, false];
         newGrade[idx] = true;
         setGrade(newGrade);
+        setSelectedGrade(idx + 1);
     }
 
     return (
