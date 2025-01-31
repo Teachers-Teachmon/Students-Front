@@ -9,7 +9,7 @@ import {usePostMovement} from '../../../hooks/useData.js';
 import useDay from "../../../zustand/day.js";
 import SchoolOut from "../confirm/schoolOut/index.jsx";
 import {useDebounce} from "../../../hooks/useDebounce.js";
-import {searchStudent} from "../../../api/student.js";
+import {searchStudent, searchPlace} from "../../../api/search.js";
 
 export default function Write({setIsModal}){
     const [time, setTime] = useState("시간");
@@ -24,6 +24,7 @@ export default function Write({setIsModal}){
     const [cause, setCause] = useState("");
     const [search, setSearch] = useState("");
     const [search2, setSearch2] = useState("학생");
+    const [searchPlaceValue, setSearchPlaceValue] = useState("");
     const changeMovement = (idx) => {
         const newMovement = [false, false];
         newMovement[idx] = !newMovement[idx];
@@ -51,13 +52,25 @@ export default function Write({setIsModal}){
     const [selectStudent, setSelectStudent] = useState([]);
     const {mutate : postMovement} = usePostMovement();
     const {today: day} = useDay();
-    const debounce = useDebounce(search, 300);
 
-    useEffect( async ()=>{
-        console.log(search);
-        const students = await searchStudent(search);
-        setStudent(students);
-    }, [debounce])
+    const debounceStudent = useDebounce(search, 300);
+    const debouncePlace = useDebounce(searchPlaceValue, 300);
+
+    useEffect(() =>{
+        const fetchPlace = async () => {
+            const places = await searchPlace(searchPlaceValue);
+            setPlace(places);
+        };
+        fetchPlace();
+    }, [debouncePlace]);
+
+    useEffect(() => {
+        const fetchStudents = async () => {
+            const students = await searchStudent(search);
+            setStudent(students);
+        };
+        fetchStudents();
+    }, [debounceStudent]);
 
     return(
         <S.WriteContainer>
