@@ -25,16 +25,6 @@ export const useGetLeave = (day) => {
     });
 };
 
-// Student 데이터 가져오기
-export const useGetStudent = (day) => {
-    return useQuery({
-        queryKey: ['getStudent', day],
-        queryFn: async () => {
-            const res = await API.getStudent(day);
-            return res.data;
-        },
-    });
-};
 
 export const usePostMovement = () => {
     const navigate = useNavigate();
@@ -54,8 +44,8 @@ export const useDeleteMovement = () => {
     const queryClient = useQueryClient();
     return useMutation({
         mutationFn: (props) => API.deleteMovement(props),
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['getMovement'] });
+        onSuccess: (_, variables) => {
+            queryClient.refetchQueries({ queryKey: ['getMovement', variables.day] });
         },
         onError: (err) => {
             console.error('Movement 삭제 실패:', err);
@@ -68,8 +58,8 @@ export const useDeleteLeave = () => {
     const queryClient = useQueryClient();
     return useMutation({
         mutationFn: (props) => API.deleteLeave(props),
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['getLeave'] });
+        onSuccess: (_, variables) => {
+            queryClient.refetchQueries({ queryKey: ['getLeave', variables.day] });
         },
         onError: (err) => {
             console.error('Leave 삭제 실패:', err);

@@ -1,5 +1,6 @@
 import {API_ENDPOINTS} from "../lib/endpoints.js";
 import axiosInstance from "../lib/axiosInstance.js";
+import {period} from "../lib/period.js";
 
 export const getMovement = async (day) =>{
     try{
@@ -19,10 +20,12 @@ export const getMovement = async (day) =>{
     }
 }
 
-export const getStudent = async (day) =>{
+export const getMovementDetail = async (day, periodName, teacher_id) =>{
     try{
-        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/student`, {
-            day:day
+        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/detail`, {
+            day:day,
+            teacher_id: teacher_id,
+            period: period[periodName]
         });
         if(res.status !== 200 && res.status !== 201){
             return Promise.reject({
@@ -31,6 +34,25 @@ export const getStudent = async (day) =>{
             });
         }
         return res;
+
+    }catch (err){
+        return Promise.reject(err);
+    }
+}
+
+export const getStudent = async (day, search) =>{
+    try{
+        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/student`, {
+            day:day,
+            search_query: search
+        });
+        if(res.status !== 200 && res.status !== 201){
+            return Promise.reject({
+                status: res.status,
+                message: res.message || 'Request failed'
+            });
+        }
+        return res.data;
 
     }catch (err){
         return Promise.reject(err);
@@ -78,12 +100,9 @@ export const postMovement = async ({selectStudent, day, time, place, cause}) =>{
     }
 }
 
-export const deleteMovement = async ({day, teacher_name}) =>{
+export const deleteMovement = async (teacher_id, day, periodName) =>{
     try{
-        const res = await axiosInstance.delete(`${API_ENDPOINTS.DATA}/leaveseat`, {
-            day: day,
-            teacher_name: teacher_name
-        });
+        const res = await axiosInstance.delete(`${API_ENDPOINTS.DATA}/leaveseat/?teacher_id=${teacher_id}&day=${day}&period=${period[periodName]}`);
         if(res.status !== 200 && res.status !== 201){
             return Promise.reject({
                 status: res.status,
@@ -97,13 +116,10 @@ export const deleteMovement = async ({day, teacher_name}) =>{
     }
 }
 
-export const deleteLeave = async ({day, teacher_name}) =>{
-    console.log(day, teacher_name)
+export const deleteLeave = async (id) =>{
+    console.log(id)
     try{
-        const res = await axiosInstance.delete(`${API_ENDPOINTS.DATA}/leave`, {
-            day: day,
-            teacher_name: teacher_name
-        });
+        const res = await axiosInstance.delete(`${API_ENDPOINTS.DATA}/leave/${id}`, );
         if(res.status !== 200 && res.status !== 201){
             return Promise.reject({
                 status: res.status,
@@ -131,22 +147,6 @@ export const patchStudent = async ({studentID, status}) =>{
         }
         return res;
 
-    }catch (err){
-        return Promise.reject(err);
-    }
-}
-export const searchStudent = async (search) =>{
-    try{
-        const res = await axiosInstance.post(`${API_ENDPOINTS.DATA}/search`, {
-            search:search
-        });
-        if(res.status!==200){
-            return new Promise.reject({
-                status:res.status,
-                message:res.message
-            })
-        }
-        return res.data;
     }catch (err){
         return Promise.reject(err);
     }

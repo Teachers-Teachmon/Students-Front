@@ -9,7 +9,7 @@ export default function DetailMovement({setIsModal, data}) {
             <S.Content  onClick={(e) => e.stopPropagation()}>
                 <S.Title>
                     <h1>{data.place}</h1>
-                    <img src={X} alt={"엑스"} onClick={()=>setIsModal(false)}/>
+                    <img style ={{cursor:"pointer"}} src={X} alt={"엑스"} onClick={()=>setIsModal(false)}/>
                 </S.Title>
                 <S.Box>
                     <S.BlueText>담당교사</S.BlueText>
@@ -25,12 +25,11 @@ export default function DetailMovement({setIsModal, data}) {
                 <S.Box>
                     <S.BlueText>학생 {data.students.length}명</S.BlueText>
                     <S.Students>
-                        {data.students.map((item, index) => {
-                            console.log(item)
+                        {data.students.map((item) => {
                            return (
-                               <S.Teacher key={index}>
+                               <S.Teacher key={item}>
                                    <img src={People} alt={"people"} width={28}/>
-                                   <S.Name>{item.id + " " + item.name}</S.Name>
+                                   <S.Name>{ item}</S.Name>
                                </S.Teacher>
                            )
                         })}

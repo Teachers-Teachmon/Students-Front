@@ -31,6 +31,13 @@ export const Box2 = styled.p`
     color: #667085;
     width: ${(props)=>props.$length}px;
 `
+export const NoData = styled.div`
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
 export const Content = styled.div`
     width: 100%;
     display: flex;
