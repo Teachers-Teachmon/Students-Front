@@ -13,17 +13,17 @@ export default function Leave({data}) {
                 <S.Box $length={110}>시간</S.Box>
                 <S.Box $length={110}>처리 선생님</S.Box>
             </S.Standard>
-
-            {data && data.map((item, index)=>{
+            {data&& data.length === 0 ? <S.NoData>데이터가 없습니다</S.NoData> : null}
+            {data && data.map((item)=>{
                 return(
-                    <S.Content key={index}>
+                    <S.Content key={item.leave_id}>
                         <S.UnBox></S.UnBox>
-                        <S.Box2 $length={110}>{item.name}</S.Box2>
+                        <S.Box2 $length={110}>{item.student}</S.Box2>
                         <S.Box2 $length={110}>{item.period}</S.Box2>
                         <S.Box2 $length={110}>{item.teacher_name}</S.Box2>
                         {name === item.teacher_name || role === "admin" ?
                             <S.DeleteBox onClick={()=>{
-                                if(window.confirm('정말 삭제하시겠습니까?')) deleteLeave({ day: item.day, teacher_name: item.teacher_name });
+                                if(window.confirm('정말 삭제하시겠습니까?')) deleteLeave(item.leave_id);
                             }}>삭제</S.DeleteBox> : null
                         }
                     </S.Content>

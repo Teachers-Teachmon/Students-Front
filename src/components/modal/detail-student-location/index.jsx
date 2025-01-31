@@ -53,14 +53,14 @@ export default function DetailStudentLocation({setIsModal, data}) {
                 </S.Title>
                 <S.Box>
                     <S.BlueText>담당교사</S.BlueText>
-                    <S.Teacher>
+                    <S.Teacher style={{ cursor: 'default' }}>
                         <img src={People} alt={"people"} width={28}/>
                         <S.Name>{setLocation()[0].teacher}</S.Name>
                     </S.Teacher>
                 </S.Box>
                 <S.Box>
                     <S.BlueText>학생{setLocation()[0].students.length}명</S.BlueText>
-                    <S.RedText>* 결석한 학생이 있다면 학생을 클릭하여 상태를 바꿔주세요</S.RedText>
+                    <S.RedText>* 이탈한 학생이 있다면 학생을 클릭하여 상태를 바꿔주세요</S.RedText>
                     <S.Students>
                         {setLocation()[0].students.map((item, idx)=>{
                             return(

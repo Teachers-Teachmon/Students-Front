@@ -8,11 +8,11 @@ import Leave from "../../../components/record/leave/index.jsx";
 import Movement from "../../../components/record/movement/index.jsx";
 import Student from "../../../components/record/student/index.jsx";
 import Search from "../../../assets/Search.svg";
-import {useGetMovement, useGetStudent, useGetLeave} from "../../../hooks/useData.js";
+import {useGetMovement, useGetLeave} from "../../../hooks/useData.js";
 import useDay from "../../../zustand/day";
 import DateInput from "../../../components/dateInput/index.jsx";
 import {useDebounce} from "../../../hooks/useDebounce.js";
-import {searchStudent} from "../../../api/data.js";
+import {getStudent} from "../../../api/data.js";
 
 export default function Record() {
     const navigate = useNavigate();
@@ -23,20 +23,23 @@ export default function Record() {
     const [search, setSearch] = useState("");
     const {today, day:dayComponent} = useDay();
     const [day, setDay] = useState(today);
-    const { data: movement, isLoading: movementLoading, isError: movementError } = useGetMovement(day);
-    const {data :leave, leaveLoading, leaveError} = useGetLeave(day);
-    const {data :student, studentLoading, studentError} = useGetStudent(day);
-    const debounce = useDebounce(search, 300);
-    const [data, setData] = useState([]);
+    const { data: movement, isFetching: movementLoading, isError: movementError } = useGetMovement(day);
+    const {data :leave, isFetching : leaveLoading, leaveError} = useGetLeave(day);
+    const debounce = useDebounce(search, 500);
+    const [student, setStudent] = useState([]);
 
     useEffect(() => {
         setDay(dayComponent);
     }, [dayComponent]);
 
-    useEffect( async ()=>{
-        const students = await searchStudent(search);
-        setData(students);
-    }, [debounce])
+    useEffect(() => {
+        const fetchData = async () => {
+            const students = await getStudent(day, search);
+            setStudent(students);
+        };
+
+        fetchData();
+    }, [debounce]);
 
     return (
         <S.ManageContainer>
@@ -74,11 +77,11 @@ export default function Record() {
                             : null}
                     </S.MainNav>
                     {isMovement[0] ? (
-                        <Movement data={movement}/>
+                        <Movement data={movement} day={day} isLoading = {movementLoading} isLoading2={leaveLoading}/>
                     ) : isMovement[1] ? (
                         <Leave data={leave}/>
                     ) : isMovement[2] ? (
-                        <Student data={student} search = {setSearch} searchValue = {data} />
+                        <Student data={student} />
                     ) : null}
                 </S.Main>
             </S.Wrap>

@@ -3,11 +3,18 @@ import { useState } from "react";
 import DetailMovement from "../../modal/detail-movement/index.jsx";
 import {useDeleteMovement} from "../../../hooks/useData.js";
 import useAuth from "../../../zustand/auth.js"
+import {getMovementDetail} from "../../../api/data.js";
 
-export default function Movement({data}) {
+export default function Movement({data, day, isLoading, isLoading2}) {
     const [isModal, setIsModal] = useState(false);
     const {mutate : deleteMovement} = useDeleteMovement();
     const {name, role} = useAuth();
+    const getDetail = async (day, teacher_id, periodName) =>{
+        const res = await getMovementDetail(day, teacher_id, periodName);
+        setDetail(res.data);
+        setIsModal(!isModal);
+    }
+    const [detail , setDetail] = useState();
     return (
         <S.MovementContainer>
             <S.Standard>
@@ -18,14 +25,15 @@ export default function Movement({data}) {
                 <S.Box $length={200}>장소</S.Box>
                 <S.Box $length={240}>사유</S.Box>
             </S.Standard>
-            {data && data.map((item, index) => {
+            {data&& data.length === 0 ? <S.NoData>데이터가 없습니다</S.NoData> : null}
+            {data && data.map((item) => {
                 return(
                     <>
-                        <S.Content onClick={()=>setIsModal(!isModal)}>
+                        <S.Content key={item} onClick={()=>getDetail(day, item.teacher_id, item.period)}>
                             <S.UnBox></S.UnBox>
                             <S.Box2 $length={110}>{item.period}</S.Box2>
                             <S.Box2 $length={110}>{item.teacher_name}</S.Box2>
-                            <S.Box2 $length={110}>{item.students.length}명</S.Box2>
+                            <S.Box2 $length={110}>{item.personnel}명</S.Box2>
                             <S.Box2 $length={200}>{item.place}</S.Box2>
                             <S.Box2 $length={240}>{item.cause}</S.Box2>
 
@@ -33,12 +41,12 @@ export default function Movement({data}) {
                                 <S.DeleteBox
                                     onClick={(e) => {
                                         e.stopPropagation();
-                                        if(window.confirm('정말 삭제하시겠습니까?')) deleteMovement(item);
+                                        if(window.confirm('정말 삭제하시겠습니까?')) deleteMovement(item.teacher_id, day, item.period);
                                     }}
                                 >삭제</S.DeleteBox>  : null
                             }
                         </S.Content>
-                        {isModal ?<DetailMovement data={item} setIsModal={setIsModal} /> : null}
+                        {isModal ?<DetailMovement data={detail} setIsModal={setIsModal} /> : null}
                     </>
                 )
             })}

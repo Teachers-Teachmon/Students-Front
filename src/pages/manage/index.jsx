@@ -25,6 +25,7 @@ export default function Manage(){
     const {data : student, isLoading} = useGetNowStudent(gradeIndex()[0]);
     console.log(student);
 
+    const [weekday, setWeekday] = useState(false);
     // 렌더링시 오늘의 날짜를 계산해서 보여줌
     useEffect(() => {
         const pattern = /(\d{4}-\d{2}-\d{2})\s(\w+)/;
@@ -44,12 +45,15 @@ export default function Manage(){
                 break;
             case 'Friday':
                 setDay(`${today.slice(5, 7)}월 ${today.slice(8, 10)}일 (금)`);
+                setWeekday(true);
                 break;
             case 'Saturday':
                 setDay(`${today.slice(5, 7)}월 ${today.slice(8, 10)}일 (토)`);
+                setWeekday(true);
                 break;
             case 'Sunday':
                 setDay(`${today.slice(5, 7)}월 ${today.slice(8, 10)}일 (일)`);
+                setWeekday(true);
                 break;
         }
     }, []);
@@ -110,7 +114,7 @@ export default function Manage(){
                         </S.Record>
                     </S.MainNav>
                     <S.Section>
-                        {!isLoading &&
+                        {weekday ? <S.NoData>오늘은 방과후가 없습니다.</S.NoData> : !isLoading &&
                             <>
                                 <StudentGraph data={student['1반']} grade={gradeIndex()[0]} classNum = {1}/>
                                 <StudentGraph data={student['2반']} grade={gradeIndex()[0]} classNum = {2}/>

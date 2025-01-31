@@ -5,7 +5,7 @@ import useDay from "../../zustand/day";
 export default function DateInput({ onChange }) {
     const [inputValue, setInputValue] = useState('');
     const [isFocused, setIsFocused] = useState(false);
-    const { setDay } = useDay();
+    const { setDay, day } = useDay();
 
 
     const handleDateChange = (e) => {
