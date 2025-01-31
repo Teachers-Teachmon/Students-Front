@@ -11,7 +11,7 @@ import SchoolOut from "../confirm/schoolOut/index.jsx";
 import {useDebounce} from "../../../hooks/useDebounce.js";
 import {searchStudent} from "../../../api/student.js";
 
-export default function Write({setIsModal}){
+export default function Write({isModal, setIsModal}){
     const [time, setTime] = useState("시간");
     const [place, setPlace] = useState("장소");
     const [floor, setFloor] = useState("층");
@@ -53,11 +53,16 @@ export default function Write({setIsModal}){
     const {today: day} = useDay();
     const debounce = useDebounce(search, 300);
 
-    useEffect( async ()=>{
-        console.log(search);
-        const students = await searchStudent(search);
-        setStudent(students);
-    }, [debounce])
+    useEffect(() => {
+        const fetchStudents = async () => {
+            console.log(search);
+            const students = await searchStudent(search);
+            setStudent(students);
+        };
+
+        fetchStudents(); // 비동수 함수 호출
+
+    }, [debounce]); // `debounce`가 변경될 때마다 호출
 
     return(
         <S.WriteContainer>
