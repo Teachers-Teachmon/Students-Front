@@ -9,6 +9,7 @@ import Record from "../../assets/record.svg";
 import StudentGraph from '../../components/student-graph'
 import Write from '../../components/modal/write';
 import {useGetNowStudent} from "../../hooks/useStudent.js";
+import Loading from "../../components/loading/index.jsx";
 
 export default function Manage(){
     const {today} = useDay();
@@ -68,6 +69,7 @@ export default function Manage(){
     }
     return(
         <S.ManageContainer>
+            {isLoading && <Loading />}
             <Header />
             <S.Wrap>
                 <S.Info>

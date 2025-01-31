@@ -1,7 +1,7 @@
 import {API_ENDPOINTS} from "../lib/endpoints.js";
 import axiosInstance from "../lib/axiosInstance.js";
 
-
+//${API_ENDPOINTS.STUDENT}
 export const getNowStudent = async (grade) =>{
     console.log(grade);
     try{

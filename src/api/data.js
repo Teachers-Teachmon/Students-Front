@@ -2,6 +2,7 @@ import {API_ENDPOINTS} from "../lib/endpoints.js";
 import axiosInstance from "../lib/axiosInstance.js";
 import {period} from "../lib/period.js";
 
+//${API_ENDPOINTS.DATA}
 export const getMovement = async (day) =>{
     try{
         const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/leaveseat`, {

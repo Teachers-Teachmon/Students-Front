@@ -2,7 +2,7 @@ import * as S from './style.jsx'
 import Header from "../../../components/header/index.jsx";
 import CircleBtn from "../../../components/button/circle/index.jsx";
 import SquareBtn from "../../../components/button/square/index.jsx";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import First from "../../../components/map/1st/index.jsx";
@@ -12,6 +12,7 @@ import Fourth from "../../../components/map/4th/index.jsx";
 import DetailStudentLocation from "../../../components/modal/detail-student-location/index.jsx";
 import FirstModal from "../../../components/modal/location-first";
 import {useGetLocationAll, useGetLocationFloor} from "../../../hooks/useStudent.js";
+import Loading from "../../../components/loading/index.jsx";
 
 export default function Location() {
     const [isFirstModal, setIsFirstModal] = useState(true);
@@ -60,6 +61,7 @@ export default function Location() {
     ]
     return (
         <S.LocationContainer>
+            {isAllLoading || isFloorLoading ? <Loading /> : null}
             <Header />
             <S.Info>
                 <S.FloorBox>

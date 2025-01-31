@@ -11,7 +11,7 @@ import SchoolOut from "../confirm/schoolOut/index.jsx";
 import {useDebounce} from "../../../hooks/useDebounce.js";
 import {searchStudent, searchPlace} from "../../../api/search.js";
 
-export default function Write({setIsModal}){
+export default function Write({isModal, setIsModal}){
     const [time, setTime] = useState("시간");
     const [place, setPlace] = useState("장소");
     const [isMovement, setIsMovement] = useState([true, false]);
@@ -36,6 +36,7 @@ export default function Write({setIsModal}){
 
     useEffect(() => {
         const fetchStudents = async () => {
+            console.log(search);
             const students = await searchStudent(search);
             setStudent(students);
         };
