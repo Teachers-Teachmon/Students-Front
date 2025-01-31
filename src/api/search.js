@@ -1,11 +1,10 @@
 import axiosInstance from "../lib/axiosInstance.js";
 import {API_ENDPOINTS} from "../lib/endpoints.js";
 
-export const searchStudent = async (name) =>{
+export const searchStudent = async (query) =>{
+    console.log(query)
     try{
-        const res = await axiosInstance.get(`${API_ENDPOINTS.SEARCH}`, {
-            name:name
-        });
+        const res = await axiosInstance.get(`${API_ENDPOINTS.SEARCH}/student?search_query=${query}`);
         if(res.status!==200){
             return new Promise.reject({
                 status:res.status,
@@ -18,11 +17,10 @@ export const searchStudent = async (name) =>{
     }
 }
 
-export const searchPlace = async (name) =>{
+export const searchPlace = async (query) =>{
+    console.log(query)
     try{
-        const res = await axiosInstance.get(`${API_ENDPOINTS.SEARCH}/place`, {
-            name:name
-        });
+        const res = await axiosInstance.get(`${API_ENDPOINTS.SEARCH}/place?search_query=${query}`);
         if(res.status!==200){
             return new Promise.reject({
                 status:res.status,

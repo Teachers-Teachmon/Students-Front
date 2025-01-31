@@ -18,17 +18,6 @@ export default function DetailStudentLocation({setIsModal, data}) {
 
     const {mutate : patchStudent} = usePatchStudent();
 
-    // 임시 데이터
-    const d = {
-        place: "객체지향프로그래밍실",
-        student: [
-            { name: "1410 윤도훈", status: "자습" },
-            { name: "1410 윤도훈", status: "조퇴" },
-            { name: "1410 윤도훈", status: "이탈" },
-            { name: "1410 윤도훈", status: "자습" },
-            { name: "1410 윤도훈", status: "자습" },
-        ],
-    };
     const isClick = (idx) => {
         const newIsOpen = [...isOpen];
         newIsOpen[idx] = !newIsOpen[idx];
@@ -49,7 +38,7 @@ export default function DetailStudentLocation({setIsModal, data}) {
             <S.Content  onClick={(e) => e.stopPropagation()}>
                 <S.Title>
                     <h1>{setLocation()[0].place}({setLocation()[0].status})</h1>
-                    <img src={X} alt={"엑스"} onClick={()=>setIsModal(false)}/>
+                    <img src={X} style={{ cursor: 'pointer' }} alt={"엑스"} onClick={()=>setIsModal(false)}/>
                 </S.Title>
                 <S.Box>
                     <S.BlueText>담당교사</S.BlueText>
