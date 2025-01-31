@@ -13,6 +13,7 @@ import useDay from "../../../zustand/day";
 import DateInput from "../../../components/dateInput/index.jsx";
 import {useDebounce} from "../../../hooks/useDebounce.js";
 import {getStudent} from "../../../api/data.js";
+import Loading from "../../../components/loading/index.jsx";
 
 export default function Record() {
     const navigate = useNavigate();
@@ -43,6 +44,7 @@ export default function Record() {
 
     return (
         <S.ManageContainer>
+            {movementLoading ||  leaveLoading ? <Loading /> : null}
             <Header/>
             <S.Wrap>
                 <S.Info>
