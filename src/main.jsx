@@ -17,6 +17,7 @@ import Login from "./pages/login"
 import SupervisionDetail from "./pages/supervision/detail";
 import SupervisionChange from "./pages/supervision/change";
 import LoginLoading from './components/login';
+import Edit from './pages/after_school/edit';
 
 const client = new QueryClient();
 
@@ -34,6 +35,7 @@ createRoot(document.getElementById('root')).render(
                 <Route path="/supervision/detail" element={<SupervisionDetail />} />
                 <Route path="/supervision/change" element={<SupervisionChange />} />
                 <Route path="/after-school" element={<After />} />
+                <Route path="/after-school/edit" element={<Edit />} />
                 <Route path={'/oauth'} element={<LoginLoading />} />
             </Routes>
         </BrowserRouter>
