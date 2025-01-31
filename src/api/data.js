@@ -5,7 +5,7 @@ import {period} from "../lib/period.js";
 //${API_ENDPOINTS.DATA}
 export const getMovement = async (day) =>{
     try{
-        const res = await axiosInstance.get(`/leaveseat`, {
+        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/leaveseat`, {
             day:day
         });
         if(res.status !== 200 && res.status !== 201){
@@ -43,7 +43,7 @@ export const getMovementDetail = async (day, periodName, teacher_id) =>{
 
 export const getStudent = async (day, search) =>{
     try{
-        const res = await axiosInstance.get(`/student`, {
+        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/student`, {
             day:day,
             search_query: search
         });
@@ -62,7 +62,7 @@ export const getStudent = async (day, search) =>{
 
 export const getLeave = async (day) =>{
     try{
-        const res = await axiosInstance.get(`/leave`, {
+        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/leave`, {
             day:day
         });
         if(res.status !== 200 && res.status !== 201){
