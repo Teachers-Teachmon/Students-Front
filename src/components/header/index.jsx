@@ -5,7 +5,7 @@ import BookLogo from '../../assets/Book.svg'
 import EyesLogo from '../../assets/Eyes.svg'
 import HouseLogo from '../../assets/House.svg'
 import ListChecksLogo from '../../assets/ListChecks.svg'
-import AdminSetting from '../../assets/adminSetting.svg'
+import AdminSetting from '../../assets/AdminSetting.svg'
 import Logout from '../../assets/logout.svg'
 import {useLogout} from "../../hooks/useAuth.js";
 
