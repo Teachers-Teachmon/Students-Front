@@ -31,3 +31,12 @@ export const getInfo = async (teacherId) =>{
         return Promise.reject(err);
     }
 }
+
+export const HealthCheck = async () =>{
+    try{
+        const res = await axiosInstance.get('/health');
+        return res.status;
+    }catch(err){
+        return Promise.reject(err);
+    }
+}
