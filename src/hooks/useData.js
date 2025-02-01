@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 // Movement 데이터 가져오기
 export const useGetMovement = (day) => {
-    console.log(day);
     return useQuery({
         queryKey: ['getMovement', day],
         queryFn: async () => {

@@ -14,18 +14,18 @@ import DateInput from "../../../components/dateInput/index.jsx";
 import {useDebounce} from "../../../hooks/useDebounce.js";
 import {getStudent} from "../../../api/data.js";
 import Loading from "../../../components/loading/index.jsx";
+import patchDay from "../../../utils/patchDay.js";
 
 export default function Record() {
     const navigate = useNavigate();
     const [isMovement, setIsMovement] = useState([
         true, false, false
     ]);
-
     const [search, setSearch] = useState("");
     const {today, day:dayComponent} = useDay();
     const [day, setDay] = useState(today);
-    const { data: movement, isFetching: movementLoading, isError: movementError } = useGetMovement(day);
-    const {data :leave, isFetching : leaveLoading, leaveError} = useGetLeave(day);
+    const { data: movement, isFetching: movementLoading, isError: movementError } = useGetMovement(patchDay(day));
+    const {data :leave, isFetching : leaveLoading, leaveError} = useGetLeave(patchDay(day));
     const debounce = useDebounce(search, 500);
     const [student, setStudent] = useState([]);
 
@@ -35,16 +35,15 @@ export default function Record() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const students = await getStudent(day, search);
+            const students = await getStudent(patchDay(day), search);
             setStudent(students);
         };
 
         fetchData();
     }, [debounce]);
-
     return (
         <S.ManageContainer>
-            {movementLoading ||  leaveLoading ? <Loading /> : null}
+            {movementLoading  ? <Loading /> : null}
             <Header/>
             <S.Wrap>
                 <S.Info>
