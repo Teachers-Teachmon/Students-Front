@@ -1,7 +1,7 @@
 import * as S from './style.jsx';
 import Confirm from '../../button/confirm/index.jsx';
 import Square from '../../button/square/index.jsx';
-import PrepDate from '../../PrepDate/index.jsx';
+import PrepDate from '../../prepDate/index.jsx';
 import { useState } from 'react';
 import Dropdown from '../../dropdown/nosearch/index.jsx';
 
