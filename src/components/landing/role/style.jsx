@@ -33,7 +33,7 @@ const show = keyframes`
   }
 `;
 export const Img = styled.img`
-    width: 480px;
+    width: 40%;
     ${(props) =>
             props.$isAnimation &&
             css`

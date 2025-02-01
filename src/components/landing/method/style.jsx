@@ -11,7 +11,7 @@ export const Wrap = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 6% 6%;
+    padding: 6% 10%;
     gap: 20px;
     justify-content: space-around;
 `
