@@ -35,6 +35,7 @@ export const getInfo = async (teacherId) =>{
 export const HealthCheck = async () =>{
     try{
         const res = await axiosInstance.get('/healthcheck');
+        console.log(res);
         return res.status;
     }catch(err){
         return Promise.reject(err);
