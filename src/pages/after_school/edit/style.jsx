@@ -220,7 +220,7 @@ export const ModalOverlay = styled.div`
 
 export const ModalContent = styled.div`
     width: 700px;
-    height: 600px;
+    height: 650px;
     border-radius: 10px;
     padding: 50px;
     background-color: white;
@@ -325,7 +325,7 @@ export const StudentBox = styled.div`
     gap: 30px;
     margin-left: -200px;
     overflow-y: auto;
-    max-height: 200px;
+    max-height: 270px;
 `
 export const Student = styled.div`
     border: 2px solid #2E6FF2;
