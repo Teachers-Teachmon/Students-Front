@@ -5,9 +5,7 @@ import {period} from "../lib/period.js";
 //${API_ENDPOINTS.DATA}
 export const getMovement = async (day) =>{
     try{
-        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/leaveseat`, {
-            day: day
-        });
+        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/leaveseat?day=${day}`);
         if(res.status !== 200 && res.status !== 201){
             return Promise.reject({
                 status: res.status,
@@ -23,11 +21,7 @@ export const getMovement = async (day) =>{
 
 export const getMovementDetail = async (day, teacher_id, periodName) =>{
     try{
-        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/detail`, {
-            day:day,
-            period:period[periodName],
-            teacherId:teacher_id
-        });
+        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/detail?day=${day}&teacherId=${teacher_id}&period=${period[periodName]}`);
         if(res.status !== 200 && res.status !== 201){
             return Promise.reject({
                 status: res.status,
