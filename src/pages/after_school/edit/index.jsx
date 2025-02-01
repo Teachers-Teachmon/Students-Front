@@ -152,11 +152,11 @@ export default function Edit() {
             3: [],
         });
         setDay([true, false, false, false]);
-        console.log("초기화 후 grades:", {
-            1: [{ period: '', teacher: '', placeName: '', name: '', studentsNumber: '' }],
-            2: [{ period: '', teacher: '', placeName: '', name: '', studentsNumber: '' }],
-            3: [{ period: '', teacher: '', placeName: '', name: '', studentsNumber: '' }],
-        });
+        // console.log("초기화 후 grades:", {
+        //     1: [{ period: '', teacher: '', placeName: '', name: '', studentsNumber: '' }],
+        //     2: [{ period: '', teacher: '', placeName: '', name: '', studentsNumber: '' }],
+        //     3: [{ period: '', teacher: '', placeName: '', name: '', studentsNumber: '' }],
+        // });
     };
     
 
