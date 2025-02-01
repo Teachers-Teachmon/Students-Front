@@ -37,7 +37,7 @@ export default function Edit() {
                 "studentsNumber": '',
             },
         ],
-        2: [
+        2: [    
             {
                 "period": '',
                 "teacher": '',
@@ -132,6 +132,33 @@ export default function Edit() {
         setModal(false);
     };
 
+    const handleReset = () => {
+        setGrades({
+            1: [{ period: '', teacher: '', placeName: '', name: '', studentsNumber: '' }],
+            2: [{ period: '', teacher: '', placeName: '', name: '', studentsNumber: '' }],
+            3: [{ period: '', teacher: '', placeName: '', name: '', studentsNumber: '' }],
+        });
+        setSelectStudent({
+            class1: [],
+            class2: [],
+            class3: [],
+            class4: [],
+        });
+        setSearch("");
+        setSelectedPeriod('');
+        setIsOpen({
+            1: [],
+            2: [],
+            3: [],
+        });
+        setDay([true, false, false, false]);
+        console.log("초기화 후 grades:", {
+            1: [{ period: '', teacher: '', placeName: '', name: '', studentsNumber: '' }],
+            2: [{ period: '', teacher: '', placeName: '', name: '', studentsNumber: '' }],
+            3: [{ period: '', teacher: '', placeName: '', name: '', studentsNumber: '' }],
+        });
+    };
+    
 
     return (
         <S.EditContainer>
@@ -166,7 +193,7 @@ export default function Edit() {
                             </S.FileUp>
                         </S.FileBtn>
                         <S.ReComBtn>
-                            <S.Reset>초기화</S.Reset>
+                            <S.Reset onClick={handleReset}>초기화</S.Reset>
                             <S.Complete>완료</S.Complete>
                         </S.ReComBtn>
                     </S.EditTopRight>
@@ -180,7 +207,6 @@ export default function Edit() {
                                     <S.TopData $length={30}>학년</S.TopData>
                                     <S.TopData $length={85}>교시</S.TopData>
                                     <S.TopData $length={102}>담당교사</S.TopData>
-                                    <S.TopData $length={70}>층</S.TopData>
                                     <S.TopData $length={200}>장소</S.TopData>
                                     <S.TopData $length={230}>방과후</S.TopData>
                                     <p>* 학생은 자세히 보기에서 수정해 주세요.</p>
@@ -191,7 +217,7 @@ export default function Edit() {
                                         <S.RowData $length={145}>
                                             <S.Grade>
                                                 <div>{grade}</div>
-                                                {console.log("DropdownNS에 전달되는 periods:", periods)}
+                                                {console.log("periods:", periods)}
                                                 <DropdownNS
                                                     name={selectedPeriod || '교시'}
                                                     item={periods}
@@ -210,16 +236,6 @@ export default function Edit() {
                                                 value={row.teacher}
                                                 onChange={(value) =>
                                                     handleInputChange(grade, index, 'teacher', value)
-                                                }
-                                            />
-                                        </S.RowData>
-                                        <S.RowData $length={90}>
-                                            <DropdownNS
-                                                name={"층"}
-                                                placeholder="층"
-                                                value={row.floor}
-                                                onChange={(e) =>
-                                                    handleInputChange(grade, index, 'floor', e.target.value)
                                                 }
                                             />
                                         </S.RowData>
