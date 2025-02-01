@@ -66,7 +66,6 @@ const FullPageComponent = () => {
             setFpInstance(instance);
             if (await certification()) {
                 window.location.href = '/main';
-                return;
             }
             return () => {
                 if (instance) {
