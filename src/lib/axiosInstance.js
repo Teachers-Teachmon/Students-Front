@@ -24,6 +24,7 @@ export const refreshAccessToken = async () => {
         window.location.href = '/login';
         return false;
     }
+    console.log(response);
     return response.headers['Authorization'];
 };
 
