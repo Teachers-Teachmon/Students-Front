@@ -10,6 +10,8 @@ import Circle from '../../components/button/circle/index.jsx';
 import CaretLeft from '../../assets/CaretLeft.svg';
 import CaretRight from '../../assets/CaretRight.svg';
 import { useGetClassList } from '../../hooks/useAfterSchool.js';
+import { useGetMyClasses } from '../../hooks/useAfterSchool.js';
+import { useGetTodayClasses } from '../../hooks/useAfterSchool.js';
 
 export default function After_school() {
 
@@ -27,11 +29,10 @@ export default function After_school() {
 
     const { data: myTodayClasses = [] } = useGetTodayClasses();
 
-    const { data: myClasses = []} = useGetMyClasses();
+    const { data: myClasses = [] } = useGetMyClasses();
 
-    const {
-        data : classList, //isLoading, error
-    } = useGetClassList(selectedGrade);
+    const { data: classList = [] } = useGetClassList(selectedGrade);
+
 
     const closeModalHandler = (setModal) => {
         setModal(false);
@@ -162,15 +163,15 @@ export default function After_school() {
                                 <S.ClassListMainContent2>
                                     <p>10~11교시</p>
                                     <S.ClassList2>
-                                        {classList
-                                            .filter(cls => cls.weekday === selectedDay && cls.period === "10~11교시")
+                                        {classList && classList
+                                            .filter(cls => cls.weekday === selectedDay && cls.period === "8~9교시")
                                             .flatMap(cls => cls.afterschool)
                                             .map((cls, i) => (
-                                                <S.List2 key={i}>
-                                                    <S.List2Data $length={200}>{cls.name}</S.List2Data>
-                                                    <S.List2Data $length={50}>{cls.teacherName}</S.List2Data>
-                                                    <S.List2Data $length={140}>{cls.placeName}</S.List2Data>
-                                                </S.List2>
+                                                <S.List1 key={i}>
+                                                    <S.List1Data $length={200}>{cls.name}</S.List1Data>
+                                                    <S.List1Data $length={50}>{cls.teacherName}</S.List1Data>
+                                                    <S.List1Data $length={140}>{cls.placeName}</S.List1Data>
+                                                </S.List1>
                                             ))}
                                     </S.ClassList2>
                                 </S.ClassListMainContent2>
