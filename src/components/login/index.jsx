@@ -10,25 +10,26 @@ export default function LoginLoading(){
     const navigate = useNavigate()
 
     let isProxyReady = false;
-    // useEffect(() => {
-    //     const checkHealth = async () => {
-    //         try {
-    //             const res = await HealthCheck();
-    //             if(res === 200){
-    //                 isProxyReady = true;
-    //             }
-    //         } catch (error) {
-    //             console.error("Health check failed:", error);
-    //         }
-    //     };
-    //     checkHealth();
-    // }, []);
+    useEffect(() => {
+        const checkHealth = async () => {
+            try {
+                const res = await HealthCheck();
+                if(res === 200){
+                    isProxyReady = true;
+                    console.log(isProxyReady)
+                }
+            } catch (error) {
+                console.error("Health check failed:", error);
+            }
+        };
+        checkHealth();
+    }, []);
 
     useEffect(()=>{
-        // if (!isProxyReady) {
-        //     console.warn("Proxy is not ready yet.");
-        //     return; // 프록시가 준비되지 않았으면 요청하지 않음
-        // }
+        if (!isProxyReady) {
+            console.warn("Proxy is not ready yet.");
+            return; // 프록시가 준비되지 않았으면 요청하지 않음
+        }
         function getCookie(name) {
             const value = `; ${document.cookie}`;
             const parts = value.split(`; ${name}=`);
