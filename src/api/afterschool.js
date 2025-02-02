@@ -3,7 +3,8 @@ import axiosInstance from "../lib/axiosInstance.js";
 
 export const getClassList = async (grade, weekday) => {
     try {
-        const res = await axiosInstance.get(`${API_ENDPOINTS.AFTER_SCHOOL}/grade/${grade}/${weekday}`);
+        const encodedWeekday = encodeURIComponent(weekday);  // 한글을 URL 인코딩
+        const res = await axiosInstance.get(`${API_ENDPOINTS.AFTER_SCHOOL}/grade/${grade}/${encodedWeekday}`);
         if (res.status !== 200) {
             return Promise.reject({
                 status: res.status,
@@ -15,6 +16,7 @@ export const getClassList = async (grade, weekday) => {
         return Promise.reject(err);
     }
 };
+
 
 
 export const getTodayClasses = async () => {
