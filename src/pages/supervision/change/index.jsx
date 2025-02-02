@@ -17,11 +17,19 @@ export default function SupervisionChange() {
 
     const [currentMonth, setCurrentMonth] = useState(new Date().getMonth() + 1);
 
-    const { data: TeacherList, isLoading, isError } = useGetMonthlySupervision(currentMonth); 
+    // const { data: TeacherList, isLoading, isError } = useGetMonthlySupervision(currentMonth);
+    const { data: TeacherList = { data: [] }, isLoading, isError } = useGetMonthlySupervision(currentMonth);
     const { data: fixedTeacherList, isLoading: isLoadingFixed, isError: isErrorFixed } = useGetFixedTeachers();
     const { mutate: sendChangeRequest } = useSendChangeRequest();
 
-    const [weeks, setWeeks] = useState(TeacherList?.[0]?.data);
+    const [weeks, setWeeks] = useState([]);
+
+    useEffect(() => {
+        if (TeacherList?.data) {
+            setWeeks(TeacherList.data);
+        }
+    }, [TeacherList]);
+
 
     const handleSelectTeacher = (uniqueKey) => {
         setSelectedTeacher((prev) => {
@@ -40,7 +48,6 @@ export default function SupervisionChange() {
         if (currentMonth < 12) {
             const nextMonth = currentMonth + 1;
             setCurrentMonth(nextMonth);
-            updateWeeks(nextMonth);
         }
     };
 
@@ -48,18 +55,7 @@ export default function SupervisionChange() {
         if (currentMonth > 1) {
             const prevMonth = currentMonth - 1;
             setCurrentMonth(prevMonth);
-            updateWeeks(prevMonth);
         }
-    };
-
-    const updateWeeks = (month) => {
-        // API호출해야함
-        const monthName = `${month}월`;
-        const newWeeks = [
-            { week: `${monthName} 1주차`, schedule: weeks[0].schedule },
-            { week: `${monthName} 2주차`, schedule: weeks[1].schedule },
-        ];
-        setWeeks(newWeeks);
     };
 
     function groupByWeek(dataArray) {
@@ -71,7 +67,7 @@ export default function SupervisionChange() {
         }, {});
     }
 
-    const allData = TeacherList?.[0]?.data || [];
+    const allData = TeacherList?.data || [];
     const groupedWeeks = groupByWeek(allData);
 
     const convertPeriod = (periodKey) => {
