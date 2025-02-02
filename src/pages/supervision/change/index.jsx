@@ -3,7 +3,7 @@ import Header from '../../../components/header/index.jsx';
 import SquareBtn from '../../../components/button/square/index.jsx';
 import ConfirmBtn from '../../../components/button/confirm/index.jsx';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Rotate from '../../../assets/rotate.svg';
 import { useGetMonthlySupervision, useGetFixedTeachers, useSendChangeRequest } from '../../../hooks/useChange.js';
 
