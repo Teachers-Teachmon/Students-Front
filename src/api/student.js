@@ -65,7 +65,7 @@ export const getLocation = async (floor) =>{
 
 export const getStudentCount = async () => {
     try {
-        const res = await axiosInstance.get(`${API_ENDPOINTS.STUDENT}/count`);
+        const res = await axiosInstance.get(`${API_ENDPOINTS.STUDENT}/schedule/count`);
         if(res.status!==200){
             return new Promise.reject({
                 status:res.status,
