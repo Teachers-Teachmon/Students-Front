@@ -148,8 +148,8 @@ export default function SupervisionChange() {
                                                 <S.TeacherList>
                                                     {['7th_teacher', '8th_teacher', '10th_teacher'].map((classKey) =>
                                                         ['first_grade', 'second_grade', 'third_grade'].map((gradeKey) => {
-                                                            const teacherInfo = dayData[gradeKey][classKey];
-                                                            const teacherName = teacherInfo.split('/')[0];
+                                                            const teacherInfo = dayData?.[gradeKey]?.[classKey];
+                                                            const teacherName = teacherInfo ? teacherInfo.split('/')[0] : "미배정";
                                                             const uniqueKey = `${dayData.day}-${gradeKey}-${classKey}`;
 
                                                             return (
