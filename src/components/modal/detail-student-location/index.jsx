@@ -13,7 +13,9 @@ export default function DetailStudentLocation({setIsModal, data}) {
     const location = useLocation.getState();
 
     const setLocation = () => {
-        return data.filter((item) => item.place === location.place);
+        if(Object.keys(data).includes(location.place)){
+            return data[location.place];
+        }
     };
 
     const {mutate : patchStudent} = usePatchStudent();
@@ -24,7 +26,7 @@ export default function DetailStudentLocation({setIsModal, data}) {
         setIsOpen(newIsOpen);
     }
     useEffect(()=>{
-        const newOpen = setLocation()[0].students.map(()=> false);
+        const newOpen = setLocation().students.map(()=> false);
         setIsOpen(newOpen)
     }, []);
 
@@ -37,26 +39,26 @@ export default function DetailStudentLocation({setIsModal, data}) {
         <S.Black onClick={()=>setIsModal(false)}>
             <S.Content  onClick={(e) => e.stopPropagation()}>
                 <S.Title>
-                    <h1>{setLocation()[0].place}({setLocation()[0].status})</h1>
+                    <h1>{setLocation().place}({setLocation().status})</h1>
                     <img src={X} style={{ cursor: 'pointer' }} alt={"엑스"} onClick={()=>setIsModal(false)}/>
                 </S.Title>
                 <S.Box>
                     <S.BlueText>담당교사</S.BlueText>
                     <S.Teacher style={{ cursor: 'default' }}>
                         <img src={People} alt={"people"} width={28}/>
-                        <S.Name>{setLocation()[0].teacher}</S.Name>
+                        <S.Name>{setLocation().teacher}</S.Name>
                     </S.Teacher>
                 </S.Box>
                 <S.Box>
-                    <S.BlueText>학생{setLocation()[0].students.length}명</S.BlueText>
+                    <S.BlueText>학생{setLocation().students.length}명</S.BlueText>
                     <S.RedText>* 이탈한 학생이 있다면 학생을 클릭하여 상태를 바꿔주세요</S.RedText>
                     <S.Students>
-                        {setLocation()[0].students.map((item, idx)=>{
+                        {setLocation().students.map((item, idx)=>{
                             return(
                                 <>
                                     <S.Teacher key={idx} onClick={()=>isClick(idx)}>
                                         <img src={item.status === "자습" ? People : item.status === "조퇴" ? OrangePeople : RedPeople} alt={"people"} width={28}/>
-                                        <S.Name $color={item.status === "자습" ? "black" : item.status === "조퇴" ? "#FF9000" : "#FF938C"}>{item.studentNumber}{item.name}</S.Name>
+                                        <S.Name $color={item.status === "자습" ? "black" : item.status === "조퇴" ? "#FF9000" : "#FF938C"}>{item.studentNumber}{item.studentName}</S.Name>
                                         {isOpen[idx] ? <StatusUpdate changeStatus={changeStatus} name={item.name}/> : null}
                                     </S.Teacher>
                                     { isOpen.some((value) => value === true) ? <S.UnBox onClick={()=>setIsOpen(isOpen.map(() => false))}></S.UnBox> : null}

@@ -4,18 +4,11 @@ import X from '../../../assets/X.svg';
 export default function First({set, data}) {
     let Floor = [[0, 0], [0, 0], [0, 0], [0, 0]];
     if(data){
-        data['1층'].map((item)=>{
-            item.status === "자습" ? Floor[0][0]+=1 : Floor[0][1]+=1;
-        });
-        data['2층'].map((item)=>{
-            item.status === "자습" ? Floor[1][0]+=1 : Floor[1][1]+=1;
-        });
-        data['3층'].map((item)=>{
-            item.status === "자습" ? Floor[2][0]+=1 : Floor[2][1]+=1;
-        });
-        data['4층'].map((item)=>{
-            item.status === "자습" ? Floor[3][0]+=1 : Floor[3][1]+=1;
-        });
+        data.map((item, idx)=>{
+            Object.values(item).map((value)=>{
+                value === "자습" ? Floor[idx][0]+=1 : Floor[idx][1]+=1;
+            })
+        })
     }
     return (
         <S.Black onClick={()=>set(false)}>
