@@ -15,9 +15,13 @@ export default function SupervisionChange() {
     const [selectedTeacher, setSelectedTeacher] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const { data: TeacherList, isLoading, isError } = useGetMonthlySupervision(new Date().getMonth() + 1); 
+    const [currentMonth, setCurrentMonth] = useState(new Date().getMonth() + 1);
+
+    const { data: TeacherList, isLoading, isError } = useGetMonthlySupervision(currentMonth); 
     const { data: fixedTeacherList, isLoading: isLoadingFixed, isError: isErrorFixed } = useGetFixedTeachers();
     const { mutate: sendChangeRequest } = useSendChangeRequest();
+
+    const [weeks, setWeeks] = useState(TeacherList?.[0]?.data);
 
     const handleSelectTeacher = (uniqueKey) => {
         setSelectedTeacher((prev) => {
@@ -31,9 +35,6 @@ export default function SupervisionChange() {
             return updated;
         });
     };
-
-    const [currentMonth, setCurrentMonth] = useState(2);
-    const [weeks, setWeeks] = useState(TeacherList?.[0]?.data);
 
     const handleNextMonth = () => {
         if (currentMonth < 12) {
@@ -63,7 +64,7 @@ export default function SupervisionChange() {
 
     function groupByWeek(dataArray) {
         return dataArray.reduce((acc, item) => {
-            const w = item.week; // 예: "2월 1주차"
+            const w = item.week;
             if (!acc[w]) acc[w] = [];
             acc[w].push(item);
             return acc;

@@ -9,7 +9,7 @@ import { useGetMonthlySupervision } from '../../hooks/useSupervision.js';
 export default function Supervision() {
     let navigate = useNavigate();
     let [selectedDate, setSelectedDate] = useState(null);
-    let [isModalOpen, setIsModalOpen] = useState(false); // 이거 날짜 클릭했을 때 나오는 모달을 위해서 만든거임
+    let [isModalOpen, setIsModalOpen] = useState(false);
 
     let [currentDate, setCurrentDate] = useState(new Date());
     const year = currentDate.getFullYear();
@@ -17,15 +17,13 @@ export default function Supervision() {
 
     const today = new Date().toLocaleDateString();
 
-    // 바로 1일로 시작하지 않고 빈공간이 있다면 저번달의 날짜를 표시하기 위해서
-    const firstDayofMonth = new Date(year, month, 1); //현재 달의 첫날
+    const firstDayofMonth = new Date(year, month, 1);
     const startDay = new Date(firstDayofMonth);
-    startDay.setDate(1 - firstDayofMonth.getDay()); //현재 달의 첫날의 요일을 일요일로 맞춤
+    startDay.setDate(1 - firstDayofMonth.getDay());
 
-    // 31일로 끝났는데, 빈공간이 있으면 거기를 채워야함
-    const lastDayofMonth = new Date(year, month + 1, 0); //현재 달의 마지막날 (3번째 인자를 0으로 하면 마지막날 반환)
+    const lastDayofMonth = new Date(year, month + 1, 0);
     const endDay = new Date(lastDayofMonth);
-    endDay.setDate(lastDayofMonth.getDate() + 6 - lastDayofMonth.getDay()); //현재 달의 마지막날의 요일을 토요일로 맞춤
+    endDay.setDate(lastDayofMonth.getDate() + 6 - lastDayofMonth.getDay());
 
     const groupDatesByWeek = (startDay, endDay) => {
         const weeks = [];

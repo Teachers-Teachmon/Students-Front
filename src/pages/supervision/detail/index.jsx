@@ -140,7 +140,6 @@ export default function SupervisionDetail() {
                                                                         name={selectedTeacher[uniqueKey] || teacherName}
                                                                         isOpen={dropdownOpen[uniqueKey] || false}
                                                                         item={teacherOptions}
-                                                                        // change={(value) => handleTeacherChange(uniqueKey, value)}
                                                                         change={(value) => handleTeacherChange(dayData.date, gradeKey, timeKey, value)}
                                                                         click={() => toggleDropdown(uniqueKey)}
                                                                     />
