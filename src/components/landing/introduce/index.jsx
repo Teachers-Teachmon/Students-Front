@@ -9,7 +9,7 @@ export default function Introduce({isAnimation}) {
             <S.UnBox />
             <S.Wrap>
                 <S.Main>
-                    <img src={SmallLogo} alt={'small-logo'} width={150}/>
+                    <img draggable="false" src={SmallLogo} alt={'small-logo'} width={150}/>
                     <h1>TeachMon 소개</h1>
                     <S.TagBox>
                         <S.Tag>개선</S.Tag>
@@ -23,7 +23,7 @@ export default function Introduce({isAnimation}) {
                         <S.Text>보기 쉽고 편리하게 사용하실 수 있도록 제작하였습니다.</S.Text>
                     </S.TextBox>
                 </S.Main>
-                <S.Img $isAnimation={isAnimation} src={IntroduceImg} alt={'introduce'}/>
+                <S.Img draggable="false" $isAnimation={isAnimation} src={IntroduceImg} alt={'introduce'}/>
             </S.Wrap>
         </>
     )

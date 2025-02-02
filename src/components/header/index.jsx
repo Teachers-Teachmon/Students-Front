@@ -25,14 +25,14 @@ export default function Header() {
   let userprofile = localStorage.getItem('profile');
   return (
     <S.HeaderContainer>
-      <S.Logo src={teachmonLogo} onClick={() => { navigate('/main') }} />
+      <S.Logo draggable="false" src={teachmonLogo} onClick={() => { navigate('/main') }} />
       <S.NavList>
         {
           MENU.map((menu, index) => {
             const isActive = location.pathname.includes(menu.path);
             return (
               <S.MenuItem key={index} onClick={() => { navigate(menu.path) }} $active={isActive}>
-                <S.MenuIcon src={menu.logo} $active={isActive} />
+                <S.MenuIcon draggable="false" src={menu.logo} $active={isActive} />
                 {menu.label}
               </S.MenuItem>
             )
@@ -44,7 +44,7 @@ export default function Header() {
         {username}
       </S.Bottom>
         <S.Logout onClick={() => { logout() }}>
-            <img src={Logout} alt={"logoutIcon"} width={24}/>
+            <img draggable="false" src={Logout} alt={"logoutIcon"} width={24}/>
             <p>로그아웃</p>
         </S.Logout>
     </S.HeaderContainer>

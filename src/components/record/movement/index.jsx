@@ -5,7 +5,7 @@ import {useDeleteMovement} from "../../../hooks/useData.js";
 import useAuth from "../../../zustand/auth.js"
 import {getMovementDetail} from "../../../api/data.js";
 
-export default function Movement({data, day, isLoading, isLoading2}) {
+export default function Movement({data, day }) {
     const [isModal, setIsModal] = useState(false);
     const {mutate : deleteMovement} = useDeleteMovement();
     const {name, role} = useAuth();

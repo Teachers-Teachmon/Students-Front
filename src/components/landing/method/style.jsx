@@ -49,9 +49,17 @@ export const Nav = styled.div`
     background: ${(props)=>props.$isSelect ? '#2E6FF2' : '#DFE2E5'};
     border-radius: 100px;
 `
-export const Img = styled.img`
-    width: 700px;
+export const ImgBox = styled.div`
+    width: 600px;
+    height: 350px;
     box-shadow: 0 0 7.64px 0 rgba(0, 0, 0, 0.25);
+    aspect-ratio: 7 / 4;
+`
+export const Img = styled.img`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    user-select: none;
 `
 export const TextBox = styled.section`
     &>h1{
@@ -61,4 +69,7 @@ export const TextBox = styled.section`
     &>p{
         margin-bottom: 8px;
     }
+`
+export const Arrow = styled.img`
+    user-select: none;
 `

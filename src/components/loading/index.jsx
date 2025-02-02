@@ -18,6 +18,7 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    pointer-events: none;
 `
 const rotate = keyframes`
     0% {
@@ -31,7 +32,7 @@ const Loader = styled.div`
     width: 60px;
     height: 60px;
     border: 6px solid #f3f3f3;
-    border-top: 6px solid #3498db;
+    border-top: 6px solid #2E6FF2;
     border-radius: 50%;
     animation: ${rotate} 1s linear infinite;
 `
