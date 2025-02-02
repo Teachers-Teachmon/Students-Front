@@ -5,9 +5,7 @@ import axiosInstance from "../lib/axiosInstance.js";
 export const getNowStudent = async (grade) =>{
     console.log(grade);
     try{
-        const res = await axiosInstance.get(`${API_ENDPOINTS.STUDENT}/schedule`, {
-            grade:grade
-        });
+        const res = await axiosInstance.get(`${API_ENDPOINTS.STUDENT}/schedule/${grade}`);
         if(res.status!==200){
             return new Promise.reject({
                 status:res.status,
@@ -21,11 +19,8 @@ export const getNowStudent = async (grade) =>{
     }
 }
 export const schoolOutStudent = async (studentID) =>{
-    console.log(studentID);
     try{
-        const res = await axiosInstance.delete(`${API_ENDPOINTS.STUDENT}/exit`, {
-            studentID:studentID
-        });
+        const res = await axiosInstance.delete(`${API_ENDPOINTS.STUDENT}/exit/${studentID}`);
         if(res.status!==200){
             return new Promise.reject({
                 status:res.status,
@@ -54,7 +49,6 @@ export const getLocationAll = async ()=>{
 }
 
 export const getLocation = async (floor) =>{
-    console.log(floor);
     try {
         const res = await axiosInstance.get(`${API_ENDPOINTS.STUDENT}/location/${floor}`);
         if(res.status!==200){

@@ -33,32 +33,48 @@ export default function Location() {
     const [isModal,setIsModal] = useState(false);
     const {data : locationAll, isAllLoading} = useGetLocationAll();
     const {data : locationFloor, isFloorLoading} = useGetLocationFloor(floor()[0]);
-    const data = [
+    const alldata = [
         {
-            "place" : "과학실",
+            "과학실": "이석",
+            "화장실": "자습"
+        },
+        {
+            "과학실": "이석",
+            "화장실": "자습"
+        },
+        {
+            "과학실": "이석",
+            "화장실": "자습"
+        },
+        {
+            "과학실": "이석",
+            "화장실": "자습"
+        },
+    ]
+    const data = {
+        "과학실": {
             "status": "이석",
             "teacher": "박건우",
             "students": [
                 {
                     "studentNumber": 1401,
-                    "name": "김동욱",
+                    "studentName":"김동욱",
                     "status":"자습"
                 },
             ]
         },
-        {
-            "place" : "디자인실",
+        "창의디자인실": {
             "status": "이석",
-            "선생님": "정유진",
-            "학생": [
+            "teacher": "정유진",
+            "students": [
                 {
                     "studentNumber": 1401,
-                    "name": "김동욱",
+                    "studentName":"김동욱",
                     "status":"자습"
                 },
             ]
         }
-    ]
+    }
     return (
         <S.LocationContainer>
             {isAllLoading || isFloorLoading ? <Loading /> : null}
@@ -89,7 +105,7 @@ export default function Location() {
         </TransformComponent>
 </TransformWrapper>
             {isModal ? <DetailStudentLocation data ={data} setIsModal={setIsModal}/> : null}
-            {isFirstModal ? <FirstModal data ={locationAll} set={setIsFirstModal}/> : null}
+            {isFirstModal ? <FirstModal data ={alldata} set={setIsFirstModal}/> : null}
         </S.LocationContainer>
     )
 }

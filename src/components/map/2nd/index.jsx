@@ -46,12 +46,11 @@ export default function Second({set, data}) {
 
     ];
     const setPlace = useLocation((state) => state.setPlace);
-    const selectPlace = (data.map((item)=>{return item.place;}))
     return(
         elements.map((el) => (
             <S.Element
                 onClick={()=>{
-                    if(selectPlace.includes(el.name)) {
+                    if(Object.keys(data).includes(el.name)) {
                         set(true)
                         setPlace(el.name)
                     }
@@ -61,8 +60,8 @@ export default function Second({set, data}) {
                 $top={el.y}
                 $width={el.width}
                 $height={el.height}
-                $color={selectPlace.includes(el.name)}
-                $cursor={selectPlace.includes(el.name)}
+                $color={Object.keys(data).includes(el.name)}
+                $cursor={Object.keys(data).includes(el.name)}
             >
                 {el.name}
             </S.Element>
