@@ -31,8 +31,7 @@ export default function After_school() {
 
     const { data: myClasses = [] } = useGetMyClasses();
 
-
-    const { data: classList = []} = useGetClassList(selectedGrade);
+    const { data: classList = [] } = useGetClassList(selectedGrade);
 
 
     const closeModalHandler = (setModal) => {
@@ -165,7 +164,7 @@ export default function After_school() {
                                     <p>10~11교시</p>
                                     <S.ClassList2>
                                         {classList && classList
-                                            .filter(cls => cls.weekday === selectedDay && cls.period === "8~9교시")
+                                            .filter(cls => cls.weekday === selectedDay && cls.period === "10~11교시")
                                             .flatMap(cls => cls.afterschool)
                                             .map((cls, i) => (
                                                 <S.List1 key={i}>
