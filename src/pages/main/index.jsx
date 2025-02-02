@@ -94,7 +94,7 @@ export default function Main() {
                             {studentCount && studentCount?.map((data) => (
                                 <S.Row key={data.grade}>
                                     <div>{data.grade}학년</div>
-                                    <div>{data.selfstudy_count}명</div>
+                                    <div>{data.self_study_count}명</div>
                                     <div>{data.leaveseat_count}명</div>
                                     <div>{data.absent_count}명</div>
                                 </S.Row>
