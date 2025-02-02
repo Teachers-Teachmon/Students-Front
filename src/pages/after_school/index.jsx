@@ -242,7 +242,7 @@ export default function After_school() {
                 </S.ClassPrepModal>
             )}
             {isModal3 && (
-                <S.ClassEndModal onClick={() => closeModalHandler(setIsModal3)} >
+                <S.ClassEndModal onClick={() => closeModalHandler(setIsModal3)}>
                     <S.EndModal onClick={(e) => e.stopPropagation()}>
                         <ClassEnd
                             closeModal={() => { setIsModal3(false) }}
