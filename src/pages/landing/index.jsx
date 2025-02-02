@@ -26,6 +26,9 @@ const FullPageWrapper = styled.div`
     .fp-watermark {
         display: none !important;
     }
+    .fp-section {
+        transform: translate3d(0, 0, 0);
+    }
 `;
 
 const FullPageComponent = () => {

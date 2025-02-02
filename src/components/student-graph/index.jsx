@@ -5,23 +5,28 @@ import {usePatchStudent} from "../../hooks/useData.js";
 
 export default function StudentGraph({data, grade, classNum}){
     const [isOpen, setIsOpen] = useState([
-        false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+        false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
     ]);
     // 색깔 업데이트 해주는 창 띄워주기
     const isClick = (idx) => {
-        const newIsOpen = [...isOpen];
+        const newIsOpen = [
+            false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+        ];
         newIsOpen[idx] = !newIsOpen[idx];
         setIsOpen(newIsOpen);
     }
     const {mutate : patchStudent} = usePatchStudent();
     // 상태 업데이트 하는 함수, 상태업데이트하고 다시 불러오기
-    const changeStatus= (idx, status) => {
-        console.log(idx, status)
-        patchStudent({studentID: idx, status: status})
+    const changeStatus= (name, status) => {
+        setIsOpen(prevState => {
+            const newState = prevState.map(() => false);
+            return newState;
+        });
+        patchStudent({studentID: name, status: status})
     }
+
     const makeNumber = (grade, classNum, number, name) =>{
         number = String(number).startsWith(1) ? number : `0${number}`
-        console.log(grade, classNum, number, name);
         return String(grade) + String(classNum) + number + name
     }
     // 상태에 따라 색깔변환
@@ -44,15 +49,18 @@ export default function StudentGraph({data, grade, classNum}){
         <S.StudentContainer>
             <S.Class>{classNum}반</S.Class>
             <S.Graph  $seven = {data.length === 17}>
-                {data && data.map((el, idx) =>
-                        <S.Student $color = {studentColor(el.status)} onClick={()=>isClick(idx)} key = {idx}>{/* 칸 색깔도 data에서 추출해서 사용*/}
-                            <p>{idx+1}</p>
-                            <p>{el.name}</p>
-                            {isOpen[idx] ?
-                                <StatusUpdate changeStatus={changeStatus} name={makeNumber(grade, classNum, idx+1, el.name)} />
-                                 : null
-                            }
-                        </S.Student>
+                {data && data.map((el, idx) =>{
+                    return (<S.Student $color = {studentColor(el.status)} onClick={()=>isClick(idx)} key = {idx}>{/* 칸 색깔도 data에서 추출해서 사용*/}
+                        <p>{idx+1}</p>
+                        <p>{el.name}</p>
+                        {isOpen[idx] ?
+                            <StatusUpdate changeStatus={changeStatus} name={makeNumber(grade, classNum, idx+1, el.name)} nowStatus={el.status}/>
+                            : null
+                        }
+                    </S.Student>)
+                }
+
+
                 )}
                 { isOpen.some((value) => value === true) ? <S.Black onClick={()=>setIsOpen(isOpen.map(() => false))}></S.Black> : null}
             </S.Graph>

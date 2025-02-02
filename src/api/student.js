@@ -3,7 +3,6 @@ import axiosInstance from "../lib/axiosInstance.js";
 
 //${API_ENDPOINTS.STUDENT}
 export const getNowStudent = async (grade) =>{
-    console.log(grade);
     try{
         const res = await axiosInstance.get(`${API_ENDPOINTS.STUDENT}/schedule/${grade}`);
         if(res.status!==200){
