@@ -29,9 +29,55 @@ export default function After_school() {
 
     const { data: myTodayClasses = [] } = useGetTodayClasses();
 
-    const { data: myClasses = [] } = useGetMyClasses();
+    // const { data: myClasses = [] } = useGetMyClasses();
 
-    const { data: classList = [] } = useGetClassList(selectedGrade);
+    const myClasses = [
+        {
+            "weekday": "월",
+            "period": "8~9교시",
+            "grade": 1,
+            "name": "스프링 부트를 이용한 웹서비스 개발",
+            "placeName": "객체지향 프로그래밍실"
+        },
+        {
+            "weekday": "월",
+            "period": "8~9교시",
+            "grade": 1,
+            "name": "파이썬",
+            "placeName": "객체지향 프로그래밍실"
+        },
+        {
+            "weekday": "월",
+            "period": "8~9교시",
+            "grade": 1,
+            "name": "파이썬을 이용한 문제해결",
+            "placeName": "객체지향 프로그래밍실"
+        },
+        {
+            "weekday": "월",
+            "period": "8~9교시",
+            "grade": "1",
+            "name": "파이썬을 이용한 문제해결",
+            "placeName": "프로그래밍실"
+        },
+        {
+            "weekday": "월",
+            "period": "8~9교시",
+            "grade": 1,
+            "name": "파이썬을 이용한 문제해결",
+            "placeName": "프로그래밍실"
+        },
+        {
+            "weekday": "월",
+            "period": "8~9교시",
+            "grade": "1",
+            "name": "파이썬을 이용한 문제해결",
+            "placeName": "프로그래밍실"
+        }
+    ];
+
+
+    const { data: classList = []} = useGetClassList(selectedGrade);
 
 
     const closeModalHandler = (setModal) => {
@@ -91,7 +137,7 @@ export default function After_school() {
                                         <S.TableData $length={47}>{cls.weekday}</S.TableData>
                                         <S.TableData $length={87}>{cls.period}</S.TableData>
                                         <S.TableData $length={190}>{cls.name}</S.TableData>
-                                        <S.TableData $length={170}>{cls.placeName}</S.TableData>
+                                        <S.TableData $length={165}>{cls.placeName}</S.TableData>
                                         <S.OptionButton src={OptionButton} onClick={() => {
                                             setOptions(options === i ? null : i);
                                             setSelectedClass(cls);

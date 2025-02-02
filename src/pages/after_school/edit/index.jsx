@@ -8,6 +8,7 @@ import Download from '../../../assets/Download.svg';
 import Upload from '../../../assets/Upload.svg';
 import Confirm from '../../../components/button/confirm/index.jsx';
 import Search from '../../../assets/Search.svg';
+import OptionButton from '../../../assets/OptionButton.svg';
 
 export default function Edit() {
 
@@ -16,6 +17,12 @@ export default function Edit() {
     const [search, setSearch] = useState("");
     const [selectedPeriod, setSelectedPeriod] = useState('');
     const [selectedGrade, setSelectedGrade] = useState(1);
+    const [options, setOptions] = useState({
+        1: null,
+        2: null,
+        3: null,
+    });
+
     const [selectStudent, setSelectStudent] = useState({
         class1: [],
         class2: [],
@@ -37,7 +44,7 @@ export default function Edit() {
                 "studentsNumber": '',
             },
         ],
-        2: [    
+        2: [
             {
                 "period": '',
                 "teacher": '',
@@ -98,6 +105,13 @@ export default function Edit() {
         }));
     };
 
+    const handleOptionClick = (grade, index) => {
+        setOptions((prev) => ({
+            ...prev,
+            [grade]: prev[grade] === index ? null : index,
+        }));
+    };
+
     const [isOpen, setIsOpen] = useState({
         1: [],
         2: [],
@@ -108,7 +122,7 @@ export default function Edit() {
         setIsOpen((prev) => ({
             ...prev,
             [grade]: prev[grade].map((openState, idx) =>
-                idx === index ? !openState : openState 
+                idx === index ? !openState : openState
             ),
         }));
     };
@@ -157,6 +171,32 @@ export default function Edit() {
         //     2: [{ period: '', teacher: '', placeName: '', name: '', studentsNumber: '' }],
         //     3: [{ period: '', teacher: '', placeName: '', name: '', studentsNumber: '' }],
         // });
+    };
+
+    const handleDeleteRow = (grade, index) => {
+        setGrades((prev) => {
+            // 해당 학년의 현재 줄 개수 확인
+            if (prev[grade].length === 1) {
+                // 한 줄만 있으면 데이터만 초기화
+                return {
+                    ...prev,
+                    [grade]: prev[grade].map((row, idx) =>
+                        idx === index
+                            ? { period: '', teacher: '', placeName: '', name: '', studentsNumber: '' }
+                            : row
+                    ),
+                };
+            } else {
+                // 두 줄 이상이면 해당 인덱스의 행 삭제
+                return {
+                    ...prev,
+                    [grade]: prev[grade].filter((_, idx) => idx !== index),
+                };
+            }
+        });
+    
+        // 옵션 창 닫기
+        setOptions((prev) => ({ ...prev, [grade]: null }));
     };
     
 
@@ -208,7 +248,7 @@ export default function Edit() {
                                     <S.TopData $length={85}>교시</S.TopData>
                                     <S.TopData $length={102}>담당교사</S.TopData>
                                     <S.TopData $length={200}>장소</S.TopData>
-                                    <S.TopData $length={230}>방과후</S.TopData>
+                                    <S.TopData $length={290}>방과후</S.TopData>
                                     <p>* 학생은 자세히 보기에서 수정해 주세요.</p>
                                 </S.EditMainTop>
 
@@ -249,7 +289,7 @@ export default function Edit() {
                                                 }
                                             />
                                         </S.RowData>
-                                        <S.RowData $length={400}>
+                                        <S.RowData $length={550}>
                                             <S.ClassData
                                                 type='text'
                                                 value={row.afterClass}
@@ -258,10 +298,25 @@ export default function Edit() {
                                                 }
                                             />
                                         </S.RowData>
-                                        <S.DetailBtn onClick={() => {
+                                        <S.OptionButton
+                                            src={OptionButton}
+                                            onClick={() => handleOptionClick(grade, index)}
+                                        />
+                                        {options[grade] === index && (
+                                            <S.Options onClick={(e) => e.stopPropagation()}>
+                                                <button onClick={() => {
+                                                    setOptions((prev) => ({ ...prev, [grade]: null }));
+                                                    setSelectedGrade(grade);
+                                                    setIsModalOpen(true);
+                                                }}>자세히 보기</button>
+                                                <button onClick={() => handleDeleteRow(grade, index)}>삭제</button>
+                                            </S.Options>
+                                        )}
+
+                                        {/* <S.DetailBtn onClick={() => {
                                             setSelectedGrade(grade);
                                             setIsModalOpen(true);
-                                        }}>자세히 보기</S.DetailBtn>
+                                        }}>자세히 보기</S.DetailBtn> */}
                                     </S.EditRow>
                                 ))}
                                 <S.PlusBtn onClick={() => addRow(grade)}>+</S.PlusBtn>
@@ -357,7 +412,6 @@ export default function Edit() {
                                         </S.Class>
                                     ))}
                                 </S.StudentBox>
-
                             </S.ModalRight>
                         </S.ModalMain>
                     </S.ModalContent>

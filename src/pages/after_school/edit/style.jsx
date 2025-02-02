@@ -51,7 +51,7 @@ export const FileDown = styled.button`
     display: flex;
     gap: 5px;
     width: 120px;
-    height: 35px;
+    height: 40px;
     background-color: white;
     border: 1px solid black;
     border-radius: 4px;
@@ -64,7 +64,7 @@ export const FileUp = styled.button`
     gap: 5px;
     display: flex;
     width: 120px;
-    height: 35px;
+    height: 40px;
     background-color: white;
     border: 1px solid black;
     border-radius: 4px;
@@ -143,7 +143,8 @@ export const EditMain = styled.div`
     flex-direction: column;
     gap: 50px;
     overflow-y: auto;
-    max-height: 760px;
+    max-height: 700px;
+    position: relative;
 `
 
 export const EditRow = styled.div`
@@ -352,4 +353,41 @@ export const ClassMain = styled.div`
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
+`
+
+export const OptionButton = styled.img`
+    width: 15px;
+    
+`
+
+export const Options = styled.div`
+    position: absolute;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+    margin-top: 105px;
+    margin-left: 998px;
+    
+    button {
+        border: 1px;
+        padding: 10px 10px;
+        width: 100px;
+        background-color: #fff;
+        cursor: pointer;
+        border-right: 1px solid #cccccc;
+
+    }
+
+    button:hover {
+        background-color: #f0f0f0;
+    }
+
+    button{
+        border-right: none; 
+    }
+    
 `
