@@ -24,8 +24,6 @@ export const logout = async () => {
 export const getInfo = async (teacherId) =>{
     try{
         const res = await axiosInstance.get(`/teacher/view/${teacherId}`);
-        console.log(res);
-        console.log(res.data);
         return res.data;
     }catch(err){
         return Promise.reject(err);
@@ -35,7 +33,6 @@ export const getInfo = async (teacherId) =>{
 export const HealthCheck = async () =>{
     try{
         const res = await axiosInstance.get('/healthcheck');
-        console.log(res);
         return res.status;
     }catch(err){
         return Promise.reject(err);

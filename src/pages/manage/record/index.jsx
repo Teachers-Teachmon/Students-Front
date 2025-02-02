@@ -18,24 +18,28 @@ import patchDay from "../../../utils/patchDay.js";
 
 export default function Record() {
     const navigate = useNavigate();
+    const [isFirst, setIsFirst] = useState(true);
     const [isMovement, setIsMovement] = useState([
         true, false, false
     ]);
     const [search, setSearch] = useState("");
     const {today, day:dayComponent} = useDay();
     const [day, setDay] = useState(today);
-    const { data: movement, isFetching: movementLoading, isError: movementError } = useGetMovement(patchDay(day));
-    const {data :leave, isFetching : leaveLoading, leaveError} = useGetLeave(patchDay(day));
+    const { data: movement, isFetching: movementLoading, isError: movementError } = useGetMovement(isFirst ? patchDay(day) : day);
+    const {data :leave, isFetching : leaveLoading, leaveError} = useGetLeave(isFirst ? patchDay(day) : day);
     const debounce = useDebounce(search, 500);
     const [student, setStudent] = useState([]);
 
     useEffect(() => {
-        setDay(dayComponent);
+        if(dayComponent){
+            setIsFirst(false);
+            setDay(dayComponent);
+        }
     }, [dayComponent]);
 
     useEffect(() => {
         const fetchData = async () => {
-            const students = await getStudent(patchDay(day), search);
+            const students = await getStudent(isFirst ? patchDay(day) : day, search);
             setStudent(students);
         };
 
@@ -43,7 +47,7 @@ export default function Record() {
     }, [debounce]);
     return (
         <S.ManageContainer>
-            {movementLoading  ? <Loading /> : null}
+            {movementLoading || leaveLoading  ? <Loading /> : null}
             <Header/>
             <S.Wrap>
                 <S.Info>
@@ -78,7 +82,7 @@ export default function Record() {
                             : null}
                     </S.MainNav>
                     {isMovement[0] ? (
-                        <Movement data={movement} day={day} isLoading = {movementLoading} isLoading2={leaveLoading}/>
+                        <Movement data={movement} day={day}/>
                     ) : isMovement[1] ? (
                         <Leave data={leave}/>
                     ) : isMovement[2] ? (

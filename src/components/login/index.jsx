@@ -25,27 +25,23 @@ export default function LoginLoading(){
         deleteCookie('access');
 
         let retryCount = 0;
+        const value = decodeJWT(localStorage.getItem('accessToken'));
         const fetchTeacherInfo = async () => {
             while (retryCount < RETRY_LIMIT) {
-                const value = decodeJWT(access);
                 if (!value.id) {
                     console.warn(`Retry ${retryCount + 1}/${RETRY_LIMIT}: teacherId is undefined`);
                     retryCount++;
+                    if(retryCount === RETRY_LIMIT) window.location.reload();
                     continue;
                 }
 
-                try {
-                    const data = await getInfo(value.id);
-                    if (data) {
-                        localStorage.setItem('name', data.name);
-                        localStorage.setItem('profile', data.profile);
-                        window.history.replaceState(null, "", "/main");
-                        navigate("/main", { replace: true });
-                        return;
-                    }
-                } catch (error) {
-                    console.error(`Attempt ${retryCount + 1}: Error fetching teacher info`, error);
-                    retryCount++;
+                const data = await getInfo(value.id);
+                if (data) {
+                    localStorage.setItem('name', data.name);
+                    localStorage.setItem('profile', data.profile);
+                    window.history.replaceState(null, "", "/main");
+                    navigate("/main", { replace: true });
+                    return;
                 }
             }
         };

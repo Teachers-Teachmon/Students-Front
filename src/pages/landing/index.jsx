@@ -9,6 +9,7 @@ import Skill from "../../components/landing/skill/index.jsx";
 import Method from "../../components/landing/method/index.jsx";
 import {refreshAccessToken} from "../../lib/axiosInstance.js";
 import {HealthCheck} from "../../api/auth.js";
+import {useLocation} from "react-router-dom";
 
 // 스타일 정의
 const FullPageWrapper = styled.div`
@@ -33,7 +34,8 @@ const FullPageComponent = () => {
     const [isScrolling, setIsScrolling] = useState(false); // 스크롤 상태 추가
     const [currentSection, setCurrentSection] = useState(0);
 
-    let isProxyReady = false;
+    const [isProxyReady, setIsProxyReady] = useState(false);
+    const location = useLocation();
 
     const certification = async () =>{
         if (!isProxyReady) {
@@ -54,8 +56,7 @@ const FullPageComponent = () => {
             try {
                 const res = await HealthCheck();
                 if(res === 200){
-                    isProxyReady = true;
-                    console.log(isProxyReady)
+                    setIsProxyReady(true);
                 }
             } catch (error) {
                 console.error("Health check failed:", error);
@@ -66,7 +67,7 @@ const FullPageComponent = () => {
 
 
     useEffect(() => {
-        const checkAuth = async () => {
+        const checkAuth = () => {
             const instance = new fullpage('#fullpage', {
                 licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
                 autoScrolling: true,
@@ -95,7 +96,7 @@ const FullPageComponent = () => {
         };
 
         checkAuth();
-    }, []);
+    }, [location.pathname]);
 
     useEffect(() => {
         const moveToMain = async () =>{
