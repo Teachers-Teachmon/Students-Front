@@ -1,11 +1,11 @@
 import * as API from '../api/afterschool.js';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
-export const useGetClassList = (grade) => {
+export const useGetClassList = (grade, weekday) => {
     return useQuery({
-        queryKey: ['getClassList', grade],
+        queryKey: ['getClassList', grade, weekday],
         queryFn: async () => {
-            const res = await API.getClassList(grade); // 학년 별로 구분
+            const res = await API.getClassList(grade, weekday); // 학년 별로 구분
             return res.data || [];
         }
     });
