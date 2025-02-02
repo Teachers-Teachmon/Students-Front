@@ -1,12 +1,16 @@
 import * as S from './style.jsx'
-import {useDeleteLeave} from "../../../hooks/useData.js";
+import {useDeleteLeave, useGetLeave} from "../../../hooks/useData.js";
 import useAuth from "../../../zustand/auth.js";
+import patchDay from "../../../utils/patchDay.js";
+import Loading from "../../loading/index.jsx";
 
-export default function Leave({data}) {
+export default function Leave({day, isFirst}) {
+    const {data , isFetching , leaveError} = useGetLeave(isFirst ? patchDay(day) : day);
     const {mutate : deleteLeave} = useDeleteLeave()
     const {name, role} = useAuth();
     return (
         <S.LeaveContainer>
+            {isFetching ? <Loading /> : null}
             <S.Standard>
                 <S.UnBox></S.UnBox>
                 <S.Box $length={110}>학번/이름</S.Box>
