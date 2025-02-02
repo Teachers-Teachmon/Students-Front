@@ -39,3 +39,13 @@ export const useGetLocationFloor = (floor) =>{
         },
     })
 }
+
+export const useGetStudentCount = () => {
+    return useQuery({
+        queryKey:['studentCount'],
+        queryFn: async () => {
+            const res = await API.getStudentCount();
+            return res.data || [];
+        }
+    })
+}

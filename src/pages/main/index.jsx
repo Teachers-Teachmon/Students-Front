@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { data, useNavigate } from "react-router-dom";
 import ProgressBar from "../../components/progressBar";
 import SquareBtn from "../../components/button/square";
 import Header from "../../components/header";
@@ -9,6 +9,7 @@ import Rotate from '../../assets/rotate.svg';
 import { useState, useEffect } from "react";
 import { useGetCompleteRate, useGetNextSupervision, useGetDailySupervision } from "../../hooks/useSupervision.js";
 import { useGetChangeRequest } from "../../hooks/useChange.js";
+import { useGetStudentCount } from "../../hooks/useStudent.js";
 
 export default function Main() {
     let navigate = useNavigate();
@@ -20,27 +21,8 @@ export default function Main() {
 
     const { data: changeDay, isLoading: isLoadingChange, isError: isErrorChange } = useGetChangeRequest();
     const { data: todayTeacher, isLoading: isLoadingTeacher, isError: isErrorTeacher } = useGetDailySupervision(formattedDate);
+    const { data: studentCount, isLoading: isLoadingCount, isError: isErrorCount } = useGetStudentCount();
 
-    let studentInfo = [
-        {
-            "grade": 1,
-            "selfstudy_count": 10,
-            "leaveseat_count": 50,
-            "absent_count": 15
-        },
-        {
-            "grade": 2,
-            "selfstudy_count": 40,
-            "leaveseat_count": 23,
-            "absent_count": 0
-        },
-        {
-            "grade": 3,
-            "selfstudy_count": 40,
-            "leaveseat_count": 21,
-            "absent_count": 0
-        }
-    ]
     const pendingChangeRequests = changeDay?.filter(request => request.result === "PENDING") || [];
 
     const { data: nextData, isLoading: isLoadingNext, isError: isErrorNext } = useGetNextSupervision();
@@ -109,7 +91,7 @@ export default function Main() {
                                 <span>이석 인원</span>
                                 <span>조퇴/결석</span>
                             </S.StudentInfoHeader>
-                            {studentInfo.map((data) => (
+                            {studentCount && studentCount?.map((data) => (
                                 <S.Row key={data.grade}>
                                     <div>{data.grade}학년</div>
                                     <div>{data.selfstudy_count}명</div>
