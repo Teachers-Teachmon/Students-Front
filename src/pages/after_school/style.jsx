@@ -10,7 +10,7 @@ export const Content = styled.div`
     display: flex;
     width: 85%;
     height: 100%;
-    gap: 50px;
+    gap: 80px;
 `
 
 export const LeftContainer = styled.div`
@@ -18,7 +18,7 @@ export const LeftContainer = styled.div`
     flex-direction: column;
     gap: 100px;
     width: 50%;
-    padding: 3%;
+    padding: 0% 3%;
     margin-top: 30px;
 `
 
@@ -26,7 +26,7 @@ export const TodayClasses = styled.div`
     display: flex;
     flex-direction: column;
     gap: 25px;
-    padding: 5% 0% 0% 0%;
+    padding: 7% 0% 0% 0%;
     width: 50%;
 `
 
@@ -61,6 +61,7 @@ export const MyClasses = styled.div`
     display: flex;
     flex-direction: column;
     gap: 25px;
+    margin-top: 170px;
 `
 
 export const ClassTableContent = styled.div`
@@ -103,7 +104,7 @@ export const ClassTable = styled.div`
     border: 1px solid #cccccc;
     align-items: center;
     padding-left: 24px;
-    
+    position: relative;
 
     &:last-child {
         border-bottom-left-radius: 6px;
@@ -117,22 +118,25 @@ export const TableData = styled.div`
 
 export const OptionButton = styled.img`
     width: 15px;
+    
 `
 
 export const Options = styled.div`
     position: absolute;
+    z-index: 100;
     display: flex;
+    flex-direction: column;
     border: 1px solid #cccccc;
     border-radius: 8px;
     overflow: hidden;
     background-color: #fff;
-    margin-top: 65px;
-    margin-left: 430px;
+    margin-top: 135px;
+    margin-left: 510px;
     
     button {
         border: 1px;
-        padding: 10px 20px;
-        width: 80px;
+        padding: 10px 10px;
+        width: 61px;
         background-color: #fff;
         cursor: pointer;
         border-right: 1px solid #cccccc;
@@ -143,7 +147,7 @@ export const Options = styled.div`
         background-color: #f0f0f0;
     }
 
-    button:last-child {
+    button{
         border-right: none; 
     }
     
@@ -225,8 +229,7 @@ export const ClassList = styled.div`
     flex-direction: column;
     gap: 25px;
     width: 50%;
-    padding: 10px;
-    margin-top: 30px;
+    margin-top: 20px;
 `
 
 export const ClassListTop = styled.div`

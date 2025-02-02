@@ -1,5 +1,6 @@
 import * as API from '../api/afterschool.js';
 import { useMutation, useQuery } from '@tanstack/react-query';
+import * as API from '../api/change.js';
 
 export const useGetClassList = (grade) => {
     return useQuery({

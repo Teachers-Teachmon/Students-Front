@@ -48,5 +48,3 @@ export const getMyClasses = async () => {
         return Promise.reject(err);
     }
 }
-
-
