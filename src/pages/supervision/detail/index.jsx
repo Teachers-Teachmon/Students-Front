@@ -14,7 +14,6 @@ export default function SupervisionDetail() {
     const [selectedTeacher, setSelectedTeacher] = useState({});
     const [dropdownOpen, setDropdownOpen] = useState({});
 
-    const teacherOptions = ["정유진", "최병준", "장나영"];
     const handleTeacherChange = (date, grade, timeKey, newTeacher) => {
         setSelectedTeacher(prev => ({
             ...prev,
@@ -139,7 +138,6 @@ export default function SupervisionDetail() {
                                                                         target="선생님"
                                                                         name={selectedTeacher[uniqueKey] || teacherName}
                                                                         isOpen={dropdownOpen[uniqueKey] || false}
-                                                                        item={teacherOptions}
                                                                         change={(value) => handleTeacherChange(dayData.date, gradeKey, timeKey, value)}
                                                                         click={() => toggleDropdown(uniqueKey)}
                                                                     />
