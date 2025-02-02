@@ -34,7 +34,7 @@ export default function Edit() {
 
 
     const [grades, setGrades] = useState({
-
+        
         1: [
             {
                 "period": '',

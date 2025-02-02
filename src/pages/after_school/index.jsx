@@ -31,7 +31,7 @@ export default function After_school() {
 
     const { data: myClasses = [] } = useGetMyClasses();
 
-    const { data: classList = [] } = useGetClassList(selectedGrade);
+    const { data: classList = [] } = useGetClassList(selectedGrade, selectedDay);
 
 
     const closeModalHandler = (setModal) => {

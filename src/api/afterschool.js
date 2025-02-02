@@ -1,9 +1,9 @@
 import {API_ENDPOINTS} from "../lib/endpoints.js";
 import axiosInstance from "../lib/axiosInstance.js";
 
-export const getClassList = async (grade) => {
+export const getClassList = async (grade, weekday) => {
     try {
-        const res = await axiosInstance.get(`${API_ENDPOINTS.AFTER_SCHOOL}/grade/${grade}`);
+        const res = await axiosInstance.get(`${API_ENDPOINTS.AFTER_SCHOOL}/grade/${grade}/${weekday}`);
         if (res.status !== 200) {
             return Promise.reject({
                 status: res.status,
