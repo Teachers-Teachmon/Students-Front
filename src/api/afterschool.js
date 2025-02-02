@@ -3,9 +3,7 @@ import axiosInstance from "../lib/axiosInstance.js";
 
 export const getClassList = async (grade) => {
     try {
-        const res = await axiosInstance.get(`${API_ENDPOINTS.AFTER_SCHOOL}/grade`, {
-            params: { grade },
-        });
+        const res = await axiosInstance.get(`${API_ENDPOINTS.AFTER_SCHOOL}/grade/${grade}`);
         if (res.status !== 200) {
             return Promise.reject({
                 status: res.status,
