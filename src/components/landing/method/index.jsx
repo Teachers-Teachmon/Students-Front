@@ -88,11 +88,17 @@ export default  function Method(){
                     if(num.current === idx){
                         return(
                             <S.Main key={idx}>
-                                <S.Img
-                                    onClick={()=>{setImgNum((imgNum+1)%item.src.length);}}
-                                    src={item.src[imgNum]}
-                                    alt={"Description"}
-                                />
+                                <S.ImgBox>
+                                    <S.Img
+                                        draggable="false"
+                                        onClick={()=>{setImgNum((imgNum+1)%item.src.length);}}
+                                        src={item.src[imgNum]}
+                                        alt={"Description"}
+                                    />
+                                </S.ImgBox>
+
+
+
                                 <S.TextBox>
                                     <h1>{item.title}</h1>
                                     {item.content.map((item, idx)=><p key={idx}>{item}</p>)}
@@ -104,14 +110,14 @@ export default  function Method(){
 
                 <S.NavVar>
                     <S.ArrowBox onClick={()=>left()}>
-                        <img src={LeftArrow} alt={'leftArrow'} />
+                        <S.Arrow src={LeftArrow} alt={'leftArrow'} draggable="false" />
                     </S.ArrowBox>
                     <S.Nav $isSelect = {num.current === 0}></S.Nav>
                     <S.Nav $isSelect = {num.current === 1}></S.Nav>
                     <S.Nav $isSelect = {num.current === 2}></S.Nav>
                     <S.Nav $isSelect = {num.current === 3}></S.Nav>
                     <S.ArrowBox onClick={()=>right()}>
-                        <img src={RightArrow} alt={'rightArrow'} />
+                        <S.Arrow src={RightArrow} alt={'rightArrow'} draggable="false" />
                     </S.ArrowBox>
                 </S.NavVar>
             </S.Wrap>

@@ -96,7 +96,7 @@ export default function Skill(){
                             )}
                     })}
                 </S.Main>
-                <S.Img src={
+                <S.Img draggable="false" src={
                     skillShow[0] ? Skill1
                     : skillShow[1] ? Skill2
                     : skillShow[2] ? Skill3
