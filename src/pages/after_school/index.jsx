@@ -29,52 +29,7 @@ export default function After_school() {
 
     const { data: myTodayClasses = [] } = useGetTodayClasses();
 
-    // const { data: myClasses = [] } = useGetMyClasses();
-
-    const myClasses = [
-        {
-            "weekday": "월",
-            "period": "8~9교시",
-            "grade": 1,
-            "name": "스프링 부트를 이용한 웹서비스 개발",
-            "placeName": "객체지향 프로그래밍실"
-        },
-        {
-            "weekday": "월",
-            "period": "8~9교시",
-            "grade": 1,
-            "name": "파이썬",
-            "placeName": "객체지향 프로그래밍실"
-        },
-        {
-            "weekday": "월",
-            "period": "8~9교시",
-            "grade": 1,
-            "name": "파이썬을 이용한 문제해결",
-            "placeName": "객체지향 프로그래밍실"
-        },
-        {
-            "weekday": "월",
-            "period": "8~9교시",
-            "grade": "1",
-            "name": "파이썬을 이용한 문제해결",
-            "placeName": "프로그래밍실"
-        },
-        {
-            "weekday": "월",
-            "period": "8~9교시",
-            "grade": 1,
-            "name": "파이썬을 이용한 문제해결",
-            "placeName": "프로그래밍실"
-        },
-        {
-            "weekday": "월",
-            "period": "8~9교시",
-            "grade": "1",
-            "name": "파이썬을 이용한 문제해결",
-            "placeName": "프로그래밍실"
-        }
-    ];
+    const { data: myClasses = [] } = useGetMyClasses();
 
 
     const { data: classList = []} = useGetClassList(selectedGrade);
