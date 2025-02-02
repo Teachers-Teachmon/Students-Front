@@ -26,7 +26,7 @@ export default function SupervisionCreate({ closeModal }) {
         setStart(localStart);
         setEnd(localEnd);
 
-        autoAssign({ start: localStart, end: localEnd });
+        autoAssignment({ start: localStart, end: localEnd });
         closeModal();
     };
 

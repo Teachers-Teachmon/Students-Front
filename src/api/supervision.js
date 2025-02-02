@@ -21,9 +21,7 @@ export const autoAssignment = async ({start, end}) => {
 
 export const getAssignment = async (momth) => {
     try {
-        const res = await axiosInstance.get(`${API_ENDPOINTS.SUPERVISION}/assignment/${momth}`, {
-            month: momth
-        })
+        const res = await axiosInstance.get(`${API_ENDPOINTS.SUPERVISION}/assignment/${momth}`);
         if (res.status !== 200 && res.status !== 201) {
             return Promise.reject({
                 status: res.status,
@@ -70,9 +68,7 @@ export const getNextSupervision = async () => {
 
 export const getMonthlySupervision = async (month) => {
     try {
-        const res = await axiosInstance.get(`${API_ENDPOINTS.SUPERVISION}/month/${month}`, {
-            month: month
-        });
+        const res = await axiosInstance.get(`${API_ENDPOINTS.SUPERVISION}/month/${month}`);
         if (res.status !== 200 && res.status !== 201) {
             return Promise.reject({
                 status: res.status,
@@ -87,9 +83,7 @@ export const getMonthlySupervision = async (month) => {
 
 export const getDailySupervision = async (day) => {
     try {
-        const res = await axiosInstance.get(`${API_ENDPOINTS.SUPERVISION}/day/${day}`, {
-            day: day
-        });
+        const res = await axiosInstance.get(`${API_ENDPOINTS.SUPERVISION}/day/${day}`);
         if (res.status !== 200 && res.status !== 201) {
             return Promise.reject({
                 status: res.status,

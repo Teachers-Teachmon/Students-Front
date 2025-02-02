@@ -74,44 +74,7 @@ export default function Supervision() {
     };
     
 
-    // const { data: supervisionList, isLoading, isError } = useGetMonthlySupervision(month + 1);
-
-    const supervisionList = [
-        {
-            "year": 2025,
-            "month": 1,
-            "day": 19,
-            "schedule": [
-                {
-                    "period": "7교시",
-                    "grade": 1
-                },
-                {
-                    "period": "8~9교시",
-                    "grade": 1
-                }
-            ]
-        },
-        {
-            "year": 2025,
-            "month": 2,
-            "day": 3,
-            "schedule": [
-                {
-                    "period": "7교시",
-                    "grade": 1
-                },
-                {
-                    "period": "8~9교시",
-                    "grade": 1
-                },
-                {
-                    "period": "10~11교시",
-                    "grade": 1
-                }
-            ]
-        }
-    ];
+    const { data: supervisionList, isLoading, isError } = useGetMonthlySupervision(month + 1);
 
     return (
         <S.Wrapper>
@@ -136,12 +99,12 @@ export default function Supervision() {
                                 {week.map((date, dateIdx) => {
                                     const localDate = date.toLocaleDateString();
                                     return (
-                                        <S.CalendarDay key={dateIdx} onClick={() => { handleDateClick(date) }} isCurrentMonth={date.getMonth() === month} isSupervised={supervisionList.some(s => s.day === date.getDate() && s.month === month + 1 && s.year === year)}>
+                                        <S.CalendarDay key={dateIdx} onClick={() => { handleDateClick(date) }} isCurrentMonth={date.getMonth() === month} isSupervised={supervisionList?.some(s => s.day === date.getDate() && s.month === month + 1 && s.year === year)}>
                                             <S.Day style={{
                                                 backgroundColor: localDate === today ? '#ECF3FD' : '',
                                                 color: localDate === today ? '#5288F4' : '',
                                             }}>{date.getDate()}</S.Day>
-                                            {supervisionList.map((s, index) => {
+                                            {supervisionList?.map((s, index) => {
                                                 if (s.day === date.getDate() && s.year == year && s.month === month + 1) {
                                                     return s.schedule.map((schedule, idx) => (
                                                         <S.ScheduleItem key={idx} period={schedule.period}>

@@ -48,21 +48,21 @@ export const useGetNextSupervision = () => {
     });
 }
 
-export const useGetMonthlySupervision = (day, period, remainder) => {
+export const useGetMonthlySupervision = (momth) => {
     return useQuery({
-        queryKey: ['getMonthlySupervision', day, period, remainder],
+        queryKey: ['getMonthlySupervision', momth],
         queryFn: async () => {
-            const res = await API.getMonthlySupervision({day, period, remainder});
+            const res = await API.getMonthlySupervision(momth);
             return res.data || [];
         }
     });
 }
 
-export const useGetDailySupervision = (day, period, remainder) => {
+export const useGetDailySupervision = (day) => {
     return useQuery({
-        queryKey: ['getDailySupervision', day, period, remainder],
+        queryKey: ['getDailySupervision', day],
         queryFn: async () => {
-            const res = await API.getDailySupervision({day, period, remainder});
+            const res = await API.getDailySupervision(day);
             return res.data || [];
         }
     });

@@ -14,17 +14,11 @@ export default function SupervisionDetail() {
     const [selectedTeacher, setSelectedTeacher] = useState({});
     const [dropdownOpen, setDropdownOpen] = useState({});
 
-    const teacherOptions = ["정유진", "최병준", "장나영"]; // 임시로 정적으로 박아버리기
-    // const handleTeacherChange = (key, value) => {
-    //     setSelectedTeacher(prev => ({
-    //         ...prev,
-    //         [key]: value
-    //     }));
-    // };
+    const teacherOptions = ["정유진", "최병준", "장나영"];
     const handleTeacherChange = (date, grade, timeKey, newTeacher) => {
         setSelectedTeacher(prev => ({
             ...prev,
-            [`${date}-${grade}-${timeKey}`]: newTeacher // UI 반영용
+            [`${date}-${grade}-${timeKey}`]: newTeacher
         }));
     
         setTeacherList(prevList =>
@@ -52,11 +46,11 @@ export default function SupervisionDetail() {
         }));
     };
 
-    // const { data: TeacherList, isLoading, isError } = useGetAssignment(selMonth + 1);
+    const { data: TeacherList, isLoading, isError } = useGetAssignment(selMonth + 1);
     const { mutate: saveAssignment } = useSaveAutoAssignment();
 
     const handleSave = () => {
-        const changedData = TeacherList[0].data.map(dayData => ({
+        const changedData = TeacherList?.[0]?.data.map(dayData => ({
             date: dayData.date,
             first_grade: {
                 "7th_teacher": parseInt(dayData.first_grade["7th_teacher"].split("/")[1]),
@@ -79,174 +73,6 @@ export default function SupervisionDetail() {
         setIsEditing(false);
     };
     
-
-    const [TeacherList, setTeacherList] = useState([
-        {
-            "data": [
-                {
-                    "week": "2월 1주차",
-                    "day": "2월 1일 (월)",
-                    "date": "2025-02-01",
-                    "first_grade": {
-                        "7th_teacher": "정유진/1",
-                        "8th_teacher": "최병준/2",
-                        "10th_teacher": "장나영/3"
-                    },
-                    "second_grade": {
-                        "7th_teacher": "정유진/1",
-                        "8th_teacher": "최병준/2",
-                        "10th_teacher": "장나영/3"
-                    },
-                    "third_grade": {
-                        "7th_teacher": "정유진/1",
-                        "8th_teacher": "최병준/2",
-                        "10th_teacher": "장나영/3"
-                    }
-                },
-                {
-                    "week": "2월 1주차",
-                    "day": "2월 2일 (화)",
-                    "date": "2025-02-02",
-                    "first_grade": {
-                        "7th_teacher": "정유진/1",
-                        "8th_teacher": "최병준/2",
-                        "10th_teacher": "장나영/3"
-                    },
-                    "second_grade": {
-                        "7th_teacher": "정유진/1",
-                        "8th_teacher": "최병준/2",
-                        "10th_teacher": "장나영/3"
-                    },
-                    "third_grade": {
-                        "7th_teacher": "정유진/1",
-                        "8th_teacher": "최병준/2",
-                        "10th_teacher": "장나영/3"
-                    }
-                },
-                {
-                    "week": "2월 1주차",
-                    "day": "2월 3일 (수)",
-                    "date": "2025-02-03",
-                    "first_grade": {
-                        "7th_teacher": "정유진/1",
-                        "8th_teacher": "최병준/2",
-                        "10th_teacher": "장나영/3"
-                    },
-                    "second_grade": {
-                        "7th_teacher": "정유진/1",
-                        "8th_teacher": "최병준/2",
-                        "10th_teacher": "장나영/3"
-                    },
-                    "third_grade": {
-                        "7th_teacher": "정유진/1",
-                        "8th_teacher": "최병준/2",
-                        "10th_teacher": "장나영/3"
-                    }
-                },
-                {
-                    "week": "2월 1주차",
-                    "day": "2월 4일 (목)",
-                    "date": "2025-02-04",
-                    "first_grade": {
-                        "7th_teacher": "정유진/1",
-                        "8th_teacher": "최병준/2",
-                        "10th_teacher": "장나영/3"
-                    },
-                    "second_grade": {
-                        "7th_teacher": "정유진/1",
-                        "8th_teacher": "최병준/2",
-                        "10th_teacher": "장나영/3"
-                    },
-                    "third_grade": {
-                        "7th_teacher": "정유진/1",
-                        "8th_teacher": "최병준/2",
-                        "10th_teacher": "장나영/3"
-                    }
-                },
-                {
-                    "week": "2월 2주차",
-                    "day": "2월 8일 (월)",
-                    "date": "2025-02-08",
-                    "first_grade": {
-                        "7th_teacher": "정유진/1",
-                        "8th_teacher": "최병준/2",
-                        "10th_teacher": "장나영/3"
-                    },
-                    "second_grade": {
-                        "7th_teacher": "정유진/1",
-                        "8th_teacher": "최병준/2",
-                        "10th_teacher": "장나영/3"
-                    },
-                    "third_grade": {
-                        "7th_teacher": "정유진/1",
-                        "8th_teacher": "최병준/2",
-                        "10th_teacher": "장나영/3"
-                    }
-                },
-                {
-                    "week": "2월 2주차",
-                    "day": "2월 9일 (화)",
-                    "date": "2025-02-09",
-                    "first_grade": {
-                        "7th_teacher": "정유진/1",
-                        "8th_teacher": "최병준/2",
-                        "10th_teacher": "장나영/3"
-                    },
-                    "second_grade": {
-                        "7th_teacher": "정유진/1",
-                        "8th_teacher": "최병준/2",
-                        "10th_teacher": "장나영/3"
-                    },
-                    "third_grade": {
-                        "7th_teacher": "정유진/1",
-                        "8th_teacher": "최병준/2",
-                        "10th_teacher": "장나영/3"
-                    }
-                },
-                {
-                    "week": "2월 2주차",
-                    "day": "2월 10일 (수)",
-                    "date": "2025-02-10",
-                    "first_grade": {
-                        "7th_teacher": "정유진/1",
-                        "8th_teacher": "최병준/2",
-                        "10th_teacher": "장나영/3"
-                    },
-                    "second_grade": {
-                        "7th_teacher": "정유진/1",
-                        "8th_teacher": "최병준/2",
-                        "10th_teacher": "장나영/3"
-                    },
-                    "third_grade": {
-                        "7th_teacher": "정유진/1",
-                        "8th_teacher": "최병준/2",
-                        "10th_teacher": "장나영/3"
-                    }
-                },
-                {
-                    "week": "2월 2주차",
-                    "day": "2월 11일 (목)",
-                    "date": "2025-02-11",
-                    "first_grade": {
-                        "7th_teacher": "정유진/1",
-                        "8th_teacher": "최병준/2",
-                        "10th_teacher": "장나영/3"
-                    },
-                    "second_grade": {
-                        "7th_teacher": "정유진/1",
-                        "8th_teacher": "최병준/2",
-                        "10th_teacher": "장나영/3"
-                    },
-                    "third_grade": {
-                        "7th_teacher": "정유진/1",
-                        "8th_teacher": "최병준/2",
-                        "10th_teacher": "장나영/3"
-                    }
-                }
-            ]
-        }
-    ]);
-
     function groupByWeek(dataArray) {
         return dataArray.reduce((acc, item) => {
             const w = item.week;
@@ -255,7 +81,7 @@ export default function SupervisionDetail() {
             return acc;
         }, {});
     }
-    const groupedData = groupByWeek(TeacherList[0].data);
+    const groupedData = groupByWeek(TeacherList?.[0]?.data || []);
 
     return (
         <S.Wrapper>
