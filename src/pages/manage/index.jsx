@@ -24,7 +24,6 @@ export default function Manage(){
             .filter((idx) => idx !== null);
     };
     const {data : student, isLoading} = useGetNowStudent(gradeIndex()[0]);
-    console.log(student);
 
     const [weekday, setWeekday] = useState(false);
     // 렌더링시 오늘의 날짜를 계산해서 보여줌
@@ -116,7 +115,8 @@ export default function Manage(){
                         </S.Record>
                     </S.MainNav>
                     <S.Section>
-                        {weekday ? <S.NoData>오늘은 방과후가 없습니다.</S.NoData> : !isLoading &&
+                        {
+                            weekday ? <S.NoData>오늘은 방과후가 없습니다.</S.NoData> : !isLoading &&
                             <>
                                 <StudentGraph data={student['1반']} grade={gradeIndex()[0]} classNum = {1}/>
                                 <StudentGraph data={student['2반']} grade={gradeIndex()[0]} classNum = {2}/>
@@ -124,6 +124,7 @@ export default function Manage(){
                                 <StudentGraph data={student['4반']} grade={gradeIndex()[0]}  classNum = {4}/>
                             </>
                         }
+
                     </S.Section>
                 </S.Main>
             </S.Wrap>

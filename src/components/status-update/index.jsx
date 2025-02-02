@@ -1,36 +1,56 @@
 import styled from "styled-components";
-export default function StatusUpdate({changeStatus, name}) {
-    console.log(name);
+export default function StatusUpdate({changeStatus, name, nowStatus}) {
+    const now = () =>{
+        switch(nowStatus){
+            case '조퇴' :
+            case '이탈' :
+                return (
+                    <>
+                        <Status color={"#ECFDF3"} onClick={()=>changeStatus(name, "자습")}>
+                            <Circle color={"#14BA6D"}></Circle>
+                            <StatusText color={"#14BA6D"}>자습</StatusText>
+                        </Status>
+                        <Status color={"#F0ECFD"} onClick={()=>changeStatus(name, "이석")}>
+                            <Circle color={"#6A1EC1"}></Circle>
+                            <StatusText color={"#6A1EC1"}>이석</StatusText>
+                        </Status>
+                    </>
+                )
+            case '자습' :
+            case '이석' :
+                return (
+                    <>
+                        <Status color={"#FFF6E4"} onClick={()=>changeStatus(name, "조퇴")}>
+                            <Circle color={"#FF9000"}></Circle>
+                            <StatusText color={"#FF9000"}>조퇴</StatusText>
+                        </Status>
+                        <Status color={"#FDF0EC"} onClick={()=>changeStatus(name, "이탈")}>
+                            <Circle color={"#F87067"}></Circle>
+                            <StatusText color={"#F87067"}>이탈</StatusText>
+                        </Status>
+                    </>
+                )
+        }
+    }
     return (
-        <StatusBox>
-            <Status color={"#FFF6E4"} onClick={()=>changeStatus(name, "조퇴")}>
-                <Circle color={"#FF9000"}></Circle>
-                <StatusText color={"#FF9000"}>조퇴</StatusText>
-            </Status>
-            <Status color={"#ECFDF3"} onClick={()=>changeStatus(name, "자습")}>
-                <Circle color={"#14BA6D"}></Circle>
-                <StatusText color={"#14BA6D"}>자습</StatusText>
-            </Status>
-            <Status color={"#FDF0EC"} onClick={()=>changeStatus(name, "이탈")}>
-                <Circle color={"#F87067"}></Circle>
-                <StatusText color={"#F87067"}>이탈</StatusText>
-            </Status>
+        <StatusBox onClick={(e) => e.stopPropagation()} >
+            {now()}
         </StatusBox>
     )
 }
 
 export const StatusBox = styled.div`
-    width: 250px;
-    height: 50px;
     display: flex;
+    width: max-content;
     justify-content: space-around;
     align-items: center;
     flex-direction: row;
     position: absolute;
     border: 2px solid #F5F5F5;
     border-radius: 8px;
-    top: -60px;
-    left: -90px;
+    gap: 10px;
+    top: -55px;
+    left: -40px;
     color: white;
     font-size: 12px;
     font-weight: 500;
