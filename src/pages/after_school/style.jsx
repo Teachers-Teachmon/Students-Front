@@ -65,6 +65,7 @@ export const MyClasses = styled.div`
 `
 
 export const ClassTableContent = styled.div`
+    width: 100%;
 `
 
 export const ClassTableTop = styled.div`
@@ -86,7 +87,8 @@ export const ClassTableMain = styled.div`
     flex-direction: column;
     width: 600px;
     overflow-y: auto;
-    max-height: 290px;
+    max-height: 350px;
+    height: 300px;
 `
 
 
