@@ -63,7 +63,7 @@ export const NexSupLeft = styled.div`
 `
 
 export const NextSupDate = styled.div`
-    font-size: 4rem;
+    font-size: 3.4rem;
     font-weight: 700;
     font-style: italic;
 `
