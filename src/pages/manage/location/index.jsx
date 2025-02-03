@@ -31,53 +31,11 @@ export default function Location() {
             .filter((idx) => idx !== null);
     };
     const [isModal,setIsModal] = useState(false);
-    const {data : locationAll, isAllLoading} = useGetLocationAll();
-    const {data : locationFloor, isFloorLoading} = useGetLocationFloor(floor()[0]);
-    const alldata = [
-        {
-            "과학실": "이석",
-            "화장실": "자습"
-        },
-        {
-            "과학실": "이석",
-            "화장실": "자습"
-        },
-        {
-            "과학실": "이석",
-            "화장실": "자습"
-        },
-        {
-            "과학실": "이석",
-            "화장실": "자습"
-        },
-    ]
-    const data = {
-        "과학실": {
-            "status": "이석",
-            "teacher": "박건우",
-            "students": [
-                {
-                    "studentNumber": 1401,
-                    "studentName":"김동욱",
-                    "status":"자습"
-                },
-            ]
-        },
-        "창의디자인실": {
-            "status": "이석",
-            "teacher": "정유진",
-            "students": [
-                {
-                    "studentNumber": 1401,
-                    "studentName":"김동욱",
-                    "status":"자습"
-                },
-            ]
-        }
-    }
+    const {data : locationAll, isFetching : isAllLoading} = useGetLocationAll();
+    const {data : locationFloor, isFetching : isFloorLoading} = useGetLocationFloor(floor()[0]);
+
     return (
         <S.LocationContainer>
-            {isAllLoading || isFloorLoading ? <Loading /> : null}
             <Header />
             <S.Info>
                 <S.FloorBox>
@@ -88,24 +46,27 @@ export default function Location() {
                 </S.FloorBox>
                 <SquareBtn name={"돌아가기"} status={true} On={()=>navigate('/manage')} />
             </S.Info>
+            {isAllLoading || isFloorLoading ? <Loading/> : null}
             <TransformWrapper>
                 <TransformComponent>
             <S.Wrap>
-                {isFloor[0] ? (
-                    <First data = {data} set = {setIsModal}/>
-                ) : isFloor[1] ? (
-                    <Second data = {data} set = {setIsModal}/>
-                ) : isFloor[2] ? (
-                    <Third data = {data} set = {setIsModal}/>
-                ) : isFloor[3] ? (
-                    <Fourth data = {data} set = {setIsModal} />
-                ) : null
+                {isAllLoading || isFloorLoading ?
+                null :
+                    isFloor[0] ? (
+                            <First data = {locationFloor} set = {setIsModal}/>
+                        ) : isFloor[1] ? (
+                            <Second data = {locationFloor} set = {setIsModal}/>
+                        ) : isFloor[2] ? (
+                            <Third data = {locationFloor} set = {setIsModal}/>
+                        ) : isFloor[3] ? (
+                            <Fourth data = {locationFloor} set = {setIsModal} />
+                        ) : null
                 }
             </S.Wrap>
         </TransformComponent>
 </TransformWrapper>
-            {isModal ? <DetailStudentLocation data ={data} setIsModal={setIsModal}/> : null}
-            {isFirstModal ? <FirstModal data ={alldata} set={setIsFirstModal}/> : null}
+            {isModal ? <DetailStudentLocation data ={locationFloor} setIsModal={setIsModal}/> : null}
+            {isFirstModal && !isAllLoading ? <FirstModal data ={locationAll} set={setIsFirstModal}/> : null}
         </S.LocationContainer>
     )
 }

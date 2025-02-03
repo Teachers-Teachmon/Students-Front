@@ -48,7 +48,7 @@ export default function First({set, data}) {
     const setPlace = useLocation((state) => state.setPlace);
 
     return(
-        elements.map((el) => (
+        data && elements.map((el) => (
                 <S.Element
                     onClick={()=>{
                         if(Object.keys(data).includes(el.name)) {

@@ -40,7 +40,7 @@ export default function Record() {
         };
 
         fetchData();
-    }, [debounce]);
+    }, [debounce, day]);
     return (
         <S.ManageContainer>
             <Header/>

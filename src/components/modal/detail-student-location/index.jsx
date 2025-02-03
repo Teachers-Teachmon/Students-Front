@@ -8,7 +8,7 @@ import StatusUpdate from "../../status-update";
 import useLocation from "../../../zustand/locationDetail.js";
 import {usePatchStudent} from "../../../hooks/useData.js";
 
-export default function DetailStudentLocation({setIsModal, data}) {
+export default function DetailStudentLocation({data, setIsModal}) {
     const [isOpen, setIsOpen] = useState([]);
     const location = useLocation.getState();
 
@@ -39,7 +39,7 @@ export default function DetailStudentLocation({setIsModal, data}) {
         <S.Black onClick={()=>setIsModal(false)}>
             <S.Content  onClick={(e) => e.stopPropagation()}>
                 <S.Title>
-                    <h1>{setLocation().place}({setLocation().status})</h1>
+                    <h1>{location.place}({setLocation().status})</h1>
                     <img src={X} style={{ cursor: 'pointer' }} alt={"엑스"} onClick={()=>setIsModal(false)}/>
                 </S.Title>
                 <S.Box>
