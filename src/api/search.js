@@ -28,7 +28,7 @@ export const searchPlace = async (query) =>{
                 message:res.message
             })
         }
-        return res;
+        return res.data;
     }catch (err){
         return Promise.reject(err);
     }
