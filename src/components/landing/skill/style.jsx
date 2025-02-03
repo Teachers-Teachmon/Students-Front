@@ -11,11 +11,11 @@ export const Wrap = styled.div`
     height: 90vh;
     display: flex;
     align-items: center;
-    padding: 3% 6%;
+    padding: 3% 10%;
     justify-content: space-between;
 `
 export const Img = styled.img`
-    width: 620px;
+    width: 50%;
 `
 export const Main = styled.main`
     width: 40%;

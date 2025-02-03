@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { data, useNavigate } from "react-router-dom";
 import ProgressBar from "../../components/progressBar";
 import SquareBtn from "../../components/button/square";
 import Header from "../../components/header";
@@ -9,6 +9,7 @@ import Rotate from '../../assets/rotate.svg';
 import { useState, useEffect } from "react";
 import { useGetCompleteRate, useGetNextSupervision, useGetDailySupervision } from "../../hooks/useSupervision.js";
 import { useGetChangeRequest } from "../../hooks/useChange.js";
+import { useGetStudentCount } from "../../hooks/useStudent.js";
 
 export default function Main() {
     let navigate = useNavigate();
@@ -20,33 +21,14 @@ export default function Main() {
 
     const { data: changeDay, isLoading: isLoadingChange, isError: isErrorChange } = useGetChangeRequest();
     const { data: todayTeacher, isLoading: isLoadingTeacher, isError: isErrorTeacher } = useGetDailySupervision(formattedDate);
+    const { data: studentCount, isLoading: isLoadingCount, isError: isErrorCount } = useGetStudentCount();
 
-    let studentInfo = [
-        {
-            "grade": 1,
-            "selfstudy_count": 10,
-            "leaveseat_count": 50,
-            "absent_count": 15
-        },
-        {
-            "grade": 2,
-            "selfstudy_count": 40,
-            "leaveseat_count": 23,
-            "absent_count": 0
-        },
-        {
-            "grade": 3,
-            "selfstudy_count": 40,
-            "leaveseat_count": 21,
-            "absent_count": 0
-        }
-    ]
     const pendingChangeRequests = changeDay?.filter(request => request.result === "PENDING") || [];
 
     const { data: nextData, isLoading: isLoadingNext, isError: isErrorNext } = useGetNextSupervision();
     const { data: completeRateData, isLoading: isLoadingRate, isError: IsErrorRate } = useGetCompleteRate();
 
-    const [nextDay, setNextDay] = useState(-1);
+    const [nextDay, setNextDay] = useState(0);
     const [day, setDay] = useState("");
     const [period, setPeriod] = useState("");
 
@@ -56,9 +38,9 @@ export default function Main() {
 
     useEffect(() => {
         if (!isLoadingNext && nextData) {
-            setNextDay(nextData.reminder ?? -1);
-            setDay(nextData.reminder === -1 ? "더 이상 자습감독 일정이 없습니다." : nextData.day || "");
-            setPeriod(nextData.reminder === -1 ? "" : nextData.period || "");
+            setNextDay(nextData.remainder);
+            setDay(nextData.day || "");
+            setPeriod(nextData.period || "");
         }
     }, [nextData, isLoadingNext]);
 
@@ -93,7 +75,7 @@ export default function Main() {
                     <S.NextSup>
                         <S.NexSupLeft>
                             <h3>다음 자습감독 기간</h3>
-                            <S.NextSupDate>D - {nextDay === -1 ? 0 : nextDay}</S.NextSupDate>
+                            <S.NextSupDate>D - {nextDay}</S.NextSupDate>
                             <h2>{day}</h2>
                             <h4>{period}</h4>
                         </S.NexSupLeft>
@@ -109,10 +91,10 @@ export default function Main() {
                                 <span>이석 인원</span>
                                 <span>조퇴/결석</span>
                             </S.StudentInfoHeader>
-                            {studentInfo.map((data) => (
+                            {studentCount && studentCount?.map((data) => (
                                 <S.Row key={data.grade}>
                                     <div>{data.grade}학년</div>
-                                    <div>{data.selfstudy_count}명</div>
+                                    <div>{data.self_study_count}명</div>
                                     <div>{data.leaveseat_count}명</div>
                                     <div>{data.absent_count}명</div>
                                 </S.Row>

@@ -115,7 +115,8 @@ export default function Manage(){
                         </S.Record>
                     </S.MainNav>
                     <S.Section>
-                        {weekday ? <S.NoData>오늘은 방과후가 없습니다.</S.NoData> : !isLoading &&
+                        {
+                            weekday ? <S.NoData>오늘은 방과후가 없습니다.</S.NoData> : !isLoading &&
                             <>
                                 <StudentGraph data={student['1반']} grade={gradeIndex()[0]} classNum = {1}/>
                                 <StudentGraph data={student['2반']} grade={gradeIndex()[0]} classNum = {2}/>
@@ -123,6 +124,7 @@ export default function Manage(){
                                 <StudentGraph data={student['4반']} grade={gradeIndex()[0]}  classNum = {4}/>
                             </>
                         }
+
                     </S.Section>
                 </S.Main>
             </S.Wrap>

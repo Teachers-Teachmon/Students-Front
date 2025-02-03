@@ -9,7 +9,7 @@ import { useGetMonthlySupervision } from '../../hooks/useSupervision.js';
 export default function Supervision() {
     let navigate = useNavigate();
     let [selectedDate, setSelectedDate] = useState(null);
-    let [isModalOpen, setIsModalOpen] = useState(false); // 이거 날짜 클릭했을 때 나오는 모달을 위해서 만든거임
+    let [isModalOpen, setIsModalOpen] = useState(false);
 
     let [currentDate, setCurrentDate] = useState(new Date());
     const year = currentDate.getFullYear();
@@ -17,15 +17,13 @@ export default function Supervision() {
 
     const today = new Date().toLocaleDateString();
 
-    // 바로 1일로 시작하지 않고 빈공간이 있다면 저번달의 날짜를 표시하기 위해서
-    const firstDayofMonth = new Date(year, month, 1); //현재 달의 첫날
+    const firstDayofMonth = new Date(year, month, 1);
     const startDay = new Date(firstDayofMonth);
-    startDay.setDate(1 - firstDayofMonth.getDay()); //현재 달의 첫날의 요일을 일요일로 맞춤
+    startDay.setDate(1 - firstDayofMonth.getDay());
 
-    // 31일로 끝났는데, 빈공간이 있으면 거기를 채워야함
-    const lastDayofMonth = new Date(year, month + 1, 0); //현재 달의 마지막날 (3번째 인자를 0으로 하면 마지막날 반환)
+    const lastDayofMonth = new Date(year, month + 1, 0);
     const endDay = new Date(lastDayofMonth);
-    endDay.setDate(lastDayofMonth.getDate() + 6 - lastDayofMonth.getDay()); //현재 달의 마지막날의 요일을 토요일로 맞춤
+    endDay.setDate(lastDayofMonth.getDate() + 6 - lastDayofMonth.getDay());
 
     const groupDatesByWeek = (startDay, endDay) => {
         const weeks = [];
@@ -68,50 +66,13 @@ export default function Supervision() {
             month: '2-digit',
             day: '2-digit'
         }).replace(/\. /g, '-').replace('.', '');
-    
+
         setSelectedDate(formattedDate);
         setIsModalOpen(true);
     };
-    
 
-    // const { data: supervisionList, isLoading, isError } = useGetMonthlySupervision(month + 1);
 
-    const supervisionList = [
-        {
-            "year": 2025,
-            "month": 1,
-            "day": 19,
-            "schedule": [
-                {
-                    "period": "7교시",
-                    "grade": 1
-                },
-                {
-                    "period": "8~9교시",
-                    "grade": 1
-                }
-            ]
-        },
-        {
-            "year": 2025,
-            "month": 2,
-            "day": 3,
-            "schedule": [
-                {
-                    "period": "7교시",
-                    "grade": 1
-                },
-                {
-                    "period": "8~9교시",
-                    "grade": 1
-                },
-                {
-                    "period": "10~11교시",
-                    "grade": 1
-                }
-            ]
-        }
-    ];
+    const { data: supervisionList, isLoading, isError } = useGetMonthlySupervision(month + 1);
 
     return (
         <S.Wrapper>
@@ -136,19 +97,28 @@ export default function Supervision() {
                                 {week.map((date, dateIdx) => {
                                     const localDate = date.toLocaleDateString();
                                     return (
-                                        <S.CalendarDay key={dateIdx} onClick={() => { handleDateClick(date) }} isCurrentMonth={date.getMonth() === month} isSupervised={supervisionList.some(s => s.day === date.getDate() && s.month === month + 1 && s.year === year)}>
+                                        <S.CalendarDay key={dateIdx} onClick={() => { handleDateClick(date) }} $isCurrentMonth={date.getMonth() === month} $isSupervised={Array.isArray(supervisionList) && supervisionList.some(s => s.day === date.getDate() && s.month === month + 1 && s.year === year)}>
                                             <S.Day style={{
                                                 backgroundColor: localDate === today ? '#ECF3FD' : '',
                                                 color: localDate === today ? '#5288F4' : '',
                                             }}>{date.getDate()}</S.Day>
-                                            {supervisionList.map((s, index) => {
+                                            {Array.isArray(supervisionList) && supervisionList.map((s, index) => {
                                                 if (s.day === date.getDate() && s.year == year && s.month === month + 1) {
-                                                    return s.schedule.map((schedule, idx) => (
-                                                        <S.ScheduleItem key={idx} period={schedule.period}>
-                                                            <span>{schedule.period}</span>
-                                                            <span>{schedule.grade}학년</span>
-                                                        </S.ScheduleItem>
-                                                    ));
+                                                    return Array.isArray(s.schedule) ? (
+                                                        s.schedule.map((schedule, idx) => (
+                                                            <S.ScheduleItem key={idx} period={schedule.period}>
+                                                                <span>{schedule.period}</span>
+                                                                <span>{schedule.grade}학년</span>
+                                                            </S.ScheduleItem>
+                                                        ))
+                                                    ) : (
+                                                        s.schedule && (
+                                                            <S.ScheduleItem key={index} period={s.schedule.period}>
+                                                                <span>{s.schedule.period}</span>
+                                                                <span>{s.schedule.grade}학년</span>
+                                                            </S.ScheduleItem>
+                                                        )
+                                                    );
                                                 }
                                             })}
                                         </S.CalendarDay>

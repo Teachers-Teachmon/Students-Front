@@ -10,7 +10,7 @@ const axiosInstance = axios.create({
 });
 
 export const refreshAccessToken = async () => {
-    const response = await axios.post('/api/reissue', null, {
+    const response = await axios.get('/api/reissue', null, {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.getItem('refreshToken')}`
@@ -24,7 +24,7 @@ export const refreshAccessToken = async () => {
         window.location.href = '/login';
         return false;
     }
-    return response.headers['Authorization'];
+    return response.headers['authorization'];
 };
 
 // 요청 인터셉터

@@ -3,9 +3,7 @@ import axiosInstance from "../lib/axiosInstance.js";
 
 export const getMonthlySupervision = async (month) => {
     try {
-        const res = await axiosInstance.get(`${API_ENDPOINTS.CHANGE}/schedule/${month}`, {
-            month: month
-        });
+        const res = await axiosInstance.get(`${API_ENDPOINTS.CHANGE}/schedule/${month}`);
         if (res.status !== 200 && res.status !== 201) {
             return Promise.reject({
                 status: res.status,
@@ -21,9 +19,7 @@ export const getMonthlySupervision = async (month) => {
 export const getFixedTeachers = async (date, grade, period) => {
     try {
         const res = await axiosInstance.get(`${API_ENDPOINTS.CHANGE}/static`, {
-            date: date,
-            grade: grade,
-            period: period
+            params: { date, grade, period }
         });
         if (res.status !== 200 && res.status !== 201) {
             return Promise.reject({

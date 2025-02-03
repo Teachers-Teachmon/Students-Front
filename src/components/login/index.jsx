@@ -1,8 +1,13 @@
 import {useEffect} from "react";
 import {getInfo} from "../../api/auth.js";
 import {decodeJWT} from '../../zustand/auth.js';
+import {useNavigate} from "react-router-dom";
+import Loading from "../loading/index.jsx";
 
 export default function LoginLoading(){
+
+    const RETRY_LIMIT = 3;
+    const navigate = useNavigate()
 
     useEffect(()=>{
         function getCookie(name) {
@@ -19,32 +24,34 @@ export default function LoginLoading(){
         localStorage.setItem('accessToken', access);
         deleteCookie('access');
 
-        const value = decodeJWT(access);
+        let retryCount = 0;
+        const value = decodeJWT(localStorage.getItem('accessToken'));
+        const fetchTeacherInfo = async () => {
+            while (retryCount < RETRY_LIMIT) {
+                if (!value.id) {
+                    console.warn(`Retry ${retryCount + 1}/${RETRY_LIMIT}: teacherId is undefined`);
+                    retryCount++;
+                    if(retryCount === RETRY_LIMIT) window.location.reload();
+                    continue;
+                }
 
-        const fetchTeacherInfo = async (teacherId) => {
-            try {
-                const data = await getInfo(teacherId);
-                console.log(data);
-                if(data){
+                const data = await getInfo(value.id);
+                if (data) {
                     localStorage.setItem('name', data.name);
                     localStorage.setItem('profile', data.profile);
-                    window.location.href = '/main';
+                    window.history.replaceState(null, "", "/main");
+                    navigate("/main", { replace: true });
+                    return;
                 }
-                else{
-                    throw new Error();
-                }
-            } catch (error) {
-                console.error('Error fetching teacher info:', error);
             }
         };
 
-        fetchTeacherInfo(value.id);
-
-      
+        fetchTeacherInfo();
     }, []);
 
     return(
         <>
+            <Loading />
         </>
     )
 }

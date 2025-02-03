@@ -1,11 +1,14 @@
 import * as S from './style.jsx'
 import { useState } from "react";
 import DetailMovement from "../../modal/detail-movement/index.jsx";
-import {useDeleteMovement} from "../../../hooks/useData.js";
+import {useDeleteMovement, useGetMovement} from "../../../hooks/useData.js";
 import useAuth from "../../../zustand/auth.js"
 import {getMovementDetail} from "../../../api/data.js";
+import patchDay from "../../../utils/patchDay.js";
+import Loading from "../../loading/index.jsx";
 
-export default function Movement({data, day, isLoading, isLoading2}) {
+export default function Movement({ day , isFirst}) {
+    const { data, isFetching, isError: movementError } = useGetMovement(isFirst ? patchDay(day) : day);
     const [isModal, setIsModal] = useState(false);
     const {mutate : deleteMovement} = useDeleteMovement();
     const {name, role} = useAuth();
@@ -17,6 +20,7 @@ export default function Movement({data, day, isLoading, isLoading2}) {
     const [detail , setDetail] = useState();
     return (
         <S.MovementContainer>
+            {isFetching ? <Loading /> : null}
             <S.Standard>
                 <S.UnBox></S.UnBox>
                 <S.Box $length={110}>교시</S.Box>

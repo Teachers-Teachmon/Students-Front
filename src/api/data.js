@@ -5,9 +5,7 @@ import {period} from "../lib/period.js";
 //${API_ENDPOINTS.DATA}
 export const getMovement = async (day) =>{
     try{
-        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/leaveseat`, {
-            day:day
-        });
+        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/leaveseat?day=${day}`);
         if(res.status !== 200 && res.status !== 201){
             return Promise.reject({
                 status: res.status,
@@ -21,13 +19,9 @@ export const getMovement = async (day) =>{
     }
 }
 
-export const getMovementDetail = async (day, periodName, teacher_id) =>{
+export const getMovementDetail = async (day, teacher_id, periodName) =>{
     try{
-        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/detail`, {
-            day:day,
-            teacher_id: teacher_id,
-            period: period[periodName]
-        });
+        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/detail?day=${day}&teacherId=${teacher_id}&period=${period[periodName]}`);
         if(res.status !== 200 && res.status !== 201){
             return Promise.reject({
                 status: res.status,
@@ -43,10 +37,7 @@ export const getMovementDetail = async (day, periodName, teacher_id) =>{
 
 export const getStudent = async (day, search) =>{
     try{
-        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/student`, {
-            day:day,
-            search_query: search
-        });
+        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/student?day=${day}&search_query=${search}`);
         if(res.status !== 200 && res.status !== 201){
             return Promise.reject({
                 status: res.status,
@@ -62,9 +53,7 @@ export const getStudent = async (day, search) =>{
 
 export const getLeave = async (day) =>{
     try{
-        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/leave`, {
-            day:day
-        });
+        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/leave?day=${day}`);
         if(res.status !== 200 && res.status !== 201){
             return Promise.reject({
                 status: res.status,

@@ -8,6 +8,8 @@ import Role from "../../components/landing/role/index.jsx";
 import Skill from "../../components/landing/skill/index.jsx";
 import Method from "../../components/landing/method/index.jsx";
 import {refreshAccessToken} from "../../lib/axiosInstance.js";
+import {HealthCheck} from "../../api/auth.js";
+import {useLocation} from "react-router-dom";
 
 // 스타일 정의
 const FullPageWrapper = styled.div`
@@ -24,6 +26,9 @@ const FullPageWrapper = styled.div`
     .fp-watermark {
         display: none !important;
     }
+    .fp-section {
+        transform: translate3d(0, 0, 0);
+    }
 `;
 
 const FullPageComponent = () => {
@@ -32,7 +37,14 @@ const FullPageComponent = () => {
     const [isScrolling, setIsScrolling] = useState(false); // 스크롤 상태 추가
     const [currentSection, setCurrentSection] = useState(0);
 
+    const [isProxyReady, setIsProxyReady] = useState(false);
+    const location = useLocation();
+
     const certification = async () =>{
+        if (!isProxyReady) {
+            console.warn("Proxy is not ready yet.");
+            return; // 프록시가 준비되지 않았으면 요청하지 않음
+        }
         const access = await refreshAccessToken();
         console.log(access);
         if(access){
@@ -43,7 +55,22 @@ const FullPageComponent = () => {
     }
 
     useEffect(() => {
-        const checkAuth = async () => {
+        const checkHealth = async () => {
+            try {
+                const res = await HealthCheck();
+                if(res === 200){
+                    setIsProxyReady(true);
+                }
+            } catch (error) {
+                console.error("Health check failed:", error);
+            }
+        };
+        checkHealth();
+    }, []);
+
+
+    useEffect(() => {
+        const checkAuth = () => {
             const instance = new fullpage('#fullpage', {
                 licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
                 autoScrolling: true,
@@ -64,10 +91,6 @@ const FullPageComponent = () => {
             });
 
             setFpInstance(instance);
-            if (await certification()) {
-                window.location.href = '/main';
-                return;
-            }
             return () => {
                 if (instance) {
                     instance.destroy('all');
@@ -76,7 +99,16 @@ const FullPageComponent = () => {
         };
 
         checkAuth();
-    }, []);
+    }, [location.pathname]);
+
+    useEffect(() => {
+        const moveToMain = async () =>{
+            if (await certification()) {
+                window.location.href = '/main';
+            }
+        }
+        moveToMain();
+    }, [isProxyReady]);
 
     const scrollToSection = (anchor) => {
         if (fpInstance) {

@@ -19,10 +19,10 @@ export default function Role({isAnimation}){
                         </S.TextBox>
                         <S.BlueText onClick={()=>navigate('/login')}>자습 감독 관리 하러 가기</S.BlueText>
                     </S.Box>
-                    <S.Img $isAnimation={isAnimation} src={Role1} alt={'role1'} />
+                    <S.Img draggable="false" $isAnimation={isAnimation} src={Role1} alt={'role1'} />
                 </S.Section>
                 <S.Section>
-                    <S.Img $isAnimation={isAnimation} src={Role2} alt={'role1'} />
+                    <S.Img draggable="false" $isAnimation={isAnimation} src={Role2} alt={'role1'} />
                     <S.Box>
                         <h2>자습 감독 선생님</h2>
                         <S.TextBox>

@@ -8,43 +8,41 @@ import Leave from "../../../components/record/leave/index.jsx";
 import Movement from "../../../components/record/movement/index.jsx";
 import Student from "../../../components/record/student/index.jsx";
 import Search from "../../../assets/Search.svg";
-import {useGetMovement, useGetLeave} from "../../../hooks/useData.js";
 import useDay from "../../../zustand/day";
 import DateInput from "../../../components/dateInput/index.jsx";
 import {useDebounce} from "../../../hooks/useDebounce.js";
 import {getStudent} from "../../../api/data.js";
-import Loading from "../../../components/loading/index.jsx";
+import patchDay from "../../../utils/patchDay.js";
 
 export default function Record() {
     const navigate = useNavigate();
+    const [isFirst, setIsFirst] = useState(true);
     const [isMovement, setIsMovement] = useState([
         true, false, false
     ]);
-
     const [search, setSearch] = useState("");
     const {today, day:dayComponent} = useDay();
     const [day, setDay] = useState(today);
-    const { data: movement, isFetching: movementLoading, isError: movementError } = useGetMovement(day);
-    const {data :leave, isFetching : leaveLoading, leaveError} = useGetLeave(day);
     const debounce = useDebounce(search, 500);
     const [student, setStudent] = useState([]);
 
     useEffect(() => {
-        setDay(dayComponent);
+        if(dayComponent){
+            setIsFirst(false);
+            setDay(dayComponent);
+        }
     }, [dayComponent]);
 
     useEffect(() => {
         const fetchData = async () => {
-            const students = await getStudent(day, search);
+            const students = await getStudent(isFirst ? patchDay(day) : day, search);
             setStudent(students);
         };
 
         fetchData();
-    }, [debounce]);
-
+    }, [debounce, day]);
     return (
         <S.ManageContainer>
-            {movementLoading ||  leaveLoading ? <Loading /> : null}
             <Header/>
             <S.Wrap>
                 <S.Info>
@@ -79,11 +77,11 @@ export default function Record() {
                             : null}
                     </S.MainNav>
                     {isMovement[0] ? (
-                        <Movement data={movement} day={day} isLoading = {movementLoading} isLoading2={leaveLoading}/>
+                        <Movement day={day} isFirst={isFirst}/>
                     ) : isMovement[1] ? (
-                        <Leave data={leave}/>
+                        <Leave day={day} isFirst={isFirst}/>
                     ) : isMovement[2] ? (
-                        <Student data={student} />
+                        <Student data={student} day={day}/>
                     ) : null}
                 </S.Main>
             </S.Wrap>

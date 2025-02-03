@@ -4,9 +4,7 @@ import axiosInstance from "../lib/axiosInstance.js";
 //${API_ENDPOINTS.STUDENT}
 export const getNowStudent = async (grade) =>{
     try{
-        const res = await axiosInstance.get(`/schedule`, {
-            grade:grade
-        });
+        const res = await axiosInstance.get(`${API_ENDPOINTS.STUDENT}/schedule/${grade}`);
         if(res.status!==200){
             return new Promise.reject({
                 status:res.status,
@@ -19,11 +17,8 @@ export const getNowStudent = async (grade) =>{
     }
 }
 export const schoolOutStudent = async (studentID) =>{
-    console.log(studentID);
     try{
-        const res = await axiosInstance.delete(`${API_ENDPOINTS.STUDENT}/exit`, {
-            studentID:studentID
-        });
+        const res = await axiosInstance.delete(`${API_ENDPOINTS.STUDENT}/exit/${studentID}`);
         if(res.status!==200){
             return new Promise.reject({
                 status:res.status,
@@ -52,9 +47,23 @@ export const getLocationAll = async ()=>{
 }
 
 export const getLocation = async (floor) =>{
-    console.log(floor);
     try {
         const res = await axiosInstance.get(`${API_ENDPOINTS.STUDENT}/location/${floor}`);
+        if(res.status!==200){
+            return new Promise.reject({
+                status:res.status,
+                message:res.message
+            })
+        }
+        return res;
+    }catch (err){
+        return Promise.reject(err);
+    }
+}
+
+export const getStudentCount = async () => {
+    try {
+        const res = await axiosInstance.get(`${API_ENDPOINTS.STUDENT}/schedule/count`);
         if(res.status!==200){
             return new Promise.reject({
                 status:res.status,
