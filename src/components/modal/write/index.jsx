@@ -30,6 +30,7 @@ export default function Write({isModal, setIsModal}){
     const [student, setStudent] = useState([]);
 
     const [selectStudent, setSelectStudent] = useState([]);
+    const [selectStudentShow, setSelectStudentShow] = useState([]);
     const {mutate : postMovement} = usePostMovement();
     const {today: day} = useDay();
     const today = patchDay(day);
@@ -38,7 +39,6 @@ export default function Write({isModal, setIsModal}){
     useEffect(() => {
         const fetchStudents = async () => {
             const students = await searchStudent(search);
-            console.log(students)
             setStudent(students);
         };
         fetchStudents();
@@ -97,39 +97,52 @@ export default function Write({isModal, setIsModal}){
                                 <S.StudentList>
                                     {search && student &&
                                         student.map((currentItem) => {
-                                            if (selectStudent.includes(currentItem.number+ " " + currentItem.name)) return null;
-                                            return (
-                                                <S.StudentItem
-                                                    onClick={() => {
-                                                        setSelectStudent((prev) => [...prev, currentItem.number+ " " +currentItem.name]);
-                                                        setSearch("");
-                                                    }}
-                                                    key={currentItem}
-                                                    value={currentItem}
-                                                >
-                                                    {currentItem.number} {currentItem.name}
-                                                </S.StudentItem>
-                                            );
+                                            if (selectStudentShow.includes(currentItem.id)) {
+                                                return null;
+                                            }
+                                            else {
+                                                return (
+                                                    <S.StudentItem
+                                                        onClick={() => {
+                                                            setSelectStudentShow((prev) => [...prev, currentItem.id]);
+                                                            setSelectStudent((prev) => [...prev, currentItem]);
+                                                            setSearch("");
+                                                        }}
+                                                        key={currentItem.id}
+                                                        value={currentItem}
+                                                    >
+                                                        {currentItem.number} {currentItem.name}
+                                                    </S.StudentItem>
+                                                );
+                                            }
                                         })
                                     }
                                 </S.StudentList>
                             </S.InputBox>
                             <S.StudentBox>
                                 {selectStudent
-                                    ? selectStudent.map((item, idx) => (
-                                        <S.Student
-                                            key={idx}
-                                            onClick={() =>
-                                                setSelectStudent(
-                                                    selectStudent.filter(
-                                                        (currentItem) => currentItem !== item
+                                    ? selectStudent.map((item, idx) => {
+                                        console.log(item)
+                                        return(
+                                            <S.Student
+                                                key={idx}
+                                                onClick={() =>{
+                                                    setSelectStudentShow(
+                                                        selectStudentShow.filter(
+                                                            (currentItem) => currentItem !== item.id
+                                                        )
                                                     )
-                                                )
-                                            }
-                                        >
-                                            <p>{item}</p>
-                                        </S.Student>
-                                    ))
+                                                    setSelectStudent(
+                                                        selectStudent.filter(
+                                                            (currentItem) => currentItem !== item
+                                                        )
+                                                    )
+                                                }}
+                                            >
+                                                <p> {item.number} {item.name}</p>
+                                            </S.Student>
+                                        )
+                                    })
                                     : null}
                             </S.StudentBox>
                             <S.Submit>
@@ -138,7 +151,7 @@ export default function Write({isModal, setIsModal}){
                                     name={"작성완료"}
                                     status={true}
                                     On={() => {
-                                        postMovement({ selectStudent, today, time, place, cause });
+                                        postMovement({ selectStudentShow, today, time, place, cause });
                                     }}
                                 />
                             </S.Submit>

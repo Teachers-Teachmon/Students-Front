@@ -29,7 +29,6 @@ export default function SearchDropdown({target, name, change, click, isOpen, axi
     }, [debounce]);
     const inputRef = useRef();
 
-    console.log(item);
     return (
         <S.DropdownContainer onClick={() => {
             click();
