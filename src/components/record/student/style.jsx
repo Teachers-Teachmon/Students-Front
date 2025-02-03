@@ -11,9 +11,14 @@ export const Standard = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     border: 1px solid #EAECF0;
     padding: 10px;
+    & > div{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 `
 export const UnBox = styled.div`
     width: 80px;
@@ -37,11 +42,16 @@ export const Content = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     border: 1px solid #EAECF0;
     padding: 15px 10px;
     transition: 0.1s;
     position: relative;
+    & > div{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 `
 export const Box2 = styled.div`
     font-size: 16px;

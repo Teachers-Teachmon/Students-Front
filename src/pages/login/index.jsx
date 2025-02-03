@@ -1,9 +1,23 @@
 import styled from "styled-components";
 import Logo from '../../assets/teachmon.svg';
 import Google from '../../assets/google.svg';
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
+const useBackNavigation = () => {
+    const location = useLocation();
+
+    useEffect(() => {
+        window.addEventListener("popstate", ()=>{
+            window.location.reload()
+        });
+
+    }, [location]);
+
+    return null;
+};
 export default function Login(){
-
+    useBackNavigation();
     return(
         <LoginContainer>
             <Main>
