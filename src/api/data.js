@@ -67,13 +67,13 @@ export const getLeave = async (day) =>{
     }
 }
 
-export const postMovement = async ({selectStudent, day, time, place, cause}) =>{
-    console.log(selectStudent, day, time, place, cause)
+export const postMovement = async ({selectStudentShow, today, time, place, cause}) =>{
+    console.log(selectStudentShow, today, time, place, cause)
     try{
         const res = await axiosInstance.post(`${API_ENDPOINTS.DATA}/leaveseat`, {
-            students:selectStudent,
+            students:selectStudentShow,
             cause:cause,
-            day: day,
+            day: today,
             period: period[time],
             place: place
         });
