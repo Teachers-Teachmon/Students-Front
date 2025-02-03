@@ -66,11 +66,11 @@ export default function Supervision() {
             month: '2-digit',
             day: '2-digit'
         }).replace(/\. /g, '-').replace('.', '');
-    
+
         setSelectedDate(formattedDate);
         setIsModalOpen(true);
     };
-    
+
 
     const { data: supervisionList, isLoading, isError } = useGetMonthlySupervision(month + 1);
 
@@ -104,12 +104,21 @@ export default function Supervision() {
                                             }}>{date.getDate()}</S.Day>
                                             {Array.isArray(supervisionList) && supervisionList.map((s, index) => {
                                                 if (s.day === date.getDate() && s.year == year && s.month === month + 1) {
-                                                    return s.schedule.map((schedule, idx) => (
-                                                        <S.ScheduleItem key={idx} period={schedule.period}>
-                                                            <span>{schedule.period}</span>
-                                                            <span>{schedule.grade}학년</span>
-                                                        </S.ScheduleItem>
-                                                    ));
+                                                    return Array.isArray(s.schedule) ? (
+                                                        s.schedule.map((schedule, idx) => (
+                                                            <S.ScheduleItem key={idx} period={schedule.period}>
+                                                                <span>{schedule.period}</span>
+                                                                <span>{schedule.grade}학년</span>
+                                                            </S.ScheduleItem>
+                                                        ))
+                                                    ) : (
+                                                        s.schedule && (
+                                                            <S.ScheduleItem key={index} period={s.schedule.period}>
+                                                                <span>{s.schedule.period}</span>
+                                                                <span>{s.schedule.grade}학년</span>
+                                                            </S.ScheduleItem>
+                                                        )
+                                                    );
                                                 }
                                             })}
                                         </S.CalendarDay>
