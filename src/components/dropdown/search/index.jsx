@@ -49,13 +49,13 @@ export default function SearchDropdown({target, name, change, click, isOpen, axi
                         placeholder={`${target}을 입력해주세요`}
                         onChange={(e) => setSearch(e.target.value)}
                     ></S.Input>
-                    {item.map((currentItem, index) => {
+                    {item && item.map((currentItem) => {
                         return (
                             <S.DropdownItem
                                 onClick={() => {
                                     change(currentItem)
                                 }}
-                                key={index}
+                                key={currentItem}
                                 value={currentItem}
                             >{currentItem}
                             </S.DropdownItem>
