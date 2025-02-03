@@ -25,7 +25,7 @@ export default function SupervisionChange() {
     const [weeks, setWeeks] = useState([]);
 
     useEffect(() => {
-        if (TeacherList?.data) {
+        if (TeacherList?.data && weeks.length === 0) {
             setWeeks(TeacherList.data);
         }
     }, [TeacherList]);
