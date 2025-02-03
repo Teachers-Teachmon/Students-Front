@@ -33,6 +33,40 @@ export default function After_school() {
 
     const { data: classList = [] } = useGetClassList(selectedGrade, selectedDay);
 
+    // const classList = 
+    // [
+    //     {
+
+    //         "period": "8~9교시",
+    //         "afterschool" : [
+    //             {
+    //                 "name": "파이썬",
+    //                 "teacherName": "곽상미",
+    //                 "placeName": "프로그래밍실"
+    //             },
+    //             {
+    //                 "name": "스프링",
+    //                 "teacherName": "곽상미",
+    //                 "placeName": "프로그래밍실"
+    //             }
+    //         ] 
+    //     },
+    //     {
+    //         "period": "10~11교시",
+    //         "afterschool" : [
+    //             {
+    //                 "name": "파이썬",
+    //                 "teacherName": "곽상미",
+    //                 "placeName": "프로그래밍실"
+    //             },
+    //             {
+    //                 "name": "스프링",
+    //                 "teacherName": "곽상미",
+    //                 "placeName": "프로그래밍실"
+    //             }
+    //         ]
+    //     }
+    // ]
 
     const closeModalHandler = (setModal) => {
         setModal(false);
@@ -56,6 +90,13 @@ export default function After_school() {
         setGrade(newGrade);
         setSelectedGrade(idx + 1);
     }
+
+    console.log(classList);
+    console.log("현재 선택된 요일:", selectedDay);
+    console.log("필터링된 데이터:", classList.filter(cls => cls.weekday === selectedDay));
+    console.log("요청 학년:", selectedGrade, "요청 요일:", selectedDay);
+    console.log("현재 선택된 요일:", selectedDay);
+    console.log("클래스 리스트의 weekday 값들:", classList.map(cls => cls.weekday));
 
     return (
         <S.AfterSchoolContainer>
@@ -148,7 +189,7 @@ export default function After_school() {
                                     <p>8~9교시</p>
                                     <S.ClassList1>
                                         {classList
-                                            .filter(cls => cls.weekday === selectedDay && cls.period === "8~9교시")
+                                            .filter(cls => cls.period === "8~9교시")
                                             .flatMap(cls => cls.afterschool)
                                             .map((cls, i) => (
                                                 <S.List1 key={i}>
@@ -164,7 +205,7 @@ export default function After_school() {
                                     <p>10~11교시</p>
                                     <S.ClassList2>
                                         {classList && classList
-                                            .filter(cls => cls.weekday === selectedDay && cls.period === "10~11교시")
+                                            .filter(cls => cls.period === "10~11교시")
                                             .flatMap(cls => cls.afterschool)
                                             .map((cls, i) => (
                                                 <S.List1 key={i}>
