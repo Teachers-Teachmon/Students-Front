@@ -66,8 +66,8 @@ export const Week = styled.div`
 `;
 
 export const CalendarDay = styled.div`
-    // background-color: ${(props) => (props.isCurrentMonth ? '#fff' : '#f1f1f1')};
-    background-color: ${(props) => props.isSupervised ? '#E3EFFF' : props.isCurrentMonth ? '#fff' : '#f1f1f1'};
+    // background-color: ${(props) => (props.$isCurrentMonth ? '#fff' : '#f1f1f1')};
+    background-color: ${(props) => props.$isSupervised ? '#E3EFFF' : props.$isCurrentMonth ? '#fff' : '#f1f1f1'};
     border: 1px solid #e2e2e2;
     padding: 0.5rem;
     aspect-ratio: 1; // 이거 정사각형으로 해주는거임
