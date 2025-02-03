@@ -24,7 +24,6 @@ export default function Manage(){
             .filter((idx) => idx !== null);
     };
     const {data : student, isLoading} = useGetNowStudent(gradeIndex()[0]);
-    console.log(student);
 
     const [weekday, setWeekday] = useState(false);
     // 렌더링시 오늘의 날짜를 계산해서 보여줌
