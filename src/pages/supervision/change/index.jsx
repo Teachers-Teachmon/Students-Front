@@ -125,7 +125,7 @@ export default function SupervisionChange() {
                         <SquareBtn name="돌아가기" status={true} On={() => { navigate('/supervision') }} />
                     </S.MainHeader>
                     <S.TableWrap>
-                        {Object.entries(groupedWeeks).map(([weekName, dayArray], wIndex) => (
+                        {groupedWeeks && Object.entries(groupedWeeks).map(([weekName, dayArray], wIndex) => (
                             <S.Table key={weekName}>
                                 <h2>{weekName}</h2>
                                 <S.TableContent>
