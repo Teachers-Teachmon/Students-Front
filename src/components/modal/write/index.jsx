@@ -10,6 +10,7 @@ import useDay from "../../../zustand/day.js";
 import SchoolOut from "../confirm/schoolOut/index.jsx";
 import {useDebounce} from "../../../hooks/useDebounce.js";
 import {searchStudent, searchPlace} from "../../../api/search.js";
+import patchDay from "../../../utils/patchDay.js";
 
 export default function Write({isModal, setIsModal}){
     const [time, setTime] = useState("시간");
@@ -31,7 +32,7 @@ export default function Write({isModal, setIsModal}){
     const [selectStudent, setSelectStudent] = useState([]);
     const {mutate : postMovement} = usePostMovement();
     const {today: day} = useDay();
-
+    const today = patchDay(day);
     const debounceStudent = useDebounce(search, 300);
 
     useEffect(() => {
@@ -137,7 +138,7 @@ export default function Write({isModal, setIsModal}){
                                     name={"작성완료"}
                                     status={true}
                                     On={() => {
-                                        postMovement({ selectStudent, day, time, place, cause });
+                                        postMovement({ selectStudent, today, time, place, cause });
                                     }}
                                 />
                             </S.Submit>
