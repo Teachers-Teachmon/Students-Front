@@ -22,10 +22,10 @@ export default function After_school() {
     const [selectedClass, setSelectedClass] = useState(null);
     const [grade, setGrade] = useState([true, false, false]);
     const [selectedGrade, setSelectedGrade] = useState(1);
-    const [selectedDay, setSelectedDay] = useState("월");
+    const [selectedDay, setSelectedDay] = useState("MON");
     const navigate = useNavigate()
 
-    const weekDays = ["월", "화", "수", "목"];
+    const weekDays = ["MON", "TUE", "WED", "THU"];
 
     const { data: myTodayClasses = [] } = useGetTodayClasses();
 
