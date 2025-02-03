@@ -391,3 +391,9 @@ export const Options = styled.div`
     }
     
 `
+
+export const Btn = styled.div`
+    display: flex;
+    margin-left: 350px;
+    gap: 20px;
+`
