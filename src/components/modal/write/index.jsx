@@ -94,7 +94,7 @@ export default function Write({isModal, setIsModal}){
                                     placeholder={"학번을 입력해주세요"}
                                 />
                                 <S.StudentList>
-                                    {student &&
+                                    {search && student &&
                                         student.map((currentItem) => {
                                             if (selectStudent.includes(currentItem.number+ " " + currentItem.name)) return null;
                                             return (
