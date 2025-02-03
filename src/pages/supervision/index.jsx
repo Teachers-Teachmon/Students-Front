@@ -72,7 +72,7 @@ export default function Supervision() {
     };
     
 
-    const { data: supervisionList, isLoading, isError } = useGetMonthlySupervision(month + 1);
+    const { data: supervisionList = [], isLoading, isError } = useGetMonthlySupervision(month + 1);
 
     return (
         <S.Wrapper>
