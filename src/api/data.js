@@ -74,7 +74,7 @@ export const postMovement = async ({selectStudent, day, time, place, cause}) =>{
             students:selectStudent,
             cause:cause,
             day: day,
-            period: time,
+            period: period[time],
             place: place
         });
         if(res.status !== 200 && res.status !== 201){
