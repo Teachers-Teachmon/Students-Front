@@ -13,30 +13,29 @@ export default function SupervisionDetail() {
     const [isEditing, setIsEditing] = useState(false);
     const [selectedTeacher, setSelectedTeacher] = useState({});
     const [dropdownOpen, setDropdownOpen] = useState({});
+    const [localData, setLocalData] = useState([]);
 
     const handleTeacherChange = (date, grade, timeKey, newTeacher) => {
         setSelectedTeacher(prev => ({
             ...prev,
             [`${date}-${grade}-${timeKey}`]: newTeacher
         }));
-    
-        setTeacherList(prevList =>
-            prevList.map(weekData => ({
-                ...weekData,
-                data: weekData.data.map(dayData =>
-                    dayData.date === date
-                        ? {
-                              ...dayData,
-                              [grade]: {
-                                  ...dayData[grade],
-                                  [timeKey]: `${newTeacher}/${dayData[grade][timeKey].split("/")[1]}`
-                              }
-                          }
-                        : dayData
-                )
-            }))
-        );
-    };    
+
+        setLocalData(prev => prev.map(dayData => {
+            if (dayData.date === date) {
+                return {
+                    ...dayData,
+                    [grade]: {
+                        ...dayData[grade],
+                        [timeKey]: dayData[grade][timeKey]
+                            ? `${newTeacher}/${dayData[grade][timeKey].split("/")[1]}`
+                            : `${newTeacher}/0`
+                    }
+                };
+            }
+            return dayData;
+        }));
+    };
 
     const toggleDropdown = (key) => {
         setDropdownOpen(prev => ({
@@ -48,39 +47,45 @@ export default function SupervisionDetail() {
     const { data: TeacherList, isLoading, isError } = useGetAssignment(selMonth + 1);
     const { mutate: saveAssignment } = useSaveAutoAssignment();
 
+    useEffect(() => {
+        if (TeacherList && TeacherList[0]?.data) {
+            setLocalData(TeacherList[0].data);
+        }
+    }, [TeacherList]);
+
     const handleSave = () => {
-        const changedData = TeacherList?.[0]?.data.map(dayData => ({
+        const changedData = localData.map(dayData => ({
             date: dayData.date,
             first_grade: {
-                "7th_teacher": parseInt(dayData.first_grade["7th_teacher"].split("/")[1]),
-                "8th_teacher": parseInt(dayData.first_grade["8th_teacher"].split("/")[1]),
-                "10th_teacher": parseInt(dayData.first_grade["10th_teacher"].split("/")[1])
+                "7th_teacher": parseInt(dayData.first_grade["7th_teacher"]?.split("/")[1]),
+                "8th_teacher": parseInt(dayData.first_grade["8th_teacher"]?.split("/")[1]),
+                "10th_teacher": parseInt(dayData.first_grade["10th_teacher"]?.split("/")[1])
             },
             second_grade: {
-                "7th_teacher": parseInt(dayData.second_grade["7th_teacher"].split("/")[1]),
-                "8th_teacher": parseInt(dayData.second_grade["8th_teacher"].split("/")[1]),
-                "10th_teacher": parseInt(dayData.second_grade["10th_teacher"].split("/")[1])
+                "7th_teacher": parseInt(dayData.second_grade["7th_teacher"]?.split("/")[1]),
+                "8th_teacher": parseInt(dayData.second_grade["8th_teacher"]?.split("/")[1]),
+                "10th_teacher": parseInt(dayData.second_grade["10th_teacher"]?.split("/")[1])
             },
             third_grade: {
-                "7th_teacher": parseInt(dayData.third_grade["7th_teacher"].split("/")[1]),
-                "8th_teacher": parseInt(dayData.third_grade["8th_teacher"].split("/")[1]),
-                "10th_teacher": parseInt(dayData.third_grade["10th_teacher"].split("/")[1])
+                "7th_teacher": parseInt(dayData.third_grade["7th_teacher"]?.split("/")[1]),
+                "8th_teacher": parseInt(dayData.third_grade["8th_teacher"]?.split("/")[1]),
+                "10th_teacher": parseInt(dayData.third_grade["10th_teacher"]?.split("/")[1])
             }
         }));
-    
+
         saveAssignment(changedData);
         setIsEditing(false);
     };
-    
+
     function groupByWeek(dataArray) {
         return dataArray.reduce((acc, item) => {
-            const w = item.week;
+            const w = item.week || "미배정";
             if (!acc[w]) acc[w] = [];
             acc[w].push(item);
             return acc;
         }, {});
     }
-    const groupedData = groupByWeek(TeacherList?.[0]?.data || []);
+    const groupedData = groupByWeek(localData);
 
     return (
         <S.Wrapper>
@@ -95,7 +100,7 @@ export default function SupervisionDetail() {
                         </S.Buttons>
                     ) : (
                         <S.Buttons>
-                            <SquareBtn name="저장하기" status={true} On={ handleSave } />
+                            <SquareBtn name="저장하기" status={true} On={handleSave} />
                         </S.Buttons>)}
                 </S.MainHeader>
                 <S.Months>
@@ -106,7 +111,7 @@ export default function SupervisionDetail() {
                 <S.TableWrap>
                     {Object.keys(groupedData).map((weekKey) => (
                         <S.Table key={weekKey}>
-                            <h2>{weekKey}</h2>
+                            <h2>{weekKey || "주 없음"}</h2>
                             <S.TableContent>
                                 <S.TableLeft>
                                     <div>날짜</div>
@@ -118,7 +123,7 @@ export default function SupervisionDetail() {
                                 <S.TableRight>
                                     {groupedData[weekKey].map((dayData, dayIndex) => (
                                         <S.TableRightContent key={dayIndex}>
-                                            <h3>{dayData.day}</h3>
+                                            <h3>{dayData.day || "날짜 없음"}</h3>
                                             <S.TableRightHeader>
                                                 <div>1학년</div>
                                                 <div>2학년</div>
@@ -128,7 +133,7 @@ export default function SupervisionDetail() {
                                             {["7th_teacher", "8th_teacher", "10th_teacher"].map((timeKey, timeIndex) => (
                                                 <S.TeacherList key={timeIndex}>
                                                     {["first_grade", "second_grade", "third_grade"].map((gradeKey, gradeIndex) => {
-                                                        const teacherName = dayData[gradeKey][timeKey].split("/")[0];
+                                                        const teacherName = dayData[gradeKey]?.[timeKey] ? dayData[gradeKey][timeKey].split("/")[0] : "미배정";
                                                         const uniqueKey = `${dayData.date}-${gradeKey}-${timeKey}`;
 
                                                         return (
