@@ -48,10 +48,11 @@ export default function SupervisionDetail() {
     const { mutate: saveAssignment } = useSaveAutoAssignment();
 
     useEffect(() => {
-        if (TeacherList && TeacherList[0]?.data) {
-            setLocalData(TeacherList[0].data);
+        console.log("TeacherList 데이터:", TeacherList);
+        if (TeacherList?.data) {
+            setLocalData(TeacherList.data);
         }
-    }, [TeacherList]);
+    }, [TeacherList]);    
 
     const handleSave = () => {
         const changedData = localData.map(dayData => ({
