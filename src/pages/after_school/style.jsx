@@ -8,7 +8,7 @@ export const AfterSchoolContainer = styled.div`
 
 export const Content = styled.div`
     display: flex;
-    width: 85%;
+    width: 87%;
     height: 100%;
     gap: 80px;
 `
@@ -61,7 +61,7 @@ export const MyClasses = styled.div`
     display: flex;
     flex-direction: column;
     gap: 25px;
-    margin-top: 170px;
+    margin-top: 150px;
 `
 
 export const ClassTableContent = styled.div`

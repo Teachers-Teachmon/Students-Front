@@ -9,6 +9,7 @@ import Upload from '../../../assets/Upload.svg';
 import Confirm from '../../../components/button/confirm/index.jsx';
 import Search from '../../../assets/Search.svg';
 import OptionButton from '../../../assets/OptionButton.svg';
+import Square from '../../../components/button/square/index.jsx';
 
 export default function Edit() {
 
@@ -34,7 +35,6 @@ export default function Edit() {
 
 
     const [grades, setGrades] = useState({
-        
         1: [
             {
                 "period": '',
@@ -194,11 +194,11 @@ export default function Edit() {
                 };
             }
         });
-    
+
         // 옵션 창 닫기
         setOptions((prev) => ({ ...prev, [grade]: null }));
     };
-    
+
 
     return (
         <S.EditContainer>
@@ -331,7 +331,6 @@ export default function Edit() {
                     <S.ModalContent onClick={(e) => e.stopPropagation()}>
                         <S.ModalContentTop>
                             <h1>{selectedGrade}학년</h1>
-                            <Confirm text="삭제" color="red" image="reject" onClick={() => setIsModalOpen(false)} />
                         </S.ModalContentTop>
                         <S.ModalMain>
                             <S.ModalLeft>
@@ -414,6 +413,10 @@ export default function Edit() {
                                 </S.StudentBox>
                             </S.ModalRight>
                         </S.ModalMain>
+                        <S.Btn>
+                            <Square name="취소" color="#999999" background="white" border="#999999" On={() => setIsModalOpen(false)} />
+                            <Confirm text="저장" color="blue" image="check" />
+                        </S.Btn>
                     </S.ModalContent>
                 </S.ModalOverlay>
             )}
