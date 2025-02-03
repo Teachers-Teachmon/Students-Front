@@ -50,14 +50,15 @@ export default function SearchDropdown({target, name, change, click, isOpen, axi
                         onChange={(e) => setSearch(e.target.value)}
                     ></S.Input>
                     {item && item.map((currentItem) => {
+                        console.log(currentItem);
                         return (
                             <S.DropdownItem
                                 onClick={() => {
-                                    change(currentItem)
+                                    change(currentItem.name)
                                 }}
                                 key={currentItem.id}
-                                value={currentItem}
-                            >{currentItem}
+                                value={currentItem.name}
+                            >{currentItem.name}
                             </S.DropdownItem>
                         );
                     })}
