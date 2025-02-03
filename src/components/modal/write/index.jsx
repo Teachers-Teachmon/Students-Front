@@ -36,8 +36,8 @@ export default function Write({isModal, setIsModal}){
 
     useEffect(() => {
         const fetchStudents = async () => {
-            console.log(search);
             const students = await searchStudent(search);
+            console.log(students)
             setStudent(students);
         };
         fetchStudents();
@@ -94,28 +94,23 @@ export default function Write({isModal, setIsModal}){
                                     placeholder={"학번을 입력해주세요"}
                                 />
                                 <S.StudentList>
-                                    {search
-                                        ? student.map((currentItem, index) => {
-                                            if (
-                                                currentItem.indexOf(search) > -1 &&
-                                                !selectStudent.includes(currentItem)
-                                            ) {
-                                                return (
-                                                    <S.StudentItem
-                                                        onClick={() => {
-                                                            setSelectStudent((prev) => [...prev, currentItem]);
-                                                            setSearch("");
-                                                        }}
-                                                        key={index}
-                                                        value={currentItem}
-                                                    >
-                                                        {currentItem}
-                                                    </S.StudentItem>
-                                                );
-                                            }
-                                            return null;
+                                    {search && student &&
+                                        student.map((currentItem) => {
+                                            if (selectStudent.includes(currentItem.number+ " " + currentItem.name)) return null;
+                                            return (
+                                                <S.StudentItem
+                                                    onClick={() => {
+                                                        setSelectStudent((prev) => [...prev, currentItem.number+ " " +currentItem.name]);
+                                                        setSearch("");
+                                                    }}
+                                                    key={currentItem}
+                                                    value={currentItem}
+                                                >
+                                                    {currentItem.number} {currentItem.name}
+                                                </S.StudentItem>
+                                            );
                                         })
-                                        : null}
+                                    }
                                 </S.StudentList>
                             </S.InputBox>
                             <S.StudentBox>

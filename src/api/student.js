@@ -11,7 +11,6 @@ export const getNowStudent = async (grade) =>{
                 message:res.message
             })
         }
-        console.log(res);
         return res;
     }catch (err){
         return new Promise.reject(err);
