@@ -26,6 +26,8 @@ export default function After_school() {
     const navigate = useNavigate()
 
     const weekDays = ["MON", "TUE", "WED", "THU"];
+    const koreanWeekDays = ["월", "화", "수", "목"];
+
 
     const { data: myTodayClasses = [] } = useGetTodayClasses();
 
@@ -91,12 +93,12 @@ export default function After_school() {
         setSelectedGrade(idx + 1);
     }
 
-    console.log(classList);
-    console.log("현재 선택된 요일:", selectedDay);
-    console.log("필터링된 데이터:", classList.filter(cls => cls.weekday === selectedDay));
-    console.log("요청 학년:", selectedGrade, "요청 요일:", selectedDay);
-    console.log("현재 선택된 요일:", selectedDay);
-    console.log("클래스 리스트의 weekday 값들:", classList.map(cls => cls.weekday));
+    // console.log(classList);
+    // console.log("현재 선택된 요일:", selectedDay);
+    // console.log("필터링된 데이터:", classList.filter(cls => cls.weekday === selectedDay));
+    // console.log("요청 학년:", selectedGrade, "요청 요일:", selectedDay);
+    // console.log("현재 선택된 요일:", selectedDay);
+    // console.log("클래스 리스트의 weekday 값들:", classList.map(cls => cls.weekday));
 
     return (
         <S.AfterSchoolContainer>
@@ -178,7 +180,7 @@ export default function After_school() {
                                 <S.CaretLeft onClick={handlePrevDay}>
                                     <img src={CaretLeft} />
                                 </S.CaretLeft>
-                                <S.DayP>{selectedDay}요일</S.DayP>
+                                <S.DayP>{koreanWeekDays[weekDays.indexOf(selectedDay)]}요일</S.DayP>
                                 <S.CaretRight onClick={handleNextDay}>
                                     <img src={CaretRight} />
                                 </S.CaretRight>
