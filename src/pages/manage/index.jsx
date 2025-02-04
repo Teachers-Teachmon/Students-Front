@@ -12,6 +12,9 @@ import {useGetNowStudent} from "../../hooks/useStudent.js";
 import Loading from "../../components/loading/index.jsx";
 
 export default function Manage(){
+    const hour = new Date().getHours();
+    const minute = new Date().getMinutes();
+    console.log(hour, minute);
     const {today} = useDay();
     const [day, setDay] = useState('');
     const navigate = useNavigate()
@@ -66,13 +69,28 @@ export default function Manage(){
         newGrade[idx] = true;
         setGrade(newGrade);
     }
+
+    let period;
+    const changeClass = () =>{
+        const time = hour * 60 + minute;
+        if(time >= 15 * 60 + 10 && time <= 16 * 60 + 29){
+            period = "7교시";
+        }else if(time >= 16 * 60 + 30 && time <= 18*60 + 59){
+            period = "8~9교시"
+        }else if(time >= 19*60 && time <= 20*60 + 40) {
+            period = "10~11교시"
+        }else {
+            period = null
+        }
+    }
+    changeClass();
     return(
         <S.ManageContainer>
-            {isLoading && <Loading />}
+            {isLoading && !weekday && period && <Loading />}
             <Header />
             <S.Wrap>
                 <S.Info>
-                    <h1>{day}</h1>
+                    <h1>{day} {!weekday ? period : null}</h1>
                     <S.InfoBtn>
                         <SquareBtn name={"학생위치"} status={true} On={()=>navigate('/manage/location')} />
                         <SquareBtn name={"이석작성"} status={true} On={()=>setIsModal(!isModal)} />
@@ -115,14 +133,16 @@ export default function Manage(){
                         </S.Record>
                     </S.MainNav>
                     <S.Section>
+                        {/*!period ? <S.NoData>지금은 자습시간이 아닙니다</S.NoData> :*/}
                         {
-                            weekday ? <S.NoData>오늘은 방과후가 없습니다.</S.NoData> : !isLoading && student &&
-                            <>
-                                <StudentGraph data={student['1반']} grade={gradeIndex()[0]} classNum = {1}/>
-                                <StudentGraph data={student['2반']} grade={gradeIndex()[0]} classNum = {2}/>
-                                <StudentGraph data={student['3반']} grade={gradeIndex()[0]}  classNum = {3}/>
-                                <StudentGraph data={student['4반']} grade={gradeIndex()[0]}  classNum = {4}/>
-                            </>
+                            weekday ? <S.NoData>오늘은 방과후가 없습니다.</S.NoData> :
+                                !isLoading && student &&
+                                    <>
+                                        <StudentGraph data={student['1반']} grade={gradeIndex()[0]} classNum = {1}/>
+                                        <StudentGraph data={student['2반']} grade={gradeIndex()[0]} classNum = {2}/>
+                                        <StudentGraph data={student['3반']} grade={gradeIndex()[0]}  classNum = {3}/>
+                                        <StudentGraph data={student['4반']} grade={gradeIndex()[0]}  classNum = {4}/>
+                                    </>
                         }
 
                     </S.Section>
