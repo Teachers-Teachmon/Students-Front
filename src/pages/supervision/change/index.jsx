@@ -25,17 +25,16 @@ export default function SupervisionChange() {
     const [weeks, setWeeks] = useState([]);
 
     useEffect(() => {
-        if (TeacherList?.data && weeks.length === 0) {
+        if (TeacherList?.data && JSON.stringify(weeks) !== JSON.stringify(TeacherList.data)) {
             setWeeks(TeacherList.data);
         }
     }, [TeacherList]);
 
-
-    const handleSelectTeacher = (uniqueKey) => {
+    const handleSelectTeacher = (uniqueKey, teacherId) => {
         setSelectedTeacher((prev) => {
             const updated = prev.includes(uniqueKey)
                 ? prev.filter(t => t !== uniqueKey)
-                : [...prev, uniqueKey];
+                : [...prev, { uniqueKey, teacherId }];
 
             if (updated.length === 2) {
                 setIsModalOpen(true);
@@ -83,18 +82,21 @@ export default function SupervisionChange() {
             return;
         }
 
-        const senderInfo = selectedTeacher[0].split("-");
-        const recipientInfo = selectedTeacher[1].split("-");
+        const sender = selectedTeacher[0];
+        const recipient = selectedTeacher[1];
+
+        const senderInfo = sender.uniqueKey.split("-");
+        const recipientInfo = recipient.uniqueKey.split("-");
 
         const requestBody = {
             sender: {
-                teacher_id: parseInt(senderInfo[3]),
+                teacher_id: sender.teacherId,
                 day: senderInfo[0],
                 period: convertPeriod(senderInfo[2]),
                 grade: senderInfo[1] === "first" ? 1 : senderInfo[1] === "second" ? 2 : 3
             },
             recipient: {
-                teacher_id: parseInt(recipientInfo[3]),
+                teacher_id: recipient.teacherId,
                 day: recipientInfo[0],
                 period: convertPeriod(recipientInfo[2]),
                 grade: recipientInfo[1] === "first" ? 1 : recipientInfo[1] === "second" ? 2 : 3
@@ -155,10 +157,10 @@ export default function SupervisionChange() {
                                                             return (
                                                                 <div
                                                                     key={uniqueKey}
-                                                                    onClick={() => handleSelectTeacher(uniqueKey)}
+                                                                    onClick={() => handleSelectTeacher(uniqueKey, teacherInfo ? parseInt(teacherInfo.split('/')[1]) || null : null)}
                                                                     style={{
-                                                                        backgroundColor: selectedTeacher.includes(uniqueKey) ? '#2E6FF2' : '#FFF',
-                                                                        color: selectedTeacher.includes(uniqueKey) ? '#FFF' : '#000',
+                                                                        backgroundColor: selectedTeacher.some(t => t.uniqueKey === uniqueKey) ? '#2E6FF2' : '#FFF',
+                                                                        color: selectedTeacher.some(t => t.uniqueKey === uniqueKey) ? '#FFF' : '#000',
                                                                         cursor: 'pointer',
                                                                     }}
                                                                 >
@@ -186,17 +188,17 @@ export default function SupervisionChange() {
                         <h2>교체요청을 보내시겠습니까?</h2>
                         <S.ExchangeInfo>
                             <div>
-                                <span>{selectedTeacher[0].split('-')[0]}</span>
-                                <p>{selectedTeacher[0].split('-')[2].includes('7th') ? '7교시' : selectedTeacher[0].split('-')[2].includes('8th') ? '8~9교시' : '10~11교시'}</p>
-                                <p>{selectedTeacher[0].split('-')[1].includes('first') ? '1학년' : selectedTeacher[0].split('-')[1].includes('second') ? '2학년' : '3학년'}</p>
-                                <p>{selectedTeacher[0]} 선생님</p>
+                                <span>{selectedTeacher[0].uniqueKey.split('-')[0]}</span>
+                                <p>{selectedTeacher[0].uniqueKey.split('-')[2].includes('7th') ? '7교시' : selectedTeacher[0].uniqueKey.split('-')[2].includes('8th') ? '8~9교시' : '10~11교시'}</p>
+                                <p>{selectedTeacher[0].uniqueKey.split('-')[1].includes('first') ? '1학년' : selectedTeacher[0].uniqueKey.split('-')[1].includes('second') ? '2학년' : '3학년'}</p>
+                                <p>{selectedTeacher[0].teacherId ? `ID: ${selectedTeacher[0].teacherId}` : "ID 없음"}</p>
                             </div>
                             <S.Arrow><img src={Rotate} /></S.Arrow>
                             <div>
-                                <span>{selectedTeacher[1].split('-')[0]}</span>
-                                <p>{selectedTeacher[1].split('-')[2].includes('7th') ? '7교시' : selectedTeacher[1].split('-')[2].includes('8th') ? '8~9교시' : '10~11교시'}</p>
-                                <p>{selectedTeacher[1].split('-')[1].includes('first') ? '1학년' : selectedTeacher[1].split('-')[1].includes('second') ? '2학년' : '3학년'}</p>
-                                <p>{selectedTeacher[1]} 선생님</p>
+                                <span>{selectedTeacher[1].uniqueKey.split('-')[0]}</span>
+                                <p>{selectedTeacher[1].uniqueKey.split('-')[2].includes('7th') ? '7교시' : selectedTeacher[1].uniqueKey.split('-')[2].includes('8th') ? '8~9교시' : '10~11교시'}</p>
+                                <p>{selectedTeacher[1].uniqueKey.split('-')[1].includes('first') ? '1학년' : selectedTeacher[1].uniqueKey.split('-')[1].includes('second') ? '2학년' : '3학년'}</p>
+                                <p>{selectedTeacher[1].teacherId ? `ID: ${selectedTeacher[1].teacherId}` : "ID 없음"}</p>
                             </div>
                         </S.ExchangeInfo>
                         <textarea value={exchangeReason} onChange={(e) => setExchangeReason(e.target.value)} placeholder="사유를 입력해 주세요"></textarea>
