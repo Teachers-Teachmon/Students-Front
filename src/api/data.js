@@ -5,7 +5,7 @@ import {period} from "../lib/period.js";
 //${API_ENDPOINTS.DATA}
 export const getMovement = async (day) =>{
     try{
-        const res = await axiosInstance.get(`/leaveseat?day=${day}`);
+        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/leaveseat?day=${day}`);
         if(res.status !== 200 && res.status !== 201){
             return Promise.reject({
                 status: res.status,
