@@ -25,10 +25,10 @@ export default function StudentGraph({data, grade, classNum}){
         patchStudent({studentID: name, status: status})
     }
 
-    const makeNumber = (grade, classNum, number, name) =>{
+    const makeNumber = (grade, classNum, number) =>{
         number = number >= 10 && number <= 99  ? String(number) : `0${String(number)}`
         console.log(number);
-        return String(grade) + String(classNum) + number + name
+        return String(grade) + String(classNum) + number
     }
     // 상태에 따라 색깔변환
     const studentColor = (status) => {
@@ -65,7 +65,7 @@ export default function StudentGraph({data, grade, classNum}){
                         <p>{idx+1}</p>
                         <p>{el.name}</p>
                         {isOpen[idx] ?
-                            <StatusUpdate changeStatus={changeStatus} name={makeNumber(grade, classNum, idx+1, el.name)} nowStatus={el.status}/>
+                            <StatusUpdate changeStatus={changeStatus} name={makeNumber(grade, classNum, idx+1)} nowStatus={el.status}/>
                             : null
                         }
                     </S.Student>)
@@ -77,7 +77,7 @@ export default function StudentGraph({data, grade, classNum}){
                            <p>{idx+1}</p>
                            <p>{el.name}</p>
                            {isOpen[idx] ?
-                               <StatusUpdate changeStatus={changeStatus} name={makeNumber(grade, classNum, idx+1, el.name)} nowStatus={el.status}/>
+                               <StatusUpdate changeStatus={changeStatus} name={makeNumber(grade, classNum, idx+1)} nowStatus={el.status}/>
                                : null
                            }
                        </S.Student>
