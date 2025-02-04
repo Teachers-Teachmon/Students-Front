@@ -33,7 +33,12 @@ export default function TeacherList({ closeModal, selectedDate }) {
     };
 
     const { data: todayTeacher, isLoading, isError } = useGetDailySupervision(formatDateForRequest(currentDate));
-
+    const formatTeacherName = (teacher) => {
+        if (!teacher) return "미배정";
+        const isMe = teacher.includes("/me");
+        const teacherName = teacher.replace("/me", "").trim();
+        return { name: teacherName, isMe };
+    };
     return (
         <S.Container>
             <S.HandleButton onClick={handlePrevDay}>{'<'}</S.HandleButton>
@@ -52,24 +57,25 @@ export default function TeacherList({ closeModal, selectedDate }) {
                                 <span>3학년</span>
                             </S.TeacherListTop>
                             <S.TeacherListContent>
-                                <S.TeacherTable>
-                                    <p>7교시</p>
-                                    <p>{todayTeacher.first_grade["7th_teacher"] || "미배정"}</p>
-                                    <p>{todayTeacher.second_grade["7th_teacher"] || "미배정"}</p>
-                                    <p>{todayTeacher.third_grade["7th_teacher"] || "미배정"}</p>
-                                </S.TeacherTable>
-                                <S.TeacherTable>
-                                    <p>8~9교시</p>
-                                    <p>{todayTeacher.first_grade["8th_teacher"] || "미배정"}</p>
-                                    <p>{todayTeacher.second_grade["8th_teacher"] || "미배정"}</p>
-                                    <p>{todayTeacher.third_grade["8th_teacher"] || "미배정"}</p>
-                                </S.TeacherTable>
-                                <S.TeacherTable>
-                                    <p>10~11교시</p>
-                                    <p>{todayTeacher.first_grade["10th_teacher"] || "미배정"}</p>
-                                    <p>{todayTeacher.second_grade["10th_teacher"] || "미배정"}</p>
-                                    <p>{todayTeacher.third_grade["10th_teacher"] || "미배정"}</p>
-                                </S.TeacherTable>
+                                {["7th_teacher", "8th_teacher", "10th_teacher"].map((period, index) => (
+                                    <S.TeacherTable key={index}>
+                                        <p>{index === 0 ? "7교시" : index === 1 ? "8~9교시" : "10~11교시"}</p>
+                                        {["first_grade", "second_grade", "third_grade"].map((grade, i) => {
+                                            const { name, isMe } = formatTeacherName(todayTeacher?.[grade]?.[period]);
+                                            return (
+                                                <p
+                                                    key={i}
+                                                    style={{
+                                                        color: isMe ? "#2E6FF2" : "",
+                                                        fontWeight: isMe ? "bold" : "normal"
+                                                    }}
+                                                >
+                                                    {name}
+                                                </p>
+                                            );
+                                        })}
+                                    </S.TeacherTable>
+                                ))}
                             </S.TeacherListContent>
                         </S.Table>
                     )}
