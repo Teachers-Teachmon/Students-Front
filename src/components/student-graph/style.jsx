@@ -31,7 +31,7 @@ export const Student = styled.div`
     flex-direction: column;
     background-color: ${({ $color }) => $color};
     position: relative;
-    cursor: pointer;
+    cursor: ${({ $color }) => $color === "#ffffff" ? "default" : "pointer"};
     transition: 0.1s;
     &:hover {
         background-color: ${({ $color }) => darken(0.1, $color || '#ffffff')};
