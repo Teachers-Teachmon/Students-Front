@@ -18,6 +18,7 @@ import SupervisionDetail from "./pages/supervision/detail";
 import SupervisionChange from "./pages/supervision/change";
 import LoginLoading from './components/login';
 import Edit from './pages/after_school/edit';
+import Default from "./pages/default/index.jsx";
 
 const client = new QueryClient();
 
@@ -25,7 +26,8 @@ createRoot(document.getElementById('root')).render(
     <QueryClientProvider client={client} >
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Landing />} />
+                <Route path={'/'} element={<Default />} />
+                <Route path="/landing" element={<Landing />} />
                 <Route path={"/login"} element={<Login />} />
                 <Route path="/main" element={<Main />} />
                 <Route path="/manage" element={<Manage />} />

@@ -419,6 +419,12 @@
       "number" : 1410
     }
   ],
+  "healthcheck": {
+
+  },
+  "check": {
+
+  },
   "place" : [
     {
       "name" : "집",
