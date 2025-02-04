@@ -15,11 +15,356 @@ export default function SupervisionChange() {
     const [selectedTeacher, setSelectedTeacher] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const [currentMonth, setCurrentMonth] = useState(new Date().getMonth() + 1);
+    const [isSelfSelected, setIsSelfSelected] = useState(false);
+    const [disabledTeachers, setDisabledTeachers] = useState([]);
 
-    // const { data: TeacherList, isLoading, isError } = useGetMonthlySupervision(currentMonth);
+    const [currentMonth, setCurrentMonth] = useState(new Date().getMonth() + 1);
+    const [selectedDay, setSelectedDay] = useState("");
+    const [selectedGrade, setSelectedGrade] = useState();
+    const [selectedPeriod, setSelectedPeriod] = useState("");
+
+    const convertPeriod = (periodKey) => {
+        if (periodKey.includes("7th")) return "SEVEN_PERIOD";
+        if (periodKey.includes("8th")) return "EIGHT_AND_NINE_PERIOD";
+        if (periodKey.includes("10th")) return "TEN_AND_ELEVEN_PERIOD";
+        return "";
+    };
+
     const { data: TeacherList = { data: [] }, isLoading, isError } = useGetMonthlySupervision(currentMonth);
-    const { data: fixedTeacherList, isLoading: isLoadingFixed, isError: isErrorFixed } = useGetFixedTeachers();
+    // const TeacherList = {
+    //     "data": [
+    //         {
+    //             "week": "2월 2주차",
+    //             "day": "2월 3일 (월)",
+    //             "date": "2025-02-03",
+    //             "first_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": "정유진/1/me",
+    //                 "10th_teacher": null
+    //             },
+    //             "second_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "third_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             }
+    //         },
+    //         {
+    //             "week": "2월 2주차",
+    //             "day": "2월 4일 (화)",
+    //             "date": "2025-02-04",
+    //             "first_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "second_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "third_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             }
+    //         },
+    //         {
+    //             "week": "2월 2주차",
+    //             "day": "2월 5일 (수)",
+    //             "date": "2025-02-05",
+    //             "first_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "second_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "third_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             }
+    //         },
+    //         {
+    //             "week": "2월 2주차",
+    //             "day": "2월 6일 (목)",
+    //             "date": "2025-02-06",
+    //             "first_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "second_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "third_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             }
+    //         },
+    //         {
+    //             "week": "2월 3주차",
+    //             "day": "2월 10일 (월)",
+    //             "date": "2025-02-10",
+    //             "first_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "second_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "third_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             }
+    //         },
+    //         {
+    //             "week": "2월 3주차",
+    //             "day": "2월 11일 (화)",
+    //             "date": "2025-02-11",
+    //             "first_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "second_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "third_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             }
+    //         },
+    //         {
+    //             "week": "2월 3주차",
+    //             "day": "2월 12일 (수)",
+    //             "date": "2025-02-12",
+    //             "first_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "second_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "third_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             }
+    //         },
+    //         {
+    //             "week": "2월 3주차",
+    //             "day": "2월 13일 (목)",
+    //             "date": "2025-02-13",
+    //             "first_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "second_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "third_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             }
+    //         },
+    //         {
+    //             "week": "2월 4주차",
+    //             "day": "2월 17일 (월)",
+    //             "date": "2025-02-17",
+    //             "first_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "second_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "third_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             }
+    //         },
+    //         {
+    //             "week": "2월 4주차",
+    //             "day": "2월 18일 (화)",
+    //             "date": "2025-02-18",
+    //             "first_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "second_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "third_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             }
+    //         },
+    //         {
+    //             "week": "2월 4주차",
+    //             "day": "2월 19일 (수)",
+    //             "date": "2025-02-19",
+    //             "first_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "second_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "third_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             }
+    //         },
+    //         {
+    //             "week": "2월 4주차",
+    //             "day": "2월 20일 (목)",
+    //             "date": "2025-02-20",
+    //             "first_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "second_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "third_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             }
+    //         },
+    //         {
+    //             "week": "2월 5주차",
+    //             "day": "2월 24일 (월)",
+    //             "date": "2025-02-24",
+    //             "first_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "second_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "third_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             }
+    //         },
+    //         {
+    //             "week": "2월 5주차",
+    //             "day": "2월 25일 (화)",
+    //             "date": "2025-02-25",
+    //             "first_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "second_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "third_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             }
+    //         },
+    //         {
+    //             "week": "2월 5주차",
+    //             "day": "2월 26일 (수)",
+    //             "date": "2025-02-26",
+    //             "first_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "second_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "third_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             }
+    //         },
+    //         {
+    //             "week": "2월 5주차",
+    //             "day": "2월 27일 (목)",
+    //             "date": "2025-02-27",
+    //             "first_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "second_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             },
+    //             "third_grade": {
+    //                 "7th_teacher": null,
+    //                 "8th_teacher": null,
+    //                 "10th_teacher": null
+    //             }
+    //         }
+    //     ]
+    // };
+    const { data: fixedTeacherList, isLoading: isLoadingFixed, isError: isErrorFixed } = useGetFixedTeachers(selectedDay, selectedGrade, selectedPeriod);
+    useEffect(() => {
+        if (isSelfSelected && fixedTeacherList) {
+            const disabledKeys = fixedTeacherList.map(item => {
+                return `${item.date}-${item.grade === 1 ? "first_grade" : item.grade === 2 ? "second_grade" : "third_grade"}-${convertPeriod(item.period)}`;
+            });
+            setDisabledTeachers(disabledKeys);
+        }
+    }, [isSelfSelected, fixedTeacherList]);
+
     const { mutate: sendChangeRequest } = useSendChangeRequest();
 
     const [weeks, setWeeks] = useState([]);
@@ -30,10 +375,22 @@ export default function SupervisionChange() {
         }
     }, [TeacherList]);
 
-    const handleSelectTeacher = (uniqueKey, teacherId) => {
+    const handleSelectTeacher = (uniqueKey, teacherId, isSelf) => {
+        if (isSelf) {
+            if (!selectedTeacher.some(item => item.uniqueKey === uniqueKey)) {
+                setIsSelfSelected(true);
+                setSelectedDay('2025-02-22');
+                setSelectedGrade(uniqueKey.split('-')[1]);
+                setSelectedPeriod(convertPeriod(uniqueKey.split('-')[2]));
+                setSelectedTeacher(prev => [...prev, { uniqueKey, teacherId }]);
+            }
+            return;
+        }
+
         setSelectedTeacher((prev) => {
-            const updated = prev.includes(uniqueKey)
-                ? prev.filter(t => t !== uniqueKey)
+            const alreadySelected = prev.some(item => item.uniqueKey === uniqueKey);
+            const updated = alreadySelected
+                ? prev.filter(item => item.uniqueKey !== uniqueKey)
                 : [...prev, { uniqueKey, teacherId }];
 
             if (updated.length === 2) {
@@ -69,13 +426,6 @@ export default function SupervisionChange() {
     const allData = TeacherList?.data || [];
     const groupedWeeks = groupByWeek(allData);
 
-    const convertPeriod = (periodKey) => {
-        if (periodKey.includes("7th")) return "SEVEN_PERIOD";
-        if (periodKey.includes("8th")) return "EIGHT_AND_NINE_PERIOD";
-        if (periodKey.includes("10th")) return "TEN_AND_ELEVEN_PERIOD";
-        return "";
-    };
-
     const handleSendRequest = () => {
         if (selectedTeacher.length !== 2) {
             alert("교체할 선생님을 두 명 선택해주세요.");
@@ -93,13 +443,13 @@ export default function SupervisionChange() {
                 teacher_id: sender.teacherId,
                 day: senderInfo[0],
                 period: convertPeriod(senderInfo[2]),
-                grade: senderInfo[1] === "first" ? 1 : senderInfo[1] === "second" ? 2 : 3
+                grade: senderInfo[1] === "first_grade" ? 1 : senderInfo[1] === "second_grade" ? 2 : 3
             },
             recipient: {
                 teacher_id: recipient.teacherId,
                 day: recipientInfo[0],
                 period: convertPeriod(recipientInfo[2]),
-                grade: recipientInfo[1] === "first" ? 1 : recipientInfo[1] === "second" ? 2 : 3
+                grade: recipientInfo[1] === "first_grade" ? 1 : recipientInfo[1] === "second_grade" ? 2 : 3
             },
             cause: exchangeReason || "사유 없음"
         };
@@ -157,11 +507,23 @@ export default function SupervisionChange() {
                                                             return (
                                                                 <div
                                                                     key={uniqueKey}
-                                                                    onClick={() => handleSelectTeacher(uniqueKey, teacherInfo ? parseInt(teacherInfo.split('/')[1]) || null : null)}
+                                                                    onClick={() => {
+                                                                        if (!isSelfSelected) {
+                                                                            if (!(teacherInfo && teacherInfo.includes('/me'))) return;
+                                                                            handleSelectTeacher(uniqueKey, teacherInfo ? parseInt(teacherInfo.split('/')[1]) || null : null, true);
+                                                                        } else {
+                                                                            handleSelectTeacher(uniqueKey, teacherInfo ? parseInt(teacherInfo.split('/')[1]) || null : null, false);
+                                                                        }
+                                                                    }}
                                                                     style={{
                                                                         backgroundColor: selectedTeacher.some(t => t.uniqueKey === uniqueKey) ? '#2E6FF2' : '#FFF',
                                                                         color: selectedTeacher.some(t => t.uniqueKey === uniqueKey) ? '#FFF' : '#000',
-                                                                        cursor: 'pointer',
+                                                                        cursor: !isSelfSelected && !(teacherInfo && teacherInfo.includes('/me'))
+                                                                            ? 'not-allowed'
+                                                                            : 'pointer',
+                                                                        opacity: !isSelfSelected && !(teacherInfo && teacherInfo.includes('/me'))
+                                                                            ? 0.5
+                                                                            : 1,
                                                                     }}
                                                                 >
                                                                     {teacherName}
