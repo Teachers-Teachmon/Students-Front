@@ -26,8 +26,8 @@ export default function Default() {
     const checkUser = async () =>{
         try {
             const res = await Check();
-            console.log(res);
-            if(res.message === "Authentication Success"){
+
+            if(res === "Authentication Success"){
                 window.location.href = '/main';
             }
             else{
