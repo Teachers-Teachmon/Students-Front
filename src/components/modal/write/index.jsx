@@ -73,7 +73,7 @@ export default function Write({isModal, setIsModal}){
                                 />
                                 <SearchDropdown
                                     target={"장소"}
-                                    name={place}
+                                    name={place.name || place}
                                     axios={(event)=>searchPlace(event)}
                                     change={(event) => setPlace(event)}
                                     isOpen={isOpen[1]}
