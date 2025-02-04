@@ -44,6 +44,7 @@ export default function StudentGraph({data, grade, classNum}){
                 return "#FF938C"
             case "방과후" :
             case "방과 후" :
+            case "AFTER_SCHOOL" :
                 return "#ffffff"
             case "이석" :
                 return "#CCBCFF"
