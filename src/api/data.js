@@ -67,28 +67,6 @@ export const getLeave = async (day) =>{
     }
 }
 
-export const postMovement = async ({selectStudentShow, today, time, place, cause}) =>{
-    console.log(selectStudentShow, today, time, place, cause)
-    try{
-        const res = await axiosInstance.post(`${API_ENDPOINTS.DATA}/leaveseat`, {
-            students:selectStudentShow,
-            cause:cause,
-            day: today,
-            period: period[time],
-            place: place.id
-        });
-        if(res.status !== 200 && res.status !== 201){
-            return Promise.reject({
-                status: res.status,
-                message: res.message || 'Request failed'
-            });
-        }
-        return res;
-
-    }catch (err){
-        return Promise.reject(err);
-    }
-}
 
 export const deleteMovement = async (teacher_id, day, periodName) =>{
     try{

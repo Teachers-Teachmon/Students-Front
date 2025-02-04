@@ -25,19 +25,6 @@ export const useGetLeave = (day) => {
 };
 
 
-export const usePostMovement = () => {
-    const navigate = useNavigate();
-
-    return useMutation({
-        mutationFn: (props) => API.postMovement(props),
-        onSuccess: () => {
-            navigate('/manage/record');
-        },
-        onError: (err) => {
-            console.error('Movement 등록 실패:', err);
-        },
-    });
-};
 // Movement 삭제하기
 export const useDeleteMovement = () => {
     const queryClient = useQueryClient();
