@@ -42,8 +42,9 @@ export const HealthCheck = async () =>{
 export const Check = async () =>{
     try{
         const res = await axiosInstance.get('/check');
-        return res.status;
+        return res;
     }catch(err){
+        window.location.href = "/landing";
         return Promise.reject(err);
     }
 }
