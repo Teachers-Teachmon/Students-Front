@@ -1,7 +1,7 @@
 import * as S from './style.jsx'
 import {useState} from "react";
 import StatusUpdate from "../status-update/index.jsx";
-import {usePatchStudent} from "../../hooks/useData.js";
+import {usePatchStudent} from "../../hooks/useStudent.js";
 
 export default function StudentGraph({data, grade, classNum}){
     const [isOpen, setIsOpen] = useState([
@@ -26,7 +26,8 @@ export default function StudentGraph({data, grade, classNum}){
     }
 
     const makeNumber = (grade, classNum, number, name) =>{
-        number = String(number).startsWith(1) ? number : `0${number}`
+        number = number >= 10 && number <= 99  ? String(number) : `0${String(number)}`
+        console.log(number);
         return String(grade) + String(classNum) + number + name
     }
     // 상태에 따라 색깔변환
@@ -49,6 +50,10 @@ export default function StudentGraph({data, grade, classNum}){
         {
             "status": "이석",
             "name": "김동욱"
+        },
+        {
+            "status": "자습",
+            "name": "허온"
         }
     ]
     return(
