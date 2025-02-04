@@ -19,7 +19,7 @@ export const searchStudent = async (query) =>{
 
 export const searchPlace = async (query) =>{
     try{
-        const res = await axiosInstance.get(`/place?search_query=${query}`);
+        const res = await axiosInstance.get(`${API_ENDPOINTS.SEARCH}/place?search_query=${query}`);
         if(res.status!==200){
             return new Promise.reject({
                 status:res.status,
