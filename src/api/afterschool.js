@@ -47,3 +47,18 @@ export const getMyClasses = async () => {
         return Promise.reject(err);
     }
 }
+
+export const getAfterSchoolClasses = async (branch, weekday) => {
+    try {
+        const res = await axiosInstance.get(`${API_ENDPOINTS.AFTER_SCHOOL}/all/${branch}/${weekday}`);
+        if (res.status !== 200) {
+            return Promise.reject({
+                status: res.status,
+                message: res.message
+            });
+        }
+        return res;
+    } catch (err) {
+        return Promise.reject(err);
+    }
+}

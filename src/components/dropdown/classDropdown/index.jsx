@@ -14,7 +14,7 @@ import Down from '../../../assets/down.svg'
 //                     click={() => setIsOpen([false, !isOpen[1], false])}
 //                 />
 
-export default function Dropdown({name, item, click, isOpen, change}) {
+export default function ClassDropdown({name, item, click, isOpen, change}) {
     return (
         <S.DropdownContainer onClick={()=>click()}>
             <p>{name}</p>

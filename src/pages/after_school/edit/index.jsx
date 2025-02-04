@@ -1,7 +1,7 @@
 import * as S from './style.jsx';
 import Header from '../../../components/header/index.jsx';
 import DayBtn from '../../../components/button/circle/index.jsx';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import DropdownNS from '../../../components/dropdown/classDropdown/index.jsx';
 import DropdownS from '../../../components/dropdown/search/index.jsx';
 import Download from '../../../assets/Download.svg';
@@ -10,19 +10,19 @@ import Confirm from '../../../components/button/confirm/index.jsx';
 import Search from '../../../assets/Search.svg';
 import OptionButton from '../../../assets/OptionButton.svg';
 import Square from '../../../components/button/square/index.jsx';
+import { useGetAfterSchoolClasses } from '../../../hooks/useAfterSchool.js';
+import { searchStudent, searchPlace, searchTeacher } from "../../../api/search.js";
 
 export default function Edit() {
 
-    const [day, setDay] = useState([true, false, false, false]);
+    const [branch, setBranch] = useState('');
+    const [weekday, setWeekday] = useState('월');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [search, setSearch] = useState("");
     const [selectedPeriod, setSelectedPeriod] = useState('');
     const [selectedGrade, setSelectedGrade] = useState(1);
-    const [options, setOptions] = useState({
-        1: null,
-        2: null,
-        3: null,
-    });
+    const [options, setOptions] = useState({});
+    const [isBranchOpen, setIsBranchOpen] = useState(false);
 
     const [selectStudent, setSelectStudent] = useState({
         class1: [],
@@ -31,77 +31,70 @@ export default function Edit() {
         class4: [],
     });
 
+
+    const branches = [1, 2, 3, 4];
+
     const periods = ['8~9교시', '10~11교시'];
 
+    const { data } = useGetAfterSchoolClasses(branch, weekday);
 
-    const [grades, setGrades] = useState({
-        1: [
-            {
-                "period": '',
-                "teacher": '',
-                "placeName": '',
-                "name": '',
-                "studentsNumber": '',
-            },
-        ],
-        2: [
-            {
-                "period": '',
-                "teacher": '',
-                "placeName": '',
-                "name": '',
-                "studentsNumber": '',
-            },
-        ],
-        3: [
-            {
-                "period": '',
-                "teacher": '',
-                "placeName": '',
-                "name": '',
-                "studentsNumber": '',
-            },
-        ],
-    });
+    useEffect(() => {
+        if (data) {
+            const updatedGrades = {
+                1: data.filter((cls) => cls.grade === 1),
+                2: data.filter((cls) => cls.grade === 2),
+                3: data.filter((cls) => cls.grade === 3),
+            };
+            setGrades(updatedGrades);
+        }
+    }, [data]);
 
-    const student = [
-        "1116 동동똥동욱",
-        "1116 허온",
-        "1116 윤도훈",
-        "1210 윤도훈",
-        "1211 김현준",
-        "1210 윤도훈",
-        "1201 김현준",
-        "1202 김현준",
-        "1312 김현준",
-        "1313 김현준",
-        "1414 김현준",
-        "1415 김현준",
-        "1416 김현준",
-        "1404 김현준",
-        "1405 김현준",
-        "1406 김현준",
-        "1316 김동욱",
-        "1316 허온",
-        "1316 윤도훈",
-        "1116 동똥똥동욱",
-        "1116 동동동욱",
-        "1116 동똥동욱"
-    ]
+    const [grades, setGrades] = useState({ 1: [], 2: [], 3: [] });
+
+    // const [grades, setGrades] = useState({
+    //     1: [
+    //         { period: '8~9교시', teacher: '김철수', placeName: '프로그래밍실', name: '웹 개발', studentsNumber: '5' },
+    //         { period: '10~11교시', teacher: '박영희', placeName: '디자인실', name: '그래픽 디자인', studentsNumber: '6' }
+    //     ],
+    //     2: [
+    //         { period: '8~9교시', teacher: '이정민', placeName: '1-3반', name: '프론트엔드 개발', studentsNumber: '8' },
+    //         { period: '10~11교시', teacher: '최은지', placeName: '융합관', name: 'UX/UI 디자인', studentsNumber: '7' }
+    //     ],
+    //     3: [
+    //         { period: '8~9교시', teacher: '홍길동', placeName: '객체지향 프로그래밍실', name: '데이터 분석', studentsNumber: '4' },
+    //         { period: '10~11교시', teacher: '김미영', placeName: '2-1반', name: '디지털 마케팅', studentsNumber: '6' }
+    //     ]
+    // });
+
+    // const student = [
+    //     "1116 동동똥동욱",
+    //     "1116 허온",
+    //     "1116 윤도훈",
+    //     "1210 윤도훈",
+    //     "1211 김현준",
+    //     "1210 윤도훈",
+    //     "1201 김현준",
+    //     "1202 김현준",
+    //     "1312 김현준",
+    //     "1313 김현준",
+    //     "1414 김현준",
+    //     "1415 김현준",
+    //     "1416 김현준",
+    //     "1404 김현준",
+    //     "1405 김현준",
+    //     "1406 김현준",
+    //     "1316 김동욱",
+    //     "1316 허온",
+    //     "1316 윤도훈",
+    //     "1116 동똥똥동욱",
+    //     "1116 동동동욱",
+    //     "1116 동똥동욱"
+    // ]
 
     const addRow = (grade) => {
-        setGrades((prev) => ({
+        setGrades(prev => ({
             ...prev,
-            [grade]: [
-                ...prev[grade],
-                {
-                    "period": '',
-                    "teacher": '',
-                    "placeName": '',
-                    "name": '',
-                    "studentsNumber": '',
-                },
-            ],
+            [grade]: [...prev[grade], { period: '', teacher: '', placeName: '', name: '', studentsNumber: '' }],
         }));
     };
 
@@ -112,35 +105,39 @@ export default function Edit() {
         }));
     };
 
+    // const [isOpen, setIsOpen] = useState({
+    //     1: Array(grades[1].length).fill(false),
+    //     2: Array(grades[2].length).fill(false),
+    //     3: Array(grades[3].length).fill(false),
+    // });
+
+
     const [isOpen, setIsOpen] = useState({
-        1: [],
-        2: [],
-        3: [],
+        1: grades[1].map(() => ({ period: false, teacher: false, placeName: false })),
+        2: grades[2].map(() => ({ period: false, teacher: false, placeName: false })),
+        3: grades[3].map(() => ({ period: false, teacher: false, placeName: false })),
     });
 
-    const handleDropdownClick = (grade, index) => { // 드롭다운 클릭했을 때 그 학년 드롭다운만 열리게
-        setIsOpen((prev) => ({
+    const handleDropdownClick = (grade, index, field) => {
+        setIsOpen(prev => ({
             ...prev,
-            [grade]: prev[grade].map((openState, idx) =>
-                idx === index ? !openState : openState
+            [grade]: prev[grade].map((row, idx) =>
+                idx === index
+                    ? { ...row, [field]: !row[field] }
+                    : { ...row, [field]: false }
             ),
         }));
     };
 
+
     const handleInputChange = (grade, index, field, value) => {
-        setGrades((prev) => ({
+        setGrades(prev => ({
             ...prev,
             [grade]: prev[grade].map((row, idx) =>
                 idx === index ? { ...row, [field]: value } : row
             ),
         }));
     };
-
-    const changeDay = (idx) => {
-        const newDay = [false, false, false, false];
-        newDay[idx] = true;
-        setDay(newDay);
-    }
 
     const closeModalHandler = (setModal) => {
         setModal(false);
@@ -166,37 +163,30 @@ export default function Edit() {
             3: [],
         });
         setDay([true, false, false, false]);
-        // console.log("초기화 후 grades:", {
-        //     1: [{ period: '', teacher: '', placeName: '', name: '', studentsNumber: '' }],
-        //     2: [{ period: '', teacher: '', placeName: '', name: '', studentsNumber: '' }],
-        //     3: [{ period: '', teacher: '', placeName: '', name: '', studentsNumber: '' }],
-        // });
     };
 
     const handleDeleteRow = (grade, index) => {
-        setGrades((prev) => {
-            // 해당 학년의 현재 줄 개수 확인
-            if (prev[grade].length === 1) {
-                // 한 줄만 있으면 데이터만 초기화
-                return {
-                    ...prev,
-                    [grade]: prev[grade].map((row, idx) =>
-                        idx === index
-                            ? { period: '', teacher: '', placeName: '', name: '', studentsNumber: '' }
-                            : row
-                    ),
-                };
-            } else {
-                // 두 줄 이상이면 해당 인덱스의 행 삭제
-                return {
-                    ...prev,
-                    [grade]: prev[grade].filter((_, idx) => idx !== index),
-                };
-            }
-        });
+        setGrades(prev => ({
+            ...prev,
+            [grade]: prev[grade].length > 1
+                ? prev[grade].filter((_, idx) => idx !== index)
+                : prev[grade].map((row, idx) =>
+                    idx === index ? { period: '', teacher: '', placeName: '', name: '', studentsNumber: '' } : row
+                ),
+        }));
+    };
 
-        // 옵션 창 닫기
-        setOptions((prev) => ({ ...prev, [grade]: null }));
+    const toggleBranchDropdown = () => {
+        setIsBranchOpen((prev) => !prev);
+    };
+
+    const handleBranchChange = (selectedBranch) => {
+        setBranch(selectedBranch);
+        toggleBranchDropdown;
+    };
+
+    const handleWeekdayChange = (selectedWeekday) => {
+        setWeekday(selectedWeekday);
     };
 
 
@@ -206,14 +196,21 @@ export default function Edit() {
             <S.Content>
                 <S.EditTop>
                     <S.EditTopLeft>
-                        <S.TopDate>
-                            <DropdownNS name={"분기"} />
+                        <S.TopDate $length={85}>
+                            <DropdownNS
+
+                                name={branch || '분기'}
+                                item={branches}
+                                change={handleBranchChange}
+                                isOpen={isBranchOpen}
+                                click={toggleBranchDropdown}
+                            />
                         </S.TopDate>
                         <S.TopDay>
-                            <DayBtn name={"월"} status={day[0]} On={() => changeDay(0)} />
-                            <DayBtn name={"화"} status={day[1]} On={() => changeDay(1)} />
-                            <DayBtn name={"수"} status={day[2]} On={() => changeDay(2)} />
-                            <DayBtn name={"목"} status={day[3]} On={() => changeDay(3)} />
+                            <DayBtn name={"월"} status={weekday === '월'} On={() => handleWeekdayChange('월')} />
+                            <DayBtn name={"화"} status={weekday === '화'} On={() => handleWeekdayChange('화')} />
+                            <DayBtn name={"수"} status={weekday === '수'} On={() => handleWeekdayChange('수')} />
+                            <DayBtn name={"목"} status={weekday === '목'} On={() => handleWeekdayChange('목')} />
                         </S.TopDay>
                     </S.EditTopLeft>
 
@@ -245,38 +242,35 @@ export default function Edit() {
                             <S.EditMainData key={grade}>
                                 <S.EditMainTop>
                                     <S.TopData $length={30}>학년</S.TopData>
-                                    <S.TopData $length={85}>교시</S.TopData>
-                                    <S.TopData $length={102}>담당교사</S.TopData>
-                                    <S.TopData $length={200}>장소</S.TopData>
+                                    <S.TopData $length={115}>교시</S.TopData>
+                                    <S.TopData $length={98}>담당교사</S.TopData>
+                                    <S.TopData $length={215}>장소</S.TopData>
                                     <S.TopData $length={290}>방과후</S.TopData>
                                     <p>* 학생은 자세히 보기에서 수정해 주세요.</p>
                                 </S.EditMainTop>
 
-                                {grades[grade].map((row, index) => (
+                                {(grades[grade]?.length ? grades[grade] : [{}]).map((row, index) => (
                                     <S.EditRow key={index}>
-                                        <S.RowData $length={145}>
+                                        <S.RowData $length={180}>
                                             <S.Grade>
                                                 <div>{grade}</div>
                                                 {console.log("periods:", periods)}
                                                 <DropdownNS
-                                                    name={selectedPeriod || '교시'}
+                                                    name={row.period || '교시'}
                                                     item={periods}
-                                                    change={(value) => {
-                                                        handleInputChange(grade, index, 'period', value);
-                                                        setSelectedPeriod(value);
-                                                    }}
-                                                    click={() => handleDropdownClick(grade, index)}
-                                                    isOpen={isOpen[grade][index]}
+                                                    change={value => handleInputChange(grade, index, 'period', value)}
+                                                    isOpen={isOpen[grade]?.[index]?.period}
+                                                    click={() => handleDropdownClick(grade, index, 'period')}
                                                 />
                                             </S.Grade>
                                         </S.RowData>
-                                        <S.RowData $length={120}>
+                                        <S.RowData $length={240}>
                                             <DropdownS
-                                                name={"담당교사"}
-                                                value={row.teacher}
-                                                onChange={(value) =>
-                                                    handleInputChange(grade, index, 'teacher', value)
-                                                }
+                                                name={row.placeName || "장소"}
+                                                value={row.placeName || ''}
+                                                onChange={value => handleInputChange(grade, index, 'placeName', value)}
+                                                isOpen={isOpen[grade]?.[index]?.placeName}
+                                                click={() => handleDropdownClick(grade, index, 'placeName')}
                                             />
                                         </S.RowData>
                                         <S.RowData $length={225}>
@@ -292,10 +286,8 @@ export default function Edit() {
                                         <S.RowData $length={550}>
                                             <S.ClassData
                                                 type='text'
-                                                value={row.afterClass}
-                                                onChange={(e) =>
-                                                    handleInputChange(grade, index, 'afterClass', e.target.value)
-                                                }
+                                                value={row.name || ''}
+                                                onChange={e => handleInputChange(grade, index, 'name', e.target.value)}
                                             />
                                         </S.RowData>
                                         <S.OptionButton
@@ -309,14 +301,12 @@ export default function Edit() {
                                                     setSelectedGrade(grade);
                                                     setIsModalOpen(true);
                                                 }}>자세히 보기</button>
-                                                <button onClick={() => handleDeleteRow(grade, index)}>삭제</button>
+                                                <button onClick={() => {
+                                                    handleDeleteRow(grade, index);
+                                                    setOptions((prev) => ({ ...prev, [grade]: null }));
+                                                }}>삭제</button>
                                             </S.Options>
                                         )}
-
-                                        {/* <S.DetailBtn onClick={() => {
-                                            setSelectedGrade(grade);
-                                            setIsModalOpen(true);
-                                        }}>자세히 보기</S.DetailBtn> */}
                                     </S.EditRow>
                                 ))}
                                 <S.PlusBtn onClick={() => addRow(grade)}>+</S.PlusBtn>
@@ -350,9 +340,6 @@ export default function Edit() {
                                     value='방과후를 입력해주세요'
                                 />
                                 <S.DropdownFL>
-                                    <DropdownNS
-                                        name={"층"}
-                                    />
                                     <DropdownNS
                                         name={"장소"}
                                     />

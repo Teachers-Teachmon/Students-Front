@@ -31,3 +31,18 @@ export const searchPlace = async (query) =>{
         return Promise.reject(err);
     }
 }
+
+export const searchTeacher = async (query) =>{
+    try{
+        const res = await axiosInstance.get(`${API_ENDPOINTS.SEARCH}/teacher?search_query=${query}`);
+        if(res.status!==200){
+            return new Promise.reject({
+                status:res.status,
+                message:res.message
+            })
+        }
+        return res.data;
+    }catch (err){
+        return Promise.reject(err);
+    }
+}
