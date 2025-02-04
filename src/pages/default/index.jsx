@@ -26,7 +26,7 @@ export default function Default() {
     const checkUser = async () =>{
         try {
             const res = await Check();
-            if(res === 200){
+            if(res.message === "성공적으로 확인되었습니다."){
                 window.location.href = '/main';
             }
             else{
