@@ -379,7 +379,7 @@ export default function SupervisionChange() {
         if (isSelf) {
             if (!selectedTeacher.some(item => item.uniqueKey === uniqueKey)) {
                 setIsSelfSelected(true);
-                setSelectedDay('2025-02-22');
+                setSelectedDay(weeks.find(item => item.date === uniqueKey.split('-')[0])?.day);
                 setSelectedGrade(uniqueKey.split('-')[1]);
                 setSelectedPeriod(convertPeriod(uniqueKey.split('-')[2]));
                 setSelectedTeacher(prev => [...prev, { uniqueKey, teacherId }]);
@@ -441,13 +441,13 @@ export default function SupervisionChange() {
         const requestBody = {
             sender: {
                 teacher_id: sender.teacherId,
-                day: senderInfo[0],
+                day: `${senderInfo[3]}-${senderInfo[4]}-${senderInfo[5]}`,
                 period: convertPeriod(senderInfo[2]),
                 grade: senderInfo[1] === "first_grade" ? 1 : senderInfo[1] === "second_grade" ? 2 : 3
             },
             recipient: {
                 teacher_id: recipient.teacherId,
-                day: recipientInfo[0],
+                day: `${recipientInfo[3]}-${recipientInfo[4]}-${recipientInfo[5]}`,
                 period: convertPeriod(recipientInfo[2]),
                 grade: recipientInfo[1] === "first_grade" ? 1 : recipientInfo[1] === "second_grade" ? 2 : 3
             },
@@ -502,7 +502,7 @@ export default function SupervisionChange() {
                                                         ['first_grade', 'second_grade', 'third_grade'].map((gradeKey) => {
                                                             const teacherInfo = dayData?.[gradeKey]?.[classKey];
                                                             const teacherName = teacherInfo ? teacherInfo.split('/')[0] : "미배정";
-                                                            const uniqueKey = `${dayData.day}-${gradeKey}-${classKey}`;
+                                                            const uniqueKey = `${dayData.day}-${gradeKey}-${classKey}-${dayData.date}`;
 
                                                             return (
                                                                 <div
