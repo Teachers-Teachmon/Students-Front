@@ -38,3 +38,12 @@ export const HealthCheck = async () =>{
         return Promise.reject(err);
     }
 }
+
+export const Check = async () =>{
+    try{
+        const res = await axiosInstance.get('/check');
+        return res.status;
+    }catch(err){
+        return Promise.reject(err);
+    }
+}
