@@ -26,7 +26,8 @@ export default function Default() {
     const checkUser = async () =>{
         try {
             const res = await Check();
-            if(res.message === "성공적으로 확인되었습니다."){
+            console.log(res);
+            if(res.message === "Authentication Success"){
                 window.location.href = '/main';
             }
             else{
