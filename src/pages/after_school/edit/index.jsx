@@ -254,7 +254,6 @@ export default function Edit() {
                                         <S.RowData $length={180}>
                                             <S.Grade>
                                                 <div>{grade}</div>
-                                                {console.log("periods:", periods)}
                                                 <DropdownNS
                                                     name={row.period || '교시'}
                                                     item={periods}
@@ -264,6 +263,15 @@ export default function Edit() {
                                                 />
                                             </S.Grade>
                                         </S.RowData>
+                                        <S.RowData $length={120}>
+                                            <DropdownS
+                                                name={"담당교사"}
+                                                value={row.teacher || ''}
+                                                onChange={value => handleInputChange(grade, index, 'teacher', value)}
+                                                isOpen={isOpen[grade]?.[index]?.teacher}
+                                                click={() => handleDropdownClick(grade, index, 'teacher')}
+                                            />
+                                        </S.RowData>
                                         <S.RowData $length={240}>
                                             <DropdownS
                                                 name={row.placeName || "장소"}
@@ -271,16 +279,6 @@ export default function Edit() {
                                                 onChange={value => handleInputChange(grade, index, 'placeName', value)}
                                                 isOpen={isOpen[grade]?.[index]?.placeName}
                                                 click={() => handleDropdownClick(grade, index, 'placeName')}
-                                            />
-                                        </S.RowData>
-                                        <S.RowData $length={225}>
-                                            <DropdownNS
-                                                name={"장소"}
-                                                placeholder="장소"
-                                                value={row.location}
-                                                onChange={(e) =>
-                                                    handleInputChange(grade, index, 'location', e.target.value)
-                                                }
                                             />
                                         </S.RowData>
                                         <S.RowData $length={550}>
