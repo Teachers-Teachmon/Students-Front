@@ -1,5 +1,6 @@
 import {API_ENDPOINTS} from "../lib/endpoints.js";
 import axiosInstance from "../lib/axiosInstance.js";
+import {period} from "../lib/period.js";
 
 //${API_ENDPOINTS.STUDENT}
 export const getNowStudent = async (grade) =>{
@@ -71,6 +72,49 @@ export const getStudentCount = async () => {
             })
         }
         return res;
+    }catch (err){
+        return Promise.reject(err);
+    }
+}
+
+export const postMovement = async ({selectStudentShow, today, time, place, cause}) =>{
+    console.log(selectStudentShow, today, time, place, cause)
+    try{
+        const res = await axiosInstance.post(`${API_ENDPOINTS.STUDENT}/leaveseat`, {
+            students:selectStudentShow,
+            cause:cause,
+            day: today,
+            period: period[time],
+            place: place.id
+        });
+        if(res.status !== 200 && res.status !== 201){
+            return Promise.reject({
+                status: res.status,
+                message: res.message || 'Request failed'
+            });
+        }
+        return res;
+
+    }catch (err){
+        return Promise.reject(err);
+    }
+}
+
+export const patchStudent = async ({studentID, status}) =>{
+    console.log(studentID, status)
+    try{
+        const res = await axiosInstance.patch(`${API_ENDPOINTS.STUDENT}/schedule`, {
+            studentID: studentID,
+            status: status
+        });
+        if(res.status !== 200 && res.status !== 201){
+            return Promise.reject({
+                status: res.status,
+                message: res.message || 'Request failed'
+            });
+        }
+        return res;
+
     }catch (err){
         return Promise.reject(err);
     }

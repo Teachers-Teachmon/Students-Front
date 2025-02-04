@@ -1,5 +1,6 @@
 import * as API from '../api/student.js';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import {useNavigate} from "react-router-dom";
 
 export const useGetNowStudent = (grade) =>{
     return useQuery({
@@ -49,3 +50,31 @@ export const useGetStudentCount = () => {
         }
     })
 }
+
+export const usePostMovement = () => {
+    const navigate = useNavigate();
+
+    return useMutation({
+        mutationFn: (props) => API.postMovement(props),
+        onSuccess: () => {
+            navigate('/manage/record');
+        },
+        onError: (err) => {
+            console.error('Movement 등록 실패:', err);
+        },
+    });
+};
+
+// Student 데이터 수정하기
+export const usePatchStudent = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationFn: (props) => API.patchStudent(props),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['getStudent'] });
+        },
+        onError: (err) => {
+            console.error('Student 수정 실패:', err);
+        },
+    });
+};

@@ -1,6 +1,5 @@
 import * as API from '../api/data.js';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
 
 // Movement 데이터 가져오기
 export const useGetMovement = (day) => {
@@ -25,24 +24,11 @@ export const useGetLeave = (day) => {
 };
 
 
-export const usePostMovement = () => {
-    const navigate = useNavigate();
-
-    return useMutation({
-        mutationFn: (props) => API.postMovement(props),
-        onSuccess: () => {
-            navigate('/manage/record');
-        },
-        onError: (err) => {
-            console.error('Movement 등록 실패:', err);
-        },
-    });
-};
 // Movement 삭제하기
 export const useDeleteMovement = () => {
     const queryClient = useQueryClient();
     return useMutation({
-        mutationFn: (props) => API.deleteMovement(props),
+        mutationFn: (props) =>API.deleteMovement(props),
         onSuccess: (_, variables) => {
             queryClient.refetchQueries({ queryKey: ['getMovement', variables.day] });
         },
@@ -62,20 +48,6 @@ export const useDeleteLeave = () => {
         },
         onError: (err) => {
             console.error('Leave 삭제 실패:', err);
-        },
-    });
-};
-
-// Student 데이터 수정하기
-export const usePatchStudent = () => {
-    const queryClient = useQueryClient();
-    return useMutation({
-        mutationFn: (props) => API.patchStudent(props),
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['getStudent'] });
-        },
-        onError: (err) => {
-            console.error('Student 수정 실패:', err);
         },
     });
 };

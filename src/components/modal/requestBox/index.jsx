@@ -33,14 +33,12 @@ export default function RequestBox({ closeModal, changeData }) {
                 <S.Reason>{changeData.cause}</S.Reason>
             </S.MainContent>
             <S.Buttons>
-                {/* 요청 받은 사람이면 ACCEPTED / REJECTED 버튼 */}
                 {changeData.toMe ? (
                     <>
                         <Confirm text="거절" color="red" image="reject" onClick={() => handleUpdateStatus("REJECTED")} />
                         <Confirm text="수락" color="blue" image="check" onClick={() => handleUpdateStatus("ACCEPTED")} />
                     </>
                 ) : (
-                    // 요청 보낸 사람이면 확인 버튼
                     <Confirm text="확인" color="blue" image="check" onClick={() => handleUpdateStatus("COMPLETED")} />
                 )}
             </S.Buttons>

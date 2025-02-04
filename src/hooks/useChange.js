@@ -48,7 +48,7 @@ export const useGetChangeRequest = () => {
 
 export const useUpdateChangeRequest = (closeModal) => {
     return useMutation({
-        mutationFn: (props) => API.updateChangeStatus(props),
+        mutationFn: ({ id, status }) => API.updateChangeStatus(id, status),
         onSuccess: () => {
             console.log('교체요청 업데이트');
             closeModal();
