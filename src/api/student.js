@@ -99,3 +99,23 @@ export const postMovement = async ({selectStudentShow, today, time, place, cause
         return Promise.reject(err);
     }
 }
+
+export const patchStudent = async ({studentID, status}) =>{
+    console.log(studentID, status)
+    try{
+        const res = await axiosInstance.patch(`${API_ENDPOINTS.STUDENT}/schedule`, {
+            studentID: studentID,
+            status: status
+        });
+        if(res.status !== 200 && res.status !== 201){
+            return Promise.reject({
+                status: res.status,
+                message: res.message || 'Request failed'
+            });
+        }
+        return res;
+
+    }catch (err){
+        return Promise.reject(err);
+    }
+}
