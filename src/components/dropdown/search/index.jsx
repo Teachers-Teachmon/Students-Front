@@ -53,7 +53,7 @@ export default function SearchDropdown({target, name, change, click, isOpen, axi
                         return (
                             <S.DropdownItem
                                 onClick={() => {
-                                    change(currentItem.name)
+                                    change(currentItem)
                                 }}
                                 key={currentItem.id}
                                 value={currentItem.name}

@@ -75,7 +75,7 @@ export const postMovement = async ({selectStudentShow, today, time, place, cause
             cause:cause,
             day: today,
             period: period[time],
-            place: place
+            place: place.id
         });
         if(res.status !== 200 && res.status !== 201){
             return Promise.reject({
