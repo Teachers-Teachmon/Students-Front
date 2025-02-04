@@ -33,7 +33,7 @@ export const getFixedTeachers = async (date, grade, period) => {
     }
 }
 
-export const sendChangeRequest = async (sender, recipient, cause) => {
+export const sendChangeRequest = async ({sender, recipient, cause}) => {
     try {
         const res = await axiosInstance.post(`${API_ENDPOINTS.CHANGE}/send`, {
             sender,
