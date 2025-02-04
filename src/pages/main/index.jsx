@@ -23,8 +23,6 @@ export default function Main() {
     const { data: todayTeacher, isLoading: isLoadingTeacher, isError: isErrorTeacher } = useGetDailySupervision(formattedDate);
     const { data: studentCount, isLoading: isLoadingCount, isError: isErrorCount } = useGetStudentCount();
 
-    const pendingChangeRequests = changeDay?.filter(request => request.result === "PENDING") || [];
-
     const { data: nextData, isLoading: isLoadingNext, isError: isErrorNext } = useGetNextSupervision();
     const { data: completeRateData, isLoading: isLoadingRate, isError: IsErrorRate } = useGetCompleteRate();
 
@@ -104,13 +102,13 @@ export default function Main() {
                 </S.MainMiddle>
                 <S.MainBottom>
                     <S.BottomLeft>
-                        <h2>교체 요청 ({pendingChangeRequests.length})</h2>
+                        <h2>교체 요청 ({changeDay?.length})</h2>
                         <S.BottomLeftContent>
                             <S.BottomLeftHeader>
                                 <span>받는 사람</span>
                                 <span>보내는 사람</span>
                             </S.BottomLeftHeader>
-                            {pendingChangeRequests.map((data) => {
+                            {changeDay && changeDay.map((data) => {
                                 const senderInfo = data.sender.teacher.split('/');
                                 const recipientInfo = data.recipient.teacher.split('/');
 
@@ -145,36 +143,38 @@ export default function Main() {
                     </S.BottomLeft>
                     <S.BottomRight>
                         <h2>오늘의 자습감독 선생님</h2>
-                        <S.BottomRightContent>
-                            {todayTeacher?.length > 0 && todayTeacher.map((data) => (
-                                <div key={data.day}>
+                        {!isLoadingTeacher ? (
+                            <S.BottomRightContent>
+                                <div>
                                     <S.TeacherListTop>
-                                        <span>{data.day}</span>
+                                        <span>{todayTeacher.date}</span>
                                         <span>1학년</span>
                                         <span>2학년</span>
                                         <span>3학년</span>
                                     </S.TeacherListTop>
                                     <S.TeacherListContent>
-                                        {["7th_teacher", "8th_teacher", "10th_teacher"].map((period, index) => {
-                                            return (
-                                                <S.TeacherTable key={index}>
-                                                    <p>{index === 0 ? "7교시" : index === 1 ? "8~9교시" : "10~11교시"}</p>
-                                                    {["first_grade", "second_grade", "third_grade"].map((grade, i) => {
-                                                        const teacher = data[grade][period].replace("/me", "");
-                                                        const isMe = data[grade][period].includes("/me");
-                                                        return (
-                                                            <p key={i} style={{ color: isMe ? "#2E6FF2" : "", fontWeight: isMe ? "600" : "" }}>
-                                                                {teacher}
-                                                            </p>
-                                                        );
-                                                    })}
-                                                </S.TeacherTable>
-                                            );
-                                        })}
+                                        {["7th_teacher", "8th_teacher", "10th_teacher"].map((period, index) => (
+                                            <S.TeacherTable key={index}>
+                                                <p>{index === 0 ? "7교시" : index === 1 ? "8~9교시" : "10~11교시"}</p>
+                                                {["first_grade", "second_grade", "third_grade"].map((grade, i) => {
+                                                    const teacher = todayTeacher[grade][period] ? todayTeacher[grade][period].replace("/me", "") : "미배정";
+                                                    const isMe = todayTeacher[grade][period] ? todayTeacher[grade][period].includes("/me") : false;
+                                                    return (
+                                                        <p key={i} style={{ color: isMe ? "#2E6FF2" : "", fontWeight: isMe ? "600" : "" }}>
+                                                            {teacher}
+                                                        </p>
+                                                    );
+                                                })}
+                                            </S.TeacherTable>
+                                        ))}
                                     </S.TeacherListContent>
                                 </div>
-                            ))}
-                        </S.BottomRightContent>
+                            </S.BottomRightContent>
+                        ) : (
+                            <S.BottomRightContent>
+                                <p>로딩중...</p>
+                            </S.BottomRightContent>
+                        )}
                     </S.BottomRight>
                 </S.MainBottom>
             </S.MainContent>
