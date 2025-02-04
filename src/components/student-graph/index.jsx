@@ -45,6 +45,12 @@ export default function StudentGraph({data, grade, classNum}){
         }
     }
 
+    const fakeData = [
+        {
+            "status": "이석",
+            "name": "김동욱"
+        }
+    ]
     return(
         <S.StudentContainer>
             <S.Class>{classNum}반</S.Class>
@@ -58,10 +64,20 @@ export default function StudentGraph({data, grade, classNum}){
                             : null
                         }
                     </S.Student>)
-                }
+                })}
 
-
-                )}
+                {fakeData && fakeData.map((el, idx) => {
+                   return(
+                       <S.Student $color = {studentColor(el.status)} onClick={()=>isClick(idx)} key = {idx}>{/* 칸 색깔도 data에서 추출해서 사용*/}
+                           <p>{idx+1}</p>
+                           <p>{el.name}</p>
+                           {isOpen[idx] ?
+                               <StatusUpdate changeStatus={changeStatus} name={makeNumber(grade, classNum, idx+1, el.name)} nowStatus={el.status}/>
+                               : null
+                           }
+                       </S.Student>
+                   )
+                })}
                 { isOpen.some((value) => value === true) ? <S.Black onClick={()=>setIsOpen(isOpen.map(() => false))}></S.Black> : null}
             </S.Graph>
         </S.StudentContainer>
