@@ -5,7 +5,7 @@ import Dropdown from "../../dropdown/nosearch";
 import SquareBtn from "../../button/square";
 import Search from '../../../assets/Search.svg'
 import SearchDropdown from '../../dropdown/search';
-import {usePostMovement} from '../../../hooks/useData.js';
+import {usePostMovement} from '../../../hooks/useStudent.js';
 import useDay from "../../../zustand/day.js";
 import SchoolOut from "../confirm/schoolOut/index.jsx";
 import {useDebounce} from "../../../hooks/useDebounce.js";
