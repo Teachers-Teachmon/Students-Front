@@ -8,7 +8,10 @@ export default function StudentGraph({data, grade, classNum}){
         false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
     ]);
     // 색깔 업데이트 해주는 창 띄워주기
-    const isClick = (idx) => {
+    const isClick = (idx, status) => {
+        if(status === "방과후" || status === "방과 후"){
+            return
+        }
         const newIsOpen = [
             false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
         ];
@@ -40,48 +43,27 @@ export default function StudentGraph({data, grade, classNum}){
             case "이탈":
                 return "#FF938C"
             case "방과후" :
+            case "방과 후" :
                 return "#ffffff"
             case "이석" :
                 return "#CCBCFF"
         }
     }
-
-    const fakeData = [
-        {
-            "status": "이석",
-            "name": "김동욱"
-        },
-        {
-            "status": "자습",
-            "name": "허온"
-        }
-    ]
     return(
         <S.StudentContainer>
             <S.Class>{classNum}반</S.Class>
             <S.Graph  $seven = {data.length === 17}>
                 {data && data.map((el, idx) =>{
-                    return (<S.Student $color = {studentColor(el.status)} onClick={()=>isClick(idx)} key = {idx}>{/* 칸 색깔도 data에서 추출해서 사용*/}
-                        <p>{idx+1}</p>
-                        <p>{el.name}</p>
-                        {isOpen[idx] ?
-                            <StatusUpdate changeStatus={changeStatus} name={makeNumber(grade, classNum, idx+1)} nowStatus={el.status}/>
-                            : null
-                        }
-                    </S.Student>)
-                })}
-
-                {fakeData && fakeData.map((el, idx) => {
-                   return(
-                       <S.Student $color = {studentColor(el.status)} onClick={()=>isClick(idx)} key = {idx}>{/* 칸 색깔도 data에서 추출해서 사용*/}
-                           <p>{idx+1}</p>
-                           <p>{el.name}</p>
-                           {isOpen[idx] ?
-                               <StatusUpdate changeStatus={changeStatus} name={makeNumber(grade, classNum, idx+1)} nowStatus={el.status}/>
-                               : null
-                           }
-                       </S.Student>
-                   )
+                    return (
+                        <S.Student $color = {studentColor(el.status)} onClick={()=>isClick(idx, el.status)} key = {idx}>{/* 칸 색깔도 data에서 추출해서 사용*/}
+                            <p>{idx+1}</p>
+                            <p>{el.name}</p>
+                            {isOpen[idx] ?
+                                <StatusUpdate changeStatus={changeStatus} name={makeNumber(grade, classNum, idx+1)} nowStatus={el.status}/>
+                                : null
+                            }
+                        </S.Student>
+                    )
                 })}
                 { isOpen.some((value) => value === true) ? <S.Black onClick={()=>setIsOpen(isOpen.map(() => false))}></S.Black> : null}
             </S.Graph>
