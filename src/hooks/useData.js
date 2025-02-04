@@ -29,7 +29,7 @@ export const useGetLeave = (day) => {
 export const useDeleteMovement = () => {
     const queryClient = useQueryClient();
     return useMutation({
-        mutationFn: (props) => API.deleteMovement(props),
+        mutationFn: (props) =>API.deleteMovement(props),
         onSuccess: (_, variables) => {
             queryClient.refetchQueries({ queryKey: ['getMovement', variables.day] });
         },

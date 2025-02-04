@@ -45,7 +45,9 @@ export default function Movement({ day , isFirst}) {
                                 <S.DeleteBox
                                     onClick={(e) => {
                                         e.stopPropagation();
-                                        if(window.confirm('정말 삭제하시겠습니까?')) deleteMovement(item.teacher_id, day, item.period);
+                                        if(window.confirm('정말 삭제하시겠습니까?')){
+                                            deleteMovement({teacher_id : item.teacher_id, day : patchDay(day), periodName : item.period});
+                                        }
                                     }}
                                 >삭제</S.DeleteBox>  : null
                             }
