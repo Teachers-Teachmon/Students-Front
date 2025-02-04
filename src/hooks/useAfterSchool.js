@@ -30,3 +30,13 @@ export const useGetMyClasses = () => {
         }
     });
 };
+
+export const useGetAfterSchoolClasses = (branch, weekday) => {
+    return useQuery({
+        queryKey: ['getAfterSchoolClasses', branch, weekday],
+        queryFn: async () => {
+            const res = await API.getAfterSchoolClasses(branch, weekday);
+            return res.data || [];
+        }
+    });
+}
