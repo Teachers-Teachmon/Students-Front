@@ -10,6 +10,14 @@ export const Wrapper = styled.div`
     background: white;
     padding: 3rem 5rem;
     border-radius: 10px;
+
+    h1 {
+        display: flex;
+        align-items: center;
+        font-size: 2rem;
+        font-weight: 600;
+        gap: 0.5rem;
+    }
 `
 
 export const MainContent = styled.div`
