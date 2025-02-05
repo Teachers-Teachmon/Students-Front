@@ -422,9 +422,7 @@
   "healthcheck": {
 
   },
-  "check": {
-
-  },
+  "check": "Authentication Success",
   "place" : [
     {
       "name" : "집",
