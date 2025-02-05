@@ -17,7 +17,6 @@ import Location from "./pages/manage/location";
 import Login from "./pages/login"
 import SupervisionChange from "./pages/supervision/change";
 import LoginLoading from './components/login';
-import Default from "./pages/default/index.jsx";
 import Certification from "./components/check/certification.jsx";
 import NotCertification from "./components/check/netCertification.jsx";
 import Authorize from './components/check/authorize.jsx' // 인가는 개발중에 번거로울 수 있으므로 나중에 처리하기
@@ -32,9 +31,8 @@ createRoot(document.getElementById('root')).render(
     <QueryClientProvider client={client} >
         <BrowserRouter>
             <Routes>
-                <Route path={'/'} element={<Default />} />
                 {/*<Route element={<NotCertification />}> /!* 로그인된 사용자인지 확인 *!/*/}
-                    <Route path="/landing" element={<Landing />} />
+                    <Route path="/" element={<Landing />} />
                     <Route path={"/login"} element={<Login />} />
                     <Route path={'/oauth'} element={<LoginLoading />} />
                 {/*</Route>*/}

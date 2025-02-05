@@ -7,7 +7,9 @@ import Introduce from "../../components/landing/introduce/index.jsx";
 import Role from "../../components/landing/role/index.jsx";
 import Skill from "../../components/landing/skill/index.jsx";
 import Method from "../../components/landing/method/index.jsx";
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
+import Loading from "../../components/loading/index.jsx";
+import {Check, HealthCheck} from "../../api/auth.js";
 
 // 스타일 정의
 const FullPageWrapper = styled.div`
@@ -34,6 +36,7 @@ const FullPageComponent = () => {
     const [isAnimation, setIsAnimation] = useState([false, false]);
     const [isScrolling, setIsScrolling] = useState(false); // 스크롤 상태 추가
     const [currentSection, setCurrentSection] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
 
     const location = useLocation();
 
@@ -75,9 +78,50 @@ const FullPageComponent = () => {
             fpInstance.moveTo(anchor);
         }
     };
+
+
+    const [isProxyReady, setIsProxyReady] = useState(false);
+    const navigate = useNavigate()
+    useEffect(() => {
+        const checkHealth = async () => {
+            try {
+                const res = await HealthCheck();
+                if(res === 200){
+                    setIsProxyReady(true);
+                }
+            } catch (error) {
+                console.error("Health check failed:", error);
+            }
+        };
+        checkHealth();
+    }, []);
+
+    useEffect(()=>{
+        if(isProxyReady){
+            checkUser();
+        }
+    }, [isProxyReady])
+
+    const checkUser = async () =>{
+        try {
+            const res = await Check();
+            console.log(res);
+            if(res.data === "Authentication Success"){
+                navigate('/main');
+            }
+            else{
+                navigate('/landing');
+            }
+            setIsLoading(false);
+        } catch (error) {
+            console.error("Health check failed:", error);
+        }
+    }
     return (
         <FullPageWrapper>
-            <LandingHeader index = {currentSection} change = {scrollToSection}/>
+            {isLoading ? <LoadingBox>
+                <Loading />
+            </LoadingBox> :  <LandingHeader index = {currentSection} change = {scrollToSection}/>}
             <div id="fullpage">
                 <div className="section"><First /></div>
                 <div className="section"><Introduce isAnimation={isAnimation[0]} /></div>
@@ -90,3 +134,10 @@ const FullPageComponent = () => {
 };
 
 export default FullPageComponent;
+
+const LoadingBox = styled.div`
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    z-index: 20;
+`
