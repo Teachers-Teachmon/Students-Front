@@ -24,12 +24,26 @@ export default function RequestBox({ closeModal, changeData }) {
         <S.Wrapper>
             <h1 style={{
                 color: changeData.result === "PENDING" ? "black" : changeData.result === "ACCEPTED" ? "#14BA6D" : "#F87067"
-            }}>{changeData.result === "PENDING" ? "대기 중" : changeData.result === "ACCEPTED" ? "수락" : "거절"}<img src={{
-                "PENDING": Clock,
-                "ACCEPTED": Check,
-                "REJECTED": Xmark
-            }[changeData.result]} style={{width: "20px", height: "20px", marginLeft: "10px"
-            }}/></h1>
+            }}>
+                {changeData.result === "PENDING" ? "대기 중" : changeData.result === "ACCEPTED" ? "수락" : "거절"}
+                <img
+                    src={{
+                        "PENDING": Clock,
+                        "ACCEPTED": Check,
+                        "REJECTED": Xmark
+                    }[changeData.result]}
+                    style={{
+                        width: "20px",
+                        height: "20px",
+                        marginLeft: "10px",
+                        filter: changeData.result === "ACCEPTED"
+                            ? "invert(25%) sepia(100%) saturate(2000%) hue-rotate(90deg)"
+                            : changeData.result === "REJECTED"
+                                ? "invert(30%) sepia(100%) saturate(2000%) hue-rotate(350deg)"
+                                : ""
+                    }}
+                />
+            </h1>
             <S.MainContent>
                 <S.ChangeWrap>
                     <S.ChangeSide>
