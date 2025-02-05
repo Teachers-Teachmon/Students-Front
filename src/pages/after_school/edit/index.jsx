@@ -63,30 +63,20 @@ export default function Edit() {
         });
     }, [data]);
 
-    // const student = [
-    //     "1116 동동똥동욱",
-    //     "1116 허온",
-    //     "1116 윤도훈",
-    //     "1210 윤도훈",
-    //     "1211 김현준",
-    //     "1210 윤도훈",
-    //     "1201 김현준",
-    //     "1202 김현준",
-    //     "1312 김현준",
-    //     "1313 김현준",
-    //     "1414 김현준",
-    //     "1415 김현준",
-    //     "1416 김현준",
-    //     "1404 김현준",
-    //     "1405 김현준",
-    //     "1406 김현준",
-    //     "1316 김동욱",
-    //     "1316 허온",
-    //     "1316 윤도훈",
-    //     "1116 동똥똥동욱",
-    //     "1116 동동동욱",
-    //     "1116 동똥동욱"
-    // ]
+    // const [grades, setGrades] = useState({
+    //         1: [
+    //             { period: '8~9교시', teacher: '김철수', placeName: '프로그래밍실', name: '웹 개발', studentsNumber: '5' },
+    //             { period: '10~11교시', teacher: '박영희', placeName: '디자인실', name: '그래픽 디자인', studentsNumber: '6' }
+    //         ],
+    //         2: [
+    //             { period: '8~9교시', teacher: '이정민', placeName: '1-3반', name: '프론트엔드 개발', studentsNumber: '8' },
+    //             { period: '10~11교시', teacher: '최은지', placeName: '융합관', name: 'UX/UI 디자인', studentsNumber: '7' }
+    //         ],
+    //         3: [
+    //             { period: '8~9교시', teacher: '홍길동', placeName: '객체지향 프로그래밍실', name: '데이터 분석', studentsNumber: '4' },
+    //             { period: '10~11교시', teacher: '김미영', placeName: '2-1반', name: '디지털 마케팅', studentsNumber: '6' }
+    //         ]
+    // });
 
     const addRow = (grade) => {
         setGrades(prev => ({
@@ -179,7 +169,7 @@ export default function Edit() {
 
     const handleBranchChange = (selectedBranch) => {
         setBranch(selectedBranch);
-        toggleBranchDropdown;
+        toggleBranchDropdown();  // toggleBranchDropdown() 호출로 드롭다운 닫기
     };
 
     const handleWeekdayChange = (selectedWeekday) => {
