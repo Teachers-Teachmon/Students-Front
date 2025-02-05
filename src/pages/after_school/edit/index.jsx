@@ -54,16 +54,22 @@ export default function Edit() {
     // }, [data]);
 
     useEffect(() => {
-        if (!data) return;
+        if (!data || !Array.isArray(data)) return;
     
-        const flattenedData = data.flat();
+        console.log("Fetched data:", data); // 데이터 확인용
     
         setGrades({
-            1: flattenedData.filter((cls) => cls.grade === 1),
-            2: flattenedData.filter((cls) => cls.grade === 2),
-            3: flattenedData.filter((cls) => cls.grade === 3),
+            1: data[0] || [], // 1학년 데이터
+            2: data[1] || [], // 2학년 데이터
+            3: data[2] || [], // 3학년 데이터
         });
     }, [data]);
+
+    useEffect(() => {
+        console.log("Updated grades:", grades);
+    }, [grades]);
+    
+    
     
 
 
@@ -271,7 +277,7 @@ export default function Edit() {
                                     <p>* 학생은 자세히 보기에서 수정해 주세요.</p>
                                 </S.EditMainTop>
 
-                                {(grades[grade]?.length ? grades[grade] : [{}]).map((row, index) => (
+                                {(grades[grade] || []).map((row, index) => (
                                     <S.EditRow key={index}>
                                         <S.RowData $length={180}>
                                             <S.Grade>
