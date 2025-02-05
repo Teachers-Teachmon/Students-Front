@@ -36,9 +36,7 @@ export const getAssignment = async (momth) => {
 
 export const saveAutoAssignment = async (assignmentList) => {
     try {
-        const res = await axiosInstance.patch(`${API_ENDPOINTS.SUPERVISION}/save`, {
-            assignmentList: assignmentList
-        });
+        const res = await axiosInstance.patch(`${API_ENDPOINTS.SUPERVISION}/save`, assignmentList);
         if (res.status !== 200 && res.status !== 201) {
             return Promise.reject({
                 status: res.status,
