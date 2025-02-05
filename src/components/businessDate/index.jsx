@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useState} from 'react';
 import * as S from './style.jsx';
+import useDay from "../../zustand/day";
 
-export default function BusinessDate() {
-    const [date, setDate] = useState('');
+export default function DateInput({ onChange }) {
     const [inputValue, setInputValue] = useState('');
     const [isFocused, setIsFocused] = useState(false);
+    const { setDay, day } = useDay();
+
 
     const handleDateChange = (e) => {
         const inputDate = new Date(e.target.value);
@@ -14,16 +16,17 @@ export default function BusinessDate() {
             }월 ${
                 String(inputDate.getDate()).padStart(2, '0')
             }일`;
-
-            setDate(e.target.value);
+            
+            setDay(e.target.value);
             setInputValue(formattedDate);
+            if (onChange) onChange(e.target.value);
         }
     };
 
     return (
         <S.DateInputContainer>
-            <S.InputWrapper isFocused={isFocused || inputValue}>
-                <S.Label isFocused={isFocused || inputValue}>Date</S.Label>
+            <S.InputWrapper $isFocused={isFocused || inputValue}>
+                <S.Label $isFocused={isFocused || inputValue}>Date</S.Label>
                 <S.StyledInput
                     type="text"
                     value={inputValue}
@@ -35,7 +38,7 @@ export default function BusinessDate() {
                 />
                 <S.HiddenDateInput
                     type="date"
-                    value={date}
+                    value={day}
                     onChange={handleDateChange}
                 />
             </S.InputWrapper>

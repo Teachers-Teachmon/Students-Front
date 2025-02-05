@@ -93,13 +93,6 @@ export default function After_school() {
         setSelectedGrade(idx + 1);
     }
 
-    // console.log(classList);
-    // console.log("현재 선택된 요일:", selectedDay);
-    // console.log("필터링된 데이터:", classList.filter(cls => cls.weekday === selectedDay));
-    // console.log("요청 학년:", selectedGrade, "요청 요일:", selectedDay);
-    // console.log("현재 선택된 요일:", selectedDay);
-    // console.log("클래스 리스트의 weekday 값들:", classList.map(cls => cls.weekday));
-
     return (
         <S.AfterSchoolContainer>
             <Header />
