@@ -96,27 +96,27 @@ const FullPageComponent = () => {
         checkHealth();
     }, []);
 
-    // useEffect(()=>{
-    //     if(isProxyReady){
-    //         checkUser();
-    //     }
-    // }, [isProxyReady])
+    useEffect(()=>{
+        if(isProxyReady){
+            checkUser();
+        }
+    }, [isProxyReady])
 
-    // const checkUser = async () =>{
-    //     try {
-    //         const res = await Check();
-    //         console.log(res);
-    //         if(res.data === "Authentication Success"){
-    //             navigate('/main');
-    //         }
-    //         else{
-    //             navigate('/');
-    //         }
-    //         setIsLoading(false);
-    //     } catch (error) {
-    //         console.error("Health check failed:", error);
-    //     }
-    // }
+    const checkUser = async () =>{
+        try {
+            const res = await Check();
+            console.log(res);
+            if(res.data === "Authentication Success"){
+                navigate('/main');
+            }
+            else{
+                navigate('/');
+            }
+            setIsLoading(false);
+        } catch (error) {
+            console.error("Health check failed:", error);
+        }
+    }
     return (
         <FullPageWrapper>
             {isLoading ? <LoadingBox>
