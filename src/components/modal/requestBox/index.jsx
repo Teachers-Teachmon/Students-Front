@@ -2,8 +2,8 @@ import * as S from './style.jsx';
 import Confirm from "../../button/confirm/index.jsx";
 import Rotate from '../../../assets/rotate.svg';
 import { useUpdateChangeRequest } from '../../../hooks/useChange.js';
-import Xmark from '../../../assets/xmark.svg';
-import Check from '../../../assets/check.svg';
+import Xmark from '../../../assets/redXmark.svg';
+import Check from '../../../assets/greenCheck.svg';
 import Clock from '../../../assets/clock.svg';
 
 export default function RequestBox({ closeModal, changeData }) {
@@ -32,16 +32,7 @@ export default function RequestBox({ closeModal, changeData }) {
                         "ACCEPTED": Check,
                         "REJECTED": Xmark
                     }[changeData.result]}
-                    style={{
-                        width: "20px",
-                        height: "20px",
-                        marginLeft: "10px",
-                        filter: changeData.result === "ACCEPTED"
-                            ? "invert(25%) sepia(100%) saturate(2000%) hue-rotate(90deg)"
-                            : changeData.result === "REJECTED"
-                                ? "invert(30%) sepia(100%) saturate(2000%) hue-rotate(350deg)"
-                                : ""
-                    }}
+
                 />
             </h1>
             <S.MainContent>
