@@ -31,8 +31,8 @@ createRoot(document.getElementById('root')).render(
     <QueryClientProvider client={client} >
         <BrowserRouter>
             <Routes>
+                <Route path="/" element={<Landing />} />
                 {/*<Route element={<NotCertification />}> /!* 로그인된 사용자인지 확인 *!/*/}
-                    <Route path="/" element={<Landing />} />
                     <Route path={"/login"} element={<Login />} />
                     <Route path={'/oauth'} element={<LoginLoading />} />
                 {/*</Route>*/}
