@@ -6,35 +6,17 @@ import { useUpdateChangeRequest } from '../../../hooks/useChange.js';
 
 export default function BusinessTrip({ closeModal, selectedClass }) {
 
-    const { mutate } = useUpdateChangeRequest(closeModal);
+    const [date, setDate] = useState(null);
 
-    const handleUpdateStatus = (status) => {
-        mutate({ id: changeData.changeId, status });
-    };
-
-    const [date, setDate] = useState("");
-
-    const formatDate = (inputDate) => {
-        const parts = inputDate.split("년 ").join("-").split("월 ").join("-").split("일").join("").trim();
-        return parts;
-    };
-
-    const handleSubmit = async () => {
+    const handleCreate = async () => {
         if (!date) {
-            alert("날짜를 선택해주세요.");
+            alert("출장 날짜를 입력하세요!");
             return;
         }
 
-        const formattedDate = formatDate(date);
-        
-        const requestData = {
-            day: formattedDate,
-            period: selectedClass.period,
-            afterschoolId: selectedClass.id
-        };
-
         try {
-            await axios.post('/api/business-trip', requestData);
+            await BusinessTrip(selectedClass.id, date);
+            alert("출장 요청이 완료되었습니다.");
             closeModal();
         } catch (error) {
             console.error("출장 요청 실패:", error);
@@ -50,7 +32,7 @@ export default function BusinessTrip({ closeModal, selectedClass }) {
             </S.MainContent>
             <S.Buttons>
                 <Confirm text="취소" color="red" image="reject" onClick={ closeModal } />
-                <Confirm text="출장" color="blue" image="fly" />
+                <Confirm text="출장" color="blue" image="fly" onClick={handleCreate} />
             </S.Buttons>
         </S.Wrapper>
     );

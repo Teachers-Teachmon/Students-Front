@@ -6,13 +6,13 @@ import useDay from '../../../zustand/day.js';
 import { useState } from 'react';
 
 export default function SupervisionCreate({ closeModal }) {
-
+    
     const { setStart, setEnd } = useDay();
     const { mutate: autoAssignment } = useAutoAssignment();
     
     const [localStart, setLocalStart] = useState(null);
     const [localEnd, setLocalEnd] = useState(null);
-
+    
     const handleDateChange = (date, type) => {
         if (type === "start") {
             setLocalStart(date);
