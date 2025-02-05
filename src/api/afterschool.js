@@ -63,9 +63,10 @@ export const getAfterSchoolClasses = async (branch, weekday) => {
     }
 }
 
-export const businessTrip= async (day, period, afterschoolId) => {
+export const businessTrip= async (day, period, afterSchoolId) => {
+    console.log(day, period, afterSchoolId);
     try {
-        const res = await axiosInstance.patch(`${API_ENDPOINTS.AFTER_SCHOOL}/participation`, { day, period, afterschoolId });
+        const res = await axiosInstance.patch(`${API_ENDPOINTS.AFTER_SCHOOL}/participation`, { day, period, afterSchoolId });
         if (res.status !== 200) {
             return Promise.reject({
                 status: res.status,
