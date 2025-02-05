@@ -14,10 +14,11 @@ export default function BusinessTrip({ closeModal, selectedClass }) {
             return;
         }
 
+        console.log(selectedDate, selectedClass);
         createBusinessTrip({
             day: selectedDate,
             period: selectedClass.period,
-            afterschoolId: selectedClass.afterschoolId,
+            afterSchoolId: selectedClass.id,
         });
 
         closeModal();
