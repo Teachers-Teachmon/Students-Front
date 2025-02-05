@@ -36,7 +36,7 @@ const FullPageComponent = () => {
     const [isAnimation, setIsAnimation] = useState([false, false]);
     const [isScrolling, setIsScrolling] = useState(false); // 스크롤 상태 추가
     const [currentSection, setCurrentSection] = useState(0);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     const location = useLocation();
 
@@ -96,27 +96,27 @@ const FullPageComponent = () => {
         checkHealth();
     }, []);
 
-    useEffect(()=>{
-        if(isProxyReady){
-            checkUser();
-        }
-    }, [isProxyReady])
+    // useEffect(()=>{
+    //     if(isProxyReady){
+    //         checkUser();
+    //     }
+    // }, [isProxyReady])
 
-    const checkUser = async () =>{
-        try {
-            const res = await Check();
-            console.log(res);
-            if(res.data === "Authentication Success"){
-                navigate('/main');
-            }
-            else{
-                navigate('/landing');
-            }
-            setIsLoading(false);
-        } catch (error) {
-            console.error("Health check failed:", error);
-        }
-    }
+    // const checkUser = async () =>{
+    //     try {
+    //         const res = await Check();
+    //         console.log(res);
+    //         if(res.data === "Authentication Success"){
+    //             navigate('/main');
+    //         }
+    //         else{
+    //             navigate('/');
+    //         }
+    //         setIsLoading(false);
+    //     } catch (error) {
+    //         console.error("Health check failed:", error);
+    //     }
+    // }
     return (
         <FullPageWrapper>
             {isLoading ? <LoadingBox>
