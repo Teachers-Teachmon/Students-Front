@@ -33,10 +33,11 @@ createRoot(document.getElementById('root')).render(
         <BrowserRouter>
             <Routes>
                 <Route path={'/'} element={<Default />} />
-                <Route element={<NotCertification />}> {/* 로그인된 사용자인지 확인 */}
+                {/*<Route element={<NotCertification />}> /!* 로그인된 사용자인지 확인 *!/*/}
                     <Route path="/landing" element={<Landing />} />
                     <Route path={"/login"} element={<Login />} />
-                </Route>
+                    <Route path={'/oauth'} element={<LoginLoading />} />
+                {/*</Route>*/}
                 <Route element={<Certification />} >  {/* 로그인된 사용자인지 확인 */}
                     <Route path="/main" element={<Main />} />
                     <Route path="/manage" element={<Manage />} />
@@ -50,8 +51,6 @@ createRoot(document.getElementById('root')).render(
                     } />
                     <Route path="/supervision/change" element={<SupervisionChange />} />
                     <Route path="/after-school" element={<After />} />
-                    <Route path={'/oauth'} element={<LoginLoading />} />
-
                     <Route path={"/limit"} element={
                         <Suspense fallback={<Loading />}>
                             <AccessLimits />

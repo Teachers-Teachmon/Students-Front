@@ -6,7 +6,9 @@ export default function NotCertification(){
     if (!isFetching && data.data !== "Authentication Success") {
         return <Outlet /> ;
     }
-    return(
-        <Navigate to="/main" replace />
-    )
+    if(!isFetching){
+        return(
+            <Navigate to="/main" replace />
+        )
+    }
 }
