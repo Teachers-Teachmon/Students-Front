@@ -62,25 +62,6 @@ export default function Edit() {
             3: data[2] || [],
         });
     }, [data]);
-    
-    
-
-
-
-    // const [grades, setGrades] = useState({
-    //     1: [
-    //         { period: '8~9교시', teacherName: '김철수', placeName: '프로그래밍실', name: '웹 개발', studentsNumber: '5' },
-    //         { period: '10~11교시', teacherName: '박영희', placeName: '디자인실', name: '그래픽 디자인', studentsNumber: '6' }
-    //     ],
-    //     2: [
-    //         { period: '8~9교시', teacherName: '이정민', placeName: '1-3반', name: '프론트엔드 개발', studentsNumber: '8' },
-    //         { period: '10~11교시', teacherName: '최은지', placeName: '융합관', name: 'UX/UI 디자인', studentsNumber: '7' }
-    //     ],
-    //     3: [
-    //         { period: '8~9교시', teacherName: '홍길동', placeName: '객체지향 프로그래밍실', name: '데이터 분석', studentsNumber: '4' },
-    //         { period: '10~11교시', teacherName: '김미영', placeName: '2-1반', name: '디지털 마케팅', studentsNumber: '6' }
-    //     ]
-    // });
 
     // const student = [
     //     "1116 동동똥동욱",
@@ -286,7 +267,7 @@ export default function Edit() {
                                         </S.RowData>
                                         <S.RowData $length={120}>
                                             <DropdownS
-                                                name={"담당교사"}
+                                                name={row.teacherName || "담당교사"}
                                                 value={row.teacherName || ''}
                                                 onChange={value => handleInputChange(grade, index, 'teacherName', value)}
                                                 isOpen={isOpen[grade]?.[index]?.teacherName}
