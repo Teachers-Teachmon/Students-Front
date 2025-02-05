@@ -12,11 +12,12 @@ import OptionButton from '../../../assets/OptionButton.svg';
 import Square from '../../../components/button/square/index.jsx';
 import { useGetAfterSchoolClasses } from '../../../hooks/useAfterSchool.js';
 import { searchStudent, searchPlace, searchTeacher } from "../../../api/search.js";
+import axios from 'axios';
 
 export default function Edit() {
 
     const [branch, setBranch] = useState('');
-    const [weekday, setWeekday] = useState('월');
+    const [weekday, setWeekday] = useState('MON');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [search, setSearch] = useState("");
     const [selectedPeriod, setSelectedPeriod] = useState('');
@@ -31,6 +32,8 @@ export default function Edit() {
         class4: [],
     });
 
+    const weekDays = ["MON", "TUE", "WED", "THU"];
+    const koreanWeekDays = ["월", "화", "수", "목"];
 
     const branches = [1, 2, 3, 4];
 
@@ -53,16 +56,16 @@ export default function Edit() {
 
     // const [grades, setGrades] = useState({
     //     1: [
-    //         { period: '8~9교시', teacher: '김철수', placeName: '프로그래밍실', name: '웹 개발', studentsNumber: '5' },
-    //         { period: '10~11교시', teacher: '박영희', placeName: '디자인실', name: '그래픽 디자인', studentsNumber: '6' }
+    //         { period: '8~9교시', teacherName: '김철수', placeName: '프로그래밍실', name: '웹 개발', studentsNumber: '5' },
+    //         { period: '10~11교시', teacherName: '박영희', placeName: '디자인실', name: '그래픽 디자인', studentsNumber: '6' }
     //     ],
     //     2: [
-    //         { period: '8~9교시', teacher: '이정민', placeName: '1-3반', name: '프론트엔드 개발', studentsNumber: '8' },
-    //         { period: '10~11교시', teacher: '최은지', placeName: '융합관', name: 'UX/UI 디자인', studentsNumber: '7' }
+    //         { period: '8~9교시', teacherName: '이정민', placeName: '1-3반', name: '프론트엔드 개발', studentsNumber: '8' },
+    //         { period: '10~11교시', teacherName: '최은지', placeName: '융합관', name: 'UX/UI 디자인', studentsNumber: '7' }
     //     ],
     //     3: [
-    //         { period: '8~9교시', teacher: '홍길동', placeName: '객체지향 프로그래밍실', name: '데이터 분석', studentsNumber: '4' },
-    //         { period: '10~11교시', teacher: '김미영', placeName: '2-1반', name: '디지털 마케팅', studentsNumber: '6' }
+    //         { period: '8~9교시', teacherName: '홍길동', placeName: '객체지향 프로그래밍실', name: '데이터 분석', studentsNumber: '4' },
+    //         { period: '10~11교시', teacherName: '김미영', placeName: '2-1반', name: '디지털 마케팅', studentsNumber: '6' }
     //     ]
     // });
 
@@ -94,7 +97,7 @@ export default function Edit() {
     const addRow = (grade) => {
         setGrades(prev => ({
             ...prev,
-            [grade]: [...prev[grade], { period: '', teacher: '', placeName: '', name: '', studentsNumber: '' }],
+            [grade]: [...prev[grade], { period: '', teacherName: '', placeName: '', name: '', studentsNumber: '' }],
         }));
     };
 
@@ -113,9 +116,9 @@ export default function Edit() {
 
 
     const [isOpen, setIsOpen] = useState({
-        1: grades[1].map(() => ({ period: false, teacher: false, placeName: false })),
-        2: grades[2].map(() => ({ period: false, teacher: false, placeName: false })),
-        3: grades[3].map(() => ({ period: false, teacher: false, placeName: false })),
+        1: grades[1].map(() => ({ period: false, teacherName: false, placeName: false })),
+        2: grades[2].map(() => ({ period: false, teacherName: false, placeName: false })),
+        3: grades[3].map(() => ({ period: false, teacherName: false, placeName: false })),
     });
 
     const handleDropdownClick = (grade, index, field) => {
@@ -145,9 +148,9 @@ export default function Edit() {
 
     const handleReset = () => {
         setGrades({
-            1: [{ period: '', teacher: '', placeName: '', name: '', studentsNumber: '' }],
-            2: [{ period: '', teacher: '', placeName: '', name: '', studentsNumber: '' }],
-            3: [{ period: '', teacher: '', placeName: '', name: '', studentsNumber: '' }],
+            1: [{ afterSchoolId: '', teacherId: '', period: '', teacherName: '', placeName: '', name: '', studentsNumber: '' }],
+            2: [{ afterSchoolId: '', teacherId: '', period: '', teacherName: '', placeName: '', name: '', studentsNumber: '' }],
+            3: [{ afterSchoolId: '', teacherId: '', period: '', teacherName: '', placeName: '', name: '', studentsNumber: '' }],
         });
         setSelectStudent({
             class1: [],
@@ -171,7 +174,7 @@ export default function Edit() {
             [grade]: prev[grade].length > 1
                 ? prev[grade].filter((_, idx) => idx !== index)
                 : prev[grade].map((row, idx) =>
-                    idx === index ? { period: '', teacher: '', placeName: '', name: '', studentsNumber: '' } : row
+                    idx === index ? { period: '', teacherName: '', placeName: '', name: '', studentsNumber: '' } : row
                 ),
         }));
     };
@@ -207,11 +210,16 @@ export default function Edit() {
                             />
                         </S.TopDate>
                         <S.TopDay>
-                            <DayBtn name={"월"} status={weekday === '월'} On={() => handleWeekdayChange('월')} />
-                            <DayBtn name={"화"} status={weekday === '화'} On={() => handleWeekdayChange('화')} />
-                            <DayBtn name={"수"} status={weekday === '수'} On={() => handleWeekdayChange('수')} />
-                            <DayBtn name={"목"} status={weekday === '목'} On={() => handleWeekdayChange('목')} />
+                            {weekDays.map((day, index) => (
+                                <DayBtn
+                                    key={day}
+                                    name={koreanWeekDays[index]}
+                                    status={weekday === day}
+                                    On={() => handleWeekdayChange(day)}
+                                />
+                            ))}
                         </S.TopDay>
+
                     </S.EditTopLeft>
 
                     <S.EditTopRight>
@@ -266,10 +274,11 @@ export default function Edit() {
                                         <S.RowData $length={120}>
                                             <DropdownS
                                                 name={"담당교사"}
-                                                value={row.teacher || ''}
-                                                onChange={value => handleInputChange(grade, index, 'teacher', value)}
-                                                isOpen={isOpen[grade]?.[index]?.teacher}
-                                                click={() => handleDropdownClick(grade, index, 'teacher')}
+                                                value={row.teacherName || ''}
+                                                onChange={value => handleInputChange(grade, index, 'teacherName', value)}
+                                                isOpen={isOpen[grade]?.[index]?.teacherName}
+                                                click={() => handleDropdownClick(grade, index, 'teacherName')}
+                                                axios={(event) => searchTeacher(event)}
                                             />
                                         </S.RowData>
                                         <S.RowData $length={240}>
@@ -279,6 +288,7 @@ export default function Edit() {
                                                 onChange={value => handleInputChange(grade, index, 'placeName', value)}
                                                 isOpen={isOpen[grade]?.[index]?.placeName}
                                                 click={() => handleDropdownClick(grade, index, 'placeName')}
+                                                axios={(event) => searchPlace(event)}
                                             />
                                         </S.RowData>
                                         <S.RowData $length={550}>
@@ -324,6 +334,7 @@ export default function Edit() {
                             <S.ModalLeft>
                                 <DropdownS
                                     name={"담당교사"}
+                                    axios={(event) => searchTeacher(event)}
                                 />
                                 <DropdownNS
                                     name={"시간"}
@@ -340,6 +351,7 @@ export default function Edit() {
                                 <S.DropdownFL>
                                     <DropdownNS
                                         name={"장소"}
+                                        axios={(event) => searchPlace(event)}
                                     />
                                 </S.DropdownFL>
                                 <S.InputBox>
@@ -349,6 +361,7 @@ export default function Edit() {
                                         value={search}
                                         onChange={(e) => setSearch(e.target.value)}
                                         placeholder={"학생을 입력해주세요"}
+                                        axios={(event) => searchStudent(event)}
                                     />
                                     <S.StudentList>
                                         {search &&
