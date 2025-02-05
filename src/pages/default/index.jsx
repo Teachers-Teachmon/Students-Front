@@ -28,7 +28,7 @@ export default function Default() {
     const checkUser = async () =>{
         try {
             const res = await Check();
-
+            console.log(res);
             if(res.data === "Authentication Success"){
                 navigate('/main');
             }
