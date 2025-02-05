@@ -66,6 +66,7 @@ export const NextSupDate = styled.div`
     font-size: 3.4rem;
     font-weight: 700;
     font-style: italic;
+    white-space: nowrap;
 `
 
 export const GoToSupBtn = styled.button`
