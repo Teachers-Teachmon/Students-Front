@@ -73,7 +73,7 @@ export default function Main() {
                     <S.NextSup>
                         <S.NexSupLeft>
                             <h3>다음 자습감독 기간</h3>
-                            <S.NextSupDate>D - {nextDay}</S.NextSupDate>
+                            <S.NextSupDate>D - {nextDay === -1 ? "End" : nextDay === 0 ? "Day" : nextDay}</S.NextSupDate>
                             <h2>{day}</h2>
                             <h4>{period}</h4>
                         </S.NexSupLeft>
