@@ -24,19 +24,21 @@ export default function Edit() {
     const [selectedGrade, setSelectedGrade] = useState(1);
     const [options, setOptions] = useState({});
     const [isBranchOpen, setIsBranchOpen] = useState(false);
-    const [selectedRow, setSelectedRow] = useState(null);
+    const [selectedRows, setSelectedRows] = useState({});
+
 
     const handleOptionClick = (grade, index) => {
         setOptions((prev) => ({
             ...prev,
             [grade]: prev[grade] === index ? null : index,
         }));
-        if (options[grade] === index) {
-            setSelectedRow(null);
-        } else {
-            setSelectedRow(grades[grade][index]);
-        }
+    
+        setSelectedRows((prev) => ({
+            ...prev,
+            [grade]: prev[grade] === index ? null : grades[grade][index],
+        }));
     };
+    
 
 
     const [selectStudent, setSelectStudent] = useState({
@@ -411,7 +413,7 @@ export default function Edit() {
                 </S.ModalOverlay>
             )} */}
 
-            {isModalOpen && selectedRow && (
+            {isModalOpen && selectedRows[selectedGrade] && (
                 <S.ModalOverlay onClick={() => closeModalHandler(setIsModalOpen)}>
                     <S.ModalContent onClick={(e) => e.stopPropagation()}>
                         <S.ModalContentTop>
@@ -421,31 +423,31 @@ export default function Edit() {
                             <S.ModalLeft>
                                 <DropdownS
                                     name={"담당교사"}
-                                    value={selectedRow.teacherName}
-                                    onChange={(value) => handleInputChange(selectedGrade, selectedRow.index, 'teacherName', value)}
+                                    value={selectedRows[selectedGrade].teacherName}
+                                    onChange={(value) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'teacherName', value)}
                                 />
                                 <DropdownNS
                                     name={"시간"}
-                                    value={selectedRow.period}
-                                    onChange={(value) => handleInputChange(selectedGrade, selectedRow.index, 'period', value)}
+                                    value={selectedRows[selectedGrade].period}
+                                    onChange={(value) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'period', value)}
                                 />
                                 <DropdownNS
                                     name={"학생수"}
-                                    value={selectedRow.studentsNumber}
-                                    onChange={(value) => handleInputChange(selectedGrade, selectedRow.index, 'studentsNumber', value)}
+                                    value={selectedRows[selectedGrade].studentsNumber}
+                                    onChange={(value) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'studentsNumber', value)}
                                 />
                             </S.ModalLeft>
                             <S.ModalRight>
                                 <S.ClassData
                                     type='text'
-                                    value={selectedRow.name}
-                                    onChange={(e) => handleInputChange(selectedGrade, selectedRow.index, 'name', e.target.value)}
+                                    value={selectedRows[selectedGrade].name}
+                                    onChange={(e) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'name', e.target.value)}
                                 />
                                 <S.DropdownFL>
                                     <DropdownNS
                                         name={"장소"}
-                                        value={selectedRow.placeName}
-                                        onChange={(value) => handleInputChange(selectedGrade, selectedRow.index, 'placeName', value)}
+                                        value={selectedRows[selectedGrade].placeName}
+                                        onChange={(value) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'placeName', value)}
                                     />
                                 </S.DropdownFL>
                                 <S.InputBox>
@@ -512,7 +514,6 @@ export default function Edit() {
                     </S.ModalContent>
                 </S.ModalOverlay>
             )}
-
         </S.EditContainer>
     );
 }
