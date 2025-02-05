@@ -16,7 +16,7 @@ export const useLogout = () => {
 
 export const useCheck = () =>{
     return useQuery({
-        queryKey : 'check',
+        queryKey : ['check'],
         queryFn : async () =>{
             return await API.Check();
         },
