@@ -286,7 +286,7 @@ export default function Edit() {
                                         </S.RowData>
                                         <S.RowData $length={120}>
                                             <DropdownS
-                                                name={"담당교사"}
+                                                name={row.teacherName || "담당교사"}
                                                 value={row.teacherName || ''}
                                                 onChange={value => handleInputChange(grade, index, 'teacherName', value)}
                                                 isOpen={isOpen[grade]?.[index]?.teacherName}
