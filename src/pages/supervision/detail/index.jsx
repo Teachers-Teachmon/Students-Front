@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import SupervisionCreate from '../../../components/modal/supervisionCreate/index.jsx';
 import SearchDropdown from '../../../components/dropdown/search/index.jsx';
 import { useGetAssignment, useSaveAutoAssignment } from '../../../hooks/useSupervision.js';
+import { searchTeacher } from '../../../api/search.js';
 
 export default function SupervisionDetail() {
     const [selMonth, setSelMonth] = useState(new Date().getMonth());
@@ -143,6 +144,7 @@ export default function SupervisionDetail() {
                                                                     <SearchDropdown
                                                                         target="선생님"
                                                                         name={selectedTeacher[uniqueKey] || teacherName}
+                                                                        axios={(event) => searchTeacher(event)}
                                                                         isOpen={dropdownOpen[uniqueKey] || false}
                                                                         change={(value) => handleTeacherChange(dayData.date, gradeKey, timeKey, value)}
                                                                         click={() => toggleDropdown(uniqueKey)}
