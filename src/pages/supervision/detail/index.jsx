@@ -28,9 +28,9 @@ export default function SupervisionDetail() {
                     ...dayData,
                     [grade]: {
                         ...dayData[grade],
-                        [timeKey]: dayData[grade][timeKey]
-                            ? `${newTeacher}/${dayData[grade][timeKey].split("/")[1]}`
-                            : `${newTeacher}/0`
+                        [timeKey]: newTeacher
+                            ? `${newTeacher.name}/${newTeacher.id}`
+                            : `미배정/0`
                     }
                 };
             }
@@ -53,7 +53,7 @@ export default function SupervisionDetail() {
         if (TeacherList?.data) {
             setLocalData(TeacherList.data);
         }
-    }, [TeacherList]);    
+    }, [TeacherList]);
 
     const handleSave = () => {
         const changedData = localData.map(dayData => ({
@@ -143,7 +143,7 @@ export default function SupervisionDetail() {
                                                                 {isEditing ? (
                                                                     <SearchDropdown
                                                                         target="선생님"
-                                                                        name={selectedTeacher[uniqueKey] || teacherName}
+                                                                        name={selectedTeacher[uniqueKey]?.name || teacherName}
                                                                         axios={(event) => searchTeacher(event)}
                                                                         isOpen={dropdownOpen[uniqueKey] || false}
                                                                         change={(value) => handleTeacherChange(dayData.date, gradeKey, timeKey, value)}
