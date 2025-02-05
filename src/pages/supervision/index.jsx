@@ -97,13 +97,13 @@ export default function Supervision() {
                                 {week.map((date, dateIdx) => {
                                     const localDate = date.toLocaleDateString();
                                     return (
-                                        <S.CalendarDay key={dateIdx} onClick={() => { handleDateClick(date) }} $isCurrentMonth={date.getMonth() === month} $isSupervised={Array.isArray(supervisionList) && supervisionList.some(s => s.day === date.getDate() && s.month === month + 1 && s.year === year)}>
+                                        <S.CalendarDay key={dateIdx} onClick={() => { handleDateClick(date) }} $isCurrentMonth={date.getMonth() === month} $isSupervised={date.getMonth() === month && Array.isArray(supervisionList) && supervisionList.some(s => s.day === date.getDate() && s.month === month + 1 && s.year === year)}>
                                             <S.Day style={{
                                                 backgroundColor: localDate === today ? '#ECF3FD' : '',
                                                 color: localDate === today ? '#5288F4' : '',
                                             }}>{date.getDate()}</S.Day>
                                             {Array.isArray(supervisionList) && supervisionList.map((s, index) => {
-                                                if (s.day === date.getDate() && s.year == year && s.month === month + 1) {
+                                                if (s.day === date.getDate() && s.year == year && date.getMonth() === month) {
                                                     return Array.isArray(s.schedule) ? (
                                                         s.schedule.map((schedule, idx) => (
                                                             <S.ScheduleItem key={idx} period={schedule.period}>
