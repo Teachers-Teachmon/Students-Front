@@ -41,18 +41,32 @@ export default function Edit() {
 
     const { data } = useGetAfterSchoolClasses(branch, weekday);
 
-    useEffect(() => {
-        if (data) {
-            const updatedGrades = {
-                1: data.filter((cls) => cls.grade === 1),
-                2: data.filter((cls) => cls.grade === 2),
-                3: data.filter((cls) => cls.grade === 3),
-            };
-            setGrades(updatedGrades);
-        }
-    }, [data]);
-
     const [grades, setGrades] = useState({ 1: [], 2: [], 3: [] });
+
+    // useEffect(() => {
+    //     if (!data) return;
+
+    //     setGrades({
+    //         1: data.filter((cls) => cls.grade === 1),
+    //         2: data.filter((cls) => cls.grade === 2),
+    //         3: data.filter((cls) => cls.grade === 3),
+    //     });
+    // }, [data]);
+
+    useEffect(() => {
+        if (!data) return;
+    
+        const flattenedData = data.flat();
+    
+        setGrades({
+            1: flattenedData.filter((cls) => cls.grade === 1),
+            2: flattenedData.filter((cls) => cls.grade === 2),
+            3: flattenedData.filter((cls) => cls.grade === 3),
+        });
+    }, [data]);
+    
+
+
 
     // const [grades, setGrades] = useState({
     //     1: [
