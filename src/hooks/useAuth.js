@@ -13,3 +13,15 @@ export const useLogout = () => {
         },
     });
 };
+
+export const useCheck = () =>{
+    return useQuery({
+        queryKey : 'check',
+        queryFn : async () =>{
+            return await API.Check();
+        },
+        staleTime: 1000 * 60 * 10, // 5분 동안 캐시 유지
+        cacheTime: 1000 * 60 * 10, // 10분 후 캐시 삭제
+        retry: true
+    })
+}

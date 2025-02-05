@@ -19,7 +19,7 @@ const useAuth = create(() => ({
     name:localStorage.getItem('name'),
     profile:localStorage.getItem('profile'),
     email: decodedToken?.email || '',
-    role:decodedToken?.role,
+    role:decodedToken?.role || '',
     id:decodedToken?.id || ''
 }));
 
