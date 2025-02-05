@@ -1,37 +1,46 @@
 import * as S from './style.jsx';
 import Confirm from "../../button/confirm/index.jsx";
-import ChangeDate from '../../businessDate/index.jsx';
+import ChangeDate from '../../dateInput/index.jsx';
 import { useState } from 'react';
-import { useUpdateChangeRequest } from '../../../hooks/useChange.js';
+import { useBusinessTripMutation } from '../../../hooks/useBusinessTrip';
 
 export default function BusinessTrip({ closeModal, selectedClass }) {
+    const [selectedDate, setSelectedDate] = useState(null);
+    const { mutate: createBusinessTrip } = useBusinessTripMutation();
 
-    const [date, setDate] = useState(null);
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+    };
 
-    const handleCreate = async () => {
-        if (!date) {
-            alert("출장 날짜를 입력하세요!");
-            return;
-        }
+    const formatDate = (date) => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    };
 
-        try {
-            await BusinessTrip(selectedClass.id, date);
-            alert("출장 요청이 완료되었습니다.");
-            closeModal();
-        } catch (error) {
-            console.error("출장 요청 실패:", error);
-            alert("출장 요청에 실패했습니다.");
-        }
+    const handleCreate = () => {
+        if (!selectedDate) return;
+
+        const formattedDate = formatDate(selectedDate);
+
+        createBusinessTrip({
+            day: formattedDate,
+            period: selectedClass.period,
+            afterschoolId: selectedClass.afterschoolId,
+        });
+
+        closeModal();
     };
 
     return (
         <S.Wrapper>
             <h2>출장 날짜를 입력해주세요</h2>
             <S.MainContent>
-                <ChangeDate onChange={setDate}/>
+                <ChangeDate onChange={handleDateChange} />
             </S.MainContent>
             <S.Buttons>
-                <Confirm text="취소" color="red" image="reject" onClick={ closeModal } />
+                <Confirm text="취소" color="red" image="reject" onClick={closeModal} />
                 <Confirm text="출장" color="blue" image="fly" onClick={handleCreate} />
             </S.Buttons>
         </S.Wrapper>
