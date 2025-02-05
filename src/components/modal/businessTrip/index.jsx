@@ -9,7 +9,11 @@ export default function BusinessTrip({ closeModal, selectedClass }) {
     const { mutate: createBusinessTrip } = useBusinessTripMutation();
 
     const handleDateChange = (date) => {
-        setSelectedDate(date);
+        if (date instanceof Date && !isNaN(date)) {
+            setSelectedDate(date);
+        } else {
+            alert("올바른 날짜를 입력하세요.");
+        }
     };
 
     const formatDate = (date) => {
@@ -20,7 +24,15 @@ export default function BusinessTrip({ closeModal, selectedClass }) {
     };
 
     const handleCreate = () => {
-        if (!selectedDate) return;
+        if (!selectedDate) {
+            alert("출장 날짜를 입력해주세요.");
+            return;
+        }
+
+        if (!selectedClass) {
+            alert("선택된 수업이 없습니다.");
+            return;
+        }
 
         const formattedDate = formatDate(selectedDate);
 
