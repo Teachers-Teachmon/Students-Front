@@ -1,27 +1,12 @@
 import * as S from './style.jsx';
 import Confirm from "../../button/confirm/index.jsx";
-import ChangeDate from '../../dateInput/index.jsx';
+import DateInput from '../../dateInput/index.jsx';
 import { useState } from 'react';
-import { useBusinessTripMutation } from '../../../hooks/useBusinessTrip';
+import { useBusinessTrip } from '../../../hooks/useAfterSchool.js';
 
 export default function BusinessTrip({ closeModal, selectedClass }) {
     const [selectedDate, setSelectedDate] = useState(null);
-    const { mutate: createBusinessTrip } = useBusinessTripMutation();
-
-    const handleDateChange = (date) => {
-        if (date instanceof Date && !isNaN(date)) {
-            setSelectedDate(date);
-        } else {
-            alert("올바른 날짜를 입력하세요.");
-        }
-    };
-
-    const formatDate = (date) => {
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const day = String(date.getDate()).padStart(2, '0');
-        return `${year}-${month}-${day}`;
-    };
+    const { mutate: createBusinessTrip } = useBusinessTrip();
 
     const handleCreate = () => {
         if (!selectedDate) {
@@ -29,15 +14,8 @@ export default function BusinessTrip({ closeModal, selectedClass }) {
             return;
         }
 
-        if (!selectedClass) {
-            alert("선택된 수업이 없습니다.");
-            return;
-        }
-
-        const formattedDate = formatDate(selectedDate);
-
         createBusinessTrip({
-            day: formattedDate,
+            day: selectedDate,
             period: selectedClass.period,
             afterschoolId: selectedClass.afterschoolId,
         });
@@ -49,7 +27,7 @@ export default function BusinessTrip({ closeModal, selectedClass }) {
         <S.Wrapper>
             <h2>출장 날짜를 입력해주세요</h2>
             <S.MainContent>
-                <ChangeDate onChange={handleDateChange} />
+                <DateInput onChange={(d) => setSelectedDate(d)} />
             </S.MainContent>
             <S.Buttons>
                 <Confirm text="취소" color="red" image="reject" onClick={closeModal} />

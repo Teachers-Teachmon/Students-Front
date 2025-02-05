@@ -220,7 +220,7 @@ export default function After_school() {
             {isModal1 && (
                 <S.BusinessTripModal onClick={() => closeModalHandler(setIsModal1)}>
                     <S.BusinessModal onClick={(e) => e.stopPropagation()}>
-                        <BusinessTrip closeModal={() => { setIsModal1(false) }} />
+                        <BusinessTrip closeModal={() => { setIsModal1(false) }} selectedClass={selectedClass} />
                     </S.BusinessModal>
                 </S.BusinessTripModal>
             )}

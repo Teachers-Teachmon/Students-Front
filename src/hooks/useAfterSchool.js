@@ -1,5 +1,6 @@
 import * as API from '../api/afterschool.js';
 import { useMutation, useQuery } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
 export const useGetClassList = (grade, weekday) => {
     return useQuery({
@@ -40,3 +41,13 @@ export const useGetAfterSchoolClasses = (branch, weekday) => {
         }
     });
 }
+
+export const useBusinessTrip = () => {
+    const navigate = useNavigate();
+    return useMutation({
+        mutationFn: (props) => API.businessTrip(props),
+        onSuccess: () => {
+            navigate('/after-school');
+        }
+    });
+};
