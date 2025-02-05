@@ -44,7 +44,6 @@ export const Check = async () =>{
         const res = await axiosInstance.get('/check');
         return res;
     }catch(err){
-        window.location.href = "/landing";
         return Promise.reject(err);
     }
 }
