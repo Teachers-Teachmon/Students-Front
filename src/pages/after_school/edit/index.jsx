@@ -24,6 +24,20 @@ export default function Edit() {
     const [selectedGrade, setSelectedGrade] = useState(1);
     const [options, setOptions] = useState({});
     const [isBranchOpen, setIsBranchOpen] = useState(false);
+    const [selectedRow, setSelectedRow] = useState(null);
+
+    const handleOptionClick = (grade, index) => {
+        setOptions((prev) => ({
+            ...prev,
+            [grade]: prev[grade] === index ? null : index,
+        }));
+        if (options[grade] === index) {
+            setSelectedRow(null);
+        } else {
+            setSelectedRow(grades[grade][index]);
+        }
+    };
+
 
     const [selectStudent, setSelectStudent] = useState({
         class1: [],
@@ -55,7 +69,7 @@ export default function Edit() {
 
     useEffect(() => {
         if (!data || data.length === 0) return;
-    
+
         setGrades({
             1: data[0] || [],
             2: data[1] || [],
@@ -85,12 +99,6 @@ export default function Edit() {
         }));
     };
 
-    const handleOptionClick = (grade, index) => {
-        setOptions((prev) => ({
-            ...prev,
-            [grade]: prev[grade] === index ? null : index,
-        }));
-    };
 
     // const [isOpen, setIsOpen] = useState({
     //     1: Array(grades[1].length).fill(false),
@@ -308,7 +316,7 @@ export default function Edit() {
                 </S.EditContent>
             </S.Content>
 
-            {isModalOpen && (
+            {/* {isModalOpen && (
                 <S.ModalOverlay onClick={() => closeModalHandler(setIsModalOpen)}>
                     <S.ModalContent onClick={(e) => e.stopPropagation()}>
                         <S.ModalContentTop>
@@ -401,7 +409,110 @@ export default function Edit() {
                         </S.Btn>
                     </S.ModalContent>
                 </S.ModalOverlay>
+            )} */}
+
+            {isModalOpen && selectedRow && (
+                <S.ModalOverlay onClick={() => closeModalHandler(setIsModalOpen)}>
+                    <S.ModalContent onClick={(e) => e.stopPropagation()}>
+                        <S.ModalContentTop>
+                            <h1>{selectedGrade}학년</h1>
+                        </S.ModalContentTop>
+                        <S.ModalMain>
+                            <S.ModalLeft>
+                                <DropdownS
+                                    name={"담당교사"}
+                                    value={selectedRow.teacherName}
+                                    onChange={(value) => handleInputChange(selectedGrade, selectedRow.index, 'teacherName', value)}
+                                />
+                                <DropdownNS
+                                    name={"시간"}
+                                    value={selectedRow.period}
+                                    onChange={(value) => handleInputChange(selectedGrade, selectedRow.index, 'period', value)}
+                                />
+                                <DropdownNS
+                                    name={"학생수"}
+                                    value={selectedRow.studentsNumber}
+                                    onChange={(value) => handleInputChange(selectedGrade, selectedRow.index, 'studentsNumber', value)}
+                                />
+                            </S.ModalLeft>
+                            <S.ModalRight>
+                                <S.ClassData
+                                    type='text'
+                                    value={selectedRow.name}
+                                    onChange={(e) => handleInputChange(selectedGrade, selectedRow.index, 'name', e.target.value)}
+                                />
+                                <S.DropdownFL>
+                                    <DropdownNS
+                                        name={"장소"}
+                                        value={selectedRow.placeName}
+                                        onChange={(value) => handleInputChange(selectedGrade, selectedRow.index, 'placeName', value)}
+                                    />
+                                </S.DropdownFL>
+                                <S.InputBox>
+                                    <img src={Search} alt={"검색아이콘"} width={20}></img>
+                                    <S.Input
+                                        type={"text"}
+                                        value={search}
+                                        onChange={(e) => setSearch(e.target.value)}
+                                        placeholder={"학생을 입력해주세요"}
+                                        axios={(event) => searchStudent(event)}
+                                    />
+                                    <S.StudentList>
+                                        {search &&
+                                            student
+                                                .filter((currentItem) => { // 학생이 이미 반 리스트 안에 있는지 확인함
+                                                    return !Object.values(selectStudent).some((classList) => classList.includes(currentItem))
+                                                        && currentItem.includes(search);
+                                                })
+                                                .map((currentItem, index) => {
+                                                    return (
+                                                        <S.StudentItem
+                                                            key={index}
+                                                            onClick={() => {
+                                                                const classNumber = parseInt(currentItem.charAt(1), 10);
+                                                                setSelectStudent((prev) => ({
+                                                                    ...prev,
+                                                                    [`class${classNumber}`]: [...prev[`class${classNumber}`], currentItem],
+                                                                }));
+                                                                setSearch("");
+                                                            }}
+                                                        >
+                                                            {currentItem}
+                                                        </S.StudentItem>
+                                                    );
+                                                })
+                                        }
+                                    </S.StudentList>
+                                </S.InputBox>
+
+                                <S.StudentBox>
+                                    {Object.entries(selectStudent).map(([cls, students], idx) => (
+                                        <S.Class key={cls}>
+                                            <p>{idx + 1}반</p>
+                                            <S.ClassMain>
+                                                {students.length > 0 && students.map((item, studentIdx) => (
+                                                    <S.Student key={studentIdx}
+                                                        onClick={() => setSelectStudent((prev) => ({
+                                                            ...prev,
+                                                            [cls]: prev[cls].filter((currentItem) => currentItem !== item),
+                                                        }))}>
+                                                        <h4>{item}</h4>
+                                                    </S.Student>
+                                                ))}
+                                            </S.ClassMain>
+                                        </S.Class>
+                                    ))}
+                                </S.StudentBox>
+                            </S.ModalRight>
+                        </S.ModalMain>
+                        <S.Btn>
+                            <Square name="취소" color="#999999" background="white" border="#999999" On={() => setIsModalOpen(false)} />
+                            <Confirm text="저장" color="blue" image="check" />
+                        </S.Btn>
+                    </S.ModalContent>
+                </S.ModalOverlay>
             )}
+
         </S.EditContainer>
     );
 }
