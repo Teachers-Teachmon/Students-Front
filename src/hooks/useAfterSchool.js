@@ -71,3 +71,23 @@ export const useDeleteClass = () =>{
         }
     })
 }
+
+export const useGetUploadUrl = (spreadSheetId) => {
+    return useQuery({
+        queryKey: ['getUploadUrl', spreadSheetId],
+        queryFn: async () => {
+            const res = await API.getUploadUrl();
+            return res.data || [];
+        }
+    });
+};
+
+export const useGetFlushClass = (spreadSheetId) => {
+    return useQuery({
+        queryKey: ['getFlushClass', spreadSheetId],
+        queryFn: async () => {
+            const res = await API.getFlushClass();
+            return res.data || [];
+        }
+    });
+};
