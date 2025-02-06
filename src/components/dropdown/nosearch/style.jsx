@@ -46,7 +46,7 @@ export const DropdownItem = styled.li`
   transition: all 0.2s ease;
     width: 150px;
     background: white;
-    z-index: 10;
+    z-index: 13;
   &:hover {
     background-color: #f0f0f0;
   }
