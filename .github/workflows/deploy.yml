@@ -1,0 +1,70 @@
+name: Deploy Teachmon
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Docker BuildX
+        run: |
+          docker build -t teachmon08/teachmon-fe:v1 .
+
+      - name: Docker Login
+        run: |
+          echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+
+      - name: Docker Push
+        run: |
+          docker push teachmon08/teachmon-fe:v1
+
+      - name: Setup GCP Authentication
+        run: |
+          echo "${{ secrets.GCP_SA_KEY }}" | base64 --decode > $HOME/gcloud-key.json
+          gcloud auth activate-service-account --key-file=$HOME/gcloud-key.json
+          gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
+
+      - name: Check if GCP instance exists
+        id: check_instance
+        env:
+          INSTANCE_NAME: ${{ secrets.GCP_INSTANCE_NAME }}
+        run: |
+          if [ -z "$INSTANCE_NAME" ]; then
+            echo "ERROR: GCP_INSTANCE_NAME is empty!"
+            exit 1
+          fi
+
+          INSTANCE_EXIST=$(gcloud compute instances list --filter="name=${INSTANCE_NAME}" --format="value(name)")
+
+          if [ -z "$INSTANCE_EXIST" ]; then
+            echo "Instance does not exist. Creating..."
+            echo "create_instance=true" >> $GITHUB_ENV
+          else
+            echo "Instance exists."
+            echo "create_instance=false" >> $GITHUB_ENV
+          fi
+
+
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keygen -t rsa -b 4096 -f ~/.ssh/google_compute_engine -N ""
+          ssh-keyscan -t rsa ${{ secrets.GCP_INSTANCE_IP }} >> ~/.ssh/known_hosts
+          gcloud compute instances add-metadata teachmon \
+            --zone ${{ secrets.GCP_ZONE }} \
+            --metadata ssh-keys="${{ secrets.GCP_INSTANCE_USER }}:$(cat ~/.ssh/google_compute_engine.pub)"
+
+
+      - name: SSH into GCP and Deploy
+        run: |
+          gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
+          gcloud compute ssh ${{ secrets.GCP_INSTANCE_USER }}@${{ secrets.GCP_INSTANCE_NAME }} --zone ${{ secrets.GCP_ZONE }} --command "
+              sudo docker pull teachmon/teachmon-fe:v1 &&
+              sudo docker-compose up -d
+            "
