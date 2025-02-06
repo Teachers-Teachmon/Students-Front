@@ -194,12 +194,8 @@ export default function SupervisionChange() {
                                                                     style={{
                                                                         backgroundColor: selectedTeacher.some(t => t.uniqueKey === uniqueKey) ? '#2E6FF2' : '#FFF',
                                                                         color: selectedTeacher.some(t => t.uniqueKey === uniqueKey) ? '#FFF' : '#000',
-                                                                        cursor: !isSelfSelected && !(teacherInfo && teacherInfo.includes('/me'))
-                                                                            ? 'not-allowed'
-                                                                            : 'pointer',
-                                                                        opacity: (disabledTeachers.includes(compareKey) || (!isSelfSelected && !(teacherInfo && teacherInfo.includes('/me'))))
-                                                                            ? 0.5
-                                                                            : 1,
+                                                                        cursor: !isSelfSelected && !(teacherInfo && teacherInfo.includes('/me')) ? 'not-allowed' : 'pointer',
+                                                                        opacity: (disabledTeachers.includes(compareKey) || (!isSelfSelected && !(teacherInfo && teacherInfo.includes('/me')))) ? 0.5 : 1
                                                                     }}
                                                                 >
                                                                     {teacherName}
