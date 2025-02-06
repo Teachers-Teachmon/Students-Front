@@ -66,6 +66,10 @@ export default function SupervisionChange() {
                 setSelectedGrade(uniqueKey.split('-')[1] === "first_grade" ? 1 : uniqueKey.split('-')[1] === "second_grade" ? 2 : 3);
                 setSelectedPeriod(convertPeriod(uniqueKey.split('-')[2]));
                 setSelectedTeacher(prev => [...prev, { uniqueKey, teacherId }]);
+            } else {
+                setSelfTeacherDisabled(true);
+                setSelectedTeacher(prev => prev.filter(item => item.uniqueKey !== uniqueKey));
+                return;
             }
             return;
         }
