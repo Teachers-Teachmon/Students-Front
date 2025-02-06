@@ -227,7 +227,7 @@ export default function After_school() {
             {isModal2 && (
                 <S.ClassPrepModal onClick={() => closeModalHandler(setIsModal2)}>
                     <S.PrepModal onClick={(e) => e.stopPropagation()}>
-                        <ClassPrep closeModal={() => { setIsModal2(false) }} />
+                        <ClassPrep closeModal={() => { setIsModal2(false) }} selectedClass={selectedClass}/>
                     </S.PrepModal>
                 </S.ClassPrepModal>
             )}
@@ -237,6 +237,7 @@ export default function After_school() {
                         <ClassEnd
                             closeModal={() => { setIsModal3(false) }}
                             selectedClass={selectedClass}
+                            afterSchoolId={selectedClass?.afterSchoolId}
                         />
                     </S.EndModal>
                 </S.ClassEndModal>

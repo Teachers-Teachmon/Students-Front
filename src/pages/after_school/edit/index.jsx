@@ -25,20 +25,60 @@ export default function Edit() {
     const [options, setOptions] = useState({});
     const [isBranchOpen, setIsBranchOpen] = useState(false);
     const [selectedRows, setSelectedRows] = useState({});
+    const [spreadsheetId, setSpreadsheetId] = useState('');
+    const [spreadsheetUrl, setSpreadsheetUrl] = useState('');
 
 
+    const extractSpreadsheetId = (url) => {
+        const regex = /\/d\/([a-zA-Z0-9_-]+)\//;
+        const match = url.match(regex);
+        return match ? match[1] : '';
+    };
+
+    const handleUpload = () => {
+        const id = extractSpreadsheetId(spreadsheetUrl);
+        if (id) {
+            setSpreadsheetId(id);
+            // 여기서 ID를 서버로 요청을 보낼 수 있습니다.
+            console.log('스프레드시트 ID:', id);
+            // 예시: 서버로 요청 보내는 코드
+            // sendDataToServer(id);
+        } else {
+            alert('유효한 Google Spreadsheet 링크를 입력해주세요.');
+        }
+    };
+
+    // 링크 입력 값 변경 핸들러
+    const handleUrlChange = (e) => {
+        setSpreadsheetUrl(e.target.value);
+    };
     const handleOptionClick = (grade, index) => {
         setOptions((prev) => ({
             ...prev,
             [grade]: prev[grade] === index ? null : index,
         }));
-    
+
         setSelectedRows((prev) => ({
             ...prev,
-            [grade]: prev[grade] === index ? null : grades[grade][index],
+            [grade]: prev[grade] === index ? null : { ...grades[grade][index], index },
         }));
+
+        setSelectedGrade(grade);  // 선택된 학년 저장
     };
-    
+
+
+    // const handleOptionClick = (grade, index) => {
+    //     setOptions((prev) => ({
+    //         ...prev,
+    //         [grade]: prev[grade] === index ? null : index,
+    //     }));
+
+    //     setSelectedRows((prev) => ({
+    //         ...prev,
+    //         [grade]: prev[grade] === index ? null : { ...grades[grade][index], index }, // 모든 데이터 저장
+    //     }));
+    // };
+
 
 
     const [selectStudent, setSelectStudent] = useState({
@@ -57,42 +97,32 @@ export default function Edit() {
 
     const { data } = useGetAfterSchoolClasses(branch, weekday);
 
-    const [grades, setGrades] = useState({ 1: [], 2: [], 3: [] });
+    // const [grades, setGrades] = useState({ 1: [], 2: [], 3: [] });
 
     // useEffect(() => {
-    //     if (!data) return;
+    //     if (!data || data.length === 0) return;
 
     //     setGrades({
-    //         1: data.filter((cls) => cls.grade === 1),
-    //         2: data.filter((cls) => cls.grade === 2),
-    //         3: data.filter((cls) => cls.grade === 3),
+    //         1: data[0] || [],
+    //         2: data[1] || [],
+    //         3: data[2] || [],
     //     });
     // }, [data]);
 
-    useEffect(() => {
-        if (!data || data.length === 0) return;
-
-        setGrades({
-            1: data[0] || [],
-            2: data[1] || [],
-            3: data[2] || [],
-        });
-    }, [data]);
-
-    // const [grades, setGrades] = useState({
-    //         1: [
-    //             { period: '8~9교시', teacher: '김철수', placeName: '프로그래밍실', name: '웹 개발', studentsNumber: '5' },
-    //             { period: '10~11교시', teacher: '박영희', placeName: '디자인실', name: '그래픽 디자인', studentsNumber: '6' }
-    //         ],
-    //         2: [
-    //             { period: '8~9교시', teacher: '이정민', placeName: '1-3반', name: '프론트엔드 개발', studentsNumber: '8' },
-    //             { period: '10~11교시', teacher: '최은지', placeName: '융합관', name: 'UX/UI 디자인', studentsNumber: '7' }
-    //         ],
-    //         3: [
-    //             { period: '8~9교시', teacher: '홍길동', placeName: '객체지향 프로그래밍실', name: '데이터 분석', studentsNumber: '4' },
-    //             { period: '10~11교시', teacher: '김미영', placeName: '2-1반', name: '디지털 마케팅', studentsNumber: '6' }
-    //         ]
-    // });
+    const [grades, setGrades] = useState({
+        1: [
+            { period: '8~9교시', teacherName: '김철수', placeName: '프로그래밍실', name: '웹 개발', studentsNumber: '5' },
+            { period: '10~11교시', teacherName: '박영희', placeName: '디자인실', name: '그래픽 디자인', studentsNumber: '6' }
+        ],
+        2: [
+            { period: '8~9교시', teacher: '이정민', placeName: '1-3반', name: '프론트엔드 개발', studentsNumber: '8' },
+            { period: '10~11교시', teacherName: '최은지', placeName: '융합관', name: 'UX/UI 디자인', studentsNumber: '7' }
+        ],
+        3: [
+            { period: '8~9교시', teacherName: '홍길동', placeName: '객체지향 프로그래밍실', name: '데이터 분석', studentsNumber: '4' },
+            { period: '10~11교시', teacherName: '김미영', placeName: '2-1반', name: '디지털 마케팅', studentsNumber: '6' }
+        ]
+    });
 
     const addRow = (grade) => {
         setGrades(prev => ({
@@ -126,8 +156,29 @@ export default function Edit() {
         }));
     };
 
+    const handleSave = () => {
+        setGrades(prev => ({
+            ...prev,
+            [selectedGrade]: prev[selectedGrade].map((row, idx) =>
+                idx === selectedRows[selectedGrade].index
+                    ? { ...row, ...selectedRows[selectedGrade] }
+                    : row
+            ),
+        }));
+
+        setIsModalOpen(false);
+    };
+
 
     const handleInputChange = (grade, index, field, value) => {
+        setSelectedRows(prev => ({
+            ...prev,
+            [grade]: {
+                ...prev[grade],
+                [field]: value,
+            }
+        }));
+
         setGrades(prev => ({
             ...prev,
             [grade]: prev[grade].map((row, idx) =>
@@ -135,6 +186,17 @@ export default function Edit() {
             ),
         }));
     };
+
+    // // 모달에서 데이터를 수정할 때 selectedRows 업데이트
+    // const handleModalInputChange = (field, value) => {
+    //     setSelectedRows(prev => ({
+    //         ...prev,
+    //         [selectedGrade]: {
+    //             ...prev[selectedGrade],
+    //             [field]: value,
+    //         }
+    //     }));
+    // };
 
     const closeModalHandler = (setModal) => {
         setModal(false);
@@ -219,16 +281,17 @@ export default function Edit() {
                     <S.EditTopRight>
                         <S.FileBtn>
                             <S.FileDown><img src={Download} />파일 다운로드</S.FileDown>
-                            <S.FileUp>
-                                <S.FileUpBtn htmlFor="file-upload">
-                                    <img src={Upload} alt="업로드 아이콘" />
-                                    파일 업로드
-                                </S.FileUpBtn>
-                                <input
-                                    id="file-upload"
-                                    type="file"
-                                    style={{ display: 'none' }}
+                            <input
+                                    type="text"
+                                    value={spreadsheetUrl}
+                                    onChange={handleUrlChange}
+                                    placeholder="Spreadsheet 링크 입력"
                                 />
+                            <S.FileUp>
+                                <S.FileUpBtn htmlFor="file-upload" onClick={handleUpload}>
+                                    <img src={Upload} alt="업로드 아이콘" />
+                                    업로드
+                                </S.FileUpBtn>
                             </S.FileUp>
                         </S.FileBtn>
                         <S.ReComBtn>
@@ -318,101 +381,6 @@ export default function Edit() {
                 </S.EditContent>
             </S.Content>
 
-            {/* {isModalOpen && (
-                <S.ModalOverlay onClick={() => closeModalHandler(setIsModalOpen)}>
-                    <S.ModalContent onClick={(e) => e.stopPropagation()}>
-                        <S.ModalContentTop>
-                            <h1>{selectedGrade}학년</h1>
-                        </S.ModalContentTop>
-                        <S.ModalMain>
-                            <S.ModalLeft>
-                                <DropdownS
-                                    name={"담당교사"}
-                                    axios={(event) => searchTeacher(event)}
-                                />
-                                <DropdownNS
-                                    name={"시간"}
-                                />
-                                <DropdownNS
-                                    name={"학생수"}
-                                />
-                            </S.ModalLeft>
-                            <S.ModalRight>
-                                <S.ClassData
-                                    type='text'
-                                    value='방과후를 입력해주세요'
-                                />
-                                <S.DropdownFL>
-                                    <DropdownNS
-                                        name={"장소"}
-                                        axios={(event) => searchPlace(event)}
-                                    />
-                                </S.DropdownFL>
-                                <S.InputBox>
-                                    <img src={Search} alt={"검색아이콘"} width={20}></img>
-                                    <S.Input
-                                        type={"text"}
-                                        value={search}
-                                        onChange={(e) => setSearch(e.target.value)}
-                                        placeholder={"학생을 입력해주세요"}
-                                        axios={(event) => searchStudent(event)}
-                                    />
-                                    <S.StudentList>
-                                        {search &&
-                                            student
-                                                .filter((currentItem) => { // 학생이 이미 반 리스트 안에 있는지 확인함
-                                                    return !Object.values(selectStudent).some((classList) => classList.includes(currentItem))
-                                                        && currentItem.includes(search);
-                                                })
-                                                .map((currentItem, index) => {
-                                                    return (
-                                                        <S.StudentItem
-                                                            key={index}
-                                                            onClick={() => {
-                                                                const classNumber = parseInt(currentItem.charAt(1), 10);
-                                                                setSelectStudent((prev) => ({
-                                                                    ...prev,
-                                                                    [`class${classNumber}`]: [...prev[`class${classNumber}`], currentItem],
-                                                                }));
-                                                                setSearch("");
-                                                            }}
-                                                        >
-                                                            {currentItem}
-                                                        </S.StudentItem>
-                                                    );
-                                                })
-                                        }
-                                    </S.StudentList>
-                                </S.InputBox>
-
-                                <S.StudentBox>
-                                    {Object.entries(selectStudent).map(([cls, students], idx) => (
-                                        <S.Class key={cls}>
-                                            <p>{idx + 1}반</p>
-                                            <S.ClassMain>
-                                                {students.length > 0 && students.map((item, studentIdx) => (
-                                                    <S.Student key={studentIdx}
-                                                        onClick={() => setSelectStudent((prev) => ({
-                                                            ...prev,
-                                                            [cls]: prev[cls].filter((currentItem) => currentItem !== item),
-                                                        }))}>
-                                                        <h4>{item}</h4>
-                                                    </S.Student>
-                                                ))}
-                                            </S.ClassMain>
-                                        </S.Class>
-                                    ))}
-                                </S.StudentBox>
-                            </S.ModalRight>
-                        </S.ModalMain>
-                        <S.Btn>
-                            <Square name="취소" color="#999999" background="white" border="#999999" On={() => setIsModalOpen(false)} />
-                            <Confirm text="저장" color="blue" image="check" />
-                        </S.Btn>
-                    </S.ModalContent>
-                </S.ModalOverlay>
-            )} */}
-
             {isModalOpen && selectedRows[selectedGrade] && (
                 <S.ModalOverlay onClick={() => closeModalHandler(setIsModalOpen)}>
                     <S.ModalContent onClick={(e) => e.stopPropagation()}>
@@ -422,17 +390,17 @@ export default function Edit() {
                         <S.ModalMain>
                             <S.ModalLeft>
                                 <DropdownS
-                                    name={"담당교사"}
+                                    name={selectedRows[selectedGrade].teacherName || "담당교사"}
                                     value={selectedRows[selectedGrade].teacherName}
-                                    onChange={(value) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'teacherName', value)}
+                                    onChange={(e) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'teacherName', e.target.value)}
                                 />
                                 <DropdownNS
-                                    name={"시간"}
+                                    name={selectedRows[selectedGrade].period || "시간"}
                                     value={selectedRows[selectedGrade].period}
                                     onChange={(value) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'period', value)}
                                 />
                                 <DropdownNS
-                                    name={"학생수"}
+                                    name={selectedRows[selectedGrade].studentsNumber || "학생수"}
                                     value={selectedRows[selectedGrade].studentsNumber}
                                     onChange={(value) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'studentsNumber', value)}
                                 />
@@ -445,7 +413,7 @@ export default function Edit() {
                                 />
                                 <S.DropdownFL>
                                     <DropdownNS
-                                        name={"장소"}
+                                        name={selectedRows[selectedGrade].placeName || "장소"}
                                         value={selectedRows[selectedGrade].placeName}
                                         onChange={(value) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'placeName', value)}
                                     />
@@ -508,9 +476,24 @@ export default function Edit() {
                             </S.ModalRight>
                         </S.ModalMain>
                         <S.Btn>
-                            <Square name="취소" color="#999999" background="white" border="#999999" On={() => setIsModalOpen(false)} />
-                            <Confirm text="저장" color="blue" image="check" />
+                            <Square
+                                name="취소"
+                                color="#999999"
+                                background="white"
+                                border="#999999"
+                                onClick={() => setIsModalOpen(false)}
+                            />
+                            <Confirm
+                                text="저장"
+                                color="blue"
+                                image="check"
+                                onClick={() => {
+                                    handleSave();
+                                    setIsModalOpen(false);
+                                }}
+                            />
                         </S.Btn>
+
                     </S.ModalContent>
                 </S.ModalOverlay>
             )}
