@@ -243,7 +243,7 @@ export default function Edit() {
                     <S.EditTopLeft>
                         <S.TopDate $length={85}>
                             <DropdownNS
-
+                            
                                 name={branch || '분기'}
                                 item={branches}
                                 change={handleBranchChange}
