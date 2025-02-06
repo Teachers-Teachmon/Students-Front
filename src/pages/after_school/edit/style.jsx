@@ -30,6 +30,7 @@ export const TopDate = styled.div`
     display: flex;
     gap: 20px;
     height: 40px;
+    width: ${(props)=>props.$length}px;
 `
 
 export const TopDay = styled.div`
