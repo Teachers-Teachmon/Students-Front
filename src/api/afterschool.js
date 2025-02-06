@@ -113,3 +113,33 @@ export const deleteClass = async (afterSchoolId) =>{
         return Promise.reject(err);
     }
 }
+
+export const getUploadUrl = async (spreadSheetId) => {
+    try {
+        const res = await axiosInstance.get(`${API_ENDPOINTS.AFTER_SCHOOL}/upload/${spreadSheetId}`);
+        if (res.status !== 200) {
+            return Promise.reject({
+                status: res.status,
+                message: res.message
+            });
+        }
+        return res;
+    } catch (err) {
+        return Promise.reject(err);
+    }
+}
+
+export const getFlushClass = async (spreadSheetId) => {
+    try {
+        const res = await axiosInstance.get(`${API_ENDPOINTS.AFTER_SCHOOL}/flush/${spreadSheetId}`);
+        if (res.status !== 200) {
+            return Promise.reject({
+                status: res.status,
+                message: res.message
+            });
+        }
+        return res;
+    } catch (err) {
+        return Promise.reject(err);
+    }
+}

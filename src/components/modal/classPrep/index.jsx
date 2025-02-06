@@ -5,14 +5,16 @@ import PrepDate from '../../prepDate/index.jsx';
 import { useState } from 'react';
 import Dropdown from '../../dropdown/nosearch/index.jsx';
 import { useClassPrep } from '../../../hooks/useAfterSchool.js';
+import DateInput from '../../dateInput/index.jsx';
 
 
 
 export default function ClassPrep({ closeModal, selectedClass }) {
     const [selectedPeriod, setSelectedPeriod] = useState('');
     const [isOpen, setIsOpen] = useState([false, false]);
-    const [selectedDate, setSelectedDate] = useState(null);
     const { mutate: createClassPrep } = useClassPrep();
+    const [localSender, setLocalSender] = useState(null);
+    const [localRecipient, setLocalRecipient] = useState(null);
 
     const periods = ['8~9교시', '10~11교시'];
     const classesPeriod = {
@@ -20,25 +22,34 @@ export default function ClassPrep({ closeModal, selectedClass }) {
         '10~11교시': ['C언어', '웹 개발', '스프링'],
     };
 
+    const handleDateChange = (date, type) => {
+        if (type === "sender") {
+            setLocalSender(date);
+        } else {
+            setLocalRecipient(date);
+        }
+    };
+
     const handleCreate = () => {
         const requestBody = {
             sender: {
                 afterSchoolId: selectedClass.id,
-                day: selectedClass.weekday
+                day: localSender
             },
             // recipient: {
             //     type: ,
             //     do_id: ,
-            //     day: 
+            //     day: localRecipient
             // }
         }
 
-        if (!selectedDate) {
+        if (!localSender || !localRecipient) {
             alert("보강 날짜를 입력해주세요.");
             return;
         }
 
-        console.log(selectedDate, selectedClass);
+        setsender(localSender);
+        setrecipient(localRecipient);
         createClassPrep(requestBody,{});
 
         closeModal();
@@ -51,7 +62,8 @@ export default function ClassPrep({ closeModal, selectedClass }) {
                 <S.ChangeClass>바꾸고싶은 방과후</S.ChangeClass>
             </S.ClassTop>
             <S.DateMain>
-                <PrepDate onChange={(d) => setSelectedDate(d)}/>
+                <PrepDate onChange={(date) => handleDateChange(date, "sender")}/>
+                <PrepDate onChange={(date) => handleDateChange(date, "recipient")}/>
             </S.DateMain>
 
             <S.Place>
