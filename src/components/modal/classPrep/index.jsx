@@ -16,6 +16,10 @@ export default function ClassPrep({ closeModal, selectedClass }) {
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedAfterSchool, setSelectedAfterSchool] = useState(null);
 
+    const getPeriodNumber = (period) => (period === '8~9교시' ? 8 : period === '10~11교시' ? 10 : null);
+    const selectedPeriodNumber = getPeriodNumber(selectedPeriod);
+
+
     const periods = ['8~9교시', '10~11교시'];
 
     const { data: afterSchoolList = [], refetch } = useGetSupplementList(selectedDate, selectedPeriod);
@@ -25,7 +29,7 @@ export default function ClassPrep({ closeModal, selectedClass }) {
     };
 
     useEffect(() => {
-        if (selectedDate && selectedPeriod) {
+        if (selectedDate && selectedPeriodNumber !== null) {
             refetch();
         }
     }, [selectedDate, selectedPeriod, refetch]);
