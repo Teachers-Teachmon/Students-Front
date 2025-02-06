@@ -121,7 +121,7 @@ export default function Edit() {
             const students = await searchStudent(search);
             setStudent(students);
         };
-        fetchStudents();ㄴ
+        fetchStudents();
     }, [debounceStudent]);
 
     useEffect(() => {
