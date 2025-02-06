@@ -83,32 +83,32 @@ export default function Edit() {
 
     const { data } = useGetAfterSchoolClasses(branch, weekday);
 
-    const [grades, setGrades] = useState({ 1: [], 2: [], 3: [] });
+    // const [grades, setGrades] = useState({ 1: [], 2: [], 3: [] });
 
-    useEffect(() => {
-        if (!data || data.length === 0) return;
+    // useEffect(() => {
+    //     if (!data || data.length === 0) return;
 
-        setGrades({
-            1: data[0] || [],
-            2: data[1] || [],
-            3: data[2] || [],
-        });
-    }, [data]);
+    //     setGrades({
+    //         1: data[0] || [],
+    //         2: data[1] || [],
+    //         3: data[2] || [],
+    //     });
+    // }, [data]);
 
-    // const [grades, setGrades] = useState({
-    //     1: [
-    //         { period: '8~9교시', teacherName: '김철수', placeName: '프로그래밍실', name: '웹 개발', studentsNumber: '5' },
-    //         { period: '10~11교시', teacherName: '박영희', placeName: '디자인실', name: '그래픽 디자인', studentsNumber: '6' }
-    //     ],
-    //     2: [
-    //         { period: '8~9교시', teacher: '이정민', placeName: '1-3반', name: '프론트엔드 개발', studentsNumber: '8' },
-    //         { period: '10~11교시', teacherName: '최은지', placeName: '융합관', name: 'UX/UI 디자인', studentsNumber: '7' }
-    //     ],
-    //     3: [
-    //         { period: '8~9교시', teacherName: '홍길동', placeName: '객체지향 프로그래밍실', name: '데이터 분석', studentsNumber: '4' },
-    //         { period: '10~11교시', teacherName: '김미영', placeName: '2-1반', name: '디지털 마케팅', studentsNumber: '6' }
-    //     ]
-    // });
+    const [grades, setGrades] = useState({
+        1: [
+            { period: '8~9교시', teacherName: '김철수', placeName: '프로그래밍실', name: '웹 개발'},
+            { period: '10~11교시', teacherName: '박영희', placeName: '디자인실', name: '그래픽 디자인', studentsNumber: '6' }
+        ],
+        2: [
+            { period: '8~9교시', teacher: '이정민', placeName: '1-3반', name: '프론트엔드 개발', studentsNumber: '8' },
+            { period: '10~11교시', teacherName: '최은지', placeName: '융합관', name: 'UX/UI 디자인', studentsNumber: '7' }
+        ],
+        3: [
+            { period: '8~9교시', teacherName: '홍길동', placeName: '객체지향 프로그래밍실', name: '데이터 분석', studentsNumber: '4' },
+            { period: '10~11교시', teacherName: '김미영', placeName: '2-1반', name: '디지털 마케팅', studentsNumber: '6' }
+        ]
+    });
 
     const addRow = (grade) => {
         setGrades(prev => ({
@@ -227,13 +227,13 @@ export default function Edit() {
 
     const handleBranchChange = (selectedBranch) => {
         setBranch(selectedBranch);
-        toggleBranchDropdown();  // toggleBranchDropdown() 호출로 드롭다운 닫기
     };
 
     const handleWeekdayChange = (selectedWeekday) => {
         setWeekday(selectedWeekday);
     };
 
+    console.log(grades)
 
     return (
         <S.EditContainer>
@@ -243,7 +243,7 @@ export default function Edit() {
                     <S.EditTopLeft>
                         <S.TopDate $length={85}>
                             <DropdownNS
-                            
+
                                 name={branch || '분기'}
                                 item={branches}
                                 change={handleBranchChange}
@@ -383,6 +383,7 @@ export default function Edit() {
                                 <DropdownNS
                                     name={selectedRows[selectedGrade].period || "시간"}
                                     value={selectedRows[selectedGrade].period}
+                                    item={periods}
                                     onChange={(value) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'period', value)}
                                 />
                                 <DropdownNS
@@ -467,7 +468,7 @@ export default function Edit() {
                                 color="#999999"
                                 background="white"
                                 border="#999999"
-                                onClick={() => setIsModalOpen(false)}
+                                On={() => setIsModalOpen(false)}
                             />
                             <Confirm
                                 text="저장"
