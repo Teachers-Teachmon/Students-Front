@@ -15,13 +15,14 @@ import { searchStudent, searchPlace, searchTeacher } from "../../../api/search.j
 import { useGetUploadUrl } from '../../../hooks/useAfterSchool.js';
 import { useSaveClass } from '../../../hooks/useAfterSchool.js';
 import { useGetFlushClass } from '../../../hooks/useAfterSchool.js';
+import { useDebounce } from '../../../hooks/useDebounce.js';
 
 export default function Edit() {
 
     const [branch, setBranch] = useState('');
     const [weekday, setWeekday] = useState('MON');
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [search, setSearch] = useState("");
+    const [search, setSearch] = useState("학생");
     const [selectedPeriod, setSelectedPeriod] = useState('');
     const [selectedGrade, setSelectedGrade] = useState(1);
     const [options, setOptions] = useState({});
@@ -29,6 +30,8 @@ export default function Edit() {
     const [selectedRows, setSelectedRows] = useState({});
     const [spreadsheetId, setSpreadsheetId] = useState('');
     const [spreadsheetUrl, setSpreadsheetUrl] = useState(null);
+    const debounceStudent = useDebounce(search, 300);
+    const [student, setStudent] = useState([]);
 
 
     const extractSpreadsheetId = (url) => {
@@ -94,6 +97,14 @@ export default function Edit() {
     const { data3 } = useGetFlushClass(spreadsheetId);
 
     console.log("API 요청 보낸 spreadSheetId:", spreadsheetId);
+
+    useEffect(() => {
+        const fetchStudents = async () => {
+            const students = await searchStudent(search);
+            setStudent(students);
+        };
+        fetchStudents();
+    }, [debounceStudent]);
 
     const { mutate: saveClass } = useSaveClass();
 
@@ -512,7 +523,7 @@ export default function Edit() {
                                     <S.Input
                                         type={"text"}
                                         value={search}
-                                        onChange={(e) => setSearch(e.target.value)}
+                                        change={(e) => setSearch(e.target.value)}
                                         placeholder={"학생을 입력해주세요"}
                                         axios={(event) => searchStudent(event)}
                                     />
