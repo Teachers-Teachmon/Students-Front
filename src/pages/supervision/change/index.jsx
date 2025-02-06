@@ -8,21 +8,21 @@ import Rotate from '../../../assets/rotate.svg';
 import { useGetMonthlySupervision, useGetFixedTeachers, useSendChangeRequest } from '../../../hooks/useChange.js';
 
 export default function SupervisionChange() {
-
     let navigate = useNavigate();
 
     const [exchangeReason, setExchangeReason] = useState("");
     const [selectedTeacher, setSelectedTeacher] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
-
     const [isSelfSelected, setIsSelfSelected] = useState(false);
     const [disabledTeachers, setDisabledTeachers] = useState([]);
-    const [selfTeacherDisabled, setSelfTeacherDisabled] = useState(false);
-
     const [currentMonth, setCurrentMonth] = useState(new Date().getMonth() + 1);
     const [selectedDay, setSelectedDay] = useState("");
     const [selectedGrade, setSelectedGrade] = useState();
     const [selectedPeriod, setSelectedPeriod] = useState("");
+    const [weeks, setWeeks] = useState([]);
+    const { data: TeacherList = { data: [] }, isLoading, isError } = useGetMonthlySupervision(currentMonth);
+    const { data: fixedTeacherList, isLoading: isLoadingFixed, isError: isErrorFixed } = useGetFixedTeachers(selectedDay, selectedGrade, selectedPeriod);
+    const { mutate: sendChangeRequest } = useSendChangeRequest();
 
     const convertPeriod = (periodKey) => {
         if (periodKey.includes("7th")) return "SEVEN_PERIOD";
@@ -30,16 +30,13 @@ export default function SupervisionChange() {
         if (periodKey.includes("10th")) return "TEN_AND_ELEVEN_PERIOD";
         return "";
     };
-
     const convertPeriodKorean = (periodKey) => {
         if (periodKey === "7교시") return "7th_teacher";
         if (periodKey === "8~9교시") return "8th_teacher";
         if (periodKey === "10~11교시") return "10th_teacher";
         return "";
-    }
+    };
 
-    const { data: TeacherList = { data: [] }, isLoading, isError } = useGetMonthlySupervision(currentMonth);
-    const { data: fixedTeacherList, isLoading: isLoadingFixed, isError: isErrorFixed } = useGetFixedTeachers(selectedDay, selectedGrade, selectedPeriod);
     useEffect(() => {
         if (isSelfSelected && fixedTeacherList) {
             const disabledKeys = fixedTeacherList.map(item => {
@@ -48,11 +45,6 @@ export default function SupervisionChange() {
             setDisabledTeachers(disabledKeys);
         }
     }, [isSelfSelected, fixedTeacherList]);
-
-    const { mutate: sendChangeRequest } = useSendChangeRequest();
-
-    const [weeks, setWeeks] = useState([]);
-
     useEffect(() => {
         if (TeacherList?.data && JSON.stringify(weeks) !== JSON.stringify(TeacherList.data)) {
             setWeeks(TeacherList.data);
@@ -68,9 +60,8 @@ export default function SupervisionChange() {
                 setSelectedPeriod(convertPeriod(uniqueKey.split('-')[2]));
                 setSelectedTeacher(prev => [...prev, { uniqueKey, teacherId }]);
             } else {
-                setSelfTeacherDisabled(true);
+                setIsSelfSelected(false);
                 setSelectedTeacher(prev => prev.filter(item => item.uniqueKey !== uniqueKey));
-                return;
             }
             return;
         }
@@ -87,21 +78,6 @@ export default function SupervisionChange() {
             return updated;
         });
     };
-
-    const handleNextMonth = () => {
-        if (currentMonth < 12) {
-            const nextMonth = currentMonth + 1;
-            setCurrentMonth(nextMonth);
-        }
-    };
-
-    const handlePrevMonth = () => {
-        if (currentMonth > 1) {
-            const prevMonth = currentMonth - 1;
-            setCurrentMonth(prevMonth);
-        }
-    };
-
     function groupByWeek(dataArray) {
         return dataArray.reduce((acc, item) => {
             const w = item.week;
@@ -110,6 +86,18 @@ export default function SupervisionChange() {
             return acc;
         }, {});
     }
+    const handleNextMonth = () => {
+        if (currentMonth < 12) {
+            const nextMonth = currentMonth + 1;
+            setCurrentMonth(nextMonth);
+        }
+    };
+    const handlePrevMonth = () => {
+        if (currentMonth > 1) {
+            const prevMonth = currentMonth - 1;
+            setCurrentMonth(prevMonth);
+        }
+    };
 
     const allData = TeacherList?.data || [];
     const groupedWeeks = groupByWeek(allData);
@@ -122,7 +110,6 @@ export default function SupervisionChange() {
 
         const sender = selectedTeacher[0];
         const recipient = selectedTeacher[1];
-
         const senderInfo = sender.uniqueKey.split("-");
         const recipientInfo = recipient.uniqueKey.split("-");
 
@@ -210,7 +197,7 @@ export default function SupervisionChange() {
                                                                         cursor: !isSelfSelected && !(teacherInfo && teacherInfo.includes('/me'))
                                                                             ? 'not-allowed'
                                                                             : 'pointer',
-                                                                        opacity: (disabledTeachers.includes(compareKey) || (!isSelfSelected && !(teacherInfo && teacherInfo.includes('/me'))) || selfTeacherDisabled)
+                                                                        opacity: (disabledTeachers.includes(compareKey) || (!isSelfSelected && !(teacherInfo && teacherInfo.includes('/me'))))
                                                                             ? 0.5
                                                                             : 1,
                                                                     }}
