@@ -434,59 +434,53 @@ export default function Edit() {
                                                 />
                                             </S.Grade>
                                         </S.RowData>
-                                            <S.RowData $length={120}>
-                                                {/* <DropdownS
+                                        <S.RowData $length={120}>
+                                            <DropdownS
+                                                target="선생님"
+                                                name={row.teacherName || "담당교사"}
+                                                change={(value) => handleInputChange(grade, index, 'teacherName', value)}
+                                                isOpen={isOpen[grade]?.[index]?.teacherName}
+                                                click={() => handleDropdownClick(grade, index, 'teacherName')}
+                                                axios={(event) => searchTeacher(event)}
+                                            />
 
-                                            //target = 학생인지 선생님인지 구별
-                                            // name = 선택되어있는 요소
-                                            // axios = 디바운스를 이용하여 검색해올 axios문
-                                            // change = 선택된 요소로 name 을 바꾸는 함수
-                                            // isOpen = 메뉴를 보이게할지
-                                            // click = 드랍다운을 했다가 다시 누르면 닫히게 하는 함수
+                                        </S.RowData>
+                                        <S.RowData $length={240}>
+                                            {/* <DropdownS
+                                                onChange={value => handleInputChange(grade, index, 'placeName', value)}
+                                                isOpen={isOpen[grade]?.[index]?.placeName}
+                                                click={() => handleDropdownClick(grade, index, 'placeName')}
+                                                axios={(event) => searchPlace(event)}
+                                                name={row.placeName || "장소"}
+                                                change={(value) => handleInputChange(grade, index, 'teacherName', value)}
+                                                isOpen={isOpen[grade]?.[index]?.placeName}
+                                                click={() => handleDropdownClick(grade, index, 'teacherName')}
                                             /> */}
-                                                <DropdownS
-                                                    target="선생님" // 선생님을 구별하는 값
-                                                    name={row.teacherName || "담당교사"} // 선택된 선생님 이름
-                                                    axios={(event) => searchTeacher(event)} // 선생님을 검색하는 디바운스 axios 함수
-                                                    change={(value) => handleInputChange(grade, index, 'teacherName', value)} // 선택된 선생님을 name에 반영
-                                                    isOpen={isOpen[grade]?.[index]?.teacherName} // 드롭다운 메뉴의 열림 상태
-                                                    click={() => handleDropdownClick(grade, index, 'teacherName')} // 드롭다운 클릭 시 열기/닫기
+                                        </S.RowData>
+                                        <S.RowData $length={550}>
+                                            <S.ClassData
+                                                type='text'
+                                                value={row.name || ''}
+                                                onChange={e => handleInputChange(grade, index, 'name', e.target.value)}
                                             />
-                                            </S.RowData>
-                                            <S.RowData $length={240}>
-                                                <DropdownS
-                                                    name={row.placeName || "장소"}
-                                                    value={row.placeName || ''}
-                                                    onChange={value => handleInputChange(grade, index, 'placeName', value)}
-                                                    isOpen={isOpen[grade]?.[index]?.placeName}
-                                                    click={() => handleDropdownClick(grade, index, 'placeName')}
-                                                    axios={(event) => searchPlace(event)}
-                                                />
-                                            </S.RowData>
-                                            <S.RowData $length={550}>
-                                                <S.ClassData
-                                                    type='text'
-                                                    value={row.name || ''}
-                                                    onChange={e => handleInputChange(grade, index, 'name', e.target.value)}
-                                                />
-                                            </S.RowData>
-                                            <S.OptionButton
-                                                src={OptionButton}
-                                                onClick={() => handleOptionClick(grade, index)}
-                                            />
-                                            {options[grade] === index && (
-                                                <S.Options onClick={(e) => e.stopPropagation()}>
-                                                    <button onClick={() => {
-                                                        setOptions((prev) => ({ ...prev, [grade]: null }));
-                                                        setSelectedGrade(grade);
-                                                        setIsModalOpen(true);
-                                                    }}>자세히 보기</button>
-                                                    <button onClick={() => {
-                                                        handleDeleteRow(grade, index);
-                                                        setOptions((prev) => ({ ...prev, [grade]: null }));
-                                                    }}>삭제</button>
-                                                </S.Options>
-                                            )}
+                                        </S.RowData>
+                                        <S.OptionButton
+                                            src={OptionButton}
+                                            onClick={() => handleOptionClick(grade, index)}
+                                        />
+                                        {options[grade] === index && (
+                                            <S.Options onClick={(e) => e.stopPropagation()}>
+                                                <button onClick={() => {
+                                                    setOptions((prev) => ({ ...prev, [grade]: null }));
+                                                    setSelectedGrade(grade);
+                                                    setIsModalOpen(true);
+                                                }}>자세히 보기</button>
+                                                <button onClick={() => {
+                                                    handleDeleteRow(grade, index);
+                                                    setOptions((prev) => ({ ...prev, [grade]: null }));
+                                                }}>삭제</button>
+                                            </S.Options>
+                                        )}
                                     </S.EditRow>
                                 ))}
                                 <S.PlusBtn onClick={() => addRow(grade)}>+</S.PlusBtn>
