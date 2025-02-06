@@ -33,7 +33,7 @@ export default function Movement({ day , isFirst}) {
             {data && data.map((item) => {
                 return(
                     <>
-                        <S.Content key={item} onClick={()=>getDetail(patchDay(day), item.teacher_id, item.period)}>
+                        <S.Content key={item} onClick={()=>getDetail((day), item.teacher_id, item.period)}>
                             <S.UnBox></S.UnBox>
                             <S.Box2 $length={110}>{item.period}</S.Box2>
                             <S.Box2 $length={110}>{item.teacher_name}</S.Box2>

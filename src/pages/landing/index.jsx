@@ -84,6 +84,7 @@ const FullPageComponent = () => {
     const [isProxyReady, setIsProxyReady] = useState(false);
     const navigate = useNavigate()
     useEffect(() => {
+        setIsLoading(true);
         const checkHealth = async () => {
             try {
                 const res = await HealthCheck();
