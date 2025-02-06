@@ -143,3 +143,18 @@ export const getFlushClass = async (spreadSheetId) => {
         return Promise.reject(err);
     }
 }
+
+export const saveClass = async (afterSchoolData) => {
+    try {
+        const res = await axiosInstance.post(`${API_ENDPOINTS.AFTER_SCHOOL}/save`, afterSchoolData)
+        if (res.status !== 200) {
+            return Promise.reject({
+                status: res.status,
+                message: res.message
+            });
+        }
+        return res;
+    } catch (err) {
+        return Promise.reject(err);
+    }
+}
