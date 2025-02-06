@@ -86,7 +86,7 @@ export const useGetFlushClass = (spreadSheetId) => {
     return useQuery({
         queryKey: ['getFlushClass', spreadSheetId],
         queryFn: async () => {
-            const res = await API.getFlushClass();
+            const res = await API.getFlushClass(spreadSheetId);
             return res.data || [];
         }
     });
