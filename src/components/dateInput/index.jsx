@@ -1,12 +1,16 @@
-import { useState} from 'react';
+import {useEffect, useState} from 'react';
 import * as S from './style.jsx';
 import useDay from "../../zustand/day";
+import patchDay from "../../utils/patchDay.js";
 
 export default function DateInput({ onChange }) {
     const [inputValue, setInputValue] = useState('');
     const [isFocused, setIsFocused] = useState(false);
-    const { setDay, day } = useDay();
+    const { setDay, day, today } = useDay();
 
+    useEffect(() => {
+        setDay(patchDay(today))
+    }, []);
 
     const handleDateChange = (e) => {
         const inputDate = new Date(e.target.value);
