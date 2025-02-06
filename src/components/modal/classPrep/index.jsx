@@ -24,17 +24,6 @@ export default function ClassPrep({ closeModal, selectedClass }) {
 
     const { data: afterSchoolList = [], refetch } = useGetSupplementList(selectedDate, selectedPeriodNumber);
 
-    // 테스트용 가짜 데이터 추가
-    const testData = [
-        { id: 1, name: "방과후 수업 A", type: "과학" },
-        { id: 2, name: "방과후 수업 B", type: "수학" }
-    ];
-
-    const displayedList = afterSchoolList.length ? afterSchoolList : testData;
-
-
-    console.log("📢 받아온 방과후 리스트:", afterSchoolList);
-
 
     const handleDateChange = (day) => {
         setSelectedDate(day);
@@ -99,7 +88,7 @@ export default function ClassPrep({ closeModal, selectedClass }) {
 
                 <Dropdown
                     name={selectedAfterSchool ? selectedAfterSchool.name : '방과후'}
-                    item={displayedList} //afterSchoolList
+                    item={afterSchoolList}
                     change={(currentItem) => {
                         setSelectedAfterSchool(currentItem);
                         setIsOpen([false, false]);
