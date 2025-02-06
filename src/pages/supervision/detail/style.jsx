@@ -33,6 +33,8 @@ export const TableWrap = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    overflow-y: auto;
+    height: 80vh;
 `;
 
 export const TableContent = styled.div`
