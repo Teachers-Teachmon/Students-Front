@@ -51,14 +51,14 @@ export default function SupervisionChange() {
         }
     }, [TeacherList]);
 
-    const handleSelectTeacher = (uniqueKey, teacherId, isSelf) => {
+    const handleSelectTeacher = (uniqueKey, teacherId, isSelf, teacherName) => {
         if (isSelf) {
             if (!selectedTeacher.some(item => item.uniqueKey === uniqueKey)) {
                 setIsSelfSelected(true);
                 setSelectedDay(uniqueKey.split('-').slice(3).join('-'));
                 setSelectedGrade(uniqueKey.split('-')[1] === "first_grade" ? 1 : uniqueKey.split('-')[1] === "second_grade" ? 2 : 3);
                 setSelectedPeriod(convertPeriod(uniqueKey.split('-')[2]));
-                setSelectedTeacher(prev => [...prev, { uniqueKey, teacherId }]);
+                setSelectedTeacher(prev => [...prev, { uniqueKey, teacherId, teacherName }]);
             } else {
                 setIsSelfSelected(false);
                 setSelectedTeacher(prev => prev.filter(item => item.uniqueKey !== uniqueKey));
@@ -70,7 +70,7 @@ export default function SupervisionChange() {
             const alreadySelected = prev.some(item => item.uniqueKey === uniqueKey);
             const updated = alreadySelected
                 ? prev.filter(item => item.uniqueKey !== uniqueKey)
-                : [...prev, { uniqueKey, teacherId }];
+                : [...prev, { uniqueKey, teacherId, teacherName }];
 
             if (updated.length === 2) {
                 setIsModalOpen(true);
@@ -185,10 +185,10 @@ export default function SupervisionChange() {
                                                                     key={uniqueKey}
                                                                     onClick={() => {
                                                                         if (teacherInfo && teacherInfo.includes('/me')) {
-                                                                            handleSelectTeacher(uniqueKey, teacherInfo ? parseInt(teacherInfo.split('/')[1]) || null : null, true);
+                                                                            handleSelectTeacher(uniqueKey, teacherInfo ? parseInt(teacherInfo.split('/')[1]) || null : null, true, teacherName);
                                                                         } else {
                                                                             if (!isSelfSelected) return;
-                                                                            handleSelectTeacher(uniqueKey, teacherInfo ? parseInt(teacherInfo.split('/')[1]) || null : null, false);
+                                                                            handleSelectTeacher(uniqueKey, teacherInfo ? parseInt(teacherInfo.split('/')[1]) || null : null, false, teacherName);
                                                                         }
                                                                     }}
                                                                     style={{
@@ -225,14 +225,14 @@ export default function SupervisionChange() {
                                 <span>{selectedTeacher[0].uniqueKey.split('-')[0]}</span>
                                 <p>{selectedTeacher[0].uniqueKey.split('-')[2].includes('7th') ? '7교시' : selectedTeacher[0].uniqueKey.split('-')[2].includes('8th') ? '8~9교시' : '10~11교시'}</p>
                                 <p>{selectedTeacher[0].uniqueKey.split('-')[1].includes('first') ? '1학년' : selectedTeacher[0].uniqueKey.split('-')[1].includes('second') ? '2학년' : '3학년'}</p>
-                                <p>{selectedTeacher[0].teacherId ? `ID: ${selectedTeacher[0].teacherId}` : "ID 없음"}</p>
+                                <p>{selectedTeacher[0].teacherName ? `${selectedTeacher[0].teacherName}선생님` : "이름 없음"}</p>
                             </div>
                             <S.Arrow><img src={Rotate} /></S.Arrow>
                             <div>
                                 <span>{selectedTeacher[1].uniqueKey.split('-')[0]}</span>
                                 <p>{selectedTeacher[1].uniqueKey.split('-')[2].includes('7th') ? '7교시' : selectedTeacher[1].uniqueKey.split('-')[2].includes('8th') ? '8~9교시' : '10~11교시'}</p>
                                 <p>{selectedTeacher[1].uniqueKey.split('-')[1].includes('first') ? '1학년' : selectedTeacher[1].uniqueKey.split('-')[1].includes('second') ? '2학년' : '3학년'}</p>
-                                <p>{selectedTeacher[1].teacherId ? `ID: ${selectedTeacher[1].teacherId}` : "ID 없음"}</p>
+                                <p>{selectedTeacher[1].teacherName ? `${selectedTeacher[1].teacherName}선생님` : "이름 없음"}</p>
                             </div>
                         </S.ExchangeInfo>
                         <textarea value={exchangeReason} onChange={(e) => setExchangeReason(e.target.value)} placeholder="사유를 입력해 주세요"></textarea>
