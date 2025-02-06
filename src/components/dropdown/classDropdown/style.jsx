@@ -8,17 +8,17 @@ export const DropdownContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    padding: 5px 15px;
+    padding: 5px;
     cursor: pointer;
     align-items: center;
     transition: all 0.3s ease;
     gap: 5px;
     font-size: 14px;
-    z-index: 50;
     &:hover {
         border-color: #aaa;
     }
     position: relative;
+    z-index: 12;
 `
 
 
@@ -30,6 +30,14 @@ export const DropdownMenu = styled.ul`
     border: 1px solid #ccc;
     border-radius: 5px;
     z-index: 11;
+    &> li:first-child{
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    &> li:last-child{
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
 `;
 
 export const DropdownItem = styled.li`

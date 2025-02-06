@@ -339,6 +339,13 @@ export default function Edit() {
         setIsBranchOpen((prev) => !prev);
     };
 
+    const toggleDropdown = (key) => {
+        setDropdownOpen(prev => ({
+            ...prev,
+            [key]: !prev[key]
+        }));
+    };
+
     const handleBranchChange = (selectedBranch) => {
         setBranch(selectedBranch);
     };
@@ -381,10 +388,10 @@ export default function Edit() {
                         <S.FileBtn>
                             <S.FileDown><img src={Download} onClick={handleFlush} />동기화</S.FileDown>
                             <input
-                                    type="text"
-                                    value={spreadsheetUrl}
-                                    onChange={(e) => setSpreadsheetUrl(e.target.value)}
-                                    placeholder="Google Spreadsheet"
+                                type="text"
+                                value={spreadsheetUrl}
+                                onChange={(e) => setSpreadsheetUrl(e.target.value)}
+                                placeholder="Google Spreadsheet"
                             />
                             <S.FileUp>
                                 <S.FileUpBtn htmlFor="file-upload" onClick={handleUpload}>
@@ -429,11 +436,17 @@ export default function Edit() {
                                         </S.RowData>
                                         <S.RowData $length={120}>
                                             <DropdownS
-                                                name={row.teacherName || "담당교사"}
-                                                onChange={value => handleInputChange(grade, index, 'teacherName', value)}
-                                                isOpen={isOpen[grade]?.[index]?.teacherName}
-                                                click={() => handleDropdownClick(grade, index, 'teacherName')}
+                                                // name={row.teacherName || "담당교사"}
+                                                // onChange={value => handleInputChange(grade, index, 'teacherName', value)}
+                                                // isOpen={isOpen[grade]?.[index]?.teacherName}
+                                                // click={() => handleDropdownClick(grade, index, 'teacherName')}
+                                                // axios={(event) => searchTeacher(event)}
+                                                target="선생님"
+                                                name={selectedTeacher[uniqueKey]?.name || teacherName}
                                                 axios={(event) => searchTeacher(event)}
+                                                isOpen={dropdownOpen[uniqueKey] || false}
+                                                change={(value) => handleTeacherChange(dayData.date, gradeKey, timeKey, value)}
+                                                click={() => toggleDropdown(uniqueKey)}
                                             />
                                         </S.RowData>
                                         <S.RowData $length={240}>
@@ -491,7 +504,7 @@ export default function Edit() {
                                     name={selectedRows[selectedGrade].teacherName || "담당교사"}
                                     value={selectedRows[selectedGrade].teacherName}
                                     onChange={(e) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'teacherName', e.target.value)}
-                                    
+
                                 />
                                 <DropdownNS
                                     name={selectedRows[selectedGrade].period || "시간"}
