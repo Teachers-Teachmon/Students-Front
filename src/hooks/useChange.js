@@ -13,6 +13,7 @@ export const useGetMonthlySupervision = (month) => {
 }
 
 export const useGetFixedTeachers = (date, grade, period) => {
+    console.log(date, grade, period);
     return useQuery({
         queryKey: ['getFixedTeachers', date, grade, period],
         queryFn: async () => {
