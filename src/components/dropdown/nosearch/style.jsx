@@ -29,7 +29,7 @@ export const DropdownMenu = styled.ul`
     list-style: none;
     border: 1px solid #ccc;
     border-radius: 5px;
-    z-index: 11;
+    z-index: 13;
     &> li:first-child{
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
