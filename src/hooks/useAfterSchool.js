@@ -52,3 +52,22 @@ export const useBusinessTrip = () => {
     });
 };
 
+export const useClassPrep = () => {
+    const navigate = useNavigate();
+    return useMutation({
+        mutationFn: (props) => API.classPrep(props),
+        onSuccess: () => {
+            navigate('/after-shcool');
+        }
+    })
+};
+
+export const useDeleteClass = () =>{
+    const navigate = useNavigate();
+    return useMutation({
+        mutationFn : (props)=> API.deleteClass(props),
+        onSuccess: () => {
+            navigate('/after-school');
+        }
+    })
+}

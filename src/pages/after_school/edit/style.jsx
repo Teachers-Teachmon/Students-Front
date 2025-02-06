@@ -23,7 +23,7 @@ export const EditTop = styled.div`
     width: 100%;
     height: 100px;
     align-items: center;
-    gap: 190px;
+    gap: 60px;
 `
 
 export const TopDate = styled.div`

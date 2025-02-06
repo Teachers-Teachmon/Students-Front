@@ -63,8 +63,7 @@ export const getAfterSchoolClasses = async (branch, weekday) => {
     }
 }
 
-export const businessTrip= async (day, period, afterSchoolId) => {
-    console.log(day, period, afterSchoolId);
+export const businessTrip = async (day, period, afterSchoolId) => {
     try {
         const res = await axiosInstance.patch(`${API_ENDPOINTS.AFTER_SCHOOL}/participation`, { day, period, afterSchoolId });
         if (res.status !== 200) {
@@ -75,6 +74,42 @@ export const businessTrip= async (day, period, afterSchoolId) => {
         }
         return res;
     } catch (err) {
+        return Promise.reject(err);
+    }
+}
+
+export const classPrep = async (sender, recipient) => {
+    try {
+        const res = await axiosInstance.patch(`${API_ENDPOINTS.AFTER_SCHOOL}/supplement`, {
+            sender,
+            recipient
+        });
+
+        if (res.status !== 200) {
+            return Promise.reject({
+                status: res.status,
+                message: res.message
+            });
+        }
+        return res;
+    } catch (err) {
+        return Promise.reject(err);
+    }
+};
+
+export const deleteClass = async (afterSchoolId) =>{
+    console.log(afterSchoolId)
+    try{
+        const res = await axiosInstance.delete(`${API_ENDPOINTS.AFTER_SCHOOL}/delete/${afterSchoolId}` );
+        if(res.status !== 200){
+            return Promise.reject({
+                status: res.status,
+                message: res.message
+            });
+        }
+        return res;
+
+    }catch (err){
         return Promise.reject(err);
     }
 }
