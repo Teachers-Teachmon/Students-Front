@@ -97,7 +97,7 @@ export default function Edit() {
 
     const { data } = useGetAfterSchoolClasses(branch, weekday);
     // const { refetch: refetchFlush } = useGetFlushClass(spreadsheetUrl);
-    const { refetch: refetchUpload } = useGetUploadUrl(spreadsheetUrl);
+    const { data2, refetch: refetchUpload } = useGetUploadUrl(spreadsheetUrl);
 
     const [grades, setGrades] = useState({ 1: [], 2: [], 3: [] });
 
@@ -110,6 +110,16 @@ export default function Edit() {
             3: data[2] || [],
         });
     }, [data]);
+
+    useEffect(() => {
+        if (!data2 || data2.length === 0) return;
+
+        setGrades({
+            1: data[0] || [],
+            2: data[1] || [],
+            3: data[2] || [],
+        });
+    }, [data2]);
 
     console.log("API 요청 보낸 spreadSheetId:", spreadsheetId);
 
