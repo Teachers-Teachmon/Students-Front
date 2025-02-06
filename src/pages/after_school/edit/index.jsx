@@ -444,8 +444,8 @@ export default function Edit() {
                                                 target="선생님"
                                                 name={selectedTeacher[uniqueKey]?.name || teacherName}
                                                 axios={(event) => searchTeacher(event)}
-                                                isOpen={dropdownOpen[uniqueKey] || false}
-                                                change={(value) => handleTeacherChange(dayData.date, gradeKey, timeKey, value)}
+                                                isOpen={isOpen[grade]?.[index]?.teacherName}
+                                                change={value => handleInputChange(grade, index, 'teacherName', value)}
                                                 click={() => toggleDropdown(uniqueKey)}
                                             />
                                         </S.RowData>
