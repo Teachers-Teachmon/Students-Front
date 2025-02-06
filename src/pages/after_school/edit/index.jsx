@@ -446,16 +446,14 @@ export default function Edit() {
 
                                         </S.RowData>
                                         <S.RowData $length={240}>
-                                            {/* <DropdownS
-                                                onChange={value => handleInputChange(grade, index, 'placeName', value)}
+                                            <DropdownS
+                                                target="장소"
+                                                change={value => handleInputChange(grade, index, 'placeName', value.name)}
                                                 isOpen={isOpen[grade]?.[index]?.placeName}
                                                 click={() => handleDropdownClick(grade, index, 'placeName')}
                                                 axios={(event) => searchPlace(event)}
                                                 name={row.placeName || "장소"}
-                                                change={(value) => handleInputChange(grade, index, 'teacherName', value)}
-                                                isOpen={isOpen[grade]?.[index]?.placeName}
-                                                click={() => handleDropdownClick(grade, index, 'teacherName')}
-                                            /> */}
+                                            />
                                         </S.RowData>
                                         <S.RowData $length={550}>
                                             <S.ClassData
@@ -499,16 +497,19 @@ export default function Edit() {
                         <S.ModalMain>
                             <S.ModalLeft>
                                 <DropdownS
+                                    target="선생님"
                                     name={selectedRows[selectedGrade].teacherName || "담당교사"}
-                                    value={selectedRows[selectedGrade].teacherName}
-                                    onChange={(e) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'teacherName', e.target.value)}
+                                    change={(value) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'teacherName', value.name)}
+                                    click={() => handleDropdownClick(selectedRows[selectedGrade], index, 'teacherName')}
+                                    isOpen={isOpen[selectedRows[selectedGrade]]?.[index]?.teacherName}
 
                                 />
                                 <DropdownNS
                                     name={selectedRows[selectedGrade].period || "시간"}
-                                    value={selectedRows[selectedGrade].period}
                                     item={periods}
-                                    onChange={(value) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'period', value)}
+                                    change={(value) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'period', value)}
+                                    isOpen={isOpen[selectedRows[selectedGrade]]?.[index]?.period}
+                                    click={() => handleDropdownClick(selectedRows[selectedGrade], index, 'period')}
                                 />
                                 {/* <DropdownNS
                                     name={selectedRows[selectedGrade].studentsNumber || "학생수"}
@@ -523,10 +524,12 @@ export default function Edit() {
                                     onChange={(e) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'name', e.target.value)}
                                 />
                                 <S.DropdownFL>
-                                    <DropdownNS
+                                    <DropdownS
+                                        target="선생님"
                                         name={selectedRows[selectedGrade].placeName || "장소"}
-                                        value={selectedRows[selectedGrade].placeName}
-                                        onChange={(value) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'placeName', value)}
+                                        change={(value) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'placeName', value.name)}
+                                        click={() => handleDropdownClick(selectedRows[selectedGrade], index, 'placeName')}
+                                        isOpen={isOpen[selectedRows[selectedGrade]]?.[index]?.placeName}
                                     />
                                 </S.DropdownFL>
                                 <S.InputBox>
