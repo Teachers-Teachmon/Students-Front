@@ -18,7 +18,6 @@ export const DropdownContainer = styled.div`
         border-color: #aaa;
     }
     position: relative;
-    z-index: 12;
 `
 
 
@@ -29,7 +28,7 @@ export const DropdownMenu = styled.ul`
     list-style: none;
     border: 1px solid #ccc;
     border-radius: 5px;
-    z-index: 13;
+    z-index: 11;
     &> li:first-child{
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
@@ -46,7 +45,7 @@ export const DropdownItem = styled.li`
   transition: all 0.2s ease;
     width: 150px;
     background: white;
-    z-index: 13;
+    z-index: 10;
   &:hover {
     background-color: #f0f0f0;
   }
