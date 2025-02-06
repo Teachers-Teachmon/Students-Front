@@ -436,17 +436,12 @@ export default function Edit() {
                                         </S.RowData>
                                         <S.RowData $length={120}>
                                             <DropdownS
-                                                // name={row.teacherName || "담당교사"}
-                                                // onChange={value => handleInputChange(grade, index, 'teacherName', value)}
-                                                // isOpen={isOpen[grade]?.[index]?.teacherName}
-                                                // click={() => handleDropdownClick(grade, index, 'teacherName')}
-                                                // axios={(event) => searchTeacher(event)}
-                                                target="선생님"
-                                                name={row.teacherName}
-                                                axios={(event) => searchTeacher(event)}
-                                                isOpen={isOpen[grade]?.[index]?.teacherName}
-                                                change={value => handleInputChange(grade, index, 'teacherName', value)}
-                                                click={() => handleDropdownClick(grade, index, 'teacherName')}
+                                                //target = 학생인지 선생님인지 구별
+                                                // name = 선택되어있는 요소
+                                                // axios = 디바운스를 이용하여 검색해올 axios문
+                                                // change = 선택된 요소로 name 을 바꾸는 함수
+                                                // isOpen = 메뉴를 보이게할지
+                                                // click = 드랍다운을 했다가 다시 누르면 닫히게 하는 함수
                                             />
                                         </S.RowData>
                                         <S.RowData $length={240}>
