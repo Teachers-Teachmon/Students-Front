@@ -40,9 +40,11 @@ export default function Edit() {
         return match ? match[1] : '';
     };
 
+
     const handleUpload = () => {
         const id = extractSpreadsheetId(spreadsheetUrl);
         console.log("추출된 spreadSheetId:", id);
+        refetchFlush();
 
         if (id) {
             setSpreadsheetId(id);
@@ -54,6 +56,7 @@ export default function Edit() {
     const handleFlush = () => {
         const id = extractSpreadsheetId(spreadsheetUrl);
         console.log("추출된 spreadSheetId:", id);
+        refetchFlush();
 
         if (id) {
             setSpreadsheetId(id);
@@ -77,6 +80,7 @@ export default function Edit() {
     };
 
 
+
     const [selectStudent, setSelectStudent] = useState({
         class1: [],
         class2: [],
@@ -93,8 +97,8 @@ export default function Edit() {
 
     const { data } = useGetAfterSchoolClasses(branch, weekday);
 
-    const { data2 } = useGetUploadUrl(spreadsheetId);
-    const { data3 } = useGetFlushClass(spreadsheetId);
+    const { data2, refetch: refetchFlush } = useGetFlushClass(spreadsheetUrl);
+    const { data3, refetch: refetchUpload } = useGetUploadUrl(spreadsheetUrl);
 
     console.log("API 요청 보낸 spreadSheetId:", spreadsheetId);
 
@@ -137,35 +141,15 @@ export default function Edit() {
     const [grades, setGrades] = useState({ 1: [], 2: [], 3: [] });
 
     useEffect(() => {
-        if (!data || data.length === 0) return;
+        if (!data || !data2 || !data3) return;
 
         setGrades({
-            1: data[0] || [],
-            2: data[1] || [],
-            3: data[2] || [],
+            1: [...(data[0] || []), ...(data2[0] || []), ...(data3[0] || [])],
+            2: [...(data[1] || []), ...(data2[1] || []), ...(data3[1] || [])],
+            3: [...(data[2] || []), ...(data2[2] || []), ...(data3[2] || [])],
         });
-    }, [data]);
+    }, [data, data2, data3]);
 
-
-    useEffect(() => {
-        if (!data2 || data2.length === 0) return;
-
-        setGrades({
-            1: data2[0] || [],
-            2: data2[1] || [],
-            3: data2[2] || [],
-        });
-    }, [data]);
-
-    useEffect(() => {
-        if (!data3 || data3.length === 0) return;
-
-        setGrades({
-            1: data3[0] || [],
-            2: data3[1] || [],
-            3: data3[2] || [],
-        });
-    }, [data]);
 
     // const [grades, setGrades] = useState({
     //     1: [
