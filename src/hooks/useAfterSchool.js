@@ -1,5 +1,5 @@
 import * as API from '../api/afterschool.js';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 export const useGetClassList = (grade, weekday) => {
@@ -73,11 +73,15 @@ export const useDeleteClass = () =>{
 }
 
 export const useGetUploadUrl = (spreadSheetId) => {
+    const queryClient = useQueryClient();
     return useQuery({
         queryKey: ['getUploadUrl', spreadSheetId],
         queryFn: async () => {
             const res = await API.getUploadUrl(spreadSheetId);
             return res.data || [];
+        },
+        onSuccess: (_, variables) => {
+            queryClient.refetchQueries(['getAfterSchoolClasses', variables.branch, variables.weekday]);
         },
         enabled:false
     });
@@ -99,6 +103,7 @@ export const useSaveClass = () => {
     return useMutation({
         mutationFn: (props) => API.saveClass(props),
         onSuccess: () => {
+            alert("방과후가 저장되었습니다!");
             navigate('/after-school');
         }
     })

@@ -22,7 +22,7 @@ export default function Edit() {
     const [branch, setBranch] = useState('');
     const [weekday, setWeekday] = useState('MON');
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [search, setSearch] = useState("학생");
+    const [search, setSearch] = useState("");
     const [selectedPeriod, setSelectedPeriod] = useState('');
     const [selectedGrade, setSelectedGrade] = useState(1);
     const [options, setOptions] = useState({});
@@ -115,7 +115,6 @@ export default function Edit() {
         });
     }, [data]);
 
-    console.log("API 요청 보낸 spreadSheetId:", spreadsheetId);
 
     useEffect(() => {
         const fetchStudents = async () => {
@@ -137,29 +136,39 @@ export default function Edit() {
     const { mutate: saveClass } = useSaveClass();
 
     const handleComplete = () => {
-        const formattedData = Object.keys(selectStudent).map((classKey) => {
-            const studentsInClass = selectStudent[classKey].map((student) => ({
-                number: student.number,
-                name: student.name,
-            }));
-
+        console.log(selectedRows);
+        const formattedData = Object.keys(selectedRows).map((classKey) => {
+            console.log(selectedRows[classKey]["weekday"])
             return {
                 branch: Number(branch),
-                weekday: koreanWeekDays[weekDays.indexOf(weekday)],
-                grade: parseInt(classKey),
-                period: selectedRows[parseInt(classKey)]?.period || "",
-                teacherName: selectedRows[parseInt(classKey)]?.teacherName || "",
-                placeName: selectedRows[parseInt(classKey)]?.placeName || "",
-                name: selectedRows[parseInt(classKey)]?.name || "",
-                students: studentsInClass,
-            };
-        });
-
-        saveClass(formattedData, {
-            onSuccess: () => {
-                alert("방과후가 저장되었습니다!");
+                weekday: selectedRows[classKey]["weekday"],
+                grade: selectedRows[classKey]["grade"],
+                period: selectedRows[classKey]["period"] || "",
+                teacherName: selectedRows[classKey]["teacherName"] || "",
+                placeName: selectedRows[classKey]["placeName"] || "",
+                name: selectedRows[classKey]["name"] || "",
+                students: selectedRows[classKey]["students"]|| [],
             }
-        });
+        })
+        // const formattedData = Object.keys(selectStudent).map((classKey) => {
+        //     const studentsInClass = selectStudent[classKey].map((student) => ({
+        //         number: student.number,
+        //         name: student.name,
+        //     }));
+        //
+        //     return {
+        //         branch: Number(branch),
+        //         weekday: koreanWeekDays[weekDays.indexOf(weekday)],
+        //         grade: parseInt(classKey),
+        //         period: selectedRows[parseInt(classKey)]?.period || "",
+        //         teacherName: selectedRows[parseInt(classKey)]?.teacherName || "",
+        //         placeName: selectedRows[parseInt(classKey)]?.placeName || "",
+        //         name: selectedRows[parseInt(classKey)]?.name || "",
+        //         students: studentsInClass,
+        //     };
+        // });
+
+        saveClass(formattedData);
     };
 
     
@@ -352,7 +361,10 @@ export default function Edit() {
         setWeekday(selectedWeekday);
     };
 
-    console.log(grades)
+
+    const [detailIsOpen, setDetailIsOpen] = useState([false, false, false]);
+
+
 
     return (
         <S.EditContainer>
@@ -497,17 +509,18 @@ export default function Edit() {
                                 <DropdownS
                                     target="선생님"
                                     name={selectedRows[selectedGrade].teacherName || "담당교사"}
+                                    axios={(event) => searchTeacher(event)}
                                     change={(value) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'teacherName', value.name)}
-                                    click={() => handleDropdownClick(selectedRows[selectedGrade], index, 'teacherName')}
-                                    isOpen={isOpen[selectedRows[selectedGrade]]?.[index]?.teacherName}
+                                    click={()=>setDetailIsOpen([!detailIsOpen[0], false, false])}
+                                    isOpen={detailIsOpen[0]}
 
                                 />
                                 <DropdownNS
                                     name={selectedRows[selectedGrade].period || "시간"}
                                     item={periods}
                                     change={(value) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'period', value)}
-                                    isOpen={isOpen[selectedRows[selectedGrade]]?.[index]?.period}
-                                    click={() => handleDropdownClick(selectedRows[selectedGrade], index, 'period')}
+                                    isOpen={detailIsOpen[1]}
+                                    click={()=>setDetailIsOpen([false, !detailIsOpen[1], false])}
                                 />
                                 {/* <DropdownNS
                                     name={selectedRows[selectedGrade].studentsNumber || "학생수"}
@@ -523,11 +536,12 @@ export default function Edit() {
                                 />
                                 <S.DropdownFL>
                                     <DropdownS
-                                        target="선생님"
+                                        target="장소"
                                         name={selectedRows[selectedGrade].placeName || "장소"}
                                         change={(value) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'placeName', value.name)}
-                                        click={() => handleDropdownClick(selectedRows[selectedGrade], index, 'placeName')}
-                                        isOpen={isOpen[selectedRows[selectedGrade]]?.[index]?.placeName}
+                                        click={()=>setDetailIsOpen([false, false, !detailIsOpen[2]])}
+                                        isOpen={detailIsOpen[2]}
+                                        axios={(event) => searchPlace(event)}
                                     />
                                 </S.DropdownFL>
                                 <S.InputBox>
@@ -535,31 +549,38 @@ export default function Edit() {
                                     <S.Input
                                         type={"text"}
                                         value={search}
-                                        change={(e) => setSearch(e.target.value)}
+                                        onChange={(e) => setSearch(e.target.value)}
                                         placeholder={"학생을 입력해주세요"}
-                                        axios={(event) => searchStudent(event)}
                                     />
                                     <S.StudentList>
-                                        {search &&
+                                    {/*    .filter((currentItem) => { // 학생이 이미 반 리스트 안에 있는지 확인함*/}
+                                    {/*    return !Object.values(selectStudent).some((classList) => classList.includes(currentItem))*/}
+                                    {/*    && currentItem.includes(search);*/}
+                                    {/*})*/}
+                                        {search && student &&
                                             student
-                                                .filter((currentItem) => { // 학생이 이미 반 리스트 안에 있는지 확인함
-                                                    return !Object.values(selectStudent).some((classList) => classList.includes(currentItem))
-                                                        && currentItem.includes(search);
-                                                })
+                                                .filter(item =>
+                                                !selectedRows[1].students.some(student => student.name === item.name))
                                                 .map((currentItem, index) => {
                                                     return (
                                                         <S.StudentItem
                                                             key={index}
                                                             onClick={() => {
-                                                                const classNumber = parseInt(currentItem.charAt(1), 10);
-                                                                setSelectStudent((prev) => ({
+                                                                setSelectedRows((prev)=>({
                                                                     ...prev,
-                                                                    [`class${classNumber}`]: [...prev[`class${classNumber}`], currentItem],
-                                                                }));
+                                                                    [selectedGrade]: {
+                                                                        ...prev[selectedGrade],
+                                                                        students: [...prev[selectedGrade].students, currentItem]
+                                                                    }
+                                                                }))
+                                                                // setSelectStudent((prev) => ({
+                                                                //     ...prev,
+                                                                //     [`class${currentItem.number}`]: [...prev[`class${currentItem.number}`], currentItem],
+                                                                // }));
                                                                 setSearch("");
                                                             }}
                                                         >
-                                                            {currentItem}
+                                                            {currentItem.name}
                                                         </S.StudentItem>
                                                     );
                                                 })
@@ -568,22 +589,42 @@ export default function Edit() {
                                 </S.InputBox>
 
                                 <S.StudentBox>
-                                    {Object.entries(selectStudent).map(([cls, students], idx) => (
-                                        <S.Class key={cls}>
-                                            <p>{idx + 1}반</p>
+                                        <S.Class>
                                             <S.ClassMain>
-                                                {students.length > 0 && students.map((item, studentIdx) => (
-                                                    <S.Student key={studentIdx}
-                                                        onClick={() => setSelectStudent((prev) => ({
-                                                            ...prev,
-                                                            [cls]: prev[cls].filter((currentItem) => currentItem !== item),
-                                                        }))}>
-                                                        <h4>{item}</h4>
-                                                    </S.Student>
-                                                ))}
+                                                {selectedRows[selectedGrade].students.map((item, studentIdx) => {
+                                                    console.log(selectedRows)
+                                                    return(
+                                                        <S.Student key={studentIdx} onClick={()=>{
+                                                            setSelectedRows((prev) => ({
+                                                                ...prev,
+                                                                [selectedGrade]: {
+                                                                    ...prev[selectedGrade],
+                                                                    students: prev[selectedGrade].students.filter((currentItem) => currentItem.number !== item.number)
+                                                                }
+                                                            }))
+                                                        }}>
+                                                            <h4>{item.number} {item.name}</h4>
+                                                        </S.Student>
+                                                    )
+                                                })}
                                             </S.ClassMain>
                                         </S.Class>
-                                    ))}
+                                    {/*{Object.entries(selectStudent).map(([cls, students], idx) => (*/}
+                                    {/*    <S.Class key={cls}>*/}
+                                    {/*        <p>{idx + 1}반</p>*/}
+                                    {/*        <S.ClassMain>*/}
+                                    {/*            {students.length > 0 && students.map((item, studentIdx) => (*/}
+                                    {/*                <S.Student key={studentIdx}*/}
+                                    {/*                           onClick={() => setSelectStudent((prev) => ({*/}
+                                    {/*                               ...prev,*/}
+                                    {/*                               [cls]: prev[cls].filter((currentItem) => currentItem !== item),*/}
+                                    {/*                           }))}>*/}
+                                    {/*                    <h4>{item}</h4>*/}
+                                    {/*                </S.Student>*/}
+                                    {/*            ))}*/}
+                                    {/*        </S.ClassMain>*/}
+                                    {/*    </S.Class>*/}
+                                    {/*))}*/}
                                 </S.StudentBox>
                             </S.ModalRight>
                         </S.ModalMain>

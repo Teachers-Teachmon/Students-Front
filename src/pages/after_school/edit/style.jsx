@@ -223,7 +223,7 @@ export const ModalOverlay = styled.div`
 
 export const ModalContent = styled.div`
     width: 700px;
-    height: 650px;
+    height: max-content;
     border-radius: 10px;
     padding: 50px;
     background-color: white;
@@ -256,7 +256,7 @@ export const StudentList = styled.div`
     top: 50px;
     left: 0;
     width: 100%;
-    max-height: 180px;
+    max-height: 100px;
     z-index: 3;
     overflow-y: scroll;
     background: white;
