@@ -83,16 +83,16 @@ export const useGetUploadUrl = (spreadSheetId) => {
     });
 };
 
-export const useGetFlushClass = (spreadSheetId) => {
-    return useQuery({
-        queryKey: ['getFlushClass', spreadSheetId],
-        queryFn: async () => {
-            const res = await API.getFlushClass(spreadSheetId);
-            return res.data || [];
-        },
-        //enabled:false
-    });
-};
+// export const useGetFlushClass = (spreadSheetId) => {
+//     return useQuery({
+//         queryKey: ['getFlushClass', spreadSheetId],
+//         queryFn: async () => {
+//             const res = await API.getFlushClass(spreadSheetId);
+//             return res.data || [];
+//         },
+//         //enabled:false
+//     });
+// };
 
 export const useSaveClass = () => {
     const navigate = useNavigate();
