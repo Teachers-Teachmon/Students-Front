@@ -30,336 +30,19 @@ export default function SupervisionChange() {
         return "";
     };
 
+    const convertPeriodKorean = (periodKey) => {
+        if (periodKey === "7교시") return "7th_teacher";
+        if (periodKey === "8~9교시") return "8th_teacher";
+        if (periodKey === "10~11교시") return "10th_teacher";
+        return "";
+    }
+
     const { data: TeacherList = { data: [] }, isLoading, isError } = useGetMonthlySupervision(currentMonth);
-    // const TeacherList = {
-    //     "data": [
-    //         {
-    //             "week": "2월 2주차",
-    //             "day": "2월 3일 (월)",
-    //             "date": "2025-02-03",
-    //             "first_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": "정유진/1/me",
-    //                 "10th_teacher": null
-    //             },
-    //             "second_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "third_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             }
-    //         },
-    //         {
-    //             "week": "2월 2주차",
-    //             "day": "2월 4일 (화)",
-    //             "date": "2025-02-04",
-    //             "first_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "second_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "third_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             }
-    //         },
-    //         {
-    //             "week": "2월 2주차",
-    //             "day": "2월 5일 (수)",
-    //             "date": "2025-02-05",
-    //             "first_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "second_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "third_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             }
-    //         },
-    //         {
-    //             "week": "2월 2주차",
-    //             "day": "2월 6일 (목)",
-    //             "date": "2025-02-06",
-    //             "first_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "second_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "third_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             }
-    //         },
-    //         {
-    //             "week": "2월 3주차",
-    //             "day": "2월 10일 (월)",
-    //             "date": "2025-02-10",
-    //             "first_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "second_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "third_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             }
-    //         },
-    //         {
-    //             "week": "2월 3주차",
-    //             "day": "2월 11일 (화)",
-    //             "date": "2025-02-11",
-    //             "first_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "second_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "third_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             }
-    //         },
-    //         {
-    //             "week": "2월 3주차",
-    //             "day": "2월 12일 (수)",
-    //             "date": "2025-02-12",
-    //             "first_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "second_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "third_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             }
-    //         },
-    //         {
-    //             "week": "2월 3주차",
-    //             "day": "2월 13일 (목)",
-    //             "date": "2025-02-13",
-    //             "first_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "second_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "third_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             }
-    //         },
-    //         {
-    //             "week": "2월 4주차",
-    //             "day": "2월 17일 (월)",
-    //             "date": "2025-02-17",
-    //             "first_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "second_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "third_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             }
-    //         },
-    //         {
-    //             "week": "2월 4주차",
-    //             "day": "2월 18일 (화)",
-    //             "date": "2025-02-18",
-    //             "first_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "second_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "third_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             }
-    //         },
-    //         {
-    //             "week": "2월 4주차",
-    //             "day": "2월 19일 (수)",
-    //             "date": "2025-02-19",
-    //             "first_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "second_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "third_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             }
-    //         },
-    //         {
-    //             "week": "2월 4주차",
-    //             "day": "2월 20일 (목)",
-    //             "date": "2025-02-20",
-    //             "first_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "second_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "third_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             }
-    //         },
-    //         {
-    //             "week": "2월 5주차",
-    //             "day": "2월 24일 (월)",
-    //             "date": "2025-02-24",
-    //             "first_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "second_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "third_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             }
-    //         },
-    //         {
-    //             "week": "2월 5주차",
-    //             "day": "2월 25일 (화)",
-    //             "date": "2025-02-25",
-    //             "first_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "second_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "third_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             }
-    //         },
-    //         {
-    //             "week": "2월 5주차",
-    //             "day": "2월 26일 (수)",
-    //             "date": "2025-02-26",
-    //             "first_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "second_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "third_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             }
-    //         },
-    //         {
-    //             "week": "2월 5주차",
-    //             "day": "2월 27일 (목)",
-    //             "date": "2025-02-27",
-    //             "first_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "second_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             },
-    //             "third_grade": {
-    //                 "7th_teacher": null,
-    //                 "8th_teacher": null,
-    //                 "10th_teacher": null
-    //             }
-    //         }
-    //     ]
-    // };
     const { data: fixedTeacherList, isLoading: isLoadingFixed, isError: isErrorFixed } = useGetFixedTeachers(selectedDay, selectedGrade, selectedPeriod);
     useEffect(() => {
         if (isSelfSelected && fixedTeacherList) {
             const disabledKeys = fixedTeacherList.map(item => {
-                return `${item.date}-${item.grade === 1 ? "first_grade" : item.grade === 2 ? "second_grade" : "third_grade"}-${convertPeriod(item.period)}`;
+                return `${item.date}-${item.grade === 1 ? "first_grade" : item.grade === 2 ? "second_grade" : "third_grade"}-${convertPeriodKorean(item.period)}`;
             });
             setDisabledTeachers(disabledKeys);
         }
@@ -379,8 +62,8 @@ export default function SupervisionChange() {
         if (isSelf) {
             if (!selectedTeacher.some(item => item.uniqueKey === uniqueKey)) {
                 setIsSelfSelected(true);
-                setSelectedDay(weeks.find(item => item.date === uniqueKey.split('-')[0])?.day);
-                setSelectedGrade(uniqueKey.split('-')[1]);
+                setSelectedDay(uniqueKey.split('-').slice(3).join('-'));
+                setSelectedGrade(uniqueKey.split('-')[1] === "first_grade" ? 1 : uniqueKey.split('-')[1] === "second_grade" ? 2 : 3);
                 setSelectedPeriod(convertPeriod(uniqueKey.split('-')[2]));
                 setSelectedTeacher(prev => [...prev, { uniqueKey, teacherId }]);
             }
@@ -503,6 +186,7 @@ export default function SupervisionChange() {
                                                             const teacherInfo = dayData?.[gradeKey]?.[classKey];
                                                             const teacherName = teacherInfo ? teacherInfo.split('/')[0] : "미배정";
                                                             const uniqueKey = `${dayData.day}-${gradeKey}-${classKey}-${dayData.date}`;
+                                                            const compareKey = `${uniqueKey.slice(-10)}-${uniqueKey.split('-')[1]}-${uniqueKey.split('-')[2]}`;
 
                                                             return (
                                                                 <div
@@ -521,7 +205,7 @@ export default function SupervisionChange() {
                                                                         cursor: !isSelfSelected && !(teacherInfo && teacherInfo.includes('/me'))
                                                                             ? 'not-allowed'
                                                                             : 'pointer',
-                                                                        opacity: !isSelfSelected && !(teacherInfo && teacherInfo.includes('/me'))
+                                                                        opacity: (disabledTeachers.includes(compareKey) || (!isSelfSelected && !(teacherInfo && teacherInfo.includes('/me'))))
                                                                             ? 0.5
                                                                             : 1,
                                                                     }}

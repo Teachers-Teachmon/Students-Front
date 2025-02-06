@@ -17,6 +17,7 @@ export const getMonthlySupervision = async (month) => {
 }
 
 export const getFixedTeachers = async (date, grade, period) => {
+    console.log(date, grade, period);
     try {
         const res = await axiosInstance.get(`${API_ENDPOINTS.CHANGE}/static`, {
             params: { date, grade, period }
