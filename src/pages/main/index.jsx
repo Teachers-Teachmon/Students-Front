@@ -119,7 +119,7 @@ export default function Main() {
                                 const senderInfo = data.sender.teacher.split('/');
                                 const recipientInfo = data.recipient.teacher.split('/');
 
-                                const leftName = data.toMe ? "(나)" : `${recipientInfo[0]} 선생님`;
+                                const leftName = data.toMe ? "(나)" : `(${recipientInfo[0]} 선생님)`;
                                 const leftDay = data.toMe ? data.recipient.day : data.sender.day;
                                 const leftPeriod = data.toMe ? data.recipient.period : data.sender.period;
                                 const leftGrade = data.toMe ? data.recipient.grade : data.sender.grade;
@@ -130,7 +130,7 @@ export default function Main() {
                                 const rightGrade = data.toMe ? data.sender.grade : data.recipient.grade;
 
                                 return (
-                                    <S.ChangeCard key={data.changeId} style={{ backgroundColor: data.toMe ? "#C8DBFF" : "" }}>
+                                    <S.ChangeCard key={data.changeId} style={{ backgroundColor: data.toMe ? "#C8DBFF" : data.result === "ACCEPTED" ? "#72FAAA" : data.result === "REJECTED" ? "#FF938C" : "" }}>
                                         <S.ChangeWrap>
                                             <S.ChangeSide>
                                                 <p>{leftName}</p>
@@ -154,7 +154,7 @@ export default function Main() {
                             <S.BottomRightContent>
                                 <div>
                                     <S.TeacherListTop>
-                                        <span>{formatDateForUI(todayTeacher.date)}</span> {/* 2025-02-22 */}
+                                        <span>{formatDateForUI(todayTeacher.date)}</span>
                                         <span>1학년</span>
                                         <span>2학년</span>
                                         <span>3학년</span>
