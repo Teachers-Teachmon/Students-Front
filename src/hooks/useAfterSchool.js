@@ -91,3 +91,13 @@ export const useGetFlushClass = (spreadSheetId) => {
         }
     });
 };
+
+export const useSaveClass = () => {
+    const navigate = useNavigate();
+    return useMutation({
+        mutationFn: (props) => API.saveClass(props),
+        onSuccess: () => {
+            navigate('/after-school');
+        }
+    })
+}
