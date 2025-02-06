@@ -18,6 +18,7 @@ export default function RequestBox({ closeModal, changeData }) {
             }
         }
         mutate({ id: changeData.changeId, status });
+        location.reload();
     };
 
     return (
