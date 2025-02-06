@@ -44,10 +44,10 @@ export default function Edit() {
     const handleUpload = () => {
         const id = extractSpreadsheetId(spreadsheetUrl);
         console.log("추출된 spreadSheetId:", id);
-        refetchFlush();
 
         if (id) {
             setSpreadsheetId(id);
+            refetchUpload();
         } else {
             alert('유효한 Spreadsheet 링크를 입력해주세요.');
         }
@@ -56,10 +56,10 @@ export default function Edit() {
     const handleFlush = () => {
         const id = extractSpreadsheetId(spreadsheetUrl);
         console.log("추출된 spreadSheetId:", id);
-        refetchFlush();
 
         if (id) {
             setSpreadsheetId(id);
+            refetchFlush();
         } else {
             alert('유효한 Spreadsheet 링크를 입력해주세요.');
         }
