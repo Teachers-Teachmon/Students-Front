@@ -52,7 +52,13 @@ export default function Student({ data }) {
                                                         <S.Circle color={"#F87067"}></S.Circle>
                                                         <S.StatusText color={"#F87067"}>이탈</S.StatusText>
                                                     </S.Status>
-                                                </S.Box2> : null
+                                                </S.Box2> : item['8th_schedule'] === "이석" ?
+                                                    <S.Box2 $length={110}>
+                                                        <S.Status color={"#F0ECFD"}>
+                                                            <S.Circle color={"#6A1EC1"}></S.Circle>
+                                                            <S.StatusText color={"#6A1EC1"}>이석</S.StatusText>
+                                                        </S.Status>
+                                                    </S.Box2> : null
                                 }
 
                                 {item['9th_schedule'] === "방과 후" ?
@@ -82,7 +88,13 @@ export default function Student({ data }) {
                                                         <S.Circle color={"#F87067"}></S.Circle>
                                                         <S.StatusText color={"#F87067"}>이탈</S.StatusText>
                                                     </S.Status>
-                                                </S.Box2> : null
+                                                </S.Box2> : item['9th_schedule'] === "이석" ?
+                                                    <S.Box2 $length={110}>
+                                                        <S.Status color={"#F0ECFD"}>
+                                                            <S.Circle color={"#6A1EC1"}></S.Circle>
+                                                            <S.StatusText color={"#6A1EC1"}>이석</S.StatusText>
+                                                        </S.Status>
+                                                    </S.Box2> : null
                                 }
 
                                 {item['10th_schedule'] === "방과 후" ?
@@ -112,7 +124,13 @@ export default function Student({ data }) {
                                                         <S.Circle color={"#F87067"}></S.Circle>
                                                         <S.StatusText color={"#F87067"}>이탈</S.StatusText>
                                                     </S.Status>
-                                                </S.Box2> : null
+                                                </S.Box2> : item['10th_schedule'] === "이석" ?
+                                                    <S.Box2 $length={110}>
+                                                        <S.Status color={"#F0ECFD"}>
+                                                            <S.Circle color={"#6A1EC1"}></S.Circle>
+                                                            <S.StatusText color={"#6A1EC1"}>이석</S.StatusText>
+                                                        </S.Status>
+                                                    </S.Box2> : null
                                 }
 
                                 {item['11th_schedule'] === "방과 후" ?
@@ -142,7 +160,13 @@ export default function Student({ data }) {
                                                         <S.Circle color={"#F87067"}></S.Circle>
                                                         <S.StatusText color={"#F87067"}>이탈</S.StatusText>
                                                     </S.Status>
-                                                </S.Box2> : null
+                                                </S.Box2> : item['11th_schedule'] === "이석" ?
+                                                    <S.Box2 $length={110}>
+                                                        <S.Status color={"#F0ECFD"}>
+                                                            <S.Circle color={"#6A1EC1"}></S.Circle>
+                                                            <S.StatusText color={"#6A1EC1"}>이석</S.StatusText>
+                                                        </S.Status>
+                                                    </S.Box2> : null
                                 }
                             </div>
 
