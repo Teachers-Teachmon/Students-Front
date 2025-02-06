@@ -14,7 +14,7 @@ import { useGetAfterSchoolClasses } from '../../../hooks/useAfterSchool.js';
 import { searchStudent, searchPlace, searchTeacher } from "../../../api/search.js";
 import { useGetUploadUrl } from '../../../hooks/useAfterSchool.js';
 import { useSaveClass } from '../../../hooks/useAfterSchool.js';
-import { useGetFlushClass } from '../../../hooks/useAfterSchool.js';
+// import { useGetFlushClass } from '../../../hooks/useAfterSchool.js';
 import { useDebounce } from '../../../hooks/useDebounce.js';
 
 export default function Edit() {
@@ -47,23 +47,23 @@ export default function Edit() {
 
         if (id) {
             setSpreadsheetId(id);
-            refetchUpload();
+            // refetchUpload();
         } else {
             alert('유효한 Spreadsheet 링크를 입력해주세요.');
         }
     };
 
-    const handleFlush = () => {
-        const id = extractSpreadsheetId(spreadsheetUrl);
-        console.log("추출된 spreadSheetId:", id);
+    // const handleFlush = () => {
+    //     const id = extractSpreadsheetId(spreadsheetUrl);
+    //     console.log("추출된 spreadSheetId:", id);
 
-        if (id) {
-            setSpreadsheetId(id);
-            refetchFlush();
-        } else {
-            alert('유효한 Spreadsheet 링크를 입력해주세요.');
-        }
-    };
+    //     if (id) {
+    //         setSpreadsheetId(id);
+    //         refetchFlush();
+    //     } else {
+    //         alert('유효한 Spreadsheet 링크를 입력해주세요.');
+    //     }
+    // };
 
     const handleOptionClick = (grade, index) => {
         setOptions((prev) => ({
@@ -96,9 +96,10 @@ export default function Edit() {
     const periods = ['8~9교시', '10~11교시'];
 
     const { data } = useGetAfterSchoolClasses(branch, weekday);
+    // const { refetch: refetchFlush } = useGetFlushClass(spreadsheetUrl);
+    const { refetch: refetchUpload } = useGetUploadUrl(spreadsheetUrl);
 
-    const { data2, refetch: refetchFlush } = useGetFlushClass(spreadsheetUrl);
-    const { data3, refetch: refetchUpload } = useGetUploadUrl(spreadsheetUrl);
+    const [grades, setGrades] = useState({ 1: [], 2: [], 3: [] });
 
     useEffect(() => {
         if (!data || data.length === 0) return;
@@ -108,28 +109,6 @@ export default function Edit() {
             2: data[1] || [],
             3: data[2] || [],
         });
-    }, [data]);
-
-
-    useEffect(() => {
-        if (!data2 || data2.length === 0) return;
-
-        setGrades({
-            1: data2[0] || [],
-            2: data2[1] || [],
-            3: data2[2] || [],
-        });
-    }, [data]);
-
-    useEffect(() => {
-        if (!data3 || data3.length === 0) return;
-
-        setGrades({
-            1: data3[0] || [],
-            2: data3[1] || [],
-            3: data3[2] || [],
-
-        })
     }, [data]);
 
     console.log("API 요청 보낸 spreadSheetId:", spreadsheetId);
@@ -169,8 +148,6 @@ export default function Edit() {
             }
         });
     };
-
-    const [grades, setGrades] = useState({ 1: [], 2: [], 3: [] });
 
     
 
@@ -394,12 +371,12 @@ export default function Edit() {
 
                     <S.EditTopRight>
                         <S.FileBtn>
-                            <S.FileDown><img src={Download} onClick={handleFlush} />동기화</S.FileDown>
+                            <S.FileDown><img src={Download} />동기화</S.FileDown>
                             <input
                                 type="text"
                                 value={spreadsheetUrl}
                                 onChange={(e) => setSpreadsheetUrl(e.target.value)}
-                                placeholder="Google Spreadsheet"
+                                placeholder="Google Spreadsheet 링크"
                             />
                             <S.FileUp>
                                 <S.FileUpBtn htmlFor="file-upload" onClick={handleUpload}>
