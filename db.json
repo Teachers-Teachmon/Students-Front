@@ -43,18 +43,11 @@
   ],
   "student": [
     {
-      "student": "1401 김똥욱",
-      "8th_schedule" : "방과 후",
-      "9th_schedule" : "조퇴",
-      "10th_schedule": "이탈",
-      "11th_schedule": "이탈"
-    },
-    {
-      "student": "1416 허온",
-      "8th_schedule" : "방과 후",
-      "9th_schedule" : "방과 후",
-      "10th_schedule": "방과 후",
-      "11th_schedule": "방과 후"
+      "student": "1401 dongwook",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": "이석",
+      "11th_schedule": "이석"
     }
   ],
   "location": {
