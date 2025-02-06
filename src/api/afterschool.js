@@ -78,11 +78,11 @@ export const businessTrip = async (day, period, afterSchoolId) => {
     }
 }
 
-export const classPrep = async (sender, recipient) => {
+export const classPrep = async (originalAfterSchool, newAfterSchool) => {
     try {
         const res = await axiosInstance.patch(`${API_ENDPOINTS.AFTER_SCHOOL}/supplement`, {
-            sender,
-            recipient
+            originalAfterSchool,
+            newAfterSchool
         });
 
         if (res.status !== 200) {
@@ -147,6 +147,21 @@ export const getFlushClass = async (spreadSheetId) => {
 export const saveClass = async (afterSchoolData) => {
     try {
         const res = await axiosInstance.post(`${API_ENDPOINTS.AFTER_SCHOOL}/save`, afterSchoolData)
+        if (res.status !== 200) {
+            return Promise.reject({
+                status: res.status,
+                message: res.message
+            });
+        }
+        return res;
+    } catch (err) {
+        return Promise.reject(err);
+    }
+}
+
+export const getSupplementList = async (day, period) => {
+    try {
+        const res = await axiosInstance.get(`${API_ENDPOINTS.AFTER_SCHOOL}/list/${day}/${period}`);
         if (res.status !== 200) {
             return Promise.reject({
                 status: res.status,
