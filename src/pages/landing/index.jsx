@@ -66,6 +66,7 @@ const FullPageComponent = () => {
             return () => {
                 if (instance) {
                     instance.destroy('all');
+                    fpInstance.destroy('all');
                 }
             };
         };
@@ -107,7 +108,7 @@ const FullPageComponent = () => {
             const res = await Check();
             console.log(res);
             if(res.data === "Authentication Success"){
-                navigate('/main');
+                window.location.href = '/main';
             }
         } catch (error) {
             console.log(error);
