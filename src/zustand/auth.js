@@ -12,15 +12,19 @@ export function decodeJWT(token) {
     }
 }
 
-const token = localStorage.getItem('accessToken');
-const decodedToken = token ? decodeJWT(token) : null;
+
+function setting(){
+    const token = localStorage.getItem('accessToken');
+    const decodedToken = token ? decodeJWT(token) : null;
+    return decodedToken;
+}
 
 const useAuth = create(() => ({
     name:localStorage.getItem('name'),
     profile:localStorage.getItem('profile'),
-    email: decodedToken?.email || '',
-    role:decodedToken?.role || '',
-    id:decodedToken?.id || ''
+    email: setting()?.email || '',
+    role:setting()?.role || '',
+    id:setting()?.id || ''
 }));
 
 export default useAuth;
