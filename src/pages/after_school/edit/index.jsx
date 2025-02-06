@@ -14,6 +14,7 @@ import { useGetAfterSchoolClasses } from '../../../hooks/useAfterSchool.js';
 import { searchStudent, searchPlace, searchTeacher } from "../../../api/search.js";
 import { useGetUploadUrl } from '../../../hooks/useAfterSchool.js';
 import { useSaveClass } from '../../../hooks/useAfterSchool.js';
+import { useGetFlushClass } from '../../../hooks/useAfterSchool.js';
 
 export default function Edit() {
 
@@ -37,6 +38,17 @@ export default function Edit() {
     };
 
     const handleUpload = () => {
+        const id = extractSpreadsheetId(spreadsheetUrl);
+        console.log("추출된 spreadSheetId:", id);
+
+        if (id) {
+            setSpreadsheetId(id);
+        } else {
+            alert('유효한 Spreadsheet 링크를 입력해주세요.');
+        }
+    };
+
+    const handleFlush = () => {
         const id = extractSpreadsheetId(spreadsheetUrl);
         console.log("추출된 spreadSheetId:", id);
 
@@ -79,6 +91,8 @@ export default function Edit() {
     const { data } = useGetAfterSchoolClasses(branch, weekday);
 
     const { data2 } = useGetUploadUrl(spreadsheetId);
+    const { data3 } = useGetFlushClass(spreadsheetId);
+
     console.log("API 요청 보낸 spreadSheetId:", spreadsheetId);
 
     const { mutate: saveClass } = useSaveClass();
@@ -109,66 +123,87 @@ export default function Edit() {
         });
     };
 
-    // const [grades, setGrades] = useState({ 1: [], 2: [], 3: [] });
+    const [grades, setGrades] = useState({ 1: [], 2: [], 3: [] });
 
-    // useEffect(() => {
-    //     if (!data || data.length === 0) return;
+    useEffect(() => {
+        if (!data || data.length === 0) return;
 
-    //     setGrades({
-    //         1: data[0] || [],
-    //         2: data[1] || [],
-    //         3: data[2] || [],
-    //     });
-    // }, [data]);
+        setGrades({
+            1: data[0] || [],
+            2: data[1] || [],
+            3: data[2] || [],
+        });
+    }, [data]);
 
-    const [grades, setGrades] = useState({
-        1: [
-            { period: '8~9교시', teacherName: '김철수', placeName: '프로그래밍실', name: '웹 개발' },
-            {
-                period: '10~11교시', teacherName: '박영희', placeName: '디자인실', name: '그래픽 디자인', students: [{
-                    "number": 1401,
-                    "name": "dongwook"
-                },
-                {
-                    "number": 1416,
-                    "name": "huhon"
-                }]
-            }
-        ],
-        2: [
-            { period: '8~9교시', teacher: '이정민', placeName: '1-3반', name: '프론트엔드 개발', students: [] },
-            { period: '10~11교시', teacherName: '최은지', placeName: '융합관', name: 'UX/UI 디자인', students: [] }
-        ],
-        3: [
-            { period: '8~9교시', teacherName: '홍길동', placeName: '객체지향 프로그래밍실', name: '데이터 분석', students: [] },
-            { period: '10~11교시', teacherName: '김미영', placeName: '2-1반', name: '디지털 마케팅', students: [] }
-        ]
-    });
 
-    const student = [
-        "1116 동동똥동욱",
-        "1116 허온",
-        "1116 윤도훈",
-        "1210 윤도훈",
-        "1211 김현준",
-        "1210 윤도훈",
-        "1201 김현준",
-        "1202 김현준",
-        "1312 김현준",
-        "1313 김현준",
-        "1414 김현준",
-        "1415 김현준",
-        "1416 김현준",
-        "1404 김현준",
-        "1405 김현준",
-        "1406 김현준",
-        "1316 김동욱",
-        "1316 허온",
-        "1316 윤도훈",
-        "1116 동똥똥동욱",
-        "1116 동동동욱",
-        "1116 동똥동욱"
-    ]
+    useEffect(() => {
+        if (!data2 || data2.length === 0) return;
+
+        setGrades({
+            1: data2[0] || [],
+            2: data2[1] || [],
+            3: data2[2] || [],
+        });
+    }, [data]);
+
+    useEffect(() => {
+        if (!data3 || data3.length === 0) return;
+
+        setGrades({
+            1: data3[0] || [],
+            2: data3[1] || [],
+            3: data3[2] || [],
+        });
+    }, [data]);
+
+    // const [grades, setGrades] = useState({
+    //     1: [
+    //         { period: '8~9교시', teacherName: '김철수', placeName: '프로그래밍실', name: '웹 개발' },
+    //         {
+    //             period: '10~11교시', teacherName: '박영희', placeName: '디자인실', name: '그래픽 디자인', students: [{
+    //                 "number": 1401,
+    //                 "name": "dongwook"
+    //             },
+    //             {
+    //                 "number": 1416,
+    //                 "name": "huhon"
+    //             }]
+    //         }
+    //     ],
+    //     2: [
+    //         { period: '8~9교시', teacher: '이정민', placeName: '1-3반', name: '프론트엔드 개발', students: [] },
+    //         { period: '10~11교시', teacherName: '최은지', placeName: '융합관', name: 'UX/UI 디자인', students: [] }
+    //     ],
+    //     3: [
+    //         { period: '8~9교시', teacherName: '홍길동', placeName: '객체지향 프로그래밍실', name: '데이터 분석', students: [] },
+    //         { period: '10~11교시', teacherName: '김미영', placeName: '2-1반', name: '디지털 마케팅', students: [] }
+    //     ]
+    // });
+
+    // const student = [
+    //     "1116 동동똥동욱",
+    //     "1116 허온",
+    //     "1116 윤도훈",
+    //     "1210 윤도훈",
+    //     "1211 김현준",
+    //     "1210 윤도훈",
+    //     "1201 김현준",
+    //     "1202 김현준",
+    //     "1312 김현준",
+    //     "1313 김현준",
+    //     "1414 김현준",
+    //     "1415 김현준",
+    //     "1416 김현준",
+    //     "1404 김현준",
+    //     "1405 김현준",
+    //     "1406 김현준",
+    //     "1316 김동욱",
+    //     "1316 허온",
+    //     "1316 윤도훈",
+    //     "1116 동똥똥동욱",
+    //     "1116 동동동욱",
+    //     "1116 동똥동욱"
+    // ]
 
     const addRow = (grade) => {
         setGrades(prev => ({
@@ -333,13 +368,13 @@ export default function Edit() {
 
                     <S.EditTopRight>
                         <S.FileBtn>
-                            <S.FileDown><img src={Download} />동기화</S.FileDown>
-                                <input
+                            <S.FileDown><img src={Download} onClick={handleFlush} />동기화</S.FileDown>
+                            <input
                                     type="text"
                                     value={spreadsheetUrl}
                                     onChange={(e) => setSpreadsheetUrl(e.target.value)}
                                     placeholder="Google Spreadsheet 링크를 입력하세요"
-                                />
+                            />
                             <S.FileUp>
                                 <S.FileUpBtn htmlFor="file-upload" onClick={handleUpload}>
                                     <img src={Upload} alt="업로드 아이콘" />
@@ -384,7 +419,6 @@ export default function Edit() {
                                         <S.RowData $length={120}>
                                             <DropdownS
                                                 name={row.teacherName || "담당교사"}
-                                                value={row.teacherName || ''}
                                                 onChange={value => handleInputChange(grade, index, 'teacherName', value)}
                                                 isOpen={isOpen[grade]?.[index]?.teacherName}
                                                 click={() => handleDropdownClick(grade, index, 'teacherName')}
@@ -446,6 +480,7 @@ export default function Edit() {
                                     name={selectedRows[selectedGrade].teacherName || "담당교사"}
                                     value={selectedRows[selectedGrade].teacherName}
                                     onChange={(e) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'teacherName', e.target.value)}
+                                    
                                 />
                                 <DropdownNS
                                     name={selectedRows[selectedGrade].period || "시간"}
@@ -484,21 +519,21 @@ export default function Edit() {
                                     <S.StudentList>
                                         {search &&
                                             student
-                                                .filter((currentItem) => {
-                                                    return !Object.values(selectStudent).some((classList) => classList.includes(currentItem)) &&
-                                                        currentItem.includes(search);
+                                                .filter((currentItem) => { // 학생이 이미 반 리스트 안에 있는지 확인함
+                                                    return !Object.values(selectStudent).some((classList) => classList.includes(currentItem))
+                                                        && currentItem.includes(search);
                                                 })
                                                 .map((currentItem, index) => {
                                                     return (
                                                         <S.StudentItem
                                                             key={index}
                                                             onClick={() => {
-                                                                const classNumber = parseInt(currentItem.charAt(1), 10); // 학번을 기반으로 반 번호 추출
+                                                                const classNumber = parseInt(currentItem.charAt(1), 10);
                                                                 setSelectStudent((prev) => ({
                                                                     ...prev,
                                                                     [`class${classNumber}`]: [...prev[`class${classNumber}`], currentItem],
                                                                 }));
-                                                                setSearch(""); // 검색창 초기화
+                                                                setSearch("");
                                                             }}
                                                         >
                                                             {currentItem}
@@ -506,24 +541,6 @@ export default function Edit() {
                                                     );
                                                 })
                                         }
-                                        {Object.values(grades).flat().map((gradeData) => {
-                                            return gradeData.students.map((currentItem, index) => {
-                                                const classNumber = Math.floor(currentItem.number / 100) - 11;
-                                                return (
-                                                    <S.StudentItem
-                                                        key={index}
-                                                        onClick={() => {
-                                                            setSelectStudent((prev) => ({
-                                                                ...prev,
-                                                                [`class${classNumber}`]: [...prev[`class${classNumber}`], `${currentItem.number} ${currentItem.name}`],
-                                                            }));
-                                                        }}
-                                                    >
-                                                        {`${currentItem.number} ${currentItem.name}`}
-                                                    </S.StudentItem>
-                                                );
-                                            });
-                                        })}
                                     </S.StudentList>
                                 </S.InputBox>
 
