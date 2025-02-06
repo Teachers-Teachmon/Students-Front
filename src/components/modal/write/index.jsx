@@ -10,7 +10,7 @@ import useDay from "../../../zustand/day.js";
 import SchoolOut from "../confirm/schoolOut/index.jsx";
 import {useDebounce} from "../../../hooks/useDebounce.js";
 import {searchStudent, searchPlace} from "../../../api/search.js";
-import patchDay from "../../../utils/patchDay.js";
+import DateInput from "../../dateInput/index.jsx";
 
 export default function Write({isModal, setIsModal}){
     const [time, setTime] = useState("시간");
@@ -32,8 +32,7 @@ export default function Write({isModal, setIsModal}){
     const [selectStudent, setSelectStudent] = useState([]);
     const [selectStudentShow, setSelectStudentShow] = useState([]);
     const {mutate : postMovement} = usePostMovement();
-    const {today: day} = useDay();
-    const today = patchDay(day);
+    const {day: dayComponent} = useDay();
     const debounceStudent = useDebounce(search, 300);
 
     useEffect(() => {
@@ -63,6 +62,7 @@ export default function Write({isModal, setIsModal}){
                             {isOpen.some((status) => status === true) ?
                                 <S.Black onClick={()=>setIsOpen([false, false])}/> : null
                             }
+                            <DateInput />
                             <S.Place>
                                 <Dropdown
                                     name={time}
@@ -151,7 +151,7 @@ export default function Write({isModal, setIsModal}){
                                     name={"작성완료"}
                                     status={true}
                                     On={() => {
-                                        postMovement({ selectStudentShow, today, time, place, cause });
+                                        postMovement({ selectStudentShow, dayComponent, time, place, cause });
                                     }}
                                 />
                             </S.Submit>
