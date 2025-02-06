@@ -438,7 +438,7 @@ export default function Edit() {
                                             <DropdownS
                                                 target="선생님"
                                                 name={row.teacherName || "담당교사"}
-                                                change={(value) => handleInputChange(grade, index, 'teacherName', value)}
+                                                change={(value) => handleInputChange(grade, index, 'teacherName', value.name)}
                                                 isOpen={isOpen[grade]?.[index]?.teacherName}
                                                 click={() => handleDropdownClick(grade, index, 'teacherName')}
                                                 axios={(event) => searchTeacher(event)}
