@@ -51,6 +51,11 @@ export default function Main() {
         console.log(completeRateData);
     }, [completeRateData, isLoadingRate]);
 
+    const formatDateForUI = (date) => {
+        const dayNames = ['일', '월', '화', '수', '목', '금', '토'];
+        return `${date.getMonth() + 1}월 ${date.getDate()}일 (${dayNames[date.getDay()]})`;
+    };
+
     return (
         <S.MainContainer>
             <Header />
@@ -147,7 +152,7 @@ export default function Main() {
                             <S.BottomRightContent>
                                 <div>
                                     <S.TeacherListTop>
-                                        <span>{todayTeacher.date}</span>
+                                        <span>{formatDateForUI(todayTeacher.date)}</span>
                                         <span>1학년</span>
                                         <span>2학년</span>
                                         <span>3학년</span>
