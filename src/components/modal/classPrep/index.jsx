@@ -22,11 +22,31 @@ export default function ClassPrep({ closeModal, selectedClass }) {
 
     const periods = ['8~9교시', '10~11교시'];
 
-    const { data: afterSchoolList = [], refetch } = useGetSupplementList(selectedDate, selectedPeriod);
+    const { data: afterSchoolList = [], refetch } = useGetSupplementList(selectedDate, selectedPeriodNumber);
+
+    // 테스트용 가짜 데이터 추가
+    const testData = [
+        { id: 1, name: "방과후 수업 A", type: "과학" },
+        { id: 2, name: "방과후 수업 B", type: "수학" }
+    ];
+
+    const displayedList = afterSchoolList.length ? afterSchoolList : testData;
+
+
+    console.log("📢 받아온 방과후 리스트:", afterSchoolList);
+
 
     const handleDateChange = (day) => {
         setSelectedDate(day);
     };
+
+    useEffect(() => {
+        if (selectedDate && selectedPeriodNumber !== null) {
+            console.log("📢 요청 보냄!", { selectedDate, selectedPeriodNumber });
+            refetch();
+        }
+    }, [selectedDate, selectedPeriodNumber, refetch]);
+
 
     useEffect(() => {
         if (selectedDate && selectedPeriodNumber !== null) {
@@ -51,7 +71,7 @@ export default function ClassPrep({ closeModal, selectedClass }) {
             }
         }
 
-        createClassPrep(requestBody,{});
+        createClassPrep(requestBody, {});
         closeModal();
     };
 
@@ -62,7 +82,7 @@ export default function ClassPrep({ closeModal, selectedClass }) {
                 <S.ChangeClass>바꾸고싶은 방과후</S.ChangeClass>
             </S.ClassTop>
             <S.DateMain>
-                <PrepDate onChange={handleDateChange}/>
+                <PrepDate onChange={handleDateChange} />
             </S.DateMain>
 
             <S.Place>
@@ -79,7 +99,7 @@ export default function ClassPrep({ closeModal, selectedClass }) {
 
                 <Dropdown
                     name={selectedAfterSchool ? selectedAfterSchool.name : '방과후'}
-                    item={afterSchoolList}
+                    item={displayedList} //afterSchoolList
                     change={(currentItem) => {
                         setSelectedAfterSchool(currentItem);
                         setIsOpen([false, false]);
@@ -90,7 +110,7 @@ export default function ClassPrep({ closeModal, selectedClass }) {
             </S.Place>
 
             <S.Buttons>
-                <Square name="취소" color="#999999" background="white" border="#999999" On={ closeModal } />
+                <Square name="취소" color="#999999" background="white" border="#999999" On={closeModal} />
                 <Confirm text="완료" color="blue" image="" onClick={handleCreate} />
             </S.Buttons>
         </S.Wrapper>
