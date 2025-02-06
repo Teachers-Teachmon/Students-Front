@@ -442,11 +442,11 @@ export default function Edit() {
                                                 // click={() => handleDropdownClick(grade, index, 'teacherName')}
                                                 // axios={(event) => searchTeacher(event)}
                                                 target="선생님"
-                                                name={selectedTeacher[uniqueKey]?.name || teacherName}
+                                                name={row.teacherName}
                                                 axios={(event) => searchTeacher(event)}
                                                 isOpen={isOpen[grade]?.[index]?.teacherName}
                                                 change={value => handleInputChange(grade, index, 'teacherName', value)}
-                                                click={() => toggleDropdown(uniqueKey)}
+                                                click={() => handleDropdownClick(grade, index, 'teacherName')}
                                             />
                                         </S.RowData>
                                         <S.RowData $length={240}>
