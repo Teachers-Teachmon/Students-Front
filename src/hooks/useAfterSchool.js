@@ -78,7 +78,8 @@ export const useGetUploadUrl = (spreadSheetId) => {
         queryFn: async () => {
             const res = await API.getUploadUrl(spreadSheetId);
             return res.data || [];
-        }
+        },
+        enabled:false
     });
 };
 
@@ -88,7 +89,8 @@ export const useGetFlushClass = (spreadSheetId) => {
         queryFn: async () => {
             const res = await API.getFlushClass(spreadSheetId);
             return res.data || [];
-        }
+        },
+        enabled:false
     });
 };
 
