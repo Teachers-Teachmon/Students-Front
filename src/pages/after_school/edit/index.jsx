@@ -122,8 +122,17 @@ export default function Edit() {
             const students = await searchStudent(search);
             setStudent(students);
         };
-        fetchStudents();
+        fetchStudents();ㄴ
     }, [debounceStudent]);
+
+    useEffect(() => {
+        setIsOpen((prev) => ({
+            1: grades[1]?.map((_, index) => prev[1]?.[index] || { period: false, teacherName: false, placeName: false }) || [],
+            2: grades[2]?.map((_, index) => prev[2]?.[index] || { period: false, teacherName: false, placeName: false }) || [],
+            3: grades[3]?.map((_, index) => prev[3]?.[index] || { period: false, teacherName: false, placeName: false }) || [],
+        }));
+    }, [grades]);
+    
 
     const { mutate: saveClass } = useSaveClass();
 
