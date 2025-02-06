@@ -36,7 +36,7 @@ const FullPageComponent = () => {
     const [isAnimation, setIsAnimation] = useState([false, false]);
     const [isScrolling, setIsScrolling] = useState(false); // 스크롤 상태 추가
     const [currentSection, setCurrentSection] = useState(0);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const location = useLocation();
 
@@ -109,12 +109,10 @@ const FullPageComponent = () => {
             if(res.data === "Authentication Success"){
                 navigate('/main');
             }
-            else{
-                navigate('/');
-            }
-            setIsLoading(false);
         } catch (error) {
-            console.error("Health check failed:", error);
+            console.log(error);
+        }finally {
+            setIsLoading(false);
         }
     }
     return (

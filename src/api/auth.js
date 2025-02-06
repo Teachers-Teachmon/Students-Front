@@ -44,6 +44,6 @@ export const Check = async () =>{
         const res = await axiosInstance.get('/check');
         return res;
     }catch(err){
-        return Promise.reject(err);
+        return false;
     }
 }
