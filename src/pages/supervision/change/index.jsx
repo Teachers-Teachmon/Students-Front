@@ -17,6 +17,7 @@ export default function SupervisionChange() {
 
     const [isSelfSelected, setIsSelfSelected] = useState(false);
     const [disabledTeachers, setDisabledTeachers] = useState([]);
+    const [selfTeacherDisabled, setSelfTeacherDisabled] = useState(false);
 
     const [currentMonth, setCurrentMonth] = useState(new Date().getMonth() + 1);
     const [selectedDay, setSelectedDay] = useState("");
@@ -209,7 +210,7 @@ export default function SupervisionChange() {
                                                                         cursor: !isSelfSelected && !(teacherInfo && teacherInfo.includes('/me'))
                                                                             ? 'not-allowed'
                                                                             : 'pointer',
-                                                                        opacity: (disabledTeachers.includes(compareKey) || (!isSelfSelected && !(teacherInfo && teacherInfo.includes('/me'))))
+                                                                        opacity: (disabledTeachers.includes(compareKey) || (!isSelfSelected && !(teacherInfo && teacherInfo.includes('/me'))) || selfTeacherDisabled)
                                                                             ? 0.5
                                                                             : 1,
                                                                     }}
