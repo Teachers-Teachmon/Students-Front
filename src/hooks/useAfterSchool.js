@@ -76,7 +76,7 @@ export const useGetUploadUrl = (spreadSheetId) => {
     return useQuery({
         queryKey: ['getUploadUrl', spreadSheetId],
         queryFn: async () => {
-            const res = await API.getUploadUrl();
+            const res = await API.getUploadUrl(spreadSheetId);
             return res.data || [];
         }
     });
