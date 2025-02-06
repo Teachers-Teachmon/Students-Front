@@ -12,7 +12,7 @@ import OptionButton from '../../../assets/OptionButton.svg';
 import Square from '../../../components/button/square/index.jsx';
 import { useGetAfterSchoolClasses } from '../../../hooks/useAfterSchool.js';
 import { searchStudent, searchPlace, searchTeacher } from "../../../api/search.js";
-import axios from 'axios';
+import { useGetUploadUrl } from '../../../hooks/useAfterSchool.js';
 
 export default function Edit() {
 
@@ -26,7 +26,7 @@ export default function Edit() {
     const [isBranchOpen, setIsBranchOpen] = useState(false);
     const [selectedRows, setSelectedRows] = useState({});
     const [spreadsheetId, setSpreadsheetId] = useState('');
-    const [spreadsheetUrl, setSpreadsheetUrl] = useState('');
+    const [spreadsheetUrl, setSpreadsheetUrl] = useState(null);
 
 
     const extractSpreadsheetId = (url) => {
@@ -37,21 +37,15 @@ export default function Edit() {
 
     const handleUpload = () => {
         const id = extractSpreadsheetId(spreadsheetUrl);
+        console.log("추출된 spreadSheetId:", id);
+
         if (id) {
             setSpreadsheetId(id);
-            // 여기서 ID를 서버로 요청을 보낼 수 있습니다.
-            console.log('스프레드시트 ID:', id);
-            // 예시: 서버로 요청 보내는 코드
-            // sendDataToServer(id);
         } else {
-            alert('유효한 Google Spreadsheet 링크를 입력해주세요.');
+            alert('유효한 Spreadsheet 링크를 입력해주세요.');
         }
     };
 
-    // 링크 입력 값 변경 핸들러
-    const handleUrlChange = (e) => {
-        setSpreadsheetUrl(e.target.value);
-    };
     const handleOptionClick = (grade, index) => {
         setOptions((prev) => ({
             ...prev,
@@ -63,7 +57,7 @@ export default function Edit() {
             [grade]: prev[grade] === index ? null : { ...grades[grade][index], index },
         }));
 
-        setSelectedGrade(grade);  // 선택된 학년 저장
+        setSelectedGrade(grade);
     };
 
 
@@ -83,32 +77,35 @@ export default function Edit() {
 
     const { data } = useGetAfterSchoolClasses(branch, weekday);
 
-    // const [grades, setGrades] = useState({ 1: [], 2: [], 3: [] });
+    const { data2 } = useGetUploadUrl(spreadsheetId);
+    console.log("API 요청 보낸 spreadSheetId:", spreadsheetId);
 
-    // useEffect(() => {
-    //     if (!data || data.length === 0) return;
+    const [grades, setGrades] = useState({ 1: [], 2: [], 3: [] });
 
-    //     setGrades({
-    //         1: data[0] || [],
-    //         2: data[1] || [],
-    //         3: data[2] || [],
-    //     });
-    // }, [data]);
+    useEffect(() => {
+        if (!data || data.length === 0) return;
 
-    const [grades, setGrades] = useState({
-        1: [
-            { period: '8~9교시', teacherName: '김철수', placeName: '프로그래밍실', name: '웹 개발'},
-            { period: '10~11교시', teacherName: '박영희', placeName: '디자인실', name: '그래픽 디자인', studentsNumber: '6' }
-        ],
-        2: [
-            { period: '8~9교시', teacher: '이정민', placeName: '1-3반', name: '프론트엔드 개발', studentsNumber: '8' },
-            { period: '10~11교시', teacherName: '최은지', placeName: '융합관', name: 'UX/UI 디자인', studentsNumber: '7' }
-        ],
-        3: [
-            { period: '8~9교시', teacherName: '홍길동', placeName: '객체지향 프로그래밍실', name: '데이터 분석', studentsNumber: '4' },
-            { period: '10~11교시', teacherName: '김미영', placeName: '2-1반', name: '디지털 마케팅', studentsNumber: '6' }
-        ]
-    });
+        setGrades({
+            1: data[0] || [],
+            2: data[1] || [],
+            3: data[2] || [],
+        });
+    }, [data]);
+
+    // const [grades, setGrades] = useState({
+    //     1: [
+    //         { period: '8~9교시', teacherName: '김철수', placeName: '프로그래밍실', name: '웹 개발'},
+    //         { period: '10~11교시', teacherName: '박영희', placeName: '디자인실', name: '그래픽 디자인', studentsNumber: '6' }
+    //     ],
+    //     2: [
+    //         { period: '8~9교시', teacher: '이정민', placeName: '1-3반', name: '프론트엔드 개발', studentsNumber: '8' },
+    //         { period: '10~11교시', teacherName: '최은지', placeName: '융합관', name: 'UX/UI 디자인', studentsNumber: '7' }
+    //     ],
+    //     3: [
+    //         { period: '8~9교시', teacherName: '홍길동', placeName: '객체지향 프로그래밍실', name: '데이터 분석', studentsNumber: '4' },
+    //         { period: '10~11교시', teacherName: '김미영', placeName: '2-1반', name: '디지털 마케팅', studentsNumber: '6' }
+    //     ]
+    // });
 
     const addRow = (grade) => {
         setGrades(prev => ({
@@ -261,18 +258,19 @@ export default function Edit() {
                                 />
                             ))}
                         </S.TopDay>
-
                     </S.EditTopLeft>
 
                     <S.EditTopRight>
                         <S.FileBtn>
-                            <S.FileDown><img src={Download} />파일 다운로드</S.FileDown>
-                            <input
+                            <S.FileDown><img src={Download} />동기화</S.FileDown>
+                            <S.TopDate $length={85}>
+                                <input
                                     type="text"
                                     value={spreadsheetUrl}
-                                    onChange={handleUrlChange}
-                                    placeholder="Spreadsheet 링크 입력"
+                                    onChange={(e) => setSpreadsheetUrl(e.target.value)}
+                                    placeholder="Google Spreadsheet 링크를 입력하세요"
                                 />
+                            </S.TopDate>
                             <S.FileUp>
                                 <S.FileUpBtn htmlFor="file-upload" onClick={handleUpload}>
                                     <img src={Upload} alt="업로드 아이콘" />
