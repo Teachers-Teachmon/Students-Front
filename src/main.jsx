@@ -18,7 +18,7 @@ import Login from "./pages/login"
 import SupervisionChange from "./pages/supervision/change";
 import LoginLoading from './components/login';
 import Certification from "./components/check/certification.jsx";
-import NotCertification from "./components/check/netCertification.jsx";
+import NotCertification from "./components/check/notCertification.jsx";
 import Authorize from './components/check/authorize.jsx' // 인가는 개발중에 번거로울 수 있으므로 나중에 처리하기
 import Loading from "./components/loading/index.jsx";
 const SupervisionDetail = lazy(()=>import("./pages/supervision/detail"))
