@@ -373,7 +373,7 @@ export default function Edit() {
                                     type="text"
                                     value={spreadsheetUrl}
                                     onChange={(e) => setSpreadsheetUrl(e.target.value)}
-                                    placeholder="Google Spreadsheet 링크를 입력하세요"
+                                    placeholder="Google Spreadsheet"
                             />
                             <S.FileUp>
                                 <S.FileUpBtn htmlFor="file-upload" onClick={handleUpload}>
