@@ -29,7 +29,7 @@ export default function Edit() {
     const [isBranchOpen, setIsBranchOpen] = useState(false);
     const [selectedRows, setSelectedRows] = useState({});
     const [spreadsheetId, setSpreadsheetId] = useState('');
-    const [spreadsheetUrl, setSpreadsheetUrl] = useState(null);
+    const [spreadsheetUrl, setSpreadsheetUrl] = useState('');
     const debounceStudent = useDebounce(search, 300);
     const [student, setStudent] = useState([]);
 
