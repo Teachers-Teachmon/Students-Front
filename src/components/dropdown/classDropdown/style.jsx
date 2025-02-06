@@ -14,7 +14,7 @@ export const DropdownContainer = styled.div`
     transition: all 0.3s ease;
     gap: 5px;
     font-size: 14px;
-    z-index: 10;
+    z-index: 12;
     &:hover {
         border-color: #aaa;
     }
