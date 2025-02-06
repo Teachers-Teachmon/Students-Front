@@ -47,7 +47,9 @@ export default function Edit() {
 
         if (id) {
             setSpreadsheetId(id);
-            refetchUpload();
+            setTimeout(() => {
+                refetchUpload();
+            }, 0);
         } else {
             alert('유효한 Spreadsheet 링크를 입력해주세요.');
         }
@@ -59,7 +61,9 @@ export default function Edit() {
 
         if (id) {
             setSpreadsheetId(id);
-            refetchFlush();
+            setTimeout(() => {
+                refetchFlush();
+            }, 0);
         } else {
             alert('유효한 Spreadsheet 링크를 입력해주세요.');
         }
@@ -371,7 +375,7 @@ export default function Edit() {
 
                     <S.EditTopRight>
                         <S.FileBtn>
-                            <S.FileDown><img src={Download} onClick={handleFlush}/>동기화</S.FileDown>
+                            <S.FileDown onClick={handleFlush}><img src={Download}/>동기화</S.FileDown>
                             <input
                                 type="text"
                                 value={spreadsheetUrl}
