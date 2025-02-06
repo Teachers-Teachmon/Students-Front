@@ -2,10 +2,10 @@ import * as S from './style.jsx';
 import Confirm from '../../button/confirm/index.jsx';
 import Square from '../../button/square/index.jsx';
 import PrepDate from '../../prepDate/index.jsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Dropdown from '../../dropdown/nosearch/index.jsx';
 import { useClassPrep } from '../../../hooks/useAfterSchool.js';
-import DateInput from '../../dateInput/index.jsx';
+import { useGetSupplementList } from '../../../hooks/useAfterSchool.js';
 
 
 
@@ -13,45 +13,41 @@ export default function ClassPrep({ closeModal, selectedClass }) {
     const [selectedPeriod, setSelectedPeriod] = useState('');
     const [isOpen, setIsOpen] = useState([false, false]);
     const { mutate: createClassPrep } = useClassPrep();
-    const [localSender, setLocalSender] = useState(null);
-    const [localRecipient, setLocalRecipient] = useState(null);
+    const [selectedDate, setSelectedDate] = useState(null);
+    const [selectedAfterSchool, setSelectedAfterSchool] = useState(null);
 
     const periods = ['8~9교시', '10~11교시'];
-    const classesPeriod = {
-        '8~9교시': ['파이썬', '리액트', '스프링 부트'],
-        '10~11교시': ['C언어', '웹 개발', '스프링'],
+
+    const { data: afterSchoolList = [], refetch } = useGetSupplementList(selectedDate, selectedPeriod);
+
+    const handleDateChange = (day) => {
+        setSelectedDate(day);
     };
 
-    const handleDateChange = (date, type) => {
-        if (type === "sender") {
-            setLocalSender(date);
-        } else {
-            setLocalRecipient(date);
+    useEffect(() => {
+        if (selectedDate && selectedPeriod) {
+            refetch();
         }
-    };
+    }, [selectedDate, selectedPeriod, refetch]);
 
     const handleCreate = () => {
-        const requestBody = {
-            sender: {
-                afterSchoolId: selectedClass.id,
-                day: localSender
-            },
-            // recipient: {
-            //     type: ,
-            //     do_id: ,
-            //     day: localRecipient
-            // }
-        }
-
-        if (!localSender || !localRecipient) {
-            alert("보강 날짜를 입력해주세요.");
+        if (!selectedDate || !selectedAfterSchool) {
+            alert("보강 날짜와 방과후를 선택해주세요.");
             return;
         }
 
-        setsender(localSender);
-        setrecipient(localRecipient);
-        createClassPrep(requestBody,{});
+        const requestBody = {
+            originalAfterSchool: {
+                day: selectedDate,
+                type: selectedAfterSchool.type,
+                id: selectedAfterSchool.id
+            },
+            newAfterSchool: {
+                afterSchoolId: selectedClass.id
+            }
+        }
 
+        createClassPrep(requestBody,{});
         closeModal();
     };
 
@@ -62,8 +58,7 @@ export default function ClassPrep({ closeModal, selectedClass }) {
                 <S.ChangeClass>바꾸고싶은 방과후</S.ChangeClass>
             </S.ClassTop>
             <S.DateMain>
-                <PrepDate onChange={(date) => handleDateChange(date, "sender")}/>
-                <PrepDate onChange={(date) => handleDateChange(date, "recipient")}/>
+                <PrepDate onChange={handleDateChange}/>
             </S.DateMain>
 
             <S.Place>
@@ -72,7 +67,6 @@ export default function ClassPrep({ closeModal, selectedClass }) {
                     item={periods}
                     change={(currentItem) => {
                         setSelectedPeriod(currentItem);
-                        //setSelectedClass(null); // 방과후 초기화
                         setIsOpen([false, false]);
                     }}
                     click={() => setIsOpen([!isOpen[0], false])}
@@ -80,10 +74,10 @@ export default function ClassPrep({ closeModal, selectedClass }) {
                 />
 
                 <Dropdown
-                    name={selectedClass || '방과후'}
-                    item={classesPeriod[selectedPeriod] || []}
+                    name={selectedAfterSchool ? selectedAfterSchool.name : '방과후'}
+                    item={afterSchoolList}
                     change={(currentItem) => {
-                        //setSelectedClass(currentItem);
+                        setSelectedAfterSchool(currentItem);
                         setIsOpen([false, false]);
                     }}
                     click={() => setIsOpen([false, !isOpen[1]])}

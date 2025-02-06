@@ -79,20 +79,20 @@ export const useGetUploadUrl = (spreadSheetId) => {
             const res = await API.getUploadUrl(spreadSheetId);
             return res.data || [];
         },
-        //enabled:false
+        enabled:false
     });
 };
 
-// export const useGetFlushClass = (spreadSheetId) => {
-//     return useQuery({
-//         queryKey: ['getFlushClass', spreadSheetId],
-//         queryFn: async () => {
-//             const res = await API.getFlushClass(spreadSheetId);
-//             return res.data || [];
-//         },
-//         //enabled:false
-//     });
-// };
+export const useGetFlushClass = (spreadSheetId) => {
+    return useQuery({
+        queryKey: ['getFlushClass', spreadSheetId],
+        queryFn: async () => {
+            const res = await API.getFlushClass(spreadSheetId);
+            return res.data || [];
+        },
+        enabled:false
+    });
+};
 
 export const useSaveClass = () => {
     const navigate = useNavigate();
@@ -103,3 +103,14 @@ export const useSaveClass = () => {
         }
     })
 }
+
+export const useGetSupplementList = (day, period) => {
+    return useQuery({
+        queryKey: ['getSupplementList', day, period],
+        queryFn: async () => {
+            const res = await API.getSupplementList(day, period);
+            return res.data || [];
+        },
+        enabled:false
+    });
+};
