@@ -6,7 +6,7 @@ export default function Authorize(){
     const [isLogin, setIsLogin] = useState(false);
     const {role} = useAuth();
     useEffect(() => {
-        if(role === "TEACHER" || role === ''){
+        if(role !== "ADMIN"){
             setIsLogin(true);
         }
     }, []);
