@@ -184,10 +184,10 @@ export default function SupervisionChange() {
                                                                 <div
                                                                     key={uniqueKey}
                                                                     onClick={() => {
-                                                                        if (!isSelfSelected) {
-                                                                            if (!(teacherInfo && teacherInfo.includes('/me'))) return;
+                                                                        if (teacherInfo && teacherInfo.includes('/me')) {
                                                                             handleSelectTeacher(uniqueKey, teacherInfo ? parseInt(teacherInfo.split('/')[1]) || null : null, true);
                                                                         } else {
+                                                                            if (!isSelfSelected) return;
                                                                             handleSelectTeacher(uniqueKey, teacherInfo ? parseInt(teacherInfo.split('/')[1]) || null : null, false);
                                                                         }
                                                                     }}
