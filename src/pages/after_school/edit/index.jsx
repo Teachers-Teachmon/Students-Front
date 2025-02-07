@@ -86,21 +86,39 @@ export default function Edit() {
 
     const handleComplete = () => {
         const formattedData = Object.keys(grades)
-            .map((classKey) => {
-                return grades[classKey].map((item) => ({
-                    branch: Number(branch),
-                    weekDay: item["weekday"],
-                    grade: parseInt(classKey),
-                    period: item["period"] || "",
-                    teacherName: item["teacherName"] || "",
-                    placeName: item["placeName"] || "",
-                    name: item["name"] || "",
-                    students: item["students"] || [],
-                }));
-            })
-            .flat();
-        console.log(formattedData)
+            .map((classKey) =>
+                grades[classKey].map((item) => {
+                    if (item['weekDay']) {
+                        switch (item['weekDay']) {
+                            case 'MON':
+                                item['weekday'] = '월';
+                                break;
+                            case 'TUE':
+                                item['weekday'] = '화';
+                                break;
+                            case 'WED':
+                                item['weekday'] = '수';
+                                break;
+                            case 'THU':
+                                item['weekday'] = '목';
+                                break;
+                        }
+                    }
+                    return {
+                        branch: Number(branch),
+                        weekDay: item["weekday"] || item['weekDay'],
+                        grade: parseInt(classKey),
+                        period: item["period"] || "",
+                        teacherName: item["teacherName"] || "",
+                        placeName: item["placeName"] || "",
+                        name: item["name"] || "",
+                        students: item["students"] || [],
+                    };
+                })
+            )
+            .flat(); // 중첩된 배열을 평탄화
 
+        console.log(formattedData);
         saveClass(formattedData);
     };
 
@@ -246,10 +264,13 @@ export default function Edit() {
     const addRow = (grade) => {
         setGrades(prev => ({
             ...prev,
-            [grade]: [...prev[grade], { weekDay: '', period: '', teacherName: '', placeName: '', name: '', students: [] }],
+            [grade]: [...prev[grade], {  period: '',weekDay: weekday, teacherName: '', placeName: '', name: '', students: [] }],
         }));
     };
 
+    useEffect(() => {
+        console.log(grades)
+    }, [grades]);
 
     // const [isOpen, setIsOpen] = useState({
     //     1: Array(grades[1].length).fill(false),
