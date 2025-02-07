@@ -76,19 +76,27 @@ export const useDeleteClass = () =>{
 }
 
 export const useGetUploadUrl = (spreadSheetId) => {
-    const queryClient = useQueryClient();
     return useQuery({
         queryKey: ['getUploadUrl', spreadSheetId],
         queryFn: async () => {
             const res = await API.getUploadUrl(spreadSheetId);
             return res.data || [];
         },
-        onSuccess: (_, variables) => {
-            queryClient.refetchQueries(['getAfterSchoolClasses', variables.branch, variables.weekday]);
-        },
         enabled:false
     });
 };
+
+export const useUpload = () => {
+    const queryClient = useQueryClient();
+
+    return useMutation({
+        mutationFn: (spreadSheetId) => API.getUploadUrl(spreadSheetId), // 업로드 API 호출
+        onSuccess: (_, variables) => {
+            queryClient.refetchQueries(['getAfterSchoolClasses', variables.branch, variables.weekday]); // 업로드 후 데이터 리프레시
+        },
+    });
+};
+
 
 export const useGetFlushClass = (spreadSheetId) => {
     return useQuery({
@@ -98,6 +106,17 @@ export const useGetFlushClass = (spreadSheetId) => {
             return res.data || [];
         },
         enabled:false
+    });
+};
+
+export const useFlush = () => {
+    const queryClient = useQueryClient();
+
+    return useMutation({
+        mutationFn: (spreadSheetId) => API.getFlushClass(spreadSheetId),
+        onSuccess: (_, variables) => {
+            queryClient.refetchQueries(['getAfterSchoolClasses', variables.branch, variables.weekday]); // 업로드 후 데이터 리프레시
+        },
     });
 };
 

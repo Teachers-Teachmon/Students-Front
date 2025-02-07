@@ -16,6 +16,8 @@ import { useGetUploadUrl } from '../../../hooks/useAfterSchool.js';
 import { useSaveClass } from '../../../hooks/useAfterSchool.js';
 import { useGetFlushClass } from '../../../hooks/useAfterSchool.js';
 import { useDebounce } from '../../../hooks/useDebounce.js';
+import { useUpload } from '../../../hooks/useAfterSchool.js';
+import { useFlush } from '../../../hooks/useAfterSchool.js';
 
 export default function Edit() {
 
@@ -48,9 +50,10 @@ export default function Edit() {
 
         if (id) {
             setSpreadsheetId(id);
-            setTimeout(() => {
-                refetchUpload();
-            }, 0);
+            // setTimeout(() => {
+            //     refetchUpload();
+            // }, 0);
+            uploadMutation(id);
         } else {
             alert('유효한 Spreadsheet 링크를 입력해주세요.');
         }
@@ -62,9 +65,10 @@ export default function Edit() {
 
         if (id) {
             setSpreadsheetId(id);
-            setTimeout(() => {
-                refetchFlush();
-            }, 0);
+            // setTimeout(() => {
+            //     refetchFlush();
+            // }, 0);
+            flushMutation(id);
         } else {
             alert('유효한 Spreadsheet 링크를 입력해주세요.');
         }
@@ -120,8 +124,10 @@ export default function Edit() {
     const periods = ['8~9교시', '10~11교시'];
 
     const { data } = useGetAfterSchoolClasses(branch, weekday);
-    const { refetch: refetchFlush } = useGetFlushClass(spreadsheetId);
-    const { refetch: refetchUpload } = useGetUploadUrl(spreadsheetId);
+    const { mutate: uploadMutation } = useUpload();
+    const { mutate: flushMutation } = useFlush();
+
+
 
     const [grades, setGrades] = useState({ 1: [], 2: [], 3: [] });
 
