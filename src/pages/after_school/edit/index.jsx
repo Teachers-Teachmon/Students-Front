@@ -293,16 +293,16 @@ export default function Edit() {
         3: grades[3].map(() => ({ period: false, teacherName: false, placeName: false })),
     });
 
-    const handleDropdownClick = (grade, index, field) => {
-        setIsOpen(prev => ({
-            ...prev,
-            [grade]: prev[grade].map((row, idx) =>
-                idx === index
-                    ? { ...row, [field]: !row[field] }
-                    : { ...row, [field]: false }
-            ),
-        }));
-    };
+    // const handleDropdownClick = (grade, index, field) => {
+    //     setIsOpen(prev => ({
+    //         ...prev,
+    //         [grade]: prev[grade].map((row, idx) =>
+    //             idx === index
+    //                 ? { ...row, [field]: !row[field] }
+    //                 : { ...row, [field]: false }
+    //         ),
+    //     }));
+    // };
     const handleDropdownClick = (grade, index, field) => {
         setIsOpen((prev) => ({
             [grade]: {
