@@ -29,6 +29,8 @@ export const EditTop = styled.div`
 export const Link = styled.input`
     display: flex;
     padding: 10px;
+    justify-content: center;
+    align-items: center;
 `
 
 export const TopDate = styled.div`
@@ -200,7 +202,7 @@ export const PlusBtn = styled.div`
 `
 
 export const ClassData = styled.input`
-    width: 250px;
+    width: 300px;
     height: 40px;
     border: 1px solid #cccccc;
     border-radius: 4px;
