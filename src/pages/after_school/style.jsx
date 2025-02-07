@@ -93,7 +93,6 @@ export const ClassTableMain = styled.div`
 
 export const TableName = styled.div`
     display: flex;
-    //gap: 20px;
 `
 
 export const TopName = styled.span`
@@ -101,7 +100,7 @@ export const TopName = styled.span`
 `
 
 export const TopLocation = styled.span`
-    padding-left: 155px;
+    padding-left: 140px;
 `
 
 export const ClassTable = styled.div`

@@ -88,26 +88,57 @@ export default function Edit() {
         setSelectedGrade(grade);
     };
 
+    // const handleComplete = () => {
+    //     const formattedData = Object.keys(grades)
+    //         .map((classKey) => {
+    //             return grades[classKey].map((item) => ({
+    //                 branch: Number(branch),
+    //                 weekDay: item["weekday"],
+    //                 grade: parseInt(classKey),
+    //                 period: item["period"] || "",
+    //                 teacherName: item["teacherName"] || "",
+    //                 placeName: item["placeName"] || "",
+    //                 name: item["name"] || "",
+    //                 students: item["students"] || [],
+    //             }));
+    //         })
+    //         .flat();
+    //     console.log(formattedData)
+
+    //     saveClass(formattedData);
+    // };
+
     const handleComplete = () => {
         const formattedData = Object.keys(grades)
-            .map((classKey) => {
+            .flatMap((classKey) => {
                 return grades[classKey].map((item) => ({
                     branch: Number(branch),
-                    weekDay: item["weekday"],
                     grade: parseInt(classKey),
                     period: item["period"] || "",
                     teacherName: item["teacherName"] || "",
                     placeName: item["placeName"] || "",
                     name: item["name"] || "",
                     students: item["students"] || [],
+                    weekDay: item["weekDay"] || weekday,
                 }));
-            })
-            .flat();
-        console.log(formattedData)
+            });
 
-        saveClass(formattedData);
+        const groupedByWeekday = formattedData.reduce((acc, cur) => {
+            const { weekDay, ...rest } = cur;
+            if (!acc[weekDay]) acc[weekDay] = [];
+            acc[weekDay].push(rest);
+            return acc;
+        }, {});
+    
+        const result = Object.entries(groupedByWeekday).map(([weekDay, classes]) => ({
+            weekDay,
+            classes,
+        }));
+    
+        console.log(result);
+        saveClass(result);
     };
-
+    
 
     const [selectStudent, setSelectStudent] = useState({
         class1: [],
