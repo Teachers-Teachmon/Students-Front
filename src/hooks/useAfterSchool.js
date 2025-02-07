@@ -1,5 +1,5 @@
 import * as API from '../api/afterschool.js';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 export const useGetClassList = (grade, weekday) => {
@@ -63,10 +63,13 @@ export const useClassPrep = () => {
 };
 
 export const useDeleteClass = () =>{
+    const queryClient = useQueryClient();
     const navigate = useNavigate();
+
     return useMutation({
         mutationFn : (props)=> API.deleteClass(props),
         onSuccess: () => {
+            queryClient.invalidateQueries(['getAfterSchoolClasses']);
             navigate('/after-school');
         }
     })
