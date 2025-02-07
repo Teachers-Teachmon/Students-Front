@@ -422,7 +422,7 @@ export default function Edit() {
                     <S.EditTopRight>
                         <S.FileBtn>
                             <S.FileDown onClick={handleFlush}><img src={Download} />동기화</S.FileDown>
-                            <input
+                            <S.Link
                                 type="text"
                                 value={spreadsheetUrl}
                                 onChange={(e) => setSpreadsheetUrl(e.target.value)}

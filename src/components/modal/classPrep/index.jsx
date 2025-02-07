@@ -53,8 +53,8 @@ export default function ClassPrep({ closeModal, selectedClass }) {
     }, [selectedDate, selectedPeriod, refetch]);
 
     const handleCreate = () => {
-        if (!selectedDate || !selectedAfterSchool) {
-            alert("보강 날짜와 방과후를 선택해주세요.");
+        if (!selectedAfterSchool) {
+            alert("방과후를 선택해주세요.");
             return;
         }
 

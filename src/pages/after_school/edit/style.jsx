@@ -26,6 +26,11 @@ export const EditTop = styled.div`
     gap: 60px;
 `
 
+export const Link = styled.input`
+    display: flex;
+    padding: 10px;
+`
+
 export const TopDate = styled.div`
     display: flex;
     gap: 20px;
