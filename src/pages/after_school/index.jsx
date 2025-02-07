@@ -126,8 +126,10 @@ export default function After_school() {
                                         <S.TableData $length={46}>{cls.grade}</S.TableData>
                                         <S.TableData $length={47}>{cls.weekday}</S.TableData>
                                         <S.TableData $length={87}>{cls.period}</S.TableData>
-                                        <S.TableData $length={190}>{cls.name}</S.TableData>
-                                        <S.TableData $length={165}>{cls.placeName}</S.TableData>
+                                        <S.TableName>
+                                            <S.TableData $length={190}>{cls.name}</S.TableData>
+                                            <S.TableData $length={165}>{cls.placeName}</S.TableData>
+                                        </S.TableName>
                                         <S.OptionButton src={OptionButton} onClick={() => {
                                             setOptions(options === i ? null : i);
                                             setSelectedClass(cls);
@@ -227,7 +229,7 @@ export default function After_school() {
             {isModal2 && (
                 <S.ClassPrepModal onClick={() => closeModalHandler(setIsModal2)}>
                     <S.PrepModal onClick={(e) => e.stopPropagation()}>
-                        <ClassPrep closeModal={() => { setIsModal2(false) }} selectedClass={selectedClass}/>
+                        <ClassPrep closeModal={() => { setIsModal2(false) }} selectedClass={selectedClass} />
                     </S.PrepModal>
                 </S.ClassPrepModal>
             )}
