@@ -1,10 +1,10 @@
 import * as S from './style.jsx';
 import Square from '../../button/square/index.jsx';
-import PrepDate from '../../prepDate/index.jsx';
 import { useEffect, useState } from 'react';
 import Dropdown from '../../dropdown/nosearch/index.jsx';
 import { useClassPrep } from '../../../hooks/useAfterSchool.js';
 import { useGetSupplementList } from '../../../hooks/useAfterSchool.js';
+import DateInput from '../../dateInput/index.jsx';
 
 
 
@@ -80,7 +80,7 @@ export default function ClassPrep({ closeModal, selectedClass }) {
                 <S.ChangeClass>바꾸고싶은 방과후</S.ChangeClass>
             </S.ClassTop>
             <S.DateMain>
-                <PrepDate onClick={handleDateChange}/>
+                <DateInput onChange={(d) => handleDateChange(d)} />
             </S.DateMain>
 
             <S.Place>
