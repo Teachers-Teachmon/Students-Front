@@ -27,7 +27,13 @@ export default function Edit() {
     const [selectedGrade, setSelectedGrade] = useState(1);
     const [options, setOptions] = useState({});
     const [isBranchOpen, setIsBranchOpen] = useState(false);
-    const [selectedRows, setSelectedRows] = useState({});
+    const [selectedRows, setSelectedRows] = useState({
+        1: { students: [] },
+        2: { students: [] },
+        3: { students: [] },
+        4: { students: [] },
+    });
+    
     const [spreadsheetId, setSpreadsheetId] = useState('');
     const [spreadsheetUrl, setSpreadsheetUrl] = useState('');
     const debounceStudent = useDebounce(search, 300);
