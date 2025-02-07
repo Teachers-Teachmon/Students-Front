@@ -142,13 +142,13 @@ export default function Edit() {
             console.log(selectedRows[classKey]["weekday"])
             return {
                 branch: Number(branch),
-                weekday: selectedRows[classKey]["weekday"],
-                grade: selectedRows[classKey]["grade"],
-                period: selectedRows[classKey]["period"] || "",
-                teacherName: selectedRows[classKey]["teacherName"] || "",
-                placeName: selectedRows[classKey]["placeName"] || "",
-                name: selectedRows[classKey]["name"] || "",
-                students: selectedRows[classKey]["students"]|| [],
+                weekday: grades[classKey]["weekday"],
+                grade: grades[classKey]["grade"],
+                period: grades[classKey]["period"] || "",
+                teacherName: grades[classKey]["teacherName"] || "",
+                placeName: grades[classKey]["placeName"] || "",
+                name: grades[classKey]["name"] || "",
+                students: grades[classKey]["students"]|| [],
             }
         })
         // const formattedData = Object.keys(selectStudent).map((classKey) => {
