@@ -5,7 +5,7 @@ import Dropdown from '../../dropdown/nosearch/index.jsx';
 import { useClassPrep } from '../../../hooks/useAfterSchool.js';
 import { useGetSupplementList } from '../../../hooks/useAfterSchool.js';
 import PrepDate from '../../prepDate/index.jsx';
-
+import Confirm from '../../button/confirm/index.jsx';
 
 
 export default function ClassPrep({ closeModal, selectedClass }) {
