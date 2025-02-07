@@ -20,7 +20,7 @@ export default function ClassPrep({ closeModal, selectedClass }) {
         if (period === '10~11교시') return 10;
         return null;
     };
-    
+
     const selectedPeriodNumber = getPeriodNumber(selectedPeriod);
 
 
@@ -35,15 +35,9 @@ export default function ClassPrep({ closeModal, selectedClass }) {
 
     useEffect(() => {
         if (selectedDate && selectedPeriodNumber !== null) {
-            console.log("📢 요청 보냄!", { selectedDate, selectedPeriodNumber });
             refetch();
         }
     }, [selectedDate, selectedPeriodNumber, refetch]);
-
-    useEffect(() => {
-        console.log("📢 selectedPeriod:", selectedPeriod);
-        console.log("📢 selectedPeriodNumber:", selectedPeriodNumber);
-    });
 
 
     useEffect(() => {
@@ -97,9 +91,11 @@ export default function ClassPrep({ closeModal, selectedClass }) {
 
                 <Dropdown
                     name={selectedAfterSchool ? selectedAfterSchool.name : '방과후'}
-                    item={afterSchoolList}
+                    item={afterSchoolList.map(item => item.name)}
                     change={(currentItem) => {
-                        setSelectedAfterSchool(currentItem);
+                        // currentItem은 이제 문자열이므로 이를 다시 객체로 변환할 필요가 있을 수 있습니다.
+                        const selected = afterSchoolList.find(item => item.name === currentItem);
+                        setSelectedAfterSchool(selected);
                         setIsOpen([false, false]);
                     }}
                     click={() => setIsOpen([false, !isOpen[1]])}
