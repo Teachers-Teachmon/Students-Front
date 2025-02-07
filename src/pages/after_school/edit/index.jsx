@@ -246,7 +246,7 @@ export default function Edit() {
     const addRow = (grade) => {
         setGrades(prev => ({
             ...prev,
-            [grade]: [...prev[grade], { weekday: '', period: '', teacherName: '', placeName: '', name: '', students: [] }],
+            [grade]: [...prev[grade], { weekDay: '', period: '', teacherName: '', placeName: '', name: '', students: [] }],
         }));
     };
 
