@@ -134,8 +134,8 @@ export default function Manage(){
                     </S.MainNav>
                     <S.Section>
                         {/*!period ? <S.NoData>지금은 자습시간이 아닙니다</S.NoData> :*/}
+                        {/*weekday ? <S.NoData>오늘은 방과후가 없습니다.</S.NoData> :*/}
                         {
-                            weekday ? <S.NoData>오늘은 방과후가 없습니다.</S.NoData> :
                                 !isLoading && student &&
                                     <>
                                         <StudentGraph data={student['1반']} grade={gradeIndex()[0]} classNum = {1}/>
