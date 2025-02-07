@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Dropdown from '../../dropdown/nosearch/index.jsx';
 import { useClassPrep } from '../../../hooks/useAfterSchool.js';
 import { useGetSupplementList } from '../../../hooks/useAfterSchool.js';
-import PrepDate from '../../prepDate/index.jsx';
+import DateInput from '../../dateInput/index.jsx';
 import Confirm from '../../button/confirm/index.jsx';
 
 
@@ -80,7 +80,7 @@ export default function ClassPrep({ closeModal, selectedClass }) {
                 <S.ChangeClass>바꾸고싶은 방과후</S.ChangeClass>
             </S.ClassTop>
             <S.DateMain>
-                <PrepDate onChange={handleDateChange} />
+                <DateInput onChange={handleDateChange} />
             </S.DateMain>
 
             <S.Place>
