@@ -443,7 +443,7 @@ export default function Edit() {
                                     <p>* 학생은 자세히 보기에서 수정해 주세요.</p>
                                 </S.EditMainTop>
 
-                                {(grades[grade]?.length ? grades[grade] : [{}]).map((row, index) => (
+                                {grades[grade]?.length > 0 && grades[grade].map((row, index) => (
                                     <S.EditRow key={index}>
                                         <S.RowData $length={180}>
                                             <S.Grade>
