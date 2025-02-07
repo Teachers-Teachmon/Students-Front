@@ -41,12 +41,12 @@ export default function Movement({ day , isFirst}) {
                             <S.Box2 $length={200}>{item.place}</S.Box2>
                             <S.Box2 $length={240}>{item.cause}</S.Box2>
 
-                            {name === item.teacher_name || role === "admin" ?
+                            {name === item.teacher_name || role === "ADMIN" ?
                                 <S.DeleteBox
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         if(window.confirm('정말 삭제하시겠습니까?')){
-                                            deleteMovement({teacher_id : item.teacher_id, day : patchDay(day), periodName : item.period});
+                                            deleteMovement({teacher_id : item.teacher_id, day, periodName : item.period});
                                         }
                                     }}
                                 >삭제</S.DeleteBox>  : null

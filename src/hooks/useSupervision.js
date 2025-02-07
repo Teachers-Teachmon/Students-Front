@@ -30,7 +30,7 @@ export const useSaveAutoAssignment = () => {
     return useMutation({
         mutationFn: (props) => API.saveAutoAssignment(props),
         onSuccess: () => {
-            navigate('/supervision');
+            console.log('Assignment 저장 성공');
         },
         onError: (err) => {
             console.error('Assignment 저장 실패:', err);

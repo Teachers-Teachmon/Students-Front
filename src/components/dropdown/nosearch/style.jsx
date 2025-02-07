@@ -18,7 +18,6 @@ export const DropdownContainer = styled.div`
         border-color: #aaa;
     }
     position: relative;
-    z-index: 12;
 `
 
 
@@ -30,6 +29,9 @@ export const DropdownMenu = styled.ul`
     border: 1px solid #ccc;
     border-radius: 5px;
     z-index: 11;
+    height: 150px;
+    max-height: max-content;
+    overflow-y: auto;
     &> li:first-child{
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;

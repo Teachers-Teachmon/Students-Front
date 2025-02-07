@@ -29,6 +29,9 @@ export const DropdownMenu = styled.ul`
     border: 1px solid #ccc;
     border-radius: 5px;
     z-index: 11;
+    height: 150px;
+    max-height: max-content;
+    overflow-y: auto;
 `;
 
 export const DropdownItem = styled.li`

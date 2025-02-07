@@ -32,6 +32,7 @@ export default function SupervisionCreate({ closeModal }) {
 
         autoAssignment({ start: localStart, end: localEnd });
         closeModal();
+        location.reload();
     };
 
     return (
