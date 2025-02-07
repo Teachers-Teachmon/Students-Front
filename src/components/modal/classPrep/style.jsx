@@ -29,7 +29,7 @@ export const Buttons = styled.div`
 `
 
 export const DateMain = styled.div`
-    margin-left: 10px;
+    margin-left: 5px;
 `
 
 export const Place = styled.div`
