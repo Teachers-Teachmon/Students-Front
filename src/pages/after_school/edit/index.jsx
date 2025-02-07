@@ -435,7 +435,7 @@ export default function Edit() {
                                 type="text"
                                 value={spreadsheetUrl}
                                 onChange={(e) => setSpreadsheetUrl(e.target.value)}
-                                placeholder="Google Spreadsheet 링크"
+                                placeholder="Google Spread 링크"
                             />
                             <S.FileUp>
                                 <S.FileUpBtn htmlFor="file-upload" onClick={handleUpload}>
@@ -503,6 +503,7 @@ export default function Edit() {
                                             <S.ClassData
                                                 type='text'
                                                 value={row.name || ''}
+                                                placeholder='방과후 이름을 작성해 주세요.'
                                                 onChange={e => handleInputChange(grade, index, 'name', e.target.value)}
                                             />
                                         </S.RowData>
