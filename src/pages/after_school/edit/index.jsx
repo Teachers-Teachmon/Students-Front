@@ -384,13 +384,10 @@ export default function Edit() {
     const handleDeleteRow = (grade, index) => {
         setGrades(prev => ({
             ...prev,
-            [grade]: prev[grade].length > 1
-                ? prev[grade].filter((_, idx) => idx !== index)
-                : prev[grade].map((row, idx) =>
-                    idx === index ? { period: '', teacherName: '', placeName: '', name: '', students: [] } : row
-                ),
+            [grade]: prev[grade].filter((_, idx) => idx !== index),
         }));
     };
+    
 
     const toggleBranchDropdown = () => {
         setIsBranchOpen((prev) => !prev);
