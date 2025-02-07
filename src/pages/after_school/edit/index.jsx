@@ -291,9 +291,6 @@ export default function Edit() {
             }
         }));
     };
-    
-    
-
 
     const handleSave = () => {
         setGrades(prev => ({

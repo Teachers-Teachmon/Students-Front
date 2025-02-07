@@ -93,7 +93,6 @@ export default function ClassPrep({ closeModal, selectedClass }) {
                     name={selectedAfterSchool ? selectedAfterSchool.name : '방과후'}
                     item={afterSchoolList.map(item => item.name)}
                     change={(currentItem) => {
-                        // currentItem은 이제 문자열이므로 이를 다시 객체로 변환할 필요가 있을 수 있습니다.
                         const selected = afterSchoolList.find(item => item.name === currentItem);
                         setSelectedAfterSchool(selected);
                         setIsOpen([false, false]);
