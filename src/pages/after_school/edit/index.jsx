@@ -53,7 +53,11 @@ export default function Edit() {
             // setTimeout(() => {
             //     refetchUpload();
             // }, 0);
-            uploadMutation(id);
+            uploadMutation({ 
+                spreadSheetId: id, 
+                branch: branch,
+                weekday: weekday
+            });
         } else {
             alert('유효한 Spreadsheet 링크를 입력해주세요.');
         }
