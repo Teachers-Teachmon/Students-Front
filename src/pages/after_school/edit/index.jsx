@@ -102,7 +102,6 @@ export default function Edit() {
     //                 students: item["students"] || [],
     //             }));
     //         })
-    //         .flat();
     //     console.log(formattedData)
 
     //     saveClass(formattedData);
