@@ -25,7 +25,7 @@ export default function Student({ data }) {
                                 <S.Box2 $length={510}>{item.student}</S.Box2>
                             </div>
                             <div>
-                                {item['8th_schedule'] === "방과 후" ?
+                                {item['8th_schedule'] === "방과후" ?
                                     <S.Box2 $length={110}>
                                         <S.Status color={"#ECF3FD"}>
                                             <S.Circle color={"#2E6FF2"}></S.Circle>
@@ -61,7 +61,7 @@ export default function Student({ data }) {
                                                     </S.Box2> : null
                                 }
 
-                                {item['9th_schedule'] === "방과 후" ?
+                                {item['9th_schedule'] === "방과후" ?
                                     <S.Box2 $length={110}>
                                         <S.Status color={"#ECF3FD"}>
                                             <S.Circle color={"#2E6FF2"}></S.Circle>
@@ -97,7 +97,7 @@ export default function Student({ data }) {
                                                     </S.Box2> : null
                                 }
 
-                                {item['10th_schedule'] === "방과 후" ?
+                                {item['10th_schedule'] === "방과후" ?
                                     <S.Box2 $length={110}>
                                         <S.Status color={"#ECF3FD"}>
                                             <S.Circle color={"#2E6FF2"}></S.Circle>
@@ -133,7 +133,7 @@ export default function Student({ data }) {
                                                     </S.Box2> : null
                                 }
 
-                                {item['11th_schedule'] === "방과 후" ?
+                                {item['11th_schedule'] === "방과후" ?
                                     <S.Box2 $length={110}>
                                         <S.Status color={"#ECF3FD"}>
                                             <S.Circle color={"#2E6FF2"}></S.Circle>
