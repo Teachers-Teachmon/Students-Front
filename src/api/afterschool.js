@@ -78,7 +78,7 @@ export const businessTrip = async (day, period, afterSchoolId) => {
     }
 }
 
-export const classPrep = async (originalAfterSchool, newAfterSchool) => {
+export const classPrep = async ({originalAfterSchool, newAfterSchool}) => {
     try {
         const res = await axiosInstance.patch(`${API_ENDPOINTS.AFTER_SCHOOL}/supplement`, {
             originalAfterSchool,
