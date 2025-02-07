@@ -109,7 +109,7 @@ export default function Edit() {
 
     const handleComplete = () => {
         const formattedData = Object.keys(grades)
-            .flatMap((classKey) => {
+            .map((classKey) => {
                 return grades[classKey].map((item) => ({
                     branch: Number(branch),
                     grade: parseInt(classKey),
@@ -194,10 +194,13 @@ export default function Edit() {
     const addRow = (grade) => {
         setGrades(prev => ({
             ...prev,
-            [grade]: [...prev[grade], { weekDay: '', period: '', teacherName: '', placeName: '', name: '', students: [] }],
+            [grade]: [...prev[grade], {  period: '',weekDay: weekday, teacherName: '', placeName: '', name: '', students: [] }],
         }));
     };
 
+    useEffect(() => {
+        console.log(grades)
+    }, [grades]);
 
     useEffect(() => {
         setIsOpen({
