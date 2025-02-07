@@ -43,11 +43,39 @@
   ],
   "student": [
     {
-      "student": "1401 dongwook",
-      "8th_schedule": null,
-      "9th_schedule": null,
-      "10th_schedule": "이석",
-      "11th_schedule": "이석"
+      "student": "1401 김동욱",
+      "8th_schedule": "방과후",
+      "9th_schedule": "방과후",
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1416 허온",
+      "8th_schedule": "방과후",
+      "9th_schedule": "방과후",
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1410 윤도훈",
+      "8th_schedule": "방과후",
+      "9th_schedule": "방과후",
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1310 오주현",
+      "8th_schedule": "방과후",
+      "9th_schedule": "방과후",
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1314 조아라",
+      "8th_schedule": "방과후",
+      "9th_schedule": "방과후",
+      "10th_schedule": null,
+      "11th_schedule": null
     }
   ],
   "location": {
