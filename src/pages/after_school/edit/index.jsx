@@ -94,7 +94,6 @@ export default function Edit() {
                 grades[classKey].map((item) => {
                     return {
                         branch: Number(branch),
-                        weekDay: item["weekday"] || item['weekDay'],
                         grade: parseInt(classKey),
                         period: item["period"] || "",
                         teacherName: item["teacherName"] || "",
