@@ -109,7 +109,7 @@ export default function ClassPrep({ closeModal, selectedClass }) {
 
             <S.Buttons>
                 <Square name="취소" color="#999999" background="white" border="#999999" On={closeModal} />
-                <Square name="완료" color="blue" image="" On={handleCreate} />
+                <Confirm text="완료" color="blue" image="check" onClick={handleCreate} />
             </S.Buttons>
         </S.Wrapper>
     );
