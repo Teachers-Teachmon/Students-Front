@@ -84,6 +84,25 @@ export default function Edit() {
         setSelectedGrade(grade);
     };
 
+    const handleComplete = () => {
+        const formattedData = Object.keys(grades)
+            .map((classKey) => {
+                return grades[classKey].map((item) => ({
+                    branch: Number(branch),
+                    weekday: item["weekday"],
+                    grade: classKey,
+                    period: item["period"] || "",
+                    teacherName: item["teacherName"] || "",
+                    placeName: item["placeName"] || "",
+                    name: item["name"] || "",
+                    students: item["students"] || [],
+                }));
+            })
+            .flat();
+        console.log(formattedData)
+
+        saveClass(formattedData);
+    };
 
 
     const [selectStudent, setSelectStudent] = useState({
@@ -136,41 +155,41 @@ export default function Edit() {
 
     const { mutate: saveClass } = useSaveClass();
 
-    const handleComplete = () => {
-        console.log(selectedRows);
-        const formattedData = Object.keys(selectedRows).map((classKey) => {
-            console.log(selectedRows[classKey]["weekday"])
-            return {
-                branch: Number(branch),
-                weekday: grades[classKey]["weekday"],
-                grade: grades[classKey]["grade"],
-                period: grades[classKey]["period"] || "",
-                teacherName: grades[classKey]["teacherName"] || "",
-                placeName: grades[classKey]["placeName"] || "",
-                name: grades[classKey]["name"] || "",
-                students: grades[classKey]["students"]|| [],
-            }
-        })
-        // const formattedData = Object.keys(selectStudent).map((classKey) => {
-        //     const studentsInClass = selectStudent[classKey].map((student) => ({
-        //         number: student.number,
-        //         name: student.name,
-        //     }));
-        //
-        //     return {
-        //         branch: Number(branch),
-        //         weekday: koreanWeekDays[weekDays.indexOf(weekday)],
-        //         grade: parseInt(classKey),
-        //         period: selectedRows[parseInt(classKey)]?.period || "",
-        //         teacherName: selectedRows[parseInt(classKey)]?.teacherName || "",
-        //         placeName: selectedRows[parseInt(classKey)]?.placeName || "",
-        //         name: selectedRows[parseInt(classKey)]?.name || "",
-        //         students: studentsInClass,
-        //     };
-        // });
+    // const handleComplete = () => {
+    //     console.log(selectedRows);
+    //     const formattedData = Object.keys(selectedRows).map((classKey) => {
+    //         console.log(selectedRows[classKey]["weekday"])
+    //         return {
+    //             branch: Number(branch),
+    //             weekday: grades[classKey]["weekday"],
+    //             grade: grades[classKey]["grade"],
+    //             period: grades[classKey]["period"] || "",
+    //             teacherName: grades[classKey]["teacherName"] || "",
+    //             placeName: grades[classKey]["placeName"] || "",
+    //             name: grades[classKey]["name"] || "",
+    //             students: grades[classKey]["students"]|| [],
+    //         }
+    //     })
+    //     // const formattedData = Object.keys(selectStudent).map((classKey) => {
+    //     //     const studentsInClass = selectStudent[classKey].map((student) => ({
+    //     //         number: student.number,
+    //     //         name: student.name,
+    //     //     }));
+    //     //
+    //     //     return {
+    //     //         branch: Number(branch),
+    //     //         weekday: koreanWeekDays[weekDays.indexOf(weekday)],
+    //     //         grade: parseInt(classKey),
+    //     //         period: selectedRows[parseInt(classKey)]?.period || "",
+    //     //         teacherName: selectedRows[parseInt(classKey)]?.teacherName || "",
+    //     //         placeName: selectedRows[parseInt(classKey)]?.placeName || "",
+    //     //         name: selectedRows[parseInt(classKey)]?.name || "",
+    //     //         students: studentsInClass,
+    //     //     };
+    //     // });
 
-        saveClass(formattedData);
-    };
+    //     saveClass(formattedData);
+    // };
 
     
 
