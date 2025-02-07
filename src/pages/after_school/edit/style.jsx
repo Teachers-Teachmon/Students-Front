@@ -56,6 +56,14 @@ export const FileBtn = styled.div`
     gap: 15px;
 `
 
+export const UpImg = styled.img`
+    cursor: pointer;
+`
+
+export const DownImg = styled.img`
+    cursor: pointer;
+`
+
 export const FileDown = styled.button`
     display: flex;
     gap: 5px;
@@ -88,6 +96,7 @@ export const FileUpBtn = styled.label`
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 `
 
 export const ReComBtn = styled.div`

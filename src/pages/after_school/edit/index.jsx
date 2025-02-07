@@ -306,7 +306,7 @@ export default function Edit() {
 
                     <S.EditTopRight>
                         <S.FileBtn>
-                            <S.FileDown onClick={handleFlush}><img src={Download} />동기화</S.FileDown>
+                            <S.FileDown onClick={handleFlush}><S.DownImg src={Download} />동기화</S.FileDown>
                             <S.Link
                                 type="text"
                                 value={spreadsheetUrl}
@@ -315,7 +315,7 @@ export default function Edit() {
                             />
                             <S.FileUp onClick={handleUpload}>
                                 <S.FileUpBtn htmlFor="file-upload">
-                                    <img src={Upload} alt="업로드 아이콘" />
+                                    <S.UpImg src={Upload} alt="업로드 아이콘" />
                                     업로드
                                 </S.FileUpBtn>
                             </S.FileUp>
