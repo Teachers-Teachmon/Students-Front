@@ -80,7 +80,7 @@ export default function ClassPrep({ closeModal, selectedClass }) {
                 <S.ChangeClass>바꾸고싶은 방과후</S.ChangeClass>
             </S.ClassTop>
             <S.DateMain>
-                <PrepDate onChange={(d) => handleDateChange(d)} />
+                <PrepDate onChange={handleDateChange} />
             </S.DateMain>
 
             <S.Place>
