@@ -16,7 +16,12 @@ export default function ClassPrep({ closeModal, selectedClass }) {
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedAfterSchool, setSelectedAfterSchool] = useState(null);
 
-    const getPeriodNumber = (period) => (period === '8~9교시' ? 8 : period === '10~11교시' ? 10 : null);
+    const getPeriodNumber = (period) => {
+        if (period === '8~9교시') return 8;
+        if (period === '10~11교시') return 10;
+        return null;
+    };
+    
     const selectedPeriodNumber = getPeriodNumber(selectedPeriod);
 
 
@@ -35,6 +40,11 @@ export default function ClassPrep({ closeModal, selectedClass }) {
             refetch();
         }
     }, [selectedDate, selectedPeriodNumber, refetch]);
+
+    useEffect(() => {
+        console.log("📢 selectedPeriod:", selectedPeriod);
+        console.log("📢 selectedPeriodNumber:", selectedPeriodNumber);
+    });
 
 
     useEffect(() => {
@@ -100,7 +110,7 @@ export default function ClassPrep({ closeModal, selectedClass }) {
 
             <S.Buttons>
                 <Square name="취소" color="#999999" background="white" border="#999999" On={closeModal} />
-                <Confirm text="완료" color="blue" image="" onClick={handleCreate} />
+                <Square name="완료" color="blue" image="" On={handleCreate} />
             </S.Buttons>
         </S.Wrapper>
     );
