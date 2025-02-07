@@ -104,23 +104,8 @@ export default function Edit() {
                 })
             )
             .flat(); // 중첩된 배열을 평탄화
-        let weekDay
-        switch (weekday) {
-            case 'MON':
-                weekDay = '월';
-                break;
-            case 'TUE':
-                weekDay = '화';
-                break;
-            case 'WED':
-                weekDay = '수';
-                break;
-            case 'THU':
-                weekDay= '목';
-                break;
-        }
         const value = {
-            "weekDay": weekDay,
+            "weekDay": weekday,
             "list": formattedData
         }
         saveClass(value);
