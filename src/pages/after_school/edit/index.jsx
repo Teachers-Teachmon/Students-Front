@@ -634,7 +634,7 @@ export default function Edit() {
                                 </S.InputBox>
 
                                 <S.StudentBox>
-                                    {selectedRows[selectedGrade].students.some(student => String(student.number).slice(1, 2) === '1') &&
+                                    {selectedRows[selectedGrade] && selectedRows[selectedGrade].students.some(student => String(student.number).slice(1, 2) === '1') &&
                                         <S.Class>
                                             <p>1반</p>
                                             <S.ClassMain>
@@ -657,7 +657,7 @@ export default function Edit() {
                                             </S.ClassMain>
                                         </S.Class>
                                     }
-                                    {selectedRows[selectedGrade].students.some(student => String(student.number).slice(1, 2) === '2') &&
+                                    {selectedRows[selectedGrade] && selectedRows[selectedGrade].students.some(student => String(student.number).slice(1, 2) === '2') &&
                                         <S.Class>
                                             <p>2반</p>
                                             <S.ClassMain>
@@ -680,7 +680,7 @@ export default function Edit() {
                                             </S.ClassMain>
                                         </S.Class>
                                     }
-                                    {selectedRows[selectedGrade].students.some(student => String(student.number).slice(1, 2) === '3') &&
+                                    {selectedRows[selectedGrade] && selectedRows[selectedGrade].students.some(student => String(student.number).slice(1, 2) === '3') &&
                                         <S.Class>
                                             <p>3반</p>
                                             <S.ClassMain>
@@ -703,7 +703,7 @@ export default function Edit() {
                                             </S.ClassMain>
                                         </S.Class>
                                     }
-                                    {selectedRows[selectedGrade].students.some(student => String(student.number).slice(1, 2) === '4') &&
+                                    {selectedRows[selectedGrade] && selectedRows[selectedGrade].students.some(student => String(student.number).slice(1, 2) === '4') &&
                                         <S.Class>
                                             <p>4반</p>
                                             <S.ClassMain>
