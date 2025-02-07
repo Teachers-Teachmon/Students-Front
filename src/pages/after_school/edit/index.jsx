@@ -556,6 +556,7 @@ export default function Edit() {
                                     type='text'
                                     value={selectedRows[selectedGrade].name}
                                     onChange={(e) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'name', e.target.value)}
+                                    placeholder={'방과후를 입력해 주세요.'}
                                 />
                                 <S.DropdownFL>
                                     <DropdownS
@@ -573,7 +574,7 @@ export default function Edit() {
                                         type={"text"}
                                         value={search}
                                         onChange={(e) => setSearch(e.target.value)}
-                                        placeholder={"학생을 입력해주세요"}
+                                        placeholder={"학생을 입력해주세요."}
                                     />
                                     <S.StudentList>
                                         {/*    .filter((currentItem) => { // 학생이 이미 반 리스트 안에 있는지 확인함*/}
