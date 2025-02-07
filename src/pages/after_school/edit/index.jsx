@@ -27,12 +27,7 @@ export default function Edit() {
     const [selectedGrade, setSelectedGrade] = useState(1);
     const [options, setOptions] = useState({});
     const [isBranchOpen, setIsBranchOpen] = useState(false);
-    const [selectedRows, setSelectedRows] = useState({
-        1: { students: [] },
-        2: { students: [] },
-        3: { students: [] },
-        4: { students: [] },
-    });
+    const [selectedRows, setSelectedRows] = useState({});
     
     const [spreadsheetId, setSpreadsheetId] = useState('');
     const [spreadsheetUrl, setSpreadsheetUrl] = useState('');
@@ -352,13 +347,6 @@ export default function Edit() {
         setIsBranchOpen((prev) => !prev);
     };
 
-    const toggleDropdown = (key) => {
-        setDropdownOpen(prev => ({
-            ...prev,
-            [key]: !prev[key]
-        }));
-    };
-
     const handleBranchChange = (selectedBranch) => {
         setBranch(selectedBranch);
     };
@@ -597,7 +585,7 @@ export default function Edit() {
                                 <S.StudentBox>
                                     {selectedRows[selectedGrade].students.some(student => String(student.number).slice(1,2) === '1') &&
                                         <S.Class>
-                                            <p>4반</p>
+                                            <p>1반</p>
                                             <S.ClassMain>
                                                 {selectedRows[selectedGrade].students.map((item, studentIdx) => {
                                                     if(String(item.number).slice(1,2) === '1')
@@ -620,7 +608,7 @@ export default function Edit() {
                                     }
                                     {selectedRows[selectedGrade].students.some(student => String(student.number).slice(1,2) === '2') &&
                                         <S.Class>
-                                            <p>4반</p>
+                                            <p>2반</p>
                                             <S.ClassMain>
                                                 {selectedRows[selectedGrade].students.map((item, studentIdx) => {
                                                     if(String(item.number).slice(1,2) === '2')
@@ -643,7 +631,7 @@ export default function Edit() {
                                     }
                                     {selectedRows[selectedGrade].students.some(student => String(student.number).slice(1,2) === '3') &&
                                         <S.Class>
-                                            <p>4반</p>
+                                            <p>3반</p>
                                             <S.ClassMain>
                                                 {selectedRows[selectedGrade].students.map((item, studentIdx) => {
                                                     if(String(item.number).slice(1,2) === '3')
