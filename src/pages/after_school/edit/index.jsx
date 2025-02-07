@@ -88,44 +88,56 @@ export default function Edit() {
         setSelectedGrade(grade);
     };
 
+    // const handleComplete = () => {
+    //     const formattedData = Object.keys(grades)
+    //         .map((classKey) => {
+    //             return grades[classKey].map((item) => ({
+    //                 branch: Number(branch),
+    //                 weekDay: item["weekday"],
+    //                 grade: parseInt(classKey),
+    //                 period: item["period"] || "",
+    //                 teacherName: item["teacherName"] || "",
+    //                 placeName: item["placeName"] || "",
+    //                 name: item["name"] || "",
+    //                 students: item["students"] || [],
+    //             }));
+    //         })
+    //     console.log(formattedData)
+
+    //     saveClass(formattedData);
+    // };
+
     const handleComplete = () => {
         const formattedData = Object.keys(grades)
-            .map((classKey) =>
-                grades[classKey].map((item) => {
-                    if (item['weekDay']) {
-                        switch (item['weekDay']) {
-                            case 'MON':
-                                item['weekday'] = '월';
-                                break;
-                            case 'TUE':
-                                item['weekday'] = '화';
-                                break;
-                            case 'WED':
-                                item['weekday'] = '수';
-                                break;
-                            case 'THU':
-                                item['weekday'] = '목';
-                                break;
-                        }
-                    }
-                    return {
-                        branch: Number(branch),
-                        weekDay: item["weekday"] || item['weekDay'],
-                        grade: parseInt(classKey),
-                        period: item["period"] || "",
-                        teacherName: item["teacherName"] || "",
-                        placeName: item["placeName"] || "",
-                        name: item["name"] || "",
-                        students: item["students"] || [],
-                    };
-                })
-            )
-            .flat(); // 중첩된 배열을 평탄화
+            .map((classKey) => {
+                return grades[classKey].map((item) => ({
+                    branch: Number(branch),
+                    grade: parseInt(classKey),
+                    period: item["period"] || "",
+                    teacherName: item["teacherName"] || "",
+                    placeName: item["placeName"] || "",
+                    name: item["name"] || "",
+                    students: item["students"] || [],
+                    weekDay: item["weekDay"] || weekday,
+                }));
+            });
 
-        console.log(formattedData);
-        saveClass(formattedData);
+        const groupedByWeekday = formattedData.reduce((acc, cur) => {
+            const { weekDay, ...rest } = cur;
+            if (!acc[weekDay]) acc[weekDay] = [];
+            acc[weekDay].push(rest);
+            return acc;
+        }, {});
+    
+        const result = Object.entries(groupedByWeekday).map(([weekDay, classes]) => ({
+            weekDay,
+            classes,
+        }));
+    
+        console.log(result);
+        saveClass(result);
     };
-
+    
 
     const [selectStudent, setSelectStudent] = useState({
         class1: [],
