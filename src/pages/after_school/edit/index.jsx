@@ -90,21 +90,41 @@ export default function Edit() {
 
     const handleComplete = () => {
         const formattedData = Object.keys(grades)
-            .map((classKey) => {
-                return grades[classKey].map((item) => ({
-                    branch: Number(branch),
-                    weekDay: item["weekday"],
-                    grade: parseInt(classKey),
-                    period: item["period"] || "",
-                    teacherName: item["teacherName"] || "",
-                    placeName: item["placeName"] || "",
-                    name: item["name"] || "",
-                    students: item["students"] || [],
-                }));
-            })
-        console.log(formattedData)
-
-        saveClass(formattedData);
+            .map((classKey) =>
+                grades[classKey].map((item) => {
+                    return {
+                        branch: Number(branch),
+                        weekDay: item["weekday"] || item['weekDay'],
+                        grade: parseInt(classKey),
+                        period: item["period"] || "",
+                        teacherName: item["teacherName"] || "",
+                        placeName: item["placeName"] || "",
+                        name: item["name"] || "",
+                        students: item["students"] || [],
+                    };
+                })
+            )
+            .flat(); // 중첩된 배열을 평탄화
+        let weekDay
+        switch (weekday) {
+            case 'MON':
+                weekDay = '월';
+                break;
+            case 'TUE':
+                weekDay = '화';
+                break;
+            case 'WED':
+                weekDay = '수';
+                break;
+            case 'THU':
+                weekDay= '목';
+                break;
+        }
+        const value = {
+            "weekDay": weekDay,
+            "list": formattedData
+        }
+        saveClass(value);
     };
     
 
