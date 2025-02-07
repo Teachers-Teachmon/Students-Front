@@ -1,5 +1,4 @@
 import * as S from './style.jsx';
-import Confirm from '../../button/confirm/index.jsx';
 import Square from '../../button/square/index.jsx';
 import PrepDate from '../../prepDate/index.jsx';
 import { useEffect, useState } from 'react';
@@ -81,7 +80,7 @@ export default function ClassPrep({ closeModal, selectedClass }) {
                 <S.ChangeClass>바꾸고싶은 방과후</S.ChangeClass>
             </S.ClassTop>
             <S.DateMain>
-                <PrepDate onChange={handleDateChange} />
+                <PrepDate onClick={handleDateChange}/>
             </S.DateMain>
 
             <S.Place>
