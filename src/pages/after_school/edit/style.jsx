@@ -23,7 +23,7 @@ export const EditTop = styled.div`
     width: 100%;
     height: 100px;
     align-items: center;
-    gap: 60px;
+    gap: 40px;
 `
 
 export const Link = styled.input`
@@ -41,6 +41,7 @@ export const TopDate = styled.div`
 export const TopDay = styled.div`
     display: flex;
     gap: 20px;
+    cursor: pointer;
 `
 
 export const EditTopRight = styled.div`
@@ -64,6 +65,7 @@ export const FileDown = styled.button`
     font-weight: 600;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 `
 
 export const FileUp = styled.button`
@@ -77,6 +79,7 @@ export const FileUp = styled.button`
     font-weight: 600;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 `
 
 export const FileUpBtn = styled.label`
@@ -102,6 +105,7 @@ export const Complete = styled.button`
     justify-content: center;
     font-size: 15px;
     font-weight: 600;
+    cursor: pointer;
 `
 
 export const Reset = styled.button`
@@ -116,6 +120,7 @@ export const Reset = styled.button`
     justify-content: center;
     font-size: 15px;
     font-weight: 600;
+    cursor: pointer;
 `
 
 export const EditContent = styled.div`
