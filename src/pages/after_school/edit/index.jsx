@@ -155,107 +155,12 @@ export default function Edit() {
 
     const { mutate: saveClass } = useSaveClass();
 
-    // const handleComplete = () => {
-    //     console.log(selectedRows);
-    //     const formattedData = Object.keys(selectedRows).map((classKey) => {
-    //         console.log(selectedRows[classKey]["weekday"])
-    //         return {
-    //             branch: Number(branch),
-    //             weekday: grades[classKey]["weekday"],
-    //             grade: grades[classKey]["grade"],
-    //             period: grades[classKey]["period"] || "",
-    //             teacherName: grades[classKey]["teacherName"] || "",
-    //             placeName: grades[classKey]["placeName"] || "",
-    //             name: grades[classKey]["name"] || "",
-    //             students: grades[classKey]["students"]|| [],
-    //         }
-    //     })
-    //     // const formattedData = Object.keys(selectStudent).map((classKey) => {
-    //     //     const studentsInClass = selectStudent[classKey].map((student) => ({
-    //     //         number: student.number,
-    //     //         name: student.name,
-    //     //     }));
-    //     //
-    //     //     return {
-    //     //         branch: Number(branch),
-    //     //         weekday: koreanWeekDays[weekDays.indexOf(weekday)],
-    //     //         grade: parseInt(classKey),
-    //     //         period: selectedRows[parseInt(classKey)]?.period || "",
-    //     //         teacherName: selectedRows[parseInt(classKey)]?.teacherName || "",
-    //     //         placeName: selectedRows[parseInt(classKey)]?.placeName || "",
-    //     //         name: selectedRows[parseInt(classKey)]?.name || "",
-    //     //         students: studentsInClass,
-    //     //     };
-    //     // });
-
-    //     saveClass(formattedData);
-    // };
-
-
-
-
-    // const [grades, setGrades] = useState({
-    //     1: [
-    //         { period: '8~9교시', teacherName: '김철수', placeName: '프로그래밍실', name: '웹 개발' },
-    //         {
-    //             period: '10~11교시', teacherName: '박영희', placeName: '디자인실', name: '그래픽 디자인', students: [{
-    //                 "number": 1401,
-    //                 "name": "dongwook"
-    //             },
-    //             {
-    //                 "number": 1416,
-    //                 "name": "huhon"
-    //             }]
-    //         }
-    //     ],
-    //     2: [
-    //         { period: '8~9교시', teacher: '이정민', placeName: '1-3반', name: '프론트엔드 개발', students: [] },
-    //         { period: '10~11교시', teacherName: '최은지', placeName: '융합관', name: 'UX/UI 디자인', students: [] }
-    //     ],
-    //     3: [
-    //         { period: '8~9교시', teacherName: '홍길동', placeName: '객체지향 프로그래밍실', name: '데이터 분석', students: [] },
-    //         { period: '10~11교시', teacherName: '김미영', placeName: '2-1반', name: '디지털 마케팅', students: [] }
-    //     ]
-    // });
-
-    // const student = [
-    //     "1116 동동똥동욱",
-    //     "1116 허온",
-    //     "1116 윤도훈",
-    //     "1210 윤도훈",
-    //     "1211 김현준",
-    //     "1210 윤도훈",
-    //     "1201 김현준",
-    //     "1202 김현준",
-    //     "1312 김현준",
-    //     "1313 김현준",
-    //     "1414 김현준",
-    //     "1415 김현준",
-    //     "1416 김현준",
-    //     "1404 김현준",
-    //     "1405 김현준",
-    //     "1406 김현준",
-    //     "1316 김동욱",
-    //     "1316 허온",
-    //     "1316 윤도훈",
-    //     "1116 동똥똥동욱",
-    //     "1116 동동동욱",
-    //     "1116 동똥동욱"
-    // ]
-
     const addRow = (grade) => {
         setGrades(prev => ({
             ...prev,
             [grade]: [...prev[grade], { weekDay: '', period: '', teacherName: '', placeName: '', name: '', students: [] }],
         }));
     };
-
-
-    // const [isOpen, setIsOpen] = useState({
-    //     1: Array(grades[1].length).fill(false),
-    //     2: Array(grades[2].length).fill(false),
-    //     3: Array(grades[3].length).fill(false),
-    // });
 
 
     useEffect(() => {
@@ -272,16 +177,6 @@ export default function Edit() {
         3: grades[3].map(() => ({ period: false, teacherName: false, placeName: false })),
     });
 
-    // const handleDropdownClick = (grade, index, field) => {
-    //     setIsOpen(prev => ({
-    //         ...prev,
-    //         [grade]: prev[grade].map((row, idx) =>
-    //             idx === index
-    //                 ? { ...row, [field]: !row[field] }
-    //                 : { ...row, [field]: false }
-    //         ),
-    //     }));
-    // };
     const handleDropdownClick = (grade, index, field) => {
         setIsOpen((prev) => ({
             [grade]: {
@@ -323,16 +218,6 @@ export default function Edit() {
         }));
     };
 
-    // // 모달에서 데이터를 수정할 때 selectedRows 업데이트
-    // const handleModalInputChange = (field, value) => {
-    //     setSelectedRows(prev => ({
-    //         ...prev,
-    //         [selectedGrade]: {
-    //             ...prev[selectedGrade],
-    //             [field]: value,
-    //         }
-    //     }));
-    // };
 
     const closeModalHandler = (setModal) => {
         setModal(false);
