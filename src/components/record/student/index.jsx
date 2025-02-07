@@ -18,6 +18,7 @@ export default function Student({ data }) {
 
             {data&& data.length === 0 ? <S.NoData>데이터가 없습니다</S.NoData> : null}
             {data && data.map((item) => {
+                console.log(item)
                     return(
                         <S.Content key={item.id}>
                             <div>
@@ -58,7 +59,11 @@ export default function Student({ data }) {
                                                             <S.Circle color={"#6A1EC1"}></S.Circle>
                                                             <S.StatusText color={"#6A1EC1"}>이석</S.StatusText>
                                                         </S.Status>
-                                                    </S.Box2> : null
+                                                    </S.Box2> : <S.Box2 $length={110}>
+                                                        <S.Status>
+                                                            <S.StatusText>X</S.StatusText>
+                                                        </S.Status>
+                                                    </S.Box2>
                                 }
 
                                 {item['9th_schedule'] === "방과후" ?
@@ -94,7 +99,11 @@ export default function Student({ data }) {
                                                             <S.Circle color={"#6A1EC1"}></S.Circle>
                                                             <S.StatusText color={"#6A1EC1"}>이석</S.StatusText>
                                                         </S.Status>
-                                                    </S.Box2> : null
+                                                    </S.Box2> : <S.Box2 $length={110}>
+                                                        <S.Status>
+                                                            <S.StatusText>X</S.StatusText>
+                                                        </S.Status>
+                                                    </S.Box2>
                                 }
 
                                 {item['10th_schedule'] === "방과후" ?
@@ -130,7 +139,11 @@ export default function Student({ data }) {
                                                             <S.Circle color={"#6A1EC1"}></S.Circle>
                                                             <S.StatusText color={"#6A1EC1"}>이석</S.StatusText>
                                                         </S.Status>
-                                                    </S.Box2> : null
+                                                    </S.Box2> :  <S.Box2 $length={110}>
+                                                        <S.Status>
+                                                            <S.StatusText>X</S.StatusText>
+                                                        </S.Status>
+                                                    </S.Box2>
                                 }
 
                                 {item['11th_schedule'] === "방과후" ?
@@ -166,7 +179,11 @@ export default function Student({ data }) {
                                                             <S.Circle color={"#6A1EC1"}></S.Circle>
                                                             <S.StatusText color={"#6A1EC1"}>이석</S.StatusText>
                                                         </S.Status>
-                                                    </S.Box2> : null
+                                                    </S.Box2> :  <S.Box2 $length={110}>
+                                                        <S.Status>
+                                                            <S.StatusText>X</S.StatusText>
+                                                        </S.Status>
+                                                    </S.Box2>
                                 }
                             </div>
 
