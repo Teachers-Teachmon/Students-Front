@@ -111,9 +111,9 @@ const FullPageComponent = () => {
             if(res.data === "Authentication Success"){
                 window.location.href = '/main';
             }
+            setIsLoading(false);
         } catch (error) {
             console.log(error);
-        }finally {
             setIsLoading(false);
         }
     }

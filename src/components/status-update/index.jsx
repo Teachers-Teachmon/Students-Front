@@ -53,8 +53,9 @@ export const StatusBox = styled.div`
     border: 2px solid #F5F5F5;
     border-radius: 8px;
     gap: 10px;
-    top: -55px;
-    left: -40px;
+    top: 50%; /* 부모 요소의 정가운데로 이동 */
+    left: 50%; /* 부모 요소의 정가운데로 이동 */
+    transform: translate(-50%, -200%); /* 자신의 크기의 반만큼 이동 */
     color: white;
     font-size: 12px;
     font-weight: 500;
