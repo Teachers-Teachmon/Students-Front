@@ -21,7 +21,7 @@ import { useFlush } from '../../../hooks/useAfterSchool.js';
 
 export default function Edit() {
 
-    const [branch, setBranch] = useState('');
+    const [branch, setBranch] = useState('1');
     const [weekday, setWeekday] = useState('MON');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [search, setSearch] = useState("");
@@ -205,24 +205,24 @@ export default function Edit() {
     });
 
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch('');
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const response = await fetch('');
 
-                if (response.status === 404) {
-                    const errorText = await response.text();
-                    throw new Error(errorText);
-                }
-                const data = await response.json();
-            } catch (error) {
-                setErrorMessage(error.message);
-                setIsModalOpen(true);
-            }
-        };
+    //             if (response.status === 404) {
+    //                 const errorText = await response.text();
+    //                 throw new Error(errorText);
+    //             }
+    //             const data = await response.json();
+    //         } catch (error) {
+    //             setErrorMessage(error.message);
+    //             setIsModalOpen(true);
+    //         }
+    //     };
 
-        fetchData();
-    }, []);
+    //     fetchData();
+    // }, []);
 
 
 
@@ -277,10 +277,11 @@ export default function Edit() {
 
     const handleReset = () => {
         setGrades({
-            1: [{ afterSchoolId: '', teacherId: '', period: '', teacherName: '', placeName: '', name: '', students: [] }],
-            2: [{ afterSchoolId: '', teacherId: '', period: '', teacherName: '', placeName: '', name: '', students: [] }],
-            3: [{ afterSchoolId: '', teacherId: '', period: '', teacherName: '', placeName: '', name: '', students: [] }],
+            1: [],
+            2: [],
+            3: [],
         });
+        
         setSelectStudent({
             class1: [],
             class2: [],
@@ -334,7 +335,7 @@ export default function Edit() {
                         <S.TopDate $length={85}>
                             <DropdownNS
 
-                                name={branch || '분기'}
+                                name={branch}
                                 item={branches}
                                 change={handleBranchChange}
                                 isOpen={isBranchOpen}
@@ -355,13 +356,13 @@ export default function Edit() {
 
                     <S.EditTopRight>
                         <S.FileBtn>
-                            <S.FileDown onClick={handleFlush}><S.DownImg src={Download} />동기화</S.FileDown>
                             <S.Link
                                 type="text"
                                 value={spreadsheetUrl}
                                 onChange={(e) => setSpreadsheetUrl(e.target.value)}
                                 placeholder="Google Sheet 링크"
                             />
+                            <S.FileDown onClick={handleFlush}><S.DownImg src={Download} />동기화</S.FileDown>
                             <S.FileUp onClick={handleUpload}>
                                 <S.FileUpBtn htmlFor="file-upload">
                                     <S.UpImg src={Upload} alt="업로드 아이콘" />

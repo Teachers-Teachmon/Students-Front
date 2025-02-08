@@ -209,6 +209,7 @@ export const PlusBtn = styled.div`
     border-radius: 0.25rem;
     margin-left: 35.625rem;
     margin-top: 3.125rem;
+    cursor: pointer;
 
 `
 
