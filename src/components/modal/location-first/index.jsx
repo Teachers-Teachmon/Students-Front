@@ -20,11 +20,11 @@ export default function First({set, data}) {
                     <S.Th>이석</S.Th>
                     {Floor.map((item, index) => {
                         return(
-                            <>
+                            <div key={index}>
                                 <S.Th $color = {item[0]||item[1] ? "#2E6FF2" : null}>{index+1}층</S.Th>
                                 <S.Th>{item[0] ? item[0] : 'X'}</S.Th>
                                 <S.Th>{item[1] ? item[1] : 'X'}</S.Th>
-                            </>
+                            </div>
                         )
                     })}
                 </S.Table>
