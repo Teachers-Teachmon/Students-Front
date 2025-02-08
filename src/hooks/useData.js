@@ -30,7 +30,7 @@ export const useDeleteMovement = () => {
     return useMutation({
         mutationFn: (props) =>API.deleteMovement(props),
         onSuccess: (_, variables) => {
-            queryClient.refetchQueries(['getMovement', variables.day]);
+            queryClient.invalidateQueries(['getMovement', variables.day]);
         },
         onError: (err) => {
             console.error('Movement 삭제 실패:', err);
@@ -44,7 +44,7 @@ export const useDeleteLeave = () => {
     return useMutation({
         mutationFn: (props) => API.deleteLeave(props),
         onSuccess: (_, variables) => {
-            queryClient.refetchQueries(['getLeave', variables.day]);
+            queryClient.invalidateQueries(['getLeave', variables.day]);
         },
         onError: (err) => {
             console.error('Leave 삭제 실패:', err);
