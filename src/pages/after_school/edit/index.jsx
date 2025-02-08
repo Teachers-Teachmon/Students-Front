@@ -228,11 +228,14 @@ export default function Edit() {
 
     const handleDropdownClick = (grade, index, field) => {
         setIsOpen((prev) => ({
+            ...prev,
             [grade]: {
+                ...prev[grade],
                 [index]: {
-                    [field]: !prev[grade]?.[index]?.[field]
-                }
-            }
+                    ...prev[grade]?.[index],
+                    [field]: !prev[grade]?.[index]?.[field],
+                },
+            },
         }));
     };
 
@@ -323,7 +326,7 @@ export default function Edit() {
         <S.EditContainer>
             <Header />
             <S.Content>
-                {Object.values(isOpen).some(status => status) && (
+                {Object.values(isOpen).some(status => Object.values(status).some(subStatus => Object.values(subStatus).includes(true))) && (
                     <S.Black onClick={() => setIsOpen({})} />
                 )}
                 <S.EditTop>
