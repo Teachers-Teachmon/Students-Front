@@ -34,7 +34,8 @@ export const Student = styled.div`
     cursor: ${({ $color }) => $color === "#ffffff" ? "default" : "pointer"};
     transition: 0.1s;
     &:hover {
-        background-color: ${({ $color }) => darken(0.1, $color || '#ffffff')};
+        background-color: ${(props) =>
+                props.$color === "#ffffff" ? null : darken(0.1, props.$color || "#ffffff")};
     }
 `
 
