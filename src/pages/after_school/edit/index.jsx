@@ -459,7 +459,12 @@ export default function Edit() {
             </S.Content>
 
             {isModalOpen && selectedRows[selectedGrade] && (
-                <S.ModalOverlay onClick={() => closeModalHandler(setIsModalOpen)}>
+                <S.ModalOverlay
+                    onClick={() => {
+                        setIsOpen({});
+                        closeModalHandler(setIsModalOpen);
+                    }}
+                >
                     <S.ModalContent onClick={(e) => e.stopPropagation()}>
                         <S.ModalContentTop>
                             <h1>{selectedGrade}학년</h1>
