@@ -37,15 +37,19 @@ export default function StudentGraph({data, grade, classNum}){
     const studentColor = (status) => {
         switch (status) {
             case '조퇴':
+            case 'LEAVE_EARLY' :
                 return "#FFDC93"
             case "자습":
+            case "SELF_STUDY" :
                 return "#72FAAA"
             case "이탈":
+            case "EXIT" :
                 return "#FF938C"
             case "방과후" :
             case "방과 후" :
             case "AFTER_SCHOOL" :
                 return "#ffffff"
+            case "LEAVE_SEAT" :
             case "이석" :
                 return "#CCBCFF"
         }
