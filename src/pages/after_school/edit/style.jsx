@@ -122,16 +122,16 @@ export const Complete = styled.button`
 `
 
 export const Reset = styled.button`
-    width: 120px;
-    height: 40px;
+    width: 7.5rem;
+    height: 2.5rem;
     background-color: #2E6FF2;
     color: white;
     border: none;
-    padding: 8px 15px;
-    border-radius: 10px;
+    padding: 0.5rem 0.9375rem;
+    border-radius: 0.625rem;
     align-items: center;
     justify-content: center;
-    font-size: 15px;
+    font-size: 0.9375rem;
     font-weight: 600;
     cursor: pointer;
 `
@@ -144,13 +144,13 @@ export const EditContent = styled.div`
 export const EditMainTop = styled.div`
     display: flex;
     width: 100%;
-    height: 40px;
-    gap: 20px;
+    height: 2.5rem;
+    gap: 1.25rem;
     background-color: #c9dbff;
-    border-top-right-radius: 6px;
-    border-top-left-radius: 6px;
+    border-top-right-radius: 0.375rem;
+    border-top-left-radius: 0.375rem;
     align-items: center;
-    padding: 25px;
+    padding: 1.5625rem;
     color: gray;
 
     p{
@@ -165,16 +165,16 @@ export const TopData = styled.span`
 export const EditMain = styled.div`
     display:  flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 3.125rem;
     overflow-y: auto;
-    max-height: 700px;
+    max-height: 43.75rem;
     position: relative;
 `
 
 export const EditRow = styled.div`
     display:  flex;
-    border: 1px solid #cccccc;
-    padding: 20px 33px;
+    border: 0.0625rem solid #cccccc;
+    padding: 1.25rem 2.0625rem;
     align-items: center;
 `
 
@@ -187,7 +187,7 @@ export const RowData = styled.div`
 export const Grade = styled.div`
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 1.875rem;
 `
 
 export const EditMainData = styled.div`
@@ -199,35 +199,35 @@ export const EditMainData = styled.div`
 export const PlusBtn = styled.div`
     display: flex;
     justify-content: center;
-    padding: 0 0 3px 0;
-    width: 25px;
-    height: 25px;
-    font-size: 25px;
+    padding: 0 0 0.1875rem 0;
+    width: 1.5625rem;
+    height: 1.5625rem;
+    font-size: 1.5625rem;
     color: #2E6FF2;
     align-items: center;
-    border: 1px solid #2E6FF2;
-    border-radius: 4px;
-    margin-left: 570px;
-    margin-top: 50px;
+    border: 0.0625rem solid #2E6FF2;
+    border-radius: 0.25rem;
+    margin-left: 35.625rem;
+    margin-top: 3.125rem;
 
 `
 
 export const ClassData = styled.input`
-    width: 300px;
-    height: 40px;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-    padding: 15px 20px;
+    width: 18.75rem;
+    height: 2.5rem;
+    border: 0.0625rem solid #cccccc;
+    border-radius: 0.25rem;
+    padding: 0.9375rem 1.25rem;
     color: gray;
 `
 
 export const DetailBtn = styled.button`
     display: flex;
-    width: 100px;
-    height: 35px;
+    width: 6.25rem;
+    height: 2.1875rem;
     background-color: white;
-    border: 1px solid black;
-    border-radius: 4px;
+    border: 0.0625rem solid black;
+    border-radius: 0.25rem;
     font-weight: 600;
     align-items: center;
     justify-content: center;
@@ -245,27 +245,27 @@ export const ModalOverlay = styled.div`
 `
 
 export const ModalContent = styled.div`
-    width: 700px;
+    width: 43.75rem;
     height: max-content;
-    border-radius: 10px;
-    padding: 50px;
+    border-radius: 0.625rem;
+    padding: 3.125rem;
     background-color: white;
 `
 
 export const ModalContentTop = styled.div`
     display: flex;
-    gap: 400px;
+    gap: 25rem;
 `
 
 export const InputBox = styled.div`
-    border: 1px solid #ccc;
-    width: 250px;
-    border-radius: 8px;
-    padding: 10px 15px;
+    border: 0.0625rem solid #ccc;
+    width: 15.625rem;
+    border-radius: 0.5rem;
+    padding: 0.625rem 0.9375rem;
     display: flex;
     justify-content: flex-start;
-    gap: 10px;
-    font-size: 14px;
+    gap: 0.625rem;
+    font-size: 0.875rem;
     position: relative;
 `
 export const Input = styled.input`
@@ -276,33 +276,33 @@ export const Input = styled.input`
 
 export const StudentList = styled.div`
     position: absolute;
-    top: 50px;
+    top: 3.125rem;
     left: 0;
     width: 100%;
-    max-height: 100px;
+    max-height: 6.25rem;
     z-index: 3;
     overflow-y: scroll;
     background: white;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    border: 0.0625rem solid #ccc;
+    border-radius: 0.5rem;
     scrollbar-width: thin; /* Firefox */
     scrollbar-color: #B0BEC5 #F5F5F5; /* 스크롤바 색상 (Foreground/Background) */
 
     /* Chrome, Safari, Edge */
 
     &::-webkit-scrollbar {
-        width: 8px; /* 스크롤바 너비 */
+        width: 0.5rem; /* 스크롤바 너비 */
     }
 
     &::-webkit-scrollbar-track {
         background: #F5F5F5; /* 트랙 색상 */
-        border-radius: 8px; /* 트랙 둥글게 */
+        border-radius: 0.5rem; /* 트랙 둥글게 */
     }
 
     &::-webkit-scrollbar-thumb {
         background: #B0BEC5; /* 스크롤바 색상 */
-        border-radius: 8px; /* 스크롤바 둥글게 */
-        border: 2px solid #F5F5F5; /* 스크롤바와 트랙 간 간격 */
+        border-radius: 0.5rem; /* 스크롤바 둥글게 */
+        border: 0.125rem solid #F5F5F5; /* 스크롤바와 트랙 간 간격 */
     }
 
     &::-webkit-scrollbar-thumb:hover {
@@ -313,7 +313,7 @@ export const StudentList = styled.div`
 export const StudentItem = styled.div`
     width: 100%;
     cursor: pointer;
-    padding: 10px 20px;
+    padding: 0.625rem;
     &:hover {
         background: #F2F3F6;
     }
@@ -321,44 +321,44 @@ export const StudentItem = styled.div`
 
 export const DropdownFL = styled.div`
     display: flex;
-    gap: 10px;
+    gap: 0.625rem;
 `
 
 export const ModalLeft = styled.div`
-    width: 200px;
-    height: 158px;
+    width: 12.5rem;
+    height: 9.875rem;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1.25rem;
 `
 
 export const ModalRight = styled.div`
-    width: 400px;
+    width: 25rem;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1.25rem;
 `
 
 export const ModalMain = styled.div`
     display: flex;
-    margin-top: 50px;
-    gap: 10px;
+    margin-top: 3.125rem;
+    gap: 0.625rem;
 `
 
 export const StudentBox = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 30px;
-    margin-left: -200px;
+    gap: 1.875rem;
+    margin-left: -12.5rem;
     overflow-y: auto;
-    max-height: 270px;
+    max-height: 16.875rem;
 `
 export const Student = styled.div`
-    border: 2px solid #2E6FF2;
+    border: 0.125rem solid #2E6FF2;
     color: #2E6FF2;
     background: white;
-    padding: 7px 12px;
-    border-radius: 30px;
+    padding: 0.4375rem 0.75rem;
+    border-radius: 1.875rem;
     font-weight: 550;
     cursor: pointer;
     height: max-content;
@@ -366,22 +366,22 @@ export const Student = styled.div`
 
 export const Class = styled.div`
     display: flex;
-    gap: 10px;
+    gap: 0.625rem;
     flex-direction: column;
 
     p{
-        font-size: 25px;
+        font-size: 1.5625rem;
     }
 `
 
 export const ClassMain = styled.div`
     display: flex;
-    gap: 10px;
+    gap: 0.625rem;
     flex-wrap: wrap;
 `
 
 export const OptionButton = styled.img`
-    width: 15px;
+    width: 0.9375rem;
     cursor: pointer;
     
 `
@@ -391,17 +391,17 @@ export const Options = styled.div`
     z-index: 100;
     display: flex;
     flex-direction: column;
-    border: 1px solid #cccccc;
-    border-radius: 8px;
+    border: 0.0625rem solid #cccccc;
+    border-radius: 0.5rem;
     overflow: hidden;
     background-color: #fff;
-    margin-top: 105px;
-    margin-left: 998px;
+    margin-top: 6.5625rem;
+    margin-left: 62.375rem;
     
     button {
-        border: 1px;
-        padding: 10px 10px;
-        width: 100px;
+        border: 0.0625rem;
+        padding: 0.625rem 0.0625rem;
+        width: 6.25rem;
         background-color: #fff;
         cursor: pointer;
         border-right: 1px solid #cccccc;
@@ -420,8 +420,8 @@ export const Options = styled.div`
 
 export const Btn = styled.div`
     display: flex;
-    margin-left: 350px;
-    gap: 20px;
+    margin-left: 21.875rem;
+    gap: 1.25rem;
 `
 
 export const Black = styled.div`
