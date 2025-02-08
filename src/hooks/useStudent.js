@@ -71,7 +71,7 @@ export const usePatchStudent = () => {
     return useMutation({
         mutationFn: (props) => API.patchStudent(props),
         onSuccess: (_, variables) => {
-            queryClient.refetchQueries(['nowStudent', variables.grade]);
+            queryClient.invalidateQueries({ queryKey: ['nowStudent', variables.grade] });
         },
         onError: (err) => {
             console.error('Student 수정 실패:', err);
