@@ -4,6 +4,8 @@ export default function StatusUpdate({changeStatus, name, nowStatus}) {
         switch(nowStatus){
             case '조퇴' :
             case '이탈' :
+            case 'EXIT' :
+            case 'LEAVE_EARLY' :
                 return (
                     <>
                         <Status color={"#ECFDF3"} onClick={()=>changeStatus(name, "자습")}>
@@ -18,6 +20,8 @@ export default function StatusUpdate({changeStatus, name, nowStatus}) {
                 )
             case '자습' :
             case '이석' :
+            case "SELF_STUDY" :
+            case "LEAVE_SEAT" :
                 return (
                     <>
                         <Status color={"#FFF6E4"} onClick={()=>changeStatus(name, "조퇴")}>
