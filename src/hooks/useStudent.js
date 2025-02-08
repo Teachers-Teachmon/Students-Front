@@ -75,7 +75,6 @@ export const usePatchStudent = () => {
                 queryClient.setQueryData(['nowStudent', variables.grade], (oldData) => {
                     if (!oldData) return {};
                     const classKey = `${variables.class}반`;
-                    console.log(variables.status)
                     return {
                         ...oldData,
                         [classKey]: oldData[classKey].map(student =>
@@ -90,16 +89,19 @@ export const usePatchStudent = () => {
                     if (!oldData) return {};
                     return {
                         ...oldData,
-                        [variables.place]: oldData[variables.place]['students'].map((item)=>{
-                                if(item.id === variables.studentID){
+                        [variables.place]: {
+                            ...oldData[variables.place],
+                            students: oldData[variables.place].students.map((student) => {
+                                if (student.id === variables.studentID) {
                                     return {
-                                        ...item,
-                                        status : variables.status
-                                    }
+                                        ...student,
+                                        status: variables.status,
+                                    };
                                 }
-                            }
-                        )
-                    };
+                                return student;
+                            }),
+                        }
+                    }
                 })
             }
         },
