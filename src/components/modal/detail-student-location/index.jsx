@@ -19,6 +19,7 @@ export default function DetailStudentLocation({data, setIsModal, floor}) {
     };
 
     const {mutate : patchStudent} = usePatchStudent();
+    const locationData = setLocation();
 
     const isClick = (idx) => {
         const newIsOpen = [...isOpen];
@@ -36,24 +37,25 @@ export default function DetailStudentLocation({data, setIsModal, floor}) {
         patchStudent({studentID: idx, status: status, floor: floor, place:location.place})
     }
     return (
+        locationData &&
         <S.Black onClick={()=>setIsModal(false)}>
             <S.Content  onClick={(e) => e.stopPropagation()}>
                 <S.Title>
-                    <h1>{location.place}({setLocation().status})</h1>
+                    <h1>{location.place}({locationData.status})</h1>
                     <img src={X} style={{ cursor: 'pointer' }} alt={"엑스"} onClick={()=>setIsModal(false)}/>
                 </S.Title>
                 <S.Box>
                     <S.BlueText>담당교사</S.BlueText>
                     <S.Teacher style={{ cursor: 'default' }}>
                         <img src={People} alt={"people"} width={28}/>
-                        <S.Name>{setLocation().teacher}</S.Name>
+                        <S.Name>{locationData.teacher}</S.Name>
                     </S.Teacher>
                 </S.Box>
                 <S.Box>
-                    <S.BlueText>학생{setLocation().students.length}명</S.BlueText>
+                    <S.BlueText>학생{locationData.students.length}명</S.BlueText>
                     <S.RedText>* 이탈한 학생이 있다면 학생을 클릭하여 상태를 바꿔주세요</S.RedText>
                     <S.Students>
-                        {setLocation().students.map((item, idx)=>{
+                        {locationData.students.map((item, idx)=>{
                             return(
                                 <>
                                     <S.Teacher key={idx} onClick={()=>isClick(idx)}>
