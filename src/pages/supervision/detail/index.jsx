@@ -95,6 +95,9 @@ export default function SupervisionDetail() {
         <S.Wrapper>
             <Header />
             <S.MainWrap>
+                {Object.values(dropdownOpen).some(status => status) && (
+                    <S.Black onClick={() => setDropdownOpen({})} />
+                )}
                 <S.MainHeader>
                     <h1>자습감독 일정</h1>
                     {!isEditing ? (
