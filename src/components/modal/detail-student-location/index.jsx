@@ -58,7 +58,7 @@ export default function DetailStudentLocation({data, setIsModal}) {
                                 <>
                                     <S.Teacher key={idx} onClick={()=>isClick(idx)}>
                                         <img src={item.status === "자습" || item.status === "이석" ? People : item.status === "조퇴" ? OrangePeople : RedPeople} alt={"people"} width={28}/>
-                                        <S.Name $color={item.status === "자습" ? "black" : item.status === "조퇴" ? "#FF9000" : "#FF938C"}>{item.number}{item.name}</S.Name>
+                                        <S.Name $color={item.status === "자습" || item.status === "이석" ? "black" : item.status === "조퇴" ? "#FF9000" : "#FF938C"}>{item.number}{item.name}</S.Name>
                                         {isOpen[idx] ? <StatusUpdate changeStatus={changeStatus} name={item.id} nowStatus={item.status}/> : null}
                                     </S.Teacher>
                                     { isOpen.some((value) => value === true) ? <S.UnBox onClick={()=>setIsOpen(isOpen.map(() => false))}></S.UnBox> : null}
