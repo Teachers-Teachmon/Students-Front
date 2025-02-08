@@ -325,10 +325,10 @@ export default function Edit() {
     return (
         <S.EditContainer>
             <Header />
-            {Object.values(isOpen).some(status => Object.values(status).some(subStatus => Object.values(subStatus).includes(true))) && (
-                    <S.Black onClick={() => setIsOpen({})} />
-            )}
             <S.Content>
+                {Object.values(isOpen).some(status => Object.values(status).some(subStatus => Object.values(subStatus).includes(true))) && (
+                    <S.Black onClick={() => setIsOpen({})} />
+                )}
                 <S.EditTop>
                     <S.EditTopLeft>
                         <S.TopDate $length={85}>
@@ -459,7 +459,7 @@ export default function Edit() {
             </S.Content>
 
             {isModalOpen && selectedRows[selectedGrade] && (
-                <S.ModalOverlay onClick={() => closeModalHandler(setIsModalOpen)}>
+                <S.ModalOverlay onClick={() => setIsModalOpen(false)}>
                     <S.ModalContent onClick={(e) => e.stopPropagation()}>
                         <S.ModalContentTop>
                             <h1>{selectedGrade}학년</h1>
