@@ -40,8 +40,7 @@ export const Element = styled.div`
     left: ${(props)=>props.$left}%;
     width: ${(props)=>props.$width}%;
     height: ${(props)=>props.$height}%;
-    color: ${(props)=>props.$color ? "white" : "black"};
-    background: ${(props)=>props.$color ? "#F87067" : "#DDDDDD"};
+    background: ${(props)=>props.$background};
     cursor: ${(props)=>props.$cursor ? "pointer" : null};
     font-weight: 550;
     font-size: 10px;

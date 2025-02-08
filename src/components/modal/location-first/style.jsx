@@ -28,13 +28,19 @@ export const XIcon = styled.img`
     position: absolute;
     top: 20px;
     right: 20px;
+    cursor: pointer;
 `
 export const Table= styled.div`
     width: 80%;
     display: flex;
     flex-flow: wrap row;
+    &>div{
+        width: 100%;
+        display: flex;
+        flex-flow: wrap row;
+    }
 `
-export const Th = styled.div`
+export const Th = styled.article`
     width: 33%;
     display: flex;;
     font-size: 24px;
