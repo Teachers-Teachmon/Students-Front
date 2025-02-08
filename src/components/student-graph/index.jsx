@@ -25,7 +25,7 @@ export default function StudentGraph({data, grade, classNum}){
             const newState = prevState.map(() => false);
             return newState;
         });
-        patchStudent({studentID: name, status: status})
+        patchStudent({studentID: name, status: status, grade : grade, class : classNum})
     }
 
     // 상태에 따라 색깔변환

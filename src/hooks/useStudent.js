@@ -70,8 +70,21 @@ export const usePatchStudent = () => {
     const queryClient = useQueryClient();
     return useMutation({
         mutationFn: (props) => API.patchStudent(props),
-        onSuccess: (_, variables) => {
-            queryClient.refetchQueries(['nowStudent', variables.grade]);
+        onSuccess: (data, variables) => {
+            if(variables.class){
+                queryClient.setQueryData(['nowStudent', variables.grade], (oldData) => {
+                    if (!oldData) return {}; // oldData가 없으면 빈 객체 반환
+                    const classKey = `${variables.class}반`;
+                    return {
+                        ...oldData,
+                        [classKey]: oldData[classKey].map(student =>
+                            student.id === variables.studentID
+                                ? { ...student, status: data.status }
+                                : student
+                        )
+                    };
+                });
+            }
         },
         onError: (err) => {
             console.error('Student 수정 실패:', err);
