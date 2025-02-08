@@ -72,7 +72,7 @@ export const FileDown = styled.button`
     width: 7.5rem;
     height: 2.5rem;
     background-color: white;
-    border: 0.625rem solid black;
+    border: 0.0625rem solid black;
     border-radius: 0.25rem;
     font-weight: 600;
     align-items: center;
@@ -86,7 +86,7 @@ export const FileUp = styled.button`
     width: 7.5rem;
     height: 2.5rem;
     background-color: white;
-    border: 1px solid black;
+    border: 0.0625rem solid black;
     border-radius: 0.25rem;
     font-weight: 600;
     align-items: center;
@@ -103,7 +103,7 @@ export const FileUpBtn = styled.label`
 
 export const ReComBtn = styled.div`
     display: flex;
-    gap: 15px;
+    gap: 0.9375rem;
 `
 
 export const Complete = styled.button`
