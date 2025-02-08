@@ -22,7 +22,7 @@ import NotCertification from "./components/check/notCertification.jsx";
 import Authorize from './components/check/authorize.jsx' // 인가는 개발중에 번거로울 수 있으므로 나중에 처리하기
 import Loading from "./components/loading/index.jsx";
 import Edit from './pages/after_school/edit'
-const SupervisionDetail = lazy(()=>import("./pages/supervision/detail"))
+import SupervisionDetail from "./pages/supervision/detail";
 const AccessLimits = lazy(()=>import("./pages/accessLimits/index.jsx"))
 
 const client = new QueryClient();
@@ -42,11 +42,7 @@ createRoot(document.getElementById('root')).render(
                     <Route path="/manage/record" element={<Record />} />
                     <Route path={"/manage/location"} element={<Location />} />
                     <Route path="/supervision" element={<Supervision />} />
-                    <Route path="/supervision/detail" element={
-                        <Suspense fallback={<Loading />}>
-                            <SupervisionDetail />
-                        </Suspense>
-                    } />
+                    <Route path="/supervision/detail" element={<SupervisionDetail />} />
                     <Route path="/supervision/change" element={<SupervisionChange />} />
                     <Route path="/after-school" element={<After />} />
                     <Route path={"/limit"} element={

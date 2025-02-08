@@ -1,6 +1,6 @@
 import {useEffect} from "react";
 import {getInfo} from "../../api/auth.js";
-import {decodeJWT} from '../../zustand/auth.js';
+import useAuth, {decodeJWT} from '../../zustand/auth.js';
 import {useNavigate} from "react-router-dom";
 import Loading from "../loading/index.jsx";
 
@@ -8,6 +8,7 @@ export default function LoginLoading(){
 
     const RETRY_LIMIT = 3;
     const navigate = useNavigate()
+    const {setSetting} = useAuth();
 
     useEffect(()=>{
         function getCookie(name) {
@@ -39,6 +40,7 @@ export default function LoginLoading(){
                 if (data) {
                     localStorage.setItem('name', data.name);
                     localStorage.setItem('profile', data.profile);
+                    setSetting(access);
                     window.history.replaceState(null, "", "/main");
                     navigate("/main", { replace: true });
                     return;
