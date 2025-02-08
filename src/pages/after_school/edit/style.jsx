@@ -31,7 +31,7 @@ export const Link = styled.input`
     padding: 10px;
     justify-content: center;
     align-items: center;
-    width: 120px;
+    width: 140px;
     height: 40px;
 `
 
