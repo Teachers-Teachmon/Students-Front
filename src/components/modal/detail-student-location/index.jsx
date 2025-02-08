@@ -8,7 +8,7 @@ import StatusUpdate from "../../status-update";
 import useLocation from "../../../zustand/locationDetail.js";
 import {usePatchStudent} from "../../../hooks/useStudent.js";
 
-export default function DetailStudentLocation({data, setIsModal}) {
+export default function DetailStudentLocation({data, setIsModal, floor}) {
     const [isOpen, setIsOpen] = useState([]);
     const location = useLocation.getState();
 
@@ -33,7 +33,7 @@ export default function DetailStudentLocation({data, setIsModal}) {
     // 상태 업데이트 하는 함수, 상태업데이트하고 다시 불러오기
     const changeStatus= (idx, status) => {
         console.log(idx, status)
-        patchStudent({studentID: idx, status: status})
+        patchStudent({studentID: idx, status: status, floor: floor, place:location.place})
     }
     return (
         <S.Black onClick={()=>setIsModal(false)}>

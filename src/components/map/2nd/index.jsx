@@ -47,10 +47,11 @@ export default function Second({set, data}) {
     ];
     const setPlace = useLocation((state) => state.setPlace);
     return(
-        data && elements.map((el) => (
-            <S.Element
-                onClick={()=>{
-                    if(Object.keys(data).includes(el.name)) {
+        data && elements.map((el) => {
+            const status = data[el.name]
+            return (<S.Element
+                onClick={() => {
+                    if (status) {
                         set(true)
                         setPlace(el.name)
                     }
@@ -60,12 +61,12 @@ export default function Second({set, data}) {
                 $top={el.y}
                 $width={el.width}
                 $height={el.height}
-                $color={Object.keys(data).includes(el.name)}
-                $cursor={Object.keys(data).includes(el.name)}
+                $background={status && status.status === "이석" ? "#CCBCFF" : status && status.status === "자습" ? "#72FAAA" : "#DDDDDD" }
+                $cursor={status}
             >
                 {el.name}
-            </S.Element>
-        ))
+            </S.Element>)
+        })
     )
 }
 

@@ -63,7 +63,7 @@ export default function First({set, data}) {
                     $top={el.y}
                     $width={el.width}
                     $height={el.height}
-                    $background={status && status.status === "이석" ? "#CCBCFF" : status && status.status === "자습" ? "#72FAAA" : el.backgroundColor }
+                    $background={status && status.status === "이석" ? "#CCBCFF" : status && status.status === "자습" ? "#72FAAA" : "#DDDDDD" }
                     $cursor={status}
                 >
                     {el.name}

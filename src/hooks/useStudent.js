@@ -85,6 +85,22 @@ export const usePatchStudent = () => {
                         )
                     };
                 });
+            }else{
+                queryClient.setQueryData(['locationFloor', variables.floor], (oldData)=>{
+                    if (!oldData) return {};
+                    return {
+                        ...oldData,
+                        [variables.place]: oldData[variables.place]['students'].map((item)=>{
+                                if(item.id === variables.studentID){
+                                    return {
+                                        ...item,
+                                        status : variables.status
+                                    }
+                                }
+                            }
+                        )
+                    };
+                })
             }
         },
         onError: (err) => {
