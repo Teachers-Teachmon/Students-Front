@@ -15,16 +15,21 @@ export function decodeJWT(token) {
 
 function setting(){
     const token = localStorage.getItem('accessToken');
-    const decodedToken = token ? decodeJWT(token) : null;
-    return decodedToken;
+    return token ? decodeJWT(token) : null;
 }
 
-const useAuth = create(() => ({
+const useAuth = create((set) => ({
     name:localStorage.getItem('name'),
     profile:localStorage.getItem('profile'),
     email: setting()?.email || '',
     role:setting()?.role || '',
-    id:setting()?.id || ''
+    id:setting()?.id || '',
+    setSetting: (token)=>{
+        const access = decodeJWT(token);
+        set({email : access.email})
+        set({role : access.role})
+        set({id : access.id})
+    }
 }));
 
 export default useAuth;

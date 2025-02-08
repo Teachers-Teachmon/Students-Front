@@ -13,8 +13,8 @@ export const CircleContainer = styled.div`
     cursor: pointer;
     transition: 0.1s;
     &:hover {
-        background: #2a65dd;
-        color: white;
+        background: ${(props)=>props.$status ?"white" : "#2a65dd"};
+        color: ${(props)=>props.$status ? "#2E6FF2" : "white"};
     }
 `
 export const Name = styled.p`
