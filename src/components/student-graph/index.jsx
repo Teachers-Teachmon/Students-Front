@@ -9,7 +9,7 @@ export default function StudentGraph({data, grade, classNum}){
     ]);
     // 색깔 업데이트 해주는 창 띄워주기
     const isClick = (idx, status) => {
-        if(status === "방과후" || status === "방과 후"){
+        if(status === "방과후" || status === "방과 후" || status === "AFTER_SCHOOL"){
             return
         }
         const newIsOpen = [
