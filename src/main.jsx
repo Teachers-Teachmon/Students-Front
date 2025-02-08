@@ -21,8 +21,8 @@ import Certification from "./components/check/certification.jsx";
 import NotCertification from "./components/check/notCertification.jsx";
 import Authorize from './components/check/authorize.jsx' // 인가는 개발중에 번거로울 수 있으므로 나중에 처리하기
 import Loading from "./components/loading/index.jsx";
+import Edit from './pages/after_school/edit'
 const SupervisionDetail = lazy(()=>import("./pages/supervision/detail"))
-const Edit = lazy(()=>import('./pages/after_school/edit'))
 const AccessLimits = lazy(()=>import("./pages/accessLimits/index.jsx"))
 
 const client = new QueryClient();
@@ -55,11 +55,7 @@ createRoot(document.getElementById('root')).render(
                         </Suspense>
                     } />
                     {/*<Route element={<Authorize />}>*/}
-                        <Route path="/after-school/edit" element={
-                            <Suspense fallback={<Loading />}>
-                                <Edit />
-                            </Suspense>
-                        } />
+                        <Route path="/after-school/edit" element={<Edit />} />
                     {/*</Route>*/}
                 </Route>
             </Routes>
