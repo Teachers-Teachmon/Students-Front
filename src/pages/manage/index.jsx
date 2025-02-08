@@ -26,7 +26,7 @@ export default function Manage(){
             .map((item, idx) => (item ? idx+1 : null))
             .filter((idx) => idx !== null);
     };
-    const {data : student, isLoading} = useGetNowStudent(gradeIndex()[0]);
+    const {data : student, isLoading, isFetching} = useGetNowStudent(gradeIndex()[0]);
 
     const [weekday, setWeekday] = useState(false);
     // 렌더링시 오늘의 날짜를 계산해서 보여줌
@@ -86,7 +86,7 @@ export default function Manage(){
     changeClass();
     return(
         <S.ManageContainer>
-            {isLoading && !weekday && period && <Loading />}
+            {isLoading && isFetching && !weekday && period && <Loading />}
             <Header />
             <S.Wrap>
                 <S.Info>
