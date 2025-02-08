@@ -10,52 +10,52 @@ export const Content = styled.div`
     height: 100%;
     width: 87%;
     flex-direction: column;
-    padding: 0 50px;
+    padding: 0 3.125rem;
 `
 
 export const EditTopLeft = styled.div`
     display: flex;
-    gap: 15px;
+    gap: 0.9375rem;
 `
 
 export const EditTop = styled.div`
     display: flex;
     width: 100%;
-    height: 100px;
+    height: 6.25rem;
     align-items: center;
-    gap: 40px;
+    gap: 2.5rem;
 `
 
 export const Link = styled.input`
     display: flex;
-    padding: 10px;
+    padding: 0.625rem;
     justify-content: center;
     align-items: center;
-    width: 140px;
-    height: 40px;
+    width: 8.75rem;
+    height: 2.5rem;
 `
 
 export const TopDate = styled.div`
     display: flex;
-    gap: 20px;
-    height: 40px;
+    gap: 1.25rem;
+    height: 2.5rem;
     width: ${(props)=>props.$length}px;
 `
 
 export const TopDay = styled.div`
     display: flex;
-    gap: 20px;
+    gap: 1.5625rem;
     cursor: pointer;
 `
 
 export const EditTopRight = styled.div`
     display: flex;
-    gap: 25px;
+    gap: 1.5625rem;
 `
 
 export const FileBtn = styled.div`
     display: flex;
-    gap: 15px;
+    gap: 0.9375rem;
 `
 
 export const UpImg = styled.img`
@@ -68,12 +68,12 @@ export const DownImg = styled.img`
 
 export const FileDown = styled.button`
     display: flex;
-    gap: 5px;
-    width: 120px;
-    height: 40px;
+    gap: 0.3125rem;
+    width: 7.5rem;
+    height: 2.5rem;
     background-color: white;
-    border: 1px solid black;
-    border-radius: 4px;
+    border: 0.625rem solid black;
+    border-radius: 0.25rem;
     font-weight: 600;
     align-items: center;
     justify-content: center;
@@ -81,13 +81,13 @@ export const FileDown = styled.button`
 `
 
 export const FileUp = styled.button`
-    gap: 5px;
+    gap: 0.3125rem;
     display: flex;
-    width: 120px;
-    height: 40px;
+    width: 7.5rem;
+    height: 2.5rem;
     background-color: white;
     border: 1px solid black;
-    border-radius: 4px;
+    border-radius: 0.25rem;
     font-weight: 600;
     align-items: center;
     justify-content: center;
