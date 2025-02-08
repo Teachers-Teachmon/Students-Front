@@ -31,6 +31,8 @@ export const Link = styled.input`
     padding: 10px;
     justify-content: center;
     align-items: center;
+    width: 120px;
+    height: 40px;
 `
 
 export const TopDate = styled.div`
@@ -380,6 +382,7 @@ export const ClassMain = styled.div`
 
 export const OptionButton = styled.img`
     width: 15px;
+    cursor: pointer;
     
 `
 
@@ -419,4 +422,13 @@ export const Btn = styled.div`
     display: flex;
     margin-left: 350px;
     gap: 20px;
+`
+
+export const Black = styled.div`
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
 `

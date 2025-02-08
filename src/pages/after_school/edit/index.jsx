@@ -205,6 +205,28 @@ export default function Edit() {
         3: grades[3].map(() => ({ period: false, teacherName: false, placeName: false })),
     });
 
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('');
+                
+                if (response.status === 404) {
+                    const errorText = await response.text();
+                    throw new Error(errorText);
+                }
+                const data = await response.json();
+            } catch (error) {
+                setErrorMessage(error.message);
+                setIsModalOpen(true);
+            }
+        };
+    
+        fetchData();
+    }, []);
+    
+
+    
     const handleDropdownClick = (grade, index, field) => {
         setIsOpen((prev) => ({
             [grade]: {
@@ -302,6 +324,7 @@ export default function Edit() {
         <S.EditContainer>
             <Header />
             <S.Content>
+            <S.Black onClick={() => setDropdownOpen(prev => ({...prev, [dropdownKey]: false}))} />
                 <S.EditTop>
                     <S.EditTopLeft>
                         <S.TopDate $length={85}>

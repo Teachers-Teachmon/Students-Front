@@ -123,6 +123,7 @@ export const TableData = styled.div`
 
 export const OptionButton = styled.img`
     width: 15px;
+    cursor: pointer;
     
 `
 
@@ -227,6 +228,7 @@ export const SquareBtn = styled.button`
     justify-content: center;
     font-weight: 600;
     font-size: 13px;
+    cursor: pointer;
 `
 
 export const ClassList = styled.div`
