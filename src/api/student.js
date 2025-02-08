@@ -104,7 +104,7 @@ export const patchStudent = async ({studentID, status}) =>{
     console.log(studentID, status)
     try{
         const res = await axiosInstance.patch(`${API_ENDPOINTS.STUDENT}/schedule`, {
-            studentID: studentID,
+            id: studentID,
             status: status
         });
         if(res.status !== 200 && res.status !== 201){
