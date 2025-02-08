@@ -33,7 +33,10 @@ export default function DetailStudentLocation({data, setIsModal, floor}) {
 
     // 상태 업데이트 하는 함수, 상태업데이트하고 다시 불러오기
     const changeStatus= (idx, status) => {
-        setIsOpen(prevState => {prevState.map(() => false);});
+        setIsOpen(prevState => {
+            const newState = prevState.map(() => false);
+            return newState;
+        });
         patchStudent({studentID: idx, status: status, floor: floor, place:location.place})
     }
     return (
