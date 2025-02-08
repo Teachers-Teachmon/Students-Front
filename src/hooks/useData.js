@@ -30,7 +30,7 @@ export const useDeleteMovement = () => {
     return useMutation({
         mutationFn: (props) =>API.deleteMovement(props),
         onSuccess: (_, variables) => {
-            queryClient.refetchQueries(['getMovement', variables.day]);
+            queryClient.invalidateQueries(['getMovement', variables.day]);
         },
         onError: (err) => {
             console.error('Movement 삭제 실패:', err);
