@@ -73,13 +73,14 @@ export const usePatchStudent = () => {
         onSuccess: (data, variables) => {
             if(variables.class){
                 queryClient.setQueryData(['nowStudent', variables.grade], (oldData) => {
-                    if (!oldData) return {}; // oldData가 없으면 빈 객체 반환
+                    if (!oldData) return {};
                     const classKey = `${variables.class}반`;
+                    console.log(variables.status)
                     return {
                         ...oldData,
                         [classKey]: oldData[classKey].map(student =>
                             student.id === variables.studentID
-                                ? { ...student, status: data.status }
+                                ? { ...student, status: variables.status }
                                 : student
                         )
                     };

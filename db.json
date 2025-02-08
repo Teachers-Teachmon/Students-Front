@@ -516,7 +516,23 @@
                         "item": {
                           "item": {
                             "item": {
-                              "item": {},
+                              "item": {
+                                "item": {
+                                  "item": {
+                                    "item": {
+                                      "item": {},
+                                      "id": 1,
+                                      "status": "이탈"
+                                    },
+                                    "id": 1,
+                                    "status": "이탈"
+                                  },
+                                  "id": 1,
+                                  "status": "이탈"
+                                },
+                                "id": 1,
+                                "status": "이탈"
+                              },
                               "id": 1,
                               "status": "이탈"
                             },
@@ -535,24 +551,24 @@
                     "id": 1,
                     "status": "이탈"
                   },
-                  "id": 1,
                   "status": "이탈"
                 },
-                "id": 1,
                 "status": "이탈"
               },
-              "id": 1,
               "status": "이탈"
             },
-            "id": 1,
             "status": "이탈"
           },
+          "id": 1,
           "status": "이탈"
         },
+        "id": 1,
         "status": "이탈"
       },
+      "id": 1,
       "status": "이탈"
     },
+    "id": 1,
     "status": "이탈"
   }
 }
