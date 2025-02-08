@@ -44,7 +44,7 @@ export const useDeleteLeave = () => {
     return useMutation({
         mutationFn: (props) => API.deleteLeave(props),
         onSuccess: (_, variables) => {
-            queryClient.invalidateQueries(['getLeave', variables.day]);
+            queryClient.refetchQueries(['getLeave', variables.day]);
         },
         onError: (err) => {
             console.error('Leave 삭제 실패:', err);
