@@ -324,6 +324,9 @@ export default function Edit() {
         <S.EditContainer>
             <Header />
             <S.Content>
+                {Object.values(isOpen).some(status => status) && (
+                    <S.Black onClick={() => setIsOpen({})} />
+                )}
                 <S.EditTop>
                     <S.EditTopLeft>
                         <S.TopDate $length={85}>
