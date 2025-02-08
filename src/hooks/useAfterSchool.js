@@ -57,7 +57,7 @@ export const useClassPrep = () => {
     return useMutation({
         mutationFn: (props) => API.classPrep(props),
         onSuccess: () => {
-            navigate('/after-schcool');
+            navigate('/after-school');
         }
     })
 };
