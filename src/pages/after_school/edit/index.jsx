@@ -117,7 +117,7 @@ export default function Edit() {
                 weekDay = '수';
                 break;
             case 'THU':
-                weekDay= '목';
+                weekDay = '목';
                 break;
         }
         const value = {
@@ -126,7 +126,7 @@ export default function Edit() {
         }
         saveClass(value);
     };
-    
+
 
     const [selectStudent, setSelectStudent] = useState({
         class1: [],
@@ -183,7 +183,7 @@ export default function Edit() {
     const addRow = (grade) => {
         setGrades(prev => ({
             ...prev,
-            [grade]: [...prev[grade], {  period: '',weekDay: weekday, teacherName: '', placeName: '', name: '', students: [] }],
+            [grade]: [...prev[grade], { period: '', weekDay: weekday, teacherName: '', placeName: '', name: '', students: [] }],
         }));
     };
 
@@ -210,7 +210,7 @@ export default function Edit() {
         const fetchData = async () => {
             try {
                 const response = await fetch('');
-                
+
                 if (response.status === 404) {
                     const errorText = await response.text();
                     throw new Error(errorText);
@@ -221,12 +221,12 @@ export default function Edit() {
                 setIsModalOpen(true);
             }
         };
-    
+
         fetchData();
     }, []);
-    
 
-    
+
+
     const handleDropdownClick = (grade, index, field) => {
         setIsOpen((prev) => ({
             [grade]: {
@@ -301,7 +301,7 @@ export default function Edit() {
             [grade]: prev[grade].filter((_, idx) => idx !== index),
         }));
     };
-    
+
 
     const toggleBranchDropdown = () => {
         setIsBranchOpen((prev) => !prev);
@@ -324,7 +324,6 @@ export default function Edit() {
         <S.EditContainer>
             <Header />
             <S.Content>
-            <S.Black onClick={() => setDropdownOpen(prev => ({...prev, [dropdownKey]: false}))} />
                 <S.EditTop>
                     <S.EditTopLeft>
                         <S.TopDate $length={85}>
