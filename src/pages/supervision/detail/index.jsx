@@ -39,10 +39,12 @@ export default function SupervisionDetail() {
     };
 
     const toggleDropdown = (key) => {
-        setDropdownOpen(prev => ({
-            ...prev,
-            [key]: !prev[key]
-        }));
+        setDropdownOpen(prev => {
+            if (prev[key]) {
+                return {};
+            }
+            return { [key]: true };
+        });
     };
 
     const { data: TeacherList, isLoading, isError } = useGetAssignment(selMonth + 1);
@@ -166,8 +168,8 @@ export default function SupervisionDetail() {
                 </S.TableWrap>
             </S.MainWrap>
             {isCreateModalOpen && (
-                <S.ModalOverlay>
-                    <S.Modal>
+                <S.ModalOverlay onClick={() => setIsCreateModalOpen(false)}>
+                    <S.Modal onClick={(e) => e.stopPropagation()}>
                         <SupervisionCreate closeModal={() => { setIsCreateModalOpen(false) }} />
                     </S.Modal>
                 </S.ModalOverlay>

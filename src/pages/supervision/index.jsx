@@ -135,8 +135,8 @@ export default function Supervision() {
             </S.MainContent>
 
             {isModalOpen && (
-                <S.ModalOverlay>
-                    <S.Modal>
+                <S.ModalOverlay onClick={() => { setIsModalOpen(false) }}>
+                    <S.Modal onClick={(e) => { e.stopPropagation() }}>
                         <TeacherList closeModal={() => { setIsModalOpen(false) }} selectedDate={selectedDate} />
                     </S.Modal>
                 </S.ModalOverlay>

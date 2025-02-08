@@ -186,8 +186,8 @@ export default function Main() {
                 </S.MainBottom>
             </S.MainContent>
             {isModalOpen && (
-                <S.ModalOverlay>
-                    <S.Modal>
+                <S.ModalOverlay onClick={() => { setIsModalOpen(false) }}>
+                    <S.Modal onClick={(e) => { e.stopPropagation() }}>
                         <RequestBox closeModal={() => { setIsModalOpen(false) }} changeData={selectedChange} />
                     </S.Modal>
                 </S.ModalOverlay>

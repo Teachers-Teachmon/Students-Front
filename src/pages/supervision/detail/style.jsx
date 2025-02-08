@@ -84,6 +84,7 @@ export const TableRightHeader = styled.div`
         background-color: #EBF1FF;
         padding: 0.6rem 1rem;
         border-radius: 10px;
+        white-space: nowrap;
     }
 `;
 
