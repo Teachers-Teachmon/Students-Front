@@ -44,7 +44,7 @@ export default function Write({isModal, setIsModal}){
     }, [debounceStudent]);
 
     return(
-        <S.WriteContainer>
+        <S.WriteContainer onClick={(e)=>e.stopPropagation()}>
             {isMovement[2] ? (
                 <SchoolOut name={search2} On={()=>{
                     setIsMovement([true, false, false]);

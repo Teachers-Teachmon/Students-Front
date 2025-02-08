@@ -149,7 +149,7 @@ export default function Manage(){
                 </S.Main>
             </S.Wrap>
             {isModal ?
-                <S.Black>
+                <S.Black onClick={()=>setIsModal(false)}>
                     <Write isModal={isModal} setIsModal={setIsModal}/>
                 </S.Black>
                 :
