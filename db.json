@@ -95,7 +95,8 @@
         {
           "number": 1410,
           "name": "윤도훈",
-          "status": "자습"
+          "status": "자습",
+          "id": 1
         }
       ]
     }
@@ -520,7 +521,27 @@
                                 "item": {
                                   "item": {
                                     "item": {
-                                      "item": {},
+                                      "item": {
+                                        "item": {
+                                          "item": {
+                                            "item": {
+                                              "item": {
+                                                "item": {},
+                                                "id": 1,
+                                                "status": "이탈"
+                                              },
+                                              "id": 1,
+                                              "status": "이탈"
+                                            },
+                                            "id": 1,
+                                            "status": "이탈"
+                                          },
+                                          "id": 1,
+                                          "status": "이탈"
+                                        },
+                                        "id": 1,
+                                        "status": "이탈"
+                                      },
                                       "id": 1,
                                       "status": "이탈"
                                     },
@@ -536,36 +557,32 @@
                               "id": 1,
                               "status": "이탈"
                             },
-                            "id": 1,
                             "status": "이탈"
                           },
-                          "id": 1,
                           "status": "이탈"
                         },
-                        "id": 1,
                         "status": "이탈"
                       },
-                      "id": 1,
                       "status": "이탈"
                     },
                     "id": 1,
                     "status": "이탈"
                   },
+                  "id": 1,
                   "status": "이탈"
                 },
+                "id": 1,
                 "status": "이탈"
               },
+              "id": 1,
               "status": "이탈"
             },
             "status": "이탈"
           },
-          "id": 1,
           "status": "이탈"
         },
-        "id": 1,
         "status": "이탈"
       },
-      "id": 1,
       "status": "이탈"
     },
     "id": 1,

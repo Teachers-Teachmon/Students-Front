@@ -65,7 +65,7 @@ export default function Location() {
             </S.Wrap>
         </TransformComponent>
 </TransformWrapper>
-            {isModal ? <DetailStudentLocation data ={locationFloor} setIsModal={setIsModal}/> : null}
+            {isModal ? <DetailStudentLocation data ={locationFloor} setIsModal={setIsModal} floor ={floor()[0]}/> : null}
             {isFirstModal && !isAllLoading ? <FirstModal data ={locationAll} set={setIsFirstModal}/> : null}
         </S.LocationContainer>
     )
