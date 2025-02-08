@@ -86,7 +86,7 @@ export default function Manage(){
     changeClass();
     return(
         <S.ManageContainer>
-            {isLoading && isFetching && !weekday && period && <Loading />}
+            {isLoading || isFetching && !weekday && period && <Loading />}
             <Header />
             <S.Wrap>
                 <S.Info>

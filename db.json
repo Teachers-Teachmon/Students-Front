@@ -1,41 +1,41 @@
 {
   "leaveseat": [
     {
-      "teacher_name" : "이정하",
-      "teacher_id" : 1,
-      "place" : "베르실7",
-      "personnel" : 7,
-      "period" : "7교시",
-      "cause" : "전공동아리"
+      "teacher_name": "이정하",
+      "teacher_id": 1,
+      "place": "베르실7",
+      "personnel": 7,
+      "period": "7교시",
+      "cause": "전공동아리"
     },
     {
-      "teacher_name" : "이정하",
-      "teacher_id" : 1,
-      "place" : "베르실7",
-      "personnel" : 7,
-      "period" : "7교시",
-      "cause" : "전공동아리"
+      "teacher_name": "이정하",
+      "teacher_id": 1,
+      "place": "베르실7",
+      "personnel": 7,
+      "period": "7교시",
+      "cause": "전공동아리"
     }
   ],
   "detail": {
-    "teacher_name" : "이정하",
-    "place" : "베르실7",
-    "cause" : "전공동아리",
-    "students" : [
+    "teacher_name": "이정하",
+    "place": "베르실7",
+    "cause": "전공동아리",
+    "students": [
       "1416 허온",
       "1401 김동욱",
       "1410 윤도훈"
     ]
   },
-  "leave":[
+  "leave": [
     {
-      "leave_id" : 2,
+      "leave_id": 2,
       "student": "1401 김동욱",
       "period": "8~9교시",
       "teacher_name": "이정하"
     },
     {
-      "leave_id" : 3,
+      "leave_id": 3,
       "student": "1401 김동욱",
       "period": "8~9교시",
       "teacher_name": "이정하"
@@ -78,7 +78,7 @@
       "11th_schedule": null
     }
   ],
-  "location":{
+  "location": {
     "1-4": {
       "status": "자습",
       "teacher": "오주현",
@@ -92,351 +92,349 @@
     }
   },
   "schedule": {
-        "1반": [
-          {
-            "status": "자습",
-            "name": "김동욱",
-            "number": 1401,
-            "id": 1
-          },
-          {
-            "status": "자습",
-            "name": "이영희"
-          },
-          {
-            "status": "자습",
-            "name": "박철수"
-          },
-          {
-            "status": "자습",
-            "name": "홍길동"
-          },
-          {
-            "status": "자습",
-            "name": "최민수"
-          },
-          {
-            "status": "자습",
-            "name": "이선영"
-          },
-          {
-            "status": "자습",
-            "name": "김지현"
-          },
-          {
-            "status": "자습",
-            "name": "정우성"
-          },
-          {
-            "status": "자습",
-            "name": "하준"
-          },
-          {
-            "status": "자습",
-            "name": "소영"
-          },
-          {
-            "status": "자습",
-            "name": "민재"
-          },
-          {
-            "status": "자습",
-            "name": "유진"
-          },
-          {
-            "status": "자습",
-            "name": "예린"
-          },
-          {
-            "status": "자습",
-            "name": "상혁"
-          },
-          {
-            "status": "자습",
-            "name": "채린"
-          },
-          {
-            "status": "자습",
-            "name": "기범"
-          },
-          {
-            "status": "자습",
-            "name": "지민"
-          }
-        ],
-        "2반": [
-          {
-            "status": "자습",
-            "name": "김태희"
-          },
-          {
-            "status": "자습",
-            "name": "이민호"
-          },
-          {
-            "status": "자습",
-            "name": "오수연"
-          },
-          {
-            "status": "자습",
-            "name": "유재석"
-          },
-          {
-            "status": "자습",
-            "name": "하늘"
-          },
-          {
-            "status": "자습",
-            "name": "진수"
-          },
-          {
-            "status": "자습",
-            "name": "승현"
-          },
-          {
-            "status": "자습",
-            "name": "정민"
-          },
-          {
-            "status": "자습",
-            "name": "수진"
-          },
-          {
-            "status": "자습",
-            "name": "민우"
-          },
-          {
-            "status": "자습",
-            "name": "소라"
-          },
-          {
-            "status": "자습",
-            "name": "지현"
-          },
-          {
-            "status": "자습",
-            "name": "희원"
-          },
-          {
-            "status": "자습",
-            "name": "시온"
-          },
-          {
-            "status": "자습",
-            "name": "연우"
-          },
-          {
-            "status": "자습",
-            "name": "재원"
-          }
-        ],
-        "3반": [
-          {
-            "status": "자습",
-            "name": "김지혜"
-          },
-          {
-            "status": "자습",
-            "name": "서준"
-          },
-          {
-            "status": "자습",
-            "name": "지우"
-          },
-          {
-            "status": "자습",
-            "name": "소영"
-          },
-          {
-            "status": "자습",
-            "name": "승리"
-          },
-          {
-            "status": "자습",
-            "name": "하율"
-          },
-          {
-            "status": "자습",
-            "name": "도연"
-          },
-          {
-            "status": "자습",
-            "name": "나영"
-          },
-          {
-            "status": "자습",
-            "name": "민채"
-          },
-          {
-            "status": "자습",
-            "name": "우빈"
-          },
-          {
-            "status": "자습",
-            "name": "서영"
-          },
-          {
-            "status": "자습",
-            "name": "하람"
-          },
-          {
-            "status": "자습",
-            "name": "보라"
-          },
-          {
-            "status": "자습",
-            "name": "태호"
-          },
-          {
-            "status": "자습",
-            "name": "영빈"
-          },
-          {
-            "status": "방과후",
-            "name": "경수"
-          }
-        ],
-        "4반": [
-          {
-            "status": "방과 후",
-            "name": "정현"
-          },
-          {
-            "status": "자습",
-            "name": "진호"
-          },
-          {
-            "status": "자습",
-            "name": "미래"
-          },
-          {
-            "status": "자습",
-            "name": "아영"
-          },
-          {
-            "status": "자습",
-            "name": "채원"
-          },
-          {
-            "status": "자습",
-            "name": "여름"
-          },
-          {
-            "status": "이석",
-            "name": "해리"
-          },
-          {
-            "status": "이탈",
-            "name": "수연"
-          },
-          {
-            "status": "조퇴",
-            "name": "지아"
-          },
-          {
-            "status": "자습",
-            "name": "은호"
-          },
-          {
-            "status": "자습",
-            "name": "도윤"
-          },
-          {
-            "status": "자습",
-            "name": "영채"
-          },
-          {
-            "status": "자습",
-            "name": "하경"
-          },
-          {
-            "status": "자습",
-            "name": "찬미"
-          },
-          {
-            "status": "자습",
-            "name": "도희"
-          },
-          {
-            "status": "자습",
-            "name": "재현"
-          }
-        ]
+    "1반": [
+      {
+        "status": "자습",
+        "name": "김동욱",
+        "number": 1401,
+        "id": 1
       },
-  "searchStudent" : [
+      {
+        "status": "자습",
+        "name": "이영희"
+      },
+      {
+        "status": "자습",
+        "name": "박철수"
+      },
+      {
+        "status": "자습",
+        "name": "홍길동"
+      },
+      {
+        "status": "자습",
+        "name": "최민수"
+      },
+      {
+        "status": "자습",
+        "name": "이선영"
+      },
+      {
+        "status": "자습",
+        "name": "김지현"
+      },
+      {
+        "status": "자습",
+        "name": "정우성"
+      },
+      {
+        "status": "자습",
+        "name": "하준"
+      },
+      {
+        "status": "자습",
+        "name": "소영"
+      },
+      {
+        "status": "자습",
+        "name": "민재"
+      },
+      {
+        "status": "자습",
+        "name": "유진"
+      },
+      {
+        "status": "자습",
+        "name": "예린"
+      },
+      {
+        "status": "자습",
+        "name": "상혁"
+      },
+      {
+        "status": "자습",
+        "name": "채린"
+      },
+      {
+        "status": "자습",
+        "name": "기범"
+      },
+      {
+        "status": "자습",
+        "name": "지민"
+      }
+    ],
+    "2반": [
+      {
+        "status": "자습",
+        "name": "김태희"
+      },
+      {
+        "status": "자습",
+        "name": "이민호"
+      },
+      {
+        "status": "자습",
+        "name": "오수연"
+      },
+      {
+        "status": "자습",
+        "name": "유재석"
+      },
+      {
+        "status": "자습",
+        "name": "하늘"
+      },
+      {
+        "status": "자습",
+        "name": "진수"
+      },
+      {
+        "status": "자습",
+        "name": "승현"
+      },
+      {
+        "status": "자습",
+        "name": "정민"
+      },
+      {
+        "status": "자습",
+        "name": "수진"
+      },
+      {
+        "status": "자습",
+        "name": "민우"
+      },
+      {
+        "status": "자습",
+        "name": "소라"
+      },
+      {
+        "status": "자습",
+        "name": "지현"
+      },
+      {
+        "status": "자습",
+        "name": "희원"
+      },
+      {
+        "status": "자습",
+        "name": "시온"
+      },
+      {
+        "status": "자습",
+        "name": "연우"
+      },
+      {
+        "status": "자습",
+        "name": "재원"
+      }
+    ],
+    "3반": [
+      {
+        "status": "자습",
+        "name": "김지혜"
+      },
+      {
+        "status": "자습",
+        "name": "서준"
+      },
+      {
+        "status": "자습",
+        "name": "지우"
+      },
+      {
+        "status": "자습",
+        "name": "소영"
+      },
+      {
+        "status": "자습",
+        "name": "승리"
+      },
+      {
+        "status": "자습",
+        "name": "하율"
+      },
+      {
+        "status": "자습",
+        "name": "도연"
+      },
+      {
+        "status": "자습",
+        "name": "나영"
+      },
+      {
+        "status": "자습",
+        "name": "민채"
+      },
+      {
+        "status": "자습",
+        "name": "우빈"
+      },
+      {
+        "status": "자습",
+        "name": "서영"
+      },
+      {
+        "status": "자습",
+        "name": "하람"
+      },
+      {
+        "status": "자습",
+        "name": "보라"
+      },
+      {
+        "status": "자습",
+        "name": "태호"
+      },
+      {
+        "status": "자습",
+        "name": "영빈"
+      },
+      {
+        "status": "방과후",
+        "name": "경수"
+      }
+    ],
+    "4반": [
+      {
+        "status": "방과 후",
+        "name": "정현"
+      },
+      {
+        "status": "자습",
+        "name": "진호"
+      },
+      {
+        "status": "자습",
+        "name": "미래"
+      },
+      {
+        "status": "자습",
+        "name": "아영"
+      },
+      {
+        "status": "자습",
+        "name": "채원"
+      },
+      {
+        "status": "자습",
+        "name": "여름"
+      },
+      {
+        "status": "이석",
+        "name": "해리"
+      },
+      {
+        "status": "이탈",
+        "name": "수연"
+      },
+      {
+        "status": "조퇴",
+        "name": "지아"
+      },
+      {
+        "status": "자습",
+        "name": "은호"
+      },
+      {
+        "status": "자습",
+        "name": "도윤"
+      },
+      {
+        "status": "자습",
+        "name": "영채"
+      },
+      {
+        "status": "자습",
+        "name": "하경"
+      },
+      {
+        "status": "자습",
+        "name": "찬미"
+      },
+      {
+        "status": "자습",
+        "name": "도희"
+      },
+      {
+        "status": "자습",
+        "name": "재현"
+      }
+    ]
+  },
+  "searchStudent": [
     {
-      "id" : 23,
-      "name" : "허온",
-      "number" : 1416
+      "id": 23,
+      "name": "허온",
+      "number": 1416
     },
     {
-      "id" : 23,
-      "name" : "dongwook",
-      "number" : 1416
+      "id": 23,
+      "name": "dongwook",
+      "number": 1416
     },
     {
-      "id" : 21,
-      "name" : "김동욱",
-      "number" : 1401
+      "id": 21,
+      "name": "김동욱",
+      "number": 1401
     },
     {
-      "id" : 24,
-      "name" : "윤도훈",
-      "number" : 1410
+      "id": 24,
+      "name": "윤도훈",
+      "number": 1410
     },
     {
-      "id" : 20,
-      "name" : "김병찬",
-      "number" : 1410
+      "id": 20,
+      "name": "김병찬",
+      "number": 1410
     },
     {
-      "id" : 22,
-      "name" : "조아라",
-      "number" : 1410
+      "id": 22,
+      "name": "조아라",
+      "number": 1410
     },
     {
-      "id" : 25,
-      "name" : "아아아",
-      "number" : 1410
+      "id": 25,
+      "name": "아아아",
+      "number": 1410
     },
     {
-      "id" : 26,
-      "name" : "라라라",
-      "number" : 1410
+      "id": 26,
+      "name": "라라라",
+      "number": 1410
     },
     {
-      "id" : 27,
-      "name" : "허허허",
-      "number" : 1410
+      "id": 27,
+      "name": "허허허",
+      "number": 1410
     },
     {
-      "id" : 28,
-      "name" : "온온온",
-      "number" : 1410
+      "id": 28,
+      "name": "온온온",
+      "number": 1410
     },
     {
-      "id" : 29,
-      "name" : "김김김",
-      "number" : 1410
+      "id": 29,
+      "name": "김김김",
+      "number": 1410
     },
     {
-      "id" : 30,
-      "name" : "동동동",
-      "number" : 1410
+      "id": 30,
+      "name": "동동동",
+      "number": 1410
     }
   ],
-  "healthcheck": {
-
-  },
+  "healthcheck": {},
   "check": "Authentication Success",
-  "place" : [
+  "place": [
     {
-      "name" : "집",
-      "id" : 1
+      "name": "집",
+      "id": 1
     },
     {
-      "name" : "교무실",
-      "id" : 2
+      "name": "교무실",
+      "id": 2
     }
   ],
   "all": [
@@ -480,5 +478,420 @@
     ],
     []
   ],
-  "locationALL": [{"1-4":"방과후"},{},{},{}]
+  "locationALL": [
+    {
+      "1-4": "방과후"
+    },
+    {},
+    {},
+    {}
+  ],
+  "schedulePatch": {
+    "item": {
+      "item": {
+        "item": {
+          "item": {
+            "item": {
+              "item": {
+                "item": {
+                  "item": {
+                    "item": {
+                      "item": {
+                        "item": {
+                          "item": {
+                            "item": {
+                              "item": {
+                                "item": {
+                                  "item": {
+                                    "item": {
+                                      "item": {
+                                        "item": {
+                                          "item": {
+                                            "item": {
+                                              "item": {
+                                                "item": {
+                                                  "item": {
+                                                    "item": {
+                                                      "item": {
+                                                        "item": {
+                                                          "item": {
+                                                            "item": {
+                                                              "item": {
+                                                                "item": {
+                                                                  "item": {
+                                                                    "item": {
+                                                                      "item": {
+                                                                        "item": {
+                                                                          "item": {
+                                                                            "item": {
+                                                                              "item": {
+                                                                                "item": {
+                                                                                  "item": {
+                                                                                    "item": {
+                                                                                      "item": {
+                                                                                        "item": {
+                                                                                          "item": {
+                                                                                            "item": {
+                                                                                              "item": {
+                                                                                                "item": {
+                                                                                                  "item": {
+                                                                                                    "item": {
+                                                                                                      "item": {
+                                                                                                        "item": {
+                                                                                                          "item": {
+                                                                                                            "item": {
+                                                                                                              "item": {
+                                                                                                                "item": {
+                                                                                                                  "item": {
+                                                                                                                    "item": {
+                                                                                                                      "item": {
+                                                                                                                        "item": {
+                                                                                                                          "item": {
+                                                                                                                            "item": {
+                                                                                                                              "item": {
+                                                                                                                                "item": {
+                                                                                                                                  "item": {
+                                                                                                                                    "item": {
+                                                                                                                                      "item": {
+                                                                                                                                        "item": {
+                                                                                                                                          "item": {
+                                                                                                                                            "item": {
+                                                                                                                                              "item": {
+                                                                                                                                                "item": {
+                                                                                                                                                  "item": {
+                                                                                                                                                    "item": {
+                                                                                                                                                      "item": {
+                                                                                                                                                        "item": {
+                                                                                                                                                          "item": {
+                                                                                                                                                            "item": {
+                                                                                                                                                              "item": {
+                                                                                                                                                                "item": {
+                                                                                                                                                                  "item": {
+                                                                                                                                                                    "item": {
+                                                                                                                                                                      "item": {
+                                                                                                                                                                        "item": {
+                                                                                                                                                                          "item": {
+                                                                                                                                                                            "item": {
+                                                                                                                                                                              "item": {
+                                                                                                                                                                                "item": {
+                                                                                                                                                                                  "item": {
+                                                                                                                                                                                    "item": {
+                                                                                                                                                                                      "item": {
+                                                                                                                                                                                        "item": {
+                                                                                                                                                                                          "item": {
+                                                                                                                                                                                            "item": {
+                                                                                                                                                                                              "item": {
+                                                                                                                                                                                                "item": {
+                                                                                                                                                                                                  "item": {
+                                                                                                                                                                                                    "item": {
+                                                                                                                                                                                                      "item": {
+                                                                                                                                                                                                        "item": {
+                                                                                                                                                                                                          "item": {
+                                                                                                                                                                                                            "item": {
+                                                                                                                                                                                                              "item": {
+                                                                                                                                                                                                                "item": {
+                                                                                                                                                                                                                  "item": {
+                                                                                                                                                                                                                    "item": {
+                                                                                                                                                                                                                      "item": {
+                                                                                                                                                                                                                        "item": {
+                                                                                                                                                                                                                          "item": {},
+                                                                                                                                                                                                                          "status": "이탈"
+                                                                                                                                                                                                                        },
+                                                                                                                                                                                                                        "status": "이탈"
+                                                                                                                                                                                                                      },
+                                                                                                                                                                                                                      "status": "이탈"
+                                                                                                                                                                                                                    },
+                                                                                                                                                                                                                    "status": "이탈"
+                                                                                                                                                                                                                  },
+                                                                                                                                                                                                                  "status": "이탈"
+                                                                                                                                                                                                                },
+                                                                                                                                                                                                                "status": "이탈"
+                                                                                                                                                                                                              },
+                                                                                                                                                                                                              "status": "이탈"
+                                                                                                                                                                                                            },
+                                                                                                                                                                                                            "status": "이탈"
+                                                                                                                                                                                                          },
+                                                                                                                                                                                                          "status": "이탈"
+                                                                                                                                                                                                        },
+                                                                                                                                                                                                        "status": "이탈"
+                                                                                                                                                                                                      },
+                                                                                                                                                                                                      "status": "이탈"
+                                                                                                                                                                                                    },
+                                                                                                                                                                                                    "status": "이탈"
+                                                                                                                                                                                                  },
+                                                                                                                                                                                                  "status": "이탈"
+                                                                                                                                                                                                },
+                                                                                                                                                                                                "status": "이탈"
+                                                                                                                                                                                              },
+                                                                                                                                                                                              "status": "이탈"
+                                                                                                                                                                                            },
+                                                                                                                                                                                            "id": 1,
+                                                                                                                                                                                            "status": "이탈"
+                                                                                                                                                                                          },
+                                                                                                                                                                                          "id": 1,
+                                                                                                                                                                                          "status": "이탈"
+                                                                                                                                                                                        },
+                                                                                                                                                                                        "id": 1,
+                                                                                                                                                                                        "status": "이탈"
+                                                                                                                                                                                      },
+                                                                                                                                                                                      "id": 1,
+                                                                                                                                                                                      "status": "이탈"
+                                                                                                                                                                                    },
+                                                                                                                                                                                    "id": 1,
+                                                                                                                                                                                    "status": "이탈"
+                                                                                                                                                                                  },
+                                                                                                                                                                                  "id": 1,
+                                                                                                                                                                                  "status": "이탈"
+                                                                                                                                                                                },
+                                                                                                                                                                                "id": 1,
+                                                                                                                                                                                "status": "이탈"
+                                                                                                                                                                              },
+                                                                                                                                                                              "id": 1,
+                                                                                                                                                                              "status": "이탈"
+                                                                                                                                                                            },
+                                                                                                                                                                            "id": 1,
+                                                                                                                                                                            "status": "이탈"
+                                                                                                                                                                          },
+                                                                                                                                                                          "id": 1,
+                                                                                                                                                                          "status": "이탈"
+                                                                                                                                                                        },
+                                                                                                                                                                        "id": 1,
+                                                                                                                                                                        "status": "이탈"
+                                                                                                                                                                      },
+                                                                                                                                                                      "id": 1,
+                                                                                                                                                                      "status": "이탈"
+                                                                                                                                                                    },
+                                                                                                                                                                    "id": 1,
+                                                                                                                                                                    "status": "이탈"
+                                                                                                                                                                  },
+                                                                                                                                                                  "id": 1,
+                                                                                                                                                                  "status": "이탈"
+                                                                                                                                                                },
+                                                                                                                                                                "id": 1,
+                                                                                                                                                                "status": "이탈"
+                                                                                                                                                              },
+                                                                                                                                                              "id": 1,
+                                                                                                                                                              "status": "이탈"
+                                                                                                                                                            },
+                                                                                                                                                            "id": 1,
+                                                                                                                                                            "status": "이탈"
+                                                                                                                                                          },
+                                                                                                                                                          "id": 1,
+                                                                                                                                                          "status": "이탈"
+                                                                                                                                                        },
+                                                                                                                                                        "id": 1,
+                                                                                                                                                        "status": "이탈"
+                                                                                                                                                      },
+                                                                                                                                                      "id": 1,
+                                                                                                                                                      "status": "이탈"
+                                                                                                                                                    },
+                                                                                                                                                    "id": 1,
+                                                                                                                                                    "status": "이탈"
+                                                                                                                                                  },
+                                                                                                                                                  "id": 1,
+                                                                                                                                                  "status": "이탈"
+                                                                                                                                                },
+                                                                                                                                                "id": 1,
+                                                                                                                                                "status": "이탈"
+                                                                                                                                              },
+                                                                                                                                              "id": 1,
+                                                                                                                                              "status": "이탈"
+                                                                                                                                            },
+                                                                                                                                            "id": 1,
+                                                                                                                                            "status": "이탈"
+                                                                                                                                          },
+                                                                                                                                          "id": 1,
+                                                                                                                                          "status": "이탈"
+                                                                                                                                        },
+                                                                                                                                        "id": 1,
+                                                                                                                                        "status": "이탈"
+                                                                                                                                      },
+                                                                                                                                      "id": 1,
+                                                                                                                                      "status": "이탈"
+                                                                                                                                    },
+                                                                                                                                    "id": 1,
+                                                                                                                                    "status": "이탈"
+                                                                                                                                  },
+                                                                                                                                  "id": 1,
+                                                                                                                                  "status": "이탈"
+                                                                                                                                },
+                                                                                                                                "id": 1,
+                                                                                                                                "status": "이탈"
+                                                                                                                              },
+                                                                                                                              "id": 1,
+                                                                                                                              "status": "이탈"
+                                                                                                                            },
+                                                                                                                            "id": 1,
+                                                                                                                            "status": "이탈"
+                                                                                                                          },
+                                                                                                                          "id": 1,
+                                                                                                                          "status": "이탈"
+                                                                                                                        },
+                                                                                                                        "id": 1,
+                                                                                                                        "status": "이탈"
+                                                                                                                      },
+                                                                                                                      "id": 1,
+                                                                                                                      "status": "이탈"
+                                                                                                                    },
+                                                                                                                    "id": 1,
+                                                                                                                    "status": "이탈"
+                                                                                                                  },
+                                                                                                                  "id": 1,
+                                                                                                                  "status": "이탈"
+                                                                                                                },
+                                                                                                                "id": 1,
+                                                                                                                "status": "이탈"
+                                                                                                              },
+                                                                                                              "id": 1,
+                                                                                                              "status": "이탈"
+                                                                                                            },
+                                                                                                            "id": 1,
+                                                                                                            "status": "이탈"
+                                                                                                          },
+                                                                                                          "id": 1,
+                                                                                                          "status": "이탈"
+                                                                                                        },
+                                                                                                        "id": 1,
+                                                                                                        "status": "이탈"
+                                                                                                      },
+                                                                                                      "id": 1,
+                                                                                                      "status": "이탈"
+                                                                                                    },
+                                                                                                    "id": 1,
+                                                                                                    "status": "이탈"
+                                                                                                  },
+                                                                                                  "id": 1,
+                                                                                                  "status": "이탈"
+                                                                                                },
+                                                                                                "id": 1,
+                                                                                                "status": "이탈"
+                                                                                              },
+                                                                                              "status": "이탈"
+                                                                                            },
+                                                                                            "status": "이탈"
+                                                                                          },
+                                                                                          "status": "이탈"
+                                                                                        },
+                                                                                        "status": "이탈"
+                                                                                      },
+                                                                                      "status": "이탈"
+                                                                                    },
+                                                                                    "id": 1,
+                                                                                    "status": "이탈"
+                                                                                  },
+                                                                                  "id": 1,
+                                                                                  "status": "이탈"
+                                                                                },
+                                                                                "id": 1,
+                                                                                "status": "이탈"
+                                                                              },
+                                                                              "status": "이탈"
+                                                                            },
+                                                                            "status": "이탈"
+                                                                          },
+                                                                          "status": "이탈"
+                                                                        },
+                                                                        "status": "조퇴"
+                                                                      },
+                                                                      "status": "이탈"
+                                                                    },
+                                                                    "id": 1,
+                                                                    "status": "이탈"
+                                                                  },
+                                                                  "id": 1,
+                                                                  "status": "이탈"
+                                                                },
+                                                                "id": 1,
+                                                                "status": "이탈"
+                                                              },
+                                                              "id": 1,
+                                                              "status": "이탈"
+                                                            },
+                                                            "id": 1,
+                                                            "status": "이탈"
+                                                          },
+                                                          "id": 1,
+                                                          "status": "이탈"
+                                                        },
+                                                        "id": 1,
+                                                        "status": "이탈"
+                                                      },
+                                                      "id": 1,
+                                                      "status": "이탈"
+                                                    },
+                                                    "id": 1,
+                                                    "status": "이탈"
+                                                  },
+                                                  "id": 1,
+                                                  "status": "이탈"
+                                                },
+                                                "id": 1,
+                                                "status": "이탈"
+                                              },
+                                              "id": 1,
+                                              "status": "이탈"
+                                            },
+                                            "id": 1,
+                                            "status": "이탈"
+                                          },
+                                          "id": 1,
+                                          "status": "이탈"
+                                        },
+                                        "id": 1,
+                                        "status": "이탈"
+                                      },
+                                      "id": 1,
+                                      "status": "이탈"
+                                    },
+                                    "id": 1,
+                                    "status": "이탈"
+                                  },
+                                  "id": 1,
+                                  "status": "이탈"
+                                },
+                                "id": 1,
+                                "status": "이탈"
+                              },
+                              "id": 1,
+                              "status": "이탈"
+                            },
+                            "id": 1,
+                            "status": "이탈"
+                          },
+                          "id": 1,
+                          "status": "이탈"
+                        },
+                        "id": 1,
+                        "status": "이탈"
+                      },
+                      "id": 1,
+                      "status": "이탈"
+                    },
+                    "id": 1,
+                    "status": "이탈"
+                  },
+                  "id": 1,
+                  "status": "이탈"
+                },
+                "id": 1,
+                "status": "이탈"
+              },
+              "id": 1,
+              "status": "이탈"
+            },
+            "id": 1,
+            "status": "이탈"
+          },
+          "id": 1,
+          "status": "이탈"
+        },
+        "id": 1,
+        "status": "이탈"
+      },
+      "id": 1,
+      "status": "이탈"
+    },
+    "id": 1,
+    "status": "이탈"
   }
+}

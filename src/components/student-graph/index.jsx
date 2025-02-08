@@ -54,7 +54,6 @@ export default function StudentGraph({data, grade, classNum}){
             <S.Class>{classNum}반</S.Class>
             <S.Graph  $seven = {data.length === 17}>
                 {data && data.map((el, idx) =>{
-                    console.log(el)
                     return (
                         <S.Student $color = {studentColor(el.status)} onClick={()=>isClick(idx, el.status)} key = {idx}>{/* 칸 색깔도 data에서 추출해서 사용*/}
                             <p>{String(el.number).slice(2,4)}</p>
