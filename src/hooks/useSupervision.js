@@ -1,13 +1,13 @@
 import * as API from '../api/supervision.js';
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 export const useAutoAssignment = () => {
-    const navigate = useNavigate();
+    const queryClient = useQueryClient();
     return useMutation({
         mutationFn: (props) => API.autoAssignment(props),
         onSuccess: () => {
-            navigate('/supervision/detail');
+            queryClient.invalidateQueries(['getAssignment']);
+            console.log('Assignment 성공');
         },
         onError: (err) => {
             console.error('Assignment 실패:', err);
@@ -26,7 +26,6 @@ export const useGetAssignment = (month) => {
 }
 
 export const useSaveAutoAssignment = () => {
-    const navigate = useNavigate();
     return useMutation({
         mutationFn: (props) => API.saveAutoAssignment(props),
         onSuccess: () => {

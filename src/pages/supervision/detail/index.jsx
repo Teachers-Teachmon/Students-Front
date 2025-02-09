@@ -7,6 +7,7 @@ import SupervisionCreate from '../../../components/modal/supervisionCreate/index
 import SearchDropdown from '../../../components/dropdown/search/index.jsx';
 import { useGetAssignment, useSaveAutoAssignment } from '../../../hooks/useSupervision.js';
 import { searchTeacher } from '../../../api/search.js';
+import Loading from '../../../components/loading/index.jsx';
 
 export default function SupervisionDetail() {
     const [selMonth, setSelMonth] = useState(new Date().getMonth());
@@ -82,17 +83,44 @@ export default function SupervisionDetail() {
     };
 
     function groupByWeek(dataArray) {
-        return dataArray.reduce((acc, item) => {
-            const w = item.week || "미배정";
-            if (!acc[w]) acc[w] = [];
-            acc[w].push(item);
+        const daysOfWeek = ["월", "화", "수", "목"];
+
+        const extractDay = (dateStr) => {
+            const match = dateStr.match(/\((.*?)\)/);
+            return match ? match[1] : "";
+        };
+        const grouped = dataArray.reduce((acc, item) => {
+            const week = item.week;
+            const dayOfWeek = extractDay(item.day);
+
+            if (!acc[week]) acc[week] = [];
+            acc[week].push({ ...item, dayOfWeek });
             return acc;
         }, {});
+
+        Object.keys(grouped).forEach((week) => {
+            const filledWeek = [];
+            daysOfWeek.forEach((day, index) => {
+                const found = grouped[week].find((item) => item.dayOfWeek === day);
+                if (found) {
+                    filledWeek.push(found);
+                } else {
+                    filledWeek.push({
+                        empty: true,
+                        dayOfWeek: day,
+                        day: `0월 ${index + 1}일 (${day})`,
+                    });
+                }
+            });
+            grouped[week] = filledWeek;
+        });
+        return grouped;
     }
     const groupedData = groupByWeek(localData);
 
     return (
         <S.Wrapper>
+            {isLoading && <Loading />}
             <Header />
             <S.MainWrap>
                 {Object.values(dropdownOpen).some(status => status) && (
@@ -100,8 +128,8 @@ export default function SupervisionDetail() {
                 )}
                 <S.MainHeader>
                     {Object.values(dropdownOpen).some(status => status) && (
-                    <S.Black onClick={() => setDropdownOpen({})} />
-                )}
+                        <S.Black onClick={() => setDropdownOpen({})} />
+                    )}
                     <h1>자습감독 일정</h1>
                     {!isEditing ? (
                         <S.Buttons>
@@ -132,40 +160,56 @@ export default function SupervisionDetail() {
                                 </S.TableLeft>
                                 <S.TableRight>
                                     {groupedData[weekKey].map((dayData, dayIndex) => (
-                                        <S.TableRightContent key={dayIndex}>
-                                            <h3>{dayData.day || "날짜 없음"}</h3>
-                                            <S.TableRightHeader>
-                                                <div>1학년</div>
-                                                <div>2학년</div>
-                                                <div>3학년</div>
-                                            </S.TableRightHeader>
+                                        <S.TableRightContent key={dayIndex} $isEmpty={dayData.empty}>
+                                            {dayData.empty ? (
+                                                <span style={{ visibility: "hidden" }}>
+                                                    <h3>{dayData.day || "날짜 없음"}</h3>
+                                                    <S.TableRightHeader>
+                                                        <div>1학년</div>
+                                                        <div>2학년</div>
+                                                        <div>3학년</div>
+                                                    </S.TableRightHeader>
+                                                    <div style={{ visibility: "hidden" }} />
+                                                    <div style={{ visibility: "hidden" }} />
+                                                    <div style={{ visibility: "hidden" }} />
+                                                </span>
+                                            ) : (
+                                                <>
+                                                    <h3>{dayData.day || "날짜 없음"}</h3>
+                                                    <S.TableRightHeader>
+                                                        <div>1학년</div>
+                                                        <div>2학년</div>
+                                                        <div>3학년</div>
+                                                    </S.TableRightHeader>
 
-                                            {["7th_teacher", "8th_teacher", "10th_teacher"].map((timeKey, timeIndex) => (
-                                                <S.TeacherList key={timeIndex}>
-                                                    {["first_grade", "second_grade", "third_grade"].map((gradeKey, gradeIndex) => {
-                                                        const teacherName = dayData[gradeKey]?.[timeKey] ? dayData[gradeKey][timeKey].split("/")[0] : "미배정";
-                                                        const uniqueKey = `${dayData.date}-${gradeKey}-${timeKey}`;
+                                                    {["7th_teacher", "8th_teacher", "10th_teacher"].map((timeKey, timeIndex) => (
+                                                        <S.TeacherList key={timeIndex}>
+                                                            {["first_grade", "second_grade", "third_grade"].map((gradeKey, gradeIndex) => {
+                                                                const teacherName = dayData[gradeKey]?.[timeKey] ? dayData[gradeKey][timeKey].split("/")[0] : "미배정";
+                                                                const uniqueKey = `${dayData.date}-${gradeKey}-${timeKey}`;
 
-                                                        return (
-                                                            <div key={gradeIndex}>
-                                                                {isEditing ? (
-                                                                    <SearchDropdown
-                                                                        target="선생님"
-                                                                        name={selectedTeacher[uniqueKey]?.name || teacherName}
-                                                                        axios={(event) => searchTeacher(event)}
-                                                                        isOpen={dropdownOpen[uniqueKey] || false}
-                                                                        change={(value) => handleTeacherChange(dayData.date, gradeKey, timeKey, value)}
-                                                                        click={() => toggleDropdown(uniqueKey)}
-                                                                        left = {gradeIndex === 2 && dayData.day.slice(-3) === "(목)"? -800 : null}
-                                                                    />
-                                                                ) : (
-                                                                    <S.TeacherName>{teacherName}</S.TeacherName>
-                                                                )}
-                                                            </div>
-                                                        );
-                                                    })}
-                                                </S.TeacherList>
-                                            ))}
+                                                                return (
+                                                                    <div key={gradeIndex}>
+                                                                        {isEditing ? (
+                                                                            <SearchDropdown
+                                                                                target="선생님"
+                                                                                name={selectedTeacher[uniqueKey]?.name || teacherName}
+                                                                                axios={(event) => searchTeacher(event)}
+                                                                                isOpen={dropdownOpen[uniqueKey] || false}
+                                                                                change={(value) => handleTeacherChange(dayData.date, gradeKey, timeKey, value)}
+                                                                                click={() => toggleDropdown(uniqueKey)}
+                                                                                 left = {gradeIndex === 2 && dayData.day.slice(-3) === "(목)"? -800 : null}
+                                                                            />
+                                                                        ) : (
+                                                                            <S.TeacherName>{teacherName}</S.TeacherName>
+                                                                        )}
+                                                                    </div>
+                                                                );
+                                                            })}
+                                                        </S.TeacherList>
+                                                    ))}
+                                                </>
+                                            )}
                                         </S.TableRightContent>
                                     ))}
                                 </S.TableRight>

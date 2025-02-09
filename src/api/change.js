@@ -68,7 +68,7 @@ export const getChangeRequest = async () => {
     }
 }
 
-export const updateChangeStatus = async (id, status) => {
+export const updateChangeRequest = async (id, status) => {
     try {
         const res = await axiosInstance.patch(`${API_ENDPOINTS.CHANGE}/${id}`, {
             status

@@ -13,23 +13,18 @@ export const MainWrap = styled.div`
 
 export const MainContent = styled.div`
     margin: 0 auto;
+    width: 90%;
 `;
 
 export const NavButton = styled.button`
     width: 3rem;
     height: 3rem;
     font-size: 1.5rem;
-    color: #2E6FF2;
     border-radius: 50%;
     background: none;
-    border: 1px solid #2E6FF2;
+    border: none;
     cursor: pointer;
     transition: all 0.2s ease;
-
-    &:hover {
-        background: #2E6FF2;
-        color: white;
-    }
 `;
 
 export const MainHeader = styled.div`
@@ -112,6 +107,7 @@ export const TableRightHeader = styled.div`
 `;
 
 export const TableRightContent = styled.div`
+    // border-left: ${(props) => (props.$isEmpty ? '' : '1px solid #C4C4C4;')}
     border-left: 1px solid #C4C4C4;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
@@ -152,7 +148,7 @@ export const Modal = styled.div`
         padding: 0.8rem;
         border: 1px solid #ccc;
         outline: none;
-        resize: vertical;
+        resize: none;
     }
 `;
 
