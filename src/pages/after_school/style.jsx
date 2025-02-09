@@ -213,7 +213,7 @@ export const PrepModal = styled.div`
 
 export const ClassBtn = styled.div`
     display: flex;
-    gap: 200px;
+    gap: 38%;
 `
 
 export const ClassList = styled.div`
@@ -247,7 +247,7 @@ export const ClassListContent = styled.div`
 export const ClassTopMain = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 1rem;
     margin-left: 8.5%;
 `
 
