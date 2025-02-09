@@ -78,6 +78,7 @@ export const ClassTableTop = styled.div`
     padding: 3%;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
+    border-bottom: 1px solid #cccccc;
 
 `
 

@@ -35,86 +35,6 @@ export default function After_school() {
 
     const { data: classList = [] } = useGetClassList(selectedGrade, selectedDay);
 
-    // const myTodayClasses = [
-    //     {
-    //         "grade": 1,
-    //         "period": "10~11교시",
-    //         "name": "파이썬",
-    //         "placeName": "프로그래밍실"
-    //     },
-    //     {
-    //         "grade": 1,
-    //         "period": "10~11교시",
-    //         "name": "파이썬",
-    //         "placeName": "프로그래밍실"
-    //     }
-    // ]
-
-    // const myClasses = [
-    //     {
-    //         "grade": 1,
-    //         "branch": 4,
-    //         "id": 13,
-    //         "weekday": "월",
-    //         "period": "10~11교시",
-    //         "name": "파이썬",
-    //         "placeName": "프로그래밍실"
-    //     },
-    //     {
-    //         "grade": 1,
-    //         "branch": 4,
-    //         "id": 13,
-    //         "weekday": "월",
-    //         "period": "10~11교시",
-    //         "name": "파이썬",
-    //         "placeName": "프로그래밍실"
-    //     },
-    //     {
-    //         "grade": 1,
-    //         "branch": 4,
-    //         "id": 13,
-    //         "weekday": "월",
-    //         "period": "10~11교시",
-    //         "name": "파이썬",
-    //         "placeName": "프로그래밍실"
-    //     }
-    // ]
-
-    // const classList = 
-    // [
-    //     {
-
-    //         "period": "8~9교시",
-    //         "afterschool" : [
-    //             {
-    //                 "name": "파이썬",
-    //                 "teacherName": "곽상미",
-    //                 "placeName": "프로그래밍실"
-    //             },
-    //             {
-    //                 "name": "스프링",
-    //                 "teacherName": "곽상미",
-    //                 "placeName": "프로그래밍실"
-    //             }
-    //         ] 
-    //     },
-    //     {
-    //         "period": "10~11교시",
-    //         "afterschool" : [
-    //             {
-    //                 "name": "파이썬",
-    //                 "teacherName": "곽상미",
-    //                 "placeName": "프로그래밍실"
-    //             },
-    //             {
-    //                 "name": "스프링",
-    //                 "teacherName": "곽상미",
-    //                 "placeName": "프로그래밍실"
-    //             }
-    //         ]
-    //     }
-    // ]
-
     const closeModalHandler = (setModal) => {
         setModal(false);
     };
@@ -145,62 +65,87 @@ export default function After_school() {
                 <S.LeftContainer>
                     <S.TodayClasses>
                         <h1>나의 오늘 방과후</h1>
-                        {myTodayClasses.map((cls, i) => (
-                            <S.ClassCard key={i}>
-                                <S.CardTime>{cls.period}</S.CardTime>
-                                <div>{cls.grade}</div>
-                                <S.CardData $length={15}>{cls.name}</S.CardData>
-                                <S.CardData $length={10}>{cls.placeName}</S.CardData>
-                            </S.ClassCard>
-                        ))}
+                        {myTodayClasses.length === 0 ? (
+                            <p>오늘은 방과후 수업이 없습니다.</p>
+                        ) : (
+                            myTodayClasses.map((cls, i) => (
+                                <S.ClassCard key={i}>
+                                    <S.CardTime>{cls.period}</S.CardTime>
+                                    <div>{cls.grade}</div>
+                                    <S.CardData $length={15}>{cls.name}</S.CardData>
+                                    <S.CardData $length={10}>{cls.placeName}</S.CardData>
+                                </S.ClassCard>
+                            ))
+                        )}
                     </S.TodayClasses>
+
 
                     <S.MyClasses>
                         <h1>나의 방과후 수업 ({myClasses.length})</h1>
-                        <S.ClassTableContent>
-                            <S.ClassTableTop>
-                                <span>학년</span>
-                                <span>요일</span>
-                                <span>시간</span>
-                                <S.TopName>이름</S.TopName>
-                                <S.TopLocation>장소</S.TopLocation>
-                            </S.ClassTableTop>
-                            <S.ClassTableMain>
-                                {myClasses.map((cls, i) => (
-                                    <S.ClassTable key={i}>
-                                        <S.TableData $length={3.4}>{cls.grade}</S.TableData>
-                                        <S.TableData $length={3}>{cls.weekday}</S.TableData>
-                                        <S.TableData $length={6}>{cls.period}</S.TableData>
-                                        <S.TableName>
-                                            <S.TableData $length={14}>{cls.name}</S.TableData>
-                                            <S.TableData $length={14.5}>{cls.placeName}</S.TableData>
-                                        </S.TableName>
-                                        <S.OptionButton src={OptionButton} onClick={(e) => {
-                                            setOptions(options === i ? null : i);
-                                            setSelectedClass(cls);
-                                            e.stopPropagation()
-                                        }} />
-                                        {options === i && ( // 옵션 버튼이 클릭된 수업만 목록을 보여줌
-                                            <S.Options onClick={(e) => e.stopPropagation()}>
-                                                <button onClick={() => {
-                                                    setOptions(null);
-                                                    setIsModal1(true);
-                                                }}>출장</button>
-                                                <button onClick={() => {
-                                                    setOptions(null);
-                                                    setIsModal2(true);
-                                                }}>보강</button>
-                                                <button onClick={() => {
-                                                    setOptions(null);
-                                                    setIsModal3(true);
-                                                }}>종료</button>
-                                            </S.Options>
-                                        )}
-                                    </S.ClassTable>
-                                ))}
-                            </S.ClassTableMain>
-                        </S.ClassTableContent>
+                        {myClasses.length === 0 ? (
+                            <p>나의 방과후 수업이 없습니다.</p>
+                        ) : (
+                            <S.ClassTableContent>
+                                <S.ClassTableTop>
+                                    <span>학년</span>
+                                    <span>요일</span>
+                                    <span>시간</span>
+                                    <S.TopName>이름</S.TopName>
+                                    <S.TopLocation>장소</S.TopLocation>
+                                </S.ClassTableTop>
+                                <S.ClassTableMain>
+                                    {myClasses.map((cls, i) => (
+                                        <S.ClassTable key={i}>
+                                            <S.TableData $length={3.4}>{cls.grade}</S.TableData>
+                                            <S.TableData $length={3}>{cls.weekday}</S.TableData>
+                                            <S.TableData $length={6}>{cls.period}</S.TableData>
+                                            <S.TableName>
+                                                <S.TableData $length={14}>{cls.name}</S.TableData>
+                                                <S.TableData $length={14.5}>{cls.placeName}</S.TableData>
+                                            </S.TableName>
+                                            <S.OptionButton
+                                                src={OptionButton}
+                                                onClick={(e) => {
+                                                    setOptions(options === i ? null : i);
+                                                    setSelectedClass(cls);
+                                                    e.stopPropagation();
+                                                }}
+                                            />
+                                            {options === i && (
+                                                <S.Options onClick={(e) => e.stopPropagation()}>
+                                                    <button
+                                                        onClick={() => {
+                                                            setOptions(null);
+                                                            setIsModal1(true);
+                                                        }}
+                                                    >
+                                                        출장
+                                                    </button>
+                                                    <button
+                                                        onClick={() => {
+                                                            setOptions(null);
+                                                            setIsModal2(true);
+                                                        }}
+                                                    >
+                                                        보강
+                                                    </button>
+                                                    <button
+                                                        onClick={() => {
+                                                            setOptions(null);
+                                                            setIsModal3(true);
+                                                        }}
+                                                    >
+                                                        종료
+                                                    </button>
+                                                </S.Options>
+                                            )}
+                                        </S.ClassTable>
+                                    ))}
+                                </S.ClassTableMain>
+                            </S.ClassTableContent>
+                        )}
                     </S.MyClasses>
+
                 </S.LeftContainer>
 
                 <S.ClassList>
