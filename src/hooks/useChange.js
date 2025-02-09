@@ -1,5 +1,5 @@
 import * as API from '../api/change.js';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 export const useGetMonthlySupervision = (month) => {
@@ -48,11 +48,20 @@ export const useGetChangeRequest = () => {
 }
 
 export const useUpdateChangeRequest = (closeModal) => {
+    const queryClient = useQueryClient();
     return useMutation({
-        mutationFn: ({ id, status }) => API.updateChangeStatus(id, status),
-        onSuccess: () => {
-            console.log('교체요청 업데이트');
-            closeModal();
+        mutationFn: ({ id, status }) => API.updateChangeRequest(id, status),
+        onSuccess: (_, { id, status }) => {
+            queryClient.setQueryData(['getChangeRequest'], (old) => {
+                if (!old) return [];
+                return old.map((request) =>
+                    request.changeId === id ? { ...request, result: status } : request
+                );
+            }); // 바로 적용하기
+
+            setTimeout(() => {
+                queryClient.invalidateQueries(['getChangeRequest']);
+            }, 5000); // 그치만 서버 값과 다를 수 있으니까, 서버 값은 5초 뒤에 다시 불러오기
         },
         onError: (err) => {
             console.error('교체요청 업데이트 실패:', err);
