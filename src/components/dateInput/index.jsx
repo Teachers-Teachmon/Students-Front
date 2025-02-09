@@ -4,9 +4,11 @@ import useDay from "../../zustand/day";
 import patchDay from "../../utils/patchDay.js";
 
 export default function DateInput({ onChange }) {
-    const [inputValue, setInputValue] = useState('');
-    const [isFocused, setIsFocused] = useState(false);
     const { setDay, day, today } = useDay();
+    const newToday = new Date(patchDay(today));
+    const initialDate = `${newToday.getFullYear()}년 ${newToday.getMonth() + 1}월 ${newToday.getDate()}일`;
+    const [inputValue, setInputValue] = useState(initialDate);
+    const [isFocused, setIsFocused] = useState(false);
 
     useEffect(() => {
         setDay(patchDay(today))
