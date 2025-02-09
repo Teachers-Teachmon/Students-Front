@@ -38,7 +38,10 @@ export const Student = styled.div`
                 props.$color === "#ffffff" ? null : darken(0.1, props.$color || "#ffffff")};
     }
 `
-
+export const UnBox = styled.div`
+    width: 12%;
+    height: 40%;
+`
 export const Black = styled.div`
     position: absolute;
     width: 100vw;

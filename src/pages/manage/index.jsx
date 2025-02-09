@@ -133,15 +133,20 @@ export default function Manage(){
                         </S.Record>
                     </S.MainNav>
                     <S.Section>
-                        {/*!period ? <S.NoData>지금은 자습시간이 아닙니다</S.NoData> :*/}
                         {/*weekday ? <S.NoData>오늘은 방과후가 없습니다.</S.NoData> :*/}
                         {
-                                !isLoading && student &&
+                                !isLoading && student ?
                                     <>
                                         <StudentGraph data={student['1반']} grade={gradeIndex()[0]} classNum = {1}/>
                                         <StudentGraph data={student['2반']} grade={gradeIndex()[0]} classNum = {2}/>
                                         <StudentGraph data={student['3반']} grade={gradeIndex()[0]}  classNum = {3}/>
                                         <StudentGraph data={student['4반']} grade={gradeIndex()[0]}  classNum = {4}/>
+                                    </> :
+                                    <>
+                                        <StudentGraph grade={gradeIndex()[0]} classNum = {1}/>
+                                        <StudentGraph grade={gradeIndex()[0]} classNum = {2}/>
+                                        <StudentGraph grade={gradeIndex()[0]}  classNum = {3}/>
+                                        <StudentGraph grade={gradeIndex()[0]}  classNum = {4}/>
                                     </>
                         }
 
