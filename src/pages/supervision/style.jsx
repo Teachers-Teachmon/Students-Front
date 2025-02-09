@@ -22,6 +22,7 @@ export const CalendarWrapper = styled.div`
 export const CalendarHeader = styled.div`
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-top: 0.3rem;
     gap: 7%;
     margin-bottom: 1rem;

@@ -62,7 +62,7 @@ export default function SupervisionChange() {
             return;
         }
 
-        if (teacherName === "미배정") {
+        if (teacherName === "X") {
             alert("미배정된 선생님과 교체할 수 없습니다.");
             return
         }
@@ -233,7 +233,7 @@ export default function SupervisionChange() {
                                                                     if (dayData.empty) return <div key={`${dayData.day}-${gradeKey}`} style={{ visibility: "hidden" }} />;
 
                                                                     const teacherInfo = dayData?.[gradeKey]?.[classKey];
-                                                                    const teacherName = teacherInfo ? teacherInfo.split('/')[0] : "미배정";
+                                                                    const teacherName = teacherInfo ? teacherInfo.split('/')[0] : "X";
                                                                     const uniqueKey = `${dayData.day}-${gradeKey}-${classKey}-${dayData.date}`;
                                                                     const compareKey = `${uniqueKey.slice(-10)}-${uniqueKey.split('-')[1]}-${uniqueKey.split('-')[2]}`;
 
