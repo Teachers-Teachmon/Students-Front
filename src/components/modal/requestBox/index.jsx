@@ -13,7 +13,7 @@ export default function RequestBox({ closeModal, changeData }) {
     const handleUpdateStatus = (status) => {
         if (status === "COMPLETED") {
             if (changeData.result == "PENDING") {
-                alert("아직 상대방이 응답하지 않았습니다.");
+                closeModal();
                 return;
             }
         }
