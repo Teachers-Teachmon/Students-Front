@@ -31,9 +31,7 @@ export const useDeleteMovement = () => {
         mutationFn: (props) =>API.deleteMovement(props),
         onSuccess: (data, variables) => {
             queryClient.setQueryData(['getMovement', variables.day],(oldData)=>{
-                oldData.filter((item)=>{
-                        return !(item.teacher_id === variables.teacher_id && item.period === variables.periodName)
-                })
+                return oldData.filter((item)=>{return !(item.teacher_id === variables.teacher_id && item.period === variables.periodName)})
             });
         },
         onError: (err) => {
