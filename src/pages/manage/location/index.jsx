@@ -51,7 +51,15 @@ export default function Location() {
                 <TransformComponent>
             <S.Wrap>
                 {isAllLoading || isFloorLoading ?
-                null :
+                    isFloor[0] ? (
+                        <First data = {locationFloor} set = {setIsModal} fake = {true}/>
+                    ) : isFloor[1] ? (
+                        <Second data = {locationFloor} set = {setIsModal} fake = {true}/>
+                    ) : isFloor[2] ? (
+                        <Third data = {locationFloor} set = {setIsModal} fake = {true}/>
+                    ) : isFloor[3] ? (
+                        <Fourth data = {locationFloor} set = {setIsModal} fake = {true}/>
+                    ) : null :
                     isFloor[0] ? (
                             <First data = {locationFloor} set = {setIsModal}/>
                         ) : isFloor[1] ? (

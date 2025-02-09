@@ -2,10 +2,10 @@ import {API_ENDPOINTS} from "../lib/endpoints.js";
 import axiosInstance from "../lib/axiosInstance.js";
 import {period} from "../lib/period.js";
 
-//${API_ENDPOINTS.STUDENT}  /${grade}
+//${API_ENDPOINTS.STUDENT}
 export const getNowStudent = async (grade) =>{
     try{
-        const res = await axiosInstance.get(`/schedule`);
+        const res = await axiosInstance.get(`${API_ENDPOINTS.STUDENT}/schedule/${grade}`);
         if(res.status!==200){
             return new Promise.reject({
                 status:res.status,
@@ -31,10 +31,10 @@ export const schoolOutStudent = async (studentID) =>{
         return Promise.reject(err);
     }
 }
-//${API_ENDPOINTS.STUDENT}
+
 export const getLocationAll = async ()=>{
     try{
-        const res = await axiosInstance.get(`/locationALL`);
+        const res = await axiosInstance.get(`${API_ENDPOINTS.STUDENT}/location`);
         if(res.status!==200){
             return new Promise.reject({
                 status:res.status,
@@ -46,10 +46,10 @@ export const getLocationAll = async ()=>{
         return Promise.reject(err);
     }
 }
-//${API_ENDPOINTS.STUDENT}  /${floor}
+
 export const getLocation = async (floor) =>{
     try {
-        const res = await axiosInstance.get(`/location`);
+        const res = await axiosInstance.get(`${API_ENDPOINTS.STUDENT}/location/${floor}`);
         if(res.status!==200){
             return new Promise.reject({
                 status:res.status,
