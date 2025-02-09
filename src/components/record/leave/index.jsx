@@ -28,8 +28,7 @@ export default function Leave({day, isFirst, onDeleteSuccess}) {
                         {name === item.teacher_name || role === "ADMIN" ?
                             <S.DeleteBox onClick={()=>{
                                 if(window.confirm('정말 삭제하시겠습니까?')) {
-                                    deleteLeave({id : item.leave_id, day : day});
-                                    onDeleteSuccess();
+                                    deleteLeave({id : item.leave_id, day});
                                 }
                             }}>삭제</S.DeleteBox> : null
                         }
