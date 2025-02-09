@@ -31,7 +31,7 @@ export default function SupervisionDetail() {
                         ...dayData[grade],
                         [timeKey]: newTeacher
                             ? `${newTeacher.name}/${newTeacher.id}`
-                            : `미배정/0`
+                            : `X/0`
                     }
                 };
             }
@@ -185,7 +185,7 @@ export default function SupervisionDetail() {
                                                     {["7th_teacher", "8th_teacher", "10th_teacher"].map((timeKey, timeIndex) => (
                                                         <S.TeacherList key={timeIndex}>
                                                             {["first_grade", "second_grade", "third_grade"].map((gradeKey, gradeIndex) => {
-                                                                const teacherName = dayData[gradeKey]?.[timeKey] ? dayData[gradeKey][timeKey].split("/")[0] : "미배정";
+                                                                const teacherName = dayData[gradeKey]?.[timeKey] ? dayData[gradeKey][timeKey].split("/")[0] : "X";
                                                                 const uniqueKey = `${dayData.date}-${gradeKey}-${timeKey}`;
 
                                                                 return (

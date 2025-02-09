@@ -81,8 +81,8 @@ export default function Main() {
                         <S.NexSupLeft>
                             <h3>다음 자습감독 기간</h3>
                             <S.NextSupDate>D - {nextDay === -1 ? "End" : nextDay === 0 ? "Day" : nextDay}</S.NextSupDate>
-                            <h2>{day || "11월 27일 (수)"}</h2>
-                            <h4>{"8~9교시" || period}</h4>
+                            <h2>{day}</h2>
+                            <h4>{period}</h4>
                         </S.NexSupLeft>
                         <S.GoToSupBtn onClick={() => { navigate('/supervision') }}>자습감독<img src={Arrow} /></S.GoToSupBtn>
                     </S.NextSup>
@@ -129,7 +129,7 @@ export default function Main() {
                                 const rightPeriod = data.toMe ? data.sender.period : data.recipient.period;
                                 const rightGrade = data.toMe ? data.sender.grade : data.recipient.grade;
 
-                                return (
+                                return changeDay.length === 0 ? (<div>자습감독이 없습니다.</div>) : (
                                     <S.ChangeCard key={data.changeId} style={{ backgroundColor: data.toMe ? "#C8DBFF" : data.result === "ACCEPTED" ? "#72FAAA" : data.result === "REJECTED" ? "#FF938C" : "" }}>
                                         <S.ChangeWrap>
                                             <S.ChangeSide>
@@ -164,7 +164,7 @@ export default function Main() {
                                             <S.TeacherTable key={index}>
                                                 <p>{index === 0 ? "7교시" : index === 1 ? "8~9교시" : "10~11교시"}</p>
                                                 {["first_grade", "second_grade", "third_grade"].map((grade, i) => {
-                                                    const teacher = todayTeacher[grade][period] ? todayTeacher[grade][period].replace("/me", "") : "미배정";
+                                                    const teacher = todayTeacher[grade][period] ? todayTeacher[grade][period].replace("/me", "") : "X";
                                                     const isMe = todayTeacher[grade][period] ? todayTeacher[grade][period].includes("/me") : false;
                                                     return (
                                                         <p key={i} style={{ color: isMe ? "#2E6FF2" : "", fontWeight: isMe ? "600" : "" }}>

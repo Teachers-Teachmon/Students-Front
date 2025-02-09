@@ -1,7 +1,7 @@
 import * as S from './style.jsx';
 import { useState } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import { useGetDailySupervision } from '../../../hooks/useSupervision.js';
-import Loading from '../../../components/loading/index.jsx';
 import X from '../../../assets/X.svg';
 import LeftGrayButton from '../../../assets/LeftGrayButton.svg';
 import RightGrayButton from '../../../assets/RightGrayButton.svg';
@@ -18,34 +18,33 @@ export default function TeacherList({ closeModal, selectedDate }) {
 
     const [currentDate, setCurrentDate] = useState(new Date(selectedDate));
 
-    const fetchTeacherData = (newDate) => {
-        console.log(`API 요청: ${formatDateForRequest(newDate)}`);
-    };
-
     const handlePrevDay = () => {
         const newDate = new Date(currentDate);
         newDate.setDate(newDate.getDate() - 1);
         setCurrentDate(newDate);
-        fetchTeacherData(newDate);
     };
 
     const handleNextDay = () => {
         const newDate = new Date(currentDate);
         newDate.setDate(newDate.getDate() + 1);
         setCurrentDate(newDate);
-        fetchTeacherData(newDate);
     };
 
-    const { data: todayTeacher, isLoading, isError } = useGetDailySupervision(formatDateForRequest(currentDate));
+    const queryClient = useQueryClient();
+    const { data: todayTeacher } = useGetDailySupervision(formatDateForRequest(currentDate), {
+        initialData: () => queryClient.getQueryData(['dailySupervision', formatDateForRequest(currentDate)]) || null,
+        onSuccess: (data) => {
+            queryClient.setQueryData(['dailySupervision', formatDateForRequest(currentDate)], data);
+        }
+    });
     const formatTeacherName = (teacher) => {
-        if (!teacher) return "미배정";
+        if (!teacher) return "X";
         const isMe = teacher.includes("/me");
         const teacherName = teacher.replace("/me", "").trim();
         return { name: teacherName, isMe };
     };
     return (
         <S.Container>
-            {isLoading && <Loading />}
             <S.HandleButton onClick={handlePrevDay}><img src={LeftGrayButton} /></S.HandleButton>
             <S.Wrapper>
                 <S.Header>
