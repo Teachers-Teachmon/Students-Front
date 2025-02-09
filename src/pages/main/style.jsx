@@ -181,7 +181,7 @@ export const NoChange = styled.div`
     align-items: center;
     height: 90%;
     font-weight: 500;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 `;
 
 export const ChangeWrap = styled.div`
