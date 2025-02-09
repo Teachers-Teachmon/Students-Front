@@ -2,7 +2,7 @@ import * as S from './style.jsx';
 import Error from '../../../assets/Error.svg';
 import Error2 from '../../../assets/Error2.svg';
 
-export default function ArrorModal( message ) {
+export default function ArrorModal( {message} ) {
 
     return (
         <S.Wrapper>

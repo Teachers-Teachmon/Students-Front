@@ -69,18 +69,13 @@ export default function Edit() {
         uploadMutation(id, {
             onError: (error) => {
                 console.error("업로드 에러:", error);
-        
+
                 if (error.response?.status === 400) {
-                    const errorMsg = typeof error.response.data?.message === "string" 
-                        ? error.response.data.message 
-                        : JSON.stringify(error.response.data);
-        
-                    setErrorMessage(errorMsg);
+                    setErrorMessage(error.response.data?.message);
                     setIsModal1(true);
                 }
             },
         });
-        
     };
     
 
