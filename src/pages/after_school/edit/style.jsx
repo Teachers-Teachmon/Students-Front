@@ -411,6 +411,7 @@ export const Btn = styled.div`
     display: flex;
     margin-left: 55%;
     gap: 20px;
+    margin-top: 2%;
 `
 
 export const Black = styled.div`
@@ -420,4 +421,20 @@ export const Black = styled.div`
     position: absolute;
     top: 0;
     left: 0;
+`
+
+export const BusinessTripModal = styled.div`
+    position: fixed;
+    width:100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+export const BusinessModal = styled.div`
+    width: 40%;
+    border-radius: 10px;
+    padding: 2rem;
 `
