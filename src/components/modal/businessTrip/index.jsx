@@ -19,6 +19,7 @@ export default function BusinessTrip({ closeModal, selectedClass }) {
             day: selectedDate,
             period: selectedClass.period,
             afterSchoolId: selectedClass.id,
+            branch: selectedClass.branch
         });
 
         closeModal();
