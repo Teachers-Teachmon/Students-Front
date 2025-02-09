@@ -52,7 +52,7 @@ export default function TeacherList({ closeModal, selectedDate }) {
                     <S.CloseButton onClick={closeModal}><img src={X} /></S.CloseButton>
                 </S.Header>
                 <S.Content>
-                    {todayTeacher && !isLoading && (
+                    {todayTeacher && (
                         <S.Table>
                             <S.TeacherListTop>
                                 <span></span>
