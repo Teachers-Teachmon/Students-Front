@@ -26,13 +26,11 @@ export const Wrapper = styled.div`
 `
 
 export const HandleButton = styled.button`
-    width: 3rem;
-    height: 3rem;
+    background: none;
     font-size: 1.5rem;
     cursor: pointer;
     border: none;
     border-radius: 50%;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 `
 
 export const CloseButton = styled.button`

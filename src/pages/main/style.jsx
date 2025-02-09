@@ -60,6 +60,10 @@ export const NexSupLeft = styled.div`
     display: flex;
     flex-direction: column;
     gap: 20px;
+    
+    @media screen and (min-width: 1920px) {
+        font-size: 1.5rem;
+    }
 `
 
 export const NextSupDate = styled.div`
@@ -67,6 +71,10 @@ export const NextSupDate = styled.div`
     font-weight: 700;
     font-style: italic;
     white-space: nowrap;
+
+    @media screen and (min-width: 1920px) {
+        font-size: 5.5rem;
+    }
 `
 
 export const GoToSupBtn = styled.button`
@@ -169,31 +177,36 @@ export const BottomLeftContent = styled.div`
 export const ChangeWrap = styled.div`
     display: flex;
     gap: 4rem;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 `;
 
 export const ChangeCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0.6rem;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.6rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
 `;
 
 export const ChangeSide = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-
-  p:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
     text-align: center;
-    font-weight: 500;
-  }
-  p:not(:first-child) {
-    font-size: 14px;
-    color: #444;
-  }
+
+    p:first-child {
+        text-align: center;
+        font-weight: 500;
+    }
+    p:not(:first-child) {
+        font-size: 14px;
+        color: #444;
+    }
 `;
 
 export const RotateIcon = styled.img`
