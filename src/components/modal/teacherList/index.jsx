@@ -37,6 +37,12 @@ export default function TeacherList({ closeModal, selectedDate }) {
             queryClient.setQueryData(['dailySupervision', formatDateForRequest(currentDate)], data);
         }
     });
+    const [cachedTeacher, setCachedTeacher] = useState(null);
+    useEffect(() => {
+        if (todayTeacher) {
+            setCachedTeacher(todayTeacher);
+        }
+    }, [todayTeacher]);
     const formatTeacherName = (teacher) => {
         if (!teacher) return "X";
         const isMe = teacher.includes("/me");
@@ -52,7 +58,7 @@ export default function TeacherList({ closeModal, selectedDate }) {
                     <S.CloseButton onClick={closeModal}><img src={X} /></S.CloseButton>
                 </S.Header>
                 <S.Content>
-                    {todayTeacher && (
+                    {(cachedTeacher || todayTeacher) && (
                         <S.Table>
                             <S.TeacherListTop>
                                 <span></span>
