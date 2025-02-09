@@ -123,7 +123,7 @@ export const Row = styled.div`
     display: grid;
     grid-template-columns: 1fr repeat(3, 1fr);
     text-align: center;
-    padding: 1rem;
+    padding: 2.5%;
     background-color: white;
     margin-bottom: 1rem;
     border-radius: 10px;
