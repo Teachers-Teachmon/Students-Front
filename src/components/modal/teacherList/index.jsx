@@ -1,5 +1,5 @@
 import * as S from './style.jsx';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useGetDailySupervision } from '../../../hooks/useSupervision.js';
 import X from '../../../assets/X.svg';
