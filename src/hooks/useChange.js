@@ -61,7 +61,7 @@ export const useUpdateChangeRequest = (closeModal) => {
 
             setTimeout(() => {
                 queryClient.invalidateQueries(['getChangeRequest']);
-            }, 5000); // 그치만 서버 값과 다를 수 있으니까, 서버 값은 5초 뒤에 다시 불러오기
+            }, 500); // 그치만 서버 값과 다를 수 있으니까, 서버 값은 0.5초 뒤에 다시 불러오기
         },
         onError: (err) => {
             console.error('교체요청 업데이트 실패:', err);
