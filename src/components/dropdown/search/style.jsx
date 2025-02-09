@@ -24,7 +24,7 @@ export const DropdownContainer = styled.div`
 export const DropdownMenu = styled.ul`
   position: absolute;
     top: 35px;
-    left: 0;
+    ${(props)=>props.$left ? 'right:0;' : "left:0;"}
     list-style: none;
     border: 1px solid #ccc;
     border-radius: 5px;

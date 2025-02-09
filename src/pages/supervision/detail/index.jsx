@@ -198,6 +198,7 @@ export default function SupervisionDetail() {
                                                                                 isOpen={dropdownOpen[uniqueKey] || false}
                                                                                 change={(value) => handleTeacherChange(dayData.date, gradeKey, timeKey, value)}
                                                                                 click={() => toggleDropdown(uniqueKey)}
+                                                                                 left = {gradeIndex === 2 && dayData.day.slice(-3) === "(목)"? -800 : null}
                                                                             />
                                                                         ) : (
                                                                             <S.TeacherName>{teacherName}</S.TeacherName>

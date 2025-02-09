@@ -29,6 +29,330 @@
       "1410 윤도훈"
     ]
   },
+  "assignment": {
+    "data": [
+      {
+        "week": "2월 2주차",
+        "day": "2월 3일 (월)",
+        "date": "2025-02-03",
+        "first_grade": {
+          "7th_teacher": null,
+          "8th_teacher": null,
+          "10th_teacher": null
+        },
+        "second_grade": {
+          "7th_teacher": null,
+          "8th_teacher": "허온/4",
+          "10th_teacher": "허온/4"
+        },
+        "third_grade": {
+          "7th_teacher": "윤도훈/11",
+          "8th_teacher": "윤도훈/11",
+          "10th_teacher": null
+        }
+      },
+      {
+        "week": "2월 2주차",
+        "day": "2월 4일 (화)",
+        "date": "2025-02-04",
+        "first_grade": {
+          "7th_teacher": null,
+          "8th_teacher": null,
+          "10th_teacher": null
+        },
+        "second_grade": {
+          "7th_teacher": "티치몬/3",
+          "8th_teacher": "조아라/6",
+          "10th_teacher": "조아라/6"
+        },
+        "third_grade": {
+          "7th_teacher": "티치몬/3",
+          "8th_teacher": "티치몬/3",
+          "10th_teacher": null
+        }
+      },
+      {
+        "week": "2월 2주차",
+        "day": "2월 5일 (수)",
+        "date": "2025-02-05",
+        "first_grade": {
+          "7th_teacher": "윤도훈/11",
+          "8th_teacher": null,
+          "10th_teacher": null
+        },
+        "second_grade": {
+          "7th_teacher": "오주현/1",
+          "8th_teacher": "윤도훈/11",
+          "10th_teacher": "윤도훈/11"
+        },
+        "third_grade": {
+          "7th_teacher": "허온/4",
+          "8th_teacher": "허온/4",
+          "10th_teacher": null
+        }
+      },
+      {
+        "week": "2월 2주차",
+        "day": "2월 6일 (목)",
+        "date": "2025-02-06",
+        "first_grade": {
+          "7th_teacher": null,
+          "8th_teacher": null,
+          "10th_teacher": "리안/5"
+        },
+        "second_grade": {
+          "7th_teacher": null,
+          "8th_teacher": "오주현/1",
+          "10th_teacher": "오주현/1"
+        },
+        "third_grade": {
+          "7th_teacher": "리안/5",
+          "8th_teacher": "리안/5",
+          "10th_teacher": null
+        }
+      },
+      {
+        "week": "2월 3주차",
+        "day": "2월 10일 (월)",
+        "date": "2025-02-10",
+        "first_grade": {
+          "7th_teacher": null,
+          "8th_teacher": null,
+          "10th_teacher": null
+        },
+        "second_grade": {
+          "7th_teacher": null,
+          "8th_teacher": "티치몬/3",
+          "10th_teacher": "티치몬/3"
+        },
+        "third_grade": {
+          "7th_teacher": "조아라/6",
+          "8th_teacher": "조아라/6",
+          "10th_teacher": null
+        }
+      },
+      {
+        "week": "2월 3주차",
+        "day": "2월 11일 (화)",
+        "date": "2025-02-11",
+        "first_grade": {
+          "7th_teacher": null,
+          "8th_teacher": null,
+          "10th_teacher": null
+        },
+        "second_grade": {
+          "7th_teacher": "허온/4",
+          "8th_teacher": "허온/4",
+          "10th_teacher": "허온/4"
+        },
+        "third_grade": {
+          "7th_teacher": "오주현/1",
+          "8th_teacher": "오주현/1",
+          "10th_teacher": null
+        }
+      },
+      {
+        "week": "2월 3주차",
+        "day": "2월 12일 (수)",
+        "date": "2025-02-12",
+        "first_grade": {
+          "7th_teacher": "윤도훈/11",
+          "8th_teacher": null,
+          "10th_teacher": null
+        },
+        "second_grade": {
+          "7th_teacher": "리안/5",
+          "8th_teacher": "리안/5",
+          "10th_teacher": "리안/5"
+        },
+        "third_grade": {
+          "7th_teacher": "조아라/6",
+          "8th_teacher": "조아라/6",
+          "10th_teacher": null
+        }
+      },
+      {
+        "week": "2월 3주차",
+        "day": "2월 13일 (목)",
+        "date": "2025-02-13",
+        "first_grade": {
+          "7th_teacher": null,
+          "8th_teacher": null,
+          "10th_teacher": "윤도훈/11"
+        },
+        "second_grade": {
+          "7th_teacher": null,
+          "8th_teacher": "티치몬/3",
+          "10th_teacher": "티치몬/3"
+        },
+        "third_grade": {
+          "7th_teacher": "윤도훈/11",
+          "8th_teacher": "윤도훈/11",
+          "10th_teacher": null
+        }
+      },
+      {
+        "week": "2월 4주차",
+        "day": "2월 17일 (월)",
+        "date": "2025-02-17",
+        "first_grade": {
+          "7th_teacher": null,
+          "8th_teacher": null,
+          "10th_teacher": null
+        },
+        "second_grade": {
+          "7th_teacher": null,
+          "8th_teacher": "오주현/1",
+          "10th_teacher": "오주현/1"
+        },
+        "third_grade": {
+          "7th_teacher": "허온/4",
+          "8th_teacher": "허온/4",
+          "10th_teacher": null
+        }
+      },
+      {
+        "week": "2월 4주차",
+        "day": "2월 18일 (화)",
+        "date": "2025-02-18",
+        "first_grade": {
+          "7th_teacher": null,
+          "8th_teacher": null,
+          "10th_teacher": null
+        },
+        "second_grade": {
+          "7th_teacher": "조아라/6",
+          "8th_teacher": "조아라/6",
+          "10th_teacher": "조아라/6"
+        },
+        "third_grade": {
+          "7th_teacher": "티치몬/3",
+          "8th_teacher": "티치몬/3",
+          "10th_teacher": null
+        }
+      },
+      {
+        "week": "2월 4주차",
+        "day": "2월 19일 (수)",
+        "date": "2025-02-19",
+        "first_grade": {
+          "7th_teacher": "리안/5",
+          "8th_teacher": null,
+          "10th_teacher": null
+        },
+        "second_grade": {
+          "7th_teacher": "윤도훈/11",
+          "8th_teacher": "윤도훈/11",
+          "10th_teacher": "윤도훈/11"
+        },
+        "third_grade": {
+          "7th_teacher": "허온/4",
+          "8th_teacher": "허온/4",
+          "10th_teacher": null
+        }
+      },
+      {
+        "week": "2월 4주차",
+        "day": "2월 20일 (목)",
+        "date": "2025-02-20",
+        "first_grade": {
+          "7th_teacher": null,
+          "8th_teacher": null,
+          "10th_teacher": "오주현/1"
+        },
+        "second_grade": {
+          "7th_teacher": null,
+          "8th_teacher": "리안/5",
+          "10th_teacher": "리안/5"
+        },
+        "third_grade": {
+          "7th_teacher": "티치몬/3",
+          "8th_teacher": "티치몬/3",
+          "10th_teacher": null
+        }
+      },
+      {
+        "week": "2월 5주차",
+        "day": "2월 24일 (월)",
+        "date": "2025-02-24",
+        "first_grade": {
+          "7th_teacher": null,
+          "8th_teacher": null,
+          "10th_teacher": null
+        },
+        "second_grade": {
+          "7th_teacher": null,
+          "8th_teacher": "오주현/1",
+          "10th_teacher": "오주현/1"
+        },
+        "third_grade": {
+          "7th_teacher": "조아라/6",
+          "8th_teacher": "조아라/6",
+          "10th_teacher": null
+        }
+      },
+      {
+        "week": "2월 5주차",
+        "day": "2월 25일 (화)",
+        "date": "2025-02-25",
+        "first_grade": {
+          "7th_teacher": null,
+          "8th_teacher": null,
+          "10th_teacher": null
+        },
+        "second_grade": {
+          "7th_teacher": "허온/4",
+          "8th_teacher": "허온/4",
+          "10th_teacher": "허온/4"
+        },
+        "third_grade": {
+          "7th_teacher": "윤도훈/11",
+          "8th_teacher": "윤도훈/11",
+          "10th_teacher": null
+        }
+      },
+      {
+        "week": "2월 5주차",
+        "day": "2월 26일 (수)",
+        "date": "2025-02-26",
+        "first_grade": {
+          "7th_teacher": "리안/5",
+          "8th_teacher": null,
+          "10th_teacher": null
+        },
+        "second_grade": {
+          "7th_teacher": "티치몬/3",
+          "8th_teacher": "티치몬/3",
+          "10th_teacher": "티치몬/3"
+        },
+        "third_grade": {
+          "7th_teacher": "오주현/1",
+          "8th_teacher": "오주현/1",
+          "10th_teacher": null
+        }
+      },
+      {
+        "week": "2월 5주차",
+        "day": "2월 27일 (목)",
+        "date": "2025-02-27",
+        "first_grade": {
+          "7th_teacher": null,
+          "8th_teacher": null,
+          "10th_teacher": "리안/5"
+        },
+        "second_grade": {
+          "7th_teacher": null,
+          "8th_teacher": "조아라/6",
+          "10th_teacher": "조아라/6"
+        },
+        "third_grade": {
+          "7th_teacher": "리안/5",
+          "8th_teacher": "리안/5",
+          "10th_teacher": null
+        }
+      }
+    ]
+  },
   "leaveseatDelete": {
 
   },
