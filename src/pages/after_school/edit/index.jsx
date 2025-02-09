@@ -69,7 +69,7 @@ export default function Edit() {
             onError: (error) => {
                 console.error("업로드 에러:", error);
 
-                if (error.response?.status === 404) {
+                if (error.response?.status === 400) {
                     setErrorMessage(error.response.data?.message);
                     setIsModal1(true);
                 }
