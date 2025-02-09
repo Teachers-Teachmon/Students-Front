@@ -29,46 +29,91 @@ export default function After_school() {
     const koreanWeekDays = ["월", "화", "수", "목"];
 
 
-    const { data: myTodayClasses = [] } = useGetTodayClasses();
+    //const { data: myTodayClasses = [] } = useGetTodayClasses();
 
-    const { data: myClasses = [] } = useGetMyClasses();
+    //const { data: myClasses = [] } = useGetMyClasses();
 
-    const { data: classList = [] } = useGetClassList(selectedGrade, selectedDay);
+    //const { data: classList = [] } = useGetClassList(selectedGrade, selectedDay);
 
-    // const classList = 
-    // [
-    //     {
+    const myTodayClasses = [
+        {
+            "grade": 1,
+            "period": "10~11교시",
+            "name": "파이썬",
+            "placeName": "프로그래밍실"
+        },
+        {
+            "grade": 1,
+            "period": "10~11교시",
+            "name": "파이썬",
+            "placeName": "프로그래밍실"
+        }
+    ]
 
-    //         "period": "8~9교시",
-    //         "afterschool" : [
-    //             {
-    //                 "name": "파이썬",
-    //                 "teacherName": "곽상미",
-    //                 "placeName": "프로그래밍실"
-    //             },
-    //             {
-    //                 "name": "스프링",
-    //                 "teacherName": "곽상미",
-    //                 "placeName": "프로그래밍실"
-    //             }
-    //         ] 
-    //     },
-    //     {
-    //         "period": "10~11교시",
-    //         "afterschool" : [
-    //             {
-    //                 "name": "파이썬",
-    //                 "teacherName": "곽상미",
-    //                 "placeName": "프로그래밍실"
-    //             },
-    //             {
-    //                 "name": "스프링",
-    //                 "teacherName": "곽상미",
-    //                 "placeName": "프로그래밍실"
-    //             }
-    //         ]
-    //     }
-    // ]
+    const myClasses = [
+        {
+            "grade": 1,
+            "branch": 4,
+            "id": 13,
+            "weekday": "월",
+            "period": "10~11교시",
+            "name": "파이썬",
+            "placeName": "프로그래밍실"
+        },
+        {
+            "grade": 1,
+            "branch": 4,
+            "id": 13,
+            "weekday": "월",
+            "period": "10~11교시",
+            "name": "파이썬",
+            "placeName": "프로그래밍실"
+        },
+        {
+            "grade": 1,
+            "branch": 4,
+            "id": 13,
+            "weekday": "월",
+            "period": "10~11교시",
+            "name": "파이썬",
+            "placeName": "프로그래밍실"
+        }
+    ]
+
+    const classList = 
+    [
+        {
+
+            "period": "8~9교시",
+            "afterschool" : [
+                {
+                    "name": "파이썬",
+                    "teacherName": "곽상미",
+                    "placeName": "프로그래밍실"
+                },
+                {
+                    "name": "스프링",
+                    "teacherName": "곽상미",
+                    "placeName": "프로그래밍실"
+                }
+            ] 
+        },
+        {
+            "period": "10~11교시",
+            "afterschool" : [
+                {
+                    "name": "파이썬",
+                    "teacherName": "곽상미",
+                    "placeName": "프로그래밍실"
+                },
+                {
+                    "name": "스프링",
+                    "teacherName": "곽상미",
+                    "placeName": "프로그래밍실"
+                }
+            ]
+        }
+    ]
 
     const closeModalHandler = (setModal) => {
         setModal(false);
@@ -104,8 +149,8 @@ export default function After_school() {
                             <S.ClassCard key={i}>
                                 <S.CardTime>{cls.period}</S.CardTime>
                                 <div>{cls.grade}</div>
-                                <S.CardData $length={190}>{cls.name}</S.CardData>
-                                <S.CardData $length={150}>{cls.placeName}</S.CardData>
+                                <S.CardData $length={15}>{cls.name}</S.CardData>
+                                <S.CardData $length={10}>{cls.placeName}</S.CardData>
                             </S.ClassCard>
                         ))}
                     </S.TodayClasses>
@@ -123,12 +168,12 @@ export default function After_school() {
                             <S.ClassTableMain>
                                 {myClasses.map((cls, i) => (
                                     <S.ClassTable key={i}>
-                                        <S.TableData $length={46}>{cls.grade}</S.TableData>
-                                        <S.TableData $length={47}>{cls.weekday}</S.TableData>
-                                        <S.TableData $length={87}>{cls.period}</S.TableData>
+                                        <S.TableData $length={3.4}>{cls.grade}</S.TableData>
+                                        <S.TableData $length={3}>{cls.weekday}</S.TableData>
+                                        <S.TableData $length={6}>{cls.period}</S.TableData>
                                         <S.TableName>
-                                            <S.TableData $length={190}>{cls.name}</S.TableData>
-                                            <S.TableData $length={165}>{cls.placeName}</S.TableData>
+                                            <S.TableData $length={14}>{cls.name}</S.TableData>
+                                            <S.TableData $length={14.5}>{cls.placeName}</S.TableData>
                                         </S.TableName>
                                         <S.OptionButton src={OptionButton} onClick={() => {
                                             setOptions(options === i ? null : i);
@@ -162,12 +207,14 @@ export default function After_school() {
                         <S.ClassBtn>
                             <S.SquareBtn onClick={() => navigate('/after-school/edit')}>방과후 설정</S.SquareBtn>
                         </S.ClassBtn>
-                        <h1>방과후 수업</h1>
-                        <S.GradeBtn>
-                            <Circle name={"1학년"} status={grade[0]} On={() => changeGrade(0)} />
-                            <Circle name={"2학년"} status={grade[1]} On={() => changeGrade(1)} />
-                            <Circle name={"3학년"} status={grade[2]} On={() => changeGrade(2)} />
-                        </S.GradeBtn>
+                        <S.ClassTopMain>
+                            <h1>방과후 수업</h1>
+                            <S.GradeBtn>
+                                <Circle name={"1학년"} status={grade[0]} On={() => changeGrade(0)} />
+                                <Circle name={"2학년"} status={grade[1]} On={() => changeGrade(1)} />
+                                <Circle name={"3학년"} status={grade[2]} On={() => changeGrade(2)} />
+                            </S.GradeBtn>
+                        </S.ClassTopMain>
                     </S.ClassListTop>
                     <S.ClassListContent>
                         <S.ClassListMain>
@@ -190,9 +237,9 @@ export default function After_school() {
                                             .flatMap(cls => cls.afterschool)
                                             .map((cls, i) => (
                                                 <S.List1 key={i}>
-                                                    <S.List1Data $length={200}>{cls.name}</S.List1Data>
-                                                    <S.List1Data $length={50}>{cls.teacherName}</S.List1Data>
-                                                    <S.List1Data $length={140}>{cls.placeName}</S.List1Data>
+                                                    <S.List1Data $length={16}>{cls.name}</S.List1Data>
+                                                    <S.List1Data $length={5}>{cls.teacherName}</S.List1Data>
+                                                    <S.List1Data $length={14}>{cls.placeName}</S.List1Data>
                                                 </S.List1>
                                             ))}
                                     </S.ClassList1>
@@ -206,9 +253,9 @@ export default function After_school() {
                                             .flatMap(cls => cls.afterschool)
                                             .map((cls, i) => (
                                                 <S.List1 key={i}>
-                                                    <S.List1Data $length={200}>{cls.name}</S.List1Data>
-                                                    <S.List1Data $length={50}>{cls.teacherName}</S.List1Data>
-                                                    <S.List1Data $length={140}>{cls.placeName}</S.List1Data>
+                                                    <S.List1Data $length={16}>{cls.name}</S.List1Data>
+                                                    <S.List1Data $length={5}>{cls.teacherName}</S.List1Data>
+                                                    <S.List1Data $length={14}>{cls.placeName}</S.List1Data>
                                                 </S.List1>
                                             ))}
                                     </S.ClassList2>
