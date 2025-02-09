@@ -27,7 +27,7 @@ export default function Leave({day, isFirst}) {
                         <S.Box2 $length={110}>{item.teacher_name}</S.Box2>
                         {name === item.teacher_name || role === "ADMIN" ?
                             <S.DeleteBox onClick={()=>{
-                                if(window.confirm('정말 삭제하시겠습니까?')) deleteLeave(item.leave_id);
+                                if(window.confirm('정말 삭제하시겠습니까?')) deleteLeave({id : item.leave_id, day : day});
                             }}>삭제</S.DeleteBox> : null
                         }
                     </S.Content>

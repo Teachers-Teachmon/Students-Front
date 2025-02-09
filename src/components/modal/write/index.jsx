@@ -33,7 +33,7 @@ export default function Write({isModal, setIsModal}){
     const [selectStudentShow, setSelectStudentShow] = useState([]);
     const {mutate : postMovement} = usePostMovement();
     const {day: dayComponent} = useDay();
-    const debounceStudent = useDebounce(search, 300);
+    const debounceStudent = useDebounce(search, 150);
 
     useEffect(() => {
         const fetchStudents = async () => {
