@@ -214,12 +214,11 @@ export const PlusBtn = styled.div`
 `
 
 export const ClassData = styled.input`
-    width: 22vw;
-    height: 4.8vh;
+    width: 17vw;
+    height: 4vh;
     border: 1px solid #cccccc;
     border-radius: 4px;
     padding: 1.5% 2%;
-    color: gray;
 `
 
 export const ModalOverlay = styled.div`
@@ -234,7 +233,7 @@ export const ModalOverlay = styled.div`
 `
 
 export const ModalContent = styled.div`
-    width: 50%;
+    width: 39%;
     height: max-content;
     border-radius: 10px;
     padding: 4%;
@@ -246,20 +245,26 @@ export const ModalContentTop = styled.div`
     gap: 40%;
 `
 
+export const StudentContent = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
 export const InputBox = styled.div`
     border: 1px solid #ccc;
-    width: 15vw;
+    width: 20vw;
     border-radius: 8px;
-    padding: 2.5% 2%;
+    padding: 2%;
     display: flex;
     justify-content: flex-start;
     gap: 10px;
     font-size: 14px;
     position: relative;
+    margin-top: 2%;
 `
 export const Input = styled.input`
     border: none;
-    width: 100%;
+    width: 10vw;
     outline: none;
 `
 
@@ -314,7 +319,7 @@ export const DropdownFL = styled.div`
 `
 
 export const ModalLeft = styled.div`
-    width: 40%;
+    width: 20%;
     height: 16%;
     display: flex;
     flex-direction: column;
@@ -322,7 +327,7 @@ export const ModalLeft = styled.div`
 `
 
 export const ModalRight = styled.div`
-    width: 80%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -330,17 +335,23 @@ export const ModalRight = styled.div`
 
 export const ModalMain = styled.div`
     display: flex;
+    flex-direction: column;
     margin-top: 6%;
     gap: 10px;
+`
+
+export const ModalRL = styled.div`
+    display: flex;
+    gap: 30px;
 `
 
 export const StudentBox = styled.div`
     display: flex;
     flex-direction: column;
     gap: 30px;
-    margin-left: -50%;
     overflow-y: auto;
     max-height: 30vh;
+    margin-top: 6%;
 `
 export const Student = styled.div`
     border: 2px solid #2E6FF2;
@@ -409,9 +420,9 @@ export const Options = styled.div`
 
 export const Btn = styled.div`
     display: flex;
-    margin-left: 55%;
+    margin-left: 45%;
     gap: 20px;
-    margin-top: 2%;
+    margin-top: 10%;
 `
 
 export const Black = styled.div`
