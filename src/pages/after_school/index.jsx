@@ -150,11 +150,11 @@ export default function After_school() {
 
                 <S.ClassList>
                     <S.ClassListTop>
-                        <S.ClassBtn>
-                            <S.SquareBtn onClick={() => navigate('/after-school/edit')}>방과후 설정</S.SquareBtn>
-                        </S.ClassBtn>
                         <S.ClassTopMain>
-                            <h1>방과후 수업</h1>
+                            <S.ClassBtn>
+                                <h1>방과후 수업</h1>
+                                <S.SquareBtn onClick={() => navigate('/after-school/edit')}>방과후 설정</S.SquareBtn>
+                            </S.ClassBtn>
                             <S.GradeBtn>
                                 <Circle name={"1학년"} status={grade[0]} On={() => changeGrade(0)} />
                                 <Circle name={"2학년"} status={grade[1]} On={() => changeGrade(1)} />
