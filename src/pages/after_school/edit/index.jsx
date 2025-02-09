@@ -399,7 +399,6 @@ export default function Edit() {
                         </S.ReComBtn>
                     </S.EditTopRight>
                 </S.EditTop>
-                {/* <button onClick={() => setIsModal1(true)}>test</button> */}
 
 
                 <S.EditContent >
