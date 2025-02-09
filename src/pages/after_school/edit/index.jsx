@@ -37,6 +37,7 @@ export default function Edit() {
     const [spreadsheetUrl, setSpreadsheetUrl] = useState('');
     const debounceStudent = useDebounce(search, 300);
     const [student, setStudent] = useState([]);
+    const [errorMessage, setErrorMessage] = useState("");
 
 
     const handleCloseOptions = () => {
