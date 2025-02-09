@@ -27,7 +27,7 @@ export const TodayClasses = styled.div`
     gap: 25px;
     padding: 7% 0% 0% 0%;
     width: 50%;
-    min-height: 46%;
+    min-height: 45%;
 `
 
 export const ClassCard = styled.div`
