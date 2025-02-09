@@ -18,7 +18,7 @@ export const LeftContainer = styled.div`
     flex-direction: column;
     width: 50%;
     padding: 0% 3%;
-    margin-top: 2.5%;
+    margin-top: 0%.8;
 `
 
 export const TodayClasses = styled.div`
@@ -212,7 +212,7 @@ export const PrepModal = styled.div`
 
 export const ClassBtn = styled.div`
     display: flex;
-    margin-left: 71.5%;
+    gap: 230px;
 `
 export const SquareBtn = styled.button`
     width: 8.5vw;
@@ -234,7 +234,7 @@ export const ClassList = styled.div`
     flex-direction: column;
     gap: 25px;
     width: 50%;
-    margin-top: 1.5%;
+    margin-top: 3%;
 `
 
 export const ClassListTop = styled.div`
