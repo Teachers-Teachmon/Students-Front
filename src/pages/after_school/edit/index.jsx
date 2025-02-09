@@ -37,6 +37,14 @@ export default function Edit() {
     const [student, setStudent] = useState([]);
 
 
+    const handleCloseOptions = () => {
+        setOptions({});
+    };
+
+    const handleCloseBranch = () => {
+        setIsBranchOpen(false);
+    };
+
     const extractSpreadsheetId = (url) => {
         const regex = /\/d\/([a-zA-Z0-9_-]+)\//;
         const match = url.match(regex);
@@ -325,7 +333,10 @@ export default function Edit() {
 
 
     return (
-        <S.EditContainer>
+        <S.EditContainer onClick={() => {
+            handleCloseOptions();
+            handleCloseBranch();
+        }}>
             <Header />
             <S.Content>
                 {Object.values(isOpen).some(status => Object.values(status).some(subStatus => Object.values(subStatus).includes(true))) && (
@@ -333,7 +344,7 @@ export default function Edit() {
                 )}
                 <S.EditTop>
                     <S.EditTopLeft>
-                        <S.TopDate $length={5}>
+                        <S.TopDate $length={5} onClick={(e) => e.stopPropagation()}>
                             <DropdownNS
 
                                 name={branch}
@@ -378,7 +389,7 @@ export default function Edit() {
                     </S.EditTopRight>
                 </S.EditTop>
 
-                <S.EditContent>
+                <S.EditContent >
                     <S.EditMain>
                         {[1, 2, 3].map((grade) => (
                             <S.EditMainData key={grade}>
@@ -434,9 +445,12 @@ export default function Edit() {
                                                 onChange={e => handleInputChange(grade, index, 'name', e.target.value)}
                                             />
                                         </S.RowData>
-                                        <S.OptionButton
+                                        <S.OptionButton 
                                             src={OptionButton}
-                                            onClick={() => handleOptionClick(grade, index)}
+                                            onClick={(e) => {
+                                                handleOptionClick(grade, index);
+                                                e.stopPropagation()
+                                            }}
                                         />
                                         {options[grade] === index && (
                                             <S.Options onClick={(e) => e.stopPropagation()}>

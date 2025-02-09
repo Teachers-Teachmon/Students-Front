@@ -253,7 +253,7 @@ export const ClassListContent = styled.div`
     justify-content: space-between;
     gap: 10px;
     width: 100%;
-    margin-left: 9%;
+    //margin-left: 9%;
 `
 
 export const ClassTopMain = styled.div`
@@ -274,6 +274,7 @@ export const ClassListMain = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-left: 9%;
 `
 
 export const DayP = styled.p`
