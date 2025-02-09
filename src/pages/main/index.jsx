@@ -115,7 +115,7 @@ export default function Main() {
                                 <span>받는 사람</span>
                                 <span>보내는 사람</span>
                             </S.BottomLeftHeader>
-                            {(!changeDay || (changeDay && changeDay.length === 0)) && <div style={{ textAlign: "center" }}>교체 요청이 없습니다.</div>}
+                            {(!changeDay || (changeDay && changeDay.length === 0)) && <div style={{ textAlign: "center", display: "flex", alignItems: "center" }}>교체 요청이 없습니다.</div>}
                             {changeDay && changeDay.map((data) => {
                                 const senderInfo = data.sender.teacher.split('/');
                                 const recipientInfo = data.recipient.teacher.split('/');
