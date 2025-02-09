@@ -18,7 +18,7 @@ import { useGetFlushClass } from '../../../hooks/useAfterSchool.js';
 import { useDebounce } from '../../../hooks/useDebounce.js';
 import { useUpload } from '../../../hooks/useAfterSchool.js';
 import { useFlush } from '../../../hooks/useAfterSchool.js';
-import ArrorModal from '../../../components/modal/arrorModal/index.jsx';
+import ErrorModal from '../../../components/modal/errorModal/index.jsx';
 
 export default function Edit() {
 
@@ -489,7 +489,7 @@ export default function Edit() {
             {isModal1 && (
                 <S.BusinessTripModal onClick={() => closeModalHandler(setIsModal1)}>
                     <S.BusinessModal onClick={(e) => e.stopPropagation()}>
-                    <ArrorModal message={errorMessage} />
+                    <ErrorModal message={errorMessage} />
                     </S.BusinessModal>
                 </S.BusinessTripModal>
             )}
