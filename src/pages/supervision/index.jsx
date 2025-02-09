@@ -5,6 +5,8 @@ import TeacherList from "../../components/modal/teacherList/index.jsx";
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useGetMonthlySupervision } from '../../hooks/useSupervision.js';
+import LeftGrayButton from '../../assets/LeftGrayButton.svg';
+import RightGrayButton from '../../assets/RightGrayButton.svg';
 
 export default function Supervision() {
     let navigate = useNavigate();
@@ -78,12 +80,11 @@ export default function Supervision() {
         <S.Wrapper>
             <Header />
             <S.MainContent>
-
                 <S.CalendarWrapper>
                     <S.CalendarHeader>
-                        <button onClick={handlePrevMonth}>{'<'}</button>
+                        <button onClick={handlePrevMonth}><img src={LeftGrayButton} /></button>
                         <div>{year}년 {month + 1}월</div>
-                        <button onClick={handleNextMonth}>{'>'}</button>
+                        <button onClick={handleNextMonth}><img src={RightGrayButton} /></button>
                     </S.CalendarHeader>
 
                     <S.Weekdays>

@@ -6,6 +6,10 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Rotate from '../../../assets/rotate.svg';
 import { useGetMonthlySupervision, useGetFixedTeachers, useSendChangeRequest } from '../../../hooks/useChange.js';
+import LeftBlueButton from '../../../assets/LeftBlueButton.svg';
+import RightBlueButton from '../../../assets/RightBlueButton.svg';
+import LeftEmptyGrayButton from '../../../assets/LeftEmptyGrayButton.svg';
+import RightEmptyGrayButton from '../../../assets/RightEmptyGrayButton.svg';
 
 export default function SupervisionChange() {
     let navigate = useNavigate();
@@ -20,7 +24,331 @@ export default function SupervisionChange() {
     const [selectedGrade, setSelectedGrade] = useState();
     const [selectedPeriod, setSelectedPeriod] = useState("");
     const [weeks, setWeeks] = useState([]);
-    const { data: TeacherList = { data: [] }, isLoading, isError } = useGetMonthlySupervision(currentMonth);
+    // const { data: TeacherList = { data: [] }, isLoading, isError } = useGetMonthlySupervision(currentMonth);
+    const TeacherList = {
+        "data": [
+            {
+                "week": "2월 2주차",
+                "day": "2월 3일 (월)",
+                "date": "2025-02-03",
+                "first_grade": {
+                    "7th_teacher": null,
+                    "8th_teacher": null,
+                    "10th_teacher": null
+                },
+                "second_grade": {
+                    "7th_teacher": null,
+                    "8th_teacher": "허온/4",
+                    "10th_teacher": "허온/4"
+                },
+                "third_grade": {
+                    "7th_teacher": "윤도훈/11",
+                    "8th_teacher": "윤도훈/11",
+                    "10th_teacher": null
+                }
+            },
+            {
+                "week": "2월 2주차",
+                "day": "2월 4일 (화)",
+                "date": "2025-02-04",
+                "first_grade": {
+                    "7th_teacher": null,
+                    "8th_teacher": null,
+                    "10th_teacher": null
+                },
+                "second_grade": {
+                    "7th_teacher": "티치몬/3",
+                    "8th_teacher": "조아라/6",
+                    "10th_teacher": "조아라/6"
+                },
+                "third_grade": {
+                    "7th_teacher": "티치몬/3",
+                    "8th_teacher": "티치몬/3",
+                    "10th_teacher": null
+                }
+            },
+            {
+                "week": "2월 2주차",
+                "day": "2월 5일 (수)",
+                "date": "2025-02-05",
+                "first_grade": {
+                    "7th_teacher": "윤도훈/11",
+                    "8th_teacher": null,
+                    "10th_teacher": null
+                },
+                "second_grade": {
+                    "7th_teacher": "오주현/1/me",
+                    "8th_teacher": "윤도훈/11",
+                    "10th_teacher": "윤도훈/11"
+                },
+                "third_grade": {
+                    "7th_teacher": "허온/4",
+                    "8th_teacher": "허온/4",
+                    "10th_teacher": null
+                }
+            },
+            {
+                "week": "2월 2주차",
+                "day": "2월 6일 (목)",
+                "date": "2025-02-06",
+                "first_grade": {
+                    "7th_teacher": null,
+                    "8th_teacher": null,
+                    "10th_teacher": "리안/5"
+                },
+                "second_grade": {
+                    "7th_teacher": null,
+                    "8th_teacher": "오주현/1/me",
+                    "10th_teacher": "오주현/1/me"
+                },
+                "third_grade": {
+                    "7th_teacher": "리안/5",
+                    "8th_teacher": "리안/5",
+                    "10th_teacher": null
+                }
+            },
+            {
+                "week": "2월 3주차",
+                "day": "2월 10일 (월)",
+                "date": "2025-02-10",
+                "first_grade": {
+                    "7th_teacher": null,
+                    "8th_teacher": null,
+                    "10th_teacher": null
+                },
+                "second_grade": {
+                    "7th_teacher": null,
+                    "8th_teacher": "티치몬/3",
+                    "10th_teacher": "티치몬/3"
+                },
+                "third_grade": {
+                    "7th_teacher": "조아라/6",
+                    "8th_teacher": "조아라/6",
+                    "10th_teacher": null
+                }
+            },
+            {
+                "week": "2월 3주차",
+                "day": "2월 11일 (화)",
+                "date": "2025-02-11",
+                "first_grade": {
+                    "7th_teacher": null,
+                    "8th_teacher": null,
+                    "10th_teacher": null
+                },
+                "second_grade": {
+                    "7th_teacher": "허온/4",
+                    "8th_teacher": "허온/4",
+                    "10th_teacher": "허온/4"
+                },
+                "third_grade": {
+                    "7th_teacher": "오주현/1/me",
+                    "8th_teacher": "오주현/1/me",
+                    "10th_teacher": null
+                }
+            },
+            {
+                "week": "2월 3주차",
+                "day": "2월 12일 (수)",
+                "date": "2025-02-12",
+                "first_grade": {
+                    "7th_teacher": "윤도훈/11",
+                    "8th_teacher": null,
+                    "10th_teacher": null
+                },
+                "second_grade": {
+                    "7th_teacher": "리안/5",
+                    "8th_teacher": "리안/5",
+                    "10th_teacher": "리안/5"
+                },
+                "third_grade": {
+                    "7th_teacher": "조아라/6",
+                    "8th_teacher": "조아라/6",
+                    "10th_teacher": null
+                }
+            },
+            {
+                "week": "2월 3주차",
+                "day": "2월 13일 (목)",
+                "date": "2025-02-13",
+                "first_grade": {
+                    "7th_teacher": null,
+                    "8th_teacher": null,
+                    "10th_teacher": "윤도훈/11"
+                },
+                "second_grade": {
+                    "7th_teacher": null,
+                    "8th_teacher": "티치몬/3",
+                    "10th_teacher": "티치몬/3"
+                },
+                "third_grade": {
+                    "7th_teacher": "윤도훈/11",
+                    "8th_teacher": "윤도훈/11",
+                    "10th_teacher": null
+                }
+            },
+            {
+                "week": "2월 4주차",
+                "day": "2월 17일 (월)",
+                "date": "2025-02-17",
+                "first_grade": {
+                    "7th_teacher": null,
+                    "8th_teacher": null,
+                    "10th_teacher": null
+                },
+                "second_grade": {
+                    "7th_teacher": null,
+                    "8th_teacher": "오주현/1/me",
+                    "10th_teacher": "오주현/1/me"
+                },
+                "third_grade": {
+                    "7th_teacher": "허온/4",
+                    "8th_teacher": "허온/4",
+                    "10th_teacher": null
+                }
+            },
+            {
+                "week": "2월 4주차",
+                "day": "2월 18일 (화)",
+                "date": "2025-02-18",
+                "first_grade": {
+                    "7th_teacher": null,
+                    "8th_teacher": null,
+                    "10th_teacher": null
+                },
+                "second_grade": {
+                    "7th_teacher": "조아라/6",
+                    "8th_teacher": "조아라/6",
+                    "10th_teacher": "조아라/6"
+                },
+                "third_grade": {
+                    "7th_teacher": "티치몬/3",
+                    "8th_teacher": "티치몬/3",
+                    "10th_teacher": null
+                }
+            },
+            {
+                "week": "2월 4주차",
+                "day": "2월 19일 (수)",
+                "date": "2025-02-19",
+                "first_grade": {
+                    "7th_teacher": "리안/5",
+                    "8th_teacher": null,
+                    "10th_teacher": null
+                },
+                "second_grade": {
+                    "7th_teacher": "윤도훈/11",
+                    "8th_teacher": "윤도훈/11",
+                    "10th_teacher": "윤도훈/11"
+                },
+                "third_grade": {
+                    "7th_teacher": "허온/4",
+                    "8th_teacher": "허온/4",
+                    "10th_teacher": null
+                }
+            },
+            {
+                "week": "2월 4주차",
+                "day": "2월 20일 (목)",
+                "date": "2025-02-20",
+                "first_grade": {
+                    "7th_teacher": null,
+                    "8th_teacher": null,
+                    "10th_teacher": "오주현/1/me"
+                },
+                "second_grade": {
+                    "7th_teacher": null,
+                    "8th_teacher": "리안/5",
+                    "10th_teacher": "리안/5"
+                },
+                "third_grade": {
+                    "7th_teacher": "티치몬/3",
+                    "8th_teacher": "티치몬/3",
+                    "10th_teacher": null
+                }
+            },
+            {
+                "week": "2월 5주차",
+                "day": "2월 24일 (월)",
+                "date": "2025-02-24",
+                "first_grade": {
+                    "7th_teacher": null,
+                    "8th_teacher": null,
+                    "10th_teacher": null
+                },
+                "second_grade": {
+                    "7th_teacher": null,
+                    "8th_teacher": "오주현/1/me",
+                    "10th_teacher": "오주현/1/me"
+                },
+                "third_grade": {
+                    "7th_teacher": "조아라/6",
+                    "8th_teacher": "조아라/6",
+                    "10th_teacher": null
+                }
+            },
+            {
+                "week": "2월 5주차",
+                "day": "2월 25일 (화)",
+                "date": "2025-02-25",
+                "first_grade": {
+                    "7th_teacher": null,
+                    "8th_teacher": null,
+                    "10th_teacher": null
+                },
+                "second_grade": {
+                    "7th_teacher": "허온/4",
+                    "8th_teacher": "허온/4",
+                    "10th_teacher": "허온/4"
+                },
+                "third_grade": {
+                    "7th_teacher": "윤도훈/11",
+                    "8th_teacher": "윤도훈/11",
+                    "10th_teacher": null
+                }
+            },
+            {
+                "week": "2월 5주차",
+                "day": "2월 26일 (수)",
+                "date": "2025-02-26",
+                "first_grade": {
+                    "7th_teacher": "리안/5",
+                    "8th_teacher": null,
+                    "10th_teacher": null
+                },
+                "second_grade": {
+                    "7th_teacher": "티치몬/3",
+                    "8th_teacher": "티치몬/3",
+                    "10th_teacher": "티치몬/3"
+                },
+                "third_grade": {
+                    "7th_teacher": "오주현/1/me",
+                    "8th_teacher": "오주현/1/me",
+                    "10th_teacher": null
+                }
+            },
+            {
+                "week": "2월 5주차",
+                "day": "2월 27일 (목)",
+                "date": "2025-02-27",
+                "first_grade": {
+                    "7th_teacher": null,
+                    "8th_teacher": null,
+                    "10th_teacher": "리안/5"
+                },
+                "second_grade": {
+                    "7th_teacher": null,
+                    "8th_teacher": "조아라/6",
+                    "10th_teacher": "조아라/6"
+                },
+                "third_grade": {
+                    "7th_teacher": "리안/5",
+                    "8th_teacher": "리안/5",
+                    "10th_teacher": null
+                }
+            }
+        ]
+    };
     const { data: fixedTeacherList, isLoading: isLoadingFixed, isError: isErrorFixed } = useGetFixedTeachers(selectedDay, selectedGrade, selectedPeriod);
     const { mutate: sendChangeRequest } = useSendChangeRequest();
 
@@ -52,6 +380,17 @@ export default function SupervisionChange() {
     }, [TeacherList]);
 
     const handleSelectTeacher = (uniqueKey, teacherId, isSelf, teacherName) => {
+
+        if (isSelf && selectedTeacher.some(item => item.teacherId === teacherId)) {
+            alert("자신과 교체할 수 없습니다.");
+            return;
+        }
+
+        if (teacherName === "미배정") {
+            alert("미배정된 선생님과 교체할 수 없습니다.");
+            return
+        }
+
         if (isSelf) {
             if (!selectedTeacher.some(item => item.uniqueKey === uniqueKey)) {
                 setIsSelfSelected(true);
@@ -79,12 +418,38 @@ export default function SupervisionChange() {
         });
     };
     function groupByWeek(dataArray) {
-        return dataArray.reduce((acc, item) => {
-            const w = item.week;
-            if (!acc[w]) acc[w] = [];
-            acc[w].push(item);
+        const daysOfWeek = ["월", "화", "수", "목"];
+    
+        const extractDay = (dateStr) => {
+            const match = dateStr.match(/\((.*?)\)/);
+            return match ? match[1] : "";
+        };
+        const grouped = dataArray.reduce((acc, item) => {
+            const week = item.week;
+            const dayOfWeek = extractDay(item.day);
+    
+            if (!acc[week]) acc[week] = [];
+            acc[week].push({ ...item, dayOfWeek });
             return acc;
         }, {});
+
+        Object.keys(grouped).forEach((week) => {
+            const filledWeek = [];
+            daysOfWeek.forEach((day, index) => {
+                const found = grouped[week].find((item) => item.dayOfWeek === day);
+                if (found) {
+                    filledWeek.push(found);
+                } else {
+                    filledWeek.push({
+                        empty: true,
+                        dayOfWeek: day,
+                        day: `0월 ${index + 1}일 (${day})`,
+                    });
+                }
+            });
+            grouped[week] = filledWeek;
+        });
+        return grouped;
     }
     const handleNextMonth = () => {
         if (currentMonth < 12) {
@@ -145,7 +510,7 @@ export default function SupervisionChange() {
         <S.Wrapper>
             <Header />
             <S.MainWrap>
-                <S.NavButton onClick={handlePrevMonth}>{'<'}</S.NavButton>
+                <S.NavButton onClick={handlePrevMonth}><img src={ currentMonth === 1 ? LeftEmptyGrayButton : LeftBlueButton}/></S.NavButton>
                 <S.MainContent>
                     <S.MainHeader>
                         <h1>자습감독 교체요청 <S.Warning>* 바꾸고 싶은 자신의 시간을 선택해 주세요.</S.Warning></h1>
@@ -165,46 +530,63 @@ export default function SupervisionChange() {
                                     </S.TableLeft>
                                     <S.TableRight>
                                         {dayArray.map((dayData, dayIndex) => (
-                                            <S.TableRightContent key={dayIndex}>
-                                                <h3>{dayData.day}</h3>
-                                                <S.TableRightHeader>
-                                                    <div>1학년</div>
-                                                    <div>2학년</div>
-                                                    <div>3학년</div>
-                                                </S.TableRightHeader>
-                                                <S.TeacherList>
-                                                    {['7th_teacher', '8th_teacher', '10th_teacher'].map((classKey) =>
-                                                        ['first_grade', 'second_grade', 'third_grade'].map((gradeKey) => {
-                                                            const teacherInfo = dayData?.[gradeKey]?.[classKey];
-                                                            const teacherName = teacherInfo ? teacherInfo.split('/')[0] : "미배정";
-                                                            const uniqueKey = `${dayData.day}-${gradeKey}-${classKey}-${dayData.date}`;
-                                                            const compareKey = `${uniqueKey.slice(-10)}-${uniqueKey.split('-')[1]}-${uniqueKey.split('-')[2]}`;
+                                            <S.TableRightContent key={dayIndex} $isEmpty={dayData.empty}>
+                                                {dayData.empty ? (
+                                                    <span style={{ visibility: "hidden" }}>
+                                                        <h3>{dayData.day}</h3>
+                                                        <S.TableRightHeader>
+                                                            <div>1학년</div>
+                                                            <div>2학년</div>
+                                                            <div>3학년</div>
+                                                        </S.TableRightHeader>
+                                                        <div style={{ visibility: "hidden" }} />
+                                                        <div style={{ visibility: "hidden" }} />
+                                                        <div style={{ visibility: "hidden" }} />
+                                                    </span>
+                                                ) : (
+                                                    <>
+                                                        <h3>{dayData.day}</h3>
+                                                        <S.TableRightHeader>
+                                                            <div>1학년</div>
+                                                            <div>2학년</div>
+                                                            <div>3학년</div>
+                                                        </S.TableRightHeader>
+                                                        <S.TeacherList>
+                                                            {['7th_teacher', '8th_teacher', '10th_teacher'].map((classKey) =>
+                                                                ['first_grade', 'second_grade', 'third_grade'].map((gradeKey) => {
+                                                                    if (dayData.empty) return <div key={`${dayData.day}-${gradeKey}`} style={{ visibility: "hidden" }} />;
 
-                                                            return (
-                                                                <div
-                                                                    key={uniqueKey}
-                                                                    onClick={() => {
-                                                                        if (teacherInfo && teacherInfo.includes('/me')) {
-                                                                            handleSelectTeacher(uniqueKey, teacherInfo ? parseInt(teacherInfo.split('/')[1]) || null : null, true, teacherName);
-                                                                        } else {
-                                                                            if (!isSelfSelected) return;
-                                                                            handleSelectTeacher(uniqueKey, teacherInfo ? parseInt(teacherInfo.split('/')[1]) || null : null, false, teacherName);
-                                                                        }
-                                                                    }}
-                                                                    style={{
-                                                                        backgroundColor: selectedTeacher.some(t => t.uniqueKey === uniqueKey) ? '#2E6FF2' : '#FFF',
-                                                                        color: selectedTeacher.some(t => t.uniqueKey === uniqueKey) ? '#FFF' : '#000',
-                                                                        cursor: !isSelfSelected && !(teacherInfo && teacherInfo.includes('/me')) ? 'not-allowed' : 'pointer',
-                                                                        opacity: (disabledTeachers.includes(compareKey) || (!isSelfSelected && !(teacherInfo && teacherInfo.includes('/me')))) ? 0.5 : 1
-                                                                    }}
-                                                                >
-                                                                    {teacherName}
-                                                                </div>
-                                                            );
-                                                        })
-                                                    )}
-                                                </S.TeacherList>
+                                                                    const teacherInfo = dayData?.[gradeKey]?.[classKey];
+                                                                    const teacherName = teacherInfo ? teacherInfo.split('/')[0] : "미배정";
+                                                                    const uniqueKey = `${dayData.day}-${gradeKey}-${classKey}-${dayData.date}`;
+                                                                    const compareKey = `${uniqueKey.slice(-10)}-${uniqueKey.split('-')[1]}-${uniqueKey.split('-')[2]}`;
 
+                                                                    return (
+                                                                        <div
+                                                                            key={uniqueKey}
+                                                                            onClick={() => {
+                                                                                if (teacherInfo && teacherInfo.includes('/me')) {
+                                                                                    handleSelectTeacher(uniqueKey, teacherInfo ? parseInt(teacherInfo.split('/')[1]) || null : null, true, teacherName);
+                                                                                } else {
+                                                                                    if (!isSelfSelected) return;
+                                                                                    handleSelectTeacher(uniqueKey, teacherInfo ? parseInt(teacherInfo.split('/')[1]) || null : null, false, teacherName);
+                                                                                }
+                                                                            }}
+                                                                            style={{
+                                                                                backgroundColor: selectedTeacher.some(t => t.uniqueKey === uniqueKey) ? '#2E6FF2' : '#FFF',
+                                                                                color: selectedTeacher.some(t => t.uniqueKey === uniqueKey) ? '#FFF' : '#000',
+                                                                                cursor: !isSelfSelected && !(teacherInfo && teacherInfo.includes('/me')) ? 'not-allowed' : 'pointer',
+                                                                                opacity: (disabledTeachers.includes(compareKey) || (!isSelfSelected && !(teacherInfo && teacherInfo.includes('/me')))) ? 0.5 : 1
+                                                                            }}
+                                                                        >
+                                                                            {teacherName}
+                                                                        </div>
+                                                                    );
+                                                                })
+                                                            )}
+                                                        </S.TeacherList>
+                                                    </>
+                                                )}
                                             </S.TableRightContent>
                                         ))}
                                     </S.TableRight>
@@ -213,7 +595,7 @@ export default function SupervisionChange() {
                         ))}
                     </S.TableWrap>
                 </S.MainContent>
-                <S.NavButton onClick={handleNextMonth}>{'>'}</S.NavButton>
+                <S.NavButton onClick={handleNextMonth}><img src={ currentMonth === 12 ? RightEmptyGrayButton : RightBlueButton}/></S.NavButton>
             </S.MainWrap>
 
             {isModalOpen && (
@@ -237,7 +619,7 @@ export default function SupervisionChange() {
                         </S.ExchangeInfo>
                         <textarea value={exchangeReason} onChange={(e) => setExchangeReason(e.target.value)} placeholder="사유를 입력해 주세요"></textarea>
                         <S.ModalButtons>
-                            <ConfirmBtn text="취소" color="red" image="reject" onClick={() => { setIsModalOpen(false); setSelectedTeacher([]); }} />
+                            <ConfirmBtn text="취소" color="red" image="reject" onClick={() => { setIsModalOpen(false); setSelectedTeacher([]); setIsSelfSelected(false); }} />
                             <ConfirmBtn text="전송" color="blue" image="fly" onClick={handleSendRequest} />
                         </S.ModalButtons>
                     </S.Modal>

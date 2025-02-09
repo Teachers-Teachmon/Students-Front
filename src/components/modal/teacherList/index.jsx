@@ -1,6 +1,10 @@
 import * as S from './style.jsx';
 import { useState } from 'react';
 import { useGetDailySupervision } from '../../../hooks/useSupervision.js';
+import Loading from '../../../components/loading/index.jsx';
+import X from '../../../assets/X.svg';
+import LeftGrayButton from '../../../assets/LeftGrayButton.svg';
+import RightGrayButton from '../../../assets/RightGrayButton.svg';
 
 export default function TeacherList({ closeModal, selectedDate }) {
     const formatDateForUI = (date) => {
@@ -41,14 +45,15 @@ export default function TeacherList({ closeModal, selectedDate }) {
     };
     return (
         <S.Container>
-            <S.HandleButton onClick={handlePrevDay}>{'<'}</S.HandleButton>
+            {isLoading && <Loading />}
+            <S.HandleButton onClick={handlePrevDay}><img src={LeftGrayButton} /></S.HandleButton>
             <S.Wrapper>
                 <S.Header>
-                    <S.MainText>{formatDateForUI(currentDate)}</S.MainText>
-                    <S.CloseButton onClick={closeModal}>X</S.CloseButton>
+                    <S.MainText>{formatDateForUI(currentDate) || ""}</S.MainText>
+                    <S.CloseButton onClick={closeModal}><img src={X} /></S.CloseButton>
                 </S.Header>
                 <S.Content>
-                    {todayTeacher && (
+                    {todayTeacher && !isLoading && (
                         <S.Table>
                             <S.TeacherListTop>
                                 <span></span>
@@ -61,7 +66,7 @@ export default function TeacherList({ closeModal, selectedDate }) {
                                     <S.TeacherTable key={index}>
                                         <p>{index === 0 ? "7교시" : index === 1 ? "8~9교시" : "10~11교시"}</p>
                                         {["first_grade", "second_grade", "third_grade"].map((grade, i) => {
-                                            const { name, isMe } = formatTeacherName(todayTeacher?.[grade]?.[period]);
+                                            const { name, isMe } = formatTeacherName(todayTeacher?.[grade]?.[period]) || {};
                                             return (
                                                 <p
                                                     key={i}
@@ -81,7 +86,7 @@ export default function TeacherList({ closeModal, selectedDate }) {
                     )}
                 </S.Content>
             </S.Wrapper>
-            <S.HandleButton onClick={handleNextDay}>{'>'}</S.HandleButton>
+            <S.HandleButton onClick={handleNextDay}><img src={RightGrayButton} /></S.HandleButton>
         </S.Container>
     )
 }

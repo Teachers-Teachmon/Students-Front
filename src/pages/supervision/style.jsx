@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   display: flex;
-
 `
 
 export const MainContent = styled.div`
@@ -15,7 +14,7 @@ export const MainContent = styled.div`
 export const CalendarWrapper = styled.div`
     margin: 0 auto;
     width: 80%;
-    max-height: 760px;
+    max-height: 94vh;
     overflow-y: auto;
     padding-right: 0.5rem;
 `
@@ -29,17 +28,15 @@ export const CalendarHeader = styled.div`
     color: #667289;
     font-size: 1.5rem;
     font-weight: 600;
-
     button {
-        width: 2.7rem;
-        height: 2.7rem;
-        color: #667289;
         background: none;
-        border: none; 
-        font-size: 2rem;
+        border: none;
         cursor: pointer;
-        border-radius: 50%;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+    div {
+        width: 8rem;
+        text-align: center;
+        white-space: nowrap;
     }
 `;
 
