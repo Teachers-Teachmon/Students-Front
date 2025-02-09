@@ -115,6 +115,7 @@ export default function Main() {
                                 <span>받는 사람</span>
                                 <span>보내는 사람</span>
                             </S.BottomLeftHeader>
+                            {(!changeDay || (changeDay && changeDay.length === 0)) && <div style={{ textAlign: "center" }}>교체 요청이 없습니다.</div>}
                             {changeDay && changeDay.map((data) => {
                                 const senderInfo = data.sender.teacher.split('/');
                                 const recipientInfo = data.recipient.teacher.split('/');
@@ -128,28 +129,23 @@ export default function Main() {
                                 const rightDay = data.toMe ? data.sender.day : data.recipient.day;
                                 const rightPeriod = data.toMe ? data.sender.period : data.recipient.period;
                                 const rightGrade = data.toMe ? data.sender.grade : data.recipient.grade;
-                                
-                                console.log('changeDay data : '+data);
-                                console.log('changeDay data length : '+data.length);
-                                if (data.length === 0) {return <div>자습감독이 없습니다.</div>}
-                                else {
-                                    return (
-                                        <S.ChangeCard key={data.changeId} style={{ backgroundColor: data.toMe ? "#C8DBFF" : data.result === "ACCEPTED" ? "#72FAAA" : data.result === "REJECTED" ? "#FF938C" : "" }}>
-                                            <S.ChangeWrap>
-                                                <S.ChangeSide>
-                                                    <p>{leftName}</p>
-                                                    <p>{leftDay} {leftPeriod} {leftGrade}학년</p>
-                                                </S.ChangeSide>
-                                                <S.RotateIcon src={Rotate} />
-                                                <S.ChangeSide>
-                                                    <p>{rightName}</p>
-                                                    <p>{rightDay} {rightPeriod} {rightGrade}학년</p>
-                                                </S.ChangeSide>
-                                            </S.ChangeWrap>
-                                            <S.DetailButton onClick={() => { setIsModalOpen(true); setSelectedChange(data) }}>자세히 보기</S.DetailButton>
-                                        </S.ChangeCard>
-                                    );
-                                }
+
+                                return (
+                                    <S.ChangeCard key={data.changeId} style={{ backgroundColor: data.toMe ? "#C8DBFF" : data.result === "ACCEPTED" ? "#72FAAA" : data.result === "REJECTED" ? "#FF938C" : "" }}>
+                                        <S.ChangeWrap>
+                                            <S.ChangeSide>
+                                                <p>{leftName}</p>
+                                                <p>{leftDay} {leftPeriod} {leftGrade}학년</p>
+                                            </S.ChangeSide>
+                                            <S.RotateIcon src={Rotate} />
+                                            <S.ChangeSide>
+                                                <p>{rightName}</p>
+                                                <p>{rightDay} {rightPeriod} {rightGrade}학년</p>
+                                            </S.ChangeSide>
+                                        </S.ChangeWrap>
+                                        <S.DetailButton onClick={() => { setIsModalOpen(true); setSelectedChange(data) }}>자세히 보기</S.DetailButton>
+                                    </S.ChangeCard>
+                                );
                             })}
                         </S.BottomLeftContent>
                     </S.BottomLeft>
