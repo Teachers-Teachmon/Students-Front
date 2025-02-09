@@ -50,7 +50,7 @@ export const useDeleteLeave = () => {
         onSuccess: (_, variables) => {
             queryClient.invalidateQueries(['getLeave', variables.day]);
             queryClient.setQueryData(['getLeave', variables.day],(oldData)=>{
-                oldData.filter((item)=>item.leave_id !== variables.id)
+                return oldData.filter((item)=>item.leave_id !== variables.id)
             })
         },
         onError: (err) => {
