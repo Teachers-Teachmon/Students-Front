@@ -171,7 +171,8 @@ export const BottomLeftContent = styled.div`
     border-radius: 30px;
     padding: 2%;
     overflow-y: auto;
-    height: 83%;
+    // height: 83%;
+    height: 200px;
 `
 
 export const NoChange = styled.div`
@@ -181,7 +182,7 @@ export const NoChange = styled.div`
     align-items: center;
     height: 90%;
     font-weight: 500;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 `;
 
 export const ChangeWrap = styled.div`
