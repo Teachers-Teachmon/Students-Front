@@ -52,21 +52,41 @@ export default function StudentGraph({data, grade, classNum}){
     return(
         <S.StudentContainer>
             <S.Class>{classNum}반</S.Class>
-            <S.Graph  $seven = {data.length === 17}>
-                {data && data.map((el, idx) =>{
-                    return (
-                        <S.Student $color = {studentColor(el.status)} onClick={()=>isClick(idx, el.status)} key = {idx}>{/* 칸 색깔도 data에서 추출해서 사용*/}
-                            <p>{String(el.number).slice(2,4)}</p>
-                            <p>{el.name}</p>
-                            {isOpen[idx] ?
-                                <StatusUpdate changeStatus={changeStatus} name={el.id} nowStatus={el.status}/>
-                                : null
-                            }
-                        </S.Student>
-                    )
-                })}
+            {data ?
+                <S.Graph  $seven = {data.length === 17}>
+                    {data.map((el, idx) => {
+                        return (
+                            <S.Student $color={studentColor(el.status)} onClick={() => isClick(idx, el.status)}
+                                       key={idx}>{/* 칸 색깔도 data에서 추출해서 사용*/}
+                                <p>{String(el.number).slice(2, 4)}</p>
+                                <p>{el.name}</p>
+                                {isOpen[idx] ?
+                                    <StatusUpdate changeStatus={changeStatus} name={el.id} nowStatus={el.status}/>
+                                    : null
+                                }
+                            </S.Student>
+                        )
+                    })}
                 { isOpen.some((value) => value === true) ? <S.Black onClick={()=>setIsOpen(isOpen.map(() => false))}></S.Black> : null}
             </S.Graph>
+                :
+                <S.Graph $seven = {grade === 1 && classNum === 1}>
+                    {Array(16).fill({}).map((el, idx) => {
+                        return (
+                            <S.Student key={idx}>
+                                <p>{""}</p>
+                                <p>{""}</p>
+                            </S.Student>
+                        )
+                    })}
+                    {grade === 1 && classNum === 1 &&
+                        <S.Student>
+                            <p>{""}</p>
+                            <p>{""}</p>
+                        </S.Student>
+                    }
+                </S.Graph>
+            }
         </S.StudentContainer>
     )
 }
