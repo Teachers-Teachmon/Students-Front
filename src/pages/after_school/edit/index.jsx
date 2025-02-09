@@ -18,9 +18,11 @@ import { useGetFlushClass } from '../../../hooks/useAfterSchool.js';
 import { useDebounce } from '../../../hooks/useDebounce.js';
 import { useUpload } from '../../../hooks/useAfterSchool.js';
 import { useFlush } from '../../../hooks/useAfterSchool.js';
+import ArrorModal from '../../../components/modal/arrorModal/index.jsx';
 
 export default function Edit() {
 
+    const [isModal1, setIsModal1] = useState(false);
     const [branch, setBranch] = useState('1');
     const [weekday, setWeekday] = useState('MON');
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -55,17 +57,26 @@ export default function Edit() {
     const handleUpload = async () => {
         const id = extractSpreadsheetId(spreadsheetUrl);
         console.log("추출된 spreadSheetId:", id);
-
-        if (id) {
-            setSpreadsheetId(id);
-            // setTimeout(() => {
-            //     refetchUpload();
-            // }, 0);
-            uploadMutation(id);
-        } else {
-            alert('유효한 Spreadsheet 링크를 입력해주세요.');
+    
+        if (!id) {
+            alert("유효한 Spreadsheet 링크를 입력해주세요.");
+            return;
         }
+    
+        setSpreadsheetId(id);
+    
+        uploadMutation(id, {
+            onError: (error) => {
+                console.error("업로드 에러:", error);
+
+                if (error.response?.status === 404) {
+                    setErrorMessage(error.response.data?.message);
+                    setIsModal1(true);
+                }
+            },
+        });
     };
+    
 
     const handleFlush = async () => {
         const id = extractSpreadsheetId(spreadsheetUrl);
@@ -280,7 +291,7 @@ export default function Edit() {
 
 
     const closeModalHandler = (setModal) => {
-        setModal(false);
+        setIsModal1(false);
     };
 
     const handleReset = () => {
@@ -387,6 +398,8 @@ export default function Edit() {
                         </S.ReComBtn>
                     </S.EditTopRight>
                 </S.EditTop>
+                {/* <button onClick={() => setIsModal1(true)}>test</button> */}
+
 
                 <S.EditContent >
                     <S.EditMain>
@@ -472,6 +485,14 @@ export default function Edit() {
                     </S.EditMain>
                 </S.EditContent>
             </S.Content>
+
+            {isModal1 && (
+                <S.BusinessTripModal onClick={() => closeModalHandler(setIsModal1)}>
+                    <S.BusinessModal onClick={(e) => e.stopPropagation()}>
+                    <ArrorModal message={errorMessage} />
+                    </S.BusinessModal>
+                </S.BusinessTripModal>
+            )}
 
             {isModalOpen && selectedRows[selectedGrade] && (
                 <S.ModalOverlay onClick={() => setIsModalOpen(false)}>
