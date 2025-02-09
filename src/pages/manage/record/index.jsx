@@ -79,7 +79,7 @@ export default function Record() {
                     {isMovement[0] ? (
                         <Movement day={day} isFirst={isFirst}/>
                     ) : isMovement[1] ? (
-                        <Leave day={day} isFirst={isFirst} onDeleteSuccess={() => setIsMovement([false, true, false])}/>
+                        <Leave day={day} isFirst={isFirst}/>
                     ) : isMovement[2] ? (
                         <Student data={student} day={day}/>
                     ) : null}

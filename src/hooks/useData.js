@@ -48,7 +48,6 @@ export const useDeleteLeave = () => {
     return useMutation({
         mutationFn: (props) => API.deleteLeave(props),
         onSuccess: (_, variables) => {
-            queryClient.invalidateQueries(['getLeave', variables.day]);
             queryClient.setQueryData(['getLeave', variables.day],(oldData)=>{
                 return oldData.filter((item)=>item.leave_id !== variables.id)
             })
