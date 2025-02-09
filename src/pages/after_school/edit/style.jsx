@@ -423,7 +423,7 @@ export const Black = styled.div`
     left: 0;
 `
 
-export const BusinessTripModal = styled.div`
+export const ErrorModal = styled.div`
     position: fixed;
     width:100vw;
     height: 100vh;
@@ -433,8 +433,9 @@ export const BusinessTripModal = styled.div`
     align-items: center;
 `
 
-export const BusinessModal = styled.div`
+export const ErrorModalmain = styled.div`
     width: 40%;
     border-radius: 10px;
+    text-align: center;
     padding: 2rem;
 `

@@ -400,7 +400,6 @@ export default function Edit() {
                     </S.EditTopRight>
                 </S.EditTop>
 
-
                 <S.EditContent >
                     <S.EditMain>
                         {[1, 2, 3].map((grade) => (
@@ -487,11 +486,11 @@ export default function Edit() {
             </S.Content>
 
             {isModal1 && (
-                <S.BusinessTripModal onClick={() => closeModalHandler(setIsModal1)}>
-                    <S.BusinessModal onClick={(e) => e.stopPropagation()}>
+                <S.ErrorModal onClick={() => closeModalHandler(setIsModal1)}>
+                    <S.ErrorModalmain onClick={(e) => e.stopPropagation()}>
                     <ErrorModal message={errorMessage} />
-                    </S.BusinessModal>
-                </S.BusinessTripModal>
+                    </S.ErrorModalmain>
+                </S.ErrorModal>
             )}
 
             {isModalOpen && selectedRows[selectedGrade] && (
