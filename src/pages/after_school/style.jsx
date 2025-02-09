@@ -213,8 +213,12 @@ export const PrepModal = styled.div`
 
 export const ClassBtn = styled.div`
     display: flex;
-    gap: 38%;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 4em 0 0;
 `
+
 
 export const ClassList = styled.div`
     display: flex;
