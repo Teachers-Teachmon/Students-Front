@@ -129,7 +129,9 @@ export default function Main() {
                                 const rightPeriod = data.toMe ? data.sender.period : data.recipient.period;
                                 const rightGrade = data.toMe ? data.sender.grade : data.recipient.grade;
                                 
-                                if (changeDay.length === 0) {return <div>자습감독이 없습니다.</div>}
+                                console.log('changeDay data : '+data);
+                                console.log('changeDay data length : '+data.length);
+                                if (data.length === 0) {return <div>자습감독이 없습니다.</div>}
                                 else {
                                     return (
                                         <S.ChangeCard key={data.changeId} style={{ backgroundColor: data.toMe ? "#C8DBFF" : data.result === "ACCEPTED" ? "#72FAAA" : data.result === "REJECTED" ? "#FF938C" : "" }}>
