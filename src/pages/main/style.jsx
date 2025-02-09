@@ -174,6 +174,16 @@ export const BottomLeftContent = styled.div`
     height: 83%;
 `
 
+export const NoChange = styled.div`
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    font-weight: 500;
+    font-size: 1.3rem;
+`;
+
 export const ChangeWrap = styled.div`
     display: flex;
     gap: 4rem;
