@@ -13,7 +13,7 @@ export const Black = styled.div`
     background: rgb(0,0,0,0.4);
 `
 export const Content = styled.div`
-    width: 43%;
+    width: 45%;
     padding: 30px;
     border-radius: 8px;
     background: white;

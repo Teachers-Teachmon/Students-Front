@@ -1,5 +1,5 @@
 import styled from "styled-components";
-export default function StatusUpdate({changeStatus, name, nowStatus}) {
+export default function StatusUpdate({changeStatus, name, nowStatus, up}) {
     const now = () =>{
         switch(nowStatus){
             case '조퇴' :
@@ -37,7 +37,7 @@ export default function StatusUpdate({changeStatus, name, nowStatus}) {
         }
     }
     return (
-        <StatusBox onClick={(e) => e.stopPropagation()} >
+        <StatusBox $up = {up} onClick={(e) => e.stopPropagation()} >
             {now()}
         </StatusBox>
     )
@@ -55,7 +55,7 @@ export const StatusBox = styled.div`
     gap: 10px;
     top: 50%; 
     left: 50%;
-    transform: translate(-50%, -150%);
+    transform: translate(-50%, ${(props)=>props.$up ? "-180%" : "-150%"});
     color: white;
     font-size: 12px;
     font-weight: 500;
