@@ -10,52 +10,52 @@ export const Content = styled.div`
     height: 100%;
     width: 87%;
     flex-direction: column;
-    padding: 0 3.125rem;
+    padding: 0 3%;
 `
 
 export const EditTopLeft = styled.div`
     display: flex;
-    gap: 0.9375rem;
+    gap: 15px;
 `
 
 export const EditTop = styled.div`
     display: flex;
     width: 100%;
-    height: 6.25rem;
+    height: 13vh;
     align-items: center;
-    gap: 2.5rem;
+    gap: 4%;
 `
 
 export const Link = styled.input`
     display: flex;
-    padding: 0.625rem;
+    padding: 3%;
     justify-content: center;
     align-items: center;
-    width: 8.75rem;
-    height: 2.5rem;
+    width: 33%;
+    height: 4.9vh;
 `
 
 export const TopDate = styled.div`
     display: flex;
-    gap: 1.25rem;
-    height: 2.5rem;
-    width: ${(props)=>props.$length}px;
+    gap: 20px;
+    height: 4.9vh;
+    width: ${(props)=>props.$length}vw;
 `
 
 export const TopDay = styled.div`
     display: flex;
-    gap: 1.5625rem;
+    gap: 20px;
     cursor: pointer;
 `
 
 export const EditTopRight = styled.div`
     display: flex;
-    gap: 1.5625rem;
+    gap: 25px;
 `
 
 export const FileBtn = styled.div`
     display: flex;
-    gap: 0.9375rem;
+    gap: 15px;
 `
 
 export const UpImg = styled.img`
@@ -68,12 +68,12 @@ export const DownImg = styled.img`
 
 export const FileDown = styled.button`
     display: flex;
-    gap: 0.3125rem;
-    width: 7.5rem;
-    height: 2.5rem;
+    gap: 5px;
+    width: 8.5vw;
+    height: 5vh;
     background-color: white;
-    border: 0.0625rem solid black;
-    border-radius: 0.25rem;
+    border: 1px solid black;
+    border-radius: 4px;
     font-weight: 600;
     align-items: center;
     justify-content: center;
@@ -81,13 +81,13 @@ export const FileDown = styled.button`
 `
 
 export const FileUp = styled.button`
-    gap: 0.3125rem;
+    gap: 5px;
     display: flex;
-    width: 7.5rem;
-    height: 2.5rem;
+    width: 8.5vw;
+    height: 5vh;
     background-color: white;
-    border: 0.0625rem solid black;
-    border-radius: 0.25rem;
+    border: 1px solid black;
+    border-radius: 4px;
     font-weight: 600;
     align-items: center;
     justify-content: center;
@@ -103,16 +103,16 @@ export const FileUpBtn = styled.label`
 
 export const ReComBtn = styled.div`
     display: flex;
-    gap: 0.9375rem;
+    gap: 15px;
 `
 
 export const Complete = styled.button`
-    width: 120px;
-    height: 40px;
+    width: 8.5vw;
+    height: 5.2vh;
     background-color: #2E6FF2;
     color: white;
     border: none;
-    padding: 8px 15px;
+    padding: 3% 5%;
     border-radius: 10px;
     align-items: center;
     justify-content: center;
@@ -122,16 +122,16 @@ export const Complete = styled.button`
 `
 
 export const Reset = styled.button`
-    width: 7.5rem;
-    height: 2.5rem;
+    width: 8.5vw;
+    height: 5.2vh;
     background-color: #2E6FF2;
     color: white;
     border: none;
-    padding: 0.5rem 0.9375rem;
-    border-radius: 0.625rem;
+    padding: 3% 5%;
+    border-radius: 10px;
     align-items: center;
     justify-content: center;
-    font-size: 0.9375rem;
+    font-size: 15px;
     font-weight: 600;
     cursor: pointer;
 `
@@ -144,13 +144,13 @@ export const EditContent = styled.div`
 export const EditMainTop = styled.div`
     display: flex;
     width: 100%;
-    height: 2.5rem;
-    gap: 1.25rem;
+    height: 5vh;
+    gap: 20px;
     background-color: #c9dbff;
-    border-top-right-radius: 0.375rem;
-    border-top-left-radius: 0.375rem;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
     align-items: center;
-    padding: 1.5625rem;
+    padding: 2.2%;
     color: gray;
 
     p{
@@ -159,35 +159,35 @@ export const EditMainTop = styled.div`
 `
 
 export const TopData = styled.span`
-    width: ${(props)=>props.$length}px;
+    width: ${(props)=>props.$length}vw;
 `
 
 export const EditMain = styled.div`
     display:  flex;
     flex-direction: column;
-    gap: 3.125rem;
+    gap: 50px;
     overflow-y: auto;
-    max-height: 43.75rem;
+    max-height: 80vh;
     position: relative;
 `
 
 export const EditRow = styled.div`
     display:  flex;
-    border: 0.0625rem solid #cccccc;
-    padding: 1.25rem 2.0625rem;
+    border: 1px solid #cccccc;
+    padding: 2% 3%;
     align-items: center;
 `
 
 export const RowData = styled.div`
     display:  flex;
     align-items: center;
-    width: ${(props)=>props.$length}px;
+    width: ${(props)=>props.$length}vw;
 `
 
 export const Grade = styled.div`
     display: flex;
     align-items: center;
-    gap: 1.875rem;
+    gap: 30px;
 `
 
 export const EditMainData = styled.div`
@@ -199,45 +199,33 @@ export const EditMainData = styled.div`
 export const PlusBtn = styled.div`
     display: flex;
     justify-content: center;
-    padding: 0 0 0.1875rem 0;
-    width: 1.5625rem;
-    height: 1.5625rem;
-    font-size: 1.5625rem;
+    padding: 0 0 0.3% 0;
+    width: 1.8vw;
+    height: 3.1vh;
+    font-size: 25px;
     color: #2E6FF2;
     align-items: center;
-    border: 0.0625rem solid #2E6FF2;
-    border-radius: 0.25rem;
-    margin-left: 35.625rem;
-    margin-top: 3.125rem;
+    border: 1px solid #2E6FF2;
+    border-radius: 4px;
+    margin-left: 48%;
+    margin-top: 5%;
     cursor: pointer;
 
 `
 
 export const ClassData = styled.input`
-    width: 18.75rem;
-    height: 2.5rem;
-    border: 0.0625rem solid #cccccc;
-    border-radius: 0.25rem;
-    padding: 0.9375rem 1.25rem;
+    width: 22vw;
+    height: 4.8vh;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 1.5% 2%;
     color: gray;
-`
-
-export const DetailBtn = styled.button`
-    display: flex;
-    width: 6.25rem;
-    height: 2.1875rem;
-    background-color: white;
-    border: 0.0625rem solid black;
-    border-radius: 0.25rem;
-    font-weight: 600;
-    align-items: center;
-    justify-content: center;
 `
 
 export const ModalOverlay = styled.div`
     position: fixed;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
@@ -246,27 +234,27 @@ export const ModalOverlay = styled.div`
 `
 
 export const ModalContent = styled.div`
-    width: 43.75rem;
+    width: 50%;
     height: max-content;
-    border-radius: 0.625rem;
-    padding: 3.125rem;
+    border-radius: 10px;
+    padding: 4.5% 5%;
     background-color: white;
 `
 
 export const ModalContentTop = styled.div`
     display: flex;
-    gap: 25rem;
+    gap: 40%;
 `
 
 export const InputBox = styled.div`
-    border: 0.0625rem solid #ccc;
-    width: 15.625rem;
-    border-radius: 0.5rem;
-    padding: 0.625rem 0.9375rem;
+    border: 1px solid #ccc;
+    width: 15vw;
+    border-radius: 8px;
+    padding: 2.5% 2%;
     display: flex;
     justify-content: flex-start;
-    gap: 0.625rem;
-    font-size: 0.875rem;
+    gap: 10px;
+    font-size: 14px;
     position: relative;
 `
 export const Input = styled.input`
@@ -277,33 +265,33 @@ export const Input = styled.input`
 
 export const StudentList = styled.div`
     position: absolute;
-    top: 3.125rem;
+    top: 50px;
     left: 0;
     width: 100%;
-    max-height: 6.25rem;
+    max-height: 10hv;
     z-index: 3;
     overflow-y: scroll;
     background: white;
-    border: 0.0625rem solid #ccc;
-    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
     scrollbar-width: thin; /* Firefox */
     scrollbar-color: #B0BEC5 #F5F5F5; /* 스크롤바 색상 (Foreground/Background) */
 
     /* Chrome, Safari, Edge */
 
     &::-webkit-scrollbar {
-        width: 0.5rem; /* 스크롤바 너비 */
+        width: 8px; /* 스크롤바 너비 */
     }
 
     &::-webkit-scrollbar-track {
         background: #F5F5F5; /* 트랙 색상 */
-        border-radius: 0.5rem; /* 트랙 둥글게 */
+        border-radius: 8px; /* 트랙 둥글게 */
     }
 
     &::-webkit-scrollbar-thumb {
         background: #B0BEC5; /* 스크롤바 색상 */
-        border-radius: 0.5rem; /* 스크롤바 둥글게 */
-        border: 0.125rem solid #F5F5F5; /* 스크롤바와 트랙 간 간격 */
+        border-radius: 8px; /* 스크롤바 둥글게 */
+        border: 2px solid #F5F5F5; /* 스크롤바와 트랙 간 간격 */
     }
 
     &::-webkit-scrollbar-thumb:hover {
@@ -314,7 +302,7 @@ export const StudentList = styled.div`
 export const StudentItem = styled.div`
     width: 100%;
     cursor: pointer;
-    padding: 0.625rem;
+    padding: 1.5% 2.5%;
     &:hover {
         background: #F2F3F6;
     }
@@ -322,44 +310,44 @@ export const StudentItem = styled.div`
 
 export const DropdownFL = styled.div`
     display: flex;
-    gap: 0.625rem;
+    gap: 10px;
 `
 
 export const ModalLeft = styled.div`
-    width: 12.5rem;
-    height: 9.875rem;
+    width: 40%;
+    height: 16%;
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 20px;
 `
 
 export const ModalRight = styled.div`
-    width: 25rem;
+    width: 80%;
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 20px;
 `
 
 export const ModalMain = styled.div`
     display: flex;
-    margin-top: 3.125rem;
-    gap: 0.625rem;
+    margin-top: 6%;
+    gap: 10px;
 `
 
 export const StudentBox = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 1.875rem;
-    margin-left: -12.5rem;
+    gap: 30px;
+    margin-left: -20%;
     overflow-y: auto;
-    max-height: 16.875rem;
+    max-height: 30vh;
 `
 export const Student = styled.div`
-    border: 0.125rem solid #2E6FF2;
+    border: 2px solid #2E6FF2;
     color: #2E6FF2;
     background: white;
-    padding: 0.4375rem 0.75rem;
-    border-radius: 1.875rem;
+    padding: 0.7% 1.2%;
+    border-radius: 30px;
     font-weight: 550;
     cursor: pointer;
     height: max-content;
@@ -367,22 +355,22 @@ export const Student = styled.div`
 
 export const Class = styled.div`
     display: flex;
-    gap: 0.625rem;
+    gap: 10px;
     flex-direction: column;
 
     p{
-        font-size: 1.5625rem;
+        font-size: 25px;
     }
 `
 
 export const ClassMain = styled.div`
     display: flex;
-    gap: 0.625rem;
+    gap: 10px;
     flex-wrap: wrap;
 `
 
 export const OptionButton = styled.img`
-    width: 0.9375rem;
+    width: 1.5%;
     cursor: pointer;
     
 `
@@ -392,17 +380,17 @@ export const Options = styled.div`
     z-index: 100;
     display: flex;
     flex-direction: column;
-    border: 0.0625rem solid #cccccc;
-    border-radius: 0.5rem;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
     overflow: hidden;
     background-color: #fff;
-    margin-top: 6.5625rem;
-    margin-left: 62.375rem;
+    margin-top: 9%;
+    margin-left: 88.5%;
     
     button {
-        border: 0.0625rem;
-        padding: 0.625rem 0.0625rem;
-        width: 6.25rem;
+        border: 1px;
+        padding: 10%;
+        width: 6.5vw;
         background-color: #fff;
         cursor: pointer;
         border-right: 1px solid #cccccc;
@@ -421,8 +409,8 @@ export const Options = styled.div`
 
 export const Btn = styled.div`
     display: flex;
-    margin-left: 21.875rem;
-    gap: 1.25rem;
+    margin-left: 55%;
+    gap: 20px;
 `
 
 export const Black = styled.div`

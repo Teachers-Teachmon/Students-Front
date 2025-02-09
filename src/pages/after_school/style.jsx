@@ -10,16 +10,15 @@ export const Content = styled.div`
     display: flex;
     width: 87%;
     height: 100%;
-    gap: 80px;
+    gap: 6%;
 `
 
 export const LeftContainer = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 100px;
     width: 50%;
     padding: 0% 3%;
-    margin-top: 30px;
+    margin-top: 2.5%;
 `
 
 export const TodayClasses = styled.div`
@@ -28,16 +27,17 @@ export const TodayClasses = styled.div`
     gap: 25px;
     padding: 7% 0% 0% 0%;
     width: 50%;
+    min-height: 47.5%;
 `
 
 export const ClassCard = styled.div`
     display: flex;
-    padding: 10px;
+    padding: 3%;
     border: 1px solid #cccccc;
     border-radius: 6px;
     background-color: #fff;
-    width: 550px;
-    height: 60px;
+    width: 45vw;
+    height: 8vh;
     align-items: center;
     gap: 20px;
 `
@@ -46,49 +46,48 @@ export const CardTime = styled.div`
     background-color: #ECF3FD;
     color: #2E6FF2;
     display: flex;
-    width: 70px;
-    height: 30px;
     border-radius: 5px;
     justify-content: center;
     align-items: center;
+    padding: 1.5%;
 `
 
 export const CardData = styled.div`
-    width: ${(props) => props.$length}px;
+    width: ${(props) => props.$length}vw;
 `
 
 export const MyClasses = styled.div`
     display: flex;
     flex-direction: column;
     gap: 25px;
-    margin-top: 150px;
 `
 
 export const ClassTableContent = styled.div`
-    width: 100%;
+    width: 45.2vw;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
 `
 
 export const ClassTableTop = styled.div`
-    display: flex;
-    width: 600px;
-    height: 60px;
-    gap: 20px;
-    border: 1px solid #cccccc;
-    border-top-right-radius: 6px;
-    border-top-left-radius: 6px;
-    align-items: center;
-    padding: 20px;
     background-color: #EBF1FF;
+    display: flex;
+    width: 45.1vw;
+    height: 7vh;
+    gap: 20px;
+    align-items: center;
+    padding: 3%;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
 
 `
 
 export const ClassTableMain = styled.div`
     display: flex;
     flex-direction: column;
-    width: 600px;
+    width: 45.2vw;
     overflow-y: auto;
-    max-height: 350px;
-    height: 300px;
+    max-height: 40vh;
+    height: 34vh;
 `
 
 export const TableName = styled.div`
@@ -96,33 +95,31 @@ export const TableName = styled.div`
 `
 
 export const TopName = styled.span`
-    padding-left: 40px;
+    padding-left: 6.5%;
 `
 
 export const TopLocation = styled.span`
-    padding-left: 140px;
+    padding-left: 25%;
 `
 
 export const ClassTable = styled.div`
     display: flex;
-    padding: 15px 20px;
-    border: 1px solid #cccccc;
+    padding: 2%;
+    border-bottom: 1px solid #cccccc;
+    border-top: 1px solid #cccccc;
     align-items: center;
-    padding-left: 24px;
+    padding-left: 3.5%;
     position: relative;
-
-    &:last-child {
-        border-bottom-left-radius: 6px;
-        border-bottom-right-radius: 6px;
-    }
+    width: 45vw;
+    height: 7vh;
 `
 
 export const TableData = styled.div`
-    width: ${(props)=>props.$length}px;
+    width: ${(props)=>props.$length}vw;
 `
 
 export const OptionButton = styled.img`
-    width: 15px;
+    width: 1vw;
     cursor: pointer;
     
 `
@@ -136,13 +133,13 @@ export const Options = styled.div`
     border-radius: 8px;
     overflow: hidden;
     background-color: #fff;
-    margin-top: 135px;
-    margin-left: 510px;
+    margin-top: 19%;
+    margin-left:87%;
     
     button {
         border: 1px;
-        padding: 10px 10px;
-        width: 61px;
+        padding: 12%;
+        width: 4vw;
         background-color: #fff;
         cursor: pointer;
         border-right: 1px solid #cccccc;
@@ -209,20 +206,20 @@ export const PrepModal = styled.div`
     width: 50%;
     border-radius: 10px;
     padding: 2rem;
-    margin-left: 150px;
+    margin-left: 15vw;
 `
 
 export const ClassBtn = styled.div`
     display: flex;
-    margin-left: 400px;
+    margin-left: 71.5%;
 `
 export const SquareBtn = styled.button`
-    width: 120px;
-    height: 40px;
+    width: 8.5vw;
+    height: 5vh;
     background-color: #2E6FF2;
     color: white;
     border: none;
-    padding: 8px 15px;
+    padding: 1% 2%;
     border-radius: 10px;
     align-items: center;
     justify-content: center;
@@ -236,7 +233,7 @@ export const ClassList = styled.div`
     flex-direction: column;
     gap: 25px;
     width: 50%;
-    margin-top: 20px;
+    margin-top: 1.5%;
 `
 
 export const ClassListTop = styled.div`
@@ -256,14 +253,22 @@ export const ClassListContent = styled.div`
     justify-content: space-between;
     gap: 10px;
     width: 100%;
+    margin-left: 9%;
+`
+
+export const ClassTopMain = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-left: 8.5%;
 `
 
 export const ClassListMain = styled.div`
-    width: 470px;
-    height: 620px;
+    width: 32.5vw;
+    height: 76vh;
     border: 1px solid #cccccc;
     border-radius: 30px;
-    max-width: 1200px;
+    max-width: 120vw;
     display: flex;
     gap: 10px;
     flex-direction: column;
@@ -277,8 +282,8 @@ export const DayP = styled.p`
 
 export const CaretLeft = styled.button`
     display: flex;
-    width: 30px;
-    height: 30px;
+    width: 2.2vw;
+    height: 3.8vh;
     border-radius: 50%;
     border: 1.5px solid #2E6FF2;
     background-color: #fff;
@@ -286,12 +291,12 @@ export const CaretLeft = styled.button`
     justify-content: center;
     cursor: pointer;
     flex-shrink: 0;
-`
+`           
 
 export const CaretRight = styled.button`
     display: flex;
-    width: 30px;
-    height: 30px;
+    width: 2.2vw;
+    height: 3.8vh;
     border-radius: 50%;
     border: 1.5px solid #2E6FF2;
     background-color: #fff;
@@ -311,28 +316,28 @@ export const ClassList1 = styled.div`
     display: flex;
     flex-direction: column;
     background-color: #EBF1FF;
-    height: 230px;
-    width: 430px;
+    height: 28vh;
+    width: 30vw;
     border-radius: 10px;
-    padding: 15px;
+    padding: 2.5%;
     align-items: center;
     gap: 10px;
     overflow-y: auto;
-    max-height: 400px;
+    max-height: 50vh;
 `
 
 export const ClassList2 = styled.div`
     display: flex;
     flex-direction: column;
     background-color: #EBF1FF;
-    height: 230px;
-    width: 430px;
+    height: 28vh;
+    width: 30vw;
     border-radius: 10px;
-    padding-top: 15px;
+    padding-top: 2.5%;
     align-items: center;
     gap: 10px;
     overflow-y: auto;
-    max-height: 400px;
+    max-height: 50vh;
 
 `
 
@@ -341,9 +346,9 @@ export const List1 = styled.div`
     background-color: #fff;
     border-radius: 8px;
     padding: 1rem 0;
-    width: 410px;
+    width: 28.5vw;
     align-items: center;
-    padding-left: 6px;
+    padding-left: 1.3%;
     gap: 10px;
 
     div {
@@ -357,9 +362,9 @@ export const List2 = styled.div`
     background-color: #fff;
     border-radius: 8px;
     padding: 1rem 0;
-    width: 410px;
+    width: 28.5vw;
     align-items: center;
-    padding-left: 6px;
+    padding-left: 1.3%;
     gap: 10px;
 
     div {
@@ -387,9 +392,9 @@ export const ClassListMainContent2 = styled.div`
 `
 
 export const List1Data = styled.div`
-    width: ${(props)=>props.$length}px;
+    width: ${(props)=>props.$length}vw;
 `
 
 export const List2Data = styled.div`
-    width: ${(props)=>props.$length}px;
+    width: ${(props)=>props.$length}vw;
 `
