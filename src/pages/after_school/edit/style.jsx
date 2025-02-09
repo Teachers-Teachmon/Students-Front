@@ -237,7 +237,7 @@ export const ModalContent = styled.div`
     width: 50%;
     height: max-content;
     border-radius: 10px;
-    padding: 4.5% 5%;
+    padding: 4%;
     background-color: white;
 `
 
@@ -268,7 +268,7 @@ export const StudentList = styled.div`
     top: 50px;
     left: 0;
     width: 100%;
-    max-height: 10hv;
+    max-height: 40vh;
     z-index: 3;
     overflow-y: scroll;
     background: white;
@@ -302,7 +302,7 @@ export const StudentList = styled.div`
 export const StudentItem = styled.div`
     width: 100%;
     cursor: pointer;
-    padding: 1.5% 2.5%;
+    padding: 4%;
     &:hover {
         background: #F2F3F6;
     }
@@ -338,7 +338,7 @@ export const StudentBox = styled.div`
     display: flex;
     flex-direction: column;
     gap: 30px;
-    margin-left: -20%;
+    margin-left: -50%;
     overflow-y: auto;
     max-height: 30vh;
 `
@@ -346,7 +346,7 @@ export const Student = styled.div`
     border: 2px solid #2E6FF2;
     color: #2E6FF2;
     background: white;
-    padding: 0.7% 1.2%;
+    padding: 1.7% 2%;
     border-radius: 30px;
     font-weight: 550;
     cursor: pointer;
