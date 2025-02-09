@@ -129,7 +129,7 @@ export default function Main() {
                                 const rightPeriod = data.toMe ? data.sender.period : data.recipient.period;
                                 const rightGrade = data.toMe ? data.sender.grade : data.recipient.grade;
 
-                                return (
+                                return changeDay.length === 0 ? (<div>자습감독이 없습니다.</div>) : (
                                     <S.ChangeCard key={data.changeId} style={{ backgroundColor: data.toMe ? "#C8DBFF" : data.result === "ACCEPTED" ? "#72FAAA" : data.result === "REJECTED" ? "#FF938C" : "" }}>
                                         <S.ChangeWrap>
                                             <S.ChangeSide>
@@ -164,8 +164,10 @@ export default function Main() {
                                             <S.TeacherTable key={index}>
                                                 <p>{index === 0 ? "7교시" : index === 1 ? "8~9교시" : "10~11교시"}</p>
                                                 {["first_grade", "second_grade", "third_grade"].map((grade, i) => {
-                                                    const teacher = todayTeacher[grade][period] ? todayTeacher[grade][period].replace("/me", "") : "미배정";
-                                                    const isMe = todayTeacher[grade][period] ? todayTeacher[grade][period].includes("/me") : false;
+                                                    // const teacher = todayTeacher[grade][period] ? todayTeacher[grade][period].replace("/me", "") : "미배정";
+                                                    // const isMe = todayTeacher[grade][period] ? todayTeacher[grade][period].includes("/me") : false;
+                                                    const teacher = todayTeacher ? todayTeacher[grade][period].replace("/me", "") : "미배정";
+                                                    const isMe = todayTeacher ? todayTeacher[grade][period].includes("/me") : false;
                                                     return (
                                                         <p key={i} style={{ color: isMe ? "#2E6FF2" : "", fontWeight: isMe ? "600" : "" }}>
                                                             {teacher}
