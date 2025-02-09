@@ -6,12 +6,12 @@
       "place": "베르실7",
       "personnel": 7,
       "period": "7교시",
-      "cause": "전공동아리",
+      "cause": "일이삼사오육칠팔구십십일십이십삼십사십오십육십칠십팔십구이십",
       "id": "994f"
     },
     {
-      "teacher_name": "이정하",
-      "teacher_id": 1,
+      "teacher_name": "정유진",
+      "teacher_id": 2,
       "place": "베르실7",
       "personnel": 7,
       "period": "7교시",
@@ -29,22 +29,11 @@
       "1410 윤도훈"
     ]
   },
-  "leave": [
-    {
-      "leave_id": 2,
-      "student": "1401 김동욱",
-      "period": "8~9교시",
-      "teacher_name": "이정하",
-      "id": "a565"
-    },
-    {
-      "leave_id": 3,
-      "student": "1401 김동욱",
-      "period": "8~9교시",
-      "teacher_name": "이정하",
-      "id": "08bf"
-    }
-  ],
+  "leaveseatDelete": {
+
+  },
+  "leave":[{"leave_id":58,"student":"1401 김동욱","period":"7교시","teacher_name":"이정하"}],
+  "leaveDelete" : {},
   "student": [
     {
       "student": "1401 김동욱",

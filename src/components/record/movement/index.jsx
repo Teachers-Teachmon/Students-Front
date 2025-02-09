@@ -39,7 +39,7 @@ export default function Movement({ day , isFirst}) {
                             <S.Box2 $length={110}>{item.teacher_name}</S.Box2>
                             <S.Box2 $length={110}>{item.personnel}명</S.Box2>
                             <S.Box2 $length={200}>{item.place}</S.Box2>
-                            <S.Box2 $length={240}>{item.cause}</S.Box2>
+                            <S.Box2 $length={290}>{item.cause.slice(0, 20)}{item.cause.length > 20 ? '...' : ''}</S.Box2>
 
                             {name === item.teacher_name || role === "ADMIN" ?
                                 <S.DeleteBox

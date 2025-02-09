@@ -29,8 +29,12 @@ export const useDeleteMovement = () => {
     const queryClient = useQueryClient();
     return useMutation({
         mutationFn: (props) =>API.deleteMovement(props),
-        onSuccess: (_, variables) => {
-            queryClient.invalidateQueries(['getMovement', variables.day]);
+        onSuccess: (data, variables) => {
+            queryClient.setQueryData(['getMovement', variables.day],(oldData)=>{
+                oldData.filter((item)=>{
+                        return !(item.teacher_id === variables.teacher_id && item.period === variables.periodName)
+                })
+            });
         },
         onError: (err) => {
             console.error('Movement 삭제 실패:', err);
@@ -45,6 +49,9 @@ export const useDeleteLeave = () => {
         mutationFn: (props) => API.deleteLeave(props),
         onSuccess: (_, variables) => {
             queryClient.invalidateQueries(['getLeave', variables.day]);
+            queryClient.setQueryData(['getLeave', variables.day],(oldData)=>{
+                oldData.filter((item)=>item.leave_id !== variables.id)
+            })
         },
         onError: (err) => {
             console.error('Leave 삭제 실패:', err);

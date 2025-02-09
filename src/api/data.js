@@ -85,8 +85,7 @@ export const deleteMovement = async ({teacher_id, day, periodName}) =>{
     }
 }
 
-export const deleteLeave = async (id) =>{
-    console.log(id)
+export const deleteLeave = async ({id}) =>{
     try{
         const res = await axiosInstance.delete(`${API_ENDPOINTS.DATA}/leave/${id}`, );
         if(res.status !== 200 && res.status !== 201){
