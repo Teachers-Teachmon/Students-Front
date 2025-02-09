@@ -128,23 +128,26 @@ export default function Main() {
                                 const rightDay = data.toMe ? data.sender.day : data.recipient.day;
                                 const rightPeriod = data.toMe ? data.sender.period : data.recipient.period;
                                 const rightGrade = data.toMe ? data.sender.grade : data.recipient.grade;
-
-                                return changeDay.length === 0 ? (<div>자습감독이 없습니다.</div>) : (
-                                    <S.ChangeCard key={data.changeId} style={{ backgroundColor: data.toMe ? "#C8DBFF" : data.result === "ACCEPTED" ? "#72FAAA" : data.result === "REJECTED" ? "#FF938C" : "" }}>
-                                        <S.ChangeWrap>
-                                            <S.ChangeSide>
-                                                <p>{leftName}</p>
-                                                <p>{leftDay} {leftPeriod} {leftGrade}학년</p>
-                                            </S.ChangeSide>
-                                            <S.RotateIcon src={Rotate} />
-                                            <S.ChangeSide>
-                                                <p>{rightName}</p>
-                                                <p>{rightDay} {rightPeriod} {rightGrade}학년</p>
-                                            </S.ChangeSide>
-                                        </S.ChangeWrap>
-                                        <S.DetailButton onClick={() => { setIsModalOpen(true); setSelectedChange(data) }}>자세히 보기</S.DetailButton>
-                                    </S.ChangeCard>
-                                );
+                                
+                                if (changeDay.length === 0) {return <div>자습감독이 없습니다.</div>}
+                                else {
+                                    return (
+                                        <S.ChangeCard key={data.changeId} style={{ backgroundColor: data.toMe ? "#C8DBFF" : data.result === "ACCEPTED" ? "#72FAAA" : data.result === "REJECTED" ? "#FF938C" : "" }}>
+                                            <S.ChangeWrap>
+                                                <S.ChangeSide>
+                                                    <p>{leftName}</p>
+                                                    <p>{leftDay} {leftPeriod} {leftGrade}학년</p>
+                                                </S.ChangeSide>
+                                                <S.RotateIcon src={Rotate} />
+                                                <S.ChangeSide>
+                                                    <p>{rightName}</p>
+                                                    <p>{rightDay} {rightPeriod} {rightGrade}학년</p>
+                                                </S.ChangeSide>
+                                            </S.ChangeWrap>
+                                            <S.DetailButton onClick={() => { setIsModalOpen(true); setSelectedChange(data) }}>자세히 보기</S.DetailButton>
+                                        </S.ChangeCard>
+                                    );
+                                }
                             })}
                         </S.BottomLeftContent>
                     </S.BottomLeft>
