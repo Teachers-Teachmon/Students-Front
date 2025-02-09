@@ -164,8 +164,8 @@ export default function Main() {
                                             <S.TeacherTable key={index}>
                                                 <p>{index === 0 ? "7교시" : index === 1 ? "8~9교시" : "10~11교시"}</p>
                                                 {["first_grade", "second_grade", "third_grade"].map((grade, i) => {
-                                                    const teacher = todayTeacher ? todayTeacher[grade][period].replace("/me", "") : "미배정";
-                                                    const isMe = todayTeacher ? todayTeacher[grade][period].includes("/me") : false;
+                                                    const teacher = todayTeacher[grade][period] ? todayTeacher[grade][period].replace("/me", "") : "미배정";
+                                                    const isMe = todayTeacher[grade][period] ? todayTeacher[grade][period].includes("/me") : false;
                                                     return (
                                                         <p key={i} style={{ color: isMe ? "#2E6FF2" : "", fontWeight: isMe ? "600" : "" }}>
                                                             {teacher}
