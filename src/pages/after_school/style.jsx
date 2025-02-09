@@ -10,7 +10,7 @@ export const Content = styled.div`
     display: flex;
     width: 87%;
     height: 100%;
-    gap: 6%;
+    gap: 5%;
 `
 
 export const LeftContainer = styled.div`
@@ -18,7 +18,7 @@ export const LeftContainer = styled.div`
     flex-direction: column;
     width: 50%;
     padding: 0% 3%;
-    margin-top: 0%.8;
+    margin-top: 0.5%;
 `
 
 export const TodayClasses = styled.div`
@@ -27,7 +27,7 @@ export const TodayClasses = styled.div`
     gap: 25px;
     padding: 7% 0% 0% 0%;
     width: 50%;
-    min-height: 47.5%;
+    min-height: 46%;
 `
 
 export const ClassCard = styled.div`
@@ -93,6 +93,7 @@ export const ClassTableMain = styled.div`
 
 export const TableName = styled.div`
     display: flex;
+    align-items: center;
 `
 
 export const TopName = styled.span`
@@ -212,21 +213,7 @@ export const PrepModal = styled.div`
 
 export const ClassBtn = styled.div`
     display: flex;
-    gap: 230px;
-`
-export const SquareBtn = styled.button`
-    width: 8.5vw;
-    height: 5vh;
-    background-color: #2E6FF2;
-    color: white;
-    border: none;
-    padding: 1% 2%;
-    border-radius: 10px;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    font-size: 13px;
-    cursor: pointer;
+    gap: 200px;
 `
 
 export const ClassList = styled.div`

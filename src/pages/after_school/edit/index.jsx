@@ -19,6 +19,7 @@ import { useDebounce } from '../../../hooks/useDebounce.js';
 import { useUpload } from '../../../hooks/useAfterSchool.js';
 import { useFlush } from '../../../hooks/useAfterSchool.js';
 import ErrorModal from '../../../components/modal/errorModal/index.jsx';
+import SquareBtn from '../../../components/button/square/index.jsx';
 
 export default function Edit() {
 
@@ -58,14 +59,14 @@ export default function Edit() {
     const handleUpload = async () => {
         const id = extractSpreadsheetId(spreadsheetUrl);
         console.log("추출된 spreadSheetId:", id);
-    
+
         if (!id) {
             alert("유효한 Spreadsheet 링크를 입력해주세요.");
             return;
         }
-    
+
         setSpreadsheetId(id);
-    
+
         uploadMutation(id, {
             onError: (error) => {
                 console.error("업로드 에러:", error);
@@ -77,7 +78,7 @@ export default function Edit() {
             },
         });
     };
-    
+
 
     const handleFlush = async () => {
         const id = extractSpreadsheetId(spreadsheetUrl);
@@ -161,23 +162,70 @@ export default function Edit() {
 
     const periods = ['8~9교시', '10~11교시'];
 
-    const { data } = useGetAfterSchoolClasses(branch, weekday);
+    //const { data } = useGetAfterSchoolClasses(branch, weekday);
     const { mutate: uploadMutation } = useUpload();
     const { mutate: flushMutation } = useFlush();
 
 
 
-    const [grades, setGrades] = useState({ 1: [], 2: [], 3: [] });
+    const [grades, setGrades] = useState({
+        1: [
+            {
+                "afterSchoolId": 4,
+                "teacherId": 1,
+                "teacherName": "리안",
+                "period": "10~11교시",
+                "name": "깃허브",
+                "placeName": "computer",
+                "students": [
+                    {
+                        "number": 1401,
+                        "name": "김동욱"
+                    },
+                    {
+                        "number": 1416,
+                        "name": "허온은"
+                    },
+                    {
+                        "number": 1416,
+                        "name": "김동욱"
+                    },
+                    {
+                        "number": 1416,
+                        "name": "윤도훈"
+                    }
+                ]
+            },
+            {
+                "afterSchoolId": 4,
+                "teacherId": 1,
+                "teacherName": "리안",
+                "period": "10~11교시",
+                "name": "깃허브",
+                "placeName": "computer",
+                "students": [
+                    {
+                        "number": 1401,
+                        "name": "dongwook"
+                    },
+                    {
+                        "number": 1416,
+                        "name": "huhon"
+                    }
+                ]
+            },
+        ], 2: [], 3: []
+    });
 
-    useEffect(() => {
-        if (!data || data.length === 0) return;
+    // useEffect(() => {
+    //     if (!data || data.length === 0) return;
 
-        setGrades({
-            1: data[0] || [],
-            2: data[1] || [],
-            3: data[2] || [],
-        });
-    }, [data]);
+    //     setGrades({
+    //         1: data[0] || [],
+    //         2: data[1] || [],
+    //         3: data[2] || [],
+    //     });
+    // }, [data]);
 
 
     useEffect(() => {
@@ -394,8 +442,8 @@ export default function Edit() {
                             </S.FileUp>
                         </S.FileBtn>
                         <S.ReComBtn>
-                            <S.Reset onClick={handleReset}>초기화</S.Reset>
-                            <S.Complete onClick={handleComplete}>완료</S.Complete>
+                            <SquareBtn status={true} On={handleReset} name="초기화" />
+                            <SquareBtn status={true} On={handleComplete} name="완료" />
                         </S.ReComBtn>
                     </S.EditTopRight>
                 </S.EditTop>
@@ -408,8 +456,8 @@ export default function Edit() {
                                     <S.TopData $length={2}>학년</S.TopData>
                                     <S.TopData $length={8}>교시</S.TopData>
                                     <S.TopData $length={7}>담당교사</S.TopData>
-                                    <S.TopData $length={15}>장소</S.TopData>
-                                    <S.TopData $length={20}>방과후</S.TopData>
+                                    <S.TopData $length={14.5}>장소</S.TopData>
+                                    <S.TopData $length={18}>방과후</S.TopData>
                                     <p>* 학생은 자세히 보기에서 수정해 주세요.</p>
                                 </S.EditMainTop>
 
@@ -456,7 +504,7 @@ export default function Edit() {
                                                 onChange={e => handleInputChange(grade, index, 'name', e.target.value)}
                                             />
                                         </S.RowData>
-                                        <S.OptionButton 
+                                        <S.OptionButton
                                             src={OptionButton}
                                             onClick={(e) => {
                                                 handleOptionClick(grade, index);
@@ -488,7 +536,7 @@ export default function Edit() {
             {isModal1 && (
                 <S.ErrorModal onClick={() => closeModalHandler(setIsModal1)}>
                     <S.ErrorModalmain onClick={(e) => e.stopPropagation()}>
-                    <ErrorModal message={errorMessage} />
+                        <ErrorModal message={errorMessage} />
                     </S.ErrorModalmain>
                 </S.ErrorModal>
             )}
@@ -503,234 +551,233 @@ export default function Edit() {
                             <h1>{selectedGrade}학년</h1>
                         </S.ModalContentTop>
                         <S.ModalMain>
-                            <S.ModalLeft>
-                                <span onClick={(e) => e.stopPropagation()}>
-                                    <DropdownS
-                                        target="선생님"
-                                        name={selectedRows[selectedGrade].teacherName || "담당교사"}
-                                        axios={(event) => searchTeacher(event)}
-                                        change={(value) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'teacherName', value.name)}
-                                        click={() => setDetailIsOpen([!detailIsOpen[0], false, false])}
-                                        isOpen={detailIsOpen[0]}
+                            <S.ModalRL>
+                                <S.ModalLeft>
+                                    <span onClick={(e) => e.stopPropagation()}>
+                                        <DropdownS
+                                            target="선생님"
+                                            name={selectedRows[selectedGrade].teacherName || "담당교사"}
+                                            axios={(event) => searchTeacher(event)}
+                                            change={(value) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'teacherName', value.name)}
+                                            click={() => setDetailIsOpen([!detailIsOpen[0], false, false])}
+                                            isOpen={detailIsOpen[0]}
 
-                                    />
-                                </span>
-                                <span onClick={(e) => e.stopPropagation()}>
-                                    <DropdownNS
-                                        name={selectedRows[selectedGrade].period || "시간"}
-                                        item={periods}
-                                        change={(value) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'period', value)}
-                                        isOpen={detailIsOpen[1]}
-                                        click={() => setDetailIsOpen([false, !detailIsOpen[1], false])}
-                                    />
-                                </span>
-                                {/* <DropdownNS
+                                        />
+                                    </span>
+                                    <span onClick={(e) => e.stopPropagation()}>
+                                        <DropdownNS
+                                            name={selectedRows[selectedGrade].period || "시간"}
+                                            item={periods}
+                                            change={(value) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'period', value)}
+                                            isOpen={detailIsOpen[1]}
+                                            click={() => setDetailIsOpen([false, !detailIsOpen[1], false])}
+                                        />
+                                    </span>
+                                    {/* <DropdownNS
                                     name={selectedRows[selectedGrade].studentsNumber || "학생수"}
                                     value={selectedRows[selectedGrade].studentsNumber}
                                     onChange={(value) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'studentsNumber', value)}
                                 /> */}
-                            </S.ModalLeft>
-                            <S.ModalRight>
-                                <span onClick={(e) => e.stopPropagation()}>
-                                    <S.ClassData
-                                        type='text'
-                                        value={selectedRows[selectedGrade].name}
-                                        onChange={(e) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'name', e.target.value)}
-                                        placeholder={'방과후를 입력해 주세요.'}
-                                    />
-                                </span>
-                                <S.DropdownFL>
+                                </S.ModalLeft>
+                                <S.ModalRight>
                                     <span onClick={(e) => e.stopPropagation()}>
-                                        <DropdownS
-                                            target="장소"
-                                            name={selectedRows[selectedGrade].placeName || "장소"}
-                                            change={(value) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'placeName', value.name)}
-                                            click={() => setDetailIsOpen([false, false, !detailIsOpen[2]])}
-                                            isOpen={detailIsOpen[2]}
-                                            axios={(event) => searchPlace(event)}
+                                        <S.ClassData
+                                            type='text'
+                                            value={selectedRows[selectedGrade].name}
+                                            onChange={(e) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'name', e.target.value)}
+                                            placeholder={'방과후를 입력해 주세요.'}
                                         />
                                     </span>
-                                </S.DropdownFL>
-                                <span onClick={(e) => e.stopPropagation()}>
-                                    <S.InputBox>
-                                        <img src={Search} alt={"검색아이콘"} width={20}></img>
-                                        <S.Input
-                                            type={"text"}
-                                            value={search}
-                                            onChange={(e) => setSearch(e.target.value)}
-                                            placeholder={"학생을 입력해주세요."}
-                                        />
-                                        <S.StudentList>
-                                            {/*    .filter((currentItem) => { // 학생이 이미 반 리스트 안에 있는지 확인함*/}
-                                            {/*    return !Object.values(selectStudent).some((classList) => classList.includes(currentItem))*/}
-                                            {/*    && currentItem.includes(search);*/}
-                                            {/*})*/}
-                                            {search && student &&
-                                                student
-                                                    .filter(item =>
-                                                        !selectedRows[1].students.some(student => student.name === item.name))
-                                                    .map((currentItem, index) => {
+                                    <S.DropdownFL>
+                                        <span onClick={(e) => e.stopPropagation()}>
+                                            <DropdownS
+                                                target="장소"
+                                                name={selectedRows[selectedGrade].placeName || "장소"}
+                                                change={(value) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'placeName', value.name)}
+                                                click={() => setDetailIsOpen([false, false, !detailIsOpen[2]])}
+                                                isOpen={detailIsOpen[2]}
+                                                axios={(event) => searchPlace(event)}
+                                            />
+                                        </span>
+                                    </S.DropdownFL>
+                                </S.ModalRight>
+                            </S.ModalRL>
+
+                            <S.StudentContent onClick={(e) => e.stopPropagation()}>
+                                <S.InputBox>
+                                    <img src={Search} alt={"검색아이콘"} width={20}></img>
+                                    <S.Input
+                                        type={"text"}
+                                        value={search}
+                                        onChange={(e) => setSearch(e.target.value)}
+                                        placeholder={"학생을 입력해주세요."}
+                                    />
+                                    <S.StudentList>
+                                        {search && student &&
+                                            student
+                                                .filter(item =>
+                                                    !selectedRows[1].students.some(student => student.name === item.name))
+                                                .map((currentItem, index) => {
+                                                    return (
+                                                        <S.StudentItem
+                                                            key={index}
+                                                            onClick={() => {
+                                                                setSelectedRows((prev) => ({
+                                                                    ...prev,
+                                                                    [selectedGrade]: {
+                                                                        ...prev[selectedGrade],
+                                                                        students: [...prev[selectedGrade].students, currentItem]
+                                                                    }
+                                                                }))
+                                                                // setSelectStudent((prev) => ({
+                                                                //     ...prev,
+                                                                //     [`class${currentItem.number}`]: [...prev[`class${currentItem.number}`], currentItem],
+                                                                // }));
+                                                                setSearch("");
+                                                            }}
+                                                        >
+                                                            {currentItem.number} {currentItem.name}
+                                                        </S.StudentItem>
+                                                    );
+                                                })
+                                        }
+                                    </S.StudentList>
+                                </S.InputBox>
+                            </S.StudentContent>
+
+                            <span onClick={(e) => e.stopPropagation()}>
+                                <S.StudentBox>
+                                    {selectedRows[selectedGrade] && selectedRows[selectedGrade].students.some(student => String(student.number).slice(1, 2) === '1') &&
+                                        <S.Class>
+                                            <p>1반</p>
+                                            <S.ClassMain>
+                                                {selectedRows[selectedGrade].students.map((item, studentIdx) => {
+                                                    if (String(item.number).slice(1, 2) === '1')
                                                         return (
-                                                            <S.StudentItem
-                                                                key={index}
-                                                                onClick={() => {
-                                                                    setSelectedRows((prev) => ({
-                                                                        ...prev,
-                                                                        [selectedGrade]: {
-                                                                            ...prev[selectedGrade],
-                                                                            students: [...prev[selectedGrade].students, currentItem]
-                                                                        }
-                                                                    }))
-                                                                    // setSelectStudent((prev) => ({
-                                                                    //     ...prev,
-                                                                    //     [`class${currentItem.number}`]: [...prev[`class${currentItem.number}`], currentItem],
-                                                                    // }));
-                                                                    setSearch("");
-                                                                }}
-                                                            >
-                                                                {currentItem.number} {currentItem.name}
-                                                            </S.StudentItem>
-                                                        );
-                                                    })
-                                            }
-                                        </S.StudentList>
-                                    </S.InputBox>
-                                </span>
+                                                            <S.Student key={studentIdx} onClick={() => {
+                                                                setSelectedRows((prev) => ({
+                                                                    ...prev,
+                                                                    [selectedGrade]: {
+                                                                        ...prev[selectedGrade],
+                                                                        students: prev[selectedGrade].students.filter((currentItem) => currentItem.number !== item.number)
+                                                                    }
+                                                                }))
+                                                            }}>
+                                                                <h4>{item.number} {item.name}</h4>
+                                                            </S.Student>
+                                                        )
+                                                })}
+                                            </S.ClassMain>
+                                        </S.Class>
+                                    }
+                                    {selectedRows[selectedGrade] && selectedRows[selectedGrade].students.some(student => String(student.number).slice(1, 2) === '2') &&
+                                        <S.Class>
+                                            <p>2반</p>
+                                            <S.ClassMain>
+                                                {selectedRows[selectedGrade].students.map((item, studentIdx) => {
+                                                    if (String(item.number).slice(1, 2) === '2')
+                                                        return (
+                                                            <S.Student key={studentIdx} onClick={() => {
+                                                                setSelectedRows((prev) => ({
+                                                                    ...prev,
+                                                                    [selectedGrade]: {
+                                                                        ...prev[selectedGrade],
+                                                                        students: prev[selectedGrade].students.filter((currentItem) => currentItem.number !== item.number)
+                                                                    }
+                                                                }))
+                                                            }}>
+                                                                <h4>{item.number} {item.name}</h4>
+                                                            </S.Student>
+                                                        )
+                                                })}
+                                            </S.ClassMain>
+                                        </S.Class>
+                                    }
+                                    {selectedRows[selectedGrade] && selectedRows[selectedGrade].students.some(student => String(student.number).slice(1, 2) === '3') &&
+                                        <S.Class>
+                                            <p>3반</p>
+                                            <S.ClassMain>
+                                                {selectedRows[selectedGrade].students.map((item, studentIdx) => {
+                                                    if (String(item.number).slice(1, 2) === '3')
+                                                        return (
+                                                            <S.Student key={studentIdx} onClick={() => {
+                                                                setSelectedRows((prev) => ({
+                                                                    ...prev,
+                                                                    [selectedGrade]: {
+                                                                        ...prev[selectedGrade],
+                                                                        students: prev[selectedGrade].students.filter((currentItem) => currentItem.number !== item.number)
+                                                                    }
+                                                                }))
+                                                            }}>
+                                                                <h4>{item.number} {item.name}</h4>
+                                                            </S.Student>
+                                                        )
+                                                })}
+                                            </S.ClassMain>
+                                        </S.Class>
+                                    }
+                                    {selectedRows[selectedGrade] && selectedRows[selectedGrade].students.some(student => String(student.number).slice(1, 2) === '4') &&
+                                        <S.Class>
+                                            <p>4반</p>
+                                            <S.ClassMain>
+                                                {selectedRows[selectedGrade].students.map((item, studentIdx) => {
+                                                    if (String(item.number).slice(1, 2) === '4')
+                                                        return (
+                                                            <S.Student key={studentIdx} onClick={() => {
+                                                                setSelectedRows((prev) => ({
+                                                                    ...prev,
+                                                                    [selectedGrade]: {
+                                                                        ...prev[selectedGrade],
+                                                                        students: prev[selectedGrade].students.filter((currentItem) => currentItem.number !== item.number)
+                                                                    }
+                                                                }))
+                                                            }}>
+                                                                <h4>{item.number} {item.name}</h4>
+                                                            </S.Student>
+                                                        )
+                                                })}
+                                            </S.ClassMain>
+                                        </S.Class>
+                                    }
 
-                                <span onClick={(e) => e.stopPropagation()}>
-                                    <S.StudentBox>
-                                        {selectedRows[selectedGrade] && selectedRows[selectedGrade].students.some(student => String(student.number).slice(1, 2) === '1') &&
-                                            <S.Class>
-                                                <p>1반</p>
-                                                <S.ClassMain>
-                                                    {selectedRows[selectedGrade].students.map((item, studentIdx) => {
-                                                        if (String(item.number).slice(1, 2) === '1')
-                                                            return (
-                                                                <S.Student key={studentIdx} onClick={() => {
-                                                                    setSelectedRows((prev) => ({
-                                                                        ...prev,
-                                                                        [selectedGrade]: {
-                                                                            ...prev[selectedGrade],
-                                                                            students: prev[selectedGrade].students.filter((currentItem) => currentItem.number !== item.number)
-                                                                        }
-                                                                    }))
-                                                                }}>
-                                                                    <h4>{item.number} {item.name}</h4>
-                                                                </S.Student>
-                                                            )
-                                                    })}
-                                                </S.ClassMain>
-                                            </S.Class>
-                                        }
-                                        {selectedRows[selectedGrade] && selectedRows[selectedGrade].students.some(student => String(student.number).slice(1, 2) === '2') &&
-                                            <S.Class>
-                                                <p>2반</p>
-                                                <S.ClassMain>
-                                                    {selectedRows[selectedGrade].students.map((item, studentIdx) => {
-                                                        if (String(item.number).slice(1, 2) === '2')
-                                                            return (
-                                                                <S.Student key={studentIdx} onClick={() => {
-                                                                    setSelectedRows((prev) => ({
-                                                                        ...prev,
-                                                                        [selectedGrade]: {
-                                                                            ...prev[selectedGrade],
-                                                                            students: prev[selectedGrade].students.filter((currentItem) => currentItem.number !== item.number)
-                                                                        }
-                                                                    }))
-                                                                }}>
-                                                                    <h4>{item.number} {item.name}</h4>
-                                                                </S.Student>
-                                                            )
-                                                    })}
-                                                </S.ClassMain>
-                                            </S.Class>
-                                        }
-                                        {selectedRows[selectedGrade] && selectedRows[selectedGrade].students.some(student => String(student.number).slice(1, 2) === '3') &&
-                                            <S.Class>
-                                                <p>3반</p>
-                                                <S.ClassMain>
-                                                    {selectedRows[selectedGrade].students.map((item, studentIdx) => {
-                                                        if (String(item.number).slice(1, 2) === '3')
-                                                            return (
-                                                                <S.Student key={studentIdx} onClick={() => {
-                                                                    setSelectedRows((prev) => ({
-                                                                        ...prev,
-                                                                        [selectedGrade]: {
-                                                                            ...prev[selectedGrade],
-                                                                            students: prev[selectedGrade].students.filter((currentItem) => currentItem.number !== item.number)
-                                                                        }
-                                                                    }))
-                                                                }}>
-                                                                    <h4>{item.number} {item.name}</h4>
-                                                                </S.Student>
-                                                            )
-                                                    })}
-                                                </S.ClassMain>
-                                            </S.Class>
-                                        }
-                                        {selectedRows[selectedGrade] && selectedRows[selectedGrade].students.some(student => String(student.number).slice(1, 2) === '4') &&
-                                            <S.Class>
-                                                <p>4반</p>
-                                                <S.ClassMain>
-                                                    {selectedRows[selectedGrade].students.map((item, studentIdx) => {
-                                                        if (String(item.number).slice(1, 2) === '4')
-                                                            return (
-                                                                <S.Student key={studentIdx} onClick={() => {
-                                                                    setSelectedRows((prev) => ({
-                                                                        ...prev,
-                                                                        [selectedGrade]: {
-                                                                            ...prev[selectedGrade],
-                                                                            students: prev[selectedGrade].students.filter((currentItem) => currentItem.number !== item.number)
-                                                                        }
-                                                                    }))
-                                                                }}>
-                                                                    <h4>{item.number} {item.name}</h4>
-                                                                </S.Student>
-                                                            )
-                                                    })}
-                                                </S.ClassMain>
-                                            </S.Class>
-                                        }
-
-                                        {/*<S.Class>*/}
-                                        {/*    <S.ClassMain>*/}
-                                        {/*        {selectedRows[selectedGrade].students.map((item, studentIdx) => {*/}
-                                        {/*            console.log(selectedRows[selectedGrade].students)*/}
-                                        {/*            return(*/}
-                                        {/*                <S.Student key={studentIdx} onClick={()=>{*/}
-                                        {/*                    setSelectedRows((prev) => ({*/}
-                                        {/*                        ...prev,*/}
-                                        {/*                        [selectedGrade]: {*/}
-                                        {/*                            ...prev[selectedGrade],*/}
-                                        {/*                            students: prev[selectedGrade].students.filter((currentItem) => currentItem.number !== item.number)*/}
-                                        {/*                        }*/}
-                                        {/*                    }))*/}
-                                        {/*                }}>*/}
-                                        {/*                    <h4>{item.number} {item.name}</h4>*/}
-                                        {/*                </S.Student>*/}
-                                        {/*            )*/}
-                                        {/*        })}*/}
-                                        {/*    </S.ClassMain>*/}
-                                        {/*</S.Class>*/}
-                                        {/*{Object.entries(selectStudent).map(([cls, students], idx) => (*/}
-                                        {/*    <S.Class key={cls}>*/}
-                                        {/*        <p>{idx + 1}반</p>*/}
-                                        {/*        <S.ClassMain>*/}
-                                        {/*            {students.length > 0 && students.map((item, studentIdx) => (*/}
-                                        {/*                <S.Student key={studentIdx}*/}
-                                        {/*                           onClick={() => setSelectStudent((prev) => ({*/}
-                                        {/*                               ...prev,*/}
-                                        {/*                               [cls]: prev[cls].filter((currentItem) => currentItem !== item),*/}
-                                        {/*                           }))}>*/}
-                                        {/*                    <h4>{item}</h4>*/}
-                                        {/*                </S.Student>*/}
-                                        {/*            ))}*/}
-                                        {/*        </S.ClassMain>*/}
-                                        {/*    </S.Class>*/}
-                                        {/*))}*/}
-                                    </S.StudentBox>
-                                </span>
-                            </S.ModalRight>
+                                    {/*<S.Class>*/}
+                                    {/*    <S.ClassMain>*/}
+                                    {/*        {selectedRows[selectedGrade].students.map((item, studentIdx) => {*/}
+                                    {/*            console.log(selectedRows[selectedGrade].students)*/}
+                                    {/*            return(*/}
+                                    {/*                <S.Student key={studentIdx} onClick={()=>{*/}
+                                    {/*                    setSelectedRows((prev) => ({*/}
+                                    {/*                        ...prev,*/}
+                                    {/*                        [selectedGrade]: {*/}
+                                    {/*                            ...prev[selectedGrade],*/}
+                                    {/*                            students: prev[selectedGrade].students.filter((currentItem) => currentItem.number !== item.number)*/}
+                                    {/*                        }*/}
+                                    {/*                    }))*/}
+                                    {/*                }}>*/}
+                                    {/*                    <h4>{item.number} {item.name}</h4>*/}
+                                    {/*                </S.Student>*/}
+                                    {/*            )*/}
+                                    {/*        })}*/}
+                                    {/*    </S.ClassMain>*/}
+                                    {/*</S.Class>*/}
+                                    {/*{Object.entries(selectStudent).map(([cls, students], idx) => (*/}
+                                    {/*    <S.Class key={cls}>*/}
+                                    {/*        <p>{idx + 1}반</p>*/}
+                                    {/*        <S.ClassMain>*/}
+                                    {/*            {students.length > 0 && students.map((item, studentIdx) => (*/}
+                                    {/*                <S.Student key={studentIdx}*/}
+                                    {/*                           onClick={() => setSelectStudent((prev) => ({*/}
+                                    {/*                               ...prev,*/}
+                                    {/*                               [cls]: prev[cls].filter((currentItem) => currentItem !== item),*/}
+                                    {/*                           }))}>*/}
+                                    {/*                    <h4>{item}</h4>*/}
+                                    {/*                </S.Student>*/}
+                                    {/*            ))}*/}
+                                    {/*        </S.ClassMain>*/}
+                                    {/*    </S.Class>*/}
+                                    {/*))}*/}
+                                </S.StudentBox>
+                            </span>
                         </S.ModalMain>
                         <S.Btn>
                             <Square
