@@ -4,7 +4,7 @@ import useAuth from "../../../zustand/auth.js";
 import patchDay from "../../../utils/patchDay.js";
 import Loading from "../../loading/index.jsx";
 
-export default function Leave({day, isFirst}) {
+export default function Leave({day, isFirst, onDeleteSuccess}) {
     const {data , isFetching , leaveError} = useGetLeave(isFirst ? patchDay(day) : day);
     const {mutate : deleteLeave} = useDeleteLeave()
     const {name, role} = useAuth();
@@ -27,7 +27,10 @@ export default function Leave({day, isFirst}) {
                         <S.Box2 $length={110}>{item.teacher_name}</S.Box2>
                         {name === item.teacher_name || role === "ADMIN" ?
                             <S.DeleteBox onClick={()=>{
-                                if(window.confirm('정말 삭제하시겠습니까?')) deleteLeave({id : item.leave_id, day : day});
+                                if(window.confirm('정말 삭제하시겠습니까?')) {
+                                    deleteLeave({id : item.leave_id, day : day});
+                                    onDeleteSuccess();
+                                }
                             }}>삭제</S.DeleteBox> : null
                         }
                     </S.Content>
