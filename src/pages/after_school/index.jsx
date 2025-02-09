@@ -29,91 +29,91 @@ export default function After_school() {
     const koreanWeekDays = ["월", "화", "수", "목"];
 
 
-    //const { data: myTodayClasses = [] } = useGetTodayClasses();
+    const { data: myTodayClasses = [] } = useGetTodayClasses();
 
-    //const { data: myClasses = [] } = useGetMyClasses();
+    const { data: myClasses = [] } = useGetMyClasses();
 
-    //const { data: classList = [] } = useGetClassList(selectedGrade, selectedDay);
+    const { data: classList = [] } = useGetClassList(selectedGrade, selectedDay);
 
-    const myTodayClasses = [
-        {
-            "grade": 1,
-            "period": "10~11교시",
-            "name": "파이썬",
-            "placeName": "프로그래밍실"
-        },
-        {
-            "grade": 1,
-            "period": "10~11교시",
-            "name": "파이썬",
-            "placeName": "프로그래밍실"
-        }
-    ]
+    // const myTodayClasses = [
+    //     {
+    //         "grade": 1,
+    //         "period": "10~11교시",
+    //         "name": "파이썬",
+    //         "placeName": "프로그래밍실"
+    //     },
+    //     {
+    //         "grade": 1,
+    //         "period": "10~11교시",
+    //         "name": "파이썬",
+    //         "placeName": "프로그래밍실"
+    //     }
+    // ]
 
-    const myClasses = [
-        {
-            "grade": 1,
-            "branch": 4,
-            "id": 13,
-            "weekday": "월",
-            "period": "10~11교시",
-            "name": "파이썬",
-            "placeName": "프로그래밍실"
-        },
-        {
-            "grade": 1,
-            "branch": 4,
-            "id": 13,
-            "weekday": "월",
-            "period": "10~11교시",
-            "name": "파이썬",
-            "placeName": "프로그래밍실"
-        },
-        {
-            "grade": 1,
-            "branch": 4,
-            "id": 13,
-            "weekday": "월",
-            "period": "10~11교시",
-            "name": "파이썬",
-            "placeName": "프로그래밍실"
-        }
-    ]
+    // const myClasses = [
+    //     {
+    //         "grade": 1,
+    //         "branch": 4,
+    //         "id": 13,
+    //         "weekday": "월",
+    //         "period": "10~11교시",
+    //         "name": "파이썬",
+    //         "placeName": "프로그래밍실"
+    //     },
+    //     {
+    //         "grade": 1,
+    //         "branch": 4,
+    //         "id": 13,
+    //         "weekday": "월",
+    //         "period": "10~11교시",
+    //         "name": "파이썬",
+    //         "placeName": "프로그래밍실"
+    //     },
+    //     {
+    //         "grade": 1,
+    //         "branch": 4,
+    //         "id": 13,
+    //         "weekday": "월",
+    //         "period": "10~11교시",
+    //         "name": "파이썬",
+    //         "placeName": "프로그래밍실"
+    //     }
+    // ]
 
-    const classList = 
-    [
-        {
+    // const classList = 
+    // [
+    //     {
 
-            "period": "8~9교시",
-            "afterschool" : [
-                {
-                    "name": "파이썬",
-                    "teacherName": "곽상미",
-                    "placeName": "프로그래밍실"
-                },
-                {
-                    "name": "스프링",
-                    "teacherName": "곽상미",
-                    "placeName": "프로그래밍실"
-                }
-            ] 
-        },
-        {
-            "period": "10~11교시",
-            "afterschool" : [
-                {
-                    "name": "파이썬",
-                    "teacherName": "곽상미",
-                    "placeName": "프로그래밍실"
-                },
-                {
-                    "name": "스프링",
-                    "teacherName": "곽상미",
-                    "placeName": "프로그래밍실"
-                }
-            ]
-        }
-    ]
+    //         "period": "8~9교시",
+    //         "afterschool" : [
+    //             {
+    //                 "name": "파이썬",
+    //                 "teacherName": "곽상미",
+    //                 "placeName": "프로그래밍실"
+    //             },
+    //             {
+    //                 "name": "스프링",
+    //                 "teacherName": "곽상미",
+    //                 "placeName": "프로그래밍실"
+    //             }
+    //         ] 
+    //     },
+    //     {
+    //         "period": "10~11교시",
+    //         "afterschool" : [
+    //             {
+    //                 "name": "파이썬",
+    //                 "teacherName": "곽상미",
+    //                 "placeName": "프로그래밍실"
+    //             },
+    //             {
+    //                 "name": "스프링",
+    //                 "teacherName": "곽상미",
+    //                 "placeName": "프로그래밍실"
+    //             }
+    //         ]
+    //     }
+    // ]
 
     const closeModalHandler = (setModal) => {
         setModal(false);
@@ -139,7 +139,7 @@ export default function After_school() {
     }
 
     return (
-        <S.AfterSchoolContainer>
+        <S.AfterSchoolContainer onClick={() => setOptions(null)}>
             <Header />
             <S.Content>
                 <S.LeftContainer>
@@ -175,9 +175,10 @@ export default function After_school() {
                                             <S.TableData $length={14}>{cls.name}</S.TableData>
                                             <S.TableData $length={14.5}>{cls.placeName}</S.TableData>
                                         </S.TableName>
-                                        <S.OptionButton src={OptionButton} onClick={() => {
+                                        <S.OptionButton src={OptionButton} onClick={(e) => {
                                             setOptions(options === i ? null : i);
                                             setSelectedClass(cls);
+                                            e.stopPropagation()
                                         }} />
                                         {options === i && ( // 옵션 버튼이 클릭된 수업만 목록을 보여줌
                                             <S.Options onClick={(e) => e.stopPropagation()}>
