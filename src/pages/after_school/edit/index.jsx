@@ -162,70 +162,25 @@ export default function Edit() {
 
     const periods = ['8~9교시', '10~11교시'];
 
-    //const { data } = useGetAfterSchoolClasses(branch, weekday);
+    const { data } = useGetAfterSchoolClasses(branch, weekday);
     const { mutate: uploadMutation } = useUpload();
     const { mutate: flushMutation } = useFlush();
 
 
 
     const [grades, setGrades] = useState({
-        1: [
-            {
-                "afterSchoolId": 4,
-                "teacherId": 1,
-                "teacherName": "리안",
-                "period": "10~11교시",
-                "name": "깃허브",
-                "placeName": "computer",
-                "students": [
-                    {
-                        "number": 1401,
-                        "name": "김동욱"
-                    },
-                    {
-                        "number": 1416,
-                        "name": "허온은"
-                    },
-                    {
-                        "number": 1416,
-                        "name": "김동욱"
-                    },
-                    {
-                        "number": 1416,
-                        "name": "윤도훈"
-                    }
-                ]
-            },
-            {
-                "afterSchoolId": 4,
-                "teacherId": 1,
-                "teacherName": "리안",
-                "period": "10~11교시",
-                "name": "깃허브",
-                "placeName": "computer",
-                "students": [
-                    {
-                        "number": 1401,
-                        "name": "dongwook"
-                    },
-                    {
-                        "number": 1416,
-                        "name": "huhon"
-                    }
-                ]
-            },
-        ], 2: [], 3: []
+        1: [], 2: [], 3: []
     });
 
-    // useEffect(() => {
-    //     if (!data || data.length === 0) return;
+    useEffect(() => {
+        if (!data || data.length === 0) return;
 
-    //     setGrades({
-    //         1: data[0] || [],
-    //         2: data[1] || [],
-    //         3: data[2] || [],
-    //     });
-    // }, [data]);
+        setGrades({
+            1: data[0] || [],
+            2: data[1] || [],
+            3: data[2] || [],
+        });
+    }, [data]);
 
 
     useEffect(() => {
@@ -271,27 +226,6 @@ export default function Edit() {
         2: grades[2].map(() => ({ period: false, teacherName: false, placeName: false })),
         3: grades[3].map(() => ({ period: false, teacherName: false, placeName: false })),
     });
-
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const response = await fetch('');
-
-    //             if (response.status === 404) {
-    //                 const errorText = await response.text();
-    //                 throw new Error(errorText);
-    //             }
-    //             const data = await response.json();
-    //         } catch (error) {
-    //             setErrorMessage(error.message);
-    //             setIsModalOpen(true);
-    //         }
-    //     };
-
-    //     fetchData();
-    // }, []);
-
 
 
     const handleDropdownClick = (grade, index, field) => {

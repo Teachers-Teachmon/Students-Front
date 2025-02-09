@@ -68,7 +68,7 @@ export default function ClassPrep({ closeModal, selectedClass }) {
     };
 
     return (
-        <S.Wrapper>
+        <S.Wrapper onClick={() => setIsOpen([false],[false])}>
             <S.ClassTop>
                 <h2>방과후 보강</h2>
                 <S.ChangeClass>바꾸고싶은 방과후</S.ChangeClass>
@@ -77,7 +77,7 @@ export default function ClassPrep({ closeModal, selectedClass }) {
                 <DateInput onChange={handleDateChange} />
             </S.DateMain>
 
-            <S.Place>
+            <S.Place onClick={(e) => e.stopPropagation()}>
                 <Dropdown
                     name={selectedPeriod || '시간'}
                     item={periods}
@@ -85,7 +85,10 @@ export default function ClassPrep({ closeModal, selectedClass }) {
                         setSelectedPeriod(currentItem);
                         setIsOpen([false, false]);
                     }}
-                    click={() => setIsOpen([!isOpen[0], false])}
+                    click={(e) => {
+                        setIsOpen([!isOpen[0], false]);
+                        e.stopPropagation();
+                    }}
                     isOpen={isOpen[0]}
                 />
 
@@ -97,7 +100,9 @@ export default function ClassPrep({ closeModal, selectedClass }) {
                         setSelectedAfterSchool(selected);
                         setIsOpen([false, false]);
                     }}
-                    click={() => setIsOpen([false, !isOpen[1]])}
+                    click={(e) => {
+                        setIsOpen([false, !isOpen[1]]);
+                    }}
                     isOpen={isOpen[1]}
                 />
             </S.Place>
