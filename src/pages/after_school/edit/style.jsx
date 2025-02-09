@@ -16,6 +16,7 @@ export const Content = styled.div`
 export const EditTopLeft = styled.div`
     display: flex;
     gap: 15px;
+    flex-grow: 1;
 `
 
 export const EditTop = styled.div`
@@ -23,7 +24,8 @@ export const EditTop = styled.div`
     width: 100%;
     height: 13vh;
     align-items: center;
-    gap: 4%;
+    gap: 6vw;
+    justify-content: space-between;
 `
 
 export const Link = styled.input`
@@ -31,8 +33,9 @@ export const Link = styled.input`
     padding: 3%;
     justify-content: center;
     align-items: center;
-    width: 33%;
+    width: 38%;
     height: 4.9vh;
+    max-width: 160px;
 `
 
 export const TopDate = styled.div`
@@ -46,16 +49,22 @@ export const TopDay = styled.div`
     display: flex;
     gap: 20px;
     cursor: pointer;
+    width: 100%;
+    justify-content: space-between;
 `
 
 export const EditTopRight = styled.div`
     display: flex;
-    gap: 25px;
+    gap: 1em;
+    width: 100%;
+    flex-grow: 1; /* 비율 맞추기 */
+    justify-content: flex-end;
 `
 
 export const FileBtn = styled.div`
     display: flex;
-    gap: 15px;
+    gap: 4%;
+    width: auto;
 `
 
 export const UpImg = styled.img`
@@ -104,36 +113,6 @@ export const FileUpBtn = styled.label`
 export const ReComBtn = styled.div`
     display: flex;
     gap: 15px;
-`
-
-export const Complete = styled.button`
-    width: 8.5vw;
-    height: 5.2vh;
-    background-color: #2E6FF2;
-    color: white;
-    border: none;
-    padding: 3% 5%;
-    border-radius: 10px;
-    align-items: center;
-    justify-content: center;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-`
-
-export const Reset = styled.button`
-    width: 8.5vw;
-    height: 5.2vh;
-    background-color: #2E6FF2;
-    color: white;
-    border: none;
-    padding: 3% 5%;
-    border-radius: 10px;
-    align-items: center;
-    justify-content: center;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
 `
 
 export const EditContent = styled.div`
