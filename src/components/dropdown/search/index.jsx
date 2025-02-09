@@ -45,7 +45,7 @@ export default function SearchDropdown({target, name, change, click, isOpen, axi
                         onClick={(e) => e.stopPropagation()}
                         type={"text"}
                         value={search}
-                        placeholder={`${target}을(를) 입력해주세요`}
+                        placeholder={`${target}을(를) 입력`}
                         onChange={(e) => setSearch(e.target.value)}
                     ></S.Input>
                     {item && item.map((currentItem) => {
