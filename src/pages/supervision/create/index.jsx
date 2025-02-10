@@ -6,13 +6,28 @@ import SquareBtn from '../../../components/button/square/index.jsx';
 import { searchTeacher } from '../../../api/search.js';
 import DropdownNS from '../../../components/dropdown/nosearch/index.jsx';
 import DropdownS from '../../../components/dropdown/search/index.jsx';
+import { useGetBannedList, useSetBannedList } from '../../../hooks/useSupervision.js';
 
 export default function SupervisionCreate() {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const [selectedRows, setSelectedRows] = useState([[], [], [], []]);
     const [isOpen, setIsOpen] = useState([]);
-
-    const periods = ['8~9교시', '10~11교시'];
+    const { mutate } = useSetBannedList();
+    const { data: bannedList, isLoading: bannedLoading, isError: bannedError } = useGetBannedList();
+    const week = ['MON', 'TUE', 'WED', 'THU'];
+    const periods = ['7교시', '8~9교시', '10~11교시'];
+    const mapPeriod = (p) => {
+        switch (p) {
+            case "7교시":
+                return "SEVEN_PERIOD";
+            case "8~9교시":
+                return "EIGHT_AND_NINE_PERIOD";
+            case "10~11교시":
+                return "TEN_AND_ELEVEN_PERIOD";
+            default:
+                return "";
+        }
+    };
 
     const handleInputChange = (classIndex, rowIndex, field, value) => {
         setSelectedRows(prev => {
@@ -43,10 +58,45 @@ export default function SupervisionCreate() {
     const addRow = (classIndex) => {
         setSelectedRows(prev => {
             const newRows = [...prev];
-            newRows[classIndex] = [...newRows[classIndex], { period: '', teacherName: '' }];
+            newRows[classIndex] = [...newRows[classIndex], { period: '', teacher: null }];
             return newRows;
         });
     };
+
+    const handleSubmit = () => {
+        const payload = selectedRows.flatMap((rows, classIndex) =>
+            rows.map(row => {
+                if (row.period && row.teacher && row.teacher.id) {
+                    return {
+                        week_day: week[classIndex],
+                        period: mapPeriod(row.period),
+                        teacher_id: row.teacher.id,
+                    };
+                }
+                return null;
+            }).filter(item => item !== null)
+        );
+        console.log('Payload:', payload);
+        mutate(payload);
+    };
+    useEffect(() => {
+        if (bannedList && Array.isArray(bannedList)) {
+            const weekMapping = { "월": 0, "화": 1, "수": 2, "목": 3 };
+            const newRows = [[], [], [], []];
+            bannedList.forEach(item => {
+                const idx = weekMapping[item.week_day];
+                if (idx !== undefined) {
+                    const [teacherName, teacherIdStr] = item.teacher.split('/');
+                    const teacherObj = { name: teacherName, id: parseInt(teacherIdStr) };
+                    newRows[idx].push({
+                        period: item.period,
+                        teacher: teacherObj,
+                    });
+                }
+            });
+            setSelectedRows(newRows);
+        }
+    }, [bannedList]);
 
     return (
         <S.Container>
@@ -54,7 +104,7 @@ export default function SupervisionCreate() {
             <S.Content>
                 <S.MainHeader>
                     <h1>금지날짜 입력</h1>
-                    <SquareBtn name="다음" status={true} On={() => setIsCreateModalOpen(true)}>다음</SquareBtn>
+                    <SquareBtn name="다음" status={true} On={() => { handleSubmit(); setIsCreateModalOpen(true);}} />
                 </S.MainHeader>
                 <S.MainContent>
                     {selectedRows.map((rows, classIndex) => (
@@ -78,8 +128,8 @@ export default function SupervisionCreate() {
                                     <S.RowData $length={8.5}>
                                         <DropdownS
                                             target="선생님"
-                                            name={row?.teacherName || "선생님"}
-                                            change={(value) => handleInputChange(classIndex, rowIndex, 'teacherName', value.name)}
+                                            name={row?.teacher ? row.teacher.name : "선생님"}
+                                            change={(value) => handleInputChange(classIndex, rowIndex, 'teacher', value)}
                                             isOpen={isOpen[classIndex]?.[rowIndex]?.teacherName}
                                             click={() => handleDropdownClick(classIndex, rowIndex, 'teacherName')}
                                             axios={(event) => searchTeacher(event)}
