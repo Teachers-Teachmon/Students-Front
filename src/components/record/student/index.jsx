@@ -23,7 +23,10 @@ export default function Student({ data }) {
                         <S.Content key={item.id}>
                             <div>
                                 <S.UnBox></S.UnBox>
-                                <S.Box2 $length={510}>{item.student}</S.Box2>
+                                <S.Box2 style={{display:'flex'}} $length={510}>
+                                    <p>{item.student.slice(0, 4)}</p>
+                                    {item.student.slice(4, 8)}
+                                </S.Box2>
                             </div>
                             <div>
                                 {item['8th_schedule'] === "방과후" ?

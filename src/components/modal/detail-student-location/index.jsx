@@ -11,6 +11,8 @@ import Confirm from "../../button/confirm/index.jsx";
 import {useCloseMovement} from "../../../hooks/useData.js";
 import useDay from "../../../zustand/day.js";
 import patchDay from "../../../utils/patchDay.js";
+import useAuth from "../../../zustand/auth.js";
+import {useGetDailySupervision} from "../../../hooks/useSupervision.js";
 
 export default function DetailStudentLocation({data, setIsModal, floor}) {
     const [isOpen, setIsOpen] = useState([]);
@@ -44,7 +46,32 @@ export default function DetailStudentLocation({data, setIsModal, floor}) {
         });
         patchStudent({studentID: idx, status: status, floor: floor, place:location.place})
     }
-    console.log(locationData)
+    const {data : todaySupervision, isFetching} = useGetDailySupervision(patchDay(today));
+    const {name, role} = useAuth();
+    const checkAuthor = () =>{
+        if(isFetching) return ;
+        let check = false;
+        let periodName;
+        switch (locationData.period){
+            case 'SEVEN_PERIOD' :
+                periodName = "7th_teacher";
+                break;
+            case 'EIGHT_AND_NINE_PERIOD' :
+                periodName = "8th_teacher";
+                break;
+            case 'TEN_AND_ELEVEN_PERIOD' :
+                periodName = "10th_teacher";
+                break;
+        }
+        if(name === locationData.teacherName) check = true;
+        if(todaySupervision['first_grade'][periodName] === name) check = true;
+        if(todaySupervision['second_grade'][periodName] === name) check = true;
+        if(todaySupervision['third_grade'][periodName] === name) check = true;
+        if(role === 'ADMIN') check = true;
+
+        return check;
+
+    }
     return (
         locationData &&
         <S.Black onClick={()=>setIsModal(false)}>
@@ -79,7 +106,7 @@ export default function DetailStudentLocation({data, setIsModal, floor}) {
                     </S.Students>
                 </S.Box>
                 <S.Close>
-                    {locationData.status === "이석" &&
+                    {locationData.status === "이석" && checkAuthor() &&
                         <Confirm
                             text={"이석종료"}
                             color={"red"}

@@ -15,7 +15,7 @@ export default function SupervisionCreate() {
     const { mutate } = useSetBannedList();
     const { data: bannedList, isLoading: bannedLoading, isError: bannedError } = useGetBannedList();
     const week = ['MON', 'TUE', 'WED', 'THU'];
-    const periods = ['7교시', '8~9교시', '10~11교시'];
+    const periods = ['7교시', '7교시', '8~9교시', '10~11교시'];
     const mapPeriod = (p) => {
         switch (p) {
             case "7교시":
@@ -98,6 +98,21 @@ export default function SupervisionCreate() {
         }
     }, [bannedList]);
 
+    const removeRow = (classIndex, rowIndex) => {
+        setSelectedRows(prev => {
+            const newRows = [...prev];
+            newRows[classIndex] = newRows[classIndex].filter((_, index) => index !== rowIndex);
+            return newRows;
+        });
+    
+        setIsOpen(prev => {
+            const newIsOpen = [...prev];
+            newIsOpen[classIndex] = newIsOpen[classIndex]?.filter((_, index) => index !== rowIndex);
+            return newIsOpen;
+        });
+    };
+    
+
     return (
         <S.Container>
             <Header />
@@ -116,7 +131,7 @@ export default function SupervisionCreate() {
 
                             {rows.map((row, rowIndex) => (
                                 <S.EditRow key={rowIndex}>
-                                    <S.RowData $length={9}>
+                                    <S.RowData $length={10}>
                                         <DropdownNS
                                             name={row?.period || '교시'}
                                             item={periods}
@@ -135,6 +150,7 @@ export default function SupervisionCreate() {
                                             axios={(event) => searchTeacher(event)}
                                         />
                                     </S.RowData>
+                                    <S.P onClick={() => removeRow(classIndex, rowIndex)}>-</S.P>
                                 </S.EditRow>
                             ))}
                             <S.PlusBtn onClick={() => addRow(classIndex)}>+</S.PlusBtn>

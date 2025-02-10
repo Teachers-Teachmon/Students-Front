@@ -992,7 +992,7 @@
       "status": "이석",
       "teacher": "티치몬",
       "teacherId": 4,
-      "period": "8~9교시",
+      "period": "EIGHT_AND_NINE_PERIOD",
       "students": [
         {
           "id": 12266,
@@ -1007,6 +1007,24 @@
           "status": "자습"
         }
       ]
+    }
+  },
+  "day": {
+    "date": "2025-02-06",
+    "first_grade": {
+      "7th_teacher": null,
+      "8th_teacher": null,
+      "10th_teacher": "박건우"
+    },
+    "second_grade": {
+      "7th_teacher": null,
+      "8th_teacher": "차수민",
+      "10th_teacher": "차수민"
+    },
+    "third_grade": {
+      "7th_teacher": "박제현",
+      "8th_teacher": "박제현",
+      "10th_teacher": null
     }
   },
   "schedule": {
