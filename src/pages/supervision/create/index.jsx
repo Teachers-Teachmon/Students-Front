@@ -2,7 +2,8 @@ import * as S from './style.jsx';
 import { useState } from 'react';
 import Header from '../../../components/header/index.jsx';
 import SupervisionCreateModal from '../../../components/modal/supervisionCreate/index.jsx';
-import SquareBtn from '../../../components/button/square/index.jsx'; 
+import SquareBtn from '../../../components/button/square/index.jsx';
+import { useGetBannedList, useSetBannedList } from '../../../hooks/useSupervision.js';
 
 export default function SupervisionCreate() {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
