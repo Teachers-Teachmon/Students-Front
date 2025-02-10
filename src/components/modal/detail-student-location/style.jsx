@@ -22,7 +22,7 @@ export const Content = styled.div`
     gap:25px;
 `
 
-export const Title = styled.div`
+export const TitleBox = styled.div`
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -34,7 +34,11 @@ export const Box = styled.div`
     align-items: flex-start;
     gap: 10px;
 `
-
+export const Close = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: end;
+`
 export const BlueText = styled.h2`
     font-size: 22px;
     font-weight: 550;

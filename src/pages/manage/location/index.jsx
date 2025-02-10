@@ -10,12 +10,10 @@ import Second from "../../../components/map/2nd/index.jsx";
 import Third from "../../../components/map/3rd/index.jsx";
 import Fourth from "../../../components/map/4th/index.jsx";
 import DetailStudentLocation from "../../../components/modal/detail-student-location/index.jsx";
-import FirstModal from "../../../components/modal/location-first";
 import {useGetLocationAll, useGetLocationFloor} from "../../../hooks/useStudent.js";
 import Loading from "../../../components/loading/index.jsx";
 
 export default function Location() {
-    const [isFirstModal, setIsFirstModal] = useState(true);
     const navigate = useNavigate();
     const [isFloor, setFloor] = useState([
         true, false, false, false
@@ -33,16 +31,27 @@ export default function Location() {
     const [isModal,setIsModal] = useState(false);
     const {data : locationAll, isFetching : isAllLoading} = useGetLocationAll();
     const {data : locationFloor, isFetching : isFloorLoading} = useGetLocationFloor(floor()[0]);
-
     return (
         <S.LocationContainer>
             <Header />
             <S.Info>
                 <S.FloorBox>
-                    <CircleBtn name={"1층"} status={isFloor[0]} On={()=>changeFloor(0)} />
-                    <CircleBtn name={"2층"} status={isFloor[1]} On={()=>changeFloor(1)} />
-                    <CircleBtn name={"3층"} status={isFloor[2]} On={()=>changeFloor(2)} />
-                    <CircleBtn name={"4층"} status={isFloor[3]} On={()=>changeFloor(3)} />
+                    <S.BtnBox>
+                        <CircleBtn name={"1층"} status={isFloor[0]} On={()=>changeFloor(0)} />
+                        {locationAll && Object.keys(locationAll[0]).length > 0  && <S.All>{Object.keys(locationAll[0]).length}</S.All>}
+                    </S.BtnBox>
+                    <S.BtnBox>
+                        <CircleBtn name={"2층"} status={isFloor[1]} On={()=>changeFloor(1)} />
+                        {locationAll && Object.keys(locationAll[1]).length > 0  && <S.All>{Object.keys(locationAll[1]).length}</S.All>}
+                    </S.BtnBox>
+                    <S.BtnBox>
+                        <CircleBtn name={"3층"} status={isFloor[2]} On={()=>changeFloor(2)} />
+                        {locationAll && Object.keys(locationAll[2]).length > 0  && <S.All>{Object.keys(locationAll[2]).length}</S.All>}
+                    </S.BtnBox>
+                    <S.BtnBox>
+                        <CircleBtn name={"4층"} status={isFloor[3]} On={()=>changeFloor(3)} />
+                        {locationAll && Object.keys(locationAll[3]).length > 0  && <S.All>{Object.keys(locationAll[3]).length}</S.All>}
+                    </S.BtnBox>
                 </S.FloorBox>
                 <SquareBtn name={"돌아가기"} status={true} On={()=>navigate('/manage')} />
             </S.Info>
@@ -74,7 +83,6 @@ export default function Location() {
         </TransformComponent>
 </TransformWrapper>
             {isModal ? <DetailStudentLocation data ={locationFloor} setIsModal={setIsModal} floor ={floor()[0]}/> : null}
-            {isFirstModal && !isAllLoading ? <FirstModal data ={locationAll} set={setIsFirstModal}/> : null}
         </S.LocationContainer>
     )
 }

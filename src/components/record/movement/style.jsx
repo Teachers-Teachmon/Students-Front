@@ -15,6 +15,10 @@ export const Standard = styled.div`
     border: 1px solid #EAECF0;
     padding: 10px;
 `
+export const ContentBox = styled.div`
+    height: 100%;
+    overflow-y: auto;
+`
 export const UnBox = styled.div`
     width: 80px;
     height: 25px;
