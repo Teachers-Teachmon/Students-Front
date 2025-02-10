@@ -16,6 +16,9 @@ export const MainContent = styled.div`
     display: flex;
     justify-content: space-between;
     margin-top: 2rem;
+    grid-template-columns: repeat(4, 1fr); /* 4개의 동일한 너비의 열 */
+    gap: 20px;
+    align-items: start; /* 위쪽 정렬 */
 `;
 
 export const MainHeader = styled.div`
@@ -40,3 +43,56 @@ export const Modal = styled.div`
     border-radius: 10px;
     padding: 2rem;
 `;
+
+export const EditRow = styled.div`
+    display:  flex;
+    border: 1px solid #cccccc;
+    padding: 5% 8%;
+    align-items: center;
+`
+
+export const RowData = styled.div`
+    display:  flex;
+    align-items: center;
+    width: ${(props)=>props.$length}vw;
+`
+
+export const EditMainTop = styled.div`
+    display: flex;
+    width: 100%;
+    height: 4vh;
+    gap: 10px;
+    background-color: #c9dbff;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+    align-items: center;
+    padding: 8%;
+    color: gray;
+    font-size: 13px;
+`
+
+export const TopData = styled.span`
+    width: ${(props)=>props.$length}vw;
+`
+
+export const EditMainData = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+`
+
+export const PlusBtn = styled.div`
+    display: flex;
+    justify-content: center;
+    padding: 0 0 0.3% 0;
+    width: 1.8vw;
+    height: 3.1vh;
+    font-size: 25px;
+    color: #2E6FF2;
+    align-items: center;
+    border: 1px solid #2E6FF2;
+    border-radius: 4px;
+    margin-left: 45%;
+    margin-top: 5%;
+    cursor: pointer;
+`

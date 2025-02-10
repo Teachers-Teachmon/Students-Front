@@ -77,3 +77,25 @@ export const useGetCompleteRate = (percentage, total, completed) => {
         }
     });
 }
+
+export const useGetBannedList = () => {
+    return useQuery({
+        queryKey: ['getBannedList'],
+        queryFn: async () => {
+            const res = await API.getBannedList();
+            return res.data || [];
+        }
+    });
+}
+
+export const useSetBannedList = () => {
+    return useMutation({
+        mutationFn: (props) => API.setBannedList(props),
+        onSuccess: () => {
+            console.log('금지날짜 저장 성공');
+        },
+        onError: (err) => {
+            console.error('금지날짜 저장 실패:', err);
+        }
+    });
+}

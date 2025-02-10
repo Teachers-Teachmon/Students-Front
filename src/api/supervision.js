@@ -113,3 +113,33 @@ export const getCompleteRate = async ({percentage, total, completed}) => {
         return Promise.reject(err);
     }
 }
+
+export const getBannedList = async () => {
+    try {
+        const res = await axiosInstance.get(`${API_ENDPOINTS.SUPERVISION}/ban-times`);
+        if (res.status !== 200 && res.status !== 201) {
+            return Promise.reject({
+                status: res.status,
+                message: res.message || 'Request failed'
+            });
+        }
+        return res;
+    } catch(err) {
+        return Promise.reject(err);
+    }
+}
+
+export const setBannedList = async (bannedList) => {
+    try {
+        const res = await axiosInstance.post(`${API_ENDPOINTS.SUPERVISION}/ban-times`, bannedList);
+        if (res.status !== 200 && res.status !== 201) {
+            return Promise.reject({
+                status: res.status,
+                message: res.message || 'Request failed'
+            });
+        }
+        return res;
+    } catch(err) {
+        return Promise.reject(err);
+    }
+}

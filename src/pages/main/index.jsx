@@ -88,16 +88,16 @@ export default function Main() {
 
                     <SquareBtn name="학생관리" status={true} On={() => { navigate('/manage') }} />
                 </S.MainTop>
-                <div style={{ display: "flex", flexDirection: "column", gap: isFullscreen ? "2rem" : "0" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: isFullscreen ? "1.4rem" : "0" }}>
                     <S.MainMiddle>
-                        <S.NextSup>
-                            <S.NexSupLeft>
+                        <S.NextSup $isFullscreen={isFullscreen}>
+                            <S.NexSupLeft $isFullscreen={isFullscreen}>
                                 <h3>다음 자습감독 기간</h3>
                                 <S.NextSupDate>D - {nextDay === -1 ? "End" : nextDay === 0 ? "Day" : nextDay}</S.NextSupDate>
                                 <h2>{day}</h2>
                                 <h4>{period}</h4>
                             </S.NexSupLeft>
-                            <S.GoToSupBtn onClick={() => { navigate('/supervision') }}>자습감독<img src={Arrow} /></S.GoToSupBtn>
+                            <S.GoToSupBtn $isFullscreen={isFullscreen} onClick={() => { navigate('/supervision') }}>자습감독<img src={Arrow} /></S.GoToSupBtn>
                         </S.NextSup>
 
                         <S.StudentInfo>
@@ -110,7 +110,7 @@ export default function Main() {
                                     <span>조퇴/결석</span>
                                 </S.StudentInfoHeader>
                                 {studentCount && studentCount?.map((data) => (
-                                    <S.Row key={data.grade}>
+                                    <S.Row $isFullscreen={isFullscreen} key={data.grade}>
                                         <div>{data.grade}학년</div>
                                         <div>{data.self_study_count}명</div>
                                         <div>{data.leaveseat_count}명</div>
