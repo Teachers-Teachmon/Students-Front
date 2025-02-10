@@ -50,7 +50,8 @@ export const Table = styled.div`
 `
 
 export const Content = styled.div`
-    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     overflow: hidden;
     display: flex;
 

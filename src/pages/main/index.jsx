@@ -20,8 +20,47 @@ export default function Main() {
     const formattedDate = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
 
     const { data: changeDay, isLoading: isLoadingChange, isError: isErrorChange } = useGetChangeRequest();
-    const { data: todayTeacher, isLoading: isLoadingTeacher, isError: isErrorTeacher } = useGetDailySupervision(formattedDate);
-    const { data: studentCount, isLoading: isLoadingCount, isError: isErrorCount } = useGetStudentCount();
+    // const { data: todayTeacher, isLoading: isLoadingTeacher, isError: isErrorTeacher } = useGetDailySupervision(formattedDate);
+    const isLoadingTeacher = false;
+    const todayTeacher = {
+        "date": "2025-02-10",
+        "first_grade": {
+            "7th_teacher": null,
+            "8th_teacher": null,
+            "10th_teacher": null
+        },
+        "second_grade": {
+            "7th_teacher": null,
+            "8th_teacher": "박소영",
+            "10th_teacher": "박소영"
+        },
+        "third_grade": {
+            "7th_teacher": "이정하",
+            "8th_teacher": "이정하",
+            "10th_teacher": null
+        }
+    }
+    // const { data: studentCount, isLoading: isLoadingCount, isError: isErrorCount } = useGetStudentCount();
+    const studentCount = [
+        {
+            "grade": 1,
+            "self_study_count": 0,
+            "leaveseat_count": 0,
+            "absent_count": 0
+        },
+        {
+            "grade": 2,
+            "self_study_count": 0,
+            "leaveseat_count": 0,
+            "absent_count": 0
+        },
+        {
+            "grade": 3,
+            "self_study_count": 8,
+            "leaveseat_count": 0,
+            "absent_count": 0
+        }
+    ]
     const { data: nextData, isLoading: isLoadingNext, isError: isErrorNext } = useGetNextSupervision();
     const { data: completeRateData, isLoading: isLoadingRate, isError: IsErrorRate } = useGetCompleteRate();
 
@@ -57,10 +96,25 @@ export default function Main() {
         return `${date.getMonth() + 1}월 ${date.getDate()}일 (${dayNames[date.getDay()]})`;
     };
 
+    const [isFullscreen, setIsFullscreen] = useState(false);
+    useEffect(() => {
+        const mq = window.matchMedia('(display-mode: fullscreen)');
+        const handleChange = (e) => {
+            setIsFullscreen(e.matches);
+        };
+        mq.addEventListener('change', handleChange);
+        // 초기 상태 설정
+        setIsFullscreen(mq.matches);
+
+        return () => {
+            mq.removeEventListener('change', handleChange);
+        };
+    }, []);
+
     return (
         <S.MainContainer>
             <Header />
-            <S.MainContent>
+            <S.MainContent $isFullscreen={isFullscreen}>
                 <h1>안녕하세요 {userName} 선생님</h1>
                 <S.MainTop>
                     <S.SelfStudySupCnt>
@@ -74,116 +128,117 @@ export default function Main() {
 
                     <SquareBtn name="학생관리" status={true} On={() => { navigate('/manage') }} />
                 </S.MainTop>
+                <div style={{ display: "flex", flexDirection: "column", gap: isFullscreen ? "2rem" : "0" }}>
+                    <S.MainMiddle>
+                        <S.NextSup>
+                            <S.NexSupLeft>
+                                <h3>다음 자습감독 기간</h3>
+                                <S.NextSupDate>D - {nextDay === -1 ? "End" : nextDay === 0 ? "Day" : nextDay}</S.NextSupDate>
+                                <h2>{day || "11월 27일 (수)"}</h2>
+                                <h4>{"8~9교시" || period}</h4>
+                            </S.NexSupLeft>
+                            <S.GoToSupBtn onClick={() => { navigate('/supervision') }}>자습감독<img src={Arrow} /></S.GoToSupBtn>
+                        </S.NextSup>
 
-                <S.MainMiddle>
-                    <S.NextSup>
-                        <S.NexSupLeft>
-                            <h3>다음 자습감독 기간</h3>
-                            <S.NextSupDate>D - {nextDay === -1 ? "End" : nextDay === 0 ? "Day" : nextDay}</S.NextSupDate>
-                            <h2>{day}</h2>
-                            <h4>{period}</h4>
-                        </S.NexSupLeft>
-                        <S.GoToSupBtn onClick={() => { navigate('/supervision') }}>자습감독<img src={Arrow} /></S.GoToSupBtn>
-                    </S.NextSup>
+                        <S.StudentInfo>
+                            <h2>학생 정보</h2>
+                            <S.StudentInfoWrap>
+                                <S.StudentInfoHeader>
+                                    <span>학년</span>
+                                    <span>자습 인원</span>
+                                    <span>이석 인원</span>
+                                    <span>조퇴/결석</span>
+                                </S.StudentInfoHeader>
+                                {studentCount && studentCount?.map((data) => (
+                                    <S.Row key={data.grade}>
+                                        <div>{data.grade}학년</div>
+                                        <div>{data.self_study_count}명</div>
+                                        <div>{data.leaveseat_count}명</div>
+                                        <div>{data.absent_count}명</div>
+                                    </S.Row>
+                                ))}
+                            </S.StudentInfoWrap>
+                        </S.StudentInfo>
+                    </S.MainMiddle>
+                    <S.MainBottom>
+                        <S.BottomLeft>
+                            <h2>교체 요청 ({changeDay?.length})</h2>
+                            <S.BottomLeftContent>
+                                <S.BottomLeftHeader>
+                                    <span>받는 사람</span>
+                                    <span>보내는 사람</span>
+                                </S.BottomLeftHeader>
+                                {(!changeDay || (changeDay && changeDay.length === 0)) && <S.NoChange>교체 요청이 없습니다.</S.NoChange>}
+                                {changeDay && changeDay.map((data) => {
+                                    const senderInfo = data.sender.teacher.split('/');
+                                    const recipientInfo = data.recipient.teacher.split('/');
 
-                    <S.StudentInfo>
-                        <h2>학생 정보</h2>
-                        <S.StudentInfoWrap>
-                            <S.StudentInfoHeader>
-                                <span>학년</span>
-                                <span>자습 인원</span>
-                                <span>이석 인원</span>
-                                <span>조퇴/결석</span>
-                            </S.StudentInfoHeader>
-                            {studentCount && studentCount?.map((data) => (
-                                <S.Row key={data.grade}>
-                                    <div>{data.grade}학년</div>
-                                    <div>{data.self_study_count}명</div>
-                                    <div>{data.leaveseat_count}명</div>
-                                    <div>{data.absent_count}명</div>
-                                </S.Row>
-                            ))}
-                        </S.StudentInfoWrap>
-                    </S.StudentInfo>
-                </S.MainMiddle>
-                <S.MainBottom>
-                    <S.BottomLeft>
-                        <h2>교체 요청 ({changeDay?.length})</h2>
-                        <S.BottomLeftContent>
-                            <S.BottomLeftHeader>
-                                <span>받는 사람</span>
-                                <span>보내는 사람</span>
-                            </S.BottomLeftHeader>
-                            {(!changeDay || (changeDay && changeDay.length === 0)) && <S.NoChange>교체 요청이 없습니다.</S.NoChange>}
-                            {changeDay && changeDay.map((data) => {
-                                const senderInfo = data.sender.teacher.split('/');
-                                const recipientInfo = data.recipient.teacher.split('/');
+                                    const leftName = data.toMe ? "(나)" : `(${recipientInfo[0]} 선생님)`;
+                                    const leftDay = data.toMe ? data.recipient.day : data.sender.day;
+                                    const leftPeriod = data.toMe ? data.recipient.period : data.sender.period;
+                                    const leftGrade = data.toMe ? data.recipient.grade : data.sender.grade;
 
-                                const leftName = data.toMe ? "(나)" : `(${recipientInfo[0]} 선생님)`;
-                                const leftDay = data.toMe ? data.recipient.day : data.sender.day;
-                                const leftPeriod = data.toMe ? data.recipient.period : data.sender.period;
-                                const leftGrade = data.toMe ? data.recipient.grade : data.sender.grade;
+                                    const rightName = data.toMe ? `(${senderInfo[0]} 선생님)` : "(나)";
+                                    const rightDay = data.toMe ? data.sender.day : data.recipient.day;
+                                    const rightPeriod = data.toMe ? data.sender.period : data.recipient.period;
+                                    const rightGrade = data.toMe ? data.sender.grade : data.recipient.grade;
 
-                                const rightName = data.toMe ? `(${senderInfo[0]} 선생님)` : "(나)";
-                                const rightDay = data.toMe ? data.sender.day : data.recipient.day;
-                                const rightPeriod = data.toMe ? data.sender.period : data.recipient.period;
-                                const rightGrade = data.toMe ? data.sender.grade : data.recipient.grade;
-
-                                return (
-                                    <S.ChangeCard key={data.changeId} style={{ backgroundColor: data.toMe ? "#C8DBFF" : data.result === "ACCEPTED" ? "#72FAAA" : data.result === "REJECTED" ? "#FF938C" : "" }}>
-                                        <S.ChangeWrap>
-                                            <S.ChangeSide>
-                                                <p>{leftName}</p>
-                                                <p>{leftDay} {leftPeriod} {leftGrade}학년</p>
-                                            </S.ChangeSide>
-                                            <S.RotateIcon src={Rotate} />
-                                            <S.ChangeSide>
-                                                <p>{rightName}</p>
-                                                <p>{rightDay} {rightPeriod} {rightGrade}학년</p>
-                                            </S.ChangeSide>
-                                        </S.ChangeWrap>
-                                        <S.DetailButton onClick={() => { setIsModalOpen(true); setSelectedChange(data) }}>자세히 보기</S.DetailButton>
-                                    </S.ChangeCard>
-                                );
-                            })}
-                        </S.BottomLeftContent>
-                    </S.BottomLeft>
-                    <S.BottomRight>
-                        <h2>오늘의 자습감독 선생님</h2>
-                        {!isLoadingTeacher ? (
-                            <S.BottomRightContent>
-                                <div>
-                                    <S.TeacherListTop>
-                                        <span>{todayTeacher && formatDateForUI(todayTeacher.date)}</span>
-                                        <span>1학년</span>
-                                        <span>2학년</span>
-                                        <span>3학년</span>
-                                    </S.TeacherListTop>
-                                    <S.TeacherListContent>
-                                        {["7th_teacher", "8th_teacher", "10th_teacher"].map((period, index) => (
-                                            <S.TeacherTable key={index}>
-                                                <p>{index === 0 ? "7교시" : index === 1 ? "8~9교시" : "10~11교시"}</p>
-                                                {["first_grade", "second_grade", "third_grade"].map((grade, i) => {
-                                                    const teacher = todayTeacher[grade][period] ? todayTeacher[grade][period].replace("/me", "") : "X";
-                                                    const isMe = todayTeacher[grade][period] ? todayTeacher[grade][period].includes("/me") : false;
-                                                    return (
-                                                        <p key={i} style={{ color: isMe ? "#2E6FF2" : "", fontWeight: isMe ? "600" : "" }}>
-                                                            {teacher}
-                                                        </p>
-                                                    );
-                                                })}
-                                            </S.TeacherTable>
-                                        ))}
-                                    </S.TeacherListContent>
-                                </div>
-                            </S.BottomRightContent>
-                        ) : (
-                            <S.BottomRightContent>
-                                <p>로딩중...</p>
-                            </S.BottomRightContent>
-                        )}
-                    </S.BottomRight>
-                </S.MainBottom>
+                                    return (
+                                        <S.ChangeCard key={data.changeId} style={{ backgroundColor: data.toMe ? "#C8DBFF" : data.result === "ACCEPTED" ? "#72FAAA" : data.result === "REJECTED" ? "#FF938C" : "" }}>
+                                            <S.ChangeWrap>
+                                                <S.ChangeSide>
+                                                    <p>{leftName}</p>
+                                                    <p>{leftDay} {leftPeriod} {leftGrade}학년</p>
+                                                </S.ChangeSide>
+                                                <S.RotateIcon src={Rotate} />
+                                                <S.ChangeSide>
+                                                    <p>{rightName}</p>
+                                                    <p>{rightDay} {rightPeriod} {rightGrade}학년</p>
+                                                </S.ChangeSide>
+                                            </S.ChangeWrap>
+                                            <S.DetailButton onClick={() => { setIsModalOpen(true); setSelectedChange(data) }}>자세히 보기</S.DetailButton>
+                                        </S.ChangeCard>
+                                    );
+                                })}
+                            </S.BottomLeftContent>
+                        </S.BottomLeft>
+                        <S.BottomRight>
+                            <h2>오늘의 자습감독 선생님</h2>
+                            {!isLoadingTeacher ? (
+                                <S.BottomRightContent>
+                                    <div>
+                                        <S.TeacherListTop $isFullscreen={isFullscreen}>
+                                            <span>{todayTeacher && formatDateForUI(todayTeacher.date)}</span>
+                                            <span>1학년</span>
+                                            <span>2학년</span>
+                                            <span>3학년</span>
+                                        </S.TeacherListTop>
+                                        <S.TeacherListContent>
+                                            {["7th_teacher", "8th_teacher", "10th_teacher"].map((period, index) => (
+                                                <S.TeacherTable key={index}>
+                                                    <p>{index === 0 ? "7교시" : index === 1 ? "8~9교시" : "10~11교시"}</p>
+                                                    {["first_grade", "second_grade", "third_grade"].map((grade, i) => {
+                                                        const teacher = todayTeacher[grade][period] ? todayTeacher[grade][period].replace("/me", "") : "X";
+                                                        const isMe = todayTeacher[grade][period] ? todayTeacher[grade][period].includes("/me") : false;
+                                                        return (
+                                                            <p key={i} style={{ color: isMe ? "#2E6FF2" : "", fontWeight: isMe ? "600" : "" }}>
+                                                                {teacher}
+                                                            </p>
+                                                        );
+                                                    })}
+                                                </S.TeacherTable>
+                                            ))}
+                                        </S.TeacherListContent>
+                                    </div>
+                                </S.BottomRightContent>
+                            ) : (
+                                <S.BottomRightContent>
+                                    <p>로딩중...</p>
+                                </S.BottomRightContent>
+                            )}
+                        </S.BottomRight>
+                    </S.MainBottom>
+                </div>
             </S.MainContent>
             {isModalOpen && (
                 <S.ModalOverlay onClick={() => { setIsModalOpen(false) }}>
