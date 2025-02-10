@@ -128,7 +128,7 @@ export const Row = styled.div`
     display: grid;
     grid-template-columns: 1fr repeat(3, 1fr);
     text-align: center;
-    padding: 0.8rem;
+    padding: ${(props) => (props.$isFullscreen ? "1rem" : "0.8rem")};
     background-color: white;
     margin-bottom: 0.95rem;
     border-radius: 10px;

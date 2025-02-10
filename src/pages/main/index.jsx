@@ -110,7 +110,7 @@ export default function Main() {
                                     <span>조퇴/결석</span>
                                 </S.StudentInfoHeader>
                                 {studentCount && studentCount?.map((data) => (
-                                    <S.Row key={data.grade}>
+                                    <S.Row $isFullscreen={isFullscreen} key={data.grade}>
                                         <div>{data.grade}학년</div>
                                         <div>{data.self_study_count}명</div>
                                         <div>{data.leaveseat_count}명</div>
