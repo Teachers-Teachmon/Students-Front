@@ -12,7 +12,7 @@ export default function ClassPrep({ closeModal, selectedClass }) {
     const [selectedPeriod, setSelectedPeriod] = useState('');
     const [isOpen, setIsOpen] = useState([false, false]);
     const { mutate: createClassPrep } = useClassPrep();
-    const [selectedDate, setSelectedDate] = useState(null);
+    const [selectedDate, setSelectedDate] = useState(new Date()); 
     const [selectedAfterSchool, setSelectedAfterSchool] = useState(null);
 
     const getPeriodNumber = (period) => {
@@ -23,15 +23,14 @@ export default function ClassPrep({ closeModal, selectedClass }) {
 
     const selectedPeriodNumber = getPeriodNumber(selectedPeriod);
 
+    const handleDateChange = (day) => {
+        setSelectedDate(day || new Date());
+    };
+
 
     const periods = ['8~9교시', '10~11교시'];
 
     const { data: afterSchoolList = [], refetch } = useGetSupplementList(selectedDate, selectedPeriodNumber);
-
-
-    const handleDateChange = (day) => {
-        setSelectedDate(day);
-    };
 
     useEffect(() => {
         if (selectedDate && selectedPeriodNumber !== null) {
@@ -54,7 +53,7 @@ export default function ClassPrep({ closeModal, selectedClass }) {
 
         const requestBody = {
             originalAfterSchool: {
-                day: selectedDate,
+                day: selectedDate || new Date(),
                 type: selectedAfterSchool.type,
                 id: selectedAfterSchool.id
             },
