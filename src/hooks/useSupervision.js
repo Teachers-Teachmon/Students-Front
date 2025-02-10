@@ -77,3 +77,15 @@ export const useGetCompleteRate = (percentage, total, completed) => {
         }
     });
 }
+
+export const useSetBannedList = () => {
+    return useMutation({
+        mutationFn: (props) => API.setBannedList(props),
+        onSuccess: () => {
+            console.log('금지날짜 저장 성공');
+        },
+        onError: (err) => {
+            console.error('금지날짜 저장 실패:', err);
+        }
+    });
+}
