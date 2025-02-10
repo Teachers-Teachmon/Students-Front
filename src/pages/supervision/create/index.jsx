@@ -149,6 +149,7 @@ export default function SupervisionCreate() {
                                             isOpen={isOpen[classIndex]?.[rowIndex]?.teacherName}
                                             click={() => handleDropdownClick(classIndex, rowIndex, 'teacherName')}
                                             axios={(event) => searchTeacher(event)}
+                                            left={classIndex === 3}
                                         />
                                     </S.RowData>
                                     <S.P onClick={() => removeRow(classIndex, rowIndex)}>-</S.P>
