@@ -2,8 +2,25 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     display: flex;
-    flex-direction: column;
     height: 100vh;
+`;
+
+export const Content = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    width: 90%;
+`;
+
+export const MainContent = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+`;
+
+export const MainHeader = styled.div`
+    display: flex;
+    justify-content: space-between;
 `;
 
 export const ModalOverlay = styled.div`
