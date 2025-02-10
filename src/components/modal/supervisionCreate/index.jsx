@@ -5,7 +5,7 @@ import { useAutoAssignment } from '../../../hooks/useSupervision.js';
 import useDay from '../../../zustand/day.js';
 import { useState } from 'react';
 
-export default function SupervisionCreate({ closeModal }) {
+export default function SupervisionCreateModal({ closeModal }) {
     
     const { setStart, setEnd } = useDay();
     const { mutate: autoAssignment } = useAutoAssignment();

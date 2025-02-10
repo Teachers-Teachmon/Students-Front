@@ -3,15 +3,15 @@ import * as S from './style.jsx';
 import Circle from '../../../components/button/circle/index.jsx';
 import SquareBtn from '../../../components/button/square/index.jsx';
 import { useState, useEffect } from 'react';
-import SupervisionCreate from '../../../components/modal/supervisionCreate/index.jsx';
+import { useNavigate } from 'react-router-dom';
 import SearchDropdown from '../../../components/dropdown/search/index.jsx';
 import { useGetAssignment, useSaveAutoAssignment } from '../../../hooks/useSupervision.js';
 import { searchTeacher } from '../../../api/search.js';
 import Loading from '../../../components/loading/index.jsx';
 
 export default function SupervisionDetail() {
+    const navigate = useNavigate();
     const [selMonth, setSelMonth] = useState(new Date().getMonth());
-    const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
     const [selectedTeacher, setSelectedTeacher] = useState({});
     const [dropdownOpen, setDropdownOpen] = useState({});
@@ -134,7 +134,7 @@ export default function SupervisionDetail() {
                     {!isEditing ? (
                         <S.Buttons>
                             <SquareBtn name="자습감독수정" status={true} On={() => { setIsEditing(true) }} />
-                            <SquareBtn name="자습감독생성" status={true} On={() => { setIsCreateModalOpen(true) }} />
+                            <SquareBtn name="자습감독생성" status={true} On={() => { navigate('/supervision/create') }} />
                         </S.Buttons>
                     ) : (
                         <S.Buttons>
@@ -218,13 +218,6 @@ export default function SupervisionDetail() {
                     ))}
                 </S.TableWrap>
             </S.MainWrap>
-            {isCreateModalOpen && (
-                <S.ModalOverlay onClick={() => setIsCreateModalOpen(false)}>
-                    <S.Modal onClick={(e) => e.stopPropagation()}>
-                        <SupervisionCreate closeModal={() => { setIsCreateModalOpen(false) }} />
-                    </S.Modal>
-                </S.ModalOverlay>
-            )}
         </S.Wrapper>
     );
 }
