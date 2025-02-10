@@ -20,47 +20,8 @@ export default function Main() {
     const formattedDate = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
 
     const { data: changeDay, isLoading: isLoadingChange, isError: isErrorChange } = useGetChangeRequest();
-    // const { data: todayTeacher, isLoading: isLoadingTeacher, isError: isErrorTeacher } = useGetDailySupervision(formattedDate);
-    const isLoadingTeacher = false;
-    const todayTeacher = {
-        "date": "2025-02-10",
-        "first_grade": {
-            "7th_teacher": null,
-            "8th_teacher": null,
-            "10th_teacher": null
-        },
-        "second_grade": {
-            "7th_teacher": null,
-            "8th_teacher": "박소영",
-            "10th_teacher": "박소영"
-        },
-        "third_grade": {
-            "7th_teacher": "이정하",
-            "8th_teacher": "이정하",
-            "10th_teacher": null
-        }
-    }
-    // const { data: studentCount, isLoading: isLoadingCount, isError: isErrorCount } = useGetStudentCount();
-    const studentCount = [
-        {
-            "grade": 1,
-            "self_study_count": 0,
-            "leaveseat_count": 0,
-            "absent_count": 0
-        },
-        {
-            "grade": 2,
-            "self_study_count": 0,
-            "leaveseat_count": 0,
-            "absent_count": 0
-        },
-        {
-            "grade": 3,
-            "self_study_count": 8,
-            "leaveseat_count": 0,
-            "absent_count": 0
-        }
-    ]
+    const { data: todayTeacher, isLoading: isLoadingTeacher, isError: isErrorTeacher } = useGetDailySupervision(formattedDate);
+    const { data: studentCount, isLoading: isLoadingCount, isError: isErrorCount } = useGetStudentCount();
     const { data: nextData, isLoading: isLoadingNext, isError: isErrorNext } = useGetNextSupervision();
     const { data: completeRateData, isLoading: isLoadingRate, isError: IsErrorRate } = useGetCompleteRate();
 
@@ -103,7 +64,6 @@ export default function Main() {
             setIsFullscreen(e.matches);
         };
         mq.addEventListener('change', handleChange);
-        // 초기 상태 설정
         setIsFullscreen(mq.matches);
 
         return () => {
@@ -134,8 +94,8 @@ export default function Main() {
                             <S.NexSupLeft>
                                 <h3>다음 자습감독 기간</h3>
                                 <S.NextSupDate>D - {nextDay === -1 ? "End" : nextDay === 0 ? "Day" : nextDay}</S.NextSupDate>
-                                <h2>{day || "11월 27일 (수)"}</h2>
-                                <h4>{"8~9교시" || period}</h4>
+                                <h2>{day}</h2>
+                                <h4>{period}</h4>
                             </S.NexSupLeft>
                             <S.GoToSupBtn onClick={() => { navigate('/supervision') }}>자습감독<img src={Arrow} /></S.GoToSupBtn>
                         </S.NextSup>
