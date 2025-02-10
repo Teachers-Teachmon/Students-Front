@@ -10,6 +10,8 @@ export const Content = styled.div`
     flex-direction: column;
     padding: 2rem;
     width: 90%;
+    overflow-y: auto;
+    max-height: 95vh;
 `;
 
 export const MainContent = styled.div`
@@ -47,8 +49,14 @@ export const Modal = styled.div`
 export const EditRow = styled.div`
     display:  flex;
     border: 1px solid #cccccc;
-    padding: 5% 8%;
+    padding: 4% 8%;
     align-items: center;
+`
+
+export const P = styled.p`
+    font-size: 23px;
+    color: gray;
+    cursor: pointer;
 `
 
 export const RowData = styled.div`
@@ -59,9 +67,10 @@ export const RowData = styled.div`
 
 export const EditMainTop = styled.div`
     display: flex;
-    width: 100%;
-    height: 4vh;
+    width: 20vw;
+    height: 6vh;
     gap: 10px;
+
     background-color: #c9dbff;
     border-top-right-radius: 6px;
     border-top-left-radius: 6px;
