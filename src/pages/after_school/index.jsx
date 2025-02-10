@@ -32,7 +32,7 @@ export default function After_school() {
 
     const { data: myTodayClasses = [] } = useGetTodayClasses();
 
-    //const { data: myClasses = [] } = useGetMyClasses();
+    const { data: myClasses = [] } = useGetMyClasses();
 
     const { data: classList = [] } = useGetClassList(selectedGrade, selectedDay);
 
@@ -40,17 +40,17 @@ export default function After_school() {
         setModal(false);
     };
 
-    const myClasses = [
-        {
-            "grade": 1,
-            "branch": 4,
-            "id": 13,
-            "weekday": "월",
-            "period": "10~11교시",
-            "name": "파이썬",
-            "placeName": "프로그래밍실"
-        }
-    ]
+    // const myClasses = [
+    //     {
+    //         "grade": 1,
+    //         "branch": 4,
+    //         "id": 13,
+    //         "weekday": "월",
+    //         "period": "10~11교시",
+    //         "name": "파이썬",
+    //         "placeName": "프로그래밍실"
+    //     }
+    // ]
 
     const handlePrevDay = () => { // 이전 요일로 이동
         const currentIndex = weekDays.indexOf(selectedDay);
