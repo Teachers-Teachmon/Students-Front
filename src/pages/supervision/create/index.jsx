@@ -124,6 +124,7 @@ export default function SupervisionCreate() {
                 <S.MainContent>
                     {selectedRows.map((rows, classIndex) => (
                         <S.EditMainData key={classIndex}>
+                            <h2>{['월','화','수','목'][classIndex]}</h2>
                             <S.EditMainTop>
                                 <S.TopData $length={9}>교시</S.TopData>
                                 <S.TopData $length={9}>선생님</S.TopData>
