@@ -15,7 +15,7 @@ export default function SupervisionCreate() {
     const { mutate } = useSetBannedList();
     const { data: bannedList, isLoading: bannedLoading, isError: bannedError } = useGetBannedList();
     const week = ['MON', 'TUE', 'WED', 'THU'];
-    const periods = ['7교시', '7교시', '8~9교시', '10~11교시'];
+    const periods = ['7교시', '8~9교시', '10~11교시'];
     const mapPeriod = (p) => {
         switch (p) {
             case "7교시":
