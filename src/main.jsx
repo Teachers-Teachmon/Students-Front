@@ -16,6 +16,7 @@ import Record from './pages/manage/record'
 import Location from "./pages/manage/location";
 import Login from "./pages/login"
 import SupervisionChange from "./pages/supervision/change";
+import SupervisionCreate from './pages/supervision/create';
 import LoginLoading from './components/login';
 import Certification from "./components/check/certification.jsx";
 import NotCertification from "./components/check/notCertification.jsx";
@@ -44,6 +45,7 @@ createRoot(document.getElementById('root')).render(
                     <Route path="/supervision" element={<Supervision />} />
                     <Route path="/supervision/detail" element={<SupervisionDetail />} />
                     <Route path="/supervision/change" element={<SupervisionChange />} />
+                    <Route path="/supervision/create" element={<SupervisionCreate />} />
                     <Route path="/after-school" element={<After />} />
                     <Route path={"/limit"} element={
                         <Suspense fallback={<Loading />}>
