@@ -12,7 +12,7 @@ export default function SupervisionCreate() {
     const [selectedRows, setSelectedRows] = useState([[], [], [], []]);
     const [isOpen, setIsOpen] = useState([]);
 
-    const periods = ['8~9교시', '10~11교시'];
+    const periods = ['7교시', '8~9교시', '10~11교시'];
 
     const handleInputChange = (classIndex, rowIndex, field, value) => {
         setSelectedRows(prev => {
@@ -48,6 +48,21 @@ export default function SupervisionCreate() {
         });
     };
 
+    const removeRow = (classIndex, rowIndex) => {
+        setSelectedRows(prev => {
+            const newRows = [...prev];
+            newRows[classIndex] = newRows[classIndex].filter((_, index) => index !== rowIndex);
+            return newRows;
+        });
+    
+        setIsOpen(prev => {
+            const newIsOpen = [...prev];
+            newIsOpen[classIndex] = newIsOpen[classIndex]?.filter((_, index) => index !== rowIndex);
+            return newIsOpen;
+        });
+    };
+    
+
     return (
         <S.Container>
             <Header />
@@ -66,7 +81,7 @@ export default function SupervisionCreate() {
 
                             {rows.map((row, rowIndex) => (
                                 <S.EditRow key={rowIndex}>
-                                    <S.RowData $length={9}>
+                                    <S.RowData $length={10}>
                                         <DropdownNS
                                             name={row?.period || '교시'}
                                             item={periods}
@@ -85,6 +100,7 @@ export default function SupervisionCreate() {
                                             axios={(event) => searchTeacher(event)}
                                         />
                                     </S.RowData>
+                                    <S.P onClick={() => removeRow(classIndex, rowIndex)}>-</S.P>
                                 </S.EditRow>
                             ))}
                             <S.PlusBtn onClick={() => addRow(classIndex)}>+</S.PlusBtn>
