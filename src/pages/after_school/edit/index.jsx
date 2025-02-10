@@ -272,11 +272,6 @@ export default function Edit() {
         }));
     };
 
-
-    const closeModalHandler = (setModal) => {
-        setIsModal1(false);
-    };
-
     const handleReset = () => {
         setGrades({
             1: [],

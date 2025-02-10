@@ -1,12 +1,53 @@
 import * as S from './style.jsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '../../../components/header/index.jsx';
 import SupervisionCreateModal from '../../../components/modal/supervisionCreate/index.jsx';
 import SquareBtn from '../../../components/button/square/index.jsx';
-import { useGetBannedList, useSetBannedList } from '../../../hooks/useSupervision.js';
+import { searchTeacher } from '../../../api/search.js';
+import DropdownNS from '../../../components/dropdown/nosearch/index.jsx';
+import DropdownS from '../../../components/dropdown/search/index.jsx';
 
 export default function SupervisionCreate() {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+    const [selectedRows, setSelectedRows] = useState([[], [], [], []]);
+    const [isOpen, setIsOpen] = useState([]);
+
+    const periods = ['8~9교시', '10~11교시'];
+
+    const handleInputChange = (classIndex, rowIndex, field, value) => {
+        setSelectedRows(prev => {
+            const newRows = [...prev];
+            newRows[classIndex][rowIndex] = {
+                ...newRows[classIndex][rowIndex],
+                [field]: value,
+            };
+            return newRows;
+        });
+    };
+
+    const handleDropdownClick = (classIndex, rowIndex, field) => {
+        setIsOpen(prev => {
+            const newIsOpen = [...prev];
+            newIsOpen[classIndex][rowIndex] = {
+                ...newIsOpen[classIndex][rowIndex],
+                [field]: !newIsOpen[classIndex][rowIndex]?.[field],
+            };
+            return newIsOpen;
+        });
+    };
+
+    useEffect(() => {
+        setIsOpen(selectedRows.map(() => []));
+    }, [selectedRows.length]);
+
+    const addRow = (classIndex) => {
+        setSelectedRows(prev => {
+            const newRows = [...prev];
+            newRows[classIndex] = [...newRows[classIndex], { period: '', teacherName: '' }];
+            return newRows;
+        });
+    };
+
     return (
         <S.Container>
             <Header />
@@ -16,10 +57,39 @@ export default function SupervisionCreate() {
                     <SquareBtn name="다음" status={true} On={() => setIsCreateModalOpen(true)}>다음</SquareBtn>
                 </S.MainHeader>
                 <S.MainContent>
-                    <div>조아라가 만든거</div>
-                    <div>조아라가 만든거</div>
-                    <div>조아라가 만든거</div>
-                    <div>조아라가 만든거</div>
+                    {selectedRows.map((rows, classIndex) => (
+                        <S.EditMainData key={classIndex}>
+                            <S.EditMainTop>
+                                <S.TopData $length={9}>교시</S.TopData>
+                                <S.TopData $length={9}>선생님</S.TopData>
+                            </S.EditMainTop>
+
+                            {rows.map((row, rowIndex) => (
+                                <S.EditRow key={rowIndex}>
+                                    <S.RowData $length={9}>
+                                        <DropdownNS
+                                            name={row?.period || '교시'}
+                                            item={periods}
+                                            change={(value) => handleInputChange(classIndex, rowIndex, 'period', value)}
+                                            isOpen={isOpen[classIndex]?.[rowIndex]?.period}
+                                            click={() => handleDropdownClick(classIndex, rowIndex, 'period')}
+                                        />
+                                    </S.RowData>
+                                    <S.RowData $length={8.5}>
+                                        <DropdownS
+                                            target="선생님"
+                                            name={row?.teacherName || "선생님"}
+                                            change={(value) => handleInputChange(classIndex, rowIndex, 'teacherName', value.name)}
+                                            isOpen={isOpen[classIndex]?.[rowIndex]?.teacherName}
+                                            click={() => handleDropdownClick(classIndex, rowIndex, 'teacherName')}
+                                            axios={(event) => searchTeacher(event)}
+                                        />
+                                    </S.RowData>
+                                </S.EditRow>
+                            ))}
+                            <S.PlusBtn onClick={() => addRow(classIndex)}>+</S.PlusBtn>
+                        </S.EditMainData>
+                    ))}
                 </S.MainContent>
             </S.Content>
             {isCreateModalOpen && (
