@@ -5,8 +5,12 @@ import { useState } from 'react';
 import { useBusinessTrip } from '../../../hooks/useAfterSchool.js';
 
 export default function BusinessTrip({ closeModal, selectedClass }) {
-    const [selectedDate, setSelectedDate] = useState(null);
+    const [selectedDate, setSelectedDate] = useState(new Date());
     const { mutate: createBusinessTrip } = useBusinessTrip();
+
+    const handleDateChange = (day) => {
+        setSelectedDate(day || new Date());
+    };
 
     const handleCreate = () => {
         if (!selectedDate) {
@@ -16,7 +20,7 @@ export default function BusinessTrip({ closeModal, selectedClass }) {
 
         console.log(selectedDate, selectedClass);
         createBusinessTrip({
-            day: selectedDate,
+            day: selectedDate || new Date(),
             period: selectedClass.period,
             afterSchoolId: selectedClass.id,
             branch: selectedClass.branch
