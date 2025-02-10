@@ -64,6 +64,9 @@ export const Box2 = styled.div`
     font-weight: 500;
     color: #667085;
     width: ${(props)=>props.$length}px;
+    & > p{
+        width: 40px;
+    }
 `
 
 export const Status = styled.div`
