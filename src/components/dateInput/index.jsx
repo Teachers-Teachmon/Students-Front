@@ -11,7 +11,9 @@ export default function DateInput({ onChange }) {
     const [isFocused, setIsFocused] = useState(false);
 
     useEffect(() => {
-        setDay(patchDay(today))
+        setDay(patchDay(today));
+        setStart(patchDay(today));
+        setEnd(patchDay(today));
     }, []);
 
     const handleDateChange = (e) => {
@@ -25,7 +27,6 @@ export default function DateInput({ onChange }) {
             
             setDay(e.target.value);
             setInputValue(formattedDate);
-            if (onChange) onChange(e.target.value);
         }
     };
 
