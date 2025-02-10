@@ -88,7 +88,7 @@ export default function Main() {
 
                     <SquareBtn name="학생관리" status={true} On={() => { navigate('/manage') }} />
                 </S.MainTop>
-                <div style={{ display: "flex", flexDirection: "column", gap: isFullscreen ? "2rem" : "0" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: isFullscreen ? "1.5rem" : "0" }}>
                     <S.MainMiddle>
                         <S.NextSup $isFullscreen={isFullscreen}>
                             <S.NexSupLeft $isFullscreen={isFullscreen}>
