@@ -8,6 +8,9 @@ export const MainContainer = styled.div`
 export const MainContent = styled.div`
     width: 85%;
     padding: 2%;
+    display: flex;
+    flex-direction: column;
+    gap: ${(props) => (props.$isFullscreen ? "1rem" : "0")};
 `
 
 export const MainTop = styled.div`
@@ -32,9 +35,9 @@ export const ProgressBottom = styled.div`
 `
 
 export const MainMiddle = styled.div`
-    margin-top: 1%;
+    margin-top: 0.5%;
     display: flex;
-    gap: 20px;
+    justify-content: space-between;
     align-items: center;
 `
 
@@ -43,7 +46,7 @@ export const NextSup = styled.div`
     justify-content: space-between;
     padding-top: 2%;
     color: white;
-    width: 30%;
+    width: 28%;
     background-image: url(${SchoolSky});
     background-color: rgba(4, 4, 4, 0.7);
     background-blend-mode: overlay;
@@ -79,7 +82,7 @@ export const NextSupDate = styled.div`
 
 export const GoToSupBtn = styled.button`
     padding: 8.5%;
-    margin-top: 70%;
+    margin-top: 59%;
     color: white;
     display: flex;
     gap: 7px;
@@ -90,6 +93,7 @@ export const GoToSupBtn = styled.button`
     border-radius: 40px 0px 0px 0px;
     background-color: #2E6FF2;
     cursor: pointer;
+    white-space: nowrap;
     &:hover {
         background-color: #1E5BD1;
     }
@@ -103,7 +107,7 @@ export const StudentInfo = styled.div`
 `
 
 export const StudentInfoWrap = styled.div`
-    padding: 0 3% 2% 3%;
+    padding: 0 3% 0 3%;
     background-color: #EBF1FF;
     border-radius: 30px;
 `
@@ -123,9 +127,9 @@ export const Row = styled.div`
     display: grid;
     grid-template-columns: 1fr repeat(3, 1fr);
     text-align: center;
-    padding: 2.5%;
+    padding: 0.8rem;
     background-color: white;
-    margin-bottom: 1rem;
+    margin-bottom: 0.95rem;
     border-radius: 10px;
 
     div {
@@ -168,7 +172,7 @@ export const BottomLeftContent = styled.div`
     flex-direction: column;
     gap: 10px;
     background-color: #F9F9F9;
-    border-radius: 30px;
+    border-radius: 20px;
     padding: 2%;
     overflow-y: auto;
     height: 83%;
@@ -236,7 +240,8 @@ export const DetailButton = styled.button`
 `;
 
 export const BottomRightContent = styled.div`
-    border-radius: 30px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
     overflow: hidden;
 `
 
@@ -247,8 +252,7 @@ export const TeacherListTop = styled.div`
     font-size: 1.2rem;
     font-weight: 500;
     background-color: #C8DBFF;
-    padding: 1rem;
-
+    padding: ${(props) => (props.$isFullscreen ? "1rem" : "0.36rem")};
 `
 
 export const TeacherListContent = styled.div`

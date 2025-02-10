@@ -14,7 +14,7 @@ export const MainContent = styled.div`
 export const CalendarWrapper = styled.div`
     margin: 0 auto;
     width: 80%;
-    max-height: 94vh;
+    max-height: 93vh;
     overflow-y: auto;
     padding-right: 0.5rem;
 `
