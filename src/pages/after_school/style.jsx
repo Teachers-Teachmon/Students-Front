@@ -71,7 +71,7 @@ export const ClassTableContent = styled.div`
 export const ClassTableTop = styled.div`
     background-color: #EBF1FF;
     display: flex;
-    width: 45.1vw;
+    width: 45.05vw;
     height: 7vh;
     gap: 20px;
     align-items: center;
@@ -108,7 +108,6 @@ export const ClassTable = styled.div`
     display: flex;
     padding: 2%;
     border-bottom: 1px solid #cccccc;
-    border-top: 1px solid #cccccc;
     align-items: center;
     padding-left: 3.5%;
     position: relative;
@@ -275,12 +274,12 @@ export const DayP = styled.p`
 
 export const CaretLeft = styled.button`
     display: flex;
-    width: 2.2vw;
-    height: 3.8vh;
+    width: 17%;
+    height: 98%;
     border-radius: 50%;
     border: 1.5px solid #2E6FF2;
     background-color: #fff;
-    align-items: center;
+    align-items: center;  
     justify-content: center;
     cursor: pointer;
     flex-shrink: 0;
@@ -288,8 +287,8 @@ export const CaretLeft = styled.button`
 
 export const CaretRight = styled.button`
     display: flex;
-    width: 2.2vw;
-    height: 3.8vh;
+    width: 17%;
+    height: 98%;
     border-radius: 50%;
     border: 1.5px solid #2E6FF2;
     background-color: #fff;

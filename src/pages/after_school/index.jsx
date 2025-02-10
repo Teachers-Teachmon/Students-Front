@@ -40,6 +40,18 @@ export default function After_school() {
         setModal(false);
     };
 
+    // const myClasses = [
+    //     {
+    //         "grade": 1,
+    //         "branch": 4,
+    //         "id": 13,
+    //         "weekday": "월",
+    //         "period": "10~11교시",
+    //         "name": "파이썬",
+    //         "placeName": "프로그래밍실"
+    //     }
+    // ]
+
     const handlePrevDay = () => { // 이전 요일로 이동
         const currentIndex = weekDays.indexOf(selectedDay);
         const prevIndex = (currentIndex - 1 + weekDays.length) % weekDays.length;
