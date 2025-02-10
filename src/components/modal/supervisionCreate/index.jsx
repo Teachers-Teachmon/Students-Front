@@ -10,8 +10,8 @@ export default function SupervisionCreateModal({ closeModal }) {
     const { setStart, setEnd, today } = useDay();
     const { mutate: autoAssignment } = useAutoAssignment();
     
-    const [localStart, setLocalStart] = useState(today.split()[0]);
-    const [localEnd, setLocalEnd] = useState(today.split()[0]);
+    const [localStart, setLocalStart] = useState(today.split(' ')[0]);
+    const [localEnd, setLocalEnd] = useState(today.split(' ')[0]);
     
     const handleDateChange = (date, type) => {
         if (type === "start") {
