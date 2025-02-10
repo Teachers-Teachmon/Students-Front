@@ -10,7 +10,7 @@ export const MainContent = styled.div`
     padding: 2%;
     display: flex;
     flex-direction: column;
-    gap: ${(props) => (props.$isFullscreen ? "1rem" : "0")};
+    gap: ${(props) => (props.$isFullscreen ? "0.5rem" : "0")};
 `
 
 export const MainTop = styled.div`
@@ -128,7 +128,7 @@ export const Row = styled.div`
     display: grid;
     grid-template-columns: 1fr repeat(3, 1fr);
     text-align: center;
-    padding: ${(props) => (props.$isFullscreen ? "1rem" : "0.8rem")};
+    padding: ${(props) => (props.$isFullscreen ? "1.1rem" : "0.8rem")};
     background-color: white;
     margin-bottom: 0.95rem;
     border-radius: 10px;
