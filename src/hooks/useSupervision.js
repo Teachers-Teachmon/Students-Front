@@ -78,6 +78,16 @@ export const useGetCompleteRate = (percentage, total, completed) => {
     });
 }
 
+export const useGetBannedList = () => {
+    return useQuery({
+        queryKey: ['getBannedList'],
+        queryFn: async () => {
+            const res = await API.getBannedList();
+            return res.data || [];
+        }
+    });
+}
+
 export const useSetBannedList = () => {
     return useMutation({
         mutationFn: (props) => API.setBannedList(props),
