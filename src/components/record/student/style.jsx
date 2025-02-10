@@ -4,6 +4,7 @@ export const StudentContainer = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
+    height: 90%;
 `
 export const Standard = styled.div`
     width: 100%;
@@ -19,6 +20,11 @@ export const Standard = styled.div`
         align-items: center;
         justify-content: space-between;
     }
+`
+export const ContentBox = styled.div`
+    height: 100%;
+    overflow-y: auto;
+    scrollbar-width: none;
 `
 export const UnBox = styled.div`
     width: 80px;

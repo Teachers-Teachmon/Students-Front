@@ -101,3 +101,17 @@ export const deleteLeave = async ({id}) =>{
     }
 }
 
+export const closeMovement = async ({teacherId, day, period})=>{
+    try{
+        const res = await axiosInstance.patch(`${API_ENDPOINTS.DATA}/leaveseat?teacherId=${teacherId}&day=${day}&period=${period}`);
+        if(res.status !== 200 && res.status !== 201){
+            return Promise.reject({
+                status: res.status,
+                message: res.message || 'Request failed'
+            });
+        }
+        return res;
+    }catch (err){
+        return Promise.reject(err);
+    }
+}

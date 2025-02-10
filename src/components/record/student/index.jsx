@@ -15,10 +15,10 @@ export default function Student({ data }) {
                     <S.Box $length={110}>11교시</S.Box>
                 </div>
             </S.Standard>
-
-            {data&& data.length === 0 ? <S.NoData>데이터가 없습니다</S.NoData> : null}
-            {data && data.map((item) => {
-                console.log(item)
+            <S.ContentBox>
+                {data&& data.length === 0 ? <S.NoData>데이터가 없습니다</S.NoData> : null}
+                {data && data.map((item) => {
+                    console.log(item)
                     return(
                         <S.Content key={item.id}>
                             <div>
@@ -190,7 +190,8 @@ export default function Student({ data }) {
 
                         </S.Content>
                     )
-            })}
+                })}
+            </S.ContentBox>
         </S.StudentContainer>
     );
 }

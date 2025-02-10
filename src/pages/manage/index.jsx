@@ -73,11 +73,11 @@ export default function Manage(){
     let period;
     const changeClass = () =>{
         const time = hour * 60 + minute;
-        if(time >= 15 * 60 + 10 && time <= 16 * 60 + 29){
+        if(time >= 0 && time <= 16 * 60 + 29){
             period = "7교시";
         }else if(time >= 16 * 60 + 30 && time <= 18*60 + 59){
             period = "8~9교시"
-        }else if(time >= 19*60 && time <= 20*60 + 40) {
+        }else if(time >= 19*60 && time <= 24*60) {
             period = "10~11교시"
         }else {
             period = null
