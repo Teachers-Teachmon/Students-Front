@@ -38,6 +38,7 @@ export const MainMiddle = styled.div`
     margin-top: 0.5%;
     display: flex;
     justify-content: space-between;
+    gap: 1rem;
     align-items: center;
 `
 
@@ -46,7 +47,7 @@ export const NextSup = styled.div`
     justify-content: space-between;
     padding-top: 2%;
     color: white;
-    width: 28%;
+    width: ${(props) => (props.$isFullscreen ? "30%" : "28%")};
     background-image: url(${SchoolSky});
     background-color: rgba(4, 4, 4, 0.7);
     background-blend-mode: overlay;
@@ -82,7 +83,7 @@ export const NextSupDate = styled.div`
 
 export const GoToSupBtn = styled.button`
     padding: 8.5%;
-    margin-top: 59%;
+    margin-top: ${(props) => (props.$isFullscreen ? "70%" : "59%")};
     color: white;
     display: flex;
     gap: 7px;
