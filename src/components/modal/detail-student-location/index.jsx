@@ -106,7 +106,8 @@ export default function DetailStudentLocation({data, setIsModal, floor}) {
                     </S.Students>
                 </S.Box>
                 <S.Close>
-                    {locationData.status === "이석" && checkAuthor() &&
+                    {/*checkAuthor() &&*/}
+                    {locationData.status === "이석" &&
                         <Confirm
                             text={"이석종료"}
                             color={"red"}
@@ -117,6 +118,7 @@ export default function DetailStudentLocation({data, setIsModal, floor}) {
                                     floor:floor,
                                     teacherId : locationData.teacherId,
                                     period : locationData.period,
+                                    place : location.place,
                                     onSuccessPatch : ()=>{setIsModal(false)}})
                                 }
                             }
