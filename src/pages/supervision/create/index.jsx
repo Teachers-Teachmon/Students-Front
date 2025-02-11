@@ -11,7 +11,7 @@ import { useGetBannedList, useSetBannedList } from '../../../hooks/useSupervisio
 export default function SupervisionCreate() {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const [selectedRows, setSelectedRows] = useState([[], [], [], []]);
-    const [isOpen, setIsOpen] = useState([]);
+    const [isOpen, setIsOpen] = useState({});
     const { mutate } = useSetBannedList();
     const { data: bannedList, isLoading: bannedLoading, isError: bannedError } = useGetBannedList();
     const week = ['MON', 'TUE', 'WED', 'THU'];
@@ -41,14 +41,16 @@ export default function SupervisionCreate() {
     };
 
     const handleDropdownClick = (classIndex, rowIndex, field) => {
-        setIsOpen(prev => {
-            const newIsOpen = [...prev];
-            newIsOpen[classIndex][rowIndex] = {
-                ...newIsOpen[classIndex][rowIndex],
-                [field]: !newIsOpen[classIndex][rowIndex]?.[field],
-            };
-            return newIsOpen;
-        });
+        setIsOpen(prev => ({
+            ...prev,
+            [classIndex]: {
+                ...prev[classIndex],
+                [rowIndex]: {
+                    ...prev[classIndex]?.[rowIndex],
+                    [field]: !prev[classIndex]?.[rowIndex]?.[field],
+                },
+            },
+        }));
     };
 
     useEffect(() => {
@@ -104,7 +106,7 @@ export default function SupervisionCreate() {
             newRows[classIndex] = newRows[classIndex].filter((_, index) => index !== rowIndex);
             return newRows;
         });
-    
+
         setIsOpen(prev => {
             const newIsOpen = [...prev];
             newIsOpen[classIndex] = newIsOpen[classIndex]?.filter((_, index) => index !== rowIndex);
@@ -112,11 +114,38 @@ export default function SupervisionCreate() {
         });
     };
     
+    useEffect(() => {
+        if (bannedList && Array.isArray(bannedList)) {
+            const weekMapping = { "월": 0, "화": 1, "수": 2, "목": 3 };
+            const newRows = [[], [], [], []];
+            bannedList.forEach(item => {
+                const idx = weekMapping[item.week_day];
+                if (idx !== undefined) {
+                    const [teacherName, teacherIdStr] = item.teacher.split('/');
+                    const teacherObj = { name: teacherName, id: parseInt(teacherIdStr) };
+                    newRows[idx].push({
+                        period: item.period,
+                        teacher: teacherObj,
+                    });
+                }
+            });
+            setSelectedRows(newRows);
+        }
+    }, [bannedList]);
+    
 
     return (
         <S.Container>
             <Header />
             <S.Content>
+            {Object.values(isOpen).some(classObj =>
+                    Object.values(classObj).some(rowObj =>
+                        Object.values(rowObj).includes(true)
+                    )
+                ) && (
+                        <S.Black onClick={() => setIsOpen({})} />
+                    )}
+
                 <S.MainHeader>
                     <h1>금지날짜 입력</h1>
                     <SquareBtn name="다음" status={true} On={() => { handleSubmit(); setIsCreateModalOpen(true);}} />
