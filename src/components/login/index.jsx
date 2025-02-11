@@ -42,6 +42,7 @@ export default function LoginLoading(){
                     localStorage.setItem('profile', data.profile);
                     setSetting(access);
                     window.history.replaceState(null, "", "/main");
+                    console.log(data);
                     navigate("/main", { replace: true });
                     return;
                 }
