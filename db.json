@@ -911,7 +911,59 @@
                                             "item": {
                                               "item": {
                                                 "item": {
-                                                  "item": {}
+                                                  "item": {
+                                                    "item": {
+                                                      "item": {
+                                                        "item": {
+                                                          "item": {
+                                                            "item": {
+                                                              "item": {
+                                                                "item": {
+                                                                  "item": {
+                                                                    "item": {
+                                                                      "item": {
+                                                                        "item": {
+                                                                          "item": {
+                                                                            "item": {
+                                                                              "item": {
+                                                                                "item": {
+                                                                                  "item": {
+                                                                                    "item": {
+                                                                                      "item": {
+                                                                                        "item": {
+                                                                                          "item": {
+                                                                                            "item": {
+                                                                                              "item": {
+                                                                                                "item": {
+                                                                                                  "item": {
+                                                                                                    "item": {
+                                                                                                      "item": {}
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
                                                 }
                                               }
                                             }
@@ -937,74 +989,17 @@
     }
   },
   "location": {
-    "3-1": {
-      "status": "자습",
-      "teacher": "티치몬",
-      "teacherId": 1,
-      "students": [
-        {
-          "id": 12267,
-          "number": 3105,
-          "name": "김민우",
-          "status": "자습"
-        }
-      ]
-    },
-    "3-2": {
-      "status": "자습",
-      "teacher": "티치몬",
-      "teacherId": 2,
-      "students": [
-        {
-          "id": 12264,
-          "number": 3202,
-          "name": "권세원",
-          "status": "자습"
-        },
-        {
-          "id": 12268,
-          "number": 3206,
-          "name": "박수빈",
-          "status": "자습"
-        }
-      ]
-    },
-    "3-3": {
-      "status": "자습",
-      "teacher": "티치몬",
-      "teacherId": 3,
-      "students": [
-        {
-          "id": 12265,
-          "number": 3301,
-          "name": "김도건",
-          "status": "자습"
-        },
-        {
-          "id": 12269,
-          "number": 3307,
-          "name": "양유빈",
-          "status": "자습"
-        }
-      ]
-    },
-    "3-4": {
+    "창의디자인실": {
       "status": "이석",
       "teacher": "티치몬",
-      "teacherId": 4,
-      "period": "EIGHT_AND_NINE_PERIOD",
+      "teacherId": 3,
+      "period": "SEVEN_PERIOD",
       "students": [
         {
-          "id": 12266,
-          "number": 3401,
-          "name": "구윤하",
-          "status": "자습"
-        },
-        {
-          "id": 12270,
-          "number": 3403,
-          "name": "김강민",
-          "status": "자습"
+          "id": 35804,
+          "number": 3301,
+          "name": "김도건",
+          "status": "이석"
         }
       ]
     }
@@ -1412,15 +1407,11 @@
   ],
   "locationALL": [
     {
-      "3-1": "자습",
-      "3-2": "자습",
-      "3-3": "자습",
-      "3-4": "자습"
+      "창의디자인실": "이석"
     },
     {},
     {
-      "3-1": "자습",
-      "3-2": "자습",
+      "3-1": "조퇴",
       "3-3": "자습",
       "3-4": "자습"
     },
