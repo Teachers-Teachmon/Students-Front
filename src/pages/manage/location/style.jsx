@@ -21,6 +21,25 @@ export const FloorBox = styled.div`
     flex-direction: row;
     gap: 10px;
 `
+export const BtnBox = styled.div`
+    position: relative;
+`
+export const All = styled.div`
+    position: absolute;
+    font-size: 14px;
+    top: -10px;
+    right: -5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 100px;
+    border: 2px solid #2E6FF2;
+    color: #2E6FF2;
+    
+`
 export const Info = styled.div`
     position: fixed;
     top: 30px;

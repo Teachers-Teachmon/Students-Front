@@ -1,5 +1,6 @@
 import * as API from '../api/data.js';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import {closeMovement} from "../api/data.js";
 
 // Movement 데이터 가져오기
 export const useGetMovement = (day) => {
@@ -55,3 +56,26 @@ export const useDeleteLeave = () => {
         },
     });
 };
+
+export const useCloseMovement = ()=>{
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationFn : (props)=> API.closeMovement(props),
+        onSuccess : (_, variables)=>{
+            queryClient.setQueryData(['locationFloor', variables.floor], (oldData)=>{
+                const filteredData = Object.keys(oldData)
+                    .filter((key) => oldData[key].teacherId !== variables.teacherId)
+                    .reduce((acc, key) => {
+                        acc[key] = oldData[key];
+                        return acc;
+                    }, {});
+
+                variables.onSuccessPatch();
+                return filteredData
+            });
+        },
+        onError: (err) => {
+            console.error('Leave 삭제 실패:', err);
+        },
+    })
+}

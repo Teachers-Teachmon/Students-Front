@@ -15,15 +15,18 @@ export default function Student({ data }) {
                     <S.Box $length={110}>11교시</S.Box>
                 </div>
             </S.Standard>
-
-            {data&& data.length === 0 ? <S.NoData>데이터가 없습니다</S.NoData> : null}
-            {data && data.map((item) => {
-                console.log(item)
+            <S.ContentBox>
+                {data&& data.length === 0 ? <S.NoData>데이터가 없습니다</S.NoData> : null}
+                {data && data.map((item) => {
+                    console.log(item)
                     return(
                         <S.Content key={item.id}>
                             <div>
                                 <S.UnBox></S.UnBox>
-                                <S.Box2 $length={510}>{item.student}</S.Box2>
+                                <S.Box2 style={{display:'flex'}} $length={510}>
+                                    <p>{item.student.slice(0, 4)}</p>
+                                    {item.student.slice(4, 8)}
+                                </S.Box2>
                             </div>
                             <div>
                                 {item['8th_schedule'] === "방과후" ?
@@ -190,7 +193,8 @@ export default function Student({ data }) {
 
                         </S.Content>
                     )
-            })}
+                })}
+            </S.ContentBox>
         </S.StudentContainer>
     );
 }

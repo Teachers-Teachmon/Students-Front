@@ -26,7 +26,8 @@
       "period": "8~9교시",
       "cause": "일이삼사오육칠팔구십십일십이십삼십사십오십육십칠십팔십구이십",
       "id": "994f"
-    },{
+    },
+    {
       "teacher_name": "이정하",
       "teacher_id": 1,
       "place": "베르실7",
@@ -370,65 +371,660 @@
       }
     ]
   },
-  "leaveseatDelete": {
-
-  },
-  "leave":[{"leave_id":58,"student":"1401 김동욱","period":"7교시","teacher_name":"이정하"}],
-  "leaveDelete" : {},
+  "leaveseatDelete": {},
+  "leave": [
+    {
+      "leave_id": 58,
+      "student": "1401 김동욱",
+      "period": "7교시",
+      "teacher_name": "이정하"
+    }
+  ],
+  "leaveDelete": {},
   "student": [
     {
       "student": "1401 김동욱",
-      "8th_schedule": "방과후",
-      "9th_schedule": "방과후",
+      "8th_schedule": null,
+      "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null,
-      "id": "0905"
+      "11th_schedule": null
     },
     {
       "student": "1416 허온",
-      "8th_schedule": "방과후",
-      "9th_schedule": "방과후",
+      "8th_schedule": null,
+      "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null,
-      "id": "8c4a"
+      "11th_schedule": null
     },
     {
       "student": "1410 윤도훈",
-      "8th_schedule": "방과후",
-      "9th_schedule": "방과후",
+      "8th_schedule": null,
+      "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null,
-      "id": "24a5"
+      "11th_schedule": null
     },
     {
       "student": "1310 오주현",
-      "8th_schedule": "방과후",
-      "9th_schedule": "방과후",
+      "8th_schedule": null,
+      "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null,
-      "id": "d4c5"
+      "11th_schedule": null
     },
     {
       "student": "1314 조아라",
-      "8th_schedule": "방과후",
-      "9th_schedule": "방과후",
+      "8th_schedule": null,
+      "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null,
-      "id": "1589"
+      "11th_schedule": null
+    },
+    {
+      "student": "3102 강민제",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "3202 권세원",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "3301 김도건",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "3401 구윤하",
+      "8th_schedule": "자습",
+      "9th_schedule": "자습",
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1101 공덕현",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1104 김우성",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1115 최정혁",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1206 서윤호",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1215 황준혁",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1306 박동현",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1402 김민석",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1409 양효준",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1413 조재민",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1106 김한결",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1111 이건우",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1205 박소은",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1302 김민재",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1303 김우찬",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1305 류승찬",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1309 안재민",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1315 조하민",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1403 김정훈",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1404 김현호",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1405 박선영",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1411 이승환",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1412 이하은",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1415 허세진",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1105 김태현",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1301 공재욱",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1304 김유찬",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1312 이효준",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1313 정태양",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1414 허동운",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1107 노유현",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1112 이수환",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1114 제성주",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1201 구현우",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1203 김현호",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1102 권민재",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1103 김예빈",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1108 박가은",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1110 서정현",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1113 이주영",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1116 최치현",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1202 김현우",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1212 진은성",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1213 한지원",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1216 황지영",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1307 방세준",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1407 심형도",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1109 방민준",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1204 문소정",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1207 안준환",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1208 윤건우",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1209 이재환",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1210 이정혁",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1211 이준호",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1214 황성민",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1308 심현진",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1311 윤대협",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1316 천현수",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1406 배성민",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "1408 안민주",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "3105 김민우",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "3206 박수빈",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "3307 양유빈",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
+    },
+    {
+      "student": "3403 김강민",
+      "8th_schedule": null,
+      "9th_schedule": null,
+      "10th_schedule": null,
+      "11th_schedule": null
     }
   ],
+  "leaveseatClose": {
+    "item": {
+      "item": {
+        "item": {
+          "item": {
+            "item": {
+              "item": {
+                "item": {
+                  "item": {
+                    "item": {
+                      "item": {
+                        "item": {
+                          "item": {
+                            "item": {
+                              "item": {
+                                "item": {
+                                  "item": {
+                                    "item": {
+                                      "item": {
+                                        "item": {
+                                          "item": {
+                                            "item": {
+                                              "item": {
+                                                "item": {
+                                                  "item": {}
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
   "location": {
-    "1-4": {
+    "3-1": {
       "status": "자습",
-      "teacher": "오주현",
+      "teacher": "티치몬",
+      "teacherId": 1,
       "students": [
         {
-          "number": 1410,
-          "name": "윤도훈",
-          "status": "자습",
-          "id": 1
+          "id": 12267,
+          "number": 3105,
+          "name": "김민우",
+          "status": "자습"
         }
       ]
+    },
+    "3-2": {
+      "status": "자습",
+      "teacher": "티치몬",
+      "teacherId": 2,
+      "students": [
+        {
+          "id": 12264,
+          "number": 3202,
+          "name": "권세원",
+          "status": "자습"
+        },
+        {
+          "id": 12268,
+          "number": 3206,
+          "name": "박수빈",
+          "status": "자습"
+        }
+      ]
+    },
+    "3-3": {
+      "status": "자습",
+      "teacher": "티치몬",
+      "teacherId": 3,
+      "students": [
+        {
+          "id": 12265,
+          "number": 3301,
+          "name": "김도건",
+          "status": "자습"
+        },
+        {
+          "id": 12269,
+          "number": 3307,
+          "name": "양유빈",
+          "status": "자습"
+        }
+      ]
+    },
+    "3-4": {
+      "status": "이석",
+      "teacher": "티치몬",
+      "teacherId": 4,
+      "period": "EIGHT_AND_NINE_PERIOD",
+      "students": [
+        {
+          "id": 12266,
+          "number": 3401,
+          "name": "구윤하",
+          "status": "자습"
+        },
+        {
+          "id": 12270,
+          "number": 3403,
+          "name": "김강민",
+          "status": "자습"
+        }
+      ]
+    }
+  },
+  "day": {
+    "date": "2025-02-06",
+    "first_grade": {
+      "7th_teacher": null,
+      "8th_teacher": null,
+      "10th_teacher": "박건우"
+    },
+    "second_grade": {
+      "7th_teacher": null,
+      "8th_teacher": "차수민",
+      "10th_teacher": "차수민"
+    },
+    "third_grade": {
+      "7th_teacher": "박제현",
+      "8th_teacher": "박제현",
+      "10th_teacher": null
     }
   },
   "schedule": {
@@ -816,18 +1412,19 @@
   ],
   "locationALL": [
     {
-      "1-4": "방과후",
-      "id": "20b3"
+      "3-1": "자습",
+      "3-2": "자습",
+      "3-3": "자습",
+      "3-4": "자습"
     },
+    {},
     {
-      "id": "78a1"
+      "3-1": "자습",
+      "3-2": "자습",
+      "3-3": "자습",
+      "3-4": "자습"
     },
-    {
-      "id": "d718"
-    },
-    {
-      "id": "32cf"
-    }
+    {}
   ],
   "schedulePatch": {
     "item": {

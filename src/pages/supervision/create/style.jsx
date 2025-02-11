@@ -9,7 +9,7 @@ export const Content = styled.div`
     display: flex;
     flex-direction: column;
     padding: 2rem;
-    width: 90%;
+    width: 87%;
     overflow-y: auto;
     max-height: 95vh;
 `;

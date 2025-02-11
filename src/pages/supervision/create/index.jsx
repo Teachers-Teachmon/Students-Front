@@ -60,22 +60,8 @@ export default function SupervisionCreate() {
     const addRow = (classIndex) => {
         setSelectedRows(prev => {
             const newRows = [...prev];
-            newRows[classIndex] = [...newRows[classIndex], { period: '', teacherName: '' }];
+            newRows[classIndex] = [...newRows[classIndex], { period: '', teacher: null }];
             return newRows;
-        });
-    };
-
-    const removeRow = (classIndex, rowIndex) => {
-        setSelectedRows(prev => {
-            const newRows = [...prev];
-            newRows[classIndex] = newRows[classIndex].filter((_, index) => index !== rowIndex);
-            return newRows;
-        });
-
-        setIsOpen(prev => {
-            const newIsOpen = [...prev];
-            newIsOpen[classIndex] = newIsOpen[classIndex]?.filter((_, index) => index !== rowIndex);
-            return newIsOpen;
         });
     };
 
@@ -95,6 +81,39 @@ export default function SupervisionCreate() {
         console.log('Payload:', payload);
         mutate(payload);
     };
+    useEffect(() => {
+        if (bannedList && Array.isArray(bannedList)) {
+            const weekMapping = { "월": 0, "화": 1, "수": 2, "목": 3 };
+            const newRows = [[], [], [], []];
+            bannedList.forEach(item => {
+                const idx = weekMapping[item.week_day];
+                if (idx !== undefined) {
+                    const [teacherName, teacherIdStr] = item.teacher.split('/');
+                    const teacherObj = { name: teacherName, id: parseInt(teacherIdStr) };
+                    newRows[idx].push({
+                        period: item.period,
+                        teacher: teacherObj,
+                    });
+                }
+            });
+            setSelectedRows(newRows);
+        }
+    }, [bannedList]);
+
+    const removeRow = (classIndex, rowIndex) => {
+        setSelectedRows(prev => {
+            const newRows = [...prev];
+            newRows[classIndex] = newRows[classIndex].filter((_, index) => index !== rowIndex);
+            return newRows;
+        });
+
+        setIsOpen(prev => {
+            const newIsOpen = [...prev];
+            newIsOpen[classIndex] = newIsOpen[classIndex]?.filter((_, index) => index !== rowIndex);
+            return newIsOpen;
+        });
+    };
+    
     useEffect(() => {
         if (bannedList && Array.isArray(bannedList)) {
             const weekMapping = { "월": 0, "화": 1, "수": 2, "목": 3 };
