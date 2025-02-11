@@ -26,6 +26,11 @@ export const MainContent = styled.div`
 export const MainHeader = styled.div`
     display: flex;
     justify-content: space-between;
+
+    div {
+        display: flex;
+        gap: 1rem;
+    }
 `;
 
 export const ModalOverlay = styled.div`

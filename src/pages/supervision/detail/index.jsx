@@ -133,6 +133,7 @@ export default function SupervisionDetail() {
                     <h1>자습감독 일정</h1>
                     {!isEditing ? (
                         <S.Buttons>
+                            <SquareBtn name="돌아가기" status={true} On={() => { navigate('/supervision') }} />
                             <SquareBtn name="자습감독수정" status={true} On={() => { setIsEditing(true) }} />
                             <SquareBtn name="자습감독생성" status={true} On={() => { navigate('/supervision/create') }} />
                         </S.Buttons>
