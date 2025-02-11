@@ -166,7 +166,7 @@ export default function SupervisionCreate() {
 
                             {rows.map((row, rowIndex) => (
                                 <S.EditRow key={rowIndex}>
-                                    <S.RowData $length={10}>
+                                    <S.RowData $length={8}>
                                         <DropdownNS
                                             name={row?.period || '교시'}
                                             item={periods}
@@ -175,7 +175,7 @@ export default function SupervisionCreate() {
                                             click={() => handleDropdownClick(classIndex, rowIndex, 'period')}
                                         />
                                     </S.RowData>
-                                    <S.RowData $length={8.5}>
+                                    <S.RowData $length={6.5}>
                                         <DropdownS
                                             target="선생님"
                                             name={row?.teacher ? row.teacher.name : "선생님"}
