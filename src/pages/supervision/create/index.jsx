@@ -10,7 +10,8 @@ import DropdownS from '../../../components/dropdown/search/index.jsx';
 export default function SupervisionCreate() {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const [selectedRows, setSelectedRows] = useState([[], [], [], []]);
-    const [isOpen, setIsOpen] = useState([]);
+    const [isOpen, setIsOpen] = useState({});
+
 
     const periods = ['7교시', '8~9교시', '10~11교시'];
 
@@ -26,14 +27,16 @@ export default function SupervisionCreate() {
     };
 
     const handleDropdownClick = (classIndex, rowIndex, field) => {
-        setIsOpen(prev => {
-            const newIsOpen = [...prev];
-            newIsOpen[classIndex][rowIndex] = {
-                ...newIsOpen[classIndex][rowIndex],
-                [field]: !newIsOpen[classIndex][rowIndex]?.[field],
-            };
-            return newIsOpen;
-        });
+        setIsOpen(prev => ({
+            ...prev,
+            [classIndex]: {
+                ...prev[classIndex],
+                [rowIndex]: {
+                    ...prev[classIndex]?.[rowIndex],
+                    [field]: !prev[classIndex]?.[rowIndex]?.[field],
+                },
+            },
+        }));
     };
 
     useEffect(() => {
@@ -54,19 +57,27 @@ export default function SupervisionCreate() {
             newRows[classIndex] = newRows[classIndex].filter((_, index) => index !== rowIndex);
             return newRows;
         });
-    
+
         setIsOpen(prev => {
             const newIsOpen = [...prev];
             newIsOpen[classIndex] = newIsOpen[classIndex]?.filter((_, index) => index !== rowIndex);
             return newIsOpen;
         });
     };
-    
+
 
     return (
         <S.Container>
             <Header />
             <S.Content>
+                {Object.values(isOpen).some(classObj =>
+                    Object.values(classObj).some(rowObj =>
+                        Object.values(rowObj).includes(true)
+                    )
+                ) && (
+                        <S.Black onClick={() => setIsOpen({})} />
+                    )}
+
                 <S.MainHeader>
                     <h1>금지날짜 입력</h1>
                     <SquareBtn name="다음" status={true} On={() => setIsCreateModalOpen(true)}>다음</SquareBtn>

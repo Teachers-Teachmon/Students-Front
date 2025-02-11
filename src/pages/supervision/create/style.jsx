@@ -18,9 +18,9 @@ export const MainContent = styled.div`
     display: flex;
     justify-content: space-between;
     margin-top: 2rem;
-    grid-template-columns: repeat(4, 1fr); /* 4개의 동일한 너비의 열 */
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    align-items: start; /* 위쪽 정렬 */
+    align-items: start;
 `;
 
 export const MainHeader = styled.div`
@@ -38,6 +38,7 @@ export const ModalOverlay = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 100;
 `;
 
 export const Modal = styled.div`
@@ -104,4 +105,14 @@ export const PlusBtn = styled.div`
     margin-left: 45%;
     margin-top: 5%;
     cursor: pointer;
+`
+
+
+export const Black = styled.div`
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
 `
