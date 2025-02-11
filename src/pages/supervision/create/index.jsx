@@ -108,12 +108,17 @@ export default function SupervisionCreate() {
         });
 
         setIsOpen(prev => {
-            const newIsOpen = [...prev];
-            newIsOpen[classIndex] = newIsOpen[classIndex]?.filter((_, index) => index !== rowIndex);
+            const newIsOpen = { ...prev };
+            if (newIsOpen[classIndex]) {
+                const updatedClass = { ...newIsOpen[classIndex] };
+                delete updatedClass[rowIndex];
+                newIsOpen[classIndex] = updatedClass;
+            }
             return newIsOpen;
         });
     };
-    
+
+
     useEffect(() => {
         if (bannedList && Array.isArray(bannedList)) {
             const weekMapping = { "월": 0, "화": 1, "수": 2, "목": 3 };
@@ -132,13 +137,13 @@ export default function SupervisionCreate() {
             setSelectedRows(newRows);
         }
     }, [bannedList]);
-    
+
 
     return (
         <S.Container>
             <Header />
             <S.Content>
-            {Object.values(isOpen).some(classObj =>
+                {Object.values(isOpen).some(classObj =>
                     Object.values(classObj).some(rowObj =>
                         Object.values(rowObj).includes(true)
                     )
@@ -148,12 +153,12 @@ export default function SupervisionCreate() {
 
                 <S.MainHeader>
                     <h1>금지날짜 입력</h1>
-                    <SquareBtn name="다음" status={true} On={() => { handleSubmit(); setIsCreateModalOpen(true);}} />
+                    <SquareBtn name="다음" status={true} On={() => { handleSubmit(); setIsCreateModalOpen(true); }} />
                 </S.MainHeader>
                 <S.MainContent>
                     {selectedRows.map((rows, classIndex) => (
                         <S.EditMainData key={classIndex}>
-                            <h2>{['월','화','수','목'][classIndex]}</h2>
+                            <h2>{['월', '화', '수', '목'][classIndex]}</h2>
                             <S.EditMainTop>
                                 <S.TopData $length={9}>교시</S.TopData>
                                 <S.TopData $length={9}>선생님</S.TopData>
