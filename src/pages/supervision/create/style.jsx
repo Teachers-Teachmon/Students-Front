@@ -50,8 +50,13 @@ export const Modal = styled.div`
 export const EditRow = styled.div`
     display:  flex;
     border: 1px solid #cccccc;
+    border-top: none;
     padding: 4% 8%;
     align-items: center;
+
+    &:first-child{
+        border-top: 1px solid #cccccc;
+    }
 `
 
 export const P = styled.p`
@@ -68,10 +73,10 @@ export const RowData = styled.div`
 
 export const EditMainTop = styled.div`
     display: flex;
-    width: 20vw;
+    width: 18vw;
     height: 6vh;
     gap: 10px;
-
+    //border-bottom: 1px solid #cccccc;
     background-color: #c9dbff;
     border-top-right-radius: 6px;
     border-top-left-radius: 6px;
@@ -99,7 +104,7 @@ export const EditMainData = styled.div`
 export const PlusBtn = styled.div`
     display: flex;
     justify-content: center;
-    padding: 0 0 0.3% 0;
+    padding: 0 0 1.5% 0;
     width: 1.8vw;
     height: 3.1vh;
     font-size: 25px;
@@ -107,9 +112,10 @@ export const PlusBtn = styled.div`
     align-items: center;
     border: 1px solid #2E6FF2;
     border-radius: 4px;
-    margin-left: 45%;
+    margin-left: 47%;
     margin-top: 5%;
     cursor: pointer;
+
 `
 
 
