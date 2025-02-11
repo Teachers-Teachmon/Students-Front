@@ -1,5 +1,6 @@
 import * as S from './style.jsx';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../../../components/header/index.jsx';
 import SupervisionCreateModal from '../../../components/modal/supervisionCreate/index.jsx';
 import SquareBtn from '../../../components/button/square/index.jsx';
@@ -9,6 +10,7 @@ import DropdownS from '../../../components/dropdown/search/index.jsx';
 import { useGetBannedList, useSetBannedList } from '../../../hooks/useSupervision.js';
 
 export default function SupervisionCreate() {
+    const navigate = useNavigate();
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const [selectedRows, setSelectedRows] = useState([[], [], [], []]);
     const [isOpen, setIsOpen] = useState({});
@@ -153,7 +155,10 @@ export default function SupervisionCreate() {
 
                 <S.MainHeader>
                     <h1>금지날짜 입력</h1>
-                    <SquareBtn name="다음" status={true} On={() => { handleSubmit(); setIsCreateModalOpen(true); }} />
+                    <div>
+                        <SquareBtn name="돌아가기" status={true} On={() => { navigate('/supervision/detail') }} />
+                        <SquareBtn name="다음" status={true} On={() => { handleSubmit(); setIsCreateModalOpen(true); }} />
+                    </div>
                 </S.MainHeader>
                 <S.MainContent>
                     {selectedRows.map((rows, classIndex) => (
