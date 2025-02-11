@@ -27,6 +27,7 @@ export default function DateInput({ onChange }) {
             
             setDay(e.target.value);
             setInputValue(formattedDate);
+            if (onChange) onChange(e.target.value);
         }
     };
 
