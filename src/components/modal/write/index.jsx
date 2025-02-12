@@ -44,20 +44,42 @@ export default function Write({isModal, setIsModal}){
     }, [debounceStudent]);
 
     return(
+        // <SchoolOut name={search2} On={()=>{
+        //     setIsMovement([true, false, false]);
+        //     setIsModal(false);
+        // }}/>
+        // <>
+        //     {isOpen.some((status) => status === true) ?
+        //         <S.Black onClick={()=>setIsOpen([false, false])}/> : null
+        //     }
+        //     <SearchDropdown
+        //         target={"학생"}
+        //         name={search2}
+        //         isOpen={isOpen[0]}
+        //         axios={(event)=>searchStudent(event)}
+        //         change={(event) => setSearch2(event)}
+        //         click={() => setIsOpen([!isOpen[0]])}
+        //     />
+        //     <S.Reason
+        //         type={"text"}
+        //         value={cause}
+        //         onChange={(event) => setCause(event.target.value)}
+        //         placeholder={"사유를 입력해주세요"}
+        //     />
+        //     <S.Submit>
+        //         <SquareBtn name={"취소"} status={false} On={() => setIsModal(false)} />
+        //         <SquareBtn
+        //             name={"작성완료"}
+        //             status={true}
+        //             On={() => {
+        //                 setIsMovement([false, false, true]);
+        //             }}
+        //         />
+        //     </S.Submit>
+        // </>
         <S.WriteContainer onClick={(e)=>e.stopPropagation()}>
-            {isMovement[2] ? (
-                <SchoolOut name={search2} On={()=>{
-                    setIsMovement([true, false, false]);
-                    setIsModal(false);
-                }}/>
-            ) : (
                 <>
-                    <S.Info>
-                        <CircleBtn name={"이석"} status={isMovement[0]} On={() => changeMovement(0)} />
-                        <CircleBtn name={"자퇴"} status={isMovement[1]} On={() => changeMovement(1)} />
-                    </S.Info>
-                    <h1>{isMovement[0] ? "이석" : "자퇴"}</h1>
-                    {isMovement[0] ? (
+                    <h1>이석작성</h1>
                         <>
                             {isOpen.some((status) => status === true) ?
                                 <S.Black onClick={()=>setIsOpen([false, false])}/> : null
@@ -156,39 +178,7 @@ export default function Write({isModal, setIsModal}){
                                 />
                             </S.Submit>
                         </>
-                    ) : (
-                        <>
-                            {isOpen.some((status) => status === true) ?
-                                <S.Black onClick={()=>setIsOpen([false, false])}/> : null
-                            }
-                            <SearchDropdown
-                                target={"학생"}
-                                name={search2}
-                                isOpen={isOpen[0]}
-                                axios={(event)=>searchStudent(event)}
-                                change={(event) => setSearch2(event)}
-                                click={() => setIsOpen([!isOpen[0]])}
-                            />
-                            <S.Reason
-                                type={"text"}
-                                value={cause}
-                                onChange={(event) => setCause(event.target.value)}
-                                placeholder={"사유를 입력해주세요"}
-                            />
-                            <S.Submit>
-                                <SquareBtn name={"취소"} status={false} On={() => setIsModal(false)} />
-                                <SquareBtn
-                                    name={"작성완료"}
-                                    status={true}
-                                    On={() => {
-                                        setIsMovement([false, false, true]);
-                                    }}
-                                />
-                            </S.Submit>
-                        </>
-                    )}
                 </>
-            )}
         </S.WriteContainer>
     )
 }
