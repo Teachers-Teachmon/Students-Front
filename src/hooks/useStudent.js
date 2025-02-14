@@ -57,7 +57,7 @@ export const usePostMovement = () => {
     return useMutation({
         mutationFn: (props) => API.postMovement(props),
         onSuccess: () => {
-            navigate('/manage/record');
+            navigate('/manage/record', {state : 1});
         },
         onError: (err) => {
             console.error('Movement 등록 실패:', err);
