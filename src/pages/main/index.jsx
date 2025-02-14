@@ -20,8 +20,28 @@ export default function Main() {
     const formattedDate = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
 
     const { data: changeDay, isLoading: isLoadingChange, isError: isErrorChange } = useGetChangeRequest();
-    const { data: todayTeacher, isLoading: isLoadingTeacher, isError: isErrorTeacher } = useGetDailySupervision(formattedDate);
-    const { data: studentCount, isLoading: isLoadingCount, isError: isErrorCount } = useGetStudentCount();
+    // const { data: todayTeacher, isLoading: isLoadingTeacher, isError: isErrorTeacher } = useGetDailySupervision(formattedDate);
+    // const { data: studentCount, isLoading: isLoadingCount, isError: isErrorCount } = useGetStudentCount();
+    const studentCount = [
+        {
+            "grade": 1,
+            "self_study_count": 0,
+            "leaveseat_count": 0,
+            "absent_count": 0
+        },
+        {
+            "grade": 2,
+            "self_study_count": 0,
+            "leaveseat_count": 0,
+            "absent_count": 0
+        },
+        {
+            "grade": 3,
+            "self_study_count": 0,
+            "leaveseat_count": 0,
+            "absent_count": 0
+        }
+    ];
     const { data: nextData, isLoading: isLoadingNext, isError: isErrorNext } = useGetNextSupervision();
     const { data: completeRateData, isLoading: isLoadingRate, isError: IsErrorRate } = useGetCompleteRate();
 
@@ -50,12 +70,12 @@ export default function Main() {
         console.log(completeRateData);
     }, [completeRateData, isLoadingRate]);
 
-    const formatDateForUI = (date) => {
-        console.log(date);
-        date = new Date(date);
-        const dayNames = ['일', '월', '화', '수', '목', '금', '토'];
-        return `${date.getMonth() + 1}월 ${date.getDate()}일 (${dayNames[date.getDay()]})`;
-    };
+    // const formatDateForUI = (date) => {
+    //     console.log(date);
+    //     date = new Date(date);
+    //     const dayNames = ['일', '월', '화', '수', '목', '금', '토'];
+    //     return `${date.getMonth() + 1}월 ${date.getDate()}일 (${dayNames[date.getDay()]})`;
+    // };
 
     const [isFullscreen, setIsFullscreen] = useState(false);
     useEffect(() => {
@@ -88,7 +108,7 @@ export default function Main() {
 
                     <SquareBtn name="학생관리" status={true} On={() => { navigate('/manage') }} />
                 </S.MainTop>
-                <div style={{ display: "flex", flexDirection: "column", gap: isFullscreen ? "1.4rem" : "0" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: isFullscreen ? "1.1rem" : "0" }}>
                     <S.MainMiddle>
                         <S.NextSup $isFullscreen={isFullscreen}>
                             <S.NexSupLeft $isFullscreen={isFullscreen}>
@@ -100,25 +120,7 @@ export default function Main() {
                             <S.GoToSupBtn $isFullscreen={isFullscreen} onClick={() => { navigate('/supervision') }}>자습감독<img src={Arrow} /></S.GoToSupBtn>
                         </S.NextSup>
 
-                        <S.StudentInfo>
-                            <h2>학생 정보</h2>
-                            <S.StudentInfoWrap>
-                                <S.StudentInfoHeader>
-                                    <span>학년</span>
-                                    <span>자습 인원</span>
-                                    <span>이석 인원</span>
-                                    <span>조퇴/결석</span>
-                                </S.StudentInfoHeader>
-                                {studentCount && studentCount?.map((data) => (
-                                    <S.Row $isFullscreen={isFullscreen} key={data.grade}>
-                                        <div>{data.grade}학년</div>
-                                        <div>{data.self_study_count}명</div>
-                                        <div>{data.leaveseat_count}명</div>
-                                        <div>{data.absent_count}명</div>
-                                    </S.Row>
-                                ))}
-                            </S.StudentInfoWrap>
-                        </S.StudentInfo>
+                        {/* 무조건 여기에 달력 추가해야함 */}
                     </S.MainMiddle>
                     <S.MainBottom>
                         <S.BottomLeft>
@@ -163,7 +165,25 @@ export default function Main() {
                             </S.BottomLeftContent>
                         </S.BottomLeft>
                         <S.BottomRight>
-                            <h2>오늘의 자습감독 선생님</h2>
+                            <S.StudentInfoWrap>
+                                <S.StudentInfoHeader>
+                                    <span>학년</span>
+                                    <span>자습 인원</span>
+                                    <span>이석 인원</span>
+                                    <span>조퇴/결석</span>
+                                </S.StudentInfoHeader>
+                                <S.StudentInfoContent>
+                                    {studentCount && studentCount?.map((data) => (
+                                        <S.Row $isFullscreen={isFullscreen} key={data.grade}>
+                                            <div>{data.grade}학년</div>
+                                            <div>{data.self_study_count}명</div>
+                                            <div>{data.leaveseat_count}명</div>
+                                            <div>{data.absent_count}명</div>
+                                        </S.Row>
+                                    ))}
+                                </S.StudentInfoContent>
+                            </S.StudentInfoWrap>
+                            {/* <h2>오늘의 자습감독 선생님</h2>
                             {!isLoadingTeacher ? (
                                 <S.BottomRightContent>
                                     <div>
@@ -195,7 +215,8 @@ export default function Main() {
                                 <S.BottomRightContent>
                                     <p>로딩중...</p>
                                 </S.BottomRightContent>
-                            )}
+                            )} */}
+
                         </S.BottomRight>
                     </S.MainBottom>
                 </div>

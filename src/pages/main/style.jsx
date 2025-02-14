@@ -7,10 +7,10 @@ export const MainContainer = styled.div`
 
 export const MainContent = styled.div`
     width: 85%;
-    padding: 2%;
+    padding: 2% 2% 0 2%;
     display: flex;
     flex-direction: column;
-    gap: ${(props) => (props.$isFullscreen ? "0.5rem" : "0")};
+    gap: ${(props) => (props.$isFullscreen ? "0.3rem" : "0")};
 `
 
 export const MainTop = styled.div`
@@ -100,42 +100,50 @@ export const GoToSupBtn = styled.button`
     }
 `
 
-export const StudentInfo = styled.div`
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-`
-
 export const StudentInfoWrap = styled.div`
-    padding: 0 3% 0 3%;
-    background-color: #EBF1FF;
+    padding: 0 1%;
     border-radius: 30px;
 `
 
 export const StudentInfoHeader = styled.div`
     display: grid;
     grid-template-columns: 1fr repeat(3, 1fr);
-    background-color: #eaf2ff;
+    justify-items: center;
     font-weight: 600;
-    font-size: 1.3rem;
-    text-align: center;
-    padding: 1rem;
+    font-size: 1.25rem;
+    padding: 0 5%;
+    margin-bottom: 3%;
     border-radius: 10px;
+
+    &:not(:first-child) {
+        text-align: center;
+    }
 `
+
+export const StudentInfoContent = styled.div`
+    background-color: #F9F9F9;
+    padding: 3% 3%;
+    border-radius: 27px;
+`;
 
 export const Row = styled.div`
     display: grid;
     grid-template-columns: 1fr repeat(3, 1fr);
-    text-align: center;
-    padding: ${(props) => (props.$isFullscreen ? "1.1rem" : "0.8rem")};
+    padding: ${(props) => (props.$isFullscreen ? "0.9rem" : "0.8rem")};
     background-color: white;
-    margin-bottom: 0.95rem;
     border-radius: 10px;
+    justify-items: center;
 
     div {
-        font-size: 1rem;
+        font-size: 1.0rem;
         color: #333;
+        &:not(:first-child) {
+            text-align: center;
+        }
+    }
+
+    &:not(:last-child) {
+        margin-bottom: 0.95rem;
     }
 `
 
@@ -176,7 +184,7 @@ export const BottomLeftContent = styled.div`
     border-radius: 20px;
     padding: 2%;
     overflow-y: auto;
-    height: 83%;
+    height: 90%;
 `
 
 export const NoChange = styled.div`
