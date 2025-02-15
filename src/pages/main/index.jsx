@@ -1,24 +1,65 @@
-import { data, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ProgressBar from "../../components/progressBar";
 import SquareBtn from "../../components/button/square";
+import TeacherList from "../../components/modal/teacherList/index.jsx";
 import Header from "../../components/header";
 import RequestBox from "../../components/modal/requestBox";
 import * as S from './style.jsx'
 import Arrow from '../../assets/Arrow.svg'
 import Rotate from '../../assets/rotate.svg';
 import { useState, useEffect } from "react";
-import { useGetCompleteRate, useGetNextSupervision, useGetDailySupervision } from "../../hooks/useSupervision.js";
+import { useGetCompleteRate, useGetNextSupervision } from "../../hooks/useSupervision.js";
 import { useGetChangeRequest } from "../../hooks/useChange.js";
 import { useGetStudentCount } from "../../hooks/useStudent.js";
+import LeftGrayButton from '../../assets/LeftGrayButton.svg';
+import RightGrayButton from '../../assets/RightGrayButton.svg';
+import DivisionAll from '../../assets/DivisionAll.svg';
+import DivisionAfterSchool from '../../assets/DivisionAfterSchool.svg';
+import DivisionSupervision from '../../assets/DivisionSupervision.svg';
 
 export default function Main() {
     let navigate = useNavigate();
     let userName = localStorage.getItem('name');
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState([false, false]);
     const [selectedChange, setSelectedChange] = useState(null);
-    const today = new Date();
-    const formattedDate = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+    let [selectedDate, setSelectedDate] = useState(null);
 
+    let [currentDate, setCurrentDate] = useState(new Date());
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+
+    const today = new Date().toLocaleDateString();
+
+    const firstDayofMonth = new Date(year, month, 1);
+    const startDay = new Date(firstDayofMonth);
+    startDay.setDate(1 - firstDayofMonth.getDay());
+
+    const lastDayofMonth = new Date(year, month + 1, 0);
+    const endDay = new Date(lastDayofMonth);
+    endDay.setDate(lastDayofMonth.getDate() + 6 - lastDayofMonth.getDay());
+
+    const groupDatesByWeek = (startDay, endDay) => {
+        const weeks = [];
+        let currentWeek = [];
+        let currentDate = new Date(startDay);
+
+        while (currentDate <= endDay) {
+            currentWeek.push(new Date(currentDate));
+
+            if (currentDate.length === 7 || currentDate.getDay() === 6) {
+                weeks.push(currentWeek);
+                currentWeek = [];
+            }
+            currentDate.setDate(currentDate.getDate() + 1);
+        }
+
+        if (currentWeek.length > 0) {
+            weeks.push(currentWeek);
+        }
+
+        return weeks;
+    }
+    const weeks = groupDatesByWeek(startDay, endDay);
     const { data: changeDay, isLoading: isLoadingChange, isError: isErrorChange } = useGetChangeRequest();
     // const { data: todayTeacher, isLoading: isLoadingTeacher, isError: isErrorTeacher } = useGetDailySupervision(formattedDate);
     // const { data: studentCount, isLoading: isLoadingCount, isError: isErrorCount } = useGetStudentCount();
@@ -77,6 +118,29 @@ export default function Main() {
     //     return `${date.getMonth() + 1}월 ${date.getDate()}일 (${dayNames[date.getDay()]})`;
     // };
 
+    const handlePrevMonth = () => {
+        setCurrentDate(
+            new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1)
+        );
+    };
+
+    const handleNextMonth = () => {
+        setCurrentDate(
+            new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1)
+        );
+    };
+
+    const handleDateClick = (date) => {
+        const formattedDate = date.toLocaleDateString('ko-KR', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit'
+        }).replace(/\. /g, '-').replace('.', '');
+
+        setSelectedDate(formattedDate);
+        setIsModalOpen(prev => [true, prev[1]]);
+    };
+
     const [isFullscreen, setIsFullscreen] = useState(false);
     useEffect(() => {
         const mq = window.matchMedia('(display-mode: fullscreen)');
@@ -90,6 +154,7 @@ export default function Main() {
             mq.removeEventListener('change', handleChange);
         };
     }, []);
+
 
     return (
         <S.MainContainer>
@@ -120,7 +185,43 @@ export default function Main() {
                             <S.GoToSupBtn $isFullscreen={isFullscreen} onClick={() => { navigate('/supervision') }}>자습감독<img src={Arrow} /></S.GoToSupBtn>
                         </S.NextSup>
 
-                        {/* 무조건 여기에 달력 추가해야함 */}
+                        <S.CalendarWrapper>
+                            <S.CalendarHeader>
+                                <S.Division>
+                                    <div>전체 : <img src={DivisionAll} /></div>
+                                    <div>방과후 : <img src={DivisionAfterSchool} /></div>
+                                    <div>자습감독 : <img src={DivisionSupervision} /></div>
+                                </S.Division>
+                                <S.Control>
+                                    <button onClick={handlePrevMonth}><img src={LeftGrayButton} /></button>
+                                    <div>{year}년 {month + 1}월</div>
+                                    <button onClick={handleNextMonth}><img src={RightGrayButton} /></button>
+                                </S.Control>
+                            </S.CalendarHeader>
+
+                            <S.Weekdays>
+                                {['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'].map((day, index) => (
+                                    <S.Weekday key={index}>{day}</S.Weekday>
+                                ))}
+                            </S.Weekdays>
+                            <S.Calendar>
+                                {weeks.map((week, weekIdx) => (
+                                    <S.Week key={weekIdx}>
+                                        {week.map((date, dateIdx) => {
+                                            const localDate = date.toLocaleDateString();
+                                            return (
+                                                <S.CalendarDay key={dateIdx} onClick={() => { handleDateClick(date) }} $isCurrentMonth={date.getMonth() === month}>
+                                                    <S.Day $isCurrentMonth={date.getMonth() === month} style={{
+                                                        backgroundColor: localDate === today ? '#ECF3FD' : '',
+                                                        color: localDate === today ? '#5288F4' : '',
+                                                    }}>{date.getDate()}</S.Day>
+                                                </S.CalendarDay>
+                                            );
+                                        })}
+                                    </S.Week>
+                                ))}
+                            </S.Calendar>
+                        </S.CalendarWrapper>
                     </S.MainMiddle>
                     <S.MainBottom>
                         <S.BottomLeft>
@@ -158,7 +259,7 @@ export default function Main() {
                                                     <p>{rightDay} {rightPeriod} {rightGrade}학년</p>
                                                 </S.ChangeSide>
                                             </S.ChangeWrap>
-                                            <S.DetailButton onClick={() => { setIsModalOpen(true); setSelectedChange(data) }}>자세히 보기</S.DetailButton>
+                                            <S.DetailButton onClick={() => { setIsModalOpen(prev => [prev[0], true]); setSelectedChange(data) }}>자세히 보기</S.DetailButton>
                                         </S.ChangeCard>
                                     );
                                 })}
@@ -221,10 +322,17 @@ export default function Main() {
                     </S.MainBottom>
                 </div>
             </S.MainContent>
-            {isModalOpen && (
-                <S.ModalOverlay onClick={() => { setIsModalOpen(false) }}>
+            {isModalOpen[0] && (
+                <S.ModalOverlay onClick={() => { setIsModalOpen(prev => [false, prev[1]]); }}>
                     <S.Modal onClick={(e) => { e.stopPropagation() }}>
-                        <RequestBox closeModal={() => { setIsModalOpen(false) }} changeData={selectedChange} />
+                        <TeacherList closeModal={() => { setIsModalOpen(prev => [false, prev[1]]); }} selectedDate={selectedDate} />
+                    </S.Modal>
+                </S.ModalOverlay>
+            )}
+            {isModalOpen[1] && (
+                <S.ModalOverlay onClick={() => { setIsModalOpen(prev => [prev[0], false]) }}>
+                    <S.Modal onClick={(e) => { e.stopPropagation() }}>
+                        <RequestBox closeModal={() => { setIsModalOpen(prev => [prev[0], false]) }} changeData={selectedChange} />
                     </S.Modal>
                 </S.ModalOverlay>
             )}

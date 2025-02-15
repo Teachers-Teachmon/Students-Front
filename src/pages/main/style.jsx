@@ -10,7 +10,7 @@ export const MainContent = styled.div`
     padding: 2% 2% 0 2%;
     display: flex;
     flex-direction: column;
-    gap: ${(props) => (props.$isFullscreen ? "0.3rem" : "0")};
+    gap: ${(props) => (props.$isFullscreen ? "1rem" : "0")};
 `
 
 export const MainTop = styled.div`
@@ -284,6 +284,96 @@ export const TeacherTable = styled.div`
         margin: 0;
         padding: 0.5rem;
     }
+`
+
+export const CalendarWrapper = styled.div`
+    margin: 0 auto;
+    width: 80%;
+    max-height: 93vh;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+`
+
+export const CalendarHeader = styled.div`
+    display: flex;
+    margin-bottom: 0.3rem;
+    position: relative;
+`;
+
+export const Control = styled.div`
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7%;
+    color: #667289;
+    font-size: 1.4rem;
+    font-weight: 600;
+    button {
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+    div {
+        text-align: center;
+        white-space: nowrap;
+    }
+`;
+
+export const Division = styled.div`
+    display: flex;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: black;
+    font-weight: normal;
+    
+    div {
+        display: flex;
+        align-items: center;
+    }
+`;
+
+export const Weekdays = styled.div`
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 0.5rem;
+`;
+
+export const Weekday = styled.div`
+    text-align: center;
+    font-weight: bold;
+    color: #6c757d;
+`;
+
+export const Calendar = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+export const Week = styled.div`
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+`;
+
+export const CalendarDay = styled.div`
+    // background-color: ${(props) => props.$isCurrentMonth ? '#fff' : '#f1f1f1'}; 나중에 전체 방과후 자습감독 API 완성되면 활성화
+    border: 1px solid #e2e2e2;
+    padding: 0.2rem 0.2rem 1rem 0.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+`
+
+export const Day = styled.div`
+    width: 1.5rem;
+    height: 1.5rem;
+    color: ${(props) => props.$isCurrentMonth ? '#333' : '#999'};
+    border-radius: 50%;
+    text-align: center;
+    line-height: 1.5rem;
+    font-weight: 600;
 `
 
 export const ModalOverlay = styled.div`
