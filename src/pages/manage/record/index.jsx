@@ -33,6 +33,10 @@ export default function Record() {
     const {status} = useStatusUpdate();
 
     useEffect(() => {
+        if(!isMovement.some(item=>item === true)) setIsMovement([true, false, false]);
+    }, []);
+
+    useEffect(() => {
         if(dayComponent){
             setIsFirst(false);
             setDay(dayComponent);
