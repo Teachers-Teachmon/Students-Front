@@ -62,27 +62,7 @@ export default function Main() {
     const weeks = groupDatesByWeek(startDay, endDay);
     const { data: changeDay, isLoading: isLoadingChange, isError: isErrorChange } = useGetChangeRequest();
     // const { data: todayTeacher, isLoading: isLoadingTeacher, isError: isErrorTeacher } = useGetDailySupervision(formattedDate);
-    // const { data: studentCount, isLoading: isLoadingCount, isError: isErrorCount } = useGetStudentCount();
-    const studentCount = [
-        {
-            "grade": 1,
-            "self_study_count": 0,
-            "leaveseat_count": 0,
-            "absent_count": 0
-        },
-        {
-            "grade": 2,
-            "self_study_count": 0,
-            "leaveseat_count": 0,
-            "absent_count": 0
-        },
-        {
-            "grade": 3,
-            "self_study_count": 0,
-            "leaveseat_count": 0,
-            "absent_count": 0
-        }
-    ];
+    const { data: studentCount, isLoading: isLoadingCount, isError: isErrorCount } = useGetStudentCount();
     const { data: nextData, isLoading: isLoadingNext, isError: isErrorNext } = useGetNextSupervision();
     const { data: completeRateData, isLoading: isLoadingRate, isError: IsErrorRate } = useGetCompleteRate();
 
