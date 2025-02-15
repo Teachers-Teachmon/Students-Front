@@ -1,147 +1,224 @@
-import * as S from './style.jsx';
 import Header from '../../components/header/index.jsx';
-import SquareBtn from "../../components/button/square";
-import TeacherList from "../../components/modal/teacherList/index.jsx";
+import * as S from './style.jsx';
+import Circle from '../../components/button/circle/index.jsx';
+import SquareBtn from '../../components/button/square/index.jsx';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { useGetMonthlySupervision } from '../../hooks/useSupervision.js';
-import LeftGrayButton from '../../assets/LeftGrayButton.svg';
-import RightGrayButton from '../../assets/RightGrayButton.svg';
+import SearchDropdown from '../../components/dropdown/search/index.jsx';
+import { useGetAssignment, useSaveAutoAssignment } from '../../hooks/useSupervision.js';
+import { searchTeacher } from '../../api/search.js';
+import Loading from '../../components/loading/index.jsx';
 
 export default function Supervision() {
-    let navigate = useNavigate();
-    let [selectedDate, setSelectedDate] = useState(null);
-    let [isModalOpen, setIsModalOpen] = useState(false);
+    const navigate = useNavigate();
+    const [selMonth, setSelMonth] = useState(new Date().getMonth());
+    const [isEditing, setIsEditing] = useState(false);
+    const [selectedTeacher, setSelectedTeacher] = useState({});
+    const [dropdownOpen, setDropdownOpen] = useState({});
+    const [localData, setLocalData] = useState([]);
 
-    let [currentDate, setCurrentDate] = useState(new Date());
-    const year = currentDate.getFullYear();
-    const month = currentDate.getMonth();
+    const handleTeacherChange = (date, grade, timeKey, newTeacher) => {
+        setSelectedTeacher(prev => ({
+            ...prev,
+            [`${date}-${grade}-${timeKey}`]: newTeacher
+        }));
 
-    const today = new Date().toLocaleDateString();
-
-    const firstDayofMonth = new Date(year, month, 1);
-    const startDay = new Date(firstDayofMonth);
-    startDay.setDate(1 - firstDayofMonth.getDay());
-
-    const lastDayofMonth = new Date(year, month + 1, 0);
-    const endDay = new Date(lastDayofMonth);
-    endDay.setDate(lastDayofMonth.getDate() + 6 - lastDayofMonth.getDay());
-
-    const groupDatesByWeek = (startDay, endDay) => {
-        const weeks = [];
-        let currentWeek = [];
-        let currentDate = new Date(startDay);
-
-        while (currentDate <= endDay) {
-            currentWeek.push(new Date(currentDate));
-
-            if (currentDate.length === 7 || currentDate.getDay() === 6) {
-                weeks.push(currentWeek);
-                currentWeek = [];
+        setLocalData(prev => prev.map(dayData => {
+            if (dayData.date === date) {
+                return {
+                    ...dayData,
+                    [grade]: {
+                        ...dayData[grade],
+                        [timeKey]: newTeacher
+                            ? `${newTeacher.name}/${newTeacher.id}`
+                            : `X/0`
+                    }
+                };
             }
-            currentDate.setDate(currentDate.getDate() + 1);
-        }
+            return dayData;
+        }));
+    };
 
-        if (currentWeek.length > 0) {
-            weeks.push(currentWeek);
-        }
+    const toggleDropdown = (key) => {
+        setDropdownOpen(prev => {
+            if (prev[key]) {
+                return {};
+            }
+            return { [key]: true };
+        });
+    };
 
-        return weeks;
+    const { data: TeacherList, isLoading, isError } = useGetAssignment(selMonth + 1);
+    const { mutate: saveAssignment } = useSaveAutoAssignment();
+
+    useEffect(() => {
+        console.log("TeacherList 데이터:", TeacherList);
+        if (TeacherList?.data) {
+            setLocalData(TeacherList.data);
+        }
+    }, [TeacherList]);
+
+    const handleSave = () => {
+        const changedData = localData.map(dayData => ({
+            date: dayData.date,
+            first_grade: {
+                "7th_teacher": parseInt(dayData.first_grade["7th_teacher"]?.split("/")[1]),
+                "8th_teacher": parseInt(dayData.first_grade["8th_teacher"]?.split("/")[1]),
+                "10th_teacher": parseInt(dayData.first_grade["10th_teacher"]?.split("/")[1])
+            },
+            second_grade: {
+                "7th_teacher": parseInt(dayData.second_grade["7th_teacher"]?.split("/")[1]),
+                "8th_teacher": parseInt(dayData.second_grade["8th_teacher"]?.split("/")[1]),
+                "10th_teacher": parseInt(dayData.second_grade["10th_teacher"]?.split("/")[1])
+            },
+            third_grade: {
+                "7th_teacher": parseInt(dayData.third_grade["7th_teacher"]?.split("/")[1]),
+                "8th_teacher": parseInt(dayData.third_grade["8th_teacher"]?.split("/")[1]),
+                "10th_teacher": parseInt(dayData.third_grade["10th_teacher"]?.split("/")[1])
+            }
+        }));
+
+        saveAssignment(changedData);
+        setIsEditing(false);
+    };
+
+    function groupByWeek(dataArray) {
+        const daysOfWeek = ["월", "화", "수", "목"];
+
+        const extractDay = (dateStr) => {
+            const match = dateStr.match(/\((.*?)\)/);
+            return match ? match[1] : "";
+        };
+        const grouped = dataArray.reduce((acc, item) => {
+            const week = item.week;
+            const dayOfWeek = extractDay(item.day);
+
+            if (!acc[week]) acc[week] = [];
+            acc[week].push({ ...item, dayOfWeek });
+            return acc;
+        }, {});
+
+        Object.keys(grouped).forEach((week) => {
+            const filledWeek = [];
+            daysOfWeek.forEach((day, index) => {
+                const found = grouped[week].find((item) => item.dayOfWeek === day);
+                if (found) {
+                    filledWeek.push(found);
+                } else {
+                    filledWeek.push({
+                        empty: true,
+                        dayOfWeek: day,
+                        day: `0월 ${index + 1}일 (${day})`,
+                    });
+                }
+            });
+            grouped[week] = filledWeek;
+        });
+        return grouped;
     }
-    const weeks = groupDatesByWeek(startDay, endDay);
-
-    const handlePrevMonth = () => {
-        setCurrentDate(
-            new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1)
-        );
-    };
-
-    const handleNextMonth = () => {
-        setCurrentDate(
-            new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1)
-        );
-    };
-
-    const handleDateClick = (date) => {
-        const formattedDate = date.toLocaleDateString('ko-KR', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit'
-        }).replace(/\. /g, '-').replace('.', '');
-
-        setSelectedDate(formattedDate);
-        setIsModalOpen(true);
-    };
-
-
-    const { data: supervisionList, isLoading, isError } = useGetMonthlySupervision(month + 1);
+    const groupedData = groupByWeek(localData);
 
     return (
         <S.Wrapper>
+            {isLoading && <Loading />}
             <Header />
-            <S.MainContent>
-                <S.CalendarWrapper>
-                    <S.CalendarHeader>
-                        <button onClick={handlePrevMonth}><img src={LeftGrayButton} /></button>
-                        <div>{year}년 {month + 1}월</div>
-                        <button onClick={handleNextMonth}><img src={RightGrayButton} /></button>
-                    </S.CalendarHeader>
+            <S.MainWrap>
+                {Object.values(dropdownOpen).some(status => status) && (
+                    <S.Black onClick={() => setDropdownOpen({})} />
+                )}
+                <S.MainHeader>
+                    {Object.values(dropdownOpen).some(status => status) && (
+                        <S.Black onClick={() => setDropdownOpen({})} />
+                    )}
+                    <h1>자습감독 일정</h1>
+                    {!isEditing ? (
+                        <S.Buttons>
+                            <SquareBtn name="돌아가기" status={true} On={() => { navigate('/supervision') }} />
+                            <SquareBtn name="자습감독수정" status={true} On={() => { setIsEditing(true) }} />
+                            <SquareBtn name="자습감독생성" status={true} On={() => { navigate('/supervision/create') }} />
+                        </S.Buttons>
+                    ) : (
+                        <S.Buttons>
+                            <SquareBtn name="저장하기" status={true} On={handleSave} />
+                        </S.Buttons>)}
+                </S.MainHeader>
+                <S.Months>
+                    {[...Array(12)].map((_, i) => (
+                        <Circle key={i} name={`${i + 1}월`} status={selMonth === i} On={() => setSelMonth(i)} />
+                    ))}
+                </S.Months>
+                <S.TableWrap>
+                    {Object.keys(groupedData).map((weekKey) => (
+                        <S.Table key={weekKey}>
+                            <h2>{weekKey || "주 없음"}</h2>
+                            <S.TableContent>
+                                <S.TableLeft>
+                                    <div>날짜</div>
+                                    <div>학년</div>
+                                    <div>7교시</div>
+                                    <div>8~9교시</div>
+                                    <div>10~11교시</div>
+                                </S.TableLeft>
+                                <S.TableRight>
+                                    {groupedData[weekKey].map((dayData, dayIndex) => (
+                                        <S.TableRightContent key={dayIndex} $isEmpty={dayData.empty}>
+                                            {dayData.empty ? (
+                                                <span style={{ visibility: "hidden" }}>
+                                                    <h3>{dayData.day || "날짜 없음"}</h3>
+                                                    <S.TableRightHeader>
+                                                        <div>1학년</div>
+                                                        <div>2학년</div>
+                                                        <div>3학년</div>
+                                                    </S.TableRightHeader>
+                                                    <div style={{ visibility: "hidden" }} />
+                                                    <div style={{ visibility: "hidden" }} />
+                                                    <div style={{ visibility: "hidden" }} />
+                                                </span>
+                                            ) : (
+                                                <>
+                                                    <h3>{dayData.day || "날짜 없음"}</h3>
+                                                    <S.TableRightHeader>
+                                                        <div>1학년</div>
+                                                        <div>2학년</div>
+                                                        <div>3학년</div>
+                                                    </S.TableRightHeader>
 
-                    <S.Weekdays>
-                        {['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'].map((day, index) => (
-                            <S.Weekday key={index}>{day}</S.Weekday>
-                        ))}
-                    </S.Weekdays>
-                    <S.Calendar>
-                        {weeks.map((week, weekIdx) => (
-                            <S.Week key={weekIdx}>
-                                {week.map((date, dateIdx) => {
-                                    const localDate = date.toLocaleDateString();
-                                    return (
-                                        <S.CalendarDay key={dateIdx} onClick={() => { handleDateClick(date) }} $isCurrentMonth={date.getMonth() === month} $isSupervised={date.getMonth() === month && Array.isArray(supervisionList) && supervisionList.some(s => s.day === date.getDate() && s.month === month + 1 && s.year === year)}>
-                                            <S.Day style={{
-                                                backgroundColor: localDate === today ? '#ECF3FD' : '',
-                                                color: localDate === today ? '#5288F4' : '',
-                                            }}>{date.getDate()}</S.Day>
-                                            {Array.isArray(supervisionList) && supervisionList.map((s, index) => {
-                                                if (s.day === date.getDate() && s.year == year && date.getMonth() === month) {
-                                                    return Array.isArray(s.schedule) ? (
-                                                        s.schedule.map((schedule, idx) => (
-                                                            <S.ScheduleItem key={idx} period={schedule.period}>
-                                                                <span>{schedule.period}</span>
-                                                                <span>{schedule.grade}학년</span>
-                                                            </S.ScheduleItem>
-                                                        ))
-                                                    ) : (
-                                                        s.schedule && (
-                                                            <S.ScheduleItem key={index} period={s.schedule.period}>
-                                                                <span>{s.schedule.period}</span>
-                                                                <span>{s.schedule.grade}학년</span>
-                                                            </S.ScheduleItem>
-                                                        )
-                                                    );
-                                                }
-                                            })}
-                                        </S.CalendarDay>
-                                    );
-                                })}
-                            </S.Week>
-                        ))}
-                    </S.Calendar>
-                </S.CalendarWrapper>
-                <S.Actions>
-                    <SquareBtn name="교체하기" status={true} On={() => { navigate('/supervision/change') }} />
-                    <SquareBtn name="자습감독일정" status={true} On={() => { navigate('/supervision/detail') }} />
-                </S.Actions>
-            </S.MainContent>
+                                                    {["7th_teacher", "8th_teacher", "10th_teacher"].map((timeKey, timeIndex) => (
+                                                        <S.TeacherList key={timeIndex}>
+                                                            {["first_grade", "second_grade", "third_grade"].map((gradeKey, gradeIndex) => {
+                                                                const teacherName = dayData[gradeKey]?.[timeKey] ? dayData[gradeKey][timeKey].split("/")[0] : "X";
+                                                                const uniqueKey = `${dayData.date}-${gradeKey}-${timeKey}`;
 
-            {isModalOpen && (
-                <S.ModalOverlay onClick={() => { setIsModalOpen(false) }}>
-                    <S.Modal onClick={(e) => { e.stopPropagation() }}>
-                        <TeacherList closeModal={() => { setIsModalOpen(false) }} selectedDate={selectedDate} />
-                    </S.Modal>
-                </S.ModalOverlay>
-            )}
+                                                                return (
+                                                                    <div key={gradeIndex}>
+                                                                        {isEditing ? (
+                                                                            <SearchDropdown
+                                                                                target="선생님"
+                                                                                name={selectedTeacher[uniqueKey]?.name || teacherName}
+                                                                                axios={(event) => searchTeacher(event)}
+                                                                                isOpen={dropdownOpen[uniqueKey] || false}
+                                                                                change={(value) => handleTeacherChange(dayData.date, gradeKey, timeKey, value)}
+                                                                                click={() => toggleDropdown(uniqueKey)}
+                                                                                 left = {gradeIndex === 2 && dayData.day.slice(-3) === "(목)"? -800 : null}
+                                                                            />
+                                                                        ) : (
+                                                                            <S.TeacherName>{teacherName}</S.TeacherName>
+                                                                        )}
+                                                                    </div>
+                                                                );
+                                                            })}
+                                                        </S.TeacherList>
+                                                    ))}
+                                                </>
+                                            )}
+                                        </S.TableRightContent>
+                                    ))}
+                                </S.TableRight>
+                            </S.TableContent>
+                        </S.Table>
+                    ))}
+                </S.TableWrap>
+            </S.MainWrap>
         </S.Wrapper>
     );
 }
