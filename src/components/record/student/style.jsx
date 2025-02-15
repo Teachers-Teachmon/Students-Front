@@ -15,6 +15,7 @@ export const Standard = styled.div`
     justify-content: space-between;
     border: 1px solid #EAECF0;
     padding: 10px;
+    z-index: 10;
     & > div{
         display: flex;
         align-items: center;
@@ -27,9 +28,25 @@ export const ContentBox = styled.div`
     scrollbar-width: none;
 `
 export const UnBox = styled.div`
-    width: 80px;
+    width: 70px;
     height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
+export const Black = styled.div`
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+`
+export const CheckBox = styled.input.attrs({ type: 'checkbox' })`
+    width: 18px;
+    height: 18px;
+    border: 1px solid #D0D5DD;
+    cursor: pointer;
+`;
 export const Box = styled.p`
     font-size: 13px;
     font-weight: 500;
@@ -60,10 +77,12 @@ export const Content = styled.div`
     }
 `
 export const Box2 = styled.div`
+    position: relative;
     font-size: 16px;
     font-weight: 500;
     color: #667085;
     width: ${(props)=>props.$length}px;
+    margin-right: 65px;
     & > p{
         width: 40px;
     }
@@ -77,6 +96,7 @@ export const Status = styled.div`
     gap: 8px;
     border-radius: 22px;
     padding: 4px 10px;
+    cursor: pointer;
 `
 export const Circle = styled.div`
     width: 10px;

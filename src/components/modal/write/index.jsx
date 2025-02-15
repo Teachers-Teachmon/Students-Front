@@ -7,7 +7,6 @@ import Search from '../../../assets/Search.svg'
 import SearchDropdown from '../../dropdown/search';
 import {usePostMovement} from '../../../hooks/useStudent.js';
 import useDay from "../../../zustand/day.js";
-import SchoolOut from "../confirm/schoolOut/index.jsx";
 import {useDebounce} from "../../../hooks/useDebounce.js";
 import {searchStudent, searchPlace} from "../../../api/search.js";
 import DateInput from "../../dateInput/index.jsx";
@@ -15,16 +14,10 @@ import DateInput from "../../dateInput/index.jsx";
 export default function Write({isModal, setIsModal}){
     const [time, setTime] = useState("시간");
     const [place, setPlace] = useState("장소");
-    const [isMovement, setIsMovement] = useState([true, false]);
     const [isOpen, setIsOpen] = useState([false, false]);
     const [cause, setCause] = useState("");
     const [search, setSearch] = useState("");
-    const [search2, setSearch2] = useState("학생");
-    const changeMovement = (idx) => {
-        const newMovement = [false, false];
-        newMovement[idx] = !newMovement[idx];
-        setIsMovement(newMovement);
-    }
+
     const t = ["7교시", "8~9교시", "10~11교시"];
 
     const [student, setStudent] = useState([]);
@@ -44,39 +37,6 @@ export default function Write({isModal, setIsModal}){
     }, [debounceStudent]);
 
     return(
-        // <SchoolOut name={search2} On={()=>{
-        //     setIsMovement([true, false, false]);
-        //     setIsModal(false);
-        // }}/>
-        // <>
-        //     {isOpen.some((status) => status === true) ?
-        //         <S.Black onClick={()=>setIsOpen([false, false])}/> : null
-        //     }
-        //     <SearchDropdown
-        //         target={"학생"}
-        //         name={search2}
-        //         isOpen={isOpen[0]}
-        //         axios={(event)=>searchStudent(event)}
-        //         change={(event) => setSearch2(event)}
-        //         click={() => setIsOpen([!isOpen[0]])}
-        //     />
-        //     <S.Reason
-        //         type={"text"}
-        //         value={cause}
-        //         onChange={(event) => setCause(event.target.value)}
-        //         placeholder={"사유를 입력해주세요"}
-        //     />
-        //     <S.Submit>
-        //         <SquareBtn name={"취소"} status={false} On={() => setIsModal(false)} />
-        //         <SquareBtn
-        //             name={"작성완료"}
-        //             status={true}
-        //             On={() => {
-        //                 setIsMovement([false, false, true]);
-        //             }}
-        //         />
-        //     </S.Submit>
-        // </>
         <S.WriteContainer onClick={(e)=>e.stopPropagation()}>
                 <>
                     <h1>이석작성</h1>

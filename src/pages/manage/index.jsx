@@ -7,14 +7,12 @@ import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import Record from "../../assets/record.svg";
 import StudentGraph from '../../components/student-graph'
-import Write from '../../components/modal/write';
 import {useGetNowStudent} from "../../hooks/useStudent.js";
 import Loading from "../../components/loading/index.jsx";
 
 export default function Manage(){
     const hour = new Date().getHours();
     const minute = new Date().getMinutes();
-    console.log(hour, minute);
     const {today} = useDay();
     const [day, setDay] = useState('');
     const navigate = useNavigate()
@@ -60,7 +58,6 @@ export default function Manage(){
                 break;
         }
     }, []);
-    const [isModal, setIsModal] = useState(false);
 
 
     // 이함수가 실행될때마다 학년이 바뀌고 그 데이터가 바뀌어야함
@@ -91,10 +88,7 @@ export default function Manage(){
             <S.Wrap>
                 <S.Info>
                     <h1>{day} {!weekday ? period : null}</h1>
-                    <S.InfoBtn>
-                        <SquareBtn name={"학생위치"} status={true} On={()=>navigate('/manage/location')} />
-                        <SquareBtn name={"이석작성"} status={true} On={()=>setIsModal(!isModal)} />
-                    </S.InfoBtn>
+                    <SquareBtn name={"학생위치"} status={true} On={()=>navigate('/manage/location')} />
                 </S.Info>
                 <S.Main>
                     <S.MainNav>
@@ -127,10 +121,20 @@ export default function Manage(){
                                 </S.Colors>
                             </S.Color>
                         </S.MainBox>
-                        <S.Record onClick={()=>navigate('/manage/record')}>
-                            <img src={Record} alt="" />
-                            <p>기록</p>
-                        </S.Record>
+                        <S.MainBox>
+                            <S.Record onClick={()=>navigate('/manage/record', {state:1})}>
+                                <img src={Record} alt="" />
+                                <p>이석</p>
+                            </S.Record>
+                            <S.Record onClick={()=>navigate('/manage/record', {state: 2})}>
+                                <img src={Record} alt="" />
+                                <p>이탈</p>
+                            </S.Record>
+                            <S.Record onClick={()=>navigate('/manage/record', {state: 3})}>
+                                <img src={Record} alt="" />
+                                <p>학생</p>
+                            </S.Record>
+                        </S.MainBox>
                     </S.MainNav>
                     <S.Section>
                         {/*weekday ? <S.NoData>오늘은 방과후가 없습니다.</S.NoData> :*/}
@@ -153,13 +157,6 @@ export default function Manage(){
                     </S.Section>
                 </S.Main>
             </S.Wrap>
-            {isModal ?
-                <S.Black onClick={()=>setIsModal(false)}>
-                    <Write isModal={isModal} setIsModal={setIsModal}/>
-                </S.Black>
-                :
-                null
-            }
         </S.ManageContainer>
     )
 }

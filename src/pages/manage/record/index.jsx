@@ -1,7 +1,7 @@
 import * as S from './style.jsx'
 import Header from "../../../components/header/index.jsx";
 import SquareBtn from "../../../components/button/square/index.jsx";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import CircleBtn from "../../../components/button/circle/index.jsx";
 import {useEffect, useState} from "react";
 import Leave from "../../../components/record/leave/index.jsx";
@@ -13,18 +13,24 @@ import DateInput from "../../../components/dateInput/index.jsx";
 import {useDebounce} from "../../../hooks/useDebounce.js";
 import {getStudent} from "../../../api/data.js";
 import patchDay from "../../../utils/patchDay.js";
+import Write from "../../../components/modal/write/index.jsx";
+import {useStatusUpdate} from "../../../zustand/statusUpdate.js";
 
 export default function Record() {
     const navigate = useNavigate();
+    const location = useLocation();
+    console.log(location.state)
     const [isFirst, setIsFirst] = useState(true);
     const [isMovement, setIsMovement] = useState([
-        true, false, false
+        location.state === 1, location.state === 2, location.state === 3
     ]);
     const [search, setSearch] = useState("");
     const {today, day:dayComponent} = useDay();
     const [day, setDay] = useState(today);
     const debounce = useDebounce(search, 500);
     const [student, setStudent] = useState([]);
+    const [isModal, setIsModal] = useState(false);
+    const {status} = useStatusUpdate();
 
     useEffect(() => {
         if(dayComponent){
@@ -38,22 +44,25 @@ export default function Record() {
             const students = await getStudent(isFirst ? patchDay(day) : day, search);
             setStudent(students);
         };
-
+        console.log("업데이트함")
         fetchData();
-    }, [debounce, day]);
+    }, [debounce, day, status]);
     return (
         <S.ManageContainer>
             <Header/>
             <S.Wrap>
                 <S.Info>
                     {isMovement[0] ? (
-                        <h1>이석기록</h1>
+                        <h1>이석</h1>
                     ) : isMovement[1] ? (
-                        <h1>이탈기록</h1>
+                        <h1>이탈</h1>
                     ) : isMovement[2] ? (
-                        <h1>학생기록</h1>
+                        <h1>학생</h1>
                     ) : null}
-                    <SquareBtn name={"돌아가기"} status={true} On={() => navigate('/manage')} />
+                    <S.InfoBtn>
+                        <SquareBtn name={"돌아가기"} status={true} On={() => navigate('/manage')} />
+                        {isMovement[0] && <SquareBtn name={"이석작성"} status={true} On={()=>setIsModal(!isModal)} />}
+                    </S.InfoBtn>
                 </S.Info>
                 <S.Main>
                     <S.MainNav>
@@ -83,6 +92,13 @@ export default function Record() {
                     ) : isMovement[2] ? (
                         <Student data={student} day={day}/>
                     ) : null}
+                    {isModal ?
+                        <S.Black onClick={()=>setIsModal(false)}>
+                            <Write isModal={isModal} setIsModal={setIsModal}/>
+                        </S.Black>
+                        :
+                        null
+                    }
                 </S.Main>
             </S.Wrap>
         </S.ManageContainer>

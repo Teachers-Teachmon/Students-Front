@@ -20,9 +20,14 @@ export const Info = styled.div`
     width: 100%;
     align-items: center;
 `
+export const InfoBtn = styled.div`
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+`
 export const Main = styled.main`
     width: 100%;
-    height: 90%;
+    height: 94%;
     border: 2px solid #EAECF0;
     border-radius: 8px;
 `
@@ -57,4 +62,17 @@ export const Input = styled.input`
     font-size: 16px;
     border-radius: 8px;
     padding: 10px 15px;
+`
+
+export const Black = styled.div`
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(0, 0, 0, 0.4);
+    z-index: 3;
 `
