@@ -4,83 +4,22 @@ import Circle from '../../components/button/circle/index.jsx';
 import SquareBtn from '../../components/button/square/index.jsx';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SearchDropdown from '../../components/dropdown/search/index.jsx';
-import { useGetAssignment, useSaveAutoAssignment } from '../../hooks/useSupervision.js';
-import { searchTeacher } from '../../api/search.js';
+import { useGetAssignment } from '../../hooks/useSupervision.js';
 import Loading from '../../components/loading/index.jsx';
 
 export default function Supervision() {
     const navigate = useNavigate();
     const [selMonth, setSelMonth] = useState(new Date().getMonth());
-    const [isEditing, setIsEditing] = useState(false);
-    const [selectedTeacher, setSelectedTeacher] = useState({});
     const [dropdownOpen, setDropdownOpen] = useState({});
     const [localData, setLocalData] = useState([]);
 
-    const handleTeacherChange = (date, grade, timeKey, newTeacher) => {
-        setSelectedTeacher(prev => ({
-            ...prev,
-            [`${date}-${grade}-${timeKey}`]: newTeacher
-        }));
-
-        setLocalData(prev => prev.map(dayData => {
-            if (dayData.date === date) {
-                return {
-                    ...dayData,
-                    [grade]: {
-                        ...dayData[grade],
-                        [timeKey]: newTeacher
-                            ? `${newTeacher.name}/${newTeacher.id}`
-                            : `X/0`
-                    }
-                };
-            }
-            return dayData;
-        }));
-    };
-
-    const toggleDropdown = (key) => {
-        setDropdownOpen(prev => {
-            if (prev[key]) {
-                return {};
-            }
-            return { [key]: true };
-        });
-    };
-
     const { data: TeacherList, isLoading, isError } = useGetAssignment(selMonth + 1);
-    const { mutate: saveAssignment } = useSaveAutoAssignment();
-
     useEffect(() => {
         console.log("TeacherList 데이터:", TeacherList);
         if (TeacherList?.data) {
             setLocalData(TeacherList.data);
         }
     }, [TeacherList]);
-
-    const handleSave = () => {
-        const changedData = localData.map(dayData => ({
-            date: dayData.date,
-            first_grade: {
-                "7th_teacher": parseInt(dayData.first_grade["7th_teacher"]?.split("/")[1]),
-                "8th_teacher": parseInt(dayData.first_grade["8th_teacher"]?.split("/")[1]),
-                "10th_teacher": parseInt(dayData.first_grade["10th_teacher"]?.split("/")[1])
-            },
-            second_grade: {
-                "7th_teacher": parseInt(dayData.second_grade["7th_teacher"]?.split("/")[1]),
-                "8th_teacher": parseInt(dayData.second_grade["8th_teacher"]?.split("/")[1]),
-                "10th_teacher": parseInt(dayData.second_grade["10th_teacher"]?.split("/")[1])
-            },
-            third_grade: {
-                "7th_teacher": parseInt(dayData.third_grade["7th_teacher"]?.split("/")[1]),
-                "8th_teacher": parseInt(dayData.third_grade["8th_teacher"]?.split("/")[1]),
-                "10th_teacher": parseInt(dayData.third_grade["10th_teacher"]?.split("/")[1])
-            }
-        }));
-
-        saveAssignment(changedData);
-        setIsEditing(false);
-    };
 
     function groupByWeek(dataArray) {
         const daysOfWeek = ["월", "화", "수", "목"];
@@ -131,17 +70,9 @@ export default function Supervision() {
                         <S.Black onClick={() => setDropdownOpen({})} />
                     )}
                     <h1>자습감독 일정</h1>
-                    {!isEditing ? (
-                        <S.Buttons>
-                            <SquareBtn name="돌아가기" status={true} On={() => { navigate(-1) }} />
-                            <SquareBtn name="교체하기" status={true} On={() => { navigate('/supervision/change') }} />
-                            <SquareBtn name="자습감독수정" status={true} On={() => { setIsEditing(true) }} />
-                            <SquareBtn name="자습감독생성" status={true} On={() => { navigate('/supervision/create') }} />
-                        </S.Buttons>
-                    ) : (
-                        <S.Buttons>
-                            <SquareBtn name="저장하기" status={true} On={handleSave} />
-                        </S.Buttons>)}
+                    <S.Buttons>
+                        <SquareBtn name="교체하기" status={true} On={() => { navigate('/supervision/change') }} />
+                    </S.Buttons>
                 </S.MainHeader>
                 <S.Months>
                     {[...Array(12)].map((_, i) => (
@@ -188,23 +119,9 @@ export default function Supervision() {
                                                         <S.TeacherList key={timeIndex}>
                                                             {["first_grade", "second_grade", "third_grade"].map((gradeKey, gradeIndex) => {
                                                                 const teacherName = dayData[gradeKey]?.[timeKey] ? dayData[gradeKey][timeKey].split("/")[0] : "X";
-                                                                const uniqueKey = `${dayData.date}-${gradeKey}-${timeKey}`;
-
                                                                 return (
                                                                     <div key={gradeIndex}>
-                                                                        {isEditing ? (
-                                                                            <SearchDropdown
-                                                                                target="선생님"
-                                                                                name={selectedTeacher[uniqueKey]?.name || teacherName}
-                                                                                axios={(event) => searchTeacher(event)}
-                                                                                isOpen={dropdownOpen[uniqueKey] || false}
-                                                                                change={(value) => handleTeacherChange(dayData.date, gradeKey, timeKey, value)}
-                                                                                click={() => toggleDropdown(uniqueKey)}
-                                                                                 left = {gradeIndex === 2 && dayData.day.slice(-3) === "(목)"? -800 : null}
-                                                                            />
-                                                                        ) : (
-                                                                            <S.TeacherName>{teacherName}</S.TeacherName>
-                                                                        )}
+                                                                        <S.TeacherName>{teacherName}</S.TeacherName>
                                                                     </div>
                                                                 );
                                                             })}
