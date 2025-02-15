@@ -377,617 +377,590 @@
       "leave_id": 58,
       "student": "1401 김동욱",
       "period": "7교시",
-      "teacher_name": "이정하"
+      "teacher_name": "이정하",
+      "id": "cb46"
     }
   ],
   "leaveDelete": {},
   "student": [
     {
       "student": "1401 김동욱",
-      "8th_schedule": null,
+      "8th_schedule": "자습",
       "9th_schedule": null,
-      "10th_schedule": null,
-      "11th_schedule": null
+      "10th_schedule": "방과후",
+      "11th_schedule": null,
+      "id": "99a8"
     },
     {
       "student": "1416 허온",
-      "8th_schedule": null,
+      "8th_schedule": "이탈",
       "9th_schedule": null,
-      "10th_schedule": null,
-      "11th_schedule": null
+      "10th_schedule": "이석",
+      "11th_schedule": null,
+      "id": "3cbd"
     },
     {
       "student": "1410 윤도훈",
-      "8th_schedule": null,
+      "8th_schedule": "조퇴",
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "0e92"
     },
     {
       "student": "1310 오주현",
-      "8th_schedule": null,
+      "8th_schedule": "방과후",
       "9th_schedule": null,
-      "10th_schedule": null,
-      "11th_schedule": null
+      "10th_schedule": "이탈",
+      "11th_schedule": null,
+      "id": "7c74"
     },
     {
       "student": "1314 조아라",
-      "8th_schedule": null,
+      "8th_schedule": "이석",
       "9th_schedule": null,
-      "10th_schedule": null,
-      "11th_schedule": null
+      "10th_schedule": "자습",
+      "11th_schedule": null,
+      "id": "e595"
     },
     {
       "student": "3102 강민제",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "f056"
     },
     {
       "student": "3202 권세원",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "9286"
     },
     {
       "student": "3301 김도건",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "4abd"
     },
     {
       "student": "3401 구윤하",
       "8th_schedule": "자습",
       "9th_schedule": "자습",
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "f5dc"
     },
     {
       "student": "1101 공덕현",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "d7e4"
     },
     {
       "student": "1104 김우성",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "76e8"
     },
     {
       "student": "1115 최정혁",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "7ea0"
     },
     {
       "student": "1206 서윤호",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "26d2"
     },
     {
       "student": "1215 황준혁",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "5d42"
     },
     {
       "student": "1306 박동현",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "ec1e"
     },
     {
       "student": "1402 김민석",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "16e3"
     },
     {
       "student": "1409 양효준",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "658c"
     },
     {
       "student": "1413 조재민",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "f43e"
     },
     {
       "student": "1106 김한결",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "05a0"
     },
     {
       "student": "1111 이건우",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "b326"
     },
     {
       "student": "1205 박소은",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "92b7"
     },
     {
       "student": "1302 김민재",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "d520"
     },
     {
       "student": "1303 김우찬",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "47e5"
     },
     {
       "student": "1305 류승찬",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "e9dd"
     },
     {
       "student": "1309 안재민",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "f21d"
     },
     {
       "student": "1315 조하민",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "215e"
     },
     {
       "student": "1403 김정훈",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "c5b9"
     },
     {
       "student": "1404 김현호",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "f673"
     },
     {
       "student": "1405 박선영",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "7fb0"
     },
     {
       "student": "1411 이승환",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "3c31"
     },
     {
       "student": "1412 이하은",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "f150"
     },
     {
       "student": "1415 허세진",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "0663"
     },
     {
       "student": "1105 김태현",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "8e51"
     },
     {
       "student": "1301 공재욱",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "931b"
     },
     {
       "student": "1304 김유찬",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "177b"
     },
     {
       "student": "1312 이효준",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "8fbf"
     },
     {
       "student": "1313 정태양",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "19e9"
     },
     {
       "student": "1414 허동운",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "c0c8"
     },
     {
       "student": "1107 노유현",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "e69b"
     },
     {
       "student": "1112 이수환",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "ec07"
     },
     {
       "student": "1114 제성주",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "71d2"
     },
     {
       "student": "1201 구현우",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "b663"
     },
     {
       "student": "1203 김현호",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "93fa"
     },
     {
       "student": "1102 권민재",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "9613"
     },
     {
       "student": "1103 김예빈",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "54f0"
     },
     {
       "student": "1108 박가은",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "6ccc"
     },
     {
       "student": "1110 서정현",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "5289"
     },
     {
       "student": "1113 이주영",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "1647"
     },
     {
       "student": "1116 최치현",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "1a6f"
     },
     {
       "student": "1202 김현우",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "99c8"
     },
     {
       "student": "1212 진은성",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "7a47"
     },
     {
       "student": "1213 한지원",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "1d36"
     },
     {
       "student": "1216 황지영",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "6092"
     },
     {
       "student": "1307 방세준",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "88ea"
     },
     {
       "student": "1407 심형도",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "4dd8"
     },
     {
       "student": "1109 방민준",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "e213"
     },
     {
       "student": "1204 문소정",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "a3b7"
     },
     {
       "student": "1207 안준환",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "1f3e"
     },
     {
       "student": "1208 윤건우",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "236a"
     },
     {
       "student": "1209 이재환",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "2a46"
     },
     {
       "student": "1210 이정혁",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "9a47"
     },
     {
       "student": "1211 이준호",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "7fae"
     },
     {
       "student": "1214 황성민",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "8fb6"
     },
     {
       "student": "1308 심현진",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "8b55"
     },
     {
       "student": "1311 윤대협",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "2ec3"
     },
     {
       "student": "1316 천현수",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "d483"
     },
     {
       "student": "1406 배성민",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "cd6d"
     },
     {
       "student": "1408 안민주",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "8fb5"
     },
     {
       "student": "3105 김민우",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "2554"
     },
     {
       "student": "3206 박수빈",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "42ed"
     },
     {
       "student": "3307 양유빈",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "d006"
     },
     {
       "student": "3403 김강민",
       "8th_schedule": null,
       "9th_schedule": null,
       "10th_schedule": null,
-      "11th_schedule": null
+      "11th_schedule": null,
+      "id": "fac0"
     }
   ],
-  "leaveseatClose": {
-    "item": {
-      "item": {
-        "item": {
-          "item": {
-            "item": {
-              "item": {
-                "item": {
-                  "item": {
-                    "item": {
-                      "item": {
-                        "item": {
-                          "item": {
-                            "item": {
-                              "item": {
-                                "item": {
-                                  "item": {
-                                    "item": {
-                                      "item": {
-                                        "item": {
-                                          "item": {
-                                            "item": {
-                                              "item": {
-                                                "item": {
-                                                  "item": {
-                                                    "item": {
-                                                      "item": {
-                                                        "item": {
-                                                          "item": {
-                                                            "item": {
-                                                              "item": {
-                                                                "item": {
-                                                                  "item": {
-                                                                    "item": {
-                                                                      "item": {
-                                                                        "item": {
-                                                                          "item": {
-                                                                            "item": {
-                                                                              "item": {
-                                                                                "item": {
-                                                                                  "item": {
-                                                                                    "item": {
-                                                                                      "item": {
-                                                                                        "item": {
-                                                                                          "item": {
-                                                                                            "item": {
-                                                                                              "item": {
-                                                                                                "item": {
-                                                                                                  "item": {
-                                                                                                    "item": {
-                                                                                                      "item": {}
-                                                                                                    }
-                                                                                                  }
-                                                                                                }
-                                                                                              }
-                                                                                            }
-                                                                                          }
-                                                                                        }
-                                                                                      }
-                                                                                    }
-                                                                                  }
-                                                                                }
-                                                                              }
-                                                                            }
-                                                                          }
-                                                                        }
-                                                                      }
-                                                                    }
-                                                                  }
-                                                                }
-                                                              }
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  },
+  "leaveseatClose": {},
   "location": {
     "창의디자인실": {
       "status": "이석",
@@ -1023,272 +996,668 @@
     }
   },
   "schedule": {
-    "1반": [
-      {
-        "status": "자습",
-        "name": "김동욱",
-        "number": 1401,
-        "id": 1
+    "item": {
+      "item": {
+        "item": {
+          "item": {
+            "item": {
+              "item": {
+                "item": {
+                  "item": {
+                    "item": {
+                      "item": {
+                        "item": {
+                          "item": {
+                            "item": {
+                              "item": {
+                                "item": {
+                                  "item": {
+                                    "item": {
+                                      "item": {
+                                        "item": {
+                                          "item": {
+                                            "item": {
+                                              "item": {
+                                                "item": {
+                                                  "item": {
+                                                    "item": {
+                                                      "item": {
+                                                        "item": {
+                                                          "item": {
+                                                            "item": {
+                                                              "item": {
+                                                                "item": {
+                                                                  "item": {
+                                                                    "item": {
+                                                                      "item": {
+                                                                        "1반": [
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "김동욱",
+                                                                            "number": 1401,
+                                                                            "id": 1
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "이영희"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "박철수"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "홍길동"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "최민수"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "이선영"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "김지현"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "정우성"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "하준"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "소영"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "민재"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "유진"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "예린"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "상혁"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "채린"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "기범"
+                                                                          }
+                                                                        ],
+                                                                        "2반": [
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "김태희"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "이민호"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "오수연"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "유재석"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "하늘"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "진수"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "승현"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "정민"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "수진"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "민우"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "소라"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "지현"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "희원"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "시온"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "연우"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "재원"
+                                                                          }
+                                                                        ],
+                                                                        "3반": [
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "김지혜"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "서준"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "지우"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "소영"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "승리"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "하율"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "도연"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "나영"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "민채"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "우빈"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "서영"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "하람"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "보라"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "태호"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "영빈"
+                                                                          },
+                                                                          {
+                                                                            "status": "방과후",
+                                                                            "name": "경수"
+                                                                          }
+                                                                        ],
+                                                                        "4반": [
+                                                                          {
+                                                                            "status": "방과 후",
+                                                                            "name": "정현"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "진호"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "미래"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "아영"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "채원"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "여름"
+                                                                          },
+                                                                          {
+                                                                            "status": "이석",
+                                                                            "name": "해리"
+                                                                          },
+                                                                          {
+                                                                            "status": "이탈",
+                                                                            "name": "수연"
+                                                                          },
+                                                                          {
+                                                                            "status": "조퇴",
+                                                                            "name": "지아"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "은호"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "도윤"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "영채"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "하경"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "찬미"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "도희"
+                                                                          },
+                                                                          {
+                                                                            "status": "자습",
+                                                                            "name": "재현"
+                                                                          }
+                                                                        ]
+                                                                      },
+                                                                      "id": "김동욱",
+                                                                      "status": "자습"
+                                                                    },
+                                                                    "id": "김동욱",
+                                                                    "status": "조퇴"
+                                                                  },
+                                                                  "id": "김동욱",
+                                                                  "status": "조퇴"
+                                                                },
+                                                                "id": "오주현",
+                                                                "status": "조퇴"
+                                                              },
+                                                              "id": "김동욱",
+                                                              "status": "조퇴"
+                                                            },
+                                                            "id": "김동욱",
+                                                            "status": "자습"
+                                                          },
+                                                          "id": "김동욱",
+                                                          "status": "조퇴"
+                                                        },
+                                                        "id": "김동욱",
+                                                        "status": "조퇴"
+                                                      },
+                                                      "id": "김동욱",
+                                                      "status": "조퇴"
+                                                    },
+                                                    "id": "김동욱",
+                                                    "status": "조퇴"
+                                                  },
+                                                  "id": "김동욱",
+                                                  "status": "조퇴"
+                                                },
+                                                "id": "김동욱",
+                                                "status": "자습"
+                                              },
+                                              "id": "허온",
+                                              "status": "조퇴"
+                                            },
+                                            "id": "김동욱",
+                                            "status": "조퇴"
+                                          },
+                                          "id": "김동욱",
+                                          "status": "조퇴"
+                                        },
+                                        "id": "김동욱",
+                                        "status": "조퇴"
+                                      },
+                                      "id": "김동욱",
+                                      "status": "조퇴"
+                                    },
+                                    "id": "김동욱",
+                                    "status": "조퇴"
+                                  },
+                                  "id": "김동욱",
+                                  "status": "조퇴"
+                                },
+                                "id": [
+                                  null,
+                                  null,
+                                  null
+                                ],
+                                "status": "조퇴"
+                              },
+                              "id": [
+                                {
+                                  "student": "3102 강민제",
+                                  "8th_schedule": null,
+                                  "9th_schedule": null,
+                                  "10th_schedule": null,
+                                  "11th_schedule": null,
+                                  "id": "f056"
+                                },
+                                {
+                                  "student": "3202 권세원",
+                                  "8th_schedule": null,
+                                  "9th_schedule": null,
+                                  "10th_schedule": null,
+                                  "11th_schedule": null,
+                                  "id": "9286"
+                                },
+                                {
+                                  "student": "3301 김도건",
+                                  "8th_schedule": null,
+                                  "9th_schedule": null,
+                                  "10th_schedule": null,
+                                  "11th_schedule": null,
+                                  "id": "4abd"
+                                }
+                              ],
+                              "status": "조퇴"
+                            },
+                            "id": [],
+                            "status": "조퇴"
+                          },
+                          "id": "김동욱",
+                          "status": "조퇴"
+                        },
+                        "id": "김동욱",
+                        "status": "조퇴"
+                      },
+                      "id": [
+                        null,
+                        null,
+                        null
+                      ],
+                      "status": "조퇴"
+                    },
+                    "id": [],
+                    "status": "조퇴"
+                  },
+                  "id": [],
+                  "status": "조퇴"
+                },
+                "id": [
+                  "1401 김동욱",
+                  "1416 허온"
+                ],
+                "status": "조퇴"
+              },
+              "id": "김동욱",
+              "status": "자습"
+            },
+            "id": [
+              "1401 김동욱"
+            ],
+            "status": "자습"
+          },
+          "id": [
+            "1401 김동욱",
+            "1416 허온",
+            "1410 윤도훈",
+            "1310 오주현",
+            "1314 조아라",
+            "3102 강민제",
+            "3202 권세원",
+            "3301 김도건",
+            "3401 구윤하",
+            "1101 공덕현",
+            "1104 김우성",
+            "1115 최정혁",
+            "1206 서윤호",
+            "1215 황준혁",
+            "1306 박동현",
+            "1402 김민석",
+            "1409 양효준",
+            "1413 조재민",
+            "1106 김한결",
+            "1111 이건우",
+            "1205 박소은",
+            "1302 김민재",
+            "1303 김우찬",
+            "1305 류승찬",
+            "1309 안재민",
+            "1315 조하민",
+            "1403 김정훈",
+            "1404 김현호",
+            "1405 박선영",
+            "1411 이승환",
+            "1412 이하은",
+            "1415 허세진",
+            "1105 김태현",
+            "1301 공재욱",
+            "1304 김유찬",
+            "1312 이효준",
+            "1313 정태양",
+            "1414 허동운",
+            "1107 노유현",
+            "1112 이수환",
+            "1114 제성주",
+            "1201 구현우",
+            "1203 김현호",
+            "1102 권민재",
+            "1103 김예빈",
+            "1108 박가은",
+            "1110 서정현",
+            "1113 이주영",
+            "1116 최치현",
+            "1202 김현우",
+            "1212 진은성",
+            "1213 한지원",
+            "1216 황지영",
+            "1307 방세준",
+            "1407 심형도",
+            "1109 방민준",
+            "1204 문소정",
+            "1207 안준환",
+            "1208 윤건우",
+            "1209 이재환",
+            "1210 이정혁",
+            "1211 이준호",
+            "1214 황성민",
+            "1308 심현진",
+            "1311 윤대협",
+            "1316 천현수",
+            "1406 배성민",
+            "1408 안민주",
+            "3105 김민우",
+            "3206 박수빈",
+            "3307 양유빈",
+            "3403 김강민"
+          ],
+          "status": "조퇴"
+        },
+        "id": [
+          "1401 김동욱",
+          "1416 허온",
+          "1410 윤도훈",
+          "1310 오주현",
+          "1314 조아라",
+          "3102 강민제",
+          "3202 권세원",
+          "3301 김도건",
+          "3401 구윤하",
+          "1101 공덕현",
+          "1104 김우성",
+          "1115 최정혁",
+          "1206 서윤호",
+          "1215 황준혁",
+          "1306 박동현",
+          "1402 김민석",
+          "1409 양효준",
+          "1413 조재민",
+          "1106 김한결",
+          "1111 이건우",
+          "1205 박소은",
+          "1302 김민재",
+          "1303 김우찬",
+          "1305 류승찬",
+          "1309 안재민",
+          "1315 조하민",
+          "1403 김정훈",
+          "1404 김현호",
+          "1405 박선영",
+          "1411 이승환",
+          "1412 이하은",
+          "1415 허세진",
+          "1105 김태현",
+          "1301 공재욱",
+          "1304 김유찬",
+          "1312 이효준",
+          "1313 정태양",
+          "1414 허동운",
+          "1107 노유현",
+          "1112 이수환",
+          "1114 제성주",
+          "1201 구현우",
+          "1203 김현호",
+          "1102 권민재",
+          "1103 김예빈",
+          "1108 박가은",
+          "1110 서정현",
+          "1113 이주영",
+          "1116 최치현",
+          "1202 김현우",
+          "1212 진은성",
+          "1213 한지원",
+          "1216 황지영",
+          "1307 방세준",
+          "1407 심형도",
+          "1109 방민준",
+          "1204 문소정",
+          "1207 안준환",
+          "1208 윤건우",
+          "1209 이재환",
+          "1210 이정혁",
+          "1211 이준호",
+          "1214 황성민",
+          "1308 심현진",
+          "1311 윤대협",
+          "1316 천현수",
+          "1406 배성민",
+          "1408 안민주",
+          "3105 김민우",
+          "3206 박수빈",
+          "3307 양유빈",
+          "3403 김강민"
+        ],
+        "status": "조퇴"
       },
-      {
-        "status": "자습",
-        "name": "이영희"
-      },
-      {
-        "status": "자습",
-        "name": "박철수"
-      },
-      {
-        "status": "자습",
-        "name": "홍길동"
-      },
-      {
-        "status": "자습",
-        "name": "최민수"
-      },
-      {
-        "status": "자습",
-        "name": "이선영"
-      },
-      {
-        "status": "자습",
-        "name": "김지현"
-      },
-      {
-        "status": "자습",
-        "name": "정우성"
-      },
-      {
-        "status": "자습",
-        "name": "하준"
-      },
-      {
-        "status": "자습",
-        "name": "소영"
-      },
-      {
-        "status": "자습",
-        "name": "민재"
-      },
-      {
-        "status": "자습",
-        "name": "유진"
-      },
-      {
-        "status": "자습",
-        "name": "예린"
-      },
-      {
-        "status": "자습",
-        "name": "상혁"
-      },
-      {
-        "status": "자습",
-        "name": "채린"
-      },
-      {
-        "status": "자습",
-        "name": "기범"
-      }
+      "id": [
+        "1401 김동욱",
+        "1416 허온",
+        "1410 윤도훈",
+        "1310 오주현",
+        "1314 조아라",
+        "3102 강민제",
+        "3202 권세원",
+        "3301 김도건",
+        "3401 구윤하",
+        "1101 공덕현",
+        "1104 김우성",
+        "1115 최정혁",
+        "1206 서윤호",
+        "1215 황준혁",
+        "1306 박동현",
+        "1402 김민석",
+        "1409 양효준",
+        "1413 조재민",
+        "1106 김한결",
+        "1111 이건우",
+        "1205 박소은",
+        "1302 김민재",
+        "1303 김우찬",
+        "1305 류승찬",
+        "1309 안재민",
+        "1315 조하민",
+        "1403 김정훈",
+        "1404 김현호",
+        "1405 박선영",
+        "1411 이승환",
+        "1412 이하은",
+        "1415 허세진",
+        "1105 김태현",
+        "1301 공재욱",
+        "1304 김유찬",
+        "1312 이효준",
+        "1313 정태양",
+        "1414 허동운",
+        "1107 노유현",
+        "1112 이수환",
+        "1114 제성주",
+        "1201 구현우",
+        "1203 김현호",
+        "1102 권민재",
+        "1103 김예빈",
+        "1108 박가은",
+        "1110 서정현",
+        "1113 이주영",
+        "1116 최치현",
+        "1202 김현우",
+        "1212 진은성",
+        "1213 한지원",
+        "1216 황지영",
+        "1307 방세준",
+        "1407 심형도",
+        "1109 방민준",
+        "1204 문소정",
+        "1207 안준환",
+        "1208 윤건우",
+        "1209 이재환",
+        "1210 이정혁",
+        "1211 이준호",
+        "1214 황성민",
+        "1308 심현진",
+        "1311 윤대협",
+        "1316 천현수",
+        "1406 배성민",
+        "1408 안민주",
+        "3105 김민우",
+        "3206 박수빈",
+        "3307 양유빈",
+        "3403 김강민"
+      ],
+      "status": "자습"
+    },
+    "id": [
+      "1401 김동욱",
+      "1416 허온"
     ],
-    "2반": [
-      {
-        "status": "자습",
-        "name": "김태희"
-      },
-      {
-        "status": "자습",
-        "name": "이민호"
-      },
-      {
-        "status": "자습",
-        "name": "오수연"
-      },
-      {
-        "status": "자습",
-        "name": "유재석"
-      },
-      {
-        "status": "자습",
-        "name": "하늘"
-      },
-      {
-        "status": "자습",
-        "name": "진수"
-      },
-      {
-        "status": "자습",
-        "name": "승현"
-      },
-      {
-        "status": "자습",
-        "name": "정민"
-      },
-      {
-        "status": "자습",
-        "name": "수진"
-      },
-      {
-        "status": "자습",
-        "name": "민우"
-      },
-      {
-        "status": "자습",
-        "name": "소라"
-      },
-      {
-        "status": "자습",
-        "name": "지현"
-      },
-      {
-        "status": "자습",
-        "name": "희원"
-      },
-      {
-        "status": "자습",
-        "name": "시온"
-      },
-      {
-        "status": "자습",
-        "name": "연우"
-      },
-      {
-        "status": "자습",
-        "name": "재원"
-      }
-    ],
-    "3반": [
-      {
-        "status": "자습",
-        "name": "김지혜"
-      },
-      {
-        "status": "자습",
-        "name": "서준"
-      },
-      {
-        "status": "자습",
-        "name": "지우"
-      },
-      {
-        "status": "자습",
-        "name": "소영"
-      },
-      {
-        "status": "자습",
-        "name": "승리"
-      },
-      {
-        "status": "자습",
-        "name": "하율"
-      },
-      {
-        "status": "자습",
-        "name": "도연"
-      },
-      {
-        "status": "자습",
-        "name": "나영"
-      },
-      {
-        "status": "자습",
-        "name": "민채"
-      },
-      {
-        "status": "자습",
-        "name": "우빈"
-      },
-      {
-        "status": "자습",
-        "name": "서영"
-      },
-      {
-        "status": "자습",
-        "name": "하람"
-      },
-      {
-        "status": "자습",
-        "name": "보라"
-      },
-      {
-        "status": "자습",
-        "name": "태호"
-      },
-      {
-        "status": "자습",
-        "name": "영빈"
-      },
-      {
-        "status": "방과후",
-        "name": "경수"
-      }
-    ],
-    "4반": [
-      {
-        "status": "방과 후",
-        "name": "정현"
-      },
-      {
-        "status": "자습",
-        "name": "진호"
-      },
-      {
-        "status": "자습",
-        "name": "미래"
-      },
-      {
-        "status": "자습",
-        "name": "아영"
-      },
-      {
-        "status": "자습",
-        "name": "채원"
-      },
-      {
-        "status": "자습",
-        "name": "여름"
-      },
-      {
-        "status": "이석",
-        "name": "해리"
-      },
-      {
-        "status": "이탈",
-        "name": "수연"
-      },
-      {
-        "status": "조퇴",
-        "name": "지아"
-      },
-      {
-        "status": "자습",
-        "name": "은호"
-      },
-      {
-        "status": "자습",
-        "name": "도윤"
-      },
-      {
-        "status": "자습",
-        "name": "영채"
-      },
-      {
-        "status": "자습",
-        "name": "하경"
-      },
-      {
-        "status": "자습",
-        "name": "찬미"
-      },
-      {
-        "status": "자습",
-        "name": "도희"
-      },
-      {
-        "status": "자습",
-        "name": "재현"
-      }
-    ]
+    "status": "자습"
   },
   "searchStudent": [
     {
@@ -1407,15 +1776,21 @@
   ],
   "locationALL": [
     {
-      "창의디자인실": "이석"
+      "창의디자인실": "이석",
+      "id": "d405"
     },
-    {},
+    {
+      "id": "b6e1"
+    },
     {
       "3-1": "조퇴",
       "3-3": "자습",
-      "3-4": "자습"
+      "3-4": "자습",
+      "id": "fe6a"
     },
-    {}
+    {
+      "id": "03ea"
+    }
   ],
   "schedulePatch": {
     "item": {

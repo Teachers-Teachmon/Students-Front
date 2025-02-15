@@ -13,7 +13,6 @@ import Loading from "../../components/loading/index.jsx";
 export default function Manage(){
     const hour = new Date().getHours();
     const minute = new Date().getMinutes();
-    console.log(hour, minute);
     const {today} = useDay();
     const [day, setDay] = useState('');
     const navigate = useNavigate()

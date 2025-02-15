@@ -61,7 +61,7 @@ export default function StudentGraph({data, grade, classNum}){
                                 <p>{String(el.number).slice(2, 4)}</p>
                                 <p>{el.name}</p>
                                 {isOpen[idx] ?
-                                    <StatusUpdate changeStatus={changeStatus} name={el.id} nowStatus={el.status} up={true}/>
+                                    <StatusUpdate changeStatus={changeStatus} name={el.id} nowStatus={el.status} up={-180}/>
                                     : null
                                 }
                             </S.Student>

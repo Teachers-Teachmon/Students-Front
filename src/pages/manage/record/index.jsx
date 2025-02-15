@@ -14,6 +14,7 @@ import {useDebounce} from "../../../hooks/useDebounce.js";
 import {getStudent} from "../../../api/data.js";
 import patchDay from "../../../utils/patchDay.js";
 import Write from "../../../components/modal/write/index.jsx";
+import {useStatusUpdate} from "../../../zustand/statusUpdate.js";
 
 export default function Record() {
     const navigate = useNavigate();
@@ -29,6 +30,7 @@ export default function Record() {
     const debounce = useDebounce(search, 500);
     const [student, setStudent] = useState([]);
     const [isModal, setIsModal] = useState(false);
+    const {status} = useStatusUpdate();
 
     useEffect(() => {
         if(dayComponent){
@@ -42,9 +44,9 @@ export default function Record() {
             const students = await getStudent(isFirst ? patchDay(day) : day, search);
             setStudent(students);
         };
-
+        console.log("업데이트함")
         fetchData();
-    }, [debounce, day]);
+    }, [debounce, day, status]);
     return (
         <S.ManageContainer>
             <Header/>
