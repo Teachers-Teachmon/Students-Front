@@ -23,6 +23,12 @@ import NotCertification from "./components/check/notCertification.jsx";
 import Authorize from './components/check/authorize.jsx' // 인가는 개발중에 번거로울 수 있으므로 나중에 처리하기
 import Loading from "./components/loading/index.jsx";
 import Edit from './pages/after_school/edit'
+import Admin from './pages/admin/index.jsx'
+import AdminAfterSchool from './pages/admin/after-school/index.jsx'
+import AdminSelfStudy from './pages/admin/self-study/index.jsx'
+import AdminStudent from './pages/admin/student/index.jsx'
+import AdminSupervision from './pages/admin/supervision/index.jsx'
+import AdminTeacher from './pages/admin/teacher/index.jsx'
 const AccessLimits = lazy(()=>import("./pages/accessLimits/index.jsx"))
 
 const client = new QueryClient();
@@ -50,6 +56,14 @@ createRoot(document.getElementById('root')).render(
                             <AccessLimits />
                         </Suspense>
                     } />
+                    <Route path="/admin">
+                        <Route index element={<Admin />} />
+                        <Route path="after-school" element={<AdminAfterSchool />} />
+                        <Route path="self-study" element={<AdminSelfStudy />} />
+                        <Route path="student" element={<AdminStudent />} />
+                        <Route path="supervision" element={<AdminSupervision />} />
+                        <Route path="teacher" element={<AdminTeacher />} />
+                    </Route>
                     {/*<Route element={<Authorize />}>*/}
                         <Route path="/after-school/edit" element={<Edit />} />
                     {/*</Route>*/}
