@@ -27,7 +27,7 @@ export const InfoBtn = styled.div`
 `
 export const Main = styled.main`
     width: 100%;
-    height: 94%;
+    height: 90%;
     border: 2px solid #EAECF0;
     border-radius: 8px;
 `
