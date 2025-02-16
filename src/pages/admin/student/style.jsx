@@ -141,36 +141,6 @@ export const PatchBox = styled.div`
     right: 30px;
     cursor: pointer;
 `
-export const Options = styled.div`
-    position: absolute;
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #cccccc;
-    border-radius: 8px;
-    overflow: hidden;
-    background-color: #fff;
-    right: 0;
-    bottom: -60px;
-    button {
-        border: 1px;
-        padding: 10%;
-        width: 6.5vw;
-        background-color: #fff;
-        cursor: pointer;
-        border-right: 1px solid #cccccc;
-
-    }
-
-    button:hover {
-        background-color: #f0f0f0;
-    }
-
-    button{
-        border-right: none; 
-    }
-    
-`
 export const Black = styled.div`
     position: fixed;
     width: 100vw;
@@ -188,4 +158,7 @@ export const Btn = styled.button`
     padding: 8px 20px;
     margin-left: 20px;
     color: white;
+    &:hover {
+        background: ${(props)=> props.$color === "#2E6FF2" ? "#2a65dd" : "#fbfbfb"};
+    }
 `
