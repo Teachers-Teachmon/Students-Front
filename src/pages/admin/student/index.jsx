@@ -9,6 +9,7 @@ import {useDebounce} from "../../../hooks/useDebounce.js";
 import {searchStudent} from "../../../api/search.js";
 import {useCreateStudent} from "../../../hooks/useStudent.js";
 import {useStatusUpdate} from "../../../zustand/statusUpdate.js";
+import SearchBox from "../../../components/searchBox/index.jsx";
 
 export default function AdminStudent() {
   const navigate = useNavigate();
@@ -110,15 +111,16 @@ export default function AdminStudent() {
                   setIsGrade([false, false, true])
                 }
               }}/>
-              <S.InputBox>
-                <img src={Search} alt={"검색아이콘"} width={20}></img>
-                <S.Input
-                    type={"text"}
-                    placeholder={"학생을 입력해주세요"}
-                    value={search}
-                    onChange={(e)=>setSearch(e.target.value)}
-                />
-              </S.InputBox>
+              <SearchBox value={search} change={setSearch} target={"학생"} />
+              {/*<S.InputBox>*/}
+              {/*  <img src={Search} alt={"검색아이콘"} width={20}></img>*/}
+              {/*  <S.Input*/}
+              {/*      type={"text"}*/}
+              {/*      placeholder={"학생을 입력해주세요"}*/}
+              {/*      value={search}*/}
+              {/*      onChange={(e)=>setSearch(e.target.value)}*/}
+              {/*  />*/}
+              {/*</S.InputBox>*/}
             </div>
             <div>
               {!isPatch && <S.Btn $color = {"#2E6FF2"} onClick={()=>{setIsPatch(true)}} >수정</S.Btn>}
