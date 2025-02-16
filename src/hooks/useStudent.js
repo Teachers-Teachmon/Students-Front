@@ -1,6 +1,7 @@
 import * as API from '../api/student.js';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import {useNavigate} from "react-router-dom";
+import {useStatusUpdate} from "../zustand/statusUpdate.js";
 
 export const useGetNowStudent = (grade) =>{
     return useQuery({
@@ -57,7 +58,7 @@ export const usePostMovement = () => {
     return useMutation({
         mutationFn: (props) => API.postMovement(props),
         onSuccess: () => {
-            navigate('/manage/record');
+            navigate('/manage/record', {state : 1});
         },
         onError: (err) => {
             console.error('Movement 등록 실패:', err);
@@ -68,6 +69,7 @@ export const usePostMovement = () => {
 // Student 데이터 수정하기
 export const usePatchStudent = () => {
     const queryClient = useQueryClient();
+    const {setStatus} = useStatusUpdate();
     return useMutation({
         mutationFn: (props) => API.patchStudent(props),
         onSuccess: (data, variables) => {
@@ -84,7 +86,9 @@ export const usePatchStudent = () => {
                         )
                     };
                 });
-            }else{
+            }else if(variables.search){
+                setStatus();
+            } else{
                 queryClient.setQueryData(['locationFloor', variables.floor], (oldData)=>{
                     if (!oldData) return {};
                     return {
@@ -110,3 +114,18 @@ export const usePatchStudent = () => {
         },
     });
 };
+
+export const useCreateStudent = ()=>{
+    const {setStatus} = useStatusUpdate();
+    return useMutation({
+        mutationFn : (props)=> API.createStudent(props),
+        onSuccess:(data, variables)=>{
+            console.log(variables);
+            variables.onSuccessPatch();
+            setStatus();
+        },
+        onError:(err)=>{
+            console.log("생성 실패 ", err);
+        }
+    })
+}

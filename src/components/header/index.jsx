@@ -14,7 +14,7 @@ const MENU = [
   { label: '자습감독', path: '/supervision', logo: EyesLogo },
   { label: '학생관리', path: '/manage', logo: ListChecksLogo },
   { label: '방과후 수업', path: '/after-school', logo: BookLogo },
-  // { label: '관리자', path: '/admin', logo: AdminSetting },
+  { label: '관리자', path: '/admin', logo: AdminSetting },
 ]
 
 export default function Header() {
@@ -29,7 +29,7 @@ export default function Header() {
       <S.NavList>
         {
           MENU.map((menu, index) => {
-            const isActive = location.pathname.includes(menu.path);
+            const isActive = location.pathname.startsWith(menu.path);
             return (
               <S.MenuItem key={index} onClick={() => { navigate(menu.path) }} $active={isActive}>
                 <S.MenuIcon draggable="false" src={menu.logo} $active={isActive} />

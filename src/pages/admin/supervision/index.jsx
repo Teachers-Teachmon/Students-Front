@@ -9,13 +9,14 @@ import { useGetAssignment, useSaveAutoAssignment } from '../../../hooks/useSuper
 import { searchTeacher } from '../../../api/search.js';
 import Loading from '../../../components/loading/index.jsx';
 
-export default function SupervisionDetail() {
+export default function AdminSupervision() {
     const navigate = useNavigate();
     const [selMonth, setSelMonth] = useState(new Date().getMonth());
-    const [isEditing, setIsEditing] = useState(false);
+    const [isEditing, setIsEditing] = useState(true);
     const [selectedTeacher, setSelectedTeacher] = useState({});
     const [dropdownOpen, setDropdownOpen] = useState({});
     const [localData, setLocalData] = useState([]);
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
     const handleTeacherChange = (date, grade, timeKey, newTeacher) => {
         setSelectedTeacher(prev => ({
@@ -126,6 +127,17 @@ export default function SupervisionDetail() {
                 {Object.values(dropdownOpen).some(status => status) && (
                     <S.Black onClick={() => setDropdownOpen({})} />
                 )}
+                <S.Drawer $open={isDrawerOpen}>
+                    <S.DrawerHeader>
+                        <button onClick={() => setIsDrawerOpen(false)}>X</button>
+                        <S.DrawerHeaderTop>
+                            <p>선생님 검색과 오름차순 내림차순 구현</p>
+                        </S.DrawerHeaderTop>
+                    </S.DrawerHeader>
+                    <S.DrawerContent>
+                        <p>선생님 별 자습감독 횟수 목록 등...</p>
+                    </S.DrawerContent>
+                </S.Drawer>
                 <S.MainHeader>
                     {Object.values(dropdownOpen).some(status => status) && (
                         <S.Black onClick={() => setDropdownOpen({})} />
@@ -133,11 +145,13 @@ export default function SupervisionDetail() {
                     <h1>자습감독 일정</h1>
                     {!isEditing ? (
                         <S.Buttons>
+                            <SquareBtn name="돌아가기" status={true} On={() => { navigate(-1) }} />
                             <SquareBtn name="자습감독수정" status={true} On={() => { setIsEditing(true) }} />
                             <SquareBtn name="자습감독생성" status={true} On={() => { navigate('/supervision/create') }} />
                         </S.Buttons>
                     ) : (
                         <S.Buttons>
+                            <SquareBtn name="자습감독횟수" status={true} On={() => setIsDrawerOpen(!isDrawerOpen) } />
                             <SquareBtn name="저장하기" status={true} On={handleSave} />
                         </S.Buttons>)}
                 </S.MainHeader>
@@ -198,7 +212,7 @@ export default function SupervisionDetail() {
                                                                                 isOpen={dropdownOpen[uniqueKey] || false}
                                                                                 change={(value) => handleTeacherChange(dayData.date, gradeKey, timeKey, value)}
                                                                                 click={() => toggleDropdown(uniqueKey)}
-                                                                                 left = {gradeIndex === 2 && dayData.day.slice(-3) === "(목)"? -800 : null}
+                                                                                left={gradeIndex === 2 && dayData.day.slice(-3) === "(목)" ? -800 : null}
                                                                             />
                                                                         ) : (
                                                                             <S.TeacherName>{teacherName}</S.TeacherName>

@@ -7,10 +7,10 @@ export const MainContainer = styled.div`
 
 export const MainContent = styled.div`
     width: 85%;
-    padding: 2%;
+    padding: 2% 2% 0 2%;
     display: flex;
     flex-direction: column;
-    gap: ${(props) => (props.$isFullscreen ? "0.5rem" : "0")};
+    gap: ${(props) => (props.$isFullscreen ? "1rem" : "0")};
 `
 
 export const MainTop = styled.div`
@@ -100,42 +100,50 @@ export const GoToSupBtn = styled.button`
     }
 `
 
-export const StudentInfo = styled.div`
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-`
-
 export const StudentInfoWrap = styled.div`
-    padding: 0 3% 0 3%;
-    background-color: #EBF1FF;
+    padding: 0 1%;
     border-radius: 30px;
 `
 
 export const StudentInfoHeader = styled.div`
     display: grid;
     grid-template-columns: 1fr repeat(3, 1fr);
-    background-color: #eaf2ff;
+    justify-items: center;
     font-weight: 600;
-    font-size: 1.3rem;
-    text-align: center;
-    padding: 1rem;
+    font-size: 1.25rem;
+    padding: 0 5%;
+    margin-bottom: 3%;
     border-radius: 10px;
+
+    &:not(:first-child) {
+        text-align: center;
+    }
 `
+
+export const StudentInfoContent = styled.div`
+    background-color: #F9F9F9;
+    padding: 3% 3%;
+    border-radius: 27px;
+`;
 
 export const Row = styled.div`
     display: grid;
     grid-template-columns: 1fr repeat(3, 1fr);
-    text-align: center;
-    padding: ${(props) => (props.$isFullscreen ? "1.1rem" : "0.8rem")};
+    padding: ${(props) => (props.$isFullscreen ? "0.9rem" : "0.8rem")};
     background-color: white;
-    margin-bottom: 0.95rem;
     border-radius: 10px;
+    justify-items: center;
 
     div {
-        font-size: 1rem;
+        font-size: 1.0rem;
         color: #333;
+        &:not(:first-child) {
+            text-align: center;
+        }
+    }
+
+    &:not(:last-child) {
+        margin-bottom: 0.95rem;
     }
 `
 
@@ -176,7 +184,7 @@ export const BottomLeftContent = styled.div`
     border-radius: 20px;
     padding: 2%;
     overflow-y: auto;
-    height: 83%;
+    height: 90%;
 `
 
 export const NoChange = styled.div`
@@ -276,6 +284,96 @@ export const TeacherTable = styled.div`
         margin: 0;
         padding: 0.5rem;
     }
+`
+
+export const CalendarWrapper = styled.div`
+    margin: 0 auto;
+    width: 80%;
+    max-height: 93vh;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+`
+
+export const CalendarHeader = styled.div`
+    display: flex;
+    margin-bottom: 0.3rem;
+    position: relative;
+`;
+
+export const Control = styled.div`
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7%;
+    color: #667289;
+    font-size: 1.4rem;
+    font-weight: 600;
+    button {
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+    div {
+        text-align: center;
+        white-space: nowrap;
+    }
+`;
+
+export const Division = styled.div`
+    display: flex;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: black;
+    font-weight: normal;
+    
+    div {
+        display: flex;
+        align-items: center;
+    }
+`;
+
+export const Weekdays = styled.div`
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 0.5rem;
+`;
+
+export const Weekday = styled.div`
+    text-align: center;
+    font-weight: bold;
+    color: #6c757d;
+`;
+
+export const Calendar = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+export const Week = styled.div`
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+`;
+
+export const CalendarDay = styled.div`
+    // background-color: ${(props) => props.$isCurrentMonth ? '#fff' : '#f1f1f1'}; 나중에 전체 방과후 자습감독 API 완성되면 활성화
+    border: 1px solid #e2e2e2;
+    padding: 0.2rem 0.2rem 1rem 0.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+`
+
+export const Day = styled.div`
+    width: 1.5rem;
+    height: 1.5rem;
+    color: ${(props) => props.$isCurrentMonth ? '#333' : '#999'};
+    border-radius: 50%;
+    text-align: center;
+    line-height: 1.5rem;
+    font-weight: 600;
 `
 
 export const ModalOverlay = styled.div`

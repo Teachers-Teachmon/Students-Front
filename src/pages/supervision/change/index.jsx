@@ -190,7 +190,7 @@ export default function SupervisionChange() {
                 <S.MainContent>
                     <S.MainHeader>
                         <h1>자습감독 교체요청 <S.Warning>* 바꾸고 싶은 자신의 시간을 선택해 주세요.</S.Warning></h1>
-                        <SquareBtn name="돌아가기" status={true} On={() => { navigate('/supervision') }} />
+                        <SquareBtn name="돌아가기" status={true} On={() => { navigate(-1) }} />
                     </S.MainHeader>
                     <S.TableWrap>
                         {groupedWeeks && Object.entries(groupedWeeks).map(([weekName, dayArray], wIndex) => (

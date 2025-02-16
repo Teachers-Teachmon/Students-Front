@@ -21,11 +21,6 @@ export const Info = styled.div`
     align-items: center;
 `
 
-export const InfoBtn = styled.div`
-    display: flex;
-    justify-content: space-between;
-    gap: 14px;
-`
 
 export const Main = styled.main`
     width: 100%;
@@ -98,15 +93,6 @@ export const Section = styled.section`
     height: 90%;
     display: flex;
     flex-flow: wrap row;
-`
-
-export const NoData = styled.div`
-    border-top: 2px solid #EAECF0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 `
 
 export const Black = styled.div`

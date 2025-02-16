@@ -58,7 +58,6 @@ export default function Movement({ day , isFirst}) {
                     )
                 })}
             </S.ContentBox>
-
         </S.MovementContainer>
     )
 }

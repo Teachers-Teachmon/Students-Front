@@ -34,6 +34,36 @@ export default function StatusUpdate({changeStatus, name, nowStatus, up}) {
                         </Status>
                     </>
                 )
+            case 'TEACHER' :
+                return(
+                    <>
+                        <Status color={"#ECF3FD"} onClick={()=>changeStatus(name, "일반")}>
+                            <Circle color={"#2E6FF2"}></Circle>
+                            <StatusText color={"#2E6FF2"}>일반</StatusText>
+                        </Status>
+                        <Status color={"#FDF0EC"} onClick={()=>changeStatus(name, "관리자")}>
+                            <Circle color={"#F87067"}></Circle>
+                            <StatusText color={"#F87067"}>관리자</StatusText>
+                        </Status>
+                    </>
+                )
+            default :
+                return (
+                    <>
+                        <Status color={"#ECFDF3"} onClick={()=>changeStatus(name, "자습")}>
+                            <Circle color={"#14BA6D"}></Circle>
+                            <StatusText color={"#14BA6D"}>자습</StatusText>
+                        </Status>
+                        <Status color={"#FFF6E4"} onClick={()=>changeStatus(name, "조퇴")}>
+                            <Circle color={"#FF9000"}></Circle>
+                            <StatusText color={"#FF9000"}>조퇴</StatusText>
+                        </Status>
+                        <Status color={"#FDF0EC"} onClick={()=>changeStatus(name, "이탈")}>
+                            <Circle color={"#F87067"}></Circle>
+                            <StatusText color={"#F87067"}>이탈</StatusText>
+                        </Status>
+                    </>
+                )
         }
     }
     return (
@@ -55,7 +85,7 @@ export const StatusBox = styled.div`
     gap: 10px;
     top: 50%; 
     left: 50%;
-    transform: translate(-50%, ${(props)=>props.$up ? "-180%" : "-150%"});
+    transform: translate(-50%, ${(props)=>props.$up ? `${props.$up}%` : "-150%"});
     color: white;
     font-size: 12px;
     font-weight: 500;

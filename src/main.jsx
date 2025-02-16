@@ -16,14 +16,19 @@ import Record from './pages/manage/record'
 import Location from "./pages/manage/location";
 import Login from "./pages/login"
 import SupervisionChange from "./pages/supervision/change";
-import SupervisionCreate from './pages/supervision/create';
+import SupervisionCreate from './pages/admin/teacher/prohibition';
 import LoginLoading from './components/login';
 import Certification from "./components/check/certification.jsx";
 import NotCertification from "./components/check/notCertification.jsx";
 import Authorize from './components/check/authorize.jsx' // 인가는 개발중에 번거로울 수 있으므로 나중에 처리하기
 import Loading from "./components/loading/index.jsx";
 import Edit from './pages/after_school/edit'
-import SupervisionDetail from "./pages/supervision/detail";
+import Admin from './pages/admin/index.jsx'
+import AdminAfterSchool from './pages/admin/after-school/index.jsx'
+import AdminSelfStudy from './pages/admin/self-study/index.jsx'
+import AdminStudent from './pages/admin/student/index.jsx'
+import AdminSupervision from './pages/admin/supervision/index.jsx'
+import AdminTeacher from './pages/admin/teacher/index.jsx'
 const AccessLimits = lazy(()=>import("./pages/accessLimits/index.jsx"))
 
 const client = new QueryClient();
@@ -43,18 +48,23 @@ createRoot(document.getElementById('root')).render(
                     <Route path="/manage/record" element={<Record />} />
                     <Route path={"/manage/location"} element={<Location />} />
                     <Route path="/supervision" element={<Supervision />} />
-                    <Route path="/supervision/detail" element={<SupervisionDetail />} />
                     <Route path="/supervision/change" element={<SupervisionChange />} />
-                    <Route path="/supervision/create" element={<SupervisionCreate />} />
                     <Route path="/after-school" element={<After />} />
                     <Route path={"/limit"} element={
                         <Suspense fallback={<Loading />}>
                             <AccessLimits />
                         </Suspense>
                     } />
-                    {/*<Route element={<Authorize />}>*/}
-                        <Route path="/after-school/edit" element={<Edit />} />
-                    {/*</Route>*/}
+                    <Route path="/admin">
+                        <Route index element={<Admin />} />
+                        <Route path="after-school" element={<AdminAfterSchool />} />
+                        <Route path="self-study" element={<AdminSelfStudy />} />
+                        <Route path="student" element={<AdminStudent />} />
+                        <Route path="supervision" element={<AdminSupervision />} />
+                        <Route path="teacher" element={<AdminTeacher />} />
+                        <Route path="teacher/prohibition" element={<SupervisionCreate />} />
+                    </Route>
+                    <Route path="/after-school/edit" element={<Edit />} />
                 </Route>
             </Routes>
         </BrowserRouter>

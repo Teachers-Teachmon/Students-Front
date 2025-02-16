@@ -11,6 +11,40 @@ export const MainWrap = styled.div`
     margin: 0 auto;
 `
 
+export const Drawer = styled.div`
+  position: fixed;
+  top: 0;
+  left: ${({ $open }) => ($open ? '0' : '-300px')}; 
+  width: 300px;
+  height: 100vh;
+  background-color: #fff;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+  transition: left 0.3s ease;
+  z-index: 999;
+`;
+
+export const DrawerHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    align-self: flex-end;
+  }
+`;
+
+export const DrawerHeaderTop = styled.div`
+`;
+
+export const DrawerContent = styled.div`
+  padding: 1rem;
+`;
+
 export const MainHeader = styled.div`
     display: flex;
     justify-content: space-between;
