@@ -79,7 +79,11 @@ export default function AdminStudent() {
         <S.Info>
           <h1>학생 관리</h1>
           <S.InfoBtn>
-            <SquareBtn name={"돌아가기"} status={true} On={() => navigate('/admin')} />
+            <SquareBtn name={"돌아가기"} status={true} On={() => {
+              if(isPatch) {
+                if(confirm("정말로 이동하시겠습니까?")) navigate("/admin")
+              }else navigate('/admin')
+            }} />
           </S.InfoBtn>
         </S.Info>
         <S.Main>

@@ -47,7 +47,7 @@ export const MainNav = styled.div`
 `
 export const InputBox= styled.div`
     border: 1px solid #ccc;
-    width: 50%;
+    width: 35%;
     border-radius: 8px;
     display: flex;
     justify-content: center;
