@@ -9,7 +9,7 @@ import {getTeacher} from "../../../api/teacher.js";
 import {usePatchTeacher} from "../../../hooks/useTeacher.js";
 import {useStatusUpdate} from "../../../zustand/statusUpdate.js";
 import StatusUpdate from "../../../components/status-update/index.jsx";
-import UpVersion from "../../../assets/UpVersion.svg";
+import UpVersion from "../../../assets/upVersion.svg";
 import DownVersion from "../../../assets/DownVersion.svg";
 
 export default function AdminTeacher() {
