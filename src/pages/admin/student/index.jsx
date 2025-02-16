@@ -128,7 +128,7 @@ export default function AdminStudent() {
               <S.Box $length={110}>학번 / 이름</S.Box>
             </S.Standard>
             <S.ContentBox>
-              {/*<S.NoData>데이터가 없습니다</S.NoData>*/}
+              {Object.keys(value).length === 0 && <S.NoData>데이터가 없습니다</S.NoData> }
               {value && Object.keys(value).map((item)=>{
                 if(isPatch)
                   return(
