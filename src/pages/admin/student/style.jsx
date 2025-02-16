@@ -100,6 +100,9 @@ export const Box2 = styled.p`
     font-weight: 500;
     color: #667085;
     width: ${(props)=>props.$length}px;
+    & > p{
+        width: 40px;
+    }
 `
 export const NoData = styled.div`
     width: 100%;

@@ -112,15 +112,6 @@ export default function AdminStudent() {
                 }
               }}/>
               <SearchBox value={search} change={setSearch} target={"학생"} />
-              {/*<S.InputBox>*/}
-              {/*  <img src={Search} alt={"검색아이콘"} width={20}></img>*/}
-              {/*  <S.Input*/}
-              {/*      type={"text"}*/}
-              {/*      placeholder={"학생을 입력해주세요"}*/}
-              {/*      value={search}*/}
-              {/*      onChange={(e)=>setSearch(e.target.value)}*/}
-              {/*  />*/}
-              {/*</S.InputBox>*/}
             </div>
             <div>
               {!isPatch && <S.Btn $color = {"#2E6FF2"} onClick={()=>{setIsPatch(true)}} >수정</S.Btn>}
@@ -162,7 +153,7 @@ export default function AdminStudent() {
                 return(
                       <S.Content key={item}>
                         <S.UnBox></S.UnBox>
-                        <S.Box2 $length={110}>{value[item].number} {value[item].name}</S.Box2>
+                        <S.Box2  style={{display:'flex'}} $length={110}><p>{value[item].number}</p>{value[item].name}</S.Box2>
                       </S.Content>
                 )
               })}

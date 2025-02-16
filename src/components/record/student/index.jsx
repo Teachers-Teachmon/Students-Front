@@ -9,6 +9,7 @@ export default function Student({ data }) {
     const [isOpen, setIsOpen] = useState(data.length ? data.map(() => false) : [])
     const [isOpen2, setIsOpen2] = useState(data.length ? data.map(() => false) : [])
     const {mutate : patchStudent} = usePatchStudent();
+    const [isModal, setIsModal] = useState(false);
     useEffect(() => {
         setIsCheck(data.map(() => false));
     }, [data]);
@@ -18,7 +19,10 @@ export default function Student({ data }) {
             const newState = prevState.map(() => false);
             return newState;
         });
-
+        if(status === "방과후"){
+            setIsModal(true);
+            return;
+        }
         const studentName = typeof(name) === "object" ? name : name.slice(5, 8);
         patchStudent({studentID: studentName, status: status, search:"search"})
         setAllCheck(false);
@@ -154,7 +158,7 @@ export default function Student({ data }) {
                                 </S.Box2>
 
                                 <S.Box2 $length={90}>
-                                    {isOpen2[idx] && <StatusUpdate changeStatus={changeStatus} name={item.student} up={isFirst === idx ? 58 : -160} />}
+                                    {isOpen2[idx] && <StatusUpdate changeStatus={changeStatus} name={item.student} up={isFirst === idx ? 58 : -160} left={-60} />}
                                     {item['10th_schedule'] === "방과후" ?
                                         <S.Status color={"#ECF3FD"} onClick={()=>handleIsOpen(idx, 2)}>
                                             <S.Circle color={"#2E6FF2"}></S.Circle>
