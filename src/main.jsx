@@ -64,9 +64,7 @@ createRoot(document.getElementById('root')).render(
                         <Route path="supervision" element={<AdminSupervision />} />
                         <Route path="teacher" element={<AdminTeacher />} />
                     </Route>
-                    {/*<Route element={<Authorize />}>*/}
-                        <Route path="/after-school/edit" element={<Edit />} />
-                    {/*</Route>*/}
+                    <Route path="/after-school/edit" element={<Edit />} />
                 </Route>
             </Routes>
         </BrowserRouter>
