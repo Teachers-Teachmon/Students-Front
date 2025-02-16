@@ -1,5 +1,5 @@
 import styled from "styled-components";
-export default function StatusUpdate({changeStatus, name, nowStatus, up}) {
+export default function StatusUpdate({changeStatus, name, nowStatus, up, left}) {
     const now = () =>{
         switch(nowStatus){
             case '조퇴' :
@@ -50,6 +50,10 @@ export default function StatusUpdate({changeStatus, name, nowStatus, up}) {
             default :
                 return (
                     <>
+                        <Status color={"#ECF3FD"} onClick={()=>changeStatus(name, "방과후")}>
+                            <Circle color={"#2E6FF2"}></Circle>
+                            <StatusText color={"#2E6FF2"}>방과후</StatusText>
+                        </Status>
                         <Status color={"#ECFDF3"} onClick={()=>changeStatus(name, "자습")}>
                             <Circle color={"#14BA6D"}></Circle>
                             <StatusText color={"#14BA6D"}>자습</StatusText>
@@ -67,7 +71,7 @@ export default function StatusUpdate({changeStatus, name, nowStatus, up}) {
         }
     }
     return (
-        <StatusBox $up = {up} onClick={(e) => e.stopPropagation()} >
+        <StatusBox $left = {left} $up = {up} onClick={(e) => e.stopPropagation()} >
             {now()}
         </StatusBox>
     )
@@ -85,7 +89,7 @@ export const StatusBox = styled.div`
     gap: 10px;
     top: 50%; 
     left: 50%;
-    transform: translate(-50%, ${(props)=>props.$up ? `${props.$up}%` : "-150%"});
+    transform: translate(${(props)=>props.$left ? `${props.$left}%` : "-50%"}, ${(props)=>props.$up ? `${props.$up}%` : "-150%"});
     color: white;
     font-size: 12px;
     font-weight: 500;
