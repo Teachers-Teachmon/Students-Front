@@ -15,6 +15,7 @@ import {getStudent} from "../../../api/data.js";
 import patchDay from "../../../utils/patchDay.js";
 import Write from "../../../components/modal/write/index.jsx";
 import {useStatusUpdate} from "../../../zustand/statusUpdate.js";
+import SearchBox from "../../../components/searchBox/index.jsx";
 
 export default function Record() {
     const navigate = useNavigate();
@@ -78,15 +79,7 @@ export default function Record() {
                         </div>
 
                         {isMovement[2] ?
-                            <S.InputBox>
-                                <img src={Search} alt={"검색아이콘"} width={20}></img>
-                                <S.Input
-                                    type={"text"}
-                                    placeholder={"학번을 입력해주세요"}
-                                    value={search}
-                                    onChange={(e)=>setSearch(e.target.value)}
-                                />
-                            </S.InputBox>
+                            <SearchBox value={search} change={setSearch} target={"학생"} />
                             : null}
                     </S.MainNav>
                     {isMovement[0] ? (

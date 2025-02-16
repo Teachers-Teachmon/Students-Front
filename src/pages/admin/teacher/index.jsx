@@ -2,7 +2,6 @@ import * as S from './style.jsx'
 import Header from "../../../components/header/index.jsx";
 import SquareBtn from "../../../components/button/square/index.jsx";
 import {useNavigate} from "react-router-dom";
-import Search from "../../../assets/Search.svg";
 import {useEffect, useRef, useState} from "react";
 import {useDebounce} from "../../../hooks/useDebounce.js";
 import {getTeacher} from "../../../api/teacher.js";
@@ -11,6 +10,7 @@ import {useStatusUpdate} from "../../../zustand/statusUpdate.js";
 import StatusUpdate from "../../../components/status-update/index.jsx";
 import UpVersion from "../../../assets/upVersion.svg";
 import DownVersion from "../../../assets/downVersion.svg";
+import SearchBox from "../../../components/searchBox/index.jsx";
 
 export default function AdminTeacher() {
     const navigate = useNavigate();
@@ -154,10 +154,7 @@ export default function AdminTeacher() {
         <S.Main>
             <S.MainNav>
                 <div>
-                    <S.InputBox>
-                        <img src={Search} alt={"검색아이콘"} width={20}></img>
-                        <S.Input value={search} onChange={(e)=>setSearch(e.target.value)} type={"text"} placeholder={"선생님을 입력해주세요"} />
-                    </S.InputBox>
+                    <SearchBox value={search} change={setSearch} target={"선생님"} />
                     <S.Array onClick={()=>setIsCount(!isCount)}>
                         <p>자습감독횟수</p>
                         <img width={'20%'} src={isCount ? DownVersion : UpVersion} alt={"updown"} />
