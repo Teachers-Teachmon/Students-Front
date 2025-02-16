@@ -34,6 +34,19 @@ export default function StatusUpdate({changeStatus, name, nowStatus, up}) {
                         </Status>
                     </>
                 )
+            case 'TEACHER' :
+                return(
+                    <>
+                        <Status color={"#ECF3FD"} onClick={()=>changeStatus(name, "일반")}>
+                            <Circle color={"#2E6FF2"}></Circle>
+                            <StatusText color={"#2E6FF2"}>일반</StatusText>
+                        </Status>
+                        <Status color={"#FDF0EC"} onClick={()=>changeStatus(name, "관리자")}>
+                            <Circle color={"#F87067"}></Circle>
+                            <StatusText color={"#F87067"}>관리자</StatusText>
+                        </Status>
+                    </>
+                )
             default :
                 return (
                     <>

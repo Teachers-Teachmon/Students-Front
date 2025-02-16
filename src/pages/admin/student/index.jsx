@@ -14,7 +14,7 @@ export default function AdminStudent() {
   const navigate = useNavigate();
   const [isGrade, setIsGrade] = useState([true, false, false]);
   const [search, setSearch] = useState("");
-  const debounce = useDebounce(search, 500);
+  const debounce = useDebounce(search, 200);
   const [value, setValue] = useState([]);
   const {status} = useStatusUpdate();
   useEffect(() => {

@@ -4,5 +4,6 @@ export const API_ENDPOINTS = {
     DATA : '/data',
     STUDENT:'/student',
     AFTER_SCHOOL : '/after-school',
-    SEARCH:'/search'
+    SEARCH:'/search',
+    TEACHER : '/teacher'
 };
