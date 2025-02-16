@@ -34,7 +34,9 @@ export default function After_school() {
 
     const { data: myClasses = [] } = useGetMyClasses();
 
-    const { data: classList = [] } = useGetClassList(selectedGrade, selectedDay);
+    const adjustedDay = weekDays.includes(selectedDay) ? selectedDay : "MON";
+    const { data: classList = [] } = useGetClassList(selectedGrade, adjustedDay);
+
 
     const closeModalHandler = (setModal) => {
         setModal(false);
@@ -166,7 +168,7 @@ export default function After_school() {
                         <S.ClassTopMain>
                             <S.ClassBtn>
                                 <h1>방과후 수업</h1>
-                                <Square name="방과후 설정" status={true} On={() => navigate("/after-school/edit")}/>
+                                <Square name="방과후 설정" status={true} On={() => navigate("/after-school/edit")} />
                             </S.ClassBtn>
                             <S.GradeBtn>
                                 <Circle name={"1학년"} status={grade[0]} On={() => changeGrade(0)} />
