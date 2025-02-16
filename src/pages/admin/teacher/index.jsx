@@ -10,7 +10,7 @@ import {usePatchTeacher} from "../../../hooks/useTeacher.js";
 import {useStatusUpdate} from "../../../zustand/statusUpdate.js";
 import StatusUpdate from "../../../components/status-update/index.jsx";
 import UpVersion from "../../../assets/upVersion.svg";
-import DownVersion from "../../../assets/DownVersion.svg";
+import DownVersion from "../../../assets/downVersion.svg";
 
 export default function AdminTeacher() {
     const navigate = useNavigate();
