@@ -151,7 +151,7 @@ export default function AdminSupervision() {
                         </S.Buttons>
                     ) : (
                         <S.Buttons>
-                            <SquareBtn name="자습감독횟수" status={true} On={() => { () => setIsDrawerOpen(true) }} />
+                            <SquareBtn name="자습감독횟수" status={true} On={() => setIsDrawerOpen(true) } />
                             <SquareBtn name="저장하기" status={true} On={handleSave} />
                         </S.Buttons>)}
                 </S.MainHeader>
