@@ -12,7 +12,7 @@ import Loading from '../../../components/loading/index.jsx';
 export default function AdminSupervision() {
     const navigate = useNavigate();
     const [selMonth, setSelMonth] = useState(new Date().getMonth());
-    const [isEditing, setIsEditing] = useState(true);
+    const [isEditing, setIsEditing] = useState(false);
     const [selectedTeacher, setSelectedTeacher] = useState({});
     const [dropdownOpen, setDropdownOpen] = useState({});
     const [localData, setLocalData] = useState([]);
