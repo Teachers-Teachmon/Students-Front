@@ -139,8 +139,16 @@ export default function AdminTeacher() {
         <S.Info>
             <h1>선생님 관리</h1>
             <S.InfoBtn>
-                <SquareBtn name={"돌아가기"} status={true} On={() => navigate('/admin')} />
-                <SquareBtn name={"금지날짜"} status={true} On={() => navigate('/admin/teacher/prohibition')} />
+                <SquareBtn name={"돌아가기"} status={true} On={() => {
+                    if(isPatch) {
+                        if(confirm("정말로 이동하시겠습니까?")) navigate("/admin")
+                    }else navigate('/admin')
+                }} />
+                <SquareBtn name={"금지날짜"} status={true} On={() => {
+                    if(isPatch) {
+                        if(confirm("정말로 이동하시겠습니까?")) navigate('/admin/teacher/prohibition')
+                    }else navigate('/admin/teacher/prohibition')
+                }} />
             </S.InfoBtn>
         </S.Info>
         <S.Main>
