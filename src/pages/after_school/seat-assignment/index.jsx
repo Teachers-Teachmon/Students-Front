@@ -43,15 +43,15 @@ export default function SeatAssignment() {
     const [grade, setGrade] = useState(1);
     const [notAssignedStudent, setNotAssignedStudent] = useState([
         {
-            number: 1310,
+            number: 1301,
             name: "오주현"
         },
         {
-            number: 1311,
+            number: 1302,
             name: "오주현"
         },
         {
-            number: 1312,
+            number: 1303,
             name: "오주현"
         }
     ]);
