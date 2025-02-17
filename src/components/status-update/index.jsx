@@ -1,5 +1,5 @@
 import styled from "styled-components";
-export default function StatusUpdate({changeStatus, name, nowStatus, up, left}) {
+export default function StatusUpdate({changeStatus, name, nowStatus, up, left, period}) {
     const now = () =>{
         switch(nowStatus){
             case '조퇴' :
@@ -50,7 +50,7 @@ export default function StatusUpdate({changeStatus, name, nowStatus, up, left}) 
             default :
                 return (
                     <>
-                        <Status color={"#ECF3FD"} onClick={()=>changeStatus(name, "방과후")}>
+                        <Status color={"#ECF3FD"} onClick={()=>changeStatus(name, "방과후", period)}>
                             <Circle color={"#2E6FF2"}></Circle>
                             <StatusText color={"#2E6FF2"}>방과후</StatusText>
                         </Status>
