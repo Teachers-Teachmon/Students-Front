@@ -4,6 +4,7 @@ import SquareBtn from '../../../components/button/square/index.jsx';
 import { useState } from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { useLocation } from 'react-router-dom';
 
 const STUDENT_TYPE = 'STUDENT';
 
@@ -38,7 +39,8 @@ function DropZone({ classNumber, onDropStudent, children }) {
 }
 
 export default function SeatAssignment() {
-
+    const location = useLocation();
+    const afterSchoolData = location.state || {};
     const [afterSchoolName, setAfterSchoolName] = useState('정보처리산업기사 과정형 평가 실기 JAVA(1-3)');
     const [grade, setGrade] = useState(1);
     const [notAssignedStudent, setNotAssignedStudent] = useState([
@@ -178,7 +180,7 @@ export default function SeatAssignment() {
                 <S.Content>
                     <S.Title>
                         <h1>자습공간 처리</h1>
-                        <h2>{afterSchoolName}</h2>
+                        <h2>{afterSchoolData.name}</h2>
                         <SquareBtn name="완료" status={true} On={() => { console.log("요청 보내기 그리고 나가기") }} />
                     </S.Title>
                     <S.NotAssignedStudent>
@@ -186,7 +188,7 @@ export default function SeatAssignment() {
                             <DragStudent key={student.number} student={student} onClick={() => { }} />
                         ))}
                     </S.NotAssignedStudent>
-                    <h1>{grade}학년</h1>
+                    <h1>{afterSchoolData.grade}학년</h1>
                     <S.ClassDivision>
                         {[1, 2, 3, 4].map((classNumber) => (
                             <S.ClassDivisionContent key={classNumber}>
