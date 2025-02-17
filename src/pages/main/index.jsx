@@ -168,7 +168,6 @@ export default function Main() {
                         <S.CalendarWrapper>
                             <S.CalendarHeader>
                                 <S.Division>
-                                    <div>전체 : <img src={DivisionAll} /></div>
                                     <div>방과후 : <img src={DivisionAfterSchool} /></div>
                                     <div>자습감독 : <img src={DivisionSupervision} /></div>
                                 </S.Division>
