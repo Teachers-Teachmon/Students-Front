@@ -31,6 +31,9 @@ export default function Student({ data, day }) {
         patchStudent({studentID: studentName, status: status, search:"search"})
         setAllCheck(false);
     }
+    const patchAfterSchool = (className) =>{
+        patchStudent({studentID: className, status: "AFTER_SCHOOL"})
+    }
     const handleIsOpen = (idx, isTwo)=>{
         if(isCheck[idx] === false && isCheck.some((value)=>value ===true)){
             alert("선택한 학생의 상태를 바꾸어주세요");
@@ -83,7 +86,7 @@ export default function Student({ data, day }) {
     }, [childRefs.current.length]);
     return (
         <S.StudentContainer>
-            {isModal ? <StudentUpdateAfterSchool setIsModal = {setIsModal} day={day} period={period}/> : null}
+            {isModal ? <StudentUpdateAfterSchool setIsModal = {setIsModal} day={day} period={period} patchAfterSchool={patchAfterSchool}/> : null}
             <S.Standard>
                 <div>
                     <S.UnBox>
