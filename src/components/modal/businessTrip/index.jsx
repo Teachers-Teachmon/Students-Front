@@ -29,7 +29,7 @@ export default function BusinessTrip({ closeModal, selectedClass }) {
         });
 
         closeModal();
-        navigate('/after-school/seat-assignment', { state: { grade: selectedClass.grade, name: selectedClass.name } });
+        navigate('/after-school/seat-assignment', { state: { grade: selectedClass.grade, name: selectedClass.name, branch: selectedClass.branch } });
     };
 
     return (
