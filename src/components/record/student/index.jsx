@@ -2,30 +2,37 @@ import * as S from './style.jsx'
 import {useState, useRef, useEffect} from "react";
 import StatusUpdate from "../../status-update/index.jsx";
 import {usePatchStudent} from "../../../hooks/useStudent.js";
+import StudentUpdateAfterSchool from "../../modal/student-update-after-school/index.jsx";
 
-export default function Student({ data }) {
+export default function Student({ data, day }) {
     const [isCheck, setIsCheck] = useState([]);
     const [allCheck, setAllCheck] = useState(false);
     const [isOpen, setIsOpen] = useState(data.length ? data.map(() => false) : [])
     const [isOpen2, setIsOpen2] = useState(data.length ? data.map(() => false) : [])
     const {mutate : patchStudent} = usePatchStudent();
     const [isModal, setIsModal] = useState(false);
+    const [period, setPeriod] = useState("");
     useEffect(() => {
         setIsCheck(data.map(() => false));
     }, [data]);
+
     // 상태 업데이트 하는 함수, 상태업데이트하고 다시 불러오기
-    const changeStatus= (name, status) => {
+    const changeStatus= (name, status, period) => {
         setIsOpen(prevState => {
             const newState = prevState.map(() => false);
             return newState;
         });
         if(status === "방과후"){
             setIsModal(true);
+            setPeriod(period);
             return;
         }
         const studentName = typeof(name) === "object" ? name : name.slice(5, 8);
         patchStudent({studentID: studentName, status: status, search:"search"})
         setAllCheck(false);
+    }
+    const patchAfterSchool = (className) =>{
+        patchStudent({studentID: className, status: "AFTER_SCHOOL"})
     }
     const handleIsOpen = (idx, isTwo)=>{
         if(isCheck[idx] === false && isCheck.some((value)=>value ===true)){
@@ -79,6 +86,7 @@ export default function Student({ data }) {
     }, [childRefs.current.length]);
     return (
         <S.StudentContainer>
+            {isModal ? <StudentUpdateAfterSchool setIsModal = {setIsModal} day={day} period={period} patchAfterSchool={patchAfterSchool}/> : null}
             <S.Standard>
                 <div>
                     <S.UnBox>
@@ -126,6 +134,7 @@ export default function Student({ data }) {
                                                     .map((item)=> item.student)
                                                 : item.student}
                                             up={isFirst === idx ? 58 : -160}
+                                            period = {8}
                                         />}
                                     {item['8th_schedule'] === "방과후" ?
                                         <S.Status color={"#ECF3FD"} onClick={()=>handleIsOpen(idx)}>
@@ -158,7 +167,7 @@ export default function Student({ data }) {
                                 </S.Box2>
 
                                 <S.Box2 $length={90}>
-                                    {isOpen2[idx] && <StatusUpdate changeStatus={changeStatus} name={item.student} up={isFirst === idx ? 58 : -160} left={-60} />}
+                                    {isOpen2[idx] && <StatusUpdate period = {10} changeStatus={changeStatus} name={item.student} up={isFirst === idx ? 58 : -160} left={-60} />}
                                     {item['10th_schedule'] === "방과후" ?
                                         <S.Status color={"#ECF3FD"} onClick={()=>handleIsOpen(idx, 2)}>
                                             <S.Circle color={"#2E6FF2"}></S.Circle>
