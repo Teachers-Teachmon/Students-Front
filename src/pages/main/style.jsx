@@ -389,7 +389,7 @@ export const ModalOverlay = styled.div`
 `;
 
 export const Modal = styled.div`
-    width: 50%;
+    width: 60vw;
     border-radius: 10px;
     padding: 2rem;
 `

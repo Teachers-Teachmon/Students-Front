@@ -310,7 +310,7 @@ export default function Main() {
             )}
             {isModalOpen[1] && (
                 <S.ModalOverlay onClick={() => { setIsModalOpen(prev => [prev[0], false]) }}>
-                    <S.Modal onClick={(e) => { e.stopPropagation() }}>
+                    <S.Modal onClick={() => { setIsModalOpen(prev => [prev[0], false]) }}>
                         <RequestBox closeModal={() => { setIsModalOpen(prev => [prev[0], false]) }} changeData={selectedChange} />
                     </S.Modal>
                 </S.ModalOverlay>
