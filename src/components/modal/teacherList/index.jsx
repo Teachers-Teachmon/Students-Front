@@ -58,13 +58,12 @@ export default function TeacherList({ closeModal, selectedDate }) {
 
     // const todayTeacher = {
     //     "day": "2025년 1월 8일 (수)",
+    //     "7th_teacher": "정유진/me",
     //     "self_study_teacher": {
-    //         "7th_teacher": "정유진/me",
     //         "8th_teacher": "최병준",
     //         "10th_teacher": "장나영"
     //     },
     //     "leave_seat_teacher": {
-    //         "7th_teacher": "정유진/me",
     //         "8th_teacher": "최병준",
     //         "10th_teacher": "장나영"
     //     },
@@ -112,7 +111,7 @@ export default function TeacherList({ closeModal, selectedDate }) {
                     </div>
                 </S.Header>
                 <S.Content>
-                    {(todayTeacher || todayAfterSchoolTeacher) && (
+                    {(cachedTeacher || cachedAfterSchoolTeacher ||todayTeacher || todayAfterSchoolTeacher) && (
                         <S.Table>
                             <S.TeacherListTop $tab={tab}>
                                 <span></span>
@@ -133,7 +132,22 @@ export default function TeacherList({ closeModal, selectedDate }) {
                                     <>
                                         {periods.map((item, idx) => {
                                             const { label, key } = item;
-                                            if (key === "night_teacher") {
+                                            if (key === "7th_teacher") {
+                                                const seventhStr = todayTeacher["7th_teacher"];
+                                                const { name: seventhName, isMe: isMeSeventh } = formatTeacherName(seventhStr);
+                                                return (
+                                                    <S.TeacherTable key={idx}>
+                                                        <p>{label}</p>
+                                                        <p style={{ color: isMeSeventh ? "#2E6FF2" : "", fontWeight: isMeSeventh ? "bold" : "normal" }}>
+                                                            {seventhName}
+                                                        </p>
+                                                        <p style={{ color: isMeSeventh ? "#2E6FF2" : "", fontWeight: isMeSeventh ? "bold" : "normal" }}>
+                                                            {seventhName}
+                                                        </p>
+                                                    </S.TeacherTable>
+                                                );
+                                            }
+                                            else if (key === "night_teacher") {
                                                 const nightStr = todayTeacher.night_teacher;
                                                 const { name: nightName, isMe: isMeNight } = formatTeacherName(nightStr);
                                                 return (
