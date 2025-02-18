@@ -238,7 +238,6 @@ export default function AdminSupervision() {
                                                                         isOpen={dropdownOpen[dayData.date] || false}
                                                                         change={(value) => handleTeacherChange(dayData.date, "common_teacher", "7th_teacher", value)}
                                                                         click={() => toggleDropdown(dayData.date)}
-                                                                        left={typeIndex === 2 && dayData.day.slice(-3) === "(목)" ? -800 : null}
                                                                     />
                                                                 ) : (
                                                                     <S.TeacherName>
@@ -290,7 +289,6 @@ export default function AdminSupervision() {
                                                                         isOpen={dropdownOpen[dayData.date] || false}
                                                                         change={(value) => handleTeacherChange(dayData.date, "common_teacher", "night_teacher", value)}
                                                                         click={() => toggleDropdown(dayData.date)}
-                                                                        left={typeIndex === 2 && dayData.day.slice(-3) === "(목)" ? -800 : null}
                                                                     />
                                                                 ) : (
                                                                     <S.TeacherName>
