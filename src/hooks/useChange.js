@@ -12,12 +12,12 @@ export const useGetMonthlySupervision = (month) => {
     })
 }
 
-export const useGetFixedTeachers = (date, grade, period) => {
-    console.log(date, grade, period);
+export const useGetFixedTeachers = (date, type, period) => {
+    console.log(date, type, period);
     return useQuery({
-        queryKey: ['getFixedTeachers', date, grade, period],
+        queryKey: ['getFixedTeachers', date, type, period],
         queryFn: async () => {
-            const res = await API.getFixedTeachers(date, grade, period);
+            const res = await API.getFixedTeachers(date, type, period);
             return res.data || [];
         }
     })

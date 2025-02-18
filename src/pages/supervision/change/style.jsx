@@ -95,14 +95,14 @@ export const TableRight = styled.div`
 
 export const TableRightHeader = styled.div`
     display: flex;
-    gap: 10px;
     margin-top: 1.7rem;
-
+    justify-content: center;
+    gap: 1rem;
     div {
-        white-space: nowrap;
         background-color: #EBF1FF;
-        padding: 0.6rem 1rem;
+        padding: 0.6rem 1.5rem;
         border-radius: 10px;
+        white-space: nowrap;
     }
 `;
 
@@ -184,7 +184,7 @@ export const ModalButtons = styled.div`
 
 export const TeacherList = styled.div`
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 0.4rem;
     text-align: center;
     font-size: 1.1rem;

@@ -214,28 +214,35 @@ export default function Main() {
                                 {changeDay && changeDay.map((data) => {
                                     const senderInfo = data.sender.teacher.split('/');
                                     const recipientInfo = data.recipient.teacher.split('/');
+                                    
+                                    const convertType = (type) => {
+                                        if (type === "SELF_STUDY_SUPERVISION") return "자습";
+                                        if (type === "LEAVE_SEAT_SUPERVISION") return "이석";
+                                        if (type === "NIGHT_SUPERVISION") return "야간";
+                                        if (type === "COMMON_SUPERVISION") return "공통";
+                                    }
 
                                     const leftName = data.toMe ? "(나)" : `(${recipientInfo[0]} 선생님)`;
                                     const leftDay = data.toMe ? data.recipient.day : data.sender.day;
                                     const leftPeriod = data.toMe ? data.recipient.period : data.sender.period;
-                                    const leftGrade = data.toMe ? data.recipient.grade : data.sender.grade;
+                                    const leftType = data.toMe ? convertType(data.recipient.type) : convertType(data.sender.type);
 
                                     const rightName = data.toMe ? `(${senderInfo[0]} 선생님)` : "(나)";
                                     const rightDay = data.toMe ? data.sender.day : data.recipient.day;
                                     const rightPeriod = data.toMe ? data.sender.period : data.recipient.period;
-                                    const rightGrade = data.toMe ? data.sender.grade : data.recipient.grade;
+                                    const rightType = data.toMe ? convertType(data.sender.type) : convertType(data.recipient.type);
 
                                     return (
                                         <S.ChangeCard key={data.changeId} style={{ backgroundColor: data.toMe ? "#C8DBFF" : data.result === "ACCEPTED" ? "#72FAAA" : data.result === "REJECTED" ? "#FF938C" : "" }}>
                                             <S.ChangeWrap>
                                                 <S.ChangeSide>
                                                     <p>{leftName}</p>
-                                                    <p>{leftDay} {leftPeriod} {leftGrade}학년</p>
+                                                    <p>{leftDay} {leftPeriod} {leftType}</p>
                                                 </S.ChangeSide>
                                                 <S.RotateIcon src={Rotate} />
                                                 <S.ChangeSide>
                                                     <p>{rightName}</p>
-                                                    <p>{rightDay} {rightPeriod} {rightGrade}학년</p>
+                                                    <p>{rightDay} {rightPeriod} {rightType}</p>
                                                 </S.ChangeSide>
                                             </S.ChangeWrap>
                                             <S.DetailButton onClick={() => { setIsModalOpen(prev => [prev[0], true]); setSelectedChange(data) }}>자세히 보기</S.DetailButton>

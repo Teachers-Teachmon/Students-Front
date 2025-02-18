@@ -16,11 +16,11 @@ export const getMonthlySupervision = async (month) => {
     }
 }
 
-export const getFixedTeachers = async (date, grade, period) => {
-    console.log(date, grade, period);
+export const getFixedTeachers = async (date, type, period) => {
+    console.log(date, type, period);
     try {
         const res = await axiosInstance.get(`${API_ENDPOINTS.CHANGE}/static`, {
-            params: { date, grade, period }
+            params: { date, type, period }
         });
         if (res.status !== 200 && res.status !== 201) {
             return Promise.reject({
