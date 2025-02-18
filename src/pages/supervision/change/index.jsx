@@ -182,6 +182,13 @@ export default function SupervisionChange() {
         });
     };
 
+    const convertType = (type) => {
+        if (type === "self_study_teacher") return "SELF_STUDY_SUPERVISION";
+        if (type === "leave_seat_teacher") return "LEAVE_SEAT_SUPERVISION";
+        if (type === "night_teacher") return "NIGHT_SUPERVISION";
+        if (type === "common_teacher") return "COMMON_SUPERVISION";
+    }
+
     return (
         <S.Wrapper>
             <Header />
@@ -238,7 +245,7 @@ export default function SupervisionChange() {
                                                                 const teacherInfo = dayData[classKey];
                                                                 const teacherName = teacherInfo ? teacherInfo.split('/')[0] : "X";
                                                                 const uniqueKey = `${dayData.day}-${typeKey}-${classKey}-${dayData.date}`;
-                                                                const compareKey = `${uniqueKey.slice(-10)}-${uniqueKey.split('-')[1]}-${uniqueKey.split('-')[2]}`;
+                                                                const compareKey = `${uniqueKey.slice(-10)}-${convertType(uniqueKey.split('-')[1])}-${uniqueKey.split('-')[2]}`;
 
                                                                 return (
                                                                     <>
@@ -286,16 +293,11 @@ export default function SupervisionChange() {
                                                             {['8th_teacher', '10th_teacher'].map((classKey) =>
                                                                 ['self_study_teacher', 'leave_seat_teacher',].map((typeKey) => {
                                                                     if (dayData.empty) return <div key={`${dayData.day}-${typeKey}`} style={{ visibility: "hidden" }} />;
-                                                                    const convertType = (type) => {
-                                                                        if (type === "self_study_teacher") return "SELF_STUDY_SUPERVISION";
-                                                                        if (type === "leave_seat_teacher") return "LEAVE_SEAT_SUPERVISION";
-                                                                        if (type === "night_teacher") return "NIGHT_SUPERVISION";
-                                                                        if (type === "common_teacher") return "COMMON_SUPERVISION";
-                                                                    } 
+                                                                    
                                                                     const teacherInfo = dayData?.[typeKey]?.[classKey];
                                                                     const teacherName = teacherInfo ? teacherInfo.split('/')[0] : "X";
                                                                     const uniqueKey = `${dayData.day}-${typeKey}-${classKey}-${dayData.date}`;
-                                                                    const compareKey = `${uniqueKey.slice(-10)}-${uniqueKey.split('-')[1]}-${uniqueKey.split('-')[2]}`;
+                                                                    const compareKey = `${uniqueKey.slice(-10)}-${convertType(uniqueKey.split('-')[1])}-${uniqueKey.split('-')[2]}`;
 
                                                                     return (
                                                                         <div
@@ -326,7 +328,7 @@ export default function SupervisionChange() {
                                                                 const teacherInfo = dayData[classKey];
                                                                 const teacherName = teacherInfo ? teacherInfo.split('/')[0] : "X";
                                                                 const uniqueKey = `${dayData.day}-${typeKey}-${classKey}-${dayData.date}`;
-                                                                const compareKey = `${uniqueKey.slice(-10)}-${uniqueKey.split('-')[1]}-${uniqueKey.split('-')[2]}`;
+                                                                const compareKey = `${uniqueKey.slice(-10)}-${convertType(uniqueKey.split('-')[1])}-${uniqueKey.split('-')[2]}`;
 
                                                                 return (
                                                                     <>
