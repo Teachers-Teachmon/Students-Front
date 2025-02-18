@@ -164,14 +164,14 @@ export const TableRightHeader = styled.div`
 `;
 
 export const TableRightContent = styled.div`
-    border-left: 1px solid #C4C4C4;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    border-left: 2px solid #C4C4C4;
+    padding-left: 2rem;
+    padding-right: 2rem;
 `;
 
 export const TeacherList = styled.div`
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     text-align: center;
     font-size: 1.1rem;
 

@@ -107,10 +107,9 @@ export const TableRightHeader = styled.div`
 `;
 
 export const TableRightContent = styled.div`
-    // border-left: ${(props) => (props.$isEmpty ? '' : '1px solid #C4C4C4;')}
-    border-left: 1px solid #C4C4C4;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    border-left: 2px solid #C4C4C4;
+    padding-left: 2rem;
+    padding-right: 2rem;
 `;
 
 export const ModalOverlay = styled.div`
