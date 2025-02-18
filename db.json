@@ -3608,6 +3608,99 @@
   ],
   "leaveseatClose": {},
   "list": [{"name":"자습","id":null,"type":"SELF_STUDY"}],
+  "ranking": [
+    {
+      "name" : "정유진",
+      "teacher_id" : 1,
+      "SEVEN_PERIOD_COUNT" : 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT":3,
+      "NIGHT_COUNT":3
+    },
+    {
+      "name" : "정유진",
+      "teacher_id" : 1,
+      "SEVEN_PERIOD_COUNT" : 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT":3,
+      "NIGHT_COUNT":3
+    },
+    {
+      "name" : "정유진",
+      "teacher_id" : 1,
+      "SEVEN_PERIOD_COUNT" : 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT":3,
+      "NIGHT_COUNT":3
+    },
+    {
+      "name" : "정유진",
+      "teacher_id" : 1,
+      "SEVEN_PERIOD_COUNT" : 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT":3,
+      "NIGHT_COUNT":3
+    },
+    {
+      "name" : "정유진",
+      "teacher_id" : 1,
+      "SEVEN_PERIOD_COUNT" : 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT":3,
+      "NIGHT_COUNT":3
+    },
+    {
+      "name" : "정유진",
+      "teacher_id" : 1,
+      "SEVEN_PERIOD_COUNT" : 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT":3,
+      "NIGHT_COUNT":3
+    },
+    {
+      "name" : "정유진",
+      "teacher_id" : 1,
+      "SEVEN_PERIOD_COUNT" : 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT":3,
+      "NIGHT_COUNT":3
+    },
+    {
+      "name" : "정유진",
+      "teacher_id" : 1,
+      "SEVEN_PERIOD_COUNT" : 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT":3,
+      "NIGHT_COUNT":3
+    },
+    {
+      "name" : "정유진",
+      "teacher_id" : 1,
+      "SEVEN_PERIOD_COUNT" : 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT":3,
+      "NIGHT_COUNT":3
+    },
+    {
+      "name" : "정유진",
+      "teacher_id" : 1,
+      "SEVEN_PERIOD_COUNT" : 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT":3,
+      "NIGHT_COUNT":3
+    },
+    {
+      "name" : "정유진",
+      "teacher_id" : 1,
+      "SEVEN_PERIOD_COUNT" : 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT":3,
+      "NIGHT_COUNT":3
+    },
+    {
+      "name" : "정유진",
+      "teacher_id" : 1,
+      "SEVEN_PERIOD_COUNT" : 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT":3,
+      "NIGHT_COUNT":3
+    },
+    {
+      "name" : "정유진",
+      "teacher_id" : 1,
+      "SEVEN_PERIOD_COUNT" : 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT":3,
+      "NIGHT_COUNT":3
+    }
+  ],
   "teacher": [
     {
       "teacher_id": 1,

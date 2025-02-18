@@ -1,4 +1,4 @@
-import {useMutation} from "@tanstack/react-query";
+import {useMutation, useQuery} from "@tanstack/react-query";
 import * as API from "../api/teacher.js";
 import {useStatusUpdate} from "../zustand/statusUpdate.js";
 
@@ -15,4 +15,13 @@ export const usePatchTeacher = () => {
             console.error('수업 갈수 변경 실패:', err);
         }
     });
+}
+export const useGetRanking = (order, teacher) => {
+    return useQuery({
+        queryKey: ['getRanking', order, teacher],
+        queryFn: async () => {
+            const res = await API.getRanking(order, teacher);
+            return res.data || [];
+        }
+    })
 }

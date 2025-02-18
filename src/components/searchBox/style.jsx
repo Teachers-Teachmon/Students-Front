@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const InputBox= styled.div`
     border: 1px solid #ccc;
-    width: 35%;
+    width: ${(props)=>props.$up ? `${props.$up}%` : "35%"};
     border-radius: 8px;
     display: flex;
     justify-content: center;
