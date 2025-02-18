@@ -8,6 +8,9 @@ import SearchDropdown from '../../../components/dropdown/search/index.jsx';
 import { useGetAssignment, useSaveAutoAssignment } from '../../../hooks/useSupervision.js';
 import { searchTeacher } from '../../../api/search.js';
 import Loading from '../../../components/loading/index.jsx';
+import InputBox from "../../../components/searchBox";
+import X from '../../../assets/X.svg'
+import {useGetRanking} from '../../../hooks/useTeacher.js'
 
 export default function AdminSupervision() {
     const navigate = useNavigate();
@@ -119,6 +122,9 @@ export default function AdminSupervision() {
     }
     const groupedData = groupByWeek(localData);
 
+    const [teacher, setTeacher] = useState("");
+    const [order, setOrder] = useState("ASC");
+    const {data : Ranking } = useGetRanking(order, teacher);
     return (
         <S.Wrapper>
             {isLoading && <Loading />}
@@ -129,13 +135,40 @@ export default function AdminSupervision() {
                 )}
                 <S.Drawer $open={isDrawerOpen}>
                     <S.DrawerHeader>
-                        <button onClick={() => setIsDrawerOpen(false)}>X</button>
+                        <S.Title>
+                            <h3>자습감독 횟수</h3>
+                            <img src={X} alt={"x"}  onClick={() => setIsDrawerOpen(false)} />
+                        </S.Title>
                         <S.DrawerHeaderTop>
-                            <p>선생님 검색과 오름차순 내림차순 구현</p>
+                            <InputBox up={75} target={"선생님"} value={teacher} change={setTeacher}></InputBox>
+                            <div>
+                                <S.Order $order = {order === "ASC"} onClick={()=>setOrder("ASC")}>오름차순</S.Order>
+                                <S.Order $order = {order === "DESC"} onClick={()=>setOrder("DESC")}>내림차순</S.Order>
+                            </div>
                         </S.DrawerHeaderTop>
+                        <S.Menu>
+                            <S.MenuBox $width = {50}>순위</S.MenuBox>
+                            <S.MenuBox $width = {70}>이름</S.MenuBox>
+                            <S.MenuBox $width = {60}>7교시</S.MenuBox>
+                            <S.MenuBox $width = {80}>8~11교시</S.MenuBox>
+                            <S.MenuBox $width = {50}>야간</S.MenuBox>
+                            <S.MenuBox $width = {30}>합계</S.MenuBox>
+                        </S.Menu>
                     </S.DrawerHeader>
                     <S.DrawerContent>
-                        <p>선생님 별 자습감독 횟수 목록 등...</p>
+                        {Ranking && Ranking.map((item, idx)=>{
+                            const acc = item.SEVEN_PERIOD_COUNT + item.EIGHT_AND_ELEVEN_PERIOD_COUNT + item.NIGHT_COUNT;
+                            return(
+                                <S.TeacherBox key={item.teacher_id}>
+                                    <S.MenuBox $width = {50}>{idx+1}위</S.MenuBox>
+                                    <S.MenuBox $width = {70}>{item.name}</S.MenuBox>
+                                    <S.MenuBox $width = {60}>{item.SEVEN_PERIOD_COUNT}회</S.MenuBox>
+                                    <S.MenuBox $width = {80}>{item.EIGHT_AND_ELEVEN_PERIOD_COUNT}회</S.MenuBox>
+                                    <S.MenuBox $width = {50}>{item.NIGHT_COUNT}회</S.MenuBox>
+                                    <S.MenuBox $width = {30}>{acc}회</S.MenuBox>
+                                </S.TeacherBox>
+                            )
+                        })}
                     </S.DrawerContent>
                 </S.Drawer>
                 <S.MainHeader>
