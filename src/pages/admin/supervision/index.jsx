@@ -235,9 +235,9 @@ export default function AdminSupervision() {
                                                                         target="선생님"
                                                                         name={selectedTeacher[dayData.date]?.name || dayData["7th_teacher"]?.split("/")[0]}
                                                                         axios={(event) => searchTeacher(event)}
-                                                                        isOpen={dropdownOpen[dayData.date] || false}
+                                                                        isOpen={dropdownOpen[`${dayData.date}-common_teacher-7th_teacher-left`] || false}
                                                                         change={(value) => handleTeacherChange(dayData.date, "common_teacher", "7th_teacher", value)}
-                                                                        click={() => toggleDropdown(dayData.date)}
+                                                                        click={() => toggleDropdown(`${dayData.date}-common_teacher-7th_teacher-left`)}
                                                                     />
                                                                 ) : (
                                                                     <S.TeacherName>
@@ -253,9 +253,9 @@ export default function AdminSupervision() {
                                                                         target="선생님"
                                                                         name={selectedTeacher[dayData.date]?.name || dayData["7th_teacher"]?.split("/")[0]}
                                                                         axios={(event) => searchTeacher(event)}
-                                                                        isOpen={dropdownOpen[dayData.date] || false}
+                                                                        isOpen={dropdownOpen[`${dayData.date}-common_teacher-7th_teacher-right`] || false}
                                                                         change={(value) => handleTeacherChange(dayData.date, "common_teacher", "7th_teacher", value)}
-                                                                        click={() => toggleDropdown(dayData.date)}
+                                                                        click={() => toggleDropdown(`${dayData.date}-common_teacher-7th_teacher-right`)}
                                                                     />
                                                                 ) : (
                                                                     <S.TeacherName>
@@ -299,9 +299,9 @@ export default function AdminSupervision() {
                                                                         target="선생님"
                                                                         name={selectedTeacher[dayData.date]?.name || dayData["night_teacher"]?.split("/")[0]}
                                                                         axios={(event) => searchTeacher(event)}
-                                                                        isOpen={dropdownOpen[dayData.date] || false}
+                                                                        isOpen={dropdownOpen[`${dayData.date}-common_teacher-night_teacher-left`] || false}
                                                                         change={(value) => handleTeacherChange(dayData.date, "common_teacher", "night_teacher", value)}
-                                                                        click={() => toggleDropdown(dayData.date)}
+                                                                        click={() => toggleDropdown(`${dayData.date}-common_teacher-night_teacher-left`)}
                                                                     />
                                                                 ) : (
                                                                     <S.TeacherName>
@@ -317,9 +317,9 @@ export default function AdminSupervision() {
                                                                         target="선생님"
                                                                         name={selectedTeacher[dayData.date]?.name || dayData["night_teacher"]?.split("/")[0]}
                                                                         axios={(event) => searchTeacher(event)}
-                                                                        isOpen={dropdownOpen[dayData.date] || false}
+                                                                        isOpen={dropdownOpen[`${dayData.date}-common_teacher-night_teacher-right`] || false}
                                                                         change={(value) => handleTeacherChange(dayData.date, "common_teacher", "night_teacher", value)}
-                                                                        click={() => toggleDropdown(dayData.date)}
+                                                                        click={() => toggleDropdown(`${dayData.date}-common_teacher-night_teacher-right`)}
                                                                     />
                                                                 ) : (
                                                                     <S.TeacherName>
