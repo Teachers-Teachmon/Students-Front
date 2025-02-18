@@ -20,6 +20,13 @@ export default function RequestBox({ closeModal, changeData }) {
         mutate({ id: changeData.changeId, status });
     };
 
+    const convertType = (type) => {
+        if (type === "SELF_STUDY_SUPERVISION") return "자습";
+        if (type === "LEAVE_SEAT_SUPERVISION") return "이석";
+        if (type === "NIGHT_SUPERVISION") return "야간";
+        if (type === "COMMON_SUPERVISION") return "공통";
+    }
+
     return (
         <S.Wrapper>
             <h1 style={{
@@ -40,14 +47,14 @@ export default function RequestBox({ closeModal, changeData }) {
                     <S.ChangeSide>
                         <span>{changeData.sender.day}</span>
                         <p>{changeData.sender.period}</p>
-                        <p>{changeData.sender.grade}학년</p>
+                        <p>{convertType(changeData.sender.type)}</p>
                         <p>{changeData.sender.teacher.split('/')[0]} 선생님</p>
                     </S.ChangeSide>
                     <S.RotateIcon src={Rotate} />
                     <S.ChangeSide>
                         <span>{changeData.recipient.day}</span>
                         <p>{changeData.recipient.period}</p>
-                        <p>{changeData.recipient.grade}학년</p>
+                        <p>{convertType(changeData.recipient.type)}</p>
                         <p>{changeData.recipient.teacher.split('/')[0]} 선생님</p>
                     </S.ChangeSide>
                 </S.ChangeWrap>

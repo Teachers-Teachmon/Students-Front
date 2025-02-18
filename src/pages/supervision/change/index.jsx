@@ -44,7 +44,7 @@ export default function SupervisionChange() {
     useEffect(() => {
         if (isSelfSelected && fixedTeacherList) {
             const disabledKeys = fixedTeacherList.map(item => {
-                return `${item.date}-${item.grade === 1 ? "first_grade" : item.grade === 2 ? "second_grade" : "third_grade"}-${convertPeriodKorean(item.period)}`;
+                return `${item.date}-${item.type}-${convertPeriodKorean(item.period)}`;
             });
             setDisabledTeachers(disabledKeys);
         }
