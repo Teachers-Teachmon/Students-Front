@@ -166,7 +166,6 @@ export default function After_school() {
                         <S.ClassTopMain>
                             <S.ClassBtn>
                                 <h1>방과후 수업</h1>
-                                <Square name="방과후 설정" status={true} On={() => navigate("/after-school/edit")}/>
                             </S.ClassBtn>
                             <S.GradeBtn>
                                 <Circle name={"1학년"} status={grade[0]} On={() => changeGrade(0)} />
