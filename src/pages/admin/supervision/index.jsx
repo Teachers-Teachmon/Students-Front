@@ -248,7 +248,20 @@ export default function AdminSupervision() {
                                                         </div>
                                                         <div>
                                                             <S.TeacherName>
-                                                                {dayData["7th_teacher"] ? dayData["7th_teacher"].split("/")[0] : "X"}
+                                                                {isEditing ? (
+                                                                    <SearchDropdown
+                                                                        target="선생님"
+                                                                        name={selectedTeacher[dayData.date]?.name || dayData["7th_teacher"]?.split("/")[0]}
+                                                                        axios={(event) => searchTeacher(event)}
+                                                                        isOpen={dropdownOpen[dayData.date] || false}
+                                                                        change={(value) => handleTeacherChange(dayData.date, "common_teacher", "7th_teacher", value)}
+                                                                        click={() => toggleDropdown(dayData.date)}
+                                                                    />
+                                                                ) : (
+                                                                    <S.TeacherName>
+                                                                        {dayData["7th_teacher"] ? dayData["7th_teacher"].split("/")[0] : "X"}
+                                                                    </S.TeacherName>
+                                                                )}
                                                             </S.TeacherName>
                                                         </div>
                                                     </S.TeacherList>
@@ -299,7 +312,20 @@ export default function AdminSupervision() {
                                                         </div>
                                                         <div>
                                                             <S.TeacherName>
-                                                                {dayData["7th_teacher"] ? dayData["7th_teacher"].split("/")[0] : "X"}
+                                                                {isEditing ? (
+                                                                    <SearchDropdown
+                                                                        target="선생님"
+                                                                        name={selectedTeacher[dayData.date]?.name || dayData["night_teacher"]?.split("/")[0]}
+                                                                        axios={(event) => searchTeacher(event)}
+                                                                        isOpen={dropdownOpen[dayData.date] || false}
+                                                                        change={(value) => handleTeacherChange(dayData.date, "common_teacher", "night_teacher", value)}
+                                                                        click={() => toggleDropdown(dayData.date)}
+                                                                    />
+                                                                ) : (
+                                                                    <S.TeacherName>
+                                                                        {dayData["night_teacher"] ? dayData["night_teacher"].split("/")[0] : "X"}
+                                                                    </S.TeacherName>
+                                                                )}
                                                             </S.TeacherName>
                                                         </div>
                                                     </S.TeacherList>
