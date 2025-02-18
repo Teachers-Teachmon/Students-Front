@@ -1,6 +1,7 @@
 import * as S from './style.jsx';
 import Header from '../../components/header/index.jsx';
 import { useNavigate } from 'react-router-dom';
+import Left from '../../assets/left.svg';
 
 export default function Admin() {
 
@@ -35,7 +36,7 @@ export default function Admin() {
           <S.TodaySupervision>
             <S.TodaySupervisionTop>
               <h1>오늘의 자습감독 선생님</h1>
-              <p onClick={() => { navigate('/admin/supervision') }}>자습감독 설정 ></p>
+              <p onClick={() => { navigate('/admin/supervision') }}>자습감독 설정 <img src={Left} /></p>
             </S.TodaySupervisionTop>
             <S.TodaySupervisionMain>
               <S.TodaySupervisionMainTop>
@@ -48,13 +49,14 @@ export default function Admin() {
                   .map(({ period, studyKey, leaveKey }) => (
                     <S.Row key={period}>
                       <S.DataCell $length={19.5}>{period}</S.DataCell>
-                      <S.DataCellSelf $length={6.5}>{(dayData.self_study_teacher?.[studyKey] || dayData[studyKey])?.replace("/me", "") || "-"}</S.DataCellSelf>
-                      <S.DataCell $length={4}>{(dayData.leave_seat_teacher?.[leaveKey] || dayData[leaveKey])?.replace("/me", "") || "-"}</S.DataCell>
+                      <S.DataCellSelf $length={6.5}>{(dayData.self_study_teacher?.[studyKey] || dayData[studyKey])?.replace("/me", "")}</S.DataCellSelf>
+                      <S.DataCell $length={4}>{(dayData.leave_seat_teacher?.[leaveKey] || dayData[leaveKey])?.replace("/me", "")}</S.DataCell>
                     </S.Row>
                   ))}
               </S.SupervisionData>
           </S.TodaySupervisionMain>
         </S.TodaySupervision>
+        
       </S.AdminTop>
     </S.Content>
     </S.Container >

@@ -29,13 +29,18 @@ export const TodaySupervision = styled.div`
 
 export const TodaySupervisionTop = styled.div`
     display: flex;
-    gap: 70px;
+    gap: 67px;
     cursor: pointer;
 
     p{
         color: gray;
         font-size: 15px;
         margin-top: 20px;
+    }
+
+    img{
+        width: 8px;
+        margin-left: 5px;
     }
     
 `
