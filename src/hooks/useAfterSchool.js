@@ -141,3 +141,13 @@ export const useGetSupplementList = (day, period) => {
         enabled:false
     });
 };
+
+export const useGetDailyAfterSchool = (day) => {
+    return useQuery({
+        queryKey: ['getDailyAfterSchool', day],
+        queryFn: async () => {
+            const res = await API.getDailyAfterSchool(day);
+            return res.data || [];
+        }
+    });
+}

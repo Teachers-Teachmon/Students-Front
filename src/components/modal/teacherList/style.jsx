@@ -2,18 +2,37 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
     border-radius: 10px;
-    width: 100%;
+    width: 60vw;
     padding: 2rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
 `;
 
 export const Header = styled.div`
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
     margin-bottom: 1rem;
+
+    div:first-child {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    div:last-child {
+        display: flex;
+        gap: 1rem;
+        white-space: nowrap;
+    }
+`;
+
+export const DivisionText = styled.div`
+    margin-top: 0.3rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: ${({ $tab }) => $tab ? "#2E6FF2" : ""};
+    text-decoration: ${({ $tab }) => $tab ? "underline" : ""};
+    text-underline-offset: 0.4rem;
+    cursor: pointer;
 `;
 
 export const Wrapper = styled.div`
@@ -62,11 +81,11 @@ export const Content = styled.div`
 
 export const TeacherListTop = styled.div`
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     text-align: center;
     font-size: 1.2rem;
     font-weight: 500;
-    background-color: #C8DBFF;
+    background-color: ${({ $tab }) => !$tab ? "#BFFEBB" : "#C8DBFF"};
     padding: 1rem;
 `;
 
@@ -74,20 +93,21 @@ export const TeacherListContent = styled.div`
     display: grid;
     grid-template-rows: auto;
     grid-template-rows: 1fr 1fr 1fr;
-    text-align: center;
-    background: #FAFAFB;
 `;
 
 export const TeacherTable = styled.div`
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    text-align: center;
+    grid-template-columns: repeat(3, 1fr);
     background-color: white;
     border-bottom: 1px solid #E2E2E2;
     padding: 1rem;
+    justify-items: center;
 
     p {
         margin: 0;
         padding: 0.5rem 0;
+    }
+    p:first-child {
+        justify-self: start;
     }
 `;

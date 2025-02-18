@@ -168,7 +168,6 @@ export default function Main() {
                         <S.CalendarWrapper>
                             <S.CalendarHeader>
                                 <S.Division>
-                                    <div>전체 : <img src={DivisionAll} /></div>
                                     <div>방과후 : <img src={DivisionAfterSchool} /></div>
                                     <div>자습감독 : <img src={DivisionSupervision} /></div>
                                 </S.Division>
@@ -311,7 +310,7 @@ export default function Main() {
             )}
             {isModalOpen[1] && (
                 <S.ModalOverlay onClick={() => { setIsModalOpen(prev => [prev[0], false]) }}>
-                    <S.Modal onClick={(e) => { e.stopPropagation() }}>
+                    <S.Modal onClick={() => { setIsModalOpen(prev => [prev[0], false]) }}>
                         <RequestBox closeModal={() => { setIsModalOpen(prev => [prev[0], false]) }} changeData={selectedChange} />
                     </S.Modal>
                 </S.ModalOverlay>
