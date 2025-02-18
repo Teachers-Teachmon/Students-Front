@@ -13,271 +13,7 @@ export default function Supervision() {
     const [dropdownOpen, setDropdownOpen] = useState({});
     const [localData, setLocalData] = useState([]);
 
-    // const { data: TeacherList, isLoading, isError } = useGetAssignment(selMonth + 1);
-    const TeacherList = {
-        "data": [
-          // 2월 1주차 (월 ~ 목)
-          {
-            "week": "2월 1주차",
-            "day": "2월 3일 (월)",
-            "date": "2025-02-03",
-            "self_study_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "leave_seat_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "night_teacher": "정유진/1/me"
-          },
-          {
-            "week": "2월 1주차",
-            "day": "2월 4일 (화)",
-            "date": "2025-02-04",
-            "self_study_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "leave_seat_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "night_teacher": "정유진/1/me"
-          },
-          {
-            "week": "2월 1주차",
-            "day": "2월 5일 (수)",
-            "date": "2025-02-05",
-            "self_study_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "leave_seat_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "night_teacher": "정유진/1/me"
-          },
-          {
-            "week": "2월 1주차",
-            "day": "2월 6일 (목)",
-            "date": "2025-02-06",
-            "self_study_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "leave_seat_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "night_teacher": "정유진/1/me"
-          },
-          // 2월 2주차 (월 ~ 목)
-          {
-            "week": "2월 2주차",
-            "day": "2월 10일 (월)",
-            "date": "2025-02-10",
-            "self_study_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "leave_seat_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "night_teacher": "정유진/1/me"
-          },
-          {
-            "week": "2월 2주차",
-            "day": "2월 11일 (화)",
-            "date": "2025-02-11",
-            "self_study_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "leave_seat_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "night_teacher": "정유진/1/me"
-          },
-          {
-            "week": "2월 2주차",
-            "day": "2월 12일 (수)",
-            "date": "2025-02-12",
-            "self_study_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "leave_seat_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "night_teacher": "정유진/1/me"
-          },
-          {
-            "week": "2월 2주차",
-            "day": "2월 13일 (목)",
-            "date": "2025-02-13",
-            "self_study_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "leave_seat_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "night_teacher": "정유진/1/me"
-          },
-          // 2월 3주차 (월 ~ 목)
-          {
-            "week": "2월 3주차",
-            "day": "2월 17일 (월)",
-            "date": "2025-02-17",
-            "self_study_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "leave_seat_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "night_teacher": "정유진/1/me"
-          },
-          {
-            "week": "2월 3주차",
-            "day": "2월 18일 (화)",
-            "date": "2025-02-18",
-            "self_study_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "leave_seat_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "night_teacher": "정유진/1/me"
-          },
-          {
-            "week": "2월 3주차",
-            "day": "2월 19일 (수)",
-            "date": "2025-02-19",
-            "self_study_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "leave_seat_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "night_teacher": "정유진/1/me"
-          },
-          {
-            "week": "2월 3주차",
-            "day": "2월 20일 (목)",
-            "date": "2025-02-20",
-            "self_study_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "leave_seat_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "night_teacher": "정유진/1/me"
-          },
-          // 2월 4주차 (월 ~ 목)
-          {
-            "week": "2월 4주차",
-            "day": "2월 24일 (월)",
-            "date": "2025-02-24",
-            "self_study_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "leave_seat_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "night_teacher": "정유진/1/me"
-          },
-          {
-            "week": "2월 4주차",
-            "day": "2월 25일 (화)",
-            "date": "2025-02-25",
-            "self_study_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "leave_seat_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "night_teacher": "정유진/1/me"
-          },
-          {
-            "week": "2월 4주차",
-            "day": "2월 26일 (수)",
-            "date": "2025-02-26",
-            "self_study_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "leave_seat_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "night_teacher": "정유진/1/me"
-          },
-          {
-            "week": "2월 4주차",
-            "day": "2월 27일 (목)",
-            "date": "2025-02-27",
-            "self_study_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "leave_seat_teacher": {
-              "7th_teacher": "정유진/1/me",
-              "8th_teacher": "최병준/2",
-              "10th_teacher": "장나영/3"
-            },
-            "night_teacher": "정유진/1/me"
-          }
-        ]
-    };      
+    const { data: TeacherList, isLoading, isError } = useGetAssignment(selMonth + 1);     
     useEffect(() => {
         console.log("TeacherList 데이터:", TeacherList);
         if (TeacherList?.data) {
@@ -363,7 +99,8 @@ export default function Supervision() {
                                                         <div>자습</div>
                                                         <div>이석</div>
                                                     </S.TableRightHeader>
-                                                    {["7th_teacher", "8th_teacher", "10th_teacher"].map((_, idx) => (
+                                                    <div style={{ visibility: "hidden" }}></div>
+                                                    {["8th_teacher", "10th_teacher"].map((_, idx) => (
                                                         <S.TeacherList key={idx}>
                                                             <div style={{ visibility: "hidden" }} />
                                                             <div style={{ visibility: "hidden" }} />
@@ -378,7 +115,19 @@ export default function Supervision() {
                                                         <div>자습</div>
                                                         <div>이석</div>
                                                     </S.TableRightHeader>
-                                                    {["7th_teacher", "8th_teacher", "10th_teacher"].map((timeKey, timeIndex) => {
+                                                    <S.TeacherList>
+                                                        <div>
+                                                            <S.TeacherName>
+                                                                {dayData["7th_teacher"] ? dayData["7th_teacher"].split("/")[0] : "X"}
+                                                            </S.TeacherName>
+                                                        </div>
+                                                        <div>
+                                                            <S.TeacherName>
+                                                                {dayData["7th_teacher"] ? dayData["7th_teacher"].split("/")[0] : "X"}
+                                                            </S.TeacherName>
+                                                        </div>
+                                                    </S.TeacherList>
+                                                    {["8th_teacher", "10th_teacher"].map((timeKey, timeIndex) => {
                                                         const selfTeacher = dayData.self_study_teacher?.[timeKey];
                                                         const leaveTeacher = dayData.leave_seat_teacher?.[timeKey];
                                                         const selfName = selfTeacher ? selfTeacher.split("/")[0] : "X";
