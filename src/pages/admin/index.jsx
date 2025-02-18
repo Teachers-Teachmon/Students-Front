@@ -1,7 +1,10 @@
 import * as S from './style.jsx';
 import Header from '../../components/header/index.jsx';
+import { useNavigate } from 'react-router-dom';
 
 export default function Admin() {
+
+  let navigate = useNavigate();
 
   const dayData = {
     "day": "2025년 1월 8일 (수)",
@@ -32,7 +35,7 @@ export default function Admin() {
           <S.TodaySupervision>
             <S.TodaySupervisionTop>
               <h1>오늘의 자습감독 선생님</h1>
-              <p>자습감독 설정 ></p>
+              <p onClick={() => { navigate('/admin/supervision') }}>자습감독 설정 ></p>
             </S.TodaySupervisionTop>
             <S.TodaySupervisionMain>
               <S.TodaySupervisionMainTop>
@@ -44,9 +47,9 @@ export default function Admin() {
                 {[...periodGroups, { period: "야간", studyKey: "night_teacher", leaveKey: "night_teacher" }]
                   .map(({ period, studyKey, leaveKey }) => (
                     <S.Row key={period}>
-                      <S.DataCell $length={18}>{period}</S.DataCell>
-                      <S.DataCell $length={6}>{(dayData.self_study_teacher?.[studyKey] || dayData[studyKey])?.replace("/me", "") || "-"}</S.DataCell>
-                      <S.DataCell $length={3}>{(dayData.leave_seat_teacher?.[leaveKey] || dayData[leaveKey])?.replace("/me", "") || "-"}</S.DataCell>
+                      <S.DataCell $length={19.5}>{period}</S.DataCell>
+                      <S.DataCellSelf $length={6.5}>{(dayData.self_study_teacher?.[studyKey] || dayData[studyKey])?.replace("/me", "") || "-"}</S.DataCellSelf>
+                      <S.DataCell $length={4}>{(dayData.leave_seat_teacher?.[leaveKey] || dayData[leaveKey])?.replace("/me", "") || "-"}</S.DataCell>
                     </S.Row>
                   ))}
               </S.SupervisionData>

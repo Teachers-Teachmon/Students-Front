@@ -74,8 +74,14 @@ export const Row = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: 10px;
+    padding: 0% 5%;
 `
 
 export const DataCell = styled.div`
     width: ${(props) => props.$length}vw;
+`
+
+export const DataCellSelf = styled.div`
+    width: ${(props) => props.$length}vw;
+    color: #2E6FF2;
 `
