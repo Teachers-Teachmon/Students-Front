@@ -136,12 +136,12 @@ export default function Main() {
     }, []);
 
     const findSupervisionForDay = (year, month, day) => {
-        if (!monthlySupervisionData) return null;
-        return monthlySupervisionData.find(item => item.year === year && item.month === month && item.day === day);
-    }
+        if (!monthlySupervisionData) return [];
+        return monthlySupervisionData.filter(item => item.year === year && item.month === month && item.day === day);
+    };      
     const findAfterSchoolForDay = (year, month, day) => {
         if (!monthlyAfterSchoolData) return null;
-        return monthlyAfterSchoolData.find(item => item.year === year && item.month === month && item.day === day);
+        return monthlyAfterSchoolData.filter(item => item.year === year && item.month === month && item.day === day);
     }
     const mapPeriodToLabel = (period) => {
         if (period === "7교시") return "7";
@@ -210,17 +210,20 @@ export default function Main() {
                                             const afterSchool = findAfterSchoolForDay(year, monthC + 1, day);
 
                                             let markers = [];
-                                            if (supervision && supervision.schedule) {
-                                                markers = supervision.schedule.map(sch => (
-                                                    <S.ScheduleMarker key={sch.period} style={{ backgroundColor: "#F8FFFB", color: "#037847" }}>
-                                                        {mapPeriodToLabel(sch.period)}
-                                                    </S.ScheduleMarker>
+                                            if (supervision && supervision.length > 0) {
+                                                markers = supervision.map(item => (
+                                                  <S.ScheduleMarker
+                                                    key={`${item.schedule.period}-${item.schedule.type}`}
+                                                    style={{ backgroundColor: "#F8FFFB", color: "#037847" }}
+                                                  >
+                                                    {mapPeriodToLabel(item.schedule.period)}
+                                                  </S.ScheduleMarker>
                                                 ));
-                                            } else if (afterSchool) {
+                                            } else if (afterSchool && afterSchool.length > 0) {
                                                 markers = [
-                                                    <S.ScheduleMarker key={afterSchool.period} style={{ backgroundColor: "#ECF3FD", color: "#2E6FF2" }}>
-                                                        {mapPeriodToLabel(afterSchool.period)}
-                                                    </S.ScheduleMarker>
+                                                  <S.ScheduleMarker key={afterSchool.period} style={{ backgroundColor: "#ECF3FD", color: "#2E6FF2" }}>
+                                                    {mapPeriodToLabel(afterSchool.period)}
+                                                  </S.ScheduleMarker>
                                                 ];
                                             }
                                             return (
