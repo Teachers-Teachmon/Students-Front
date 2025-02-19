@@ -184,7 +184,7 @@ export default function Main() {
                             <S.CalendarHeader>
                                 <S.Division>
                                     <div>방과후 : <img src={DivisionAfterSchool} /></div>
-                                    <div>자습감독 : <img src={DivisionSupervision} /></div>
+                                    <div>감독 : <img src={DivisionSupervision} /></div>
                                 </S.Division>
                                 <S.Control>
                                     <button onClick={handlePrevMonth}><img src={LeftGrayButton} /></button>
@@ -211,24 +211,30 @@ export default function Main() {
 
                                             let markers = [];
                                             if (supervision && supervision.length > 0) {
-                                                markers = supervision.map(item => (
+                                                let supMarkers = supervision.map(item => (
                                                   <S.ScheduleMarker
                                                     key={`${item.schedule.period}-${item.schedule.type}`}
-                                                    style={{ backgroundColor: "#F8FFFB", color: "#037847" }}
+                                                    style={{ backgroundColor: "#C4FFC0", color: "#007728" }}
                                                   >
                                                     {mapPeriodToLabel(item.schedule.period)}
                                                   </S.ScheduleMarker>
                                                 ));
-                                            } else if (afterSchool && afterSchool.length > 0) {
-                                                markers = [
-                                                  <S.ScheduleMarker key={afterSchool.period} style={{ backgroundColor: "#ECF3FD", color: "#2E6FF2" }}>
-                                                    {mapPeriodToLabel(afterSchool.period)}
+                                                markers = markers.concat(supMarkers);
+                                            } 
+                                            if (afterSchool && afterSchool.length > 0) {
+                                                let supMarkers = afterSchool.map(item => (
+                                                  <S.ScheduleMarker
+                                                    key={item.period}
+                                                    style={{ backgroundColor: "#C8DBFF", color: "#2E6FF2" }}
+                                                  >
+                                                    {mapPeriodToLabel(item.period)}
                                                   </S.ScheduleMarker>
-                                                ];
+                                                ));
+                                                markers = markers.concat(supMarkers);
                                             }
                                             return (
-                                                <S.CalendarDay key={dateIdx} onClick={() => { handleDateClick(date) }} $isCurrentMonth={date.getMonth() === month} $supervision={supervision && supervision.length === 0 ? false : supervision} $afterSchool={afterSchool && afterSchool.length === 0 ? false : afterSchool}>
-                                                    <div>{markers}</div>
+                                                <S.CalendarDay key={dateIdx} onClick={() => { handleDateClick(date) }} $isCurrentMonth={date.getMonth() === month} >
+                                                    <span>{markers}</span>
                                                     <S.Day $isCurrentMonth={date.getMonth() === month} style={{
                                                         backgroundColor: localDate === today ? '#ECF3FD' : '',
                                                         color: localDate === today ? '#5288F4' : '',
