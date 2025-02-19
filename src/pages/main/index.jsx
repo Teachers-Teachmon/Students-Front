@@ -136,12 +136,12 @@ export default function Main() {
     }, []);
 
     const findSupervisionForDay = (year, month, day) => {
-        if (!monthlySupervisionData) return [];
-        return monthlySupervisionData.filter(item => item.year === year && item.month === month && item.day === day);
-    };      
+        if (monthlySupervisionData && monthlySupervisionData.length === 0) return null;
+        return monthlySupervisionData && monthlySupervisionData.filter(item => item.year === year && item.month === month && item.day === day);
+    };
     const findAfterSchoolForDay = (year, month, day) => {
-        if (!monthlyAfterSchoolData) return null;
-        return monthlyAfterSchoolData.filter(item => item.year === year && item.month === month && item.day === day);
+        if (monthlyAfterSchoolData && monthlyAfterSchoolData.length === 0) return null;
+        return monthlyAfterSchoolData && monthlyAfterSchoolData.filter(item => item.year === year && item.month === month && item.day === day);
     }
     const mapPeriodToLabel = (period) => {
         if (period === "7교시") return "7";
@@ -227,7 +227,7 @@ export default function Main() {
                                                 ];
                                             }
                                             return (
-                                                <S.CalendarDay key={dateIdx} onClick={() => { handleDateClick(date) }} $isCurrentMonth={date.getMonth() === month} $supervision={supervision} $afterSchool={afterSchool}>
+                                                <S.CalendarDay key={dateIdx} onClick={() => { handleDateClick(date) }} $isCurrentMonth={date.getMonth() === month} $supervision={supervision && supervision.length === 0 ? false : supervision} $afterSchool={afterSchool && afterSchool.length === 0 ? false : afterSchool}>
                                                     <div>{markers}</div>
                                                     <S.Day $isCurrentMonth={date.getMonth() === month} style={{
                                                         backgroundColor: localDate === today ? '#ECF3FD' : '',
