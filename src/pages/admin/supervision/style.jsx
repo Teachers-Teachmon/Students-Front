@@ -175,6 +175,7 @@ export const TeacherList = styled.div`
     grid-template-columns: repeat(2, 1fr);
     text-align: center;
     font-size: 1.1rem;
+    gap: 0.4rem;
 
     div {
         margin-top: 0.5rem;
