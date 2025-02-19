@@ -360,13 +360,15 @@ export const Week = styled.div`
 export const CalendarDay = styled.div`
     background: ${(props) => props.$supervision && props.$afterSchool ? 'linear-gradient(to right, #DAFFD7 50%, #C8DBFF 50%)' : props.$supervision ? '#DAFFD7' : props.$afterSchool ? '#C8DBFF' : ''};
     border: 1px solid #e2e2e2;
-    padding: 0.2rem 0.2rem 1rem 0.2rem;
+    padding: 0.2rem 0.2rem 0.2rem 0.2rem;
+    height: 6vh;
     display: flex;
     justify-content: space-between;
-    align-items: end;
+    align-items: start;
 
-    div {
-        display: flex;
+    span {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         gap: 0.1rem;
     }
 `
@@ -385,8 +387,8 @@ export const Day = styled.div`
 export const ScheduleMarker = styled.div`
   width: 20px;
   height: 20px;
-  border-radius: 50%;
   font-size: 0.9rem;
+  border-radius: 0.3125rem;
   display: flex;
   align-items: center;
   justify-content: center;
