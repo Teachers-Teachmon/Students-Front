@@ -11,7 +11,7 @@ export const Content = styled.div`
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding: 5% 3%;
+    padding: 5% 2%;
 `
 
 export const AdminTop = styled.div`
@@ -24,7 +24,7 @@ export const TodaySupervision = styled.div`
     display: flex;
     width: 40%;
     flex-direction: column;
-    margin-top: 15px;
+    margin-top: 20px;
     gap: 20px;
 `
 
@@ -95,12 +95,12 @@ export const DataCellSelf = styled.div`
 export const AdminButtons = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
 `
 
 export const AdminButtonsTop = styled.div`
     display: flex;
-    gap: 10px;
+    gap: 20px;
     width: 40%;
 `
 export const Left2Img = styled.img`
@@ -120,7 +120,7 @@ export const SelfStudySupervision = styled.div`
     button{
         width: 20px;
         background-color: #fff;
-        border: 1px solid #2E6FF2;
+        border: 1.5px solid #2E6FF2;
         border-radius: 50%;
         align-items: center;
         justify-content: center;
@@ -160,7 +160,7 @@ export const SelfStudyTime = styled.div`
     button{
         width: 20px;
         background-color: #fff;
-        border: 1px solid #2E6FF2;
+        border: 1.5px solid #2E6FF2;
         border-radius: 50%;
         align-items: center;
         justify-content: center;
@@ -200,7 +200,7 @@ export const ClassEdit = styled.div`
     button{
         width: 20px;
         background-color: #fff;
-        border: 1px solid #2E6FF2;
+        border: 1.5px solid #2E6FF2;
         border-radius: 50%;
         align-items: center;
         justify-content: center;
@@ -240,7 +240,7 @@ export const StudentManage = styled.div`
     button{
         width: 20px;
         background-color: #fff;
-        border: 1px solid #2E6FF2;
+        border: 1.5px solid #2E6FF2;
         border-radius: 50%;
         align-items: center;
         justify-content: center;
@@ -280,7 +280,7 @@ export const TeacherManage = styled.div`
     button{
         width: 20px;
         background-color: #fff;
-        border: 1px solid #2E6FF2;
+        border: 1.5px solid #2E6FF2;
         border-radius: 50%;
         align-items: center;
         justify-content: center;
@@ -309,7 +309,7 @@ export const TeacherManage = styled.div`
 
 export const AdminButtonsBottom = styled.div`
     display: flex;
-    gap: 10px;
+    gap: 20px;
     width: 40%;
 `
 
