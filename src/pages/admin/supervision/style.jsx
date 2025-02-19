@@ -152,12 +152,13 @@ export const TableRight = styled.div`
 
 export const TableRightHeader = styled.div`
     display: flex;
-    gap: 10px;
     margin-top: 1.7rem;
+    justify-content: center;
+    gap: 1rem;
 
     div {
         background-color: #EBF1FF;
-        padding: 0.6rem 1rem;
+        padding: 0.6rem 1.5rem;
         border-radius: 10px;
         white-space: nowrap;
     }
