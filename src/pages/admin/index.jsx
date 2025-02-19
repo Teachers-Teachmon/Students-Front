@@ -28,6 +28,65 @@ export default function Admin() {
     "night_teacher": "정유진/me"
   }
 
+  const supervisionTotal = [
+    {
+      "name": "정유진",
+      "teacher_id": 1,
+      "SEVEN_PERIOD_COUNT": 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 3,
+      "NIGHT_COUNT": 3
+    },
+    {
+      "name": "정유진",
+      "teacher_id": 1,
+      "SEVEN_PERIOD_COUNT": 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 3,
+      "NIGHT_COUNT": 3
+    },
+    {
+      "name": "정유진",
+      "teacher_id": 1,
+      "SEVEN_PERIOD_COUNT": 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 3,
+      "NIGHT_COUNT": 3
+    },
+    {
+      "name": "정유진",
+      "teacher_id": 1,
+      "SEVEN_PERIOD_COUNT": 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 3,
+      "NIGHT_COUNT": 3
+    },
+    {
+      "name": "정유진",
+      "teacher_id": 1,
+      "SEVEN_PERIOD_COUNT": 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 3,
+      "NIGHT_COUNT": 3
+    },
+    {
+      "name": "정유진",
+      "teacher_id": 1,
+      "SEVEN_PERIOD_COUNT": 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 3,
+      "NIGHT_COUNT": 3
+    },
+    {
+      "name": "정유진",
+      "teacher_id": 1,
+      "SEVEN_PERIOD_COUNT": 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 3,
+      "NIGHT_COUNT": 3
+    },
+    {
+      "name": "정유진",
+      "teacher_id": 1,
+      "SEVEN_PERIOD_COUNT": 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 3,
+      "NIGHT_COUNT": 3
+    }
+  ]
+
   const periodGroups = [
     { period: "7교시", studyKey: "7th_teacher", leaveKey: "7th_teacher" },
     { period: "8~9교시", studyKey: "8th_teacher", leaveKey: "8th_teacher" },
@@ -60,45 +119,75 @@ export default function Admin() {
                     </S.Row>
                   ))}
               </S.SupervisionData>
-          </S.TodaySupervisionMain>
-        </S.TodaySupervision>
-        <S.AdminButtons>
-          <S.AdminButtonsTop>
-            <S.ClassEdit onClick={() => { navigate('/admin/after-school') }}>
-              <S.AfterSchoolClass src={AfterSchoolClass} />
-              <h3>방과후 설정</h3>
-              <p>방과후 시간표 설정하기</p>
-              <button><S.Left2Img src={Left2} /></button>
-            </S.ClassEdit>
-            <S.SelfStudyTime onClick={() => { navigate('/admin/self-study') }}>
-              <S.SelfStudy src={SelfStudy} />
-              <h3>자습시간</h3>
-              <p>자습시간 설정하기</p>
-              <button><S.Left2Img src={Left2} /></button>
-            </S.SelfStudyTime>
-            <S.SelfStudySupervision onClick={() => { navigate('/admin/supervision') }}>
-              <S.Supervision src={Supervision} />
-              <h3>자습감독 일정</h3>
-              <p>자습감독 일정 설정하기</p>
-              <button><S.Left2Img src={Left2} /></button>
-            </S.SelfStudySupervision>
-          </S.AdminButtonsTop>
-          <S.AdminButtonsBottom>
-            <S.StudentManage onClick={() => { navigate('/admin/student') }}>
-              <S.Student src={Student} />
-              <h3>학생 관리</h3>
-              <p>학생들 관리하기</p>
-              <button><S.Left2Img src={Left2} /></button>
-            </S.StudentManage>
-            <S.TeacherManage onClick={() => { navigate('/admin/teacher') }}>
-              <S.Teacher src={Teacher} />
-              <h3>선생님 관리</h3>
-              <p>선생님들 관리하기</p>
-              <button><S.Left2Img src={Left2} /></button>
-            </S.TeacherManage>
-          </S.AdminButtonsBottom>
-        </S.AdminButtons>
-      </S.AdminTop>
+            </S.TodaySupervisionMain>
+          </S.TodaySupervision>
+          <S.AdminButtons>
+            <S.AdminButtonsTop>
+              <S.ClassEdit onClick={() => { navigate('/admin/after-school') }}>
+                <S.AfterSchoolClass src={AfterSchoolClass} />
+                <h3>방과후 설정</h3>
+                <p>방과후 시간표 설정하기</p>
+                <button><S.Left2Img src={Left2} /></button>
+              </S.ClassEdit>
+              <S.SelfStudyTime onClick={() => { navigate('/admin/self-study') }}>
+                <S.SelfStudy src={SelfStudy} />
+                <h3>자습시간</h3>
+                <p>자습시간 설정하기</p>
+                <button><S.Left2Img src={Left2} /></button>
+              </S.SelfStudyTime>
+              <S.SelfStudySupervision onClick={() => { navigate('/admin/supervision') }}>
+                <S.Supervision src={Supervision} />
+                <h3>자습감독 일정</h3>
+                <p>자습감독 일정 설정하기</p>
+                <button><S.Left2Img src={Left2} /></button>
+              </S.SelfStudySupervision>
+            </S.AdminButtonsTop>
+            <S.AdminButtonsBottom>
+              <S.StudentManage onClick={() => { navigate('/admin/student') }}>
+                <S.Student src={Student} />
+                <h3>학생 관리</h3>
+                <p>학생 관리하기</p>
+                <button><S.Left2Img src={Left2} /></button>
+              </S.StudentManage>
+              <S.TeacherManage onClick={() => { navigate('/admin/teacher') }}>
+                <S.Teacher src={Teacher} />
+                <h3>선생님 관리</h3>
+                <p>선생님 관리하기</p>
+                <button><S.Left2Img src={Left2} /></button>
+              </S.TeacherManage>
+            </S.AdminButtonsBottom>
+          </S.AdminButtons>
+        </S.AdminTop>
+        <S.AdminBottom>
+          <S.SupervisionTotal>
+            <S.SupervisionTotalTop>
+              <h2>자습감독 횟수</h2>
+              <p onClick={() => { navigate('/admin/supervision') }}>자세히보기 <img src={Left} /></p>
+            </S.SupervisionTotalTop>
+            <S.SupervisionTotalMain>
+              <S.SupervisionTotalGroup1>
+                {supervisionTotal.slice(0, 4).map((teacher, index) => (
+                  <S.SupervisionTotalRow key={`${teacher.teacher_id}-${index}`} $isLast={index === 3}>
+                    <S.SupervisionRank>{index + 1}위</S.SupervisionRank>
+                    <S.SupervisionTeacher>{teacher.name}</S.SupervisionTeacher>
+                    <S.SupervisionCount>{teacher.SEVEN_PERIOD_COUNT + teacher.EIGHT_AND_ELEVEN_PERIOD_COUNT + teacher.NIGHT_COUNT}회</S.SupervisionCount>
+                  </S.SupervisionTotalRow>
+                ))}
+              </S.SupervisionTotalGroup1>
+
+              <S.SupervisionTotalGroup2>
+                {supervisionTotal.slice(4, 8).map((teacher, index) => (
+                  <S.SupervisionTotalRow key={`${teacher.teacher_id}-${index + 4}`} $isLast={index === 3}>
+                    <S.SupervisionRank>{index + 5}위</S.SupervisionRank>
+                    <S.SupervisionTeacher>{teacher.name}</S.SupervisionTeacher>
+                    <S.SupervisionCount>{teacher.SEVEN_PERIOD_COUNT + teacher.EIGHT_AND_ELEVEN_PERIOD_COUNT + teacher.NIGHT_COUNT}회</S.SupervisionCount>
+                  </S.SupervisionTotalRow>
+                ))}
+              </S.SupervisionTotalGroup2>
+          </S.SupervisionTotalMain>
+
+        </S.SupervisionTotal>
+      </S.AdminBottom>
     </S.Content>
     </S.Container >
   )

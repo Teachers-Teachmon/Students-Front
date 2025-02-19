@@ -10,11 +10,18 @@ export const Content = styled.div`
     width: 87%;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    padding: 5% 2%;
+    gap: 60px;
+    padding: 4% 2%;
 `
 
 export const AdminTop = styled.div`
+    display: flex;
+    width: 100%;
+    gap: 30px;
+`
+
+
+export const AdminBottom = styled.div`
     display: flex;
     width: 100%;
     gap: 30px;
@@ -116,6 +123,7 @@ export const SelfStudySupervision = styled.div`
     height: 20vh;
     padding: 10% 15% 13% 7%;
     justify-content: center;
+    cursor: pointer;
 
     button{
         width: 20px;
@@ -156,6 +164,7 @@ export const SelfStudyTime = styled.div`
     height: 20vh;
     padding: 10% 15% 13% 7%;
     justify-content: center;
+    cursor: pointer;
 
     button{
         width: 20px;
@@ -196,6 +205,7 @@ export const ClassEdit = styled.div`
     height: 20vh;
     padding: 10% 15% 13% 7%;
     justify-content: center;
+    cursor: pointer;
 
     button{
         width: 20px;
@@ -236,6 +246,7 @@ export const StudentManage = styled.div`
     height: 20vh;
     padding: 10% 15% 13% 7%;
     justify-content: center;
+    cursor: pointer;
 
     button{
         width: 20px;
@@ -276,6 +287,7 @@ export const TeacherManage = styled.div`
     height: 20vh;
     padding: 10% 15% 13% 7%;
     justify-content: center;
+    cursor: pointer;
 
     button{
         width: 20px;
@@ -332,3 +344,67 @@ export const Teacher = styled.img`
 export const Student= styled.img`
     width: 40px;
 `
+
+export const SupervisionTotal = styled.div`
+    display: flex;
+    border: 2.5px solid #F2F3F6;
+    border-radius: 15px;
+    width: 45vw;
+    height: 35vh;
+    flex-direction: column;
+`
+
+export const SupervisionTotalTop = styled.div`
+    display: flex;
+    /* width: 50vw; */
+    height: 8vh;
+    gap: 370px;
+    justify-content: center;
+    align-items: center;
+    padding: 3% 4%;
+    border-bottom: 2.5px solid #F2F3F6;
+
+    p{
+        cursor: pointer;
+    }
+`
+
+export const SupervisionTotalGroup1 = styled.div`
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #F2F3F6;
+`
+
+export const SupervisionTotalGroup2 = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
+export const SupervisionTotalMain = styled.div`
+    display: flex;
+`;
+
+export const SupervisionTotalRow = styled.div`
+    display: flex;
+    padding: 10px;
+    width: 22.3vw;
+    height: 6.5vh;
+    align-items: center;
+    justify-content: center;
+    border-bottom: ${({ $isLast }) => ($isLast ? 'none' : '2px solid #F2F3F6')};
+`;
+
+export const SupervisionRank = styled.div`
+    width: 30px;
+    text-align: center;
+`;
+
+export const SupervisionTeacher = styled.div`
+  flex: 1;
+  text-align: center;
+`;
+
+export const SupervisionCount = styled.div`
+  width: 80px;
+  text-align: center;
+`;
