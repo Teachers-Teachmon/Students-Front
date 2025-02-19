@@ -6,7 +6,7 @@ export const MainContainer = styled.div`
 `
 
 export const MainContent = styled.div`
-    width: 85%;
+    width: 87%;
     padding: 2% 2% 0 2%;
     display: flex;
     flex-direction: column;
@@ -38,7 +38,7 @@ export const MainMiddle = styled.div`
     margin-top: 0.5%;
     display: flex;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 2rem;
     align-items: center;
 `
 
@@ -289,7 +289,7 @@ export const TeacherTable = styled.div`
 export const CalendarWrapper = styled.div`
     margin: 0 auto;
     width: 80%;
-    max-height: 93vh;
+    max-height: 35.95vh;
     overflow-y: auto;
     padding-right: 0.5rem;
 `
