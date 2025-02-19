@@ -2,6 +2,7 @@ import Header from '../../../components/header/index.jsx';
 import * as S from './style.jsx';
 import Circle from '../../../components/button/circle/index.jsx';
 import SquareBtn from '../../../components/button/square/index.jsx';
+import SupervisionCreateModal from '../../../components/modal/supervisionCreate/index.jsx';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SearchDropdown from '../../../components/dropdown/search/index.jsx';
@@ -20,6 +21,7 @@ export default function AdminSupervision() {
     const [dropdownOpen, setDropdownOpen] = useState({});
     const [localData, setLocalData] = useState([]);
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleTeacherChange = (date, type, timeKey, newTeacher) => {
         setSelectedTeacher(prev => ({
@@ -180,7 +182,7 @@ export default function AdminSupervision() {
                         <S.Buttons>
                             <SquareBtn name="돌아가기" status={true} On={() => { navigate(-1) }} />
                             <SquareBtn name="자습감독수정" status={true} On={() => { setIsEditing(true) }} />
-                            <SquareBtn name="자습감독생성" status={true} On={() => { navigate('/supervision/create') }} />
+                            <SquareBtn name="자습감독생성" status={true} On={() => { setIsModalOpen(true) }} />
                         </S.Buttons>
                     ) : (
                         <S.Buttons>
@@ -335,6 +337,13 @@ export default function AdminSupervision() {
                         </S.Table>
                     ))}
                 </S.TableWrap>
+                {isModalOpen && (
+                    <S.ModalOverlay onClick={() => { setIsModalOpen(false) }}>
+                        <S.Modal onClick={(e) => { e.stopPropagation() }}>
+                            <SupervisionCreateModal closeModal={() => { setIsModalOpen(false) }} />
+                        </S.Modal>
+                    </S.ModalOverlay>
+                )}
             </S.MainWrap>
         </S.Wrapper>
     );
