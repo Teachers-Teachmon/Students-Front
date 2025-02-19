@@ -2,6 +2,12 @@ import * as S from './style.jsx';
 import Header from '../../components/header/index.jsx';
 import { useNavigate } from 'react-router-dom';
 import Left from '../../assets/left.svg';
+import AfterSchoolClass from '../../assets/afterSchoolClass.svg';
+import Student from '../../assets/student.svg';
+import Teacher from '../../assets/teacher.svg';
+import Supervision from '../../assets/supervision.svg';
+import SelfStudy from '../../assets/selfStudy.svg';
+import Left2 from '../../assets/left2.svg';
 
 export default function Admin() {
 
@@ -56,7 +62,42 @@ export default function Admin() {
               </S.SupervisionData>
           </S.TodaySupervisionMain>
         </S.TodaySupervision>
-        
+        <S.AdminButtons>
+          <S.AdminButtonsTop>
+            <S.ClassEdit onClick={() => { navigate('/admin/after-school') }}>
+              <S.AfterSchoolClass src={AfterSchoolClass} />
+              <h3>방과후 설정</h3>
+              <p>방과후 시간표 설정하기</p>
+              <button><S.Left2Img src={Left2} /></button>
+            </S.ClassEdit>
+            <S.SelfStudyTime onClick={() => { navigate('/admin/self-study') }}>
+              <S.SelfStudy src={SelfStudy} />
+              <h3>자습시간</h3>
+              <p>자습시간 설정하기</p>
+              <button><S.Left2Img src={Left2} /></button>
+            </S.SelfStudyTime>
+            <S.SelfStudySupervision onClick={() => { navigate('/admin/supervision') }}>
+              <S.Supervision src={Supervision} />
+              <h3>자습감독 일정</h3>
+              <p>자습감독 일정 설정하기</p>
+              <button><S.Left2Img src={Left2} /></button>
+            </S.SelfStudySupervision>
+          </S.AdminButtonsTop>
+          <S.AdminButtonsBottom>
+            <S.StudentManage onClick={() => { navigate('/admin/student') }}>
+              <S.Student src={Student} />
+              <h3>학생 관리</h3>
+              <p>학생들 관리하기</p>
+              <button><S.Left2Img src={Left2} /></button>
+            </S.StudentManage>
+            <S.TeacherManage onClick={() => { navigate('/admin/teacher') }}>
+              <S.Teacher src={Teacher} />
+              <h3>선생님 관리</h3>
+              <p>선생님들 관리하기</p>
+              <button><S.Left2Img src={Left2} /></button>
+            </S.TeacherManage>
+          </S.AdminButtonsBottom>
+        </S.AdminButtons>
       </S.AdminTop>
     </S.Content>
     </S.Container >
