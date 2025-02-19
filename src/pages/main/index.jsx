@@ -136,12 +136,21 @@ export default function Main() {
     }, []);
 
     const findSupervisionForDay = (year, month, day) => {
+<<<<<<< HEAD
         if (!monthlySupervisionData) return [];
         return monthlySupervisionData.filter(item => item.year === year && item.month === month && item.day === day);
     };      
     const findAfterSchoolForDay = (year, month, day) => {
         if (!monthlyAfterSchoolData) return null;
         return monthlyAfterSchoolData.filter(item => item.year === year && item.month === month && item.day === day);
+=======
+        if (!monthlySupervisionData) return null;
+        return monthlySupervisionData.find(item => item.year === year && item.month === month && item.day === day);
+    }
+    const findAfterSchoolForDay = (year, month, day) => {
+        if (!monthlyAfterSchoolData) return null;
+        return monthlyAfterSchoolData.find(item => item.year === year && item.month === month && item.day === day);
+>>>>>>> 4171c78873b404c467cb6e64772e7be9552b96c0
     }
     const mapPeriodToLabel = (period) => {
         if (period === "7교시") return "7";
