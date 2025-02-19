@@ -137,12 +137,11 @@ export default function Main() {
 
     const findSupervisionForDay = (year, month, day) => {
         if (monthlySupervisionData && monthlySupervisionData.length === 0) return null;
-        console.log(monthlySupervisionData.filter(item => item.year === year && item.month === month && item.day === day))
-        return monthlySupervisionData.filter(item => item.year === year && item.month === month && item.day === day);
+        return monthlySupervisionData && monthlySupervisionData.filter(item => item.year === year && item.month === month && item.day === day);
     };
     const findAfterSchoolForDay = (year, month, day) => {
         if (monthlyAfterSchoolData && monthlyAfterSchoolData.length === 0) return null;
-        return monthlyAfterSchoolData.filter(item => item.year === year && item.month === month && item.day === day);
+        return monthlyAfterSchoolData && monthlyAfterSchoolData.filter(item => item.year === year && item.month === month && item.day === day);
     }
     const mapPeriodToLabel = (period) => {
         if (period === "7교시") return "7";
