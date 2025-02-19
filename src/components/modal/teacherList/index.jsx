@@ -162,8 +162,9 @@ export default function TeacherList({ closeModal, selectedDate }) {
                                                     </S.TeacherTable>
                                                 );
                                             } else {
-                                                const studyStr = todayTeacher.self_study_teacher?.[key];
-                                                const leaveStr = todayTeacher.leave_seat_teacher?.[key];
+                                                const studyStr = todayTeacher && todayTeacher.self_study_teacher ? todayTeacher.self_study_teacher[key] : "X";
+                                                const leaveStr = todayTeacher && todayTeacher.leave_seat_teacher ? todayTeacher.leave_seat_teacher[key] : "X";
+
         
                                                 const { name: studyName, isMe: isMeStudy } = formatTeacherName(studyStr);
                                                 const { name: leaveName, isMe: isMeLeave } = formatTeacherName(leaveStr);
