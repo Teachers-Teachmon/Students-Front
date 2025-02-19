@@ -62,8 +62,8 @@ export default function Main() {
     const weeks = groupDatesByWeek(startDay, endDay);
     const { data: changeDay, isLoading: isLoadingChange, isError: isErrorChange } = useGetChangeRequest();
     // const { data: todayTeacher, isLoading: isLoadingTeacher, isError: isErrorTeacher } = useGetDailySupervision(formattedDate);
-    const { data: monthlySupervisionData, isLoading: isLoadingMonthlySupervision, isError: isErrorMonthlySupervision } = useGetMonthlySupervision(month + 1);
-    const { data: monthlyAfterSchoolData, isLoading: isLoadingMonthlyAfterSchool, isError: isErrorMonthlyAfterSchool } = useGetMonthlyAfterSchool(month + 1);
+    // const { data: monthlySupervisionData, isLoading: isLoadingMonthlySupervision, isError: isErrorMonthlySupervision } = useGetMonthlySupervision(month + 1);
+    // const { data: monthlyAfterSchoolData, isLoading: isLoadingMonthlyAfterSchool, isError: isErrorMonthlyAfterSchool } = useGetMonthlyAfterSchool(month + 1);
     const { data: studentCount, isLoading: isLoadingCount, isError: isErrorCount } = useGetStudentCount();
     const { data: nextData, isLoading: isLoadingNext, isError: isErrorNext } = useGetNextSupervision();
     const { data: completeRateData, isLoading: isLoadingRate, isError: IsErrorRate } = useGetCompleteRate();
@@ -135,12 +135,44 @@ export default function Main() {
         };
     }, []);
 
+    const monthlySupervisionData = [
+        {
+            "year": 2025,
+            "month": 2,
+            "day": 18,
+            "schedule": {
+                "period": "7교시",
+                "type": "공통"
+            }
+        },
+        {
+            "year": 2025,
+            "month": 2,
+            "day": 18,
+            "schedule": {
+                "period": "8~9교시",
+                "type": "자습"
+            }
+        },
+        {
+            "year": 2025,
+            "month": 2,
+            "day": 18,
+            "schedule": {
+                "period": "10~11교시",
+                "type": "자습"
+            }
+        }
+    ];
+    const monthlyAfterSchoolData = [];
+
     const findSupervisionForDay = (year, month, day) => {
-        if (!monthlySupervisionData) return [];
+        if (monthlySupervisionData.length === 0) return null;
+        console.log(monthlySupervisionData.filter(item => item.year === year && item.month === month && item.day === day))
         return monthlySupervisionData.filter(item => item.year === year && item.month === month && item.day === day);
-    };      
+    };
     const findAfterSchoolForDay = (year, month, day) => {
-        if (!monthlyAfterSchoolData) return null;
+        if (monthlyAfterSchoolData.length === 0) return null;
         return monthlyAfterSchoolData.filter(item => item.year === year && item.month === month && item.day === day);
     }
     const mapPeriodToLabel = (period) => {
@@ -227,7 +259,7 @@ export default function Main() {
                                                 ];
                                             }
                                             return (
-                                                <S.CalendarDay key={dateIdx} onClick={() => { handleDateClick(date) }} $isCurrentMonth={date.getMonth() === month} $supervision={supervision} $afterSchool={afterSchool}>
+                                                <S.CalendarDay key={dateIdx} onClick={() => { handleDateClick(date) }} $isCurrentMonth={date.getMonth() === month} $supervision={supervision && supervision.length === 0 ? false : supervision} $afterSchool={afterSchool && afterSchool.length === 0 ? false : afterSchool}>
                                                     <div>{markers}</div>
                                                     <S.Day $isCurrentMonth={date.getMonth() === month} style={{
                                                         backgroundColor: localDate === today ? '#ECF3FD' : '',
