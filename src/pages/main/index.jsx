@@ -62,8 +62,8 @@ export default function Main() {
     const weeks = groupDatesByWeek(startDay, endDay);
     const { data: changeDay, isLoading: isLoadingChange, isError: isErrorChange } = useGetChangeRequest();
     // const { data: todayTeacher, isLoading: isLoadingTeacher, isError: isErrorTeacher } = useGetDailySupervision(formattedDate);
-    // const { data: monthlySupervisionData, isLoading: isLoadingMonthlySupervision, isError: isErrorMonthlySupervision } = useGetMonthlySupervision(month + 1);
-    // const { data: monthlyAfterSchoolData, isLoading: isLoadingMonthlyAfterSchool, isError: isErrorMonthlyAfterSchool } = useGetMonthlyAfterSchool(month + 1);
+    const { data: monthlySupervisionData, isLoading: isLoadingMonthlySupervision, isError: isErrorMonthlySupervision } = useGetMonthlySupervision(month + 1);
+    const { data: monthlyAfterSchoolData, isLoading: isLoadingMonthlyAfterSchool, isError: isErrorMonthlyAfterSchool } = useGetMonthlyAfterSchool(month + 1);
     const { data: studentCount, isLoading: isLoadingCount, isError: isErrorCount } = useGetStudentCount();
     const { data: nextData, isLoading: isLoadingNext, isError: isErrorNext } = useGetNextSupervision();
     const { data: completeRateData, isLoading: isLoadingRate, isError: IsErrorRate } = useGetCompleteRate();
@@ -134,37 +134,6 @@ export default function Main() {
             mq.removeEventListener('change', handleChange);
         };
     }, []);
-
-    const monthlySupervisionData = [
-        {
-            "year": 2025,
-            "month": 2,
-            "day": 18,
-            "schedule": {
-                "period": "7교시",
-                "type": "공통"
-            }
-        },
-        {
-            "year": 2025,
-            "month": 2,
-            "day": 18,
-            "schedule": {
-                "period": "8~9교시",
-                "type": "자습"
-            }
-        },
-        {
-            "year": 2025,
-            "month": 2,
-            "day": 18,
-            "schedule": {
-                "period": "10~11교시",
-                "type": "자습"
-            }
-        }
-    ];
-    const monthlyAfterSchoolData = [];
 
     const findSupervisionForDay = (year, month, day) => {
         if (monthlySupervisionData.length === 0) return null;
