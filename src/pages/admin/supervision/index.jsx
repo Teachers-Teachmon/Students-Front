@@ -237,7 +237,7 @@ export default function AdminSupervision() {
                                                             {isEditing ? (
                                                                 <SearchDropdown
                                                                     target="선생님"
-                                                                    name={selectedTeacher[`${dayData.date}-common_teacher-7th_teacher`]?.name || dayData["7th_teacher"]?.split("/")[0]}
+                                                                    name={selectedTeacher[`${dayData.date}-common_teacher-7th_teacher`]?.name || dayData["7th_teacher"] ? dayData["7th_teacher"].split("/")[0] : "X"}
                                                                     axios={(event) => searchTeacher(event)}
                                                                     isOpen={dropdownOpen[`${dayData.date}-common_teacher-7th_teacher-left`] || false}
                                                                     change={(value) => handleTeacherChange(dayData.date, "common_teacher", "7th_teacher", value)}
@@ -253,7 +253,7 @@ export default function AdminSupervision() {
                                                             {isEditing ? (
                                                                 <SearchDropdown
                                                                     target="선생님"
-                                                                    name={selectedTeacher[`${dayData.date}-common_teacher-7th_teacher`]?.name || dayData["7th_teacher"]?.split("/")[0]}
+                                                                    name={selectedTeacher[`${dayData.date}-common_teacher-7th_teacher`]?.name || dayData["7th_teacher"] ? dayData["7th_teacher"].split("/")[0] : "X"}
                                                                     axios={(event) => searchTeacher(event)}
                                                                     isOpen={dropdownOpen[`${dayData.date}-common_teacher-7th_teacher-right`] || false}
                                                                     change={(value) => handleTeacherChange(dayData.date, "common_teacher", "7th_teacher", value)}
@@ -297,7 +297,7 @@ export default function AdminSupervision() {
                                                             {isEditing ? (
                                                                 <SearchDropdown
                                                                     target="선생님"
-                                                                    name={selectedTeacher[`${dayData.date}-common_teacher-night_teacher`]?.name || dayData["night_teacher"]?.split("/")[0]}
+                                                                    name={selectedTeacher[`${dayData.date}-common_teacher-night_teacher`]?.name || dayData["night_teacher"] ? dayData["night_teacher"].split("/")[0] : "X"}
                                                                     axios={(event) => searchTeacher(event)}
                                                                     isOpen={dropdownOpen[`${dayData.date}-common_teacher-night_teacher-left`] || false}
                                                                     change={(value) => handleTeacherChange(dayData.date, "common_teacher", "night_teacher", value)}
@@ -313,7 +313,7 @@ export default function AdminSupervision() {
                                                             {isEditing ? (
                                                                 <SearchDropdown
                                                                     target="선생님"
-                                                                    name={selectedTeacher[`${dayData.date}-common_teacher-night_teacher`]?.name || dayData["night_teacher"]?.split("/")[0]}
+                                                                    name={selectedTeacher[`${dayData.date}-common_teacher-night_teacher`]?.name || dayData["night_teacher"] ? dayData["night_teacher"].split("/")[0] : "X"}
                                                                     axios={(event) => searchTeacher(event)}
                                                                     isOpen={dropdownOpen[`${dayData.date}-common_teacher-night_teacher-right`] || false}
                                                                     change={(value) => handleTeacherChange(dayData.date, "common_teacher", "night_teacher", value)}
