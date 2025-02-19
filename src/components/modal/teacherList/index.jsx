@@ -133,7 +133,7 @@ export default function TeacherList({ closeModal, selectedDate }) {
                                         {periods.map((item, idx) => {
                                             const { label, key } = item;
                                             if (key === "7th_teacher") {
-                                                const seventhStr = todayTeacher["7th_teacher"] ? todayTeacher["7th_teacher"] : "X";
+                                                const seventhStr = todayTeacher && todayTeacher["7th_teacher"] ? todayTeacher["7th_teacher"] : "X";
                                                 const { name: seventhName, isMe: isMeSeventh } = formatTeacherName(seventhStr);
                                                 return (
                                                     <S.TeacherTable key={idx}>
@@ -148,7 +148,7 @@ export default function TeacherList({ closeModal, selectedDate }) {
                                                 );
                                             }
                                             else if (key === "night_teacher") {
-                                                const nightStr = todayTeacher.night_teacher ? todayTeacher.night_teacher : "X";
+                                                const nightStr = todayTeacher && todayTeacher.night_teacher ? todayTeacher.night_teacher : "X";
                                                 const { name: nightName, isMe: isMeNight } = formatTeacherName(nightStr);
                                                 return (
                                                     <S.TeacherTable key={idx}>
