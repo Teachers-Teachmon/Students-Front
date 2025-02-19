@@ -148,7 +148,7 @@ export default function TeacherList({ closeModal, selectedDate }) {
                                                 );
                                             }
                                             else if (key === "night_teacher") {
-                                                const nightStr = todayTeacher.night_teacher ? todayTeacher.night_teacher : "X";
+                                                const nightStr = todayTeacher && todayTeacher.night_teacher ? todayTeacher.night_teacher : "X";
                                                 const { name: nightName, isMe: isMeNight } = formatTeacherName(nightStr);
                                                 return (
                                                     <S.TeacherTable key={idx}>
