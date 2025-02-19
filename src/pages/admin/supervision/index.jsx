@@ -18,7 +18,7 @@ export default function AdminSupervision() {
     const [isEditing, setIsEditing] = useState(false);
     const [selectedTeacher, setSelectedTeacher] = useState({});
     const [dropdownOpen, setDropdownOpen] = useState({});
-    // const [localData, setLocalData] = useState([]);
+    const [localData, setLocalData] = useState([]);
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
     const handleTeacherChange = (date, type, timeKey, newTeacher) => {
@@ -58,258 +58,14 @@ export default function AdminSupervision() {
         });
     };
 
-    // const { data: TeacherList, isLoading, isError } = useGetAssignment(selMonth + 1);
+    const { data: TeacherList, isLoading, isError } = useGetAssignment(selMonth + 1);
     const { mutate: saveAssignment } = useSaveAutoAssignment();
-    const localData = {
-        "data": [
-            {
-                "week": "2월 2주차",
-                "day": "2월 3일 (월)",
-                "date": "2025-02-03",
-                "7th_teacher": null,
-                "self_study_teacher": {
-                    "8th_teacher": null,
-                    "10th_teacher": null
-                },
-                "leave_seat_teacher": {
-                    "8th_teacher": null,
-                    "10th_teacher": null
-                },
-                "night_teacher": null
-            },
-            {
-                "week": "2월 2주차",
-                "day": "2월 4일 (화)",
-                "date": "2025-02-04",
-                "7th_teacher": null,
-                "self_study_teacher": {
-                    "8th_teacher": null,
-                    "10th_teacher": null
-                },
-                "leave_seat_teacher": {
-                    "8th_teacher": null,
-                    "10th_teacher": null
-                },
-                "night_teacher": null
-            },
-            {
-                "week": "2월 2주차",
-                "day": "2월 5일 (수)",
-                "date": "2025-02-05",
-                "7th_teacher": null,
-                "self_study_teacher": {
-                    "8th_teacher": null,
-                    "10th_teacher": null
-                },
-                "leave_seat_teacher": {
-                    "8th_teacher": null,
-                    "10th_teacher": null
-                },
-                "night_teacher": null
-            },
-            {
-                "week": "2월 2주차",
-                "day": "2월 6일 (목)",
-                "date": "2025-02-06",
-                "7th_teacher": null,
-                "self_study_teacher": {
-                    "8th_teacher": null,
-                    "10th_teacher": null
-                },
-                "leave_seat_teacher": {
-                    "8th_teacher": null,
-                    "10th_teacher": null
-                },
-                "night_teacher": null
-            },
-            {
-                "week": "2월 3주차",
-                "day": "2월 10일 (월)",
-                "date": "2025-02-10",
-                "7th_teacher": null,
-                "self_study_teacher": {
-                    "8th_teacher": null,
-                    "10th_teacher": null
-                },
-                "leave_seat_teacher": {
-                    "8th_teacher": null,
-                    "10th_teacher": null
-                },
-                "night_teacher": null
-            },
-            {
-                "week": "2월 3주차",
-                "day": "2월 11일 (화)",
-                "date": "2025-02-11",
-                "7th_teacher": null,
-                "self_study_teacher": {
-                    "8th_teacher": null,
-                    "10th_teacher": null
-                },
-                "leave_seat_teacher": {
-                    "8th_teacher": null,
-                    "10th_teacher": null
-                },
-                "night_teacher": null
-            },
-            {
-                "week": "2월 3주차",
-                "day": "2월 12일 (수)",
-                "date": "2025-02-12",
-                "7th_teacher": null,
-                "self_study_teacher": {
-                    "8th_teacher": null,
-                    "10th_teacher": null
-                },
-                "leave_seat_teacher": {
-                    "8th_teacher": null,
-                    "10th_teacher": null
-                },
-                "night_teacher": null
-            },
-            {
-                "week": "2월 3주차",
-                "day": "2월 13일 (목)",
-                "date": "2025-02-13",
-                "7th_teacher": null,
-                "self_study_teacher": {
-                    "8th_teacher": null,
-                    "10th_teacher": null
-                },
-                "leave_seat_teacher": {
-                    "8th_teacher": null,
-                    "10th_teacher": null
-                },
-                "night_teacher": null
-            },
-            {
-                "week": "2월 4주차",
-                "day": "2월 17일 (월)",
-                "date": "2025-02-17",
-                "7th_teacher": null,
-                "self_study_teacher": {
-                    "8th_teacher": null,
-                    "10th_teacher": null
-                },
-                "leave_seat_teacher": {
-                    "8th_teacher": null,
-                    "10th_teacher": null
-                },
-                "night_teacher": null
-            },
-            {
-                "week": "2월 4주차",
-                "day": "2월 18일 (화)",
-                "date": "2025-02-18",
-                "7th_teacher": "티치몬/3",
-                "self_study_teacher": {
-                    "8th_teacher": "티치몬/3",
-                    "10th_teacher": "티치몬/3"
-                },
-                "leave_seat_teacher": {
-                    "8th_teacher": "박건우/5",
-                    "10th_teacher": "박건우/5"
-                },
-                "night_teacher": null
-            },
-            {
-                "week": "2월 4주차",
-                "day": "2월 19일 (수)",
-                "date": "2025-02-19",
-                "7th_teacher": null,
-                "self_study_teacher": {
-                    "8th_teacher": null,
-                    "10th_teacher": null
-                },
-                "leave_seat_teacher": {
-                    "8th_teacher": null,
-                    "10th_teacher": null
-                },
-                "night_teacher": null
-            },
-            {
-                "week": "2월 4주차",
-                "day": "2월 20일 (목)",
-                "date": "2025-02-20",
-                "7th_teacher": null,
-                "self_study_teacher": {
-                    "8th_teacher": null,
-                    "10th_teacher": null
-                },
-                "leave_seat_teacher": {
-                    "8th_teacher": null,
-                    "10th_teacher": null
-                },
-                "night_teacher": null
-            },
-            {
-                "week": "2월 5주차",
-                "day": "2월 24일 (월)",
-                "date": "2025-02-24",
-                "7th_teacher": null,
-                "self_study_teacher": {
-                    "8th_teacher": null,
-                    "10th_teacher": null
-                },
-                "leave_seat_teacher": {
-                    "8th_teacher": null,
-                    "10th_teacher": null
-                },
-                "night_teacher": null
-            },
-            {
-                "week": "2월 5주차",
-                "day": "2월 25일 (화)",
-                "date": "2025-02-25",
-                "7th_teacher": null,
-                "self_study_teacher": {
-                    "8th_teacher": null,
-                    "10th_teacher": null
-                },
-                "leave_seat_teacher": {
-                    "8th_teacher": null,
-                    "10th_teacher": null
-                },
-                "night_teacher": null
-            },
-            {
-                "week": "2월 5주차",
-                "day": "2월 26일 (수)",
-                "date": "2025-02-26",
-                "7th_teacher": null,
-                "self_study_teacher": {
-                    "8th_teacher": null,
-                    "10th_teacher": null
-                },
-                "leave_seat_teacher": {
-                    "8th_teacher": null,
-                    "10th_teacher": null
-                },
-                "night_teacher": null
-            },
-            {
-                "week": "2월 5주차",
-                "day": "2월 27일 (목)",
-                "date": "2025-02-27",
-                "7th_teacher": null,
-                "self_study_teacher": {
-                    "8th_teacher": null,
-                    "10th_teacher": null
-                },
-                "leave_seat_teacher": {
-                    "8th_teacher": null,
-                    "10th_teacher": null
-                },
-                "night_teacher": null
-            }
-        ]
-    };
-    // useEffect(() => {
-    //     console.log("TeacherList 데이터:", TeacherList);
-    //     if (TeacherList?.data) {
-    //         setLocalData(TeacherList.data);
-    //     }
-    // }, [TeacherList]);
+    useEffect(() => {
+        console.log("TeacherList 데이터:", TeacherList);
+        if (TeacherList?.data) {
+            setLocalData(TeacherList.data);
+        }
+    }, [TeacherList]);
 
     const handleSave = () => {
         const changedData = localData.map(dayData => ({
@@ -364,14 +120,14 @@ export default function AdminSupervision() {
         });
         return grouped;
     }
-    const groupedData = groupByWeek(localData.data);
+    const groupedData = groupByWeek(localData);
 
     const [teacher, setTeacher] = useState("");
     const [order, setOrder] = useState("ASC");
     const { data: Ranking } = useGetRanking(order, teacher);
     return (
         <S.Wrapper>
-            {/* {isLoading && <Loading />} */}
+            {isLoading && <Loading />}
             <Header />
             <S.MainWrap>
                 {Object.values(dropdownOpen).some(status => status) && (
