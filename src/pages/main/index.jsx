@@ -8,12 +8,12 @@ import * as S from './style.jsx'
 import Arrow from '../../assets/Arrow.svg'
 import Rotate from '../../assets/rotate.svg';
 import { useState, useEffect } from "react";
-import { useGetCompleteRate, useGetNextSupervision } from "../../hooks/useSupervision.js";
+import { useGetMonthlySupervision, useGetCompleteRate, useGetNextSupervision } from "../../hooks/useSupervision.js";
+import { useGetMonthlyAfterSchool } from "../../hooks/useAfterSchool.js";
 import { useGetChangeRequest } from "../../hooks/useChange.js";
 import { useGetStudentCount } from "../../hooks/useStudent.js";
 import LeftGrayButton from '../../assets/LeftGrayButton.svg';
 import RightGrayButton from '../../assets/RightGrayButton.svg';
-import DivisionAll from '../../assets/DivisionAll.svg';
 import DivisionAfterSchool from '../../assets/DivisionAfterSchool.svg';
 import DivisionSupervision from '../../assets/DivisionSupervision.svg';
 
@@ -62,6 +62,8 @@ export default function Main() {
     const weeks = groupDatesByWeek(startDay, endDay);
     const { data: changeDay, isLoading: isLoadingChange, isError: isErrorChange } = useGetChangeRequest();
     // const { data: todayTeacher, isLoading: isLoadingTeacher, isError: isErrorTeacher } = useGetDailySupervision(formattedDate);
+    const { data: monthlySupervisionData, isLoading: isLoadingMonthlySupervision, isError: isErrorMonthlySupervision } = useGetMonthlySupervision(month + 1);
+    const { data: monthlyAfterSchoolData, isLoading: isLoadingMonthlyAfterSchool, isError: isErrorMonthlyAfterSchool } = useGetMonthlyAfterSchool(month + 1);
     const { data: studentCount, isLoading: isLoadingCount, isError: isErrorCount } = useGetStudentCount();
     const { data: nextData, isLoading: isLoadingNext, isError: isErrorNext } = useGetNextSupervision();
     const { data: completeRateData, isLoading: isLoadingRate, isError: IsErrorRate } = useGetCompleteRate();
@@ -81,7 +83,6 @@ export default function Main() {
             setPeriod(nextData.period || "");
         }
     }, [nextData, isLoadingNext]);
-
     useEffect(() => {
         if (!isLoadingRate && completeRateData) {
             setSupRate(completeRateData.percentage);
@@ -103,7 +104,6 @@ export default function Main() {
             new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1)
         );
     };
-
     const handleNextMonth = () => {
         setCurrentDate(
             new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1)
@@ -135,6 +135,21 @@ export default function Main() {
         };
     }, []);
 
+    const findSupervisionForDay = (year, month, day) => {
+        if (!monthlySupervisionData) return null;
+        return monthlySupervisionData.find(item => item.year === year && item.month === month && item.day === day);
+    }
+    const findAfterSchoolForDay = (year, month, day) => {
+        if (!monthlyAfterSchoolData) return null;
+        return monthlyAfterSchoolData.find(item => item.year === year && item.month === month && item.day === day);
+    }
+    const mapPeriodToLabel = (period) => {
+        if (period === "7교시") return "7";
+        if (period === "8~9교시") return "8";
+        if (period === "10~11교시") return "10";
+        if (period === "야간") return "N";
+        return "";
+    };
 
     return (
         <S.MainContainer>
@@ -188,8 +203,29 @@ export default function Main() {
                                     <S.Week key={weekIdx}>
                                         {week.map((date, dateIdx) => {
                                             const localDate = date.toLocaleDateString();
+                                            const year = date.getFullYear();
+                                            const monthC = date.getMonth();
+                                            const day = date.getDate();
+                                            const supervision = findSupervisionForDay(year, monthC + 1, day);
+                                            const afterSchool = findAfterSchoolForDay(year, monthC + 1, day);
+
+                                            let markers = [];
+                                            if (supervision && supervision.schedule) {
+                                                markers = supervision.schedule.map(sch => (
+                                                    <S.ScheduleMarker key={sch.period} style={{ backgroundColor: "#F8FFFB", color: "#037847" }}>
+                                                        {mapPeriodToLabel(sch.period)}
+                                                    </S.ScheduleMarker>
+                                                ));
+                                            } else if (afterSchool) {
+                                                markers = [
+                                                    <S.ScheduleMarker key={afterSchool.period} style={{ backgroundColor: "#ECF3FD", color: "#2E6FF2" }}>
+                                                        {mapPeriodToLabel(afterSchool.period)}
+                                                    </S.ScheduleMarker>
+                                                ];
+                                            }
                                             return (
-                                                <S.CalendarDay key={dateIdx} onClick={() => { handleDateClick(date) }} $isCurrentMonth={date.getMonth() === month}>
+                                                <S.CalendarDay key={dateIdx} onClick={() => { handleDateClick(date) }} $isCurrentMonth={date.getMonth() === month} $supervision={supervision} $afterSchool={afterSchool}>
+                                                    <div>{markers}</div>
                                                     <S.Day $isCurrentMonth={date.getMonth() === month} style={{
                                                         backgroundColor: localDate === today ? '#ECF3FD' : '',
                                                         color: localDate === today ? '#5288F4' : '',
@@ -214,7 +250,7 @@ export default function Main() {
                                 {changeDay && changeDay.map((data) => {
                                     const senderInfo = data.sender.teacher.split('/');
                                     const recipientInfo = data.recipient.teacher.split('/');
-                                    
+
                                     const convertType = (type) => {
                                         if (type === "SELF_STUDY_SUPERVISION") return "자습";
                                         if (type === "LEAVE_SEAT_SUPERVISION") return "이석";
