@@ -358,12 +358,17 @@ export const Week = styled.div`
 `;
 
 export const CalendarDay = styled.div`
-    // background-color: ${(props) => props.$isCurrentMonth ? '#fff' : '#f1f1f1'}; 나중에 전체 방과후 자습감독 API 완성되면 활성화
+    background: ${(props) => props.$supervision && props.$afterSchool ? 'linear-gradient(to right, #DAFFD7 50%, #C8DBFF 50%)' : props.$supervision ? '#DAFFD7' : props.$afterSchool ? '#C8DBFF' : ''};
     border: 1px solid #e2e2e2;
     padding: 0.2rem 0.2rem 1rem 0.2rem;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: end;
+
+    div {
+        display: flex;
+        gap: 0.1rem;
+    }
 `
 
 export const Day = styled.div`
@@ -371,10 +376,21 @@ export const Day = styled.div`
     height: 1.5rem;
     color: ${(props) => props.$isCurrentMonth ? '#333' : '#999'};
     border-radius: 50%;
-    text-align: center;
-    line-height: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-weight: 600;
 `
+
+export const ScheduleMarker = styled.div`
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 export const ModalOverlay = styled.div`
     position: fixed;

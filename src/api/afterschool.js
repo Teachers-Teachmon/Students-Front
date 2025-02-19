@@ -174,6 +174,21 @@ export const getSupplementList = async (day, period) => {
     }
 }
 
+export const getMonthlyAfterSchool = async (month) => {
+    try {
+        const res = await axiosInstance.get(`${API_ENDPOINTS.AFTER_SCHOOL}/month/${month}`);
+        if (res.status !== 200) {
+            return Promise.reject({
+                status: res.status,
+                message: res.message
+            });
+        }
+        return res;
+    } catch (err) {
+        return Promise.reject(err);
+    }
+};
+
 export const getDailyAfterSchool = async (day) => {
     try {
         const res = await axiosInstance.get(`${API_ENDPOINTS.AFTER_SCHOOL}/daily/${day}`);
