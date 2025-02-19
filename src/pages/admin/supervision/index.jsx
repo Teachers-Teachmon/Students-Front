@@ -29,15 +29,21 @@ export default function AdminSupervision() {
 
         setLocalData(prev => prev.map(dayData => {
             if (dayData.date === date) {
-                return {
-                    ...dayData,
-                    [type]: {
-                        ...dayData[type],
-                        [timeKey]: newTeacher
-                            ? `${newTeacher.name}/${newTeacher.id}`
-                            : `X/0`
+                if (type === "common_teacher") {
+                    return {
+                        ...dayData,
+                        [timeKey]: newTeacher ? `${newTeacher.name}/${newTeacher.id}` : `X/0`
                     }
-                };
+                }
+                else {
+                    return {
+                        ...dayData,
+                        [type]: {
+                            ...dayData[type],
+                            [timeKey]: newTeacher ? `${newTeacher.name}/${newTeacher.id}` : `X/0`
+                        }
+                    };
+                }
             }
             return dayData;
         }));
