@@ -3,7 +3,7 @@ import Header from "../../../components/header/index.jsx";
 import SquareBtn from "../../../components/button/square/index.jsx";
 import {useNavigate} from "react-router-dom";
 import CircleBtn from "../../../components/button/circle/index.jsx";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {useDebounce} from "../../../hooks/useDebounce.js";
 import {searchStudent} from "../../../api/search.js";
 import {useCreateStudent} from "../../../hooks/useStudent.js";
@@ -17,6 +17,7 @@ export default function AdminStudent() {
   const debounce = useDebounce(search, 200);
   const [value, setValue] = useState([]);
   const {status} = useStatusUpdate();
+  const num = useRef(0)
   useEffect(() => {
     const fetchData = async () =>{
       const data = await searchStudent(debounce);
@@ -64,7 +65,7 @@ export default function AdminStudent() {
     }
     const newValue = [];
     Object.keys(value).forEach((key) => {
-      if(isGrade[Number((String(value[key].number).slice(0, 1)))-1]) newValue[Number(key-1)] = value[key];
+      if(isGrade[Number((String(value[key].number).slice(0, 1)))-1]) newValue[num.current++] = value[key];
     });
     const grade = isGrade[0] ? 1 : isGrade[1] ? 2 : 3;
     const onSuccessPatch = () => {
