@@ -24,7 +24,7 @@ export default function Movement({ day , isFirst}) {
             <S.Standard>
                 <S.UnBox></S.UnBox>
                 <S.Box $length={110}>교시</S.Box>
-                <S.Box $length={110}>담당교사</S.Box>
+                <S.Box $length={130}>담당교사</S.Box>
                 <S.Box $length={110}>인원</S.Box>
                 <S.Box $length={200}>장소</S.Box>
                 <S.Box $length={240}>사유</S.Box>
@@ -37,7 +37,7 @@ export default function Movement({ day , isFirst}) {
                             <S.Content key={item} onClick={()=>getDetail((day), item.teacher_id, item.period)}>
                                 <S.UnBox></S.UnBox>
                                 <S.Box2 $length={110}>{item.period}</S.Box2>
-                                <S.Box2 $length={110}>{item.teacher_name}</S.Box2>
+                                <S.Box2 $length={130}>{item.teacher_name}</S.Box2>
                                 <S.Box2 $length={110}>{item.personnel}명</S.Box2>
                                 <S.Box2 $length={200}>{item.place}</S.Box2>
                                 <S.Box2 $length={290}>{item.cause.slice(0, 20)}{item.cause.length > 20 ? '...' : ''}</S.Box2>

@@ -1,5 +1,6 @@
 import * as S from '../../../pages/manage/location/style.jsx'
 import useLocation from "../../../zustand/locationDetail.js";
+import {Btn} from "../../../pages/manage/location/style.jsx";
 
 export default function First({width, set, data, fake}) {
     const elements = [
@@ -48,8 +49,7 @@ export default function First({width, set, data, fake}) {
     const setPlace = useLocation((state) => state.setPlace);
     if(fake){
         return(
-            elements.map((el) => {
-                return(
+            elements.map((el) => (
                     <S.Element
                         key={el.id}
                         $left={el.x}
@@ -61,7 +61,7 @@ export default function First({width, set, data, fake}) {
                         {el.name}
                     </S.Element>
                 )
-            })
+            )
         )
     }
     return(
