@@ -1,7 +1,7 @@
 import * as S from '../../../pages/manage/location/style.jsx'
 import useLocation from "../../../zustand/locationDetail.js";
 
-export default function First({set, data, fake}) {
+export default function First({width, set, data, fake}) {
     const elements = [
         { id: 1, name: "창의디자인실", x: 23, y: 13, width: 7, height: 6},
         { id: 2, name: "학습준비실", x: 30, y: 13, width: 3, height: 6 },
@@ -53,7 +53,7 @@ export default function First({set, data, fake}) {
                     <S.Element
                         key={el.id}
                         $left={el.x}
-                        $top={el.y}
+                        $top={width > 400 ? el.y : el.y * 2}
                         $width={el.width}
                         $height={el.height}
                         $background={"#DDDDDD"}

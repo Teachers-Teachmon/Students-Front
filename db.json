@@ -4103,7 +4103,64 @@
       "10th_teacher": null
     }
   },
-  "schedule": {},
+  "schedule": {
+    "1반": [
+      {
+        "status": "이석",
+        "name": "김동욱",
+        "number":1101,
+        "id":1
+      },
+      {
+        "status": "이석",
+        "name": "허온",
+        "number":1102,
+        "id":2
+      }
+    ],
+    "2반" : [
+      {
+        "status": "이석",
+        "name": "김동욱",
+        "number":1201,
+        "id":1
+      },
+      {
+        "status": "이석",
+        "name": "허온",
+        "number":1202,
+        "id":2
+      }
+    ],
+    "3반" : [
+      {
+        "status": "이석",
+        "name": "김동욱",
+        "number":1301,
+        "id":1
+      },
+      {
+        "status": "이석",
+        "name": "허온",
+        "number":1302,
+        "id":2
+      }
+    ],
+    "4반" : [
+      {
+        "status": "이석",
+        "name": "김동욱",
+        "number":1401,
+        "id":1
+      },
+      {
+        "status": "이석",
+        "name": "허온",
+        "number":1402,
+        "id":2
+      }
+    ]
+  },
   "searchStudent": [
     {
       "id": "23",

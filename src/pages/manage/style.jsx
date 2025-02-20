@@ -13,12 +13,20 @@ export const Wrap = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    @media (max-width: 400px) {
+        width: 100%;
+    }
 `
 export const Info = styled.div`
     display: flex;
     justify-content: space-between;
     width: 100%;
     align-items: center;
+    & > h1{
+        @media (max-width: 400px) {
+            font-size: 28px;
+        }
+    }
 `
 
 
@@ -41,6 +49,9 @@ export const MainNav = styled.div`
 export const MainBox = styled.div`
     display: flex;
     gap: 20px;
+    @media (max-width: 400px) {
+        gap: 5px;
+    }
 `
 export const Grade = styled.div`
     display: flex;
@@ -54,6 +65,9 @@ export const Color = styled.div`
     justify-content: space-between;
     gap: 20px;
     align-items: center;
+    @media (max-width: 400px) {
+        display: none;
+    }
 `
 
 export const Colors = styled.div`
@@ -87,12 +101,18 @@ export const Record = styled.div`
     &:hover {
         background: #2a65dd;
     }
+    @media (max-width: 400px) {
+        padding: 6px 8px;
+    }
 `
 export const Section = styled.section`
     width: 100%;
     height: 90%;
     display: flex;
     flex-flow: wrap row;
+    @media (max-width: 400px) {
+        overflow-y: scroll;
+    }
 `
 
 export const Black = styled.div`

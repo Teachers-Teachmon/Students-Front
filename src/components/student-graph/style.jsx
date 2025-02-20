@@ -9,6 +9,9 @@ export const StudentContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    @media (max-width: 400px) {
+        width: 100%;
+    }
 `
 export const Class = styled.h2`
 `
@@ -37,10 +40,9 @@ export const Student = styled.div`
         background-color: ${(props) =>
                 props.$color === "#ffffff" ? null : darken(0.1, props.$color || "#ffffff")};
     }
-`
-export const UnBox = styled.div`
-    width: 12%;
-    height: 40%;
+    @media (max-width: 400px) {
+        font-size: 12px;
+    }
 `
 export const Black = styled.div`
     position: absolute;
