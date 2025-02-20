@@ -23,7 +23,7 @@ export default function AdminTeacher() {
     const [isCount, setIsCount] = useState(false);
     useEffect(() => {
         const fetchData = async ()=>{
-            const data = await getTeacher(debounce);
+            const data = await getTeacher(debounce, isCount ? "ASC" : "DESC");
             setValue(
                 data.data.reduce((acc, item, index) => {
                     acc[index + 1] = { ...item};
@@ -53,7 +53,7 @@ export default function AdminTeacher() {
         Object.keys(value).forEach((key) => {
             newValue[Number(key) + 1] = value[key];
         });
-        newValue[1] = { name: "", email: "" , count : 0, role : "TEACHER"};
+        newValue[1] = { name: "", email: "" , count : 0, role : "TEACHER", teacher_id : null};
         setValue(newValue);
         const newIsOpen = {};
         Object.keys(isOpen).forEach((key) => {

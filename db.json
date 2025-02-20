@@ -3309,6 +3309,30 @@
         "id": "8b11"
       },
       "id": "9ae7"
+    },
+    {
+      "id": "745f"
+    },
+    {
+      "id": "ecc7"
+    },
+    {
+      "0": {
+        "name": "윤도훈",
+        "number": "1410"
+      },
+      "1": {
+        "name": "김땡땡",
+        "number": "1411"
+      },
+      "id": "4a98"
+    },
+    {
+      "0": {
+        "name": "1111",
+        "number": "1111"
+      },
+      "id": "eefd"
     }
   ],
   "createStudent": [
@@ -3607,121 +3631,133 @@
     }
   ],
   "leaveseatClose": {},
-  "list": [{"name":"자습","id":null,"type":"SELF_STUDY"}],
+  "list": [
+    {
+      "name": "자습",
+      "id": null,
+      "type": "SELF_STUDY"
+    }
+  ],
   "ranking": [
     {
-      "name" : "정유진",
-      "teacher_id" : 1,
-      "SEVEN_PERIOD_COUNT" : 2,
-      "EIGHT_AND_ELEVEN_PERIOD_COUNT":3,
-      "NIGHT_COUNT":3
+      "name": "정유진",
+      "teacher_id": 1,
+      "SEVEN_PERIOD_COUNT": 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 3,
+      "NIGHT_COUNT": 3,
+      "id": "19da"
     },
     {
-      "name" : "정유진",
-      "teacher_id" : 1,
-      "SEVEN_PERIOD_COUNT" : 2,
-      "EIGHT_AND_ELEVEN_PERIOD_COUNT":3,
-      "NIGHT_COUNT":3
+      "name": "정유진",
+      "teacher_id": 1,
+      "SEVEN_PERIOD_COUNT": 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 3,
+      "NIGHT_COUNT": 3,
+      "id": "bd43"
     },
     {
-      "name" : "정유진",
-      "teacher_id" : 1,
-      "SEVEN_PERIOD_COUNT" : 2,
-      "EIGHT_AND_ELEVEN_PERIOD_COUNT":3,
-      "NIGHT_COUNT":3
+      "name": "정유진",
+      "teacher_id": 1,
+      "SEVEN_PERIOD_COUNT": 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 3,
+      "NIGHT_COUNT": 3,
+      "id": "3c69"
     },
     {
-      "name" : "정유진",
-      "teacher_id" : 1,
-      "SEVEN_PERIOD_COUNT" : 2,
-      "EIGHT_AND_ELEVEN_PERIOD_COUNT":3,
-      "NIGHT_COUNT":3
+      "name": "정유진",
+      "teacher_id": 1,
+      "SEVEN_PERIOD_COUNT": 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 3,
+      "NIGHT_COUNT": 3,
+      "id": "aa4f"
     },
     {
-      "name" : "정유진",
-      "teacher_id" : 1,
-      "SEVEN_PERIOD_COUNT" : 2,
-      "EIGHT_AND_ELEVEN_PERIOD_COUNT":3,
-      "NIGHT_COUNT":3
+      "name": "정유진",
+      "teacher_id": 1,
+      "SEVEN_PERIOD_COUNT": 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 3,
+      "NIGHT_COUNT": 3,
+      "id": "f812"
     },
     {
-      "name" : "정유진",
-      "teacher_id" : 1,
-      "SEVEN_PERIOD_COUNT" : 2,
-      "EIGHT_AND_ELEVEN_PERIOD_COUNT":3,
-      "NIGHT_COUNT":3
+      "name": "정유진",
+      "teacher_id": 1,
+      "SEVEN_PERIOD_COUNT": 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 3,
+      "NIGHT_COUNT": 3,
+      "id": "59c8"
     },
     {
-      "name" : "정유진",
-      "teacher_id" : 1,
-      "SEVEN_PERIOD_COUNT" : 2,
-      "EIGHT_AND_ELEVEN_PERIOD_COUNT":3,
-      "NIGHT_COUNT":3
+      "name": "정유진",
+      "teacher_id": 1,
+      "SEVEN_PERIOD_COUNT": 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 3,
+      "NIGHT_COUNT": 3,
+      "id": "7664"
     },
     {
-      "name" : "정유진",
-      "teacher_id" : 1,
-      "SEVEN_PERIOD_COUNT" : 2,
-      "EIGHT_AND_ELEVEN_PERIOD_COUNT":3,
-      "NIGHT_COUNT":3
+      "name": "정유진",
+      "teacher_id": 1,
+      "SEVEN_PERIOD_COUNT": 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 3,
+      "NIGHT_COUNT": 3,
+      "id": "da0b"
     },
     {
-      "name" : "정유진",
-      "teacher_id" : 1,
-      "SEVEN_PERIOD_COUNT" : 2,
-      "EIGHT_AND_ELEVEN_PERIOD_COUNT":3,
-      "NIGHT_COUNT":3
+      "name": "정유진",
+      "teacher_id": 1,
+      "SEVEN_PERIOD_COUNT": 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 3,
+      "NIGHT_COUNT": 3,
+      "id": "3459"
     },
     {
-      "name" : "정유진",
-      "teacher_id" : 1,
-      "SEVEN_PERIOD_COUNT" : 2,
-      "EIGHT_AND_ELEVEN_PERIOD_COUNT":3,
-      "NIGHT_COUNT":3
+      "name": "정유진",
+      "teacher_id": 1,
+      "SEVEN_PERIOD_COUNT": 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 3,
+      "NIGHT_COUNT": 3,
+      "id": "c202"
     },
     {
-      "name" : "정유진",
-      "teacher_id" : 1,
-      "SEVEN_PERIOD_COUNT" : 2,
-      "EIGHT_AND_ELEVEN_PERIOD_COUNT":3,
-      "NIGHT_COUNT":3
+      "name": "정유진",
+      "teacher_id": 1,
+      "SEVEN_PERIOD_COUNT": 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 3,
+      "NIGHT_COUNT": 3,
+      "id": "dd3f"
     },
     {
-      "name" : "정유진",
-      "teacher_id" : 1,
-      "SEVEN_PERIOD_COUNT" : 2,
-      "EIGHT_AND_ELEVEN_PERIOD_COUNT":3,
-      "NIGHT_COUNT":3
+      "name": "정유진",
+      "teacher_id": 1,
+      "SEVEN_PERIOD_COUNT": 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 3,
+      "NIGHT_COUNT": 3,
+      "id": "712b"
     },
     {
-      "name" : "정유진",
-      "teacher_id" : 1,
-      "SEVEN_PERIOD_COUNT" : 2,
-      "EIGHT_AND_ELEVEN_PERIOD_COUNT":3,
-      "NIGHT_COUNT":3
+      "name": "정유진",
+      "teacher_id": 1,
+      "SEVEN_PERIOD_COUNT": 2,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 3,
+      "NIGHT_COUNT": 3,
+      "id": "20c7"
     }
   ],
   "teacher": [
     {
-      "teacher_id": 1,
-      "name": "티치몬",
-      "email": "teacher026@bssm.hs.kr",
-      "role": "ADMIN",
-      "count": 10
+      "count" : 1,
+      "name" : "정유진",
+      "email" : "teacher026@bssm.hs.kr",
+      "role" : "ADMIN",
+      "teacher_id" : 1
     },
     {
-      "teacher_id": 2,
-      "name": "차수민",
-      "email": "teacher027@bssm.hs.kr",
-      "role": "TEACHER",
-      "count": 3
-    },
-    {
-      "teacher_id": 3,
-      "name": "최병준",
-      "email": "teacher028@bssm.hs.kr",
-      "role": "TEACHER",
-      "count": 7
+      "count" : 1,
+      "name" : "정유진",
+      "email" : "teacher026@bssm.hs.kr",
+      "role" : "ADMIN",
+      "teacher_id" : 1
     }
   ],
   "teacher2": [
@@ -3796,6 +3832,241 @@
         "count": 7
       },
       "id": "8f28"
+    },
+    {
+      "0": {
+        "teacher_id": 1,
+        "name": "티치몬",
+        "email": "teacher026@bssm.hs.kr",
+        "role": "ADMIN",
+        "count": 10,
+        "id": "d4e5"
+      },
+      "1": {
+        "teacher_id": 2,
+        "name": "차수민",
+        "email": "teacher027@bssm.hs.kr",
+        "role": "TEACHER",
+        "count": 3,
+        "id": "5da3"
+      },
+      "2": {
+        "teacher_id": 3,
+        "name": "최병준",
+        "email": "teacher028@bssm.hs.kr",
+        "role": "TEACHER",
+        "count": 7,
+        "id": "11bb"
+      },
+      "id": "410b"
+    },
+    {
+      "0": {
+        "name": "dsd",
+        "email": "sadfasdf",
+        "count": 0,
+        "role": "TEACHER"
+      },
+      "1": {
+        "teacher_id": 1,
+        "name": "티치몬",
+        "email": "teacher026@bssm.hs.kr",
+        "role": "ADMIN",
+        "count": 10,
+        "id": "d4e5"
+      },
+      "2": {
+        "teacher_id": 2,
+        "name": "차수민",
+        "email": "teacher027@bssm.hs.kr",
+        "role": "TEACHER",
+        "count": 3,
+        "id": "5da3"
+      },
+      "3": {
+        "teacher_id": 3,
+        "name": "최병준",
+        "email": "teacher028@bssm.hs.kr",
+        "role": "TEACHER",
+        "count": 7,
+        "id": "11bb"
+      },
+      "id": "c5c9"
+    },
+    {
+      "0": {
+        "name": "asdf",
+        "email": "asdf",
+        "count": 0,
+        "role": "TEACHER"
+      },
+      "1": {
+        "teacher_id": 1,
+        "name": "티치몬",
+        "email": "teacher026@bssm.hs.kr",
+        "role": "ADMIN",
+        "count": 10
+      },
+      "2": {
+        "teacher_id": 2,
+        "name": "차수민",
+        "email": "teacher027@bssm.hs.kr",
+        "role": "TEACHER",
+        "count": 3
+      },
+      "3": {
+        "teacher_id": 3,
+        "name": "최병준",
+        "email": "teacher028@bssm.hs.kr",
+        "role": "TEACHER",
+        "count": 7
+      },
+      "id": "055f"
+    },
+    {
+      "0": {
+        "teacher_id": 1,
+        "name": "티치몬",
+        "email": "teacher026@bssm.hs.kr",
+        "role": "ADMIN",
+        "count": 10
+      },
+      "1": {
+        "teacher_id": 2,
+        "name": "차수민",
+        "email": "teacher027@bssm.hs.kr",
+        "role": "TEACHER",
+        "count": 3
+      },
+      "2": {
+        "teacher_id": 3,
+        "name": "최병준",
+        "email": "teacher028@bssm.hs.kr",
+        "role": "TEACHER",
+        "count": 7
+      },
+      "id": "3c2a"
+    },
+    {
+      "0": {
+        "name": "asdfasdf",
+        "email": "sdf",
+        "count": 0,
+        "role": "TEACHER"
+      },
+      "1": {
+        "teacher_id": 1,
+        "name": "티치몬",
+        "email": "teacher026@bssm.hs.kr",
+        "role": "ADMIN",
+        "count": 10
+      },
+      "2": {
+        "teacher_id": 2,
+        "name": "차수민",
+        "email": "teacher027@bssm.hs.kr",
+        "role": "TEACHER",
+        "count": 3
+      },
+      "3": {
+        "teacher_id": 3,
+        "name": "최병준",
+        "email": "teacher028@bssm.hs.kr",
+        "role": "TEACHER",
+        "count": 7
+      },
+      "id": "871c"
+    },
+    {
+      "0": {
+        "name": "asdf",
+        "email": "asdf",
+        "count": 0,
+        "role": "TEACHER"
+      },
+      "1": {
+        "teacher_id": 1,
+        "name": "티치몬",
+        "email": "teacher026@bssm.hs.kr",
+        "role": "ADMIN",
+        "count": 10
+      },
+      "2": {
+        "teacher_id": 2,
+        "name": "차수민",
+        "email": "teacher027@bssm.hs.kr",
+        "role": "TEACHER",
+        "count": 3
+      },
+      "3": {
+        "teacher_id": 3,
+        "name": "최병준",
+        "email": "teacher028@bssm.hs.kr",
+        "role": "TEACHER",
+        "count": 7
+      },
+      "id": "6f30"
+    },
+    {
+      "0": {
+        "name": "as",
+        "email": "asa",
+        "count": 0,
+        "role": "TEACHER"
+      },
+      "1": {
+        "teacher_id": 1,
+        "name": "티치몬",
+        "email": "teacher026@bssm.hs.kr",
+        "role": "ADMIN",
+        "count": 10
+      },
+      "2": {
+        "teacher_id": 2,
+        "name": "차수민",
+        "email": "teacher027@bssm.hs.kr",
+        "role": "TEACHER",
+        "count": 3
+      },
+      "3": {
+        "teacher_id": 3,
+        "name": "최병준",
+        "email": "teacher028@bssm.hs.kr",
+        "role": "TEACHER",
+        "count": 7
+      },
+      "id": "cd58"
+    },
+    {
+      "0": {
+        "name": "as",
+        "email": "as",
+        "count": 0,
+        "role": "TEACHER",
+        "teacher_id": null
+      },
+      "1": {
+        "teacher_id": 1,
+        "name": "티치몬",
+        "email": "teacher026@bssm.hs.kr",
+        "role": "ADMIN",
+        "count": 10
+      },
+      "2": {
+        "teacher_id": 2,
+        "name": "차수민",
+        "email": "teacher027@bssm.hs.kr",
+        "role": "TEACHER",
+        "count": 3
+      },
+      "3": {
+        "teacher_id": 3,
+        "name": "최병준",
+        "email": "teacher028@bssm.hs.kr",
+        "role": "TEACHER",
+        "count": 7
+      },
+      "id": "f628"
     }
   ],
   "location": {
@@ -3834,6 +4105,16 @@
   },
   "schedule": {},
   "searchStudent": [
+    {
+      "id": "23",
+      "name": "허온",
+      "number": 2416
+    },
+    {
+      "id": "23",
+      "name": "허온",
+      "number": 3416
+    },
     {
       "id": "23",
       "name": "허온",
