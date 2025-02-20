@@ -81,6 +81,18 @@ export default function Manage(){
         }
     }
     changeClass();
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => {
+            const width = window.innerWidth;
+            setWindowWidth(width);
+        };
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, [windowWidth]);
+
     return(
         <S.ManageContainer>
             {isLoading || isFetching && !weekday && period && <Loading />}
@@ -94,9 +106,9 @@ export default function Manage(){
                     <S.MainNav>
                         <S.MainBox>
                             <S.Grade>
-                                <CircleBtn name={"1학년"} status={grade[0]} On={()=>changeGrade(0)} />
-                                <CircleBtn name={"2학년"} status={grade[1]} On={()=>changeGrade(1)} />
-                                <CircleBtn name={"3학년"} status={grade[2]} On={()=>changeGrade(2)} />
+                                <CircleBtn name={windowWidth > 400 ? "1학년" : "1"} status={grade[0]} On={()=>changeGrade(0)} />
+                                <CircleBtn name={windowWidth > 400 ? "2학년" : "2"} status={grade[1]} On={()=>changeGrade(1)} />
+                                <CircleBtn name={windowWidth > 400 ? "3학년" : "3"} status={grade[2]} On={()=>changeGrade(2)} />
                             </S.Grade>
                             <S.Color>
                                 <S.Colors>
@@ -123,15 +135,15 @@ export default function Manage(){
                         </S.MainBox>
                         <S.MainBox>
                             <S.Record onClick={()=>navigate('/manage/record', {state:1})}>
-                                <img src={Record} alt="" />
+                                {windowWidth > 400 && <img src={Record} alt="" />}
                                 <p>이석</p>
                             </S.Record>
                             <S.Record onClick={()=>navigate('/manage/record', {state: 2})}>
-                                <img src={Record} alt="" />
+                                {windowWidth > 400 && <img src={Record} alt="" />}
                                 <p>이탈</p>
                             </S.Record>
                             <S.Record onClick={()=>navigate('/manage/record', {state: 3})}>
-                                <img src={Record} alt="" />
+                                {windowWidth > 400 && <img src={Record} alt="" />}
                                 <p>학생</p>
                             </S.Record>
                         </S.MainBox>

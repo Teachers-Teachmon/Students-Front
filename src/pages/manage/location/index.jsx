@@ -2,7 +2,7 @@ import * as S from './style.jsx'
 import Header from "../../../components/header/index.jsx";
 import CircleBtn from "../../../components/button/circle/index.jsx";
 import SquareBtn from "../../../components/button/square/index.jsx";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import First from "../../../components/map/1st/index.jsx";
@@ -31,6 +31,17 @@ export default function Location() {
     const [isModal,setIsModal] = useState(false);
     const {data : locationAll, isFetching : isAllLoading} = useGetLocationAll();
     const {data : locationFloor, isFetching : isFloorLoading} = useGetLocationFloor(floor()[0]);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => {
+            const width = window.innerWidth;
+            setWindowWidth(width);
+        };
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, [windowWidth]);
     return (
         <S.LocationContainer>
             <Header />
@@ -59,26 +70,28 @@ export default function Location() {
             <TransformWrapper>
                 <TransformComponent>
             <S.Wrap>
-                {isAllLoading || isFloorLoading ?
-                    isFloor[0] ? (
-                        <First data = {locationFloor} set = {setIsModal} fake = {true}/>
-                    ) : isFloor[1] ? (
-                        <Second data = {locationFloor} set = {setIsModal} fake = {true}/>
-                    ) : isFloor[2] ? (
-                        <Third data = {locationFloor} set = {setIsModal} fake = {true}/>
-                    ) : isFloor[3] ? (
-                        <Fourth data = {locationFloor} set = {setIsModal} fake = {true}/>
-                    ) : null :
-                    isFloor[0] ? (
-                            <First data = {locationFloor} set = {setIsModal}/>
+                <S.Box>
+                    {isAllLoading || isFloorLoading ?
+                        isFloor[0] ? (
+                            <First width = {windowWidth} data = {locationFloor} set = {setIsModal} fake = {true}/>
                         ) : isFloor[1] ? (
-                            <Second data = {locationFloor} set = {setIsModal}/>
+                            <Second width = {windowWidth} data = {locationFloor} set = {setIsModal} fake = {true}/>
                         ) : isFloor[2] ? (
-                            <Third data = {locationFloor} set = {setIsModal}/>
+                            <Third width = {windowWidth} data = {locationFloor} set = {setIsModal} fake = {true}/>
                         ) : isFloor[3] ? (
-                            <Fourth data = {locationFloor} set = {setIsModal} />
+                            <Fourth width = {windowWidth} data = {locationFloor} set = {setIsModal} fake = {true}/>
+                        ) : null :
+                        isFloor[0] ? (
+                            <First width = {windowWidth} data = {locationFloor} set = {setIsModal}/>
+                        ) : isFloor[1] ? (
+                            <Second width = {windowWidth} data = {locationFloor} set = {setIsModal}/>
+                        ) : isFloor[2] ? (
+                            <Third width = {windowWidth} data = {locationFloor} set = {setIsModal}/>
+                        ) : isFloor[3] ? (
+                            <Fourth width = {windowWidth} data = {locationFloor} set = {setIsModal} />
                         ) : null
-                }
+                    }
+                </S.Box>
             </S.Wrap>
         </TransformComponent>
 </TransformWrapper>
