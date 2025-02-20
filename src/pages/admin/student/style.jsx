@@ -161,7 +161,7 @@ export const Btn = styled.button`
     padding: 8px 20px;
     margin-left: 20px;
     color: white;
-    &:hover {
-        background: ${(props)=> props.$color === "#2E6FF2" ? "#2a65dd" : "#fbfbfb"};
+    &:hover{
+        opacity: 0.8;
     }
 `
