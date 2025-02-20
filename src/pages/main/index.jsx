@@ -8,12 +8,12 @@ import * as S from './style.jsx'
 import Arrow from '../../assets/Arrow.svg'
 import Rotate from '../../assets/rotate.svg';
 import { useState, useEffect } from "react";
-import { useGetCompleteRate, useGetNextSupervision } from "../../hooks/useSupervision.js";
+import { useGetMonthlySupervision, useGetCompleteRate, useGetNextSupervision } from "../../hooks/useSupervision.js";
+import { useGetMonthlyAfterSchool } from "../../hooks/useAfterSchool.js";
 import { useGetChangeRequest } from "../../hooks/useChange.js";
 import { useGetStudentCount } from "../../hooks/useStudent.js";
 import LeftGrayButton from '../../assets/LeftGrayButton.svg';
 import RightGrayButton from '../../assets/RightGrayButton.svg';
-import DivisionAll from '../../assets/DivisionAll.svg';
 import DivisionAfterSchool from '../../assets/DivisionAfterSchool.svg';
 import DivisionSupervision from '../../assets/DivisionSupervision.svg';
 
@@ -62,6 +62,8 @@ export default function Main() {
     const weeks = groupDatesByWeek(startDay, endDay);
     const { data: changeDay, isLoading: isLoadingChange, isError: isErrorChange } = useGetChangeRequest();
     // const { data: todayTeacher, isLoading: isLoadingTeacher, isError: isErrorTeacher } = useGetDailySupervision(formattedDate);
+    const { data: monthlySupervisionData, isLoading: isLoadingMonthlySupervision, isError: isErrorMonthlySupervision } = useGetMonthlySupervision(month + 1);
+    const { data: monthlyAfterSchoolData, isLoading: isLoadingMonthlyAfterSchool, isError: isErrorMonthlyAfterSchool } = useGetMonthlyAfterSchool(month + 1);
     const { data: studentCount, isLoading: isLoadingCount, isError: isErrorCount } = useGetStudentCount();
     const { data: nextData, isLoading: isLoadingNext, isError: isErrorNext } = useGetNextSupervision();
     const { data: completeRateData, isLoading: isLoadingRate, isError: IsErrorRate } = useGetCompleteRate();
@@ -81,7 +83,6 @@ export default function Main() {
             setPeriod(nextData.period || "");
         }
     }, [nextData, isLoadingNext]);
-
     useEffect(() => {
         if (!isLoadingRate && completeRateData) {
             setSupRate(completeRateData.percentage);
@@ -103,7 +104,6 @@ export default function Main() {
             new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1)
         );
     };
-
     const handleNextMonth = () => {
         setCurrentDate(
             new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1)
@@ -135,6 +135,21 @@ export default function Main() {
         };
     }, []);
 
+    const findSupervisionForDay = (year, month, day) => {
+        if (monthlySupervisionData && monthlySupervisionData.length === 0) return null;
+        return monthlySupervisionData && monthlySupervisionData.filter(item => item.year === year && item.month === month && item.day === day);
+    };
+    const findAfterSchoolForDay = (year, month, day) => {
+        if (monthlyAfterSchoolData && monthlyAfterSchoolData.length === 0) return null;
+        return monthlyAfterSchoolData && monthlyAfterSchoolData.filter(item => item.year === year && item.month === month && item.day === day);
+    }
+    const mapPeriodToLabel = (period) => {
+        if (period === "7교시") return "7";
+        if (period === "8~9교시") return "8";
+        if (period === "10~11교시") return "10";
+        if (period === "야간") return "N";
+        return "";
+    };
 
     return (
         <S.MainContainer>
@@ -168,9 +183,8 @@ export default function Main() {
                         <S.CalendarWrapper>
                             <S.CalendarHeader>
                                 <S.Division>
-                                    <div>전체 : <img src={DivisionAll} /></div>
                                     <div>방과후 : <img src={DivisionAfterSchool} /></div>
-                                    <div>자습감독 : <img src={DivisionSupervision} /></div>
+                                    <div>감독 : <img src={DivisionSupervision} /></div>
                                 </S.Division>
                                 <S.Control>
                                     <button onClick={handlePrevMonth}><img src={LeftGrayButton} /></button>
@@ -189,8 +203,38 @@ export default function Main() {
                                     <S.Week key={weekIdx}>
                                         {week.map((date, dateIdx) => {
                                             const localDate = date.toLocaleDateString();
+                                            const year = date.getFullYear();
+                                            const monthC = date.getMonth();
+                                            const day = date.getDate();
+                                            const supervision = findSupervisionForDay(year, monthC + 1, day);
+                                            const afterSchool = findAfterSchoolForDay(year, monthC + 1, day);
+
+                                            let markers = [];
+                                            if (supervision && supervision.length > 0) {
+                                                let supMarkers = supervision.map(item => (
+                                                  <S.ScheduleMarker
+                                                    key={`${item.schedule.period}-${item.schedule.type}`}
+                                                    style={{ backgroundColor: "#C4FFC0", color: "#007728" }}
+                                                  >
+                                                    {mapPeriodToLabel(item.schedule.period)}
+                                                  </S.ScheduleMarker>
+                                                ));
+                                                markers = markers.concat(supMarkers);
+                                            } 
+                                            if (afterSchool && afterSchool.length > 0) {
+                                                let supMarkers = afterSchool.map(item => (
+                                                  <S.ScheduleMarker
+                                                    key={item.period}
+                                                    style={{ backgroundColor: "#C8DBFF", color: "#2E6FF2" }}
+                                                  >
+                                                    {mapPeriodToLabel(item.period)}
+                                                  </S.ScheduleMarker>
+                                                ));
+                                                markers = markers.concat(supMarkers);
+                                            }
                                             return (
-                                                <S.CalendarDay key={dateIdx} onClick={() => { handleDateClick(date) }} $isCurrentMonth={date.getMonth() === month}>
+                                                <S.CalendarDay key={dateIdx} onClick={() => { handleDateClick(date) }} $isCurrentMonth={date.getMonth() === month} >
+                                                    <span>{markers}</span>
                                                     <S.Day $isCurrentMonth={date.getMonth() === month} style={{
                                                         backgroundColor: localDate === today ? '#ECF3FD' : '',
                                                         color: localDate === today ? '#5288F4' : '',
@@ -216,27 +260,34 @@ export default function Main() {
                                     const senderInfo = data.sender.teacher.split('/');
                                     const recipientInfo = data.recipient.teacher.split('/');
 
+                                    const convertType = (type) => {
+                                        if (type === "SELF_STUDY_SUPERVISION") return "자습";
+                                        if (type === "LEAVE_SEAT_SUPERVISION") return "이석";
+                                        if (type === "NIGHT_SUPERVISION") return "야간";
+                                        if (type === "COMMON_SUPERVISION") return "공통";
+                                    }
+
                                     const leftName = data.toMe ? "(나)" : `(${recipientInfo[0]} 선생님)`;
                                     const leftDay = data.toMe ? data.recipient.day : data.sender.day;
                                     const leftPeriod = data.toMe ? data.recipient.period : data.sender.period;
-                                    const leftGrade = data.toMe ? data.recipient.grade : data.sender.grade;
+                                    const leftType = data.toMe ? convertType(data.recipient.type) : convertType(data.sender.type);
 
                                     const rightName = data.toMe ? `(${senderInfo[0]} 선생님)` : "(나)";
                                     const rightDay = data.toMe ? data.sender.day : data.recipient.day;
                                     const rightPeriod = data.toMe ? data.sender.period : data.recipient.period;
-                                    const rightGrade = data.toMe ? data.sender.grade : data.recipient.grade;
+                                    const rightType = data.toMe ? convertType(data.sender.type) : convertType(data.recipient.type);
 
                                     return (
                                         <S.ChangeCard key={data.changeId} style={{ backgroundColor: data.toMe ? "#C8DBFF" : data.result === "ACCEPTED" ? "#72FAAA" : data.result === "REJECTED" ? "#FF938C" : "" }}>
                                             <S.ChangeWrap>
                                                 <S.ChangeSide>
                                                     <p>{leftName}</p>
-                                                    <p>{leftDay} {leftPeriod} {leftGrade}학년</p>
+                                                    <p>{leftDay} {leftPeriod} {leftType}</p>
                                                 </S.ChangeSide>
                                                 <S.RotateIcon src={Rotate} />
                                                 <S.ChangeSide>
                                                     <p>{rightName}</p>
-                                                    <p>{rightDay} {rightPeriod} {rightGrade}학년</p>
+                                                    <p>{rightDay} {rightPeriod} {rightType}</p>
                                                 </S.ChangeSide>
                                             </S.ChangeWrap>
                                             <S.DetailButton onClick={() => { setIsModalOpen(prev => [prev[0], true]); setSelectedChange(data) }}>자세히 보기</S.DetailButton>
@@ -311,7 +362,7 @@ export default function Main() {
             )}
             {isModalOpen[1] && (
                 <S.ModalOverlay onClick={() => { setIsModalOpen(prev => [prev[0], false]) }}>
-                    <S.Modal onClick={(e) => { e.stopPropagation() }}>
+                    <S.Modal onClick={() => { setIsModalOpen(prev => [prev[0], false]) }}>
                         <RequestBox closeModal={() => { setIsModalOpen(prev => [prev[0], false]) }} changeData={selectedChange} />
                     </S.Modal>
                 </S.ModalOverlay>

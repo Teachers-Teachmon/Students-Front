@@ -14,8 +14,8 @@ export const MainWrap = styled.div`
 export const Drawer = styled.div`
   position: fixed;
   top: 0;
-  left: ${({ $open }) => ($open ? '0' : '-300px')}; 
-  width: 300px;
+  left: ${({ $open }) => ($open ? '0' : '-393px')}; 
+  width: 393px;
   height: 100vh;
   background-color: #fff;
   box-shadow: 2px 0 5px rgba(0,0,0,0.2);
@@ -28,22 +28,63 @@ export const DrawerHeader = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  border-bottom: 1px solid #ddd;
-  button {
-    background: none;
-    border: none;
+  padding: 1.5rem;
+  border-bottom: 2px solid #919191;
+  & > div > img {
+      width: 8%;
     cursor: pointer;
     align-self: flex-end;
+      margin-bottom: 10px;
   }
 `;
+export const Title = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+`
 
 export const DrawerHeaderTop = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    & > div > p{
+        margin-bottom: 8px;
+    }
+    & > div > p:hover{
+        cursor: pointer;
+        text-decoration-line: underline;
+    }
 `;
-
+export const Order = styled.p`
+    color: ${(props)=>props.$order ? "#2E6FF2" : "#999999"};
+`
+export const Menu = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 10px;
+    width: 98%;
+`
+export const MenuBox = styled.p`
+    width: ${(props)=>props.$width}px;
+    text-align: center;
+`
 export const DrawerContent = styled.div`
-  padding: 1rem;
+    width: 100%;
+    padding: 1rem 0.5rem;
+    height: 75%;
+    overflow-y: auto;
 `;
+export const TeacherBox = styled.div`
+    display: flex;
+    padding: 1rem;
+    border: 3px solid #F2F3F6;
+    border-radius: 8px;
+    margin-bottom: 10px;
+`
 
 export const MainHeader = styled.div`
     display: flex;
@@ -111,28 +152,30 @@ export const TableRight = styled.div`
 
 export const TableRightHeader = styled.div`
     display: flex;
-    gap: 10px;
     margin-top: 1.7rem;
+    justify-content: center;
+    gap: 1rem;
 
     div {
         background-color: #EBF1FF;
-        padding: 0.6rem 1rem;
+        padding: 0.6rem 1.5rem;
         border-radius: 10px;
         white-space: nowrap;
     }
 `;
 
 export const TableRightContent = styled.div`
-    border-left: 1px solid #C4C4C4;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    border-left: 2px solid #C4C4C4;
+    padding-left: 2rem;
+    padding-right: 2rem;
 `;
 
 export const TeacherList = styled.div`
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     text-align: center;
     font-size: 1.1rem;
+    gap: 1rem;
 
     div {
         margin-top: 0.5rem;

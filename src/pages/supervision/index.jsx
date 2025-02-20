@@ -13,7 +13,7 @@ export default function Supervision() {
     const [dropdownOpen, setDropdownOpen] = useState({});
     const [localData, setLocalData] = useState([]);
 
-    const { data: TeacherList, isLoading, isError } = useGetAssignment(selMonth + 1);
+    const { data: TeacherList, isLoading, isError } = useGetAssignment(selMonth + 1);     
     useEffect(() => {
         console.log("TeacherList 데이터:", TeacherList);
         if (TeacherList?.data) {
@@ -59,16 +59,13 @@ export default function Supervision() {
 
     return (
         <S.Wrapper>
-            {isLoading && <Loading />}
+            {/* {isLoading && <Loading />} */}
             <Header />
             <S.MainWrap>
                 {Object.values(dropdownOpen).some(status => status) && (
                     <S.Black onClick={() => setDropdownOpen({})} />
                 )}
                 <S.MainHeader>
-                    {Object.values(dropdownOpen).some(status => status) && (
-                        <S.Black onClick={() => setDropdownOpen({})} />
-                    )}
                     <h1>자습감독 일정</h1>
                     <S.Buttons>
                         <SquareBtn name="교체하기" status={true} On={() => { navigate('/supervision/change') }} />
@@ -90,6 +87,7 @@ export default function Supervision() {
                                     <div>7교시</div>
                                     <div>8~9교시</div>
                                     <div>10~11교시</div>
+                                    <div>야간</div>
                                 </S.TableLeft>
                                 <S.TableRight>
                                     {groupedData[weekKey].map((dayData, dayIndex) => (
@@ -98,35 +96,65 @@ export default function Supervision() {
                                                 <span style={{ visibility: "hidden" }}>
                                                     <h3>{dayData.day || "날짜 없음"}</h3>
                                                     <S.TableRightHeader>
-                                                        <div>1학년</div>
-                                                        <div>2학년</div>
-                                                        <div>3학년</div>
+                                                        <div>자습</div>
+                                                        <div>이석</div>
                                                     </S.TableRightHeader>
-                                                    <div style={{ visibility: "hidden" }} />
-                                                    <div style={{ visibility: "hidden" }} />
+                                                    <div style={{ visibility: "hidden" }}></div>
+                                                    {["8th_teacher", "10th_teacher"].map((_, idx) => (
+                                                        <S.TeacherList key={idx}>
+                                                            <div style={{ visibility: "hidden" }} />
+                                                            <div style={{ visibility: "hidden" }} />
+                                                        </S.TeacherList>
+                                                    ))}
                                                     <div style={{ visibility: "hidden" }} />
                                                 </span>
                                             ) : (
                                                 <>
                                                     <h3>{dayData.day || "날짜 없음"}</h3>
                                                     <S.TableRightHeader>
-                                                        <div>1학년</div>
-                                                        <div>2학년</div>
-                                                        <div>3학년</div>
+                                                        <div>자습</div>
+                                                        <div>이석</div>
                                                     </S.TableRightHeader>
-
-                                                    {["7th_teacher", "8th_teacher", "10th_teacher"].map((timeKey, timeIndex) => (
-                                                        <S.TeacherList key={timeIndex}>
-                                                            {["first_grade", "second_grade", "third_grade"].map((gradeKey, gradeIndex) => {
-                                                                const teacherName = dayData[gradeKey]?.[timeKey] ? dayData[gradeKey][timeKey].split("/")[0] : "X";
-                                                                return (
-                                                                    <div key={gradeIndex}>
-                                                                        <S.TeacherName>{teacherName}</S.TeacherName>
-                                                                    </div>
-                                                                );
-                                                            })}
-                                                        </S.TeacherList>
-                                                    ))}
+                                                    <S.TeacherList>
+                                                        <div>
+                                                            <S.TeacherName>
+                                                                {dayData["7th_teacher"] ? dayData["7th_teacher"].split("/")[0] : "X"}
+                                                            </S.TeacherName>
+                                                        </div>
+                                                        <div>
+                                                            <S.TeacherName>
+                                                                {dayData["7th_teacher"] ? dayData["7th_teacher"].split("/")[0] : "X"}
+                                                            </S.TeacherName>
+                                                        </div>
+                                                    </S.TeacherList>
+                                                    {["8th_teacher", "10th_teacher"].map((timeKey, timeIndex) => {
+                                                        const selfTeacher = dayData.self_study_teacher?.[timeKey];
+                                                        const leaveTeacher = dayData.leave_seat_teacher?.[timeKey];
+                                                        const selfName = selfTeacher ? selfTeacher.split("/")[0] : "X";
+                                                        const leaveName = leaveTeacher ? leaveTeacher.split("/")[0] : "X";
+                                                        return (
+                                                            <S.TeacherList key={timeIndex}>
+                                                                <div>
+                                                                    <S.TeacherName>{selfName}</S.TeacherName>
+                                                                </div>
+                                                                <div>
+                                                                    <S.TeacherName>{leaveName}</S.TeacherName>
+                                                                </div>
+                                                            </S.TeacherList>
+                                                        );
+                                                    })}
+                                                    <S.TeacherList>
+                                                        <div>
+                                                            <S.TeacherName>
+                                                                {dayData.night_teacher ? dayData.night_teacher.split("/")[0] : "X"}
+                                                            </S.TeacherName>
+                                                        </div>
+                                                        <div>
+                                                            <S.TeacherName>
+                                                                {dayData.night_teacher ? dayData.night_teacher.split("/")[0] : "X"}
+                                                            </S.TeacherName>
+                                                        </div>
+                                                    </S.TeacherList>
                                                 </>
                                             )}
                                         </S.TableRightContent>

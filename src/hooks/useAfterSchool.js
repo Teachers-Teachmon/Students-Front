@@ -141,3 +141,23 @@ export const useGetSupplementList = (day, period) => {
         enabled:false
     });
 };
+
+export const useGetMonthlyAfterSchool = (month) => {
+    return useQuery({
+        queryKey: ['getMonthlyAfterSchool', month],
+        queryFn: async () => {
+            const res = await API.getMonthlyAfterSchool(month);
+            return res.data || [];
+        }
+    })
+}
+
+export const useGetDailyAfterSchool = (day) => {
+    return useQuery({
+        queryKey: ['getDailyAfterSchool', day],
+        queryFn: async () => {
+            const res = await API.getDailyAfterSchool(day);
+            return res.data || [];
+        }
+    });
+}

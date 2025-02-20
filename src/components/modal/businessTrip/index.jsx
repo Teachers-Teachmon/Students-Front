@@ -3,10 +3,12 @@ import Confirm from "../../button/confirm/index.jsx";
 import DateInput from '../../dateInput/index.jsx';
 import { useState } from 'react';
 import { useBusinessTrip } from '../../../hooks/useAfterSchool.js';
+import { useNavigate } from 'react-router-dom';
 
 export default function BusinessTrip({ closeModal, selectedClass }) {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const { mutate: createBusinessTrip } = useBusinessTrip();
+    const navigate = useNavigate();
 
     const handleDateChange = (day) => {
         setSelectedDate(day || new Date());
@@ -27,6 +29,7 @@ export default function BusinessTrip({ closeModal, selectedClass }) {
         });
 
         closeModal();
+        navigate('/after-school/seat-assignment', { state: { grade: selectedClass.grade, name: selectedClass.name, branch: selectedClass.branch } });
     };
 
     return (

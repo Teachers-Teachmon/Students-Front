@@ -34,7 +34,9 @@ export default function After_school() {
 
     const { data: myClasses = [] } = useGetMyClasses();
 
-    const { data: classList = [] } = useGetClassList(selectedGrade, selectedDay);
+    const adjustedDay = weekDays.includes(selectedDay) ? selectedDay : "MON";
+    const { data: classList = [] } = useGetClassList(selectedGrade, adjustedDay);
+
 
     const closeModalHandler = (setModal) => {
         setModal(false);

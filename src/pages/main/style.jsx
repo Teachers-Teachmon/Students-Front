@@ -6,7 +6,7 @@ export const MainContainer = styled.div`
 `
 
 export const MainContent = styled.div`
-    width: 85%;
+    width: 87%;
     padding: 2% 2% 0 2%;
     display: flex;
     flex-direction: column;
@@ -38,7 +38,7 @@ export const MainMiddle = styled.div`
     margin-top: 0.5%;
     display: flex;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 2rem;
     align-items: center;
 `
 
@@ -289,7 +289,7 @@ export const TeacherTable = styled.div`
 export const CalendarWrapper = styled.div`
     margin: 0 auto;
     width: 80%;
-    max-height: 93vh;
+    max-height: 35.95vh;
     overflow-y: auto;
     padding-right: 0.5rem;
 `
@@ -358,12 +358,19 @@ export const Week = styled.div`
 `;
 
 export const CalendarDay = styled.div`
-    // background-color: ${(props) => props.$isCurrentMonth ? '#fff' : '#f1f1f1'}; 나중에 전체 방과후 자습감독 API 완성되면 활성화
+    background: ${(props) => props.$supervision && props.$afterSchool ? 'linear-gradient(to right, #DAFFD7 50%, #C8DBFF 50%)' : props.$supervision ? '#DAFFD7' : props.$afterSchool ? '#C8DBFF' : ''};
     border: 1px solid #e2e2e2;
-    padding: 0.2rem 0.2rem 1rem 0.2rem;
+    padding: 0.2rem 0.2rem 0.2rem 0.2rem;
+    height: 6vh;
     display: flex;
-    flex-direction: column;
-    align-items: end;
+    justify-content: space-between;
+    align-items: start;
+
+    span {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.1rem;
+    }
 `
 
 export const Day = styled.div`
@@ -371,10 +378,21 @@ export const Day = styled.div`
     height: 1.5rem;
     color: ${(props) => props.$isCurrentMonth ? '#333' : '#999'};
     border-radius: 50%;
-    text-align: center;
-    line-height: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-weight: 600;
 `
+
+export const ScheduleMarker = styled.div`
+  width: 20px;
+  height: 20px;
+  font-size: 0.9rem;
+  border-radius: 0.3125rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 export const ModalOverlay = styled.div`
     position: fixed;
@@ -389,7 +407,7 @@ export const ModalOverlay = styled.div`
 `;
 
 export const Modal = styled.div`
-    width: 50%;
+    width: 60vw;
     border-radius: 10px;
     padding: 2rem;
 `
