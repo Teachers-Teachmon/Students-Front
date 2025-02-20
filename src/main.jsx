@@ -23,7 +23,6 @@ import NotCertification from "./components/check/notCertification.jsx";
 import Authorize from './components/check/authorize.jsx' // 인가는 개발중에 번거로울 수 있으므로 나중에 처리하기
 import Error from './pages/error';
 import Loading from "./components/loading/index.jsx";
-import Edit from './pages/after_school/edit'
 import SeatAssignment from './pages/after_school/seat-assignment/index.jsx';
 import Admin from './pages/admin/index.jsx'
 import AdminAfterSchool from './pages/admin/after-school/index.jsx'
@@ -66,7 +65,6 @@ createRoot(document.getElementById('root')).render(
                         <Route path="teacher" element={<AdminTeacher />} />
                         <Route path="teacher/prohibition" element={<SupervisionCreate />} />
                     </Route>
-                    <Route path="/after-school/edit" element={<Edit />} />
                     <Route path="/after-school/seat-assignment" element={<SeatAssignment />} />
                 </Route>
                 <Route path="*" element={<Error />} />
