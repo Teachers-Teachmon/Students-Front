@@ -17,7 +17,7 @@ export const Content = styled.div`
 export const AdminTop = styled.div`
     display: flex;
     width: 100%;
-    gap: 30px;
+    gap: 50px;
 `
 
 
@@ -29,7 +29,7 @@ export const AdminBottom = styled.div`
 
 export const TodaySupervision = styled.div`
     display: flex;
-    width: 40%;
+    width: 38%;
     flex-direction: column;
     margin-top: 20px;
     gap: 20px;
@@ -37,21 +37,28 @@ export const TodaySupervision = styled.div`
 
 export const TodaySupervisionTop = styled.div`
     display: flex;
-    gap: 67px;
+    align-items: center;
+    justify-content: space-between;
     cursor: pointer;
+    width: 100%;
 
-    p{
+    h1 {
+        flex-grow: 1;
+    }
+
+    p {
         color: gray;
         font-size: 15px;
         margin-top: 20px;
+        display: flex;
+        align-items: center;
     }
 
-    img{
+    img {
         width: 8px;
         margin-left: 5px;
     }
-    
-`
+`;
 
 export const TodaySupervisionMain = styled.div`
     display: flex;
@@ -412,10 +419,10 @@ export const SupervisionCount = styled.div`
 export const LeaveStudentTop = styled.div`
     display: flex;
     height: 8vh;
-    gap: 370px;
     align-items: center;
     padding: 3% 5%;
     border-bottom: 2.5px solid #F2F3F6;
+    justify-content: space-between;
 `
 
 export const LeaveStudent = styled.div`
@@ -431,7 +438,6 @@ export const LeaveStudentMain = styled.div`
     display: flex;
     flex-direction: column;
 `
-
 export const LeaveStudentRow = styled.div`
     display: flex;
     padding: 5%;
@@ -440,16 +446,17 @@ export const LeaveStudentRow = styled.div`
     align-items: center;
     border-bottom: ${({ $isLast }) => ($isLast ? 'none' : '2px solid #F2F3F6')};
     gap: 20px;
-`
+    justify-content: space-between;
+`;
 
 export const LeaveStudentDate = styled.div`
     display: flex;
-`
+`;
 
 export const LeaveStudentData = styled.div`
     display: flex;
+`;
 
-`
 export const Confirm = styled.button`
     width: 4.5vw;
     height: 3vh;
@@ -457,6 +464,6 @@ export const Confirm = styled.button`
     color: #fff;
     border: none;
     border-radius: 5px;
-    margin-left: 195px;
     cursor: pointer;
-`
+    margin-left: auto;
+`;

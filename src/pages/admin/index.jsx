@@ -96,13 +96,11 @@ export default function Admin() {
 
   const [leaveStudent, setLeaveStudent] = useState([
     {
-      "day": "12-01",
       "weekday": "월",
       "leave_id": 2,
       "student": "1401 김동욱",
     },
     {
-      "day": "12-01",
       "weekday": "월",
       "leave_id": 3,
       "student": "1401 김동욱",
@@ -207,7 +205,7 @@ export default function Admin() {
             <S.LeaveStudentMain>
               {leaveStudent.map((student, index) => (
                 <S.LeaveStudentRow key={student.leave_id}>
-                  <S.LeaveStudentDate>{student.day.replace("-","/")} ({student.weekday})</S.LeaveStudentDate>
+                  <S.LeaveStudentDate>{student.day} ({student.weekday})</S.LeaveStudentDate>
                   <S.LeaveStudentData>{student.student}</S.LeaveStudentData>
                   <S.Confirm onClick={() => handleDelete(student.leave_id)}>삭제</S.Confirm>
                 </S.LeaveStudentRow>
