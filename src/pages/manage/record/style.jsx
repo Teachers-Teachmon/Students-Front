@@ -13,6 +13,9 @@ export const Wrap = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    @media (max-width: 400px) {
+        width: 100%;
+    }
 `
 export const Info = styled.div`
     display: flex;

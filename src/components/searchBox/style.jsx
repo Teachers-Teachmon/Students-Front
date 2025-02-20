@@ -9,6 +9,14 @@ export const InputBox= styled.div`
     font-size: 14px;
     position: relative;
     padding: 0 15px;
+    @media  (max-width: 400px) {
+        padding: 0 2px;
+    }
+    & > img{
+        @media  (max-width: 400px) {
+            display: none;
+        }
+    }
 `
 export const Input = styled.input`
     outline: none;

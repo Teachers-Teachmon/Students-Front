@@ -75,6 +75,18 @@ export const Info = styled.div`
         justify-content: space-around;
     }
 `
+export const Footer = styled.div`
+    position: fixed;
+    bottom: 30px;
+    left: 17%;
+    display: flex;
+    align-items: center;
+    z-index: 5;
+    gap: 10px;
+    @media (max-width: 400px) {
+        left: 10%;
+    }
+`
 export const Element = styled.div`
     display: flex;
     justify-content: center;
@@ -95,5 +107,19 @@ export const Element = styled.div`
         height: ${(props)=>props.$height/2}%;
         top: ${(props)=>props.$top/2}%;
         border: 0.5px solid black;
+    }
+`
+export const Btn = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 6px;
+    border-radius: 4px;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    background-color: white;
+    @media (max-width: 400px) {
+        width: 40px;
+        font-size: 10px;
     }
 `
