@@ -127,7 +127,7 @@ export default function AdminStudent() {
             <S.ContentBox>
               {Object.keys(value).length === 0 && <S.NoData>데이터가 없습니다</S.NoData> }
               {value && Object.keys(value).map((item)=>{
-                if(isPatch && isGrade[Number((String(value[item].number).slice(0, 1)))-1] )
+                if(isPatch && isGrade[Number((String(value[item].number).slice(0, 1)))-1] || isPatch && value[item].number === "" || isPatch && value[item].name === "")
                   return(
                     <S.Content key={item}>
                       <S.UnBox></S.UnBox>
