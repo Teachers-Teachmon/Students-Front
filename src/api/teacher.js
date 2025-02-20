@@ -1,9 +1,9 @@
 import axiosInstance from "../lib/axiosInstance.js";
 import {API_ENDPOINTS} from "../lib/endpoints.js";
 
-export const getTeacher = async () => {
+export const getTeacher = async (name, order) => {
     try {
-        const res = await axiosInstance.get(`${API_ENDPOINTS.TEACHER}`);
+        const res = await axiosInstance.get(`${API_ENDPOINTS.TEACHER}?order=${order}&search_query=${name}`);
         if(res.status!==200){
             return new Promise.reject({
                 status:res.status,
@@ -18,7 +18,7 @@ export const getTeacher = async () => {
 
 export const patchTeacher = async ({teachers}) => {
     try {
-        const res = await axiosInstance.post(`${API_ENDPOINTS.TEACHER}2`, teachers);
+        const res = await axiosInstance.post(`${API_ENDPOINTS.TEACHER}`, teachers);
         if(res.status!==200 && res.status!==201){
             return Promise.reject(res.status)
         }
