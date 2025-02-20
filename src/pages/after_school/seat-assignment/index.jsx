@@ -2,9 +2,9 @@ import * as S from './style.jsx';
 import Header from '../../../components/header/index.jsx';
 import SquareBtn from '../../../components/button/square/index.jsx';
 import { useState } from 'react';
-import { DndProvider, useDrag, useDrop } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-import { useLocation } from 'react-router-dom';
+// import { DndProvider, useDrag, useDrop } from 'react-dnd';
+// import { HTML5Backend } from 'react-dnd-html5-backend';
+// import { useLocation } from 'react-router-dom';
 
 const STUDENT_TYPE = 'STUDENT';
 

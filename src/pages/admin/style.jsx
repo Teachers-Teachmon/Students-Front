@@ -458,4 +458,5 @@ export const Confirm = styled.button`
     border: none;
     border-radius: 5px;
     margin-left: 195px;
+    cursor: pointer;
 `
