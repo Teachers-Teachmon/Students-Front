@@ -28,6 +28,12 @@ export default function Admin() {
     "night_teacher": "정유진/me"
   }
 
+  const periodGroups = [
+    { period: "7교시", studyKey: "7th_teacher", leaveKey: "7th_teacher" },
+    { period: "8~9교시", studyKey: "8th_teacher", leaveKey: "8th_teacher" },
+    { period: "10~11교시", studyKey: "10th_teacher", leaveKey: "10th_teacher" }
+  ];
+
   const supervisionTotal = [
     {
       "name": "정유진",
@@ -54,7 +60,7 @@ export default function Admin() {
       "name": "정유진",
       "teacher_id": 1,
       "SEVEN_PERIOD_COUNT": 2,
-      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 3,
+      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 1,
       "NIGHT_COUNT": 3
     },
     {
@@ -87,11 +93,20 @@ export default function Admin() {
     }
   ]
 
-  const periodGroups = [
-    { period: "7교시", studyKey: "7th_teacher", leaveKey: "7th_teacher" },
-    { period: "8~9교시", studyKey: "8th_teacher", leaveKey: "8th_teacher" },
-    { period: "10~11교시", studyKey: "10th_teacher", leaveKey: "10th_teacher" }
-  ];
+  const leaveStudent = [
+    {
+      "day": "12-01",
+      "weekday": "월",
+      "leave_id": 2,
+      "student": "1401 김동욱",
+    },
+    {
+      "day": "12-01",
+      "weekday": "월",
+      "leave_id": 2,
+      "student": "1401 김동욱",
+    }
+  ]
 
   return (
     <S.Container>
@@ -165,30 +180,35 @@ export default function Admin() {
               <p onClick={() => { navigate('/admin/supervision') }}>자세히보기 <img src={Left} /></p>
             </S.SupervisionTotalTop>
             <S.SupervisionTotalMain>
-              <S.SupervisionTotalGroup1>
-                {supervisionTotal.slice(0, 4).map((teacher, index) => (
-                  <S.SupervisionTotalRow key={`${teacher.teacher_id}-${index}`} $isLast={index === 3}>
+              {supervisionTotal
+                .map(teacher => ({
+                  ...teacher,
+                  total: teacher.SEVEN_PERIOD_COUNT + teacher.EIGHT_AND_ELEVEN_PERIOD_COUNT + teacher.NIGHT_COUNT,
+                }))
+                .sort((a, b) => b.total - a.total)
+                .map((teacher, index) => (
+                  <S.SupervisionTotalRow key={`${teacher.teacher_id}-${index}`} $isLast={index === 3 || index === 7} $isSecondRow={index >= 4}>
                     <S.SupervisionRank>{index + 1}위</S.SupervisionRank>
                     <S.SupervisionTeacher>{teacher.name}</S.SupervisionTeacher>
-                    <S.SupervisionCount>{teacher.SEVEN_PERIOD_COUNT + teacher.EIGHT_AND_ELEVEN_PERIOD_COUNT + teacher.NIGHT_COUNT}회</S.SupervisionCount>
+                    <S.SupervisionCount>{teacher.total}회</S.SupervisionCount>
                   </S.SupervisionTotalRow>
                 ))}
-              </S.SupervisionTotalGroup1>
+            </S.SupervisionTotalMain>
+          </S.SupervisionTotal>
+          <S.LeaveStudent>
+            <S.LeaveStudentTop>
+              <h2>이번주 이탈학생</h2>
+            </S.LeaveStudentTop>
+            <S.LeaveStudentMain>
+              {leaveStudent.map((student, index) => (
+                <S.LeaveStudentRow key={student.leave_id}>
 
-              <S.SupervisionTotalGroup2>
-                {supervisionTotal.slice(4, 8).map((teacher, index) => (
-                  <S.SupervisionTotalRow key={`${teacher.teacher_id}-${index + 4}`} $isLast={index === 3}>
-                    <S.SupervisionRank>{index + 5}위</S.SupervisionRank>
-                    <S.SupervisionTeacher>{teacher.name}</S.SupervisionTeacher>
-                    <S.SupervisionCount>{teacher.SEVEN_PERIOD_COUNT + teacher.EIGHT_AND_ELEVEN_PERIOD_COUNT + teacher.NIGHT_COUNT}회</S.SupervisionCount>
-                  </S.SupervisionTotalRow>
-                ))}
-              </S.SupervisionTotalGroup2>
-          </S.SupervisionTotalMain>
-
-        </S.SupervisionTotal>
-      </S.AdminBottom>
-    </S.Content>
+                </S.LeaveStudentRow>
+              ))}
+            </S.LeaveStudentMain>
+          </S.LeaveStudent>
+        </S.AdminBottom>
+      </S.Content>
     </S.Container >
   )
 }

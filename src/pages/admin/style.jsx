@@ -24,7 +24,7 @@ export const AdminTop = styled.div`
 export const AdminBottom = styled.div`
     display: flex;
     width: 100%;
-    gap: 30px;
+    gap: 45px;
 `
 
 export const TodaySupervision = styled.div`
@@ -341,7 +341,7 @@ export const Teacher = styled.img`
     width: 40px;
 `
 
-export const Student= styled.img`
+export const Student = styled.img`
     width: 40px;
 `
 
@@ -358,53 +358,86 @@ export const SupervisionTotalTop = styled.div`
     display: flex;
     /* width: 50vw; */
     height: 8vh;
-    gap: 370px;
+    gap: 380px;
     justify-content: center;
     align-items: center;
-    padding: 3% 4%;
     border-bottom: 2.5px solid #F2F3F6;
 
     p{
         cursor: pointer;
     }
 `
-
-export const SupervisionTotalGroup1 = styled.div`
-    display: flex;
-    flex-direction: column;
-    border-right: 1px solid #F2F3F6;
-`
-
-export const SupervisionTotalGroup2 = styled.div`
-    display: flex;
-    flex-direction: column;
-`
-
 export const SupervisionTotalMain = styled.div`
-    display: flex;
-`;
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    grid-auto-flow: column;
+    width: 100%;
+    position: relative;
+    
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 2px;
+        background-color: #F2F3F6;
+        transform: translateX(-50%);
+    }
+`
 
 export const SupervisionTotalRow = styled.div`
+    height: 6.5vh;
+    align-items: center;
+    padding: 0% 6.5%;
+    width: 100%;
     display: flex;
-    padding: 10px;
-    width: 22.3vw;
+    justify-content: space-between;
+    border-bottom: ${({ $isLast }) => ($isLast ? 'none' : '2px solid #F2F3F6')};
+`
+
+export const SupervisionRank = styled.div`
+    width: 3vw;
+`
+
+export const SupervisionTeacher = styled.div`
+    width: 15vw;
+`
+
+export const SupervisionCount = styled.div`
+    text-align: center;
+    width: 3.5vw;
+`
+
+export const LeaveStudentTop = styled.div`
+    display: flex;
+    height: 8vh;
+    gap: 370px;
+    align-items: center;
+    padding: 3% 6.5%;
+    border-bottom: 2.5px solid #F2F3F6;
+`
+
+export const LeaveStudent = styled.div`
+    display: flex;
+    flex-direction: column;
+    border: 2.5px solid #F2F3F6;
+    border-radius: 15px;
+    width: 35vw;
+    height: 35vh;
+`
+
+export const LeaveStudentMain = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
+export const LeaveStudentRow = styled.div`
+    display: flex;
+    padding: 3%;
+    width: 34.5vw;
     height: 6.5vh;
     align-items: center;
     justify-content: center;
     border-bottom: ${({ $isLast }) => ($isLast ? 'none' : '2px solid #F2F3F6')};
-`;
-
-export const SupervisionRank = styled.div`
-    width: 30px;
-    text-align: center;
-`;
-
-export const SupervisionTeacher = styled.div`
-  flex: 1;
-  text-align: center;
-`;
-
-export const SupervisionCount = styled.div`
-  width: 80px;
-  text-align: center;
-`;
+`
