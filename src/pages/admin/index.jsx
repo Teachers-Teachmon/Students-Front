@@ -8,6 +8,7 @@ import Teacher from '../../assets/teacher.svg';
 import Supervision from '../../assets/supervision.svg';
 import SelfStudy from '../../assets/selfStudy.svg';
 import Left2 from '../../assets/left2.svg';
+import { useState } from 'react';
 
 export default function Admin() {
 
@@ -93,7 +94,7 @@ export default function Admin() {
     }
   ]
 
-  const leaveStudent = [
+  const [leaveStudent, setLeaveStudent] = useState([
     {
       "day": "12-01",
       "weekday": "월",
@@ -103,10 +104,14 @@ export default function Admin() {
     {
       "day": "12-01",
       "weekday": "월",
-      "leave_id": 2,
+      "leave_id": 3,
       "student": "1401 김동욱",
     }
-  ]
+  ]);
+
+  const handleDelete = (id) => {
+    setLeaveStudent(leaveStudent.filter(student => student.leave_id !== id));
+  };
 
   return (
     <S.Container>
@@ -202,7 +207,9 @@ export default function Admin() {
             <S.LeaveStudentMain>
               {leaveStudent.map((student, index) => (
                 <S.LeaveStudentRow key={student.leave_id}>
-
+                  <S.LeaveStudentDate>{student.day.replace("-","/")} ({student.weekday})</S.LeaveStudentDate>
+                  <S.LeaveStudentData>{student.student}</S.LeaveStudentData>
+                  <S.Confirm onClick={() => handleDelete(student.leave_id)}>삭제</S.Confirm>
                 </S.LeaveStudentRow>
               ))}
             </S.LeaveStudentMain>

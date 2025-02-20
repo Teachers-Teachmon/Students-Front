@@ -414,7 +414,7 @@ export const LeaveStudentTop = styled.div`
     height: 8vh;
     gap: 370px;
     align-items: center;
-    padding: 3% 6.5%;
+    padding: 3% 5%;
     border-bottom: 2.5px solid #F2F3F6;
 `
 
@@ -434,10 +434,28 @@ export const LeaveStudentMain = styled.div`
 
 export const LeaveStudentRow = styled.div`
     display: flex;
-    padding: 3%;
+    padding: 5%;
     width: 34.5vw;
     height: 6.5vh;
     align-items: center;
-    justify-content: center;
     border-bottom: ${({ $isLast }) => ($isLast ? 'none' : '2px solid #F2F3F6')};
+    gap: 20px;
+`
+
+export const LeaveStudentDate = styled.div`
+    display: flex;
+`
+
+export const LeaveStudentData = styled.div`
+    display: flex;
+
+`
+export const Confirm = styled.button`
+    width: 4.5vw;
+    height: 3vh;
+    background-color: #F87067;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-left: 195px;
 `
