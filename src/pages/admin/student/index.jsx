@@ -4,7 +4,6 @@ import SquareBtn from "../../../components/button/square/index.jsx";
 import {useNavigate} from "react-router-dom";
 import CircleBtn from "../../../components/button/circle/index.jsx";
 import {useEffect, useState} from "react";
-import Search from "../../../assets/Search.svg";
 import {useDebounce} from "../../../hooks/useDebounce.js";
 import {searchStudent} from "../../../api/search.js";
 import {useCreateStudent} from "../../../hooks/useStudent.js";
@@ -65,7 +64,7 @@ export default function AdminStudent() {
     }
     const newValue = [];
     Object.keys(value).forEach((key) => {
-      newValue[Number(key-1)] = value[key];
+      if(isGrade[Number((String(value[key].number).slice(0, 1)))-1]) newValue[Number(key-1)] = value[key];
     });
     const grade = isGrade[0] ? 1 : isGrade[1] ? 2 : 3;
     const onSuccessPatch = () => {
@@ -127,7 +126,7 @@ export default function AdminStudent() {
             <S.ContentBox>
               {Object.keys(value).length === 0 && <S.NoData>데이터가 없습니다</S.NoData> }
               {value && Object.keys(value).map((item)=>{
-                if(isPatch)
+                if(isPatch && isGrade[Number((String(value[item].number).slice(0, 1)))-1] )
                   return(
                     <S.Content key={item}>
                       <S.UnBox></S.UnBox>
@@ -150,12 +149,14 @@ export default function AdminStudent() {
                       </S.PatchBox>
                     </S.Content>
                 )
-                return(
+                else if(isGrade[Number((String(value[item].number).slice(0, 1)))-1]){
+                  return(
                       <S.Content key={item}>
                         <S.UnBox></S.UnBox>
                         <S.Box2  style={{display:'flex'}} $length={110}><p>{value[item].number}</p>{value[item].name}</S.Box2>
                       </S.Content>
-                )
+                  )
+                }
               })}
             </S.ContentBox>
           </S.Table>

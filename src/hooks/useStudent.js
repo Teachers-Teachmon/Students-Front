@@ -120,7 +120,6 @@ export const useCreateStudent = ()=>{
     return useMutation({
         mutationFn : (props)=> API.createStudent(props),
         onSuccess:(data, variables)=>{
-            console.log(variables);
             variables.onSuccessPatch();
             setStatus();
         },

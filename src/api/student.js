@@ -121,7 +121,7 @@ export const patchStudent = async ({studentID, status}) =>{
 //${API_ENDPOINTS.STUDENT}
 export const createStudent = async ({students, grade}) =>{
     try{
-        const res = await axiosInstance.post(`/student2`, students);
+        const res = await axiosInstance.patch(`${API_ENDPOINTS.STUDENT}/${grade}`, students);
         if(res.status !== 200 && res.status !== 201){
             return Promise.reject({
                 status: res.status,
