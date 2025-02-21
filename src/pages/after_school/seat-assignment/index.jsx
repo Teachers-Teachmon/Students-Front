@@ -4,6 +4,7 @@ import SquareBtn from '../../../components/button/square/index.jsx';
 import LocationBox from '../../../components/modal/LocationBox/index.jsx';
 import { useState, useEffect } from 'react';
 import { useGetBusinessTripStudents, useSetBusinessTripStudents, useGetStudentLocation } from '../../../hooks/useAfterSchool.js';
+import { useBusinessTrip } from '../../../hooks/useAfterSchool.js';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { useLocation } from 'react-router-dom';
@@ -44,12 +45,13 @@ export default function SeatAssignment() {
     const location = useLocation();
     const afterSchoolData = location.state || {};
     const { data: businessTripStudents } = useGetBusinessTripStudents(afterSchoolData.id, afterSchoolData.branch);
-    const { data: studentLocation } = useGetStudentLocation(afterSchoolData.day, afterSchoolData.period, afterSchoolData.id, afterSchoolData.branch, { enabled: false });
+    const { data: studentLocation, refetch } = useGetStudentLocation(afterSchoolData.day, afterSchoolData.period, afterSchoolData.id, afterSchoolData.branch, { enabled: false });
     const { mutate } = useSetBusinessTripStudents();
     const [notAssignedStudent, setNotAssignedStudent] = useState([]);
     const [assignedStudent, setAssignedStudent] = useState([]);
     const [locationMessage, setLocationMessage] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const { mutate: createBusinessTrip } = useBusinessTrip();
 
     useEffect(() => {
         if (businessTripStudents) {
@@ -77,6 +79,12 @@ export default function SeatAssignment() {
             alert("모든 학생을 배정해주세요.");
             return;
         }
+        createBusinessTrip({
+            day: afterSchoolData.day || new Date(),
+            period: afterSchoolData.period,
+            afterSchoolId: afterSchoolData.id,
+            branch: afterSchoolData.branch
+        });
 
         const payload = {
             정보: {
