@@ -82,3 +82,21 @@ export const ClassDivisionBox = styled.div`
   // border: ${({ $isOver }) => $isOver ? '2vw solid #2E6FF2' : '0.2vw solid #CCC'};
   overflow-y: auto;
 `;
+
+export const ModalOverlay = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const Modal = styled.div`
+    width: 60vw;
+    border-radius: 10px;
+    padding: 2rem;
+`
