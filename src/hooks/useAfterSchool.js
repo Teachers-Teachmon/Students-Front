@@ -161,3 +161,29 @@ export const useGetDailyAfterSchool = (day) => {
         }
     });
 }
+
+export const useGetBusinessTripStudents = (id, branch) => {
+    return useQuery({
+        queryKey: ['getBusinessTripStudents', id, branch],
+        queryFn: async () => {
+            const res = await API.getBusinessTripStudents(id, branch);
+            return res.data || [];
+        }
+    });
+}
+
+export const useSetBusinessTripStudents = (studentList) => {
+    return useMutation({
+        mutationFn: (props) => API.setBusinessTripStudents(props),
+    })
+}
+
+export const useGetStudentLocation = (day, period, id, branch) => {
+    return useQuery({
+        queryKey: ['getStudentLocation', day, period, id, branch],
+        queryFn: async () => {
+            const res = await API.getStudentLocation(day, period, id, branch);
+            return res.data || [];
+        }
+    });
+}
