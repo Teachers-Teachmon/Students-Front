@@ -203,3 +203,47 @@ export const getDailyAfterSchool = async (day) => {
         return Promise.reject(err);
     }
 };
+
+export const getBusinessTripStudents = async (id, branch) => {
+    try {
+        const res = await axiosInstance.get(`${API_ENDPOINTS.AFTER_SCHOOL}/business-trip`, { params: { id, branch } });
+        if (res.status !== 200) {
+            return Promise.reject({
+                status: res.status,
+                message: res.message
+            });
+        }
+        return res;
+    } catch (err) {
+        return Promise.reject(err);
+    }
+}
+
+export const setBusinessTripStudents  = async (studentList) => {
+    try {
+        const res = await axiosInstance.post(`${API_ENDPOINTS.AFTER_SCHOOL}/business-trip`, studentList);
+        if (res.status !== 200) {
+            return Promise.reject({
+                status: res.status,
+                message: res.message
+            })
+        }
+    } catch (err) {
+        return Promise.reject(err);
+    }
+}
+
+export const getStudentLocation = async (day, period, id, branch) => {
+    try {
+        const res = await axiosInstance.get(`${API_ENDPOINTS.AFTER_SCHOOL}/string`, { params: { day, period, id, branch } });
+        if (res.status !== 200) {
+            return Promise.reject({
+                status: res.status,
+                message: res.message
+            })
+        }
+        return res;
+    } catch (err) {
+        return Promise.reject(err);
+    }
+}
