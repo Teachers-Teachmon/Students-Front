@@ -1,7 +1,7 @@
 import * as S from './style.jsx';
 import Header from '../../../components/header/index.jsx';
 import SquareBtn from '../../../components/button/square/index.jsx';
-import LocationBox from '../../../components/modal/locationBox/index.jsx';
+import LocationBox from '../../../components/modal/LocationBox/index.jsx';
 import { useState, useEffect } from 'react';
 import { useGetBusinessTripStudents, useSetBusinessTripStudents, useGetStudentLocation } from '../../../hooks/useAfterSchool.js';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
