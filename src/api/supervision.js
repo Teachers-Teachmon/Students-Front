@@ -156,7 +156,7 @@ export const getSelfStudy = async (branch, grade) => {
                 message: res.message || 'Request failed'
             });
         }
-        return res.data;
+        return res;
     } catch (err) {
         return Promise.reject(err);
     }
