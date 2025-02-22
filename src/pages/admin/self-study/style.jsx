@@ -118,6 +118,7 @@ export const TopDate = styled.div`
     margin-left: 20px;
     height: 4.9vh;
     width: ${(props)=>props.$length}vw;
+    cursor: pointer;
 `
 
 export const PlusBtn = styled.div`
