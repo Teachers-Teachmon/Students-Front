@@ -159,15 +159,14 @@ export default function AdminSupervision() {
                     </S.DrawerHeader>
                     <S.DrawerContent>
                         {Ranking && Ranking.map((item, idx) => {
-                            const acc = item.SEVEN_PERIOD_COUNT + item.EIGHT_AND_ELEVEN_PERIOD_COUNT + item.NIGHT_COUNT;
                             return (
                                 <S.TeacherBox key={item.teacher_id}>
-                                    <S.MenuBox $width={50}>{idx + 1}위</S.MenuBox>
+                                    <S.MenuBox $width={50}>{item.rank}위</S.MenuBox>
                                     <S.MenuBox $width={70}>{item.name}</S.MenuBox>
                                     <S.MenuBox $width={60}>{item.SEVEN_PERIOD_COUNT}회</S.MenuBox>
                                     <S.MenuBox $width={80}>{item.EIGHT_AND_ELEVEN_PERIOD_COUNT}회</S.MenuBox>
                                     <S.MenuBox $width={50}>{item.NIGHT_COUNT}회</S.MenuBox>
-                                    <S.MenuBox $width={30}>{acc}회</S.MenuBox>
+                                    <S.MenuBox $width={30}>{item.total}회</S.MenuBox>
                                 </S.TeacherBox>
                             )
                         })}
