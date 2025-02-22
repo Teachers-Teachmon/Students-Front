@@ -154,7 +154,7 @@ export default function AdminSupervision() {
                             <S.MenuBox $width={60}>7교시</S.MenuBox>
                             <S.MenuBox $width={80}>8~11교시</S.MenuBox>
                             <S.MenuBox $width={50}>야간</S.MenuBox>
-                            <S.MenuBox $width={30}>합계</S.MenuBox>
+                            <S.MenuBox $width={35}>합계</S.MenuBox>
                         </S.Menu>
                     </S.DrawerHeader>
                     <S.DrawerContent>
@@ -166,7 +166,7 @@ export default function AdminSupervision() {
                                     <S.MenuBox $width={60}>{item.SEVEN_PERIOD_COUNT}회</S.MenuBox>
                                     <S.MenuBox $width={80}>{item.EIGHT_AND_ELEVEN_PERIOD_COUNT}회</S.MenuBox>
                                     <S.MenuBox $width={50}>{item.NIGHT_COUNT}회</S.MenuBox>
-                                    <S.MenuBox $width={30}>{item.total}회</S.MenuBox>
+                                    <S.MenuBox $width={35}>{item.total}회</S.MenuBox>
                                 </S.TeacherBox>
                             )
                         })}
