@@ -147,7 +147,7 @@ export const setBannedList = async (bannedList) => {
 
 export const getSelfStudy = async (branch, grade) => {
     try {
-        const res = await axiosInstance.get(`${API_ENDPOINTS.SUPERVISION}/self-study`, {
+        const res = await axiosInstance.get(`/self-study`, {
             params: { branch, grade }
         });
         if (res.status !== 200 && res.status !== 201) {
