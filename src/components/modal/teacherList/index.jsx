@@ -185,7 +185,7 @@ export default function TeacherList({ closeModal, selectedDate }) {
                                     </>
                                 ) : (
                                     <>
-                                        {todayAfterSchoolTeacher.afterschool.map((item, idx) => {
+                                        { todayAfterSchoolTeacher && todayAfterSchoolTeacher.map((item, idx) => {
                                             const { period, teacherName, place } = item;
                                             return (
                                                 <S.TeacherTable key={idx}>
