@@ -27,15 +27,3 @@ export const patchTeacher = async ({teachers}) => {
         return Promise.reject(err);
     }
 }
-
-export const getRanking = async (order, teacher) => {
-    try {
-        const res = await axiosInstance.get(`${API_ENDPOINTS.TEACHER}/ranking?order=${order}&search_query=${teacher}`);
-        if(res.status!==200 && res.status!==201){
-            return Promise.reject(res.status)
-        }
-        return res;
-    }catch (err){
-        return Promise.reject(err);
-    }
-}

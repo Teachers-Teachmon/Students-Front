@@ -11,6 +11,9 @@ export const MainContent = styled.div`
     display: flex;
     flex-direction: column;
     gap: ${(props) => (props.$isFullscreen ? "1rem" : "0")};
+    @media (max-width: 400px) {
+        width: 100%;
+    }
 `
 
 export const MainTop = styled.div`
@@ -40,6 +43,11 @@ export const MainMiddle = styled.div`
     justify-content: space-between;
     gap: 2rem;
     align-items: center;
+
+    @media (max-width: 400px) {
+        flex-direction: column;
+        gap: 1rem;
+    }
 `
 
 export const NextSup = styled.div`
@@ -56,6 +64,10 @@ export const NextSup = styled.div`
     border-radius: 30px;
     padding-left: 2%;
     overflow: hidden;
+
+    @media (max-width: 400px) {
+        width: 90%;
+    }
 `
 
 export const NexSupLeft = styled.div`
@@ -151,6 +163,11 @@ export const MainBottom = styled.div`
     width: 100%;
     display: flex;
     margin-top: 1%;
+
+    @media (max-width: 400px) {
+        flex-direction: column;
+        gap: 1rem;
+    }
 `
 
 export const BottomLeft = styled.div`
@@ -159,6 +176,10 @@ export const BottomLeft = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
+
+    @media (max-width: 400px) {
+        width: 100%;
+    }
 `
 
 export const BottomLeftHeader = styled.div`
@@ -174,6 +195,10 @@ export const BottomRight = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
+
+    @media (max-width: 400px) {
+        width: 100%;
+    }
 `
 
 export const BottomLeftContent = styled.div`
@@ -292,6 +317,11 @@ export const CalendarWrapper = styled.div`
     max-height: 35.95vh;
     overflow-y: auto;
     padding-right: 0.5rem;
+
+    @media (max-width: 400px) {
+        width: 100%;
+        max-height: 100%;
+    }
 `
 
 export const CalendarHeader = styled.div`
@@ -319,6 +349,10 @@ export const Control = styled.div`
     div {
         text-align: center;
         white-space: nowrap;
+    }
+    
+    @media (max-width: 400px) {
+        transform: translateX(-5%);
     }
 `;
 
@@ -371,6 +405,10 @@ export const CalendarDay = styled.div`
         grid-template-columns: 1fr 1fr;
         gap: 0.1rem;
     }
+    
+    @media (max-width: 400px) {
+        padding: 0;
+    }
 `
 
 export const Day = styled.div`
@@ -392,6 +430,11 @@ export const ScheduleMarker = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 400px) {
+    width: 12px;
+    height: 12px;
+  }
 `;
 
 export const ModalOverlay = styled.div`

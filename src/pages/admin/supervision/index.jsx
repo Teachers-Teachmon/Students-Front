@@ -11,7 +11,7 @@ import { searchTeacher } from '../../../api/search.js';
 import Loading from '../../../components/loading/index.jsx';
 import InputBox from "../../../components/searchBox";
 import X from '../../../assets/X.svg'
-import { useGetRanking } from '../../../hooks/useTeacher.js'
+import { useGetRanking } from '../../../hooks/useSupervision.js'
 
 export default function AdminSupervision() {
     const navigate = useNavigate();
@@ -154,20 +154,19 @@ export default function AdminSupervision() {
                             <S.MenuBox $width={60}>7교시</S.MenuBox>
                             <S.MenuBox $width={80}>8~11교시</S.MenuBox>
                             <S.MenuBox $width={50}>야간</S.MenuBox>
-                            <S.MenuBox $width={30}>합계</S.MenuBox>
+                            <S.MenuBox $width={35}>합계</S.MenuBox>
                         </S.Menu>
                     </S.DrawerHeader>
                     <S.DrawerContent>
                         {Ranking && Ranking.map((item, idx) => {
-                            const acc = item.SEVEN_PERIOD_COUNT + item.EIGHT_AND_ELEVEN_PERIOD_COUNT + item.NIGHT_COUNT;
                             return (
                                 <S.TeacherBox key={item.teacher_id}>
-                                    <S.MenuBox $width={50}>{idx + 1}위</S.MenuBox>
+                                    <S.MenuBox $width={50}>{item.rank}위</S.MenuBox>
                                     <S.MenuBox $width={70}>{item.name}</S.MenuBox>
                                     <S.MenuBox $width={60}>{item.SEVEN_PERIOD_COUNT}회</S.MenuBox>
                                     <S.MenuBox $width={80}>{item.EIGHT_AND_ELEVEN_PERIOD_COUNT}회</S.MenuBox>
                                     <S.MenuBox $width={50}>{item.NIGHT_COUNT}회</S.MenuBox>
-                                    <S.MenuBox $width={30}>{acc}회</S.MenuBox>
+                                    <S.MenuBox $width={35}>{item.total}회</S.MenuBox>
                                 </S.TeacherBox>
                             )
                         })}
