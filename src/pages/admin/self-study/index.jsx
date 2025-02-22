@@ -9,7 +9,6 @@ import Circle from '../../../components/button/circle/index.jsx';
 
 export default function AdminSelfStudy() {
   const navigate = useNavigate();
-  const [selectedRows, setSelectedRows] = useState([[], [], [], []]);
   const [isOpen, setIsOpen] = useState({});
   const week = ['MON', 'TUE', 'WED', 'THU'];
   const periods = ['7교시', '8~9교시', '10~11교시'];
@@ -18,6 +17,14 @@ export default function AdminSelfStudy() {
   const [isBranchOpen, setIsBranchOpen] = useState(false);
   const [grade, setGrade] = useState([true, false, false]);
   const [selectedGrade, setSelectedGrade] = useState(1);
+
+
+  const [selectedRows, setSelectedRows] = useState({
+    MON: ["7교시", "8~9교시"],
+    TUE: ["7교시", "8~9교시"],
+    WED: ["7교시", "8~9교시"],
+    THU: ["7교시", "8~9교시"]
+  });
 
   const mapPeriod = (p) => {
     switch (p) {
@@ -39,20 +46,20 @@ export default function AdminSelfStudy() {
     setSelectedGrade(idx + 1);
   }
 
-  const handleInputChange = (classIndex, rowIndex, value) => {
+  const handleInputChange = (day, rowIndex, value) => {
     setSelectedRows(prev => {
-      const newRows = [...prev];
-      newRows[classIndex][rowIndex] = { period: value };
+      const newRows = { ...prev };
+      newRows[day][rowIndex] = value;
       return newRows;
     });
   };
 
-  const handleDropdownClick = (classIndex, rowIndex) => {
+  const handleDropdownClick = (day, rowIndex) => {
     setIsOpen(prev => ({
       ...prev,
-      [classIndex]: {
-        ...prev[classIndex],
-        [rowIndex]: !prev[classIndex]?.[rowIndex]
+      [day]: {
+        ...prev[day],
+        [rowIndex]: !prev[day]?.[rowIndex]
       }
     }));
   };
@@ -61,10 +68,10 @@ export default function AdminSelfStudy() {
     setBranch(selectedBranch);
   };
 
-  const addRow = (classIndex) => {
+  const addRow = (day) => {
     setSelectedRows(prev => {
-      const newRows = [...prev];
-      newRows[classIndex] = [...newRows[classIndex], { period: '' }];
+      const newRows = { ...prev };
+      newRows[day] = [...newRows[day], ""];
       return newRows;
     });
   };
@@ -74,18 +81,18 @@ export default function AdminSelfStudy() {
   };
 
   const handleSubmit = () => {
-    const payload = selectedRows.flatMap((rows, classIndex) =>
-      rows.map(row => row.period ? { week_day: week[classIndex], period: mapPeriod(row.period) } : null)
+    const payload = Object.entries(selectedRows).flatMap(([day, rows]) =>
+      rows.map(row => row ? { week_day: day, period: mapPeriod(row) } : null)
     ).filter(item => item !== null);
 
     console.log('Payload:', payload);
     mutate(payload);
   };
 
-  const removeRow = (classIndex, rowIndex) => {
+  const removeRow = (day, rowIndex) => {
     setSelectedRows(prev => {
-      const newRows = [...prev];
-      newRows[classIndex] = newRows[classIndex].filter((_, index) => index !== rowIndex);
+      const newRows = { ...prev };
+      newRows[day] = newRows[day].filter((_, index) => index !== rowIndex);
       return newRows;
     });
   };
@@ -94,11 +101,26 @@ export default function AdminSelfStudy() {
     setIsBranchOpen(false);
   };
 
+  const dayToKorean = (day) => {
+    switch (day) {
+      case 'MON':
+        return '월';
+      case 'TUE':
+        return '화';
+      case 'WED':
+        return '수';
+      case 'THU':
+        return '목';
+      default:
+        return day;
+    }
+  };
+
   return (
     <S.Container onClick={() => handleCloseBranch()}>
       <Header />
       <S.Content>
-        {Object.values(isOpen).some(rows => Object.values(rows).includes(true)) && (
+        {Object.values(isOpen).some(isOpen => isOpen) && (
           <S.Black onClick={() => setIsOpen({})} />
         )}
 
@@ -126,29 +148,40 @@ export default function AdminSelfStudy() {
           </S.SquareBtn>
         </S.MainHeader>
         <S.MainContent>
-          {selectedRows.map((rows, classIndex) => (
-            <S.EditMainData key={classIndex}>
-              <h2>{['월', '화', '수', '목'][classIndex]}</h2>
+          {week.map(day => (
+            <S.EditMainData key={day}>
+              <h2>{dayToKorean(day)}</h2>
               <S.EditMainTop>
                 <S.TopData $length={9}>교시</S.TopData>
               </S.EditMainTop>
-              {rows.map((row, rowIndex) => (
-                <S.EditRow key={rowIndex}>
-                  <S.RowData $length={8}>
-                    <DropdownNS
-                      name={row?.period || '교시'}
-                      item={periods}
-                      change={(value) => handleInputChange(classIndex, rowIndex, value)}
-                      isOpen={isOpen[classIndex]?.[rowIndex]}
-                      click={() => handleDropdownClick(classIndex, rowIndex)}
-                    />
-                  </S.RowData>
-                  <S.P onClick={() => removeRow(classIndex, rowIndex)}>-</S.P>
-                </S.EditRow>
-              ))}
-              <S.PlusBtn onClick={() => addRow(classIndex)}>+</S.PlusBtn>
+              {selectedRows[day].map((period, rowIndex) => {
+                // 이미 선택된 교시 목록 추출
+                const selectedPeriods = new Set(selectedRows[day].filter((_, i) => i !== rowIndex));
+
+                return (
+                  <S.EditRow key={rowIndex}>
+                    <S.RowData $length={8}>
+                      <DropdownNS
+                        name={period || '교시'}
+                        item={periods.filter(p => !selectedPeriods.has(p))}
+                        change={(value) => {
+                          handleInputChange(day, rowIndex, value);
+                          setTimeout(() => {
+                            setIsOpen({});
+                          }, 0);
+                        }}
+                        isOpen={isOpen[day]?.[rowIndex]}
+                        click={() => handleDropdownClick(day, rowIndex)}
+                      />
+                    </S.RowData>
+                    <S.P onClick={() => removeRow(day, rowIndex)}>-</S.P>
+                  </S.EditRow>
+                );
+              })}
+              <S.PlusBtn onClick={() => addRow(day)}>+</S.PlusBtn>
             </S.EditMainData>
           ))}
+
         </S.MainContent>
       </S.Content>
     </S.Container>
