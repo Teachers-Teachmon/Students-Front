@@ -212,23 +212,23 @@ export default function Main() {
                                             let markers = [];
                                             if (supervision && supervision.length > 0) {
                                                 let supMarkers = supervision.map(item => (
-                                                  <S.ScheduleMarker
-                                                    key={`${item.schedule.period}-${item.schedule.type}`}
-                                                    style={{ backgroundColor: "#C4FFC0", color: "#007728" }}
-                                                  >
-                                                    {mapPeriodToLabel(item.schedule.period)}
-                                                  </S.ScheduleMarker>
+                                                    <S.ScheduleMarker
+                                                        key={`${item.schedule.period}-${item.schedule.type}`}
+                                                        style={{ backgroundColor: "#C4FFC0", color: "#007728" }}
+                                                    >
+                                                        {mapPeriodToLabel(item.schedule.period)}
+                                                    </S.ScheduleMarker>
                                                 ));
                                                 markers = markers.concat(supMarkers);
-                                            } 
+                                            }
                                             if (afterSchool && afterSchool.length > 0) {
                                                 let supMarkers = afterSchool.map(item => (
-                                                  <S.ScheduleMarker
-                                                    key={item.period}
-                                                    style={{ backgroundColor: "#C8DBFF", color: "#2E6FF2" }}
-                                                  >
-                                                    {mapPeriodToLabel(item.period)}
-                                                  </S.ScheduleMarker>
+                                                    <S.ScheduleMarker
+                                                        key={item.period}
+                                                        style={{ backgroundColor: "#C8DBFF", color: "#2E6FF2" }}
+                                                    >
+                                                        {mapPeriodToLabel(item.period)}
+                                                    </S.ScheduleMarker>
                                                 ));
                                                 markers = markers.concat(supMarkers);
                                             }
