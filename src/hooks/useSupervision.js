@@ -112,3 +112,13 @@ export const useGetRanking = (order, teacher) => {
         }
     })
 }
+
+export const useGetSelfStudy = (branch, grade) => {
+    return useQuery({
+        queryKey: ['getSelfStudy'],
+        queryFn: async () => {
+            const res = await API.getSelfStudy();
+            return res.data || [];
+        }
+    })
+}

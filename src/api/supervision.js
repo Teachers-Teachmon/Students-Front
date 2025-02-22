@@ -144,6 +144,24 @@ export const setBannedList = async (bannedList) => {
     }
 }
 
+<<<<<<< HEAD
+export const getSelfStudy = async (branch, grade) => {
+    try {
+        const res = await axiosInstance.get(`${API_ENDPOINTS.SUPERVISION}/self-study`, {
+            params: { branch, grade }
+        });
+        if (res.status !== 200 && res.status !== 201) {
+            return Promise.reject({
+                status: res.status,
+                message: res.message || 'Request failed'
+            });
+        }
+        return res.data;
+    } catch (err) {
+        return Promise.reject(err);
+    }
+};
+=======
 export const getRanking = async (order, teacher) => {
     try {
         const res = await axiosInstance.get(`${API_ENDPOINTS.SUPERVISION}/ranking/search?sort=${order}&search_query=${teacher}`);
@@ -155,3 +173,4 @@ export const getRanking = async (order, teacher) => {
         return Promise.reject(err);
     }
 }
+>>>>>>> 43cdc7fed13e863b233305c9bff2db22bef123ba

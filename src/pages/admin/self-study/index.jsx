@@ -6,6 +6,7 @@ import SquareBtn from '../../../components/button/square/index.jsx';
 import DropdownNS from '../../../components/dropdown/nosearch/index.jsx';
 import Line from '../../../assets/line.svg';
 import Circle from '../../../components/button/circle/index.jsx';
+import { useGetSelfStudy } from '../../../hooks/useSupervision.js';
 
 export default function AdminSelfStudy() {
   const navigate = useNavigate();
@@ -20,11 +21,19 @@ export default function AdminSelfStudy() {
 
 
   const [selectedRows, setSelectedRows] = useState({
-    MON: ["7교시", "8~9교시"],
-    TUE: ["7교시", "8~9교시"],
-    WED: ["7교시", "8~9교시"],
-    THU: ["7교시", "8~9교시"]
+    MON: [],
+    TUE: [],
+    WED: [],
+    THU: []
   });
+
+  const { data } = useGetSelfStudy(branch, selectedGrade);
+
+  useEffect(() => {
+    if (data) {
+      setSelectedRows(data);
+    }
+  }, [data]);
 
   const mapPeriod = (p) => {
     switch (p) {
@@ -155,7 +164,6 @@ export default function AdminSelfStudy() {
                 <S.TopData $length={9}>교시</S.TopData>
               </S.EditMainTop>
               {selectedRows[day].map((period, rowIndex) => {
-                // 이미 선택된 교시 목록 추출
                 const selectedPeriods = new Set(selectedRows[day].filter((_, i) => i !== rowIndex));
 
                 return (
