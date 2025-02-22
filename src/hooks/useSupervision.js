@@ -115,9 +115,9 @@ export const useGetRanking = (order, teacher) => {
 
 export const useGetSelfStudy = (branch, grade) => {
     return useQuery({
-        queryKey: ['getSelfStudy'],
+        queryKey: ['getSelfStudy', branch, grade],
         queryFn: async () => {
-            const res = await API.getSelfStudy();
+            const res = await API.getSelfStudy(branch, grade);
             return res.data || [];
         }
     })
