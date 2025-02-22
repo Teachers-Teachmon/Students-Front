@@ -189,9 +189,9 @@ export default function TeacherList({ closeModal, selectedDate }) {
                                             const { period, teacherName, place } = item;
                                             return (
                                                 <S.TeacherTable key={idx}>
-                                                    <p>{period}</p>
-                                                    <p>{teacherName}</p>
-                                                    <p>{place}</p>
+                                                    <p>{period || "X"}</p>
+                                                    <p>{teacherName || "X"}</p>
+                                                    <p>{place || "X"}</p>
                                                 </S.TeacherTable>
                                             );
                                         })}
