@@ -111,7 +111,7 @@ export default function TeacherList({ closeModal, selectedDate }) {
                     </div>
                 </S.Header>
                 <S.Content>
-                    {(cachedTeacher || cachedAfterSchoolTeacher ||todayTeacher || todayAfterSchoolTeacher) && (
+                    {(cachedTeacher || cachedAfterSchoolTeacher || todayTeacher || todayAfterSchoolTeacher) && (
                         <S.Table>
                             <S.TeacherListTop $tab={tab}>
                                 <span></span>
@@ -165,10 +165,10 @@ export default function TeacherList({ closeModal, selectedDate }) {
                                                 const studyStr = todayTeacher && todayTeacher.self_study_teacher ? todayTeacher.self_study_teacher[key] : "X";
                                                 const leaveStr = todayTeacher && todayTeacher.leave_seat_teacher ? todayTeacher.leave_seat_teacher[key] : "X";
 
-        
+
                                                 const { name: studyName, isMe: isMeStudy } = formatTeacherName(studyStr);
                                                 const { name: leaveName, isMe: isMeLeave } = formatTeacherName(leaveStr);
-        
+
                                                 return (
                                                     <S.TeacherTable key={idx}>
                                                         <p>{label}</p>
@@ -185,16 +185,24 @@ export default function TeacherList({ closeModal, selectedDate }) {
                                     </>
                                 ) : (
                                     <>
-                                        { todayAfterSchoolTeacher && todayAfterSchoolTeacher.map((item, idx) => {
-                                            const { period, teacherName, place } = item;
-                                            return (
-                                                <S.TeacherTable key={idx}>
-                                                    <p>{period || "X"}</p>
-                                                    <p>{teacherName || "X"}</p>
-                                                    <p>{place || "X"}</p>
-                                                </S.TeacherTable>
-                                            );
-                                        })}
+                                        {todayAfterSchoolTeacher && todayAfterSchoolTeacher.length > 0 ? (
+                                            todayAfterSchoolTeacher.map((item, idx) => {
+                                                const { period, teacherName, place } = item;
+                                                return (
+                                                    <S.TeacherTable key={idx}>
+                                                        <p>{period}</p>
+                                                        <p>{teacherName}</p>
+                                                        <p>{place}</p>
+                                                    </S.TeacherTable>
+                                                );
+                                            })
+                                        ) : (
+                                            <S.TeacherTable>
+                                                <p>{"X"}</p>
+                                                <p>{"X"}</p>
+                                                <p>{"X"}</p>
+                                            </S.TeacherTable>
+                                        )}
                                     </>
                                 )}
                             </S.TeacherListContent>
