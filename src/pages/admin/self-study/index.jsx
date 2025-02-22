@@ -31,9 +31,15 @@ export default function AdminSelfStudy() {
 
   useEffect(() => {
     if (data) {
-      setSelectedRows(data);
+      setSelectedRows({
+        MON: data.MON || [],
+        TUE: data.TUE || [],
+        WED: data.WED || [],
+        THU: data.THU || [],
+      });
     }
   }, [data]);
+  
 
   const mapPeriod = (p) => {
     switch (p) {
@@ -163,7 +169,7 @@ export default function AdminSelfStudy() {
               <S.EditMainTop>
                 <S.TopData $length={9}>교시</S.TopData>
               </S.EditMainTop>
-              {selectedRows[day].map((period, rowIndex) => {
+              {selectedRows[day]?.map((period, rowIndex) => {
                 const selectedPeriods = new Set(selectedRows[day].filter((_, i) => i !== rowIndex));
 
                 return (
