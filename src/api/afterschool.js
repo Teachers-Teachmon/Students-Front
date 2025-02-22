@@ -191,7 +191,7 @@ export const getMonthlyAfterSchool = async (month) => {
 
 export const getDailyAfterSchool = async (day) => {
     try {
-        const res = await axiosInstance.get(`${API_ENDPOINTS.AFTER_SCHOOL}/daily/${day}`);
+        const res = await axiosInstance.get(`${API_ENDPOINTS.AFTER_SCHOOL}/day/${day}`);
         if (res.status !== 200) {
             return Promise.reject({
                 status: res.status,
