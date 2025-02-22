@@ -37,11 +37,9 @@ export default function Admin() {
 
   const supervisionTotal = [
     {
-      "name": "정유진",
-      "teacher_id": 1,
-      "SEVEN_PERIOD_COUNT": 2,
-      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 3,
-      "NIGHT_COUNT": 3
+      "rank" : 1,
+      "name" : "정유진",
+      "count" : 36
     },
     {
       "name": "정유진",
@@ -97,18 +95,18 @@ export default function Admin() {
   const [leaveStudent, setLeaveStudent] = useState([
     {
       "weekday": "월",
-      "leave_id": 2,
+      "leaveId": 2,
       "student": "1401 김동욱",
     },
     {
       "weekday": "월",
-      "leave_id": 3,
+      "leaveId": 3,
       "student": "1401 김동욱",
     }
   ]);
 
   const handleDelete = (id) => {
-    setLeaveStudent(leaveStudent.filter(student => student.leave_id !== id));
+    setLeaveStudent(leaveStudent.filter(student => student.leaveId !== id));
   };
 
   return (
@@ -204,10 +202,10 @@ export default function Admin() {
             </S.LeaveStudentTop>
             <S.LeaveStudentMain>
               {leaveStudent.map((student, index) => (
-                <S.LeaveStudentRow key={student.leave_id}>
+                <S.LeaveStudentRow key={student.leaveId}>
                   <S.LeaveStudentDate>{student.day} ({student.weekday})</S.LeaveStudentDate>
                   <S.LeaveStudentData>{student.student}</S.LeaveStudentData>
-                  <S.Confirm onClick={() => handleDelete(student.leave_id)}>삭제</S.Confirm>
+                  <S.Confirm onClick={() => handleDelete(student.leaveId)}>삭제</S.Confirm>
                 </S.LeaveStudentRow>
               ))}
             </S.LeaveStudentMain>
