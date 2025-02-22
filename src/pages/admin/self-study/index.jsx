@@ -30,6 +30,7 @@ export default function AdminSelfStudy() {
   const { data } = useGetSelfStudy(branch, selectedGrade);
 
   useEffect(() => {
+    console.log("API 응답 data:", data);
     if (data) {
       setSelectedRows({
         MON: data.MON || [],
@@ -39,6 +40,9 @@ export default function AdminSelfStudy() {
       });
     }
   }, [data])
+  useEffect(() => {
+    console.log("현재 selectedRows:", selectedRows);
+  }, [selectedRows]);
   
 
   const mapPeriod = (p) => {
