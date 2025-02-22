@@ -102,3 +102,13 @@ export const useSetBannedList = () => {
         }
     });
 }
+
+export const useGetRanking = (order, teacher) => {
+    return useQuery({
+        queryKey: ['getRanking', order, teacher],
+        queryFn: async () => {
+            const res = await API.getRanking(order, teacher);
+            return res.data || [];
+        }
+    })
+}

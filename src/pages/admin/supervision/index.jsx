@@ -11,7 +11,7 @@ import { searchTeacher } from '../../../api/search.js';
 import Loading from '../../../components/loading/index.jsx';
 import InputBox from "../../../components/searchBox";
 import X from '../../../assets/X.svg'
-import { useGetRanking } from '../../../hooks/useTeacher.js'
+import { useGetRanking } from '../../../hooks/useSupervision.js'
 
 export default function AdminSupervision() {
     const navigate = useNavigate();
