@@ -55,21 +55,6 @@ export const ClassDivisionContent = styled.div`
   }
 `;
 
-// export const ClassDivisionBox = styled.div`
-//   display: inline-block;
-//   height: 55vh;
-//   border: 2px solid #CCC;
-//   padding: 1rem;
-
-//   column-width: 100px;
-//   column-gap: 1rem;
-//   column-fill: auto;
-
-//   div {
-//     margin-bottom: 0.85rem;
-//   }
-// `;
-
 export const ClassDivisionBox = styled.div`
   display: flex;
   width: 18vw;
