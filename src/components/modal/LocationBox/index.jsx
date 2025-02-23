@@ -1,9 +1,10 @@
 import * as S from './style.jsx';
 import SquareBtn from '../../button/square';
 import { useNavigate } from 'react-router-dom';
+import { useBusinessTrip } from '../../../hooks/useAfterSchool.js';
 
-export default function LocationBox({ data, closeModal }) {
-    const navigate = useNavigate();
+export default function LocationBox({ data, closeModal, afterSchoolData }) {
+    const { mutate: createBusinessTrip } = useBusinessTrip();
     const parts = data.split(',');
     const handleCopy = () => {
         navigator.clipboard.writeText(data)
@@ -18,7 +19,12 @@ export default function LocationBox({ data, closeModal }) {
 
     const handleComplete = () => {
         closeModal();
-        navigate('/after-school');
+        createBusinessTrip({
+            day: afterSchoolData.day || new Date(),
+            period: afterSchoolData.period,
+            afterSchoolId: afterSchoolData.id,
+            branch: afterSchoolData.branch
+        });
     }
 
     return (
