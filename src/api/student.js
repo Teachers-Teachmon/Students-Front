@@ -155,7 +155,7 @@ export const postStudent = async ({students}) =>{
     }
 }
 
-export const deleteStudent = async ({studentId}) => {
+export const deleteStudent = async (studentId) => {
     try{
         const res = await axiosInstance.delete(`${API_ENDPOINTS.STUDENT}/${studentId}`);
         if(res.status !== 200){
