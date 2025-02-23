@@ -187,3 +187,13 @@ export const useGetStudentLocation = (day, id) => {
         }
     });
 }
+
+export const useGetAbleAfterSchool = (id, day) => {
+    return useQuery({
+        queryKey: ['getAbleAfterSchool', id, day],
+        queryFn: async () => {
+            const res = await API.getAbleAfterSchool(id, day);
+            return res.data || [];
+        }
+    })
+}

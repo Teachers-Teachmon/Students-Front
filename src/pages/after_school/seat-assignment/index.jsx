@@ -3,8 +3,7 @@ import Header from '../../../components/header/index.jsx';
 import SquareBtn from '../../../components/button/square/index.jsx';
 import LocationBox from '../../../components/modal/LocationBox/index.jsx';
 import { useState, useEffect } from 'react';
-import { useGetStudentLocation, useSetBusinessTripStudents } from '../../../hooks/useAfterSchool.js';
-import { useBusinessTrip } from '../../../hooks/useAfterSchool.js';
+import { useBusinessTrip, useGetStudentLocation, useGetBusinessTripStudents, useSetBusinessTripStudents, useGetAbleAfterSchool } from '../../../hooks/useAfterSchool.js';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { useLocation } from 'react-router-dom';
@@ -26,19 +25,23 @@ function DragStudent({ student }) {
     );
 }
 
-function DropZone({ classNumber, onDropStudent, children }) {
-    const [{ isOver }, drop] = useDrop({
+function DropZone({ classNumber, onDropStudent, children, enabled=true }) {
+    const [{ isOver, canDrop }, drop] = useDrop({
         accept: STUDENT_TYPE,
+        canDrop: () => enabled,
         drop: (item) => {
-            console.log("Dropped on class", classNumber, "item:", item);
-            onDropStudent(item.student, classNumber);
+            if (enabled) {
+                console.log("Dropped on class", classNumber, "item:", item);
+                onDropStudent(item.student, classNumber);
+            }
         },
         collect: (monitor) => ({
-            isOver: monitor.isOver()
+            isOver: monitor.isOver(),
+            canDrop: monitor.canDrop()
         })
     });
     return (
-        <S.ClassDivisionBox ref={drop} $isOver={isOver}>
+        <S.ClassDivisionBox ref={drop} $isOver={isOver} $enabled={enabled}>
             {children}
         </S.ClassDivisionBox>
     );
@@ -48,8 +51,9 @@ export default function SeatAssignment() {
     const location = useLocation();
     const afterSchoolData = location.state || {};
 
-      const { data: businessTripStudents } = useGetClassList(afterSchoolData.id, afterSchoolData.day);
+    const { data: businessTripStudents } = useGetBusinessTripStudents(afterSchoolData.id, afterSchoolData.day);
     const { data: studentLocation, refetch } = useGetStudentLocation(afterSchoolData.day, afterSchoolData.id, { enabled: false });
+    const { data: ableAfterSchool } = useGetAbleAfterSchool(afterSchoolData.id, afterSchoolData.day);
     const { mutate } = useSetBusinessTripStudents();
     const [assignedStudent, setAssignedStudent] = useState([]);
     const [locationMessage, setLocationMessage] = useState("");
@@ -114,7 +118,7 @@ export default function SeatAssignment() {
                         {[1, 2, 3, 4].map((classNumber) => (
                             <S.ClassDivisionContent key={classNumber}>
                                 <span>{classNumber}반</span>
-                                <DropZone classNumber={classNumber} onDropStudent={handleAssignStudent}>
+                                <DropZone classNumber={classNumber} onDropStudent={handleAssignStudent} enabled={ableAfterSchool ? ableAfterSchool[classNumber - 1] : true}>
                                     {assignedStudent
                                         .filter(student => student.classNumber === classNumber)
                                         .sort((a, b) => a.number - b.number)
