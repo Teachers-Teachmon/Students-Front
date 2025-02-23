@@ -7,6 +7,7 @@ import DropdownNS from '../../../components/dropdown/nosearch/index.jsx';
 import Line from '../../../assets/line.svg';
 import Circle from '../../../components/button/circle/index.jsx';
 import { useGetSelfStudy } from '../../../hooks/useSupervision.js';
+import { useSaveSelfStudy } from '../../../hooks/useSupervision.js';
 
 export default function AdminSelfStudy() {
   const navigate = useNavigate();
@@ -43,7 +44,7 @@ export default function AdminSelfStudy() {
   useEffect(() => {
     console.log("현재 selectedRows:", selectedRows);
   }, [selectedRows]);
-  
+
 
   const mapPeriod = (p) => {
     switch (p) {
@@ -99,13 +100,20 @@ export default function AdminSelfStudy() {
     setIsBranchOpen((prev) => !prev);
   };
 
+  const { mutate } = useSaveSelfStudy();
+
   const handleSubmit = () => {
-    const payload = Object.entries(selectedRows).flatMap(([day, rows]) =>
-      rows.map(row => row ? { week_day: day, period: mapPeriod(row) } : null)
-    ).filter(item => item !== null);
+    const payload = {
+      grade: selectedGrade,
+      branch: parseInt(branch),
+      MON: selectedRows.MON,
+      TUE: selectedRows.TUE,
+      WED: selectedRows.WED,
+      THU: selectedRows.THU
+    };
 
     console.log('Payload:', payload);
-    //mutate(payload);
+    mutate(payload);
   };
 
   const removeRow = (day, rowIndex) => {
