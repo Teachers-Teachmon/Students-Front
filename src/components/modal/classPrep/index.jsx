@@ -67,7 +67,7 @@ export default function ClassPrep({ closeModal, selectedClass }) {
                 alert('방과후 보강이 완료되었습니다.');
             },
             onError: (error) => {
-                alert(error.response.data.message);
+                alert('방과후 보강에 실패하였습니다.');
             }
         });
         closeModal();
