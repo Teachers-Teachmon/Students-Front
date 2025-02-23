@@ -132,7 +132,7 @@ export const SelfStudySupervision = styled.div`
     justify-content: center;
     cursor: pointer;
 
-    button{
+    button {
         width: 20px;
         background-color: #fff;
         border: 1.5px solid #2E6FF2;
@@ -145,22 +145,23 @@ export const SelfStudySupervision = styled.div`
     }
 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  
+    transition: box-shadow 0.2s ease;
+
     &:hover {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     }
 
-
-    h3{
+    h3 {
         color: #2E6FF2;
         margin-top: 10px;
     }
 
-    p{
+    p {
         color: #5D5D5D;
         font-size: 13px;
     }
 `
+
 
 export const SelfStudyTime = styled.div`
     display: flex;
@@ -186,6 +187,7 @@ export const SelfStudyTime = styled.div`
     }
 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.2s ease;
   
     &:hover {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -227,6 +229,7 @@ export const ClassEdit = styled.div`
     }
 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.2s ease;
   
     &:hover {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -268,6 +271,7 @@ export const StudentManage = styled.div`
     }
 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.2s ease;
   
     &:hover {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -309,6 +313,7 @@ export const TeacherManage = styled.div`
     }
 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.2s ease;
   
     &:hover {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -363,17 +368,17 @@ export const SupervisionTotal = styled.div`
 
 export const SupervisionTotalTop = styled.div`
     display: flex;
-    /* width: 50vw; */
     height: 8vh;
-    gap: 380px;
-    justify-content: center;
+    justify-content: space-between; 
+    padding: 3%;
     align-items: center;
     border-bottom: 2.5px solid #F2F3F6;
 
-    p{
+    p {
         cursor: pointer;
     }
 `
+
 export const SupervisionTotalMain = styled.div`
     display: grid;
     grid-template-rows: repeat(4, 1fr);
