@@ -251,7 +251,7 @@ export default function AdminTeacher() {
                                         </S.Status>
                                         <S.Option src={OptionButton} alt={'option'} onClick={()=>handleIsOption(item, true)}/>
                                     {isOption && isOption[item].status &&
-                                        <S.Options $up = {isLast ? -60 : 40} onClick={(e) => e.stopPropagation()}>
+                                        <S.Options $up = {isLast === Number(item) ? -60 : 40} onClick={(e) => e.stopPropagation()}>
                                         <button onClick={()=>deleteT(item)}>삭제</button>
                                         <button onClick={()=>handleIsPatch(item, true)}>수정</button>
                                         </S.Options>}
