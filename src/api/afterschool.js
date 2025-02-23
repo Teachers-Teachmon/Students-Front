@@ -204,7 +204,10 @@ export const getDailyAfterSchool = async (day) => {
     }
 };
 
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
 export const getBusinessTripStudents = async (afterSchoolId, day) => {
+    await delay(100);
     try {
         const res = await axiosInstance.get(`${API_ENDPOINTS.AFTER_SCHOOL}/business-trip/${afterSchoolId}/${day}`);
         if (res.status !== 200) {
@@ -234,6 +237,7 @@ export const setBusinessTripStudents  = async (studentList) => {
 }
 
 export const getStudentLocation = async (day, afterSchoolId) => {
+    await delay(100);
     try {
         const res = await axiosInstance.get(`${API_ENDPOINTS.AFTER_SCHOOL}/string/${afterSchoolId}/${day}`);
         if (res.status !== 200) {
@@ -249,6 +253,7 @@ export const getStudentLocation = async (day, afterSchoolId) => {
 }
 
 export const getAbleAfterSchool = async (afterSchoolId, day) => {
+    await delay(100);
     try {
         const res = await axiosInstance.get(`${API_ENDPOINTS.AFTER_SCHOOL}/enable/${afterSchoolId}/${day}`);
         if (res.status !== 200) {
