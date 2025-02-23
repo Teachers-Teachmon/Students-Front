@@ -37,6 +37,13 @@ export default function Admin() {
 
   const { data: dayData = {} } = useGetDailySupervision(day);
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${month}/${day}`;
+  };
+
   const periodGroups = [
     { period: "7교시", studyKey: "7th_teacher", leaveKey: "7th_teacher" },
     { period: "8~9교시", studyKey: "8th_teacher", leaveKey: "8th_teacher" },
@@ -73,11 +80,13 @@ export default function Admin() {
 
   // const [leaveStudent, setLeaveStudent] = useState([
   //   {
+  //     "day": "2024-02-03",
   //     "weekday": "월",
   //     "leave_id": 2,
   //     "student": "1401 김동욱",
   //   },
   //   {
+  //     "day": "2024-02-03",
   //     "weekday": "월",
   //     "leave_id": 3,
   //     "student": "1401 김동욱",
@@ -197,7 +206,7 @@ export default function Admin() {
             <S.LeaveStudentMain>
               {leaveStudent.map((student, index) => (
                 <S.LeaveStudentRow key={student.leave_id}>
-                  <S.LeaveStudentDate>{student.day} ({student.weekday})</S.LeaveStudentDate>
+                  <S.LeaveStudentDate>{formatDate(student.day)} ({student.weekday})</S.LeaveStudentDate>
                   <S.LeaveStudentData>{student.student}</S.LeaveStudentData>
                   <S.Confirm onClick={() => handleDelete(student.leave_id)}>삭제</S.Confirm>
                 </S.LeaveStudentRow>
