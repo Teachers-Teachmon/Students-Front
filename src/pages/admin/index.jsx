@@ -37,11 +37,6 @@ export default function Admin() {
 
   const supervisionTotal = [
     {
-      "rank" : 1,
-      "name" : "정유진",
-      "count" : 36
-    },
-    {
       "name": "정유진",
       "teacher_id": 1,
       "SEVEN_PERIOD_COUNT": 2,

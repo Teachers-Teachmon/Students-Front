@@ -376,6 +376,8 @@ export default function AdminAfterSchool() {
           </S.EditTopRight>
         </S.EditTop>
 
+        <button onClick={() => setIsModal1(true)}>test</button>
+
         <S.EditContent >
           <S.EditMain>
             {[1, 2, 3].map((grade) => (
@@ -462,12 +464,13 @@ export default function AdminAfterSchool() {
       </S.Content>
 
       {isModal1 && (
-        <S.ErrorModal onClick={() => closeModalHandler(setIsModal1)}>
+        <S.ErrorModal onClick={() => setIsModal1(false)}>
           <S.ErrorModalmain onClick={(e) => e.stopPropagation()}>
             <ErrorModal message={errorMessage} />
           </S.ErrorModalmain>
         </S.ErrorModal>
       )}
+
 
       {isModalOpen && selectedRows[selectedGrade] && (
         <S.ModalOverlay onClick={() => setIsModalOpen(false)}>
