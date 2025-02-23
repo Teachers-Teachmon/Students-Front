@@ -7,7 +7,6 @@ import {useEffect, useState} from "react";
 import Leave from "../../../components/record/leave/index.jsx";
 import Movement from "../../../components/record/movement/index.jsx";
 import Student from "../../../components/record/student/index.jsx";
-import Search from "../../../assets/Search.svg";
 import useDay from "../../../zustand/day";
 import DateInput from "../../../components/dateInput/index.jsx";
 import {useDebounce} from "../../../hooks/useDebounce.js";
@@ -66,7 +65,7 @@ export default function Record() {
                     ) : null}
                     <S.InfoBtn>
                         <SquareBtn name={"돌아가기"} status={true} On={() => navigate('/manage')} />
-                        {isMovement[0] && <SquareBtn name={"이석작성"} status={true} On={()=>setIsModal(!isModal)} />}
+                        {isMovement[0] && window.innerWidth > 400 && <SquareBtn name={"이석작성"} status={true} On={()=>setIsModal(!isModal)} />}
                     </S.InfoBtn>
                 </S.Info>
                 <S.Main>
