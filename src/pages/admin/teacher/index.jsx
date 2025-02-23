@@ -120,7 +120,6 @@ export default function AdminTeacher() {
     const parentRef = useRef(null);
     const childRefs = useRef([]);
     const [isFirst, setIsFirst] = useState(0);
-    const [isLast, setIsLast] = useState(0);
 
     const checkVisibility = () => {
         if (!parentRef.current) return;
@@ -136,7 +135,6 @@ export default function AdminTeacher() {
             );
         });
         setIsFirst(visible.findIndex((v) => v === true));
-        setIsLast(visible.findLastIndex((v) => v === true));
     };
 
     useEffect(() => {
@@ -251,7 +249,7 @@ export default function AdminTeacher() {
                                         </S.Status>
                                         <S.Option src={OptionButton} alt={'option'} onClick={()=>handleIsOption(item, true)}/>
                                     {isOption && isOption[item].status &&
-                                        <S.Options $up = {isLast === Number(item) ? -60 : 40} onClick={(e) => e.stopPropagation()}>
+                                        <S.Options $up = {isFirst === Number(item)+9 || isFirst === Number(item)+10 ? -60 : 40} onClick={(e) => e.stopPropagation()}>
                                         <button onClick={()=>deleteT(item)}>삭제</button>
                                         <button onClick={()=>handleIsPatch(item, true)}>수정</button>
                                         </S.Options>}
