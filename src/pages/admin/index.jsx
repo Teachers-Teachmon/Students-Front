@@ -42,31 +42,31 @@ export default function Admin() {
   ];
 
   //const { supervisionTotal } = useGetSupervisionRank();
-  //const { data: supervisionTotal = [] } = useGetSupervisionRank();
+  const { data: supervisionTotal = [] } = useGetSupervisionRank();
 
 
-  const supervisionTotal = [
-    {
-      "rank": 1,
-      "name": "정유진",
-      "count": 36
-    },
-    {
-      "rank": 2,
-      "name": "최병준",
-      "count": 25
-    },
-    {
-      "rank": 3,
-      "name": "장나영",
-      "count": 21
-    },
-    {
-      "rank": 4,
-      "name": "정유진",
-      "count": 36
-    }
-  ]
+  // const supervisionTotal = [
+  //   {
+  //     "rank": 1,
+  //     "name": "정유진",
+  //     "count": 36
+  //   },
+  //   {
+  //     "rank": 2,
+  //     "name": "최병준",
+  //     "count": 25
+  //   },
+  //   {
+  //     "rank": 3,
+  //     "name": "장나영",
+  //     "count": 21
+  //   },
+  //   {
+  //     "rank": 4,
+  //     "name": "정유진",
+  //     "count": 36
+  //   }
+  // ]
 
   const [leaveStudent, setLeaveStudent] = useState([
     {
