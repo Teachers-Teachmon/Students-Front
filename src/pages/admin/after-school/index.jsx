@@ -110,6 +110,7 @@ export default function AdminAfterSchool() {
       },
     });
   };
+  
   const handleOptionClick = (grade, index) => {
     setOptions((prev) => ({
       ...prev,

@@ -8,6 +8,7 @@ import Line from '../../../assets/line.svg';
 import Circle from '../../../components/button/circle/index.jsx';
 import { useGetSelfStudy } from '../../../hooks/useSupervision.js';
 import { useSaveSelfStudy } from '../../../hooks/useSupervision.js';
+import Loading from '../../../components/loading/index.jsx';
 
 export default function AdminSelfStudy() {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ export default function AdminSelfStudy() {
   const [isBranchOpen, setIsBranchOpen] = useState(false);
   const [grade, setGrade] = useState([true, false, false]);
   const [selectedGrade, setSelectedGrade] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
 
 
 
@@ -29,7 +31,7 @@ export default function AdminSelfStudy() {
     THU: []
   });
 
-  const { data, isLoadin } = useGetSelfStudy(branch, selectedGrade);
+  const { data } = useGetSelfStudy(branch, selectedGrade);
 
   useEffect(() => {
     console.log("API 응답 data:", data);
@@ -112,6 +114,8 @@ export default function AdminSelfStudy() {
       WED: selectedRows.WED,
       THU: selectedRows.THU
     };
+
+    setIsLoading(true);
   
     console.log('Payload:', payload);
   
@@ -123,6 +127,9 @@ export default function AdminSelfStudy() {
       onError: (error) => {
         console.log("저장 실패 에러:", error); 
         alert('저장에 실패했습니다. 다시 시도해주세요.');
+      },
+      onSettled: () => {
+        setIsLoading(false);
       }
     });
   };
@@ -158,6 +165,7 @@ export default function AdminSelfStudy() {
 
   return (
     <S.Container onClick={() => handleCloseBranch()}>
+      {isLoading && <Loading />}
       <Header />
       <S.Content>
         {Object.values(isOpen).some(isOpen => isOpen) && (
@@ -184,6 +192,7 @@ export default function AdminSelfStudy() {
             </S.GradeBtn>
           </div>
           <S.SquareBtn>
+            <SquareBtn name="돌아가기" status={true} On={() => navigate('/admin')} />
             <SquareBtn name="저장하기" status={true} On={handleSubmit} />
           </S.SquareBtn>
         </S.MainHeader>
