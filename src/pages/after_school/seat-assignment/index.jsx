@@ -25,7 +25,7 @@ function DragStudent({ student }) {
     );
 }
 
-function DropZone({ classNumber, onDropStudent, children, enabled=true }) {
+function DropZone({ classNumber, onDropStudent, children, enabled }) {
     const [{ isOver, canDrop }, drop] = useDrop({
         accept: STUDENT_TYPE,
         canDrop: () => enabled,
