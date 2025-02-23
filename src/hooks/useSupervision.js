@@ -135,13 +135,3 @@ export const useSaveSelfStudy = () => {
         }
     });
 };
-
-export const useGetDay = (day) => {
-    return useQuery({
-        queryKey: ['getDay', day],
-        queryFn: async () => {
-            const res = await API.getAssignment(day);
-            return res.data || [];
-        }
-    });
-}

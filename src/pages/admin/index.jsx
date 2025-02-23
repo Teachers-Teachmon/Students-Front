@@ -14,20 +14,25 @@ export default function Admin() {
 
   let navigate = useNavigate();
 
-  const dayData = {
-    "day": "2025년 1월 8일 (수)",
-    "self_study_teacher": {
-      "7th_teacher": "정유진/me",
-      "8th_teacher": "최병준",
-      "10th_teacher": "장나영"
-    },
-    "leave_seat_teacher": {
-      "7th_teacher": "정유진/me",
-      "8th_teacher": "최병준",
-      "10th_teacher": "장나영"
-    },
-    "night_teacher": "정유진/me"
-  }
+  const today = new Date();
+  const day = today.toISOString().split('T')[0];
+
+  // const dayData = {
+  //   "day": "2025년 1월 8일 (수)",
+  //   "self_study_teacher": {
+  //     "7th_teacher": "정유진/me",
+  //     "8th_teacher": "최병준",
+  //     "10th_teacher": "장나영"
+  //   },
+  //   "leave_seat_teacher": {
+  //     "7th_teacher": "정유진/me",
+  //     "8th_teacher": "최병준",
+  //     "10th_teacher": "장나영"
+  //   },
+  //   "night_teacher": "정유진/me"
+  // }
+
+  const { data: dayData, isLoading, isError } = useGetDailySupervision(day);
 
   const periodGroups = [
     { period: "7교시", studyKey: "7th_teacher", leaveKey: "7th_teacher" },
