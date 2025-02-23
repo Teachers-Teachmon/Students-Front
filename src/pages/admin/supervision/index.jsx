@@ -269,7 +269,7 @@ export default function AdminSupervision() {
                                                     </S.TeacherList>
                                                     {["8th_teacher", "10th_teacher"].map((timeKey, timeIndex) => (
                                                         <S.TeacherList key={timeIndex}>
-                                                            {["self_study_teacehr", "leave_seat_teacher"].map((typeKey, typeIndex) => {
+                                                            {["self_study_teacher", "leave_seat_teacher"].map((typeKey, typeIndex) => {
                                                                 const teacherName = dayData[typeKey]?.[timeKey] ? dayData[typeKey][timeKey].split("/")[0] : "X";
                                                                 const uniqueKey = `${dayData.date}-${typeKey}-${timeKey}`;
 
