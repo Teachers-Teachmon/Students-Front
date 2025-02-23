@@ -18,7 +18,7 @@ export default function First(){
                         <S.Title>방과후 <S.BlueText> 자습감독</S.BlueText> 도우미 프로그램</S.Title>
                         <img draggable="false" src={Logo} alt={'logo'} width={360}/>
                         <S.Text>선생님들의 일을 보다 더 쉽게, 더 편리하게<br />자습감독의 일을 도와줍니다!</S.Text>
-                        <S.Use onClick={()=>navigate('/')}>사용하기</S.Use>
+                        <S.Use onClick={()=>navigate('/login')}>사용하기</S.Use>
                     </S.Section>
                     <S.MainImg draggable="false" src={Img} alt={'mainIcon'}/>
                 </S.Main>
