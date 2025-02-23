@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
     border-radius: 10px;
-    padding: 2rem;
+    padding: 0.3rem;
     display: flex;
     align-items: center;
 `;
@@ -41,6 +41,11 @@ export const Wrapper = styled.div`
     width: 80%;
     max-width: 900px;
     margin: 0 auto;
+
+    @media (max-width: 400px) {
+        padding: 1rem;
+        width: 100%;
+    }
 `
 
 export const HandleButton = styled.button`
@@ -108,5 +113,11 @@ export const TeacherTable = styled.div`
     }
     p:first-child {
         justify-self: start;
+    }
+
+    @media (max-width: 400px) {
+        p {
+            padding: 0.1rem 0;
+        }
     }
 `;
