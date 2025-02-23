@@ -158,7 +158,7 @@ export const Status = styled.div`
     padding: 2px 5px;
     cursor: pointer;
     width: max-content;
-    z-index: 10;
+    z-index: 8;
 `
 export const InputTeacher = styled.input`
     width: ${(props)=>props.$length}px;
