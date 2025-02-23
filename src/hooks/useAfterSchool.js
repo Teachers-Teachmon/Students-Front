@@ -122,7 +122,7 @@ export const useSaveClass = () => {
         mutationFn: (props) => API.saveClass(props),
         onSuccess: () => {
             alert("방과후가 저장되었습니다!");
-            navigate('/after-school');
+            navigate('/admin/after-school');
         }
     })
 }

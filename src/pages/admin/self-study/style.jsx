@@ -23,15 +23,33 @@ export const MainContent = styled.div`
     align-items: start;
 `;
 
+// export const MainHeader = styled.div`
+//     display: flex;
+//     gap: 20px;
+
+//     div {
+//         display: flex;
+//         gap: 1rem;
+//     }
+// `;
+
 export const MainHeader = styled.div`
     display: flex;
     gap: 20px;
+    width: 100%;
 
     div {
         display: flex;
         gap: 1rem;
     }
 `;
+
+export const SquareBtn = styled.div`
+    margin-left: auto;
+    display: flex;
+    //justify-content: flex-end;
+`;
+
 
 
 export const ModalOverlay = styled.div`
@@ -148,7 +166,7 @@ export const Black = styled.div`
     left: 0;
 `
 
-export const SquareBtn = styled.div`
-    display: flex;
-    margin-left: 350px;
-`
+// export const SquareBtn = styled.div`
+//     display: flex;
+//     margin-left: 350px;
+// `
