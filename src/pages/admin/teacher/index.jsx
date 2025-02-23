@@ -161,7 +161,7 @@ export default function AdminTeacher() {
         newValue[id].isPatch = status;
         if (message === "delete") {
             if (newValue[id].teacher_id) {
-                newValue[id].role = backUp[id]?.role || newValue[id].role;
+                newValue[id] = { ...backUp[id], isPatch: false };
             } else {
                 delete newValue[id];
             }
