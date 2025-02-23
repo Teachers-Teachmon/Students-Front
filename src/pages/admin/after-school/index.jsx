@@ -76,6 +76,9 @@ export default function AdminAfterSchool() {
           setIsModal1(true);
         }
       },
+      onSuccess: () => {
+        alert("업로드가 성공적으로 완료되었습니다.");
+      },
     });
   };
 
