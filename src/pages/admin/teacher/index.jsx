@@ -51,6 +51,7 @@ export default function AdminTeacher() {
 
     const {mutate : deleteTeacher} = useDeleteTeacher();
     const deleteT = (id) =>{
+        if(!window.confirm('삭제하시겠습니까?')) return
         deleteTeacher(id);
         const newValue = {...value};
         delete newValue[id];
@@ -106,15 +107,20 @@ export default function AdminTeacher() {
         newIsOpen[id].status = !newIsOpen[id].status;
         setIsOpen(newIsOpen);
     }
-    const handleIsOption = (id, status)=>{
+    const handleIsOption = (id, status, message)=>{
+        if(message === "delete"){
+            const newValue = {...value};
+            delete newValue[id];
+            setValue(newValue);
+        }
         const newIsOption = {...isOption};
         newIsOption[id].status = status;
-        console.log(id, newIsOption)
         setIsOption(newIsOption);
     }
     const parentRef = useRef(null);
     const childRefs = useRef([]);
     const [isFirst, setIsFirst] = useState(0);
+    const [isLast, setIsLast] = useState(0);
 
     const checkVisibility = () => {
         if (!parentRef.current) return;
@@ -130,6 +136,7 @@ export default function AdminTeacher() {
             );
         });
         setIsFirst(visible.findIndex((v) => v === true));
+        setIsLast(visible.findLastIndex((v) => v === true));
     };
 
     useEffect(() => {
@@ -222,7 +229,7 @@ export default function AdminTeacher() {
                                             {isOpen && isOpen[item].status && <StatusUpdate up={isFirst === Number(item) ? 58 : -160} nowStatus={"TEACHER"} changeStatus={changeStatus} name={item}/>}
                                         </div>
                                         <div style={{ display: "flex"}}>
-                                            <S.Btn $color = {"white"} onClick={()=>handleIsPatch(item, false)}>취소</S.Btn>
+                                            <S.Btn $color = {"white"} onClick={()=>handleIsPatch(item, false, "delete")}>취소</S.Btn>
                                             <S.Btn $color = {"#2E6FF2"} onClick={()=>saveTeacher(item)}>저장</S.Btn>
                                         </div>
                                     </div>
@@ -244,7 +251,7 @@ export default function AdminTeacher() {
                                         </S.Status>
                                         <S.Option src={OptionButton} alt={'option'} onClick={()=>handleIsOption(item, true)}/>
                                     {isOption && isOption[item].status &&
-                                        <S.Options onClick={(e) => e.stopPropagation()}>
+                                        <S.Options $up = {isLast ? -60 : 40} onClick={(e) => e.stopPropagation()}>
                                         <button onClick={()=>deleteT(item)}>삭제</button>
                                         <button onClick={()=>handleIsPatch(item, true)}>수정</button>
                                         </S.Options>}

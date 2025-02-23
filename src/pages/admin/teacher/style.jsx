@@ -45,16 +45,6 @@ export const MainNav = styled.div`
         align-items: center;
     }
 `
-export const InputBox= styled.div`
-    border: 1px solid #ccc;
-    width: 35%;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    font-size: 14px;
-    position: relative;
-    padding: 0 15px;
-`
 export const Array = styled.div`
     color: #2E6FF2;
     cursor: pointer;
@@ -65,14 +55,6 @@ export const Array = styled.div`
     gap: 5px;
     width: 120px;
     user-select: none;
-`
-export const Input = styled.input`
-    outline: none;
-    border: none;
-    width: 100%;
-    font-size: 16px;
-    border-radius: 8px;
-    padding: 10px 15px;
 `
 
 export const Table = styled.div`
@@ -202,7 +184,7 @@ export const Option = styled.img`
 `
 export const Options = styled.div`
     position: absolute;
-    top: 40px;
+    top: ${(props)=>props.$up}px;
     right: 0;
     z-index: 100;
     display: flex;
