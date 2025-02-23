@@ -247,3 +247,18 @@ export const getStudentLocation = async (day, afterSchoolId) => {
         return Promise.reject(err);
     }
 }
+
+export const getAbleAfterSchool = async (afterSchoolId, day) => {
+    try {
+        const res = await axiosInstance.get(`${API_ENDPOINTS.AFTER_SCHOOL}/enable/${afterSchoolId}/${day}`);
+        if (res.status !== 200) {
+            return Promise.reject({
+                status: res.status,
+                message: res.message
+            })
+        }
+        return res;
+    } catch (err) {
+        return Promise.reject(err);
+    }
+}

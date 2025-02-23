@@ -123,6 +123,10 @@ export const GoToSupBtn = styled.button`
     &:hover {
         background-color: #1E5BD1;
     }
+
+    @media (max-width: 400px) {
+        display: none;
+    }
 `
 
 export const StudentInfoWrap = styled.div`

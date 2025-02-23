@@ -64,7 +64,8 @@ export const ClassDivisionBox = styled.div`
   padding: 1rem;
   flex-wrap: wrap;
   border: 2px solid #CCC;
-  // border: ${({ $isOver }) => $isOver ? '2vw solid #2E6FF2' : '0.2vw solid #CCC'};
+  border: 2px solid ${({ $enabled }) => ($enabled ? "#CCC" : "#AAA")};
+  background: ${({ $enabled }) => ($enabled ? "inherit" : "#f0f0f0")};
   overflow-y: auto;
 `;
 

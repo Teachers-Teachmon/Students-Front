@@ -174,8 +174,8 @@ export default function Main() {
                             <S.NexSupLeft $isFullscreen={isFullscreen}>
                                 <h3>다음 자습감독 기간</h3>
                                 <S.NextSupDate>D - {nextDay === -1 ? "End" : nextDay === 0 ? "Day" : nextDay}</S.NextSupDate>
-                                <h2>{"더 이상 자습감독 일정이 없습니다."}</h2>
-                                <h4>{"없음"}</h4>
+                                <h2>{day}</h2>
+                                <h4>{period}</h4>
                             </S.NexSupLeft>
                             <S.GoToSupBtn $isFullscreen={isFullscreen} onClick={() => { navigate('/supervision') }}>자습감독<img src={Arrow} /></S.GoToSupBtn>
                         </S.NextSup>
