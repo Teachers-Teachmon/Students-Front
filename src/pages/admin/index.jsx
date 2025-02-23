@@ -10,6 +10,8 @@ import SelfStudy from '../../assets/selfStudy.svg';
 import Left2 from '../../assets/left2.svg';
 import { useState } from 'react';
 import { useGetDailySupervision, useGetSupervisionRank } from '../../hooks/useSupervision.js';
+import { useGetLeaveStudent } from '../../hooks/useStudent.js';
+import { getLeaveStudent } from '../../api/student.js';
 
 export default function Admin() {
 
@@ -68,18 +70,26 @@ export default function Admin() {
   //   }
   // ]
 
-  const [leaveStudent, setLeaveStudent] = useState([
-    {
-      "weekday": "월",
-      "leaveId": 2,
-      "student": "1401 김동욱",
-    },
-    {
-      "weekday": "월",
-      "leaveId": 3,
-      "student": "1401 김동욱",
-    }
-  ]);
+
+  // const [leaveStudent, setLeaveStudent] = useState([
+  //   {
+  //     "weekday": "월",
+  //     "leaveId": 2,
+  //     "student": "1401 김동욱",
+  //   },
+  //   {
+  //     "weekday": "월",
+  //     "leaveId": 3,
+  //     "student": "1401 김동욱",
+  //   }
+  // ]);
+
+  const [leaveStudent, setLeaveStudent] = useState([]);
+  const { data: leaveStudentData = [] } = useGetLeaveStudent();
+
+  useEffect(() => {
+    setLeaveStudent(leaveStudentData);
+  }, [leaveStudentData]);
 
   const handleDelete = (id) => {
     setLeaveStudent(leaveStudent.filter(student => student.leaveId !== id));
