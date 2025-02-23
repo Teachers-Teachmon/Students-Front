@@ -376,8 +376,6 @@ export default function AdminAfterSchool() {
           </S.EditTopRight>
         </S.EditTop>
 
-        <button onClick={() => setIsModal1(true)}>test</button>
-
         <S.EditContent >
           <S.EditMain>
             {[1, 2, 3].map((grade) => (
