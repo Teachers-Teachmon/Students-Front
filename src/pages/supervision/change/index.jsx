@@ -408,7 +408,7 @@ export default function SupervisionChange() {
                         </S.ExchangeInfo>
                         <textarea value={exchangeReason} onChange={(e) => setExchangeReason(e.target.value)} placeholder="사유를 입력해 주세요"></textarea>
                         <S.ModalButtons>
-                            <ConfirmBtn text="취소" color="red" image="reject" onClick={() => { setIsModalOpen(false); setSelectedTeacher([]); setIsSelfSelected(false); }} />
+                            <ConfirmBtn text="취소" color="red" image="reject" onClick={() => { setIsModalOpen(false); setSelectedTeacher([]); setIsSelfSelected(false); setDisabledTeachers([]); }} />
                             <ConfirmBtn text="전송" color="blue" image="fly" onClick={handleSendRequest} />
                         </S.ModalButtons>
                     </S.Modal>
