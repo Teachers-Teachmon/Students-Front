@@ -111,18 +111,21 @@ export default function AdminSelfStudy() {
       WED: selectedRows.WED,
       THU: selectedRows.THU
     };
-
+  
     console.log('Payload:', payload);
-
+  
     mutate(payload, {
-      onSuccess: () => {
+      onSuccess: (data) => {
+        console.log("저장 성공 데이터:", data);
         alert('저장이 완료되었습니다.');
       },
-      onError: () => {
+      onError: (error) => {
+        console.log("저장 실패 에러:", error); 
         alert('저장에 실패했습니다. 다시 시도해주세요.');
       }
     });
   };
+  
 
 
   const removeRow = (day, rowIndex) => {
