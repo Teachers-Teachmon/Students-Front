@@ -108,11 +108,7 @@ export default function AdminTeacher() {
         setIsOpen(newIsOpen);
     }
     const handleIsOption = (id, status, message)=>{
-        if(message === "delete"){
-            const newValue = {...value};
-            delete newValue[id];
-            setValue(newValue);
-        }
+
         const newIsOption = {...isOption};
         newIsOption[id].status = status;
         setIsOption(newIsOption);
@@ -152,9 +148,12 @@ export default function AdminTeacher() {
         };
     }, [childRefs.current.length]);
 
-    const handleIsPatch = (id, status)=>{
+    const handleIsPatch = (id, status, message)=>{
         const newValue = {...value};
         newValue[id].isPatch = status;
+        if(message === "delete"){
+            delete newValue[id];
+        }
         setValue(newValue);
         handleIsOption(id, false);
     }
