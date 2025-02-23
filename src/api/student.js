@@ -148,3 +148,19 @@ export const getLeaveStudent = async () => {
         return Promise.reject(err);
     }
 }
+
+export const deleteLeaveStudent = async (leave_id) =>{
+    try{
+        const res = await axiosInstance.delete(`${API_ENDPOINTS.DATA}/leave/${leave_id}` );
+        if(res.status !== 200){
+            return Promise.reject({
+                status: res.status,
+                message: res.message
+            });
+        }
+        return res;
+
+    }catch (err){
+        return Promise.reject(err);
+    }
+}

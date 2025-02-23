@@ -138,3 +138,16 @@ export const useGetLeaveStudent = () => {
         }
     })
 }
+
+export const useDeleteLeaveStudent  = () =>{
+    const queryClient = useQueryClient();
+    const navigate = useNavigate();
+
+    return useMutation({
+        mutationFn : (props)=> API.deleteLeaveStudent(props),
+        onSuccess: () => {
+            queryClient.invalidateQueries(['getLeaveStudent']);
+            navigate('/admin');
+        }
+    })
+}
