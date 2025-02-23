@@ -104,15 +104,20 @@ export default function Admin() {
   
 
   const handleDelete = (leave_id) => {
-    deleteLeaveStudent(leave_id, {
-      onSuccess: () => {
-        setLeaveStudent(leaveStudent.filter(student => student.leave_id !== leave_id));
-      },
-      onError: (error) => {
-        console.error('삭제 실패:', error);
-      }
-    });
+    if (leave_id !== undefined && leave_id !== null) {
+      deleteLeaveStudent(leave_id, {
+        onSuccess: () => {
+          setLeaveStudent(leaveStudent.filter(student => student.leave_id !== leave_id));
+        },
+        onError: (error) => {
+          console.error('삭제 실패:', error);
+        }
+      });
+    } else {
+      console.error('유효하지 않은 leave_id');
+    }
   };
+  
 
   return (
     <S.Container>
