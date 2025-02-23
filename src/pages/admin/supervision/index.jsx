@@ -26,6 +26,7 @@ export default function AdminSupervision() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [order, setOrder] = useState("ASC");
     const { data: Ranking } = useGetRanking(order, teacher);
+    const [teacher, setTeacher] = useState("");
 
     const handleTeacherChange = (date, type, timeKey, newTeacher) => {
         setSelectedTeacher(prev => ({
@@ -128,8 +129,6 @@ export default function AdminSupervision() {
         return grouped;
     }
     const groupedData = groupByWeek(localData);
-
-    const [teacher, setTeacher] = useState("");
     return (
         <S.Wrapper>
             {isLoading && <Loading />}
