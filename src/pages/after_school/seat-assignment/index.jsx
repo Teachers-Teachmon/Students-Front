@@ -48,16 +48,7 @@ export default function SeatAssignment() {
     const location = useLocation();
     const afterSchoolData = location.state || {};
 
-    //   const { data: businessTripStudents } = useGetClassList(afterSchoolData.id, afterSchoolData.day);
-    const businessTripStudents = [
-        [],
-        [
-            { number: 1201, name: "김동욱" },
-            { number: 1202, name: "김민석" }
-        ],
-        [],
-        []
-    ];
+      const { data: businessTripStudents } = useGetClassList(afterSchoolData.id, afterSchoolData.day);
     const { data: studentLocation, refetch } = useGetStudentLocation(afterSchoolData.day, afterSchoolData.id, { enabled: false });
     const { mutate } = useSetBusinessTripStudents();
     const [assignedStudent, setAssignedStudent] = useState([]);
