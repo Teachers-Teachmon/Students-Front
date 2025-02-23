@@ -452,7 +452,7 @@ export const ModalOverlay = styled.div`
 export const Modal = styled.div`
     width: 60vw;
     border-radius: 10px;
-    padding: 0;
+    padding: ${(props) => props.$padding}rem;
 
     @media (max-width: 400px) {
         width: 100vw;
