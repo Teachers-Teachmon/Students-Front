@@ -86,7 +86,7 @@ export default function SeatAssignment() {
         mutate(payload, {
             onSuccess: async () => {
                 const res = await refetch();
-                setLocationMessage(res.data?.message || "학생 위치 불러오기 실패");
+                setLocationMessage(res || "학생 위치 불러오기 실패");
                 setIsModalOpen(true);
             },
             onError: () => {
