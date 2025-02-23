@@ -136,8 +136,10 @@ export default function Main() {
     }, []);
 
     const findSupervisionForDay = (year, month, day) => {
-        if (monthlySupervisionData && monthlySupervisionData.length === 0) return null;
-        return monthlySupervisionData && monthlySupervisionData.filter(item => item.year === year && item.month === month && item.day === day);
+        if (!Array.isArray(monthlySupervisionData) || monthlySupervisionData.length === 0) return null;
+        return monthlySupervisionData.filter(
+            item => item.year === year && item.month === month && item.day === day
+        );
     };
     const findAfterSchoolForDay = (year, month, day) => {
         if (monthlyAfterSchoolData && monthlyAfterSchoolData.length === 0) return null;
