@@ -3,7 +3,7 @@ import {API_ENDPOINTS} from "../lib/endpoints.js";
 
 export const getTeacher = async (name, order) => {
     try {
-        const res = await axiosInstance.get(`${API_ENDPOINTS.TEACHER}?order=${order}&search_query=${name}`);
+        const res = await axiosInstance.get(`${API_ENDPOINTS.TEACHER}?sort=${order}&search_query=${name}`);
         if(res.status!==200){
             return new Promise.reject({
                 status:res.status,
