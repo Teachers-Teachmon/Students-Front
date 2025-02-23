@@ -21,6 +21,7 @@ export default function AdminSelfStudy() {
   const [selectedGrade, setSelectedGrade] = useState(1);
 
 
+
   const [selectedRows, setSelectedRows] = useState({
     MON: [],
     TUE: [],
@@ -28,7 +29,7 @@ export default function AdminSelfStudy() {
     THU: []
   });
 
-  const { data } = useGetSelfStudy(branch, selectedGrade);
+  const { data, isLoadin } = useGetSelfStudy(branch, selectedGrade);
 
   useEffect(() => {
     console.log("API 응답 data:", data);

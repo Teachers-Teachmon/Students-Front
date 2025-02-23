@@ -39,6 +39,7 @@ export default function AdminAfterSchool() {
   const debounceStudent = useDebounce(search, 300);
   const [student, setStudent] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
 
   const handleCloseOptions = () => {
@@ -55,7 +56,6 @@ export default function AdminAfterSchool() {
     return match ? match[1] : '';
   };
 
-
   const handleUpload = async () => {
     const id = extractSpreadsheetId(spreadsheetUrl);
     console.log("추출된 spreadSheetId:", id);
@@ -66,11 +66,11 @@ export default function AdminAfterSchool() {
     }
 
     setSpreadsheetId(id);
+    setIsLoading(true); // 로딩 시작
 
     uploadMutation(id, {
       onError: (error) => {
         console.error("업로드 에러:", error);
-
         if (error.response?.status === 400) {
           setErrorMessage(error.response.data?.message);
           setIsModal1(true);
@@ -79,34 +79,37 @@ export default function AdminAfterSchool() {
       onSuccess: () => {
         alert("업로드가 성공적으로 완료되었습니다.");
       },
+      onSettled: () => {
+        setIsLoading(false); // 로딩 종료
+      },
     });
   };
-
 
   const handleFlush = async () => {
     const id = extractSpreadsheetId(spreadsheetUrl);
     console.log("추출된 spreadSheetId:", id);
 
-    if (id) {
-      setSpreadsheetId(id);
-
-      // setTimeout(() => {
-      //     refetchFlush();
-      // }, 0);
-      flushMutation(id, {
-        onSuccess: () => {
-          alert("데이터가 성공적으로 동기화되었습니다.");
-        },
-        onError: (error) => {
-          alert("동기화 중 오류가 발생했습니다.");
-          console.error("동기화 에러:", error);
-        },
-      });
-    } else {
+    if (!id) {
       alert('유효한 Spreadsheet 링크를 입력해주세요.');
+      return;
     }
-  };
 
+    setSpreadsheetId(id);
+    setIsLoading(true); // 로딩 시작
+
+    flushMutation(id, {
+      onSuccess: () => {
+        alert("데이터가 성공적으로 동기화되었습니다.");
+      },
+      onError: (error) => {
+        alert("동기화 중 오류가 발생했습니다.");
+        console.error("동기화 에러:", error);
+      },
+      onSettled: () => {
+        setIsLoading(false); // 로딩 종료
+      },
+    });
+  };
   const handleOptionClick = (grade, index) => {
     setOptions((prev) => ({
       ...prev,
@@ -337,7 +340,7 @@ export default function AdminAfterSchool() {
       handleCloseOptions();
       handleCloseBranch();
     }}>
-      {isLoadin && <Loading />}
+      {isLoading && <Loading />}
       <Header />
       <S.Content>
         {Object.values(isOpen).some(status => Object.values(status).some(subStatus => Object.values(subStatus).includes(true))) && (
