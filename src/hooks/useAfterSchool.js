@@ -123,6 +123,9 @@ export const useSaveClass = () => {
         onSuccess: () => {
             alert("방과후가 저장되었습니다!");
             navigate('/admin/after-school');
+        },
+        onError: () => {
+            alert("저장에 실패하였습니다. 다시 시도해주세요.");
         }
     })
 }
