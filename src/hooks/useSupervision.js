@@ -123,3 +123,15 @@ export const useGetSelfStudy = (branch, grade) => {
     })
 }
 
+
+export const useSaveSelfStudy = () => {
+    return useMutation({
+        mutationFn: (props) => API.saveSelfStudy(props),
+        onSuccess: () => {
+            console.log('저장 성공');
+        },
+        onError: (err) => {
+            console.error('저장 실패:', err);
+        }
+    });
+};
