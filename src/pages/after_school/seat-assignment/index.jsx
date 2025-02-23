@@ -3,7 +3,7 @@ import Header from '../../../components/header/index.jsx';
 import SquareBtn from '../../../components/button/square/index.jsx';
 import LocationBox from '../../../components/modal/LocationBox/index.jsx';
 import { useState, useEffect } from 'react';
-import { useGetBusinessTripStudents, useSetBusinessTripStudents, useGetStudentLocation } from '../../../hooks/useAfterSchool.js';
+import { useGetStudentLocation, useSetBusinessTripStudents } from '../../../hooks/useAfterSchool.js';
 import { useBusinessTrip } from '../../../hooks/useAfterSchool.js';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -11,7 +11,7 @@ import { useLocation } from 'react-router-dom';
 
 const STUDENT_TYPE = 'STUDENT';
 
-function DragStudent({ student, onClick }) {
+function DragStudent({ student }) {
     const [{ isDragging }, drag] = useDrag({
         type: STUDENT_TYPE,
         item: { student },
@@ -20,8 +20,8 @@ function DragStudent({ student, onClick }) {
         })
     });
     return (
-        <S.Student ref={drag} onClick={onClick} style={{ opacity: isDragging ? 0.5 : 1 }}>
-            {student.number}{student.name}
+        <S.Student ref={drag} style={{ opacity: isDragging ? 0.5 : 1 }}>
+            {student.number} {student.name}
         </S.Student>
     );
 }
@@ -29,7 +29,10 @@ function DragStudent({ student, onClick }) {
 function DropZone({ classNumber, onDropStudent, children }) {
     const [{ isOver }, drop] = useDrop({
         accept: STUDENT_TYPE,
-        drop: (item) => onDropStudent(item.student, classNumber),
+        drop: (item) => {
+            console.log("Dropped on class", classNumber, "item:", item);
+            onDropStudent(item.student, classNumber);
+        },
         collect: (monitor) => ({
             isOver: monitor.isOver()
         })
@@ -44,10 +47,10 @@ function DropZone({ classNumber, onDropStudent, children }) {
 export default function SeatAssignment() {
     const location = useLocation();
     const afterSchoolData = location.state || {};
-    const { data: businessTripStudents } = useGetBusinessTripStudents(afterSchoolData.id, afterSchoolData.branch);
-    const { data: studentLocation, refetch } = useGetStudentLocation(afterSchoolData.day, afterSchoolData.period, afterSchoolData.id, afterSchoolData.branch, { enabled: false });
+
+      const { data: businessTripStudents } = useGetClassList(afterSchoolData.id, afterSchoolData.day);
+    const { data: studentLocation, refetch } = useGetStudentLocation(afterSchoolData.day, afterSchoolData.id, { enabled: false });
     const { mutate } = useSetBusinessTripStudents();
-    const [notAssignedStudent, setNotAssignedStudent] = useState([]);
     const [assignedStudent, setAssignedStudent] = useState([]);
     const [locationMessage, setLocationMessage] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -55,30 +58,23 @@ export default function SeatAssignment() {
 
     useEffect(() => {
         if (businessTripStudents) {
-            const assigned = businessTripStudents["배정"] || [];
-            const notAssigned = businessTripStudents["미배정"] || [];
+            const assigned = businessTripStudents.flatMap((classStudents, index) =>
+                classStudents.map(student => ({ ...student, classNumber: index + 1 }))
+            );
             setAssignedStudent(assigned);
-            setNotAssignedStudent(notAssigned);
         }
-    }, [businessTripStudents]);
+    }, []);
 
-    const handleAssignStudent = (student, classNumber) => {
-        setNotAssignedStudent((prev) => prev.filter((s) => s.number !== student.number));
+    const handleAssignStudent = (student, targetClassNumber) => {
+        console.log("Assigning student", student, "to class", targetClassNumber);
+        setAssignedStudent(prev => {
+            const updated = prev.filter(s => s.number !== student.number);
+            return [...updated, { ...student, classNumber: targetClassNumber }];
+        });
+        console.log("Assigned students", assignedStudent);
+    };
 
-        setAssignedStudent((prev) => {
-            const updated = prev.filter((s) => s.number !== student.number);
-            return [...updated, { ...student, classNumber }];
-        })
-    };
-    const handleUnassignStudent = (student) => {
-        setAssignedStudent((prev) => prev.filter((s) => s.number !== student.number));
-        setNotAssignedStudent((prev) => [...prev, student]);
-    };
     const handleSave = () => {
-        if (notAssignedStudent.length > 0) {
-            alert("모든 학생을 배정해주세요.");
-            return;
-        }
         createBusinessTrip({
             day: afterSchoolData.day || new Date(),
             period: afterSchoolData.period,
@@ -87,14 +83,12 @@ export default function SeatAssignment() {
         });
 
         const payload = {
-            정보: {
-                day: afterSchoolData.day,
-                period: afterSchoolData.period,
-                afterSchoolId: afterSchoolData.id,
-                branch: afterSchoolData.branch
-            },
-            자리: assignedStudent
+            data: assignedStudent.map(student => ({
+                number: student.number,
+                class: student.classNumber
+            }))
         };
+
         mutate(payload, {
             onSuccess: async () => {
                 const res = await refetch();
@@ -117,11 +111,6 @@ export default function SeatAssignment() {
                         <h2>{afterSchoolData.name || "없음"}</h2>
                         <SquareBtn name="완료" status={true} On={handleSave} />
                     </S.Title>
-                    <S.NotAssignedStudent>
-                        {notAssignedStudent.map((student, _) => (
-                            <DragStudent key={student.number} student={student} onClick={() => { }} />
-                        ))}
-                    </S.NotAssignedStudent>
                     <h1>{afterSchoolData.grade || 0}학년</h1>
                     <S.ClassDivision>
                         {[1, 2, 3, 4].map((classNumber) => (
@@ -129,28 +118,24 @@ export default function SeatAssignment() {
                                 <span>{classNumber}반</span>
                                 <DropZone classNumber={classNumber} onDropStudent={handleAssignStudent}>
                                     {assignedStudent
-                                        .filter((student) => student.classNumber === classNumber)
+                                        .filter(student => student.classNumber === classNumber)
                                         .sort((a, b) => a.number - b.number)
-                                        .map((student) => (
-                                            <DragStudent
-                                                key={student.number}
-                                                student={student}
-                                                onClick={() => handleUnassignStudent(student)}
-                                            />
+                                        .map(student => (
+                                            <DragStudent key={`${student.number}-${student.classNumber}`} student={student} />
                                         ))}
                                 </DropZone>
                             </S.ClassDivisionContent>
                         ))}
                     </S.ClassDivision>
                     {isModalOpen && (
-                        <S.ModalOverlay onClick={() => { setIsModalOpen(false); }}>
-                            <S.Modal onClick={(e) => { e.stopPropagation() }}>
-                                <LocationBox data={locationMessage} closeModal={() => { setIsModalOpen(false); }} />
+                        <S.ModalOverlay onClick={() => setIsModalOpen(false)}>
+                            <S.Modal onClick={e => e.stopPropagation()}>
+                                <LocationBox data={locationMessage} closeModal={() => setIsModalOpen(false)} />
                             </S.Modal>
                         </S.ModalOverlay>
                     )}
                 </S.Content>
             </S.Container>
         </DndProvider>
-    )
+    );
 }

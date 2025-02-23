@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
     align-items: center;
     text-align: center;
     background: white;
-    padding: 3rem 5rem;
+    padding: 1rem;
     border-radius: 10px;
 
     h1 {
@@ -38,7 +38,6 @@ export const Buttons = styled.div`
 export const ChangeWrap = styled.div`
     display: flex;
     align-items: center;
-    gap: 4rem;
 `;
 
 export const ChangeCard = styled.div`
