@@ -102,7 +102,9 @@ export const Record = styled.div`
         background: #2a65dd;
     }
     @media (max-width: 400px) {
-        padding: 6px 8px;
+        padding: 4px;
+        font-size: 12px;
+        border-radius: 4px;
     }
 `
 export const Section = styled.section`
