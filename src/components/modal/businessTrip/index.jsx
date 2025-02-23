@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useBusinessTrip } from '../../../hooks/useAfterSchool.js';
 
 export default function BusinessTrip({ closeModal, selectedClass }) {
-    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [selectedDate, setSelectedDate] = useState();
     const navigate = useNavigate();
     const { mutate: createBusinessTrip } = useBusinessTrip();
 
@@ -20,7 +20,7 @@ export default function BusinessTrip({ closeModal, selectedClass }) {
             return;
         }
         createBusinessTrip({
-            day: selectedClass.day || new Date(),
+            day: selectedDate,
             period: selectedClass.period,
             afterSchoolId: selectedClass.id,
             branch: selectedClass.branch
