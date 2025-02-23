@@ -207,7 +207,7 @@ export const getDailyAfterSchool = async (day) => {
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 export const getBusinessTripStudents = async (afterSchoolId, day) => {
-    await delay(100);
+    await delay(500);
     try {
         const res = await axiosInstance.get(`${API_ENDPOINTS.AFTER_SCHOOL}/business-trip/${afterSchoolId}/${day}`);
         if (res.status !== 200) {
