@@ -20,6 +20,7 @@ import { useUpload } from '../../../hooks/useAfterSchool.js';
 import { useFlush } from '../../../hooks/useAfterSchool.js';
 import ErrorModal from '../../../components/modal/errorModal/index.jsx';
 import SquareBtn from '../../../components/button/square/index.jsx';
+import Loading from '../../../components/loading/index.jsxx';
 
 export default function AdminAfterSchool() {
   const [isModal1, setIsModal1] = useState(false);
@@ -170,7 +171,7 @@ export default function AdminAfterSchool() {
 
   const periods = ['8~9교시', '10~11교시'];
 
-  const { data } = useGetAfterSchoolClasses(branch, weekday);
+  const { data, isLoadin } = useGetAfterSchoolClasses(branch, weekday);
   const { mutate: uploadMutation } = useUpload();
   const { mutate: flushMutation } = useFlush();
 
@@ -333,6 +334,7 @@ export default function AdminAfterSchool() {
       handleCloseOptions();
       handleCloseBranch();
     }}>
+      {isLoading && <Loading />}
       <Header />
       <S.Content>
         {Object.values(isOpen).some(status => Object.values(status).some(subStatus => Object.values(subStatus).includes(true))) && (
