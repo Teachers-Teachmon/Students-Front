@@ -33,7 +33,7 @@ export default function Admin() {
   //   "night_teacher": "정유진/me"
   // }
 
-  const { data: dayData } = useGetDailySupervision(day);
+  const { data: dayData = {} } = useGetDailySupervision(day);
 
   const periodGroups = [
     { period: "7교시", studyKey: "7th_teacher", leaveKey: "7th_teacher" },
@@ -94,6 +94,7 @@ export default function Admin() {
   const handleDelete = (id) => {
     setLeaveStudent(leaveStudent.filter(student => student.leaveId !== id));
   };
+  console.log("dayData:", dayData);
 
   return (
     <S.Container>
@@ -112,14 +113,22 @@ export default function Admin() {
                 <S.Top $length={3} >이석</S.Top>
               </S.TodaySupervisionMainTop>
               <S.SupervisionData>
-                {[...periodGroups, { period: "야간", studyKey: "night_teacher", leaveKey: "night_teacher" }]
-                  .map(({ period, studyKey, leaveKey }) => (
-                    <S.Row key={period}>
-                      <S.DataCell $length={19.5}>{period}</S.DataCell>
-                      <S.DataCellSelf $length={6.5}>{(dayData.self_study_teacher?.[studyKey] || dayData[studyKey])?.replace("/me", "")}</S.DataCellSelf>
-                      <S.DataCell $length={4}>{(dayData.leave_seat_teacher?.[leaveKey] || dayData[leaveKey])?.replace("/me", "")}</S.DataCell>
-                    </S.Row>
-                  ))}
+                {dayData && dayData.self_study_teacher ? (
+                  [...periodGroups, { period: "야간", studyKey: "night_teacher", leaveKey: "night_teacher" }]
+                    .map(({ period, studyKey, leaveKey }) => (
+                      <S.Row key={period}>
+                        <S.DataCell $length={19.5}>{period}</S.DataCell>
+                        <S.DataCellSelf $length={6.5}>
+                          {(dayData.self_study_teacher?.[studyKey] || dayData[studyKey])?.replace("/me", "")}
+                        </S.DataCellSelf>
+                        <S.DataCell $length={4}>
+                          {(dayData.leave_seat_teacher?.[leaveKey] || dayData[leaveKey])?.replace("/me", "")}
+                        </S.DataCell>
+                      </S.Row>
+                    ))
+                ) : (
+                  <p>데이터를 불러오는 중...</p>
+                )}
               </S.SupervisionData>
             </S.TodaySupervisionMain>
           </S.TodaySupervision>
