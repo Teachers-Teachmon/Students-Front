@@ -150,15 +150,15 @@ export default function AdminTeacher() {
         };
     }, [childRefs.current.length]);
 
-    const handleIsPatch = (id, status, message)=>{
-        const newValue = {...value};
+    const handleIsPatch = (id, status, message) => {
+        const newValue = { ...value };
         newValue[id].isPatch = status;
-        if(message === "delete"){
-            delete newValue[id];
+        if (message === "delete" && !newValue[id].teacher_id) {
+          delete newValue[id];
         }
         setValue(newValue);
         handleIsOption(id, false);
-    }
+      };
   return (
     <S.Container>
         {Object.keys(isOpen).some((item)=>isOpen[item].status === true) &&
