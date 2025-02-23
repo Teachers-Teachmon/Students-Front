@@ -110,7 +110,7 @@ export default function SeatAssignment() {
                         {[1, 2, 3, 4].map((classNumber) => (
                             <S.ClassDivisionContent key={classNumber}>
                                 <span>{classNumber}반</span>
-                                <DropZone classNumber={classNumber} onDropStudent={handleAssignStudent} enabled={ableAfterSchool ? ableAfterSchool[classNumber - 1] : true}>
+                                <DropZone classNumber={classNumber} onDropStudent={handleAssignStudent} enabled={ableAfterSchool ? !ableAfterSchool[classNumber - 1] : false}>
                                     {assignedStudent
                                         .filter(student => student.classNumber === classNumber)
                                         .sort((a, b) => a.number - b.number)
