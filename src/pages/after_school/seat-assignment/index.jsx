@@ -82,12 +82,10 @@ export default function SeatAssignment() {
             branch: afterSchoolData.branch
         });
 
-        const payload = {
-            data: assignedStudent.map(student => ({
-                number: student.number,
-                class: student.classNumber
-            }))
-        };
+        const payload = assignedStudent.map(student => ({
+            number: student.number,
+            class: student.classNumber
+        }));        
 
         mutate(payload, {
             onSuccess: async () => {
