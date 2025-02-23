@@ -206,7 +206,7 @@ export const getDailyAfterSchool = async (day) => {
 
 export const getBusinessTripStudents = async (afterSchoolId, day) => {
     try {
-        const res = await axiosInstance.get(`${API_ENDPOINTS.AFTER_SCHOOL}/business-trip`, { params: { afterSchoolId, day } });
+        const res = await axiosInstance.get(`${API_ENDPOINTS.AFTER_SCHOOL}/business-trip/${afterSchoolId}/${day}`);
         if (res.status !== 200) {
             return Promise.reject({
                 status: res.status,
@@ -235,7 +235,7 @@ export const setBusinessTripStudents  = async (studentList) => {
 
 export const getStudentLocation = async (day, afterSchoolId) => {
     try {
-        const res = await axiosInstance.get(`${API_ENDPOINTS.AFTER_SCHOOL}/string`, { params: { day, afterSchoolId } });
+        const res = await axiosInstance.get(`${API_ENDPOINTS.AFTER_SCHOOL}/string/${afterSchoolId}/${day}`);
         if (res.status !== 200) {
             return Promise.reject({
                 status: res.status,
