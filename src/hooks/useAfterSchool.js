@@ -66,7 +66,11 @@ export const useDeleteClass = () =>{
         mutationFn : (props)=> API.deleteClass(props),
         onSuccess: () => {
             queryClient.invalidateQueries(['getAfterSchoolClasses']);
+            alert("방과후가 종료되었습니다.");
             navigate('/after-school');
+        },
+        onError: () => {
+            alert("방과후 종료에 실패하였습니다. 다시 시도해주세요.");
         }
     })
 }
