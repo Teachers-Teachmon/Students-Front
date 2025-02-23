@@ -102,27 +102,29 @@ export default function AdminSelfStudy() {
 
   const { mutate } = useSaveSelfStudy();
 
-const handleSubmit = () => {
-  const payload = {
-    grade: selectedGrade,
-    branch: parseInt(branch),
-    MON: selectedRows.MON,
-    TUE: selectedRows.TUE,
-    WED: selectedRows.WED,
-    THU: selectedRows.THU
+  const handleSubmit = () => {
+    const payload = {
+      grade: selectedGrade,
+      branch: parseInt(branch),
+      MON: selectedRows.MON,
+      TUE: selectedRows.TUE,
+      WED: selectedRows.WED,
+      THU: selectedRows.THU
+    };
+
+    console.log('Payload:', payload);
+
+    mutate(payload, {
+      onSuccess: () => {
+        setTimeout(() => {
+          alert('저장이 완료되었습니다.');
+        }, 100);
+      },      
+      onError: () => {
+        alert('저장에 실패했습니다. 다시 시도해주세요.');
+      }
+    });
   };
-
-  console.log('Payload:', payload);
-
-  mutate(payload, {
-    onSuccess: () => {
-      alert('저장이 완료되었습니다.');
-    },
-    onError: () => {
-      alert('저장에 실패했습니다. 다시 시도해주세요.');
-    }
-  });
-};
 
 
   const removeRow = (day, rowIndex) => {
