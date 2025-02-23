@@ -80,7 +80,7 @@ export default function SeatAssignment() {
     const handleSave = () => {
         const payload = assignedStudent.map(student => ({
             number: student.number,
-            class: student.classNumber
+            classNumber: student.classNumber
         }));        
 
         mutate(payload, {
