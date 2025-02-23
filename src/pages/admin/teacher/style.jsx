@@ -144,6 +144,10 @@ export const Btn = styled.button`
     margin-left:  ${(props)=> props.$color === "#2E6FF2" ? " 10px" : "0"};
     color: ${props=>props.$color === "#2E6FF2" ? "white" : "#999999"};
     border: 2px solid ${props=>props.$color === "#2E6FF2" ? "#2E6FF2" : "#999999"};
+    transition: 0.1s;
+    & :hover{
+        opacity: 0.8;
+    }
 `
 export const Status = styled.div`
     display: flex;
