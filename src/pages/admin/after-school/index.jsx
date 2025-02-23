@@ -85,10 +85,19 @@ export default function AdminAfterSchool() {
 
     if (id) {
       setSpreadsheetId(id);
+
       // setTimeout(() => {
       //     refetchFlush();
       // }, 0);
-      flushMutation(id);
+      flushMutation(id, {
+        onSuccess: () => {
+          alert("데이터가 성공적으로 동기화되었습니다.");
+        },
+        onError: (error) => {
+          alert("동기화 중 오류가 발생했습니다.");
+          console.error("동기화 에러:", error);
+        },
+      });
     } else {
       alert('유효한 Spreadsheet 링크를 입력해주세요.');
     }
