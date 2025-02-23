@@ -38,7 +38,7 @@ export default function AdminSelfStudy() {
         THU: data.THU || [],
       });
     }
-  }, [data])
+  }, [data]);
   
 
   const mapPeriod = (p) => {
@@ -90,7 +90,7 @@ export default function AdminSelfStudy() {
       return newRows;
     });
   };
-
+  
   const toggleBranchDropdown = () => {
     setIsBranchOpen((prev) => !prev);
   };
