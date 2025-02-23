@@ -42,41 +42,31 @@ export default function Admin() {
   ];
 
   //const { supervisionTotal } = useGetSupervisionRank();
-  const { data: supervisionTotal = [] } = useGetSupervisionRank();
+  //const { data: supervisionTotal = [] } = useGetSupervisionRank();
 
 
-  // const supervisionTotal = [
-  //   {
-  //     "rank": 1,
-  //     "name": "정유진",
-  //     "count": 36
-  //   },
-  //   {
-  //     "rank": 2,
-  //     "name": "최병준",
-  //     "count": 25
-  //   },
-  //   {
-  //     "rank": 3,
-  //     "name": "장나영",
-  //     "count": 21
-  //   },
-  //   {
-  //     "rank": 4,
-  //     "name": "정유진",
-  //     "count": 36
-  //   },
-  //   {
-  //     "rank": 5,
-  //     "name": "최병준",
-  //     "count": 25
-  //   },
-  //   {
-  //     "rank": 6,
-  //     "name": "장나영",
-  //     "count": 21
-  //   }
-  // ]
+  const supervisionTotal = [
+    {
+      "rank": 1,
+      "name": "정유진",
+      "count": 36
+    },
+    {
+      "rank": 2,
+      "name": "최병준",
+      "count": 25
+    },
+    {
+      "rank": 3,
+      "name": "장나영",
+      "count": 21
+    },
+    {
+      "rank": 4,
+      "name": "정유진",
+      "count": 36
+    }
+  ]
 
   const [leaveStudent, setLeaveStudent] = useState([
     {
@@ -113,22 +103,14 @@ export default function Admin() {
                 <S.Top $length={3} >이석</S.Top>
               </S.TodaySupervisionMainTop>
               <S.SupervisionData>
-                {dayData && dayData.self_study_teacher ? (
-                  [...periodGroups, { period: "야간", studyKey: "night_teacher", leaveKey: "night_teacher" }]
-                    .map(({ period, studyKey, leaveKey }) => (
-                      <S.Row key={period}>
-                        <S.DataCell $length={19.5}>{period}</S.DataCell>
-                        <S.DataCellSelf $length={6.5}>
-                          {(dayData.self_study_teacher?.[studyKey] || dayData[studyKey])?.replace("/me", "")}
-                        </S.DataCellSelf>
-                        <S.DataCell $length={4}>
-                          {(dayData.leave_seat_teacher?.[leaveKey] || dayData[leaveKey])?.replace("/me", "")}
-                        </S.DataCell>
-                      </S.Row>
-                    ))
-                ) : (
-                  <p>데이터를 불러오는 중...</p>
-                )}
+                {[...periodGroups, { period: "야간", studyKey: "night_teacher", leaveKey: "night_teacher" }]
+                  .map(({ period, studyKey, leaveKey }) => (
+                    <S.Row key={period}>
+                      <S.DataCell $length={19.5}>{period}</S.DataCell>
+                      <S.DataCellSelf $length={6.5}>{(dayData.self_study_teacher?.[studyKey] || dayData[studyKey])?.replace("/me", "")}</S.DataCellSelf>
+                      <S.DataCell $length={4}>{(dayData.leave_seat_teacher?.[leaveKey] || dayData[leaveKey])?.replace("/me", "")}</S.DataCell>
+                    </S.Row>
+                  ))}
               </S.SupervisionData>
             </S.TodaySupervisionMain>
           </S.TodaySupervision>
@@ -176,14 +158,18 @@ export default function Admin() {
               <p onClick={() => { navigate('/admin/supervision') }}>자세히보기 <img src={Left} /></p>
             </S.SupervisionTotalTop>
             <S.SupervisionTotalMain>
-              {supervisionTotal.map((teacher) => (
-                <S.SupervisionTotalRow key={teacher.rank}>
+              {supervisionTotal.map((teacher, index) => (
+                <S.SupervisionTotalRow
+                  key={teacher.rank}
+                  $isLast={teacher.rank === 4 || teacher.rank === 8}
+                >
                   <S.SupervisionRank>{teacher.rank}위</S.SupervisionRank>
                   <S.SupervisionTeacher>{teacher.name}</S.SupervisionTeacher>
                   <S.SupervisionCount>{teacher.count}회</S.SupervisionCount>
                 </S.SupervisionTotalRow>
               ))}
             </S.SupervisionTotalMain>
+
           </S.SupervisionTotal>
           <S.LeaveStudent>
             <S.LeaveStudentTop>
