@@ -135,3 +135,13 @@ export const useSaveSelfStudy = () => {
         }
     });
 };
+
+export const useGetSupervisionRank = () => {
+    return useQuery({
+        queryKey: ['getSupervisionRank'],
+        queryFn: async () => {
+            const res = await API.getSupervisionRank();
+            return res.data || [];
+        }
+    })
+}

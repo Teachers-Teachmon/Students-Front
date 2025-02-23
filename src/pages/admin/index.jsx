@@ -9,7 +9,7 @@ import Supervision from '../../assets/supervision.svg';
 import SelfStudy from '../../assets/selfStudy.svg';
 import Left2 from '../../assets/left2.svg';
 import { useState } from 'react';
-import { useGetDailySupervision } from '../../hooks/useSupervision.js';
+import { useGetDailySupervision, useGetSupervisionRank } from '../../hooks/useSupervision.js';
 
 export default function Admin() {
 
@@ -18,22 +18,22 @@ export default function Admin() {
   const today = new Date();
   const day = today.toISOString().split('T')[0];
 
-  // const dayData = {
-  //   "day": "2025년 1월 8일 (수)",
-  //   "self_study_teacher": {
-  //     "7th_teacher": "정유진/me",
-  //     "8th_teacher": "최병준",
-  //     "10th_teacher": "장나영"
-  //   },
-  //   "leave_seat_teacher": {
-  //     "7th_teacher": "정유진/me",
-  //     "8th_teacher": "최병준",
-  //     "10th_teacher": "장나영"
-  //   },
-  //   "night_teacher": "정유진/me"
-  // }
+  const dayData = {
+    "day": "2025년 1월 8일 (수)",
+    "self_study_teacher": {
+      "7th_teacher": "정유진/me",
+      "8th_teacher": "최병준",
+      "10th_teacher": "장나영"
+    },
+    "leave_seat_teacher": {
+      "7th_teacher": "정유진/me",
+      "8th_teacher": "최병준",
+      "10th_teacher": "장나영"
+    },
+    "night_teacher": "정유진/me"
+  }
 
-  const { dayData } = useGetDailySupervision(day);
+  //const { dayData } = useGetDailySupervision(day);
 
   const periodGroups = [
     { period: "7교시", studyKey: "7th_teacher", leaveKey: "7th_teacher" },
@@ -41,57 +41,40 @@ export default function Admin() {
     { period: "10~11교시", studyKey: "10th_teacher", leaveKey: "10th_teacher" }
   ];
 
-  const supervisionTotal = [
-    {
-      "name": "정유진",
-      "teacher_id": 1,
-      "SEVEN_PERIOD_COUNT": 2,
-      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 3,
-      "NIGHT_COUNT": 3
-    },
-    {
-      "name": "정유진",
-      "teacher_id": 1,
-      "SEVEN_PERIOD_COUNT": 2,
-      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 3,
-      "NIGHT_COUNT": 3
-    },
-    {
-      "name": "정유진",
-      "teacher_id": 1,
-      "SEVEN_PERIOD_COUNT": 2,
-      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 1,
-      "NIGHT_COUNT": 3
-    },
-    {
-      "name": "정유진",
-      "teacher_id": 1,
-      "SEVEN_PERIOD_COUNT": 2,
-      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 3,
-      "NIGHT_COUNT": 3
-    },
-    {
-      "name": "정유진",
-      "teacher_id": 1,
-      "SEVEN_PERIOD_COUNT": 2,
-      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 3,
-      "NIGHT_COUNT": 3
-    },
-    {
-      "name": "정유진",
-      "teacher_id": 1,
-      "SEVEN_PERIOD_COUNT": 2,
-      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 3,
-      "NIGHT_COUNT": 3
-    },
-    {
-      "name": "정유진",
-      "teacher_id": 1,
-      "SEVEN_PERIOD_COUNT": 2,
-      "EIGHT_AND_ELEVEN_PERIOD_COUNT": 3,
-      "NIGHT_COUNT": 3
-    }
-  ]
+  const { supervisionTotal } = useGetSupervisionRank();
+
+  // const supervisionTotal = [
+  //   {
+  //     "rank": 1,
+  //     "name": "정유진",
+  //     "count": 36
+  //   },
+  //   {
+  //     "rank": 2,
+  //     "name": "최병준",
+  //     "count": 25
+  //   },
+  //   {
+  //     "rank": 3,
+  //     "name": "장나영",
+  //     "count": 21
+  //   },
+  //   {
+  //     "rank": 4,
+  //     "name": "정유진",
+  //     "count": 36
+  //   },
+  //   {
+  //     "rank": 5,
+  //     "name": "최병준",
+  //     "count": 25
+  //   },
+  //   {
+  //     "rank": 6,
+  //     "name": "장나영",
+  //     "count": 21
+  //   }
+  // ]
 
   const [leaveStudent, setLeaveStudent] = useState([
     {
@@ -182,19 +165,13 @@ export default function Admin() {
               <p onClick={() => { navigate('/admin/supervision') }}>자세히보기 <img src={Left} /></p>
             </S.SupervisionTotalTop>
             <S.SupervisionTotalMain>
-              {supervisionTotal
-                .map(teacher => ({
-                  ...teacher,
-                  total: teacher.SEVEN_PERIOD_COUNT + teacher.EIGHT_AND_ELEVEN_PERIOD_COUNT + teacher.NIGHT_COUNT,
-                }))
-                .sort((a, b) => b.total - a.total)
-                .map((teacher, index) => (
-                  <S.SupervisionTotalRow key={`${teacher.teacher_id}-${index}`} $isLast={index === 3 || index === 7} $isSecondRow={index >= 4}>
-                    <S.SupervisionRank>{index + 1}위</S.SupervisionRank>
-                    <S.SupervisionTeacher>{teacher.name}</S.SupervisionTeacher>
-                    <S.SupervisionCount>{teacher.total}회</S.SupervisionCount>
-                  </S.SupervisionTotalRow>
-                ))}
+              {supervisionTotal.map((teacher) => (
+                <S.SupervisionTotalRow key={teacher.rank}>
+                  <S.SupervisionRank>{teacher.rank}위</S.SupervisionRank>
+                  <S.SupervisionTeacher>{teacher.name}</S.SupervisionTeacher>
+                  <S.SupervisionCount>{teacher.count}회</S.SupervisionCount>
+                </S.SupervisionTotalRow>
+              ))}
             </S.SupervisionTotalMain>
           </S.SupervisionTotal>
           <S.LeaveStudent>

@@ -188,3 +188,15 @@ export const saveSelfStudy = async (saveList) => {
         return Promise.reject(err);
     }
 }
+
+export const getSupervisionRank = async () => {
+    try {
+        const res = await axiosInstance.get(`${API_ENDPOINTS.SUPERVISION}/ranking/total`);
+        if(res.status!==200 && res.status!==201){
+            return Promise.reject(res.status)
+        }
+        return res;
+    }catch (err){
+        return Promise.reject(err);
+    }
+}
