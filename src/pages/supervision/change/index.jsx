@@ -388,7 +388,7 @@ export default function SupervisionChange() {
             </S.MainWrap>
 
             {isModalOpen && (
-                <S.ModalOverlay onClick={() => { setIsModalOpen(false); setSelectedTeacher([]); }}>
+                <S.ModalOverlay onClick={() => { setIsModalOpen(false); setSelectedTeacher([]); setIsSelfSelected(false); setDisabledTeachers([]); }}>
                     <S.Modal onClick={(e) => { e.stopPropagation() }}>
                         <h2>교체요청을 보내시겠습니까?</h2>
                         <S.ExchangeInfo>
