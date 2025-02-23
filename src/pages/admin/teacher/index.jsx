@@ -248,9 +248,9 @@ export default function AdminTeacher() {
                                             <S.Circle $color = {color}></S.Circle>
                                             <S.StatusText $color = {color}>{value[item].role === "TEACHER" ? "일반" : "관리자"}</S.StatusText>
                                         </S.Status>
-                                        <S.Option src={OptionButton} alt={'option'} onClick={()=>handleIsOption(item, true)}/>
+                                        <S.Option ref={(el) => (childRefs.current[item] = el)} src={OptionButton} alt={'option'} onClick={()=>handleIsOption(item, true)}/>
                                     {isOption && isOption[item].status &&
-                                        <S.Options $up = {isFirst+9 === Number(item) || isFirst+10 === Number(item) ? -60 : 40} onClick={(e) => e.stopPropagation()}>
+                                        <S.Options $up = {isFirst+8 === Number(item) || isFirst+9 === Number(item) || isFirst+10 === Number(item) || isFirst+11 === Number(item)|| isFirst+12 === Number(item) ? -60 : 40} onClick={(e) => e.stopPropagation()}>
                                         <button onClick={()=>deleteT(item)}>삭제</button>
                                         <button onClick={()=>handleIsPatch(item, true)}>수정</button>
                                         </S.Options>}
