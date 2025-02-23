@@ -3,7 +3,7 @@ import Header from '../../../components/header/index.jsx';
 import SquareBtn from '../../../components/button/square/index.jsx';
 import LocationBox from '../../../components/modal/LocationBox/index.jsx';
 import { useState, useEffect } from 'react';
-import { useBusinessTrip, useGetStudentLocation, useGetBusinessTripStudents, useSetBusinessTripStudents, useGetAbleAfterSchool } from '../../../hooks/useAfterSchool.js';
+import { useGetStudentLocation, useGetBusinessTripStudents, useSetBusinessTripStudents, useGetAbleAfterSchool } from '../../../hooks/useAfterSchool.js';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { useLocation } from 'react-router-dom';
@@ -58,7 +58,6 @@ export default function SeatAssignment() {
     const [assignedStudent, setAssignedStudent] = useState([]);
     const [locationMessage, setLocationMessage] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const { mutate: createBusinessTrip } = useBusinessTrip();
 
     useEffect(() => {
         if (businessTripStudents) {
@@ -79,13 +78,6 @@ export default function SeatAssignment() {
     };
 
     const handleSave = () => {
-        createBusinessTrip({
-            day: afterSchoolData.day || new Date(),
-            period: afterSchoolData.period,
-            afterSchoolId: afterSchoolData.id,
-            branch: afterSchoolData.branch
-        });
-
         const payload = assignedStudent.map(student => ({
             number: student.number,
             class: student.classNumber
@@ -132,7 +124,7 @@ export default function SeatAssignment() {
                     {isModalOpen && (
                         <S.ModalOverlay onClick={() => setIsModalOpen(false)}>
                             <S.Modal onClick={e => e.stopPropagation()}>
-                                <LocationBox data={locationMessage} closeModal={() => setIsModalOpen(false)} />
+                                <LocationBox data={locationMessage} closeModal={() => setIsModalOpen(false)} afterSchoolData={afterSchoolData} />
                             </S.Modal>
                         </S.ModalOverlay>
                     )}
