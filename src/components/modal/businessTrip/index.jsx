@@ -19,7 +19,7 @@ export default function BusinessTrip({ closeModal, selectedClass }) {
         }
         console.log(selectedDate, selectedClass);
         closeModal();
-        navigate('/after-school/seat-assignment', { state: { day: selectedDate, id: selectedClass.id, name: selectedClass.name, branch: selectedClass.branch, period: selectedClass.period } });
+        navigate('/after-school/seat-assignment', { state: { day: selectedDate, grade: selectedClass.grade, id: selectedClass.id, name: selectedClass.name, branch: selectedClass.branch, period: selectedClass.period } });
     };
 
     return (
