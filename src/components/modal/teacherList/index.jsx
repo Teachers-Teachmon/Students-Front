@@ -69,21 +69,18 @@ export default function TeacherList({ closeModal, selectedDate }) {
     //     },
     //     "night_teacher": "정유진/me"
     // };
-    // const todayAfterSchoolTeacher = {
-    //     "day": "2025년 1월 8일 (수)",
-    //     "afterschool": [
-    //         {
-    //             "period": "8~9교시",
-    //             "teacherName": "정유진",
-    //             "place": "객체지향프로그래밍실"
-    //         },
-    //         {
-    //             "period": "8~9교시",
-    //             "teacherName": "정유진",
-    //             "place": "객체지향프로그래밍실"
-    //         }
-    //     ]
-    // }
+    // const todayAfterSchoolTeacher = [
+    //     {
+    //         "period": "8~9교시",
+    //         "teacherName": "정유진",
+    //         "place": "객체지향프로그래밍실"
+    //     },
+    //     {
+    //         "period": "8~9교시",
+    //         "teacherName": "정유진",
+    //         "place": "객체지향프로그래밍실"
+    //     }
+    // ]
     const formatTeacherName = (teacher) => {
         if (!teacher) return "X";
         const isMe = teacher.includes("/me");
