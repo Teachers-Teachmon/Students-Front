@@ -116,10 +116,8 @@ export default function AdminSelfStudy() {
 
     mutate(payload, {
       onSuccess: () => {
-        setTimeout(() => {
-          alert('저장이 완료되었습니다.');
-        }, 100);
-      },      
+        alert('저장이 완료되었습니다.');
+      },
       onError: () => {
         alert('저장에 실패했습니다. 다시 시도해주세요.');
       }

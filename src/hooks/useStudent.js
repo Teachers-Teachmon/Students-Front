@@ -128,3 +128,13 @@ export const useCreateStudent = ()=>{
         }
     })
 }
+
+export const useGetLeaveStudent = () => {
+    return useQuery({
+        queryKey:['getLeaveStudent'],
+        queryFn: async () => {
+            const res = await API.getLeaveStudent();
+            return res.data || [];
+        }
+    })
+}
