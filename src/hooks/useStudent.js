@@ -139,15 +139,11 @@ export const useGetLeaveStudent = () => {
     })
 }
 
-export const useDeleteLeaveStudent  = () =>{
-    const queryClient = useQueryClient();
-    const navigate = useNavigate();
-
+export const useDeleteLeaveStudent = () =>{
     return useMutation({
         mutationFn : (props)=> API.deleteLeaveStudent(props),
-        onSuccess: () => {
-            queryClient.invalidateQueries(['getLeaveStudent']);
-            navigate('/admin');
+        onError:(err)=>{
+            console.log("삭제 실패 ", err);
         }
     })
 }
