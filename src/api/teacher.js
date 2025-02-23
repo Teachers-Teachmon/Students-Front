@@ -24,10 +24,10 @@ export const patchTeacher = async (teacher) => {
             email : teacher.teachers.email,
             role : teacher.teachers.role
         });
-        if(res.status!==200 && res.status!==201){
+        if(res.status!==204){
             return Promise.reject(res.status)
         }
-        return res;
+        return { success: true };
     }catch (err){
         return Promise.reject(err);
     }
