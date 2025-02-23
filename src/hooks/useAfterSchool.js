@@ -162,27 +162,27 @@ export const useGetDailyAfterSchool = (day) => {
     });
 }
 
-export const useGetBusinessTripStudents = (id, branch) => {
+export const useGetBusinessTripStudents = (id, day) => {
     return useQuery({
-        queryKey: ['getBusinessTripStudents', id, branch],
+        queryKey: ['getBusinessTripStudents', id, day],
         queryFn: async () => {
-            const res = await API.getBusinessTripStudents(id, branch);
+            const res = await API.getBusinessTripStudents(id, day);
             return res.data || [];
         }
     });
 }
 
-export const useSetBusinessTripStudents = (studentList) => {
+export const useSetBusinessTripStudents = () => {
     return useMutation({
         mutationFn: (props) => API.setBusinessTripStudents(props),
     })
 }
 
-export const useGetStudentLocation = (day, period, id, branch) => {
+export const useGetStudentLocation = (day, id) => {
     return useQuery({
-        queryKey: ['getStudentLocation', day, period, id, branch],
+        queryKey: ['getStudentLocation', day, id],
         queryFn: async () => {
-            const res = await API.getStudentLocation(day, period, id, branch);
+            const res = await API.getStudentLocation(day, id);
             return res.data || [];
         }
     });

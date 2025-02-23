@@ -20,7 +20,7 @@ import { useUpload } from '../../../hooks/useAfterSchool.js';
 import { useFlush } from '../../../hooks/useAfterSchool.js';
 import ErrorModal from '../../../components/modal/errorModal/index.jsx';
 import SquareBtn from '../../../components/button/square/index.jsx';
-import Loading from '../../../components/loading/index.jsxx';
+import Loading from '../../../components/loading/index.jsx';
 
 export default function AdminAfterSchool() {
   const [isModal1, setIsModal1] = useState(false);
