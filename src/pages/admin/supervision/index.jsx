@@ -25,8 +25,8 @@ export default function AdminSupervision() {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [order, setOrder] = useState("ASC");
-    const { data: Ranking } = useGetRanking(order, teacher);
     const [teacher, setTeacher] = useState("");
+    const { data: Ranking } = useGetRanking(order, teacher);
 
     const handleTeacherChange = (date, type, timeKey, newTeacher) => {
         setSelectedTeacher(prev => ({
