@@ -58,6 +58,11 @@ export default function AdminStudent() {
   const changeNumber = (fe_id, number)=>{
     const newValue = {...value};
     newValue[fe_id].number = number;
+    const grade = isGrade[0] ? '1' : isGrade[1] ? '2' : '3';
+    if(newValue[fe_id].number.slice(0, 1) !== grade){
+      alert('학년에 맞는 학번을 입력해주세요.');
+      return ;
+    }
     setValue(newValue);
   }
   const changeName = (fe_id, name)=>{
@@ -193,7 +198,6 @@ export default function AdminStudent() {
             <S.ContentBox ref={parentRef}>
               {Object.keys(value).length === 0 && <S.NoData>데이터가 없습니다</S.NoData> }
               {value && Object.keys(value).map((item)=>{
-                console.log(value[item].name)
                 if(value[item].isPatch && isGrade[Number((String(value[item].number).slice(0, 1)))-1] || value[item].isPatch && value[item].number === '' ||  value[item].isPatch && value[item].name === '')
                   return(
                     <S.Content key={item}>
@@ -203,7 +207,9 @@ export default function AdminStudent() {
                           type={"text"}
                           placeholder={"학번"}
                           value={value[item].number}
-                          onChange={(e)=>changeNumber(item, e.target.value)}
+                          onChange={(e)=>{
+                            changeNumber(item, e.target.value)
+                          }}
                       />
                       <S.InputStudent
                           $length={150}
