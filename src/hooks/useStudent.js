@@ -118,13 +118,41 @@ export const usePatchStudent = () => {
 export const useCreateStudent = ()=>{
     const {setStatus} = useStatusUpdate();
     return useMutation({
-        mutationFn : (props)=> API.createStudent(props),
+        mutationFn : (props)=> API.postStudent(props),
         onSuccess:(data, variables)=>{
             variables.onSuccessPatch();
             setStatus();
         },
         onError:(err)=>{
             console.log("생성 실패 ", err);
+        }
+    })
+}
+
+export const usePutStudent = () => {
+    const {setStatus} = useStatusUpdate();
+    return useMutation({
+        mutationFn : (props)=> API.putStudent(props),
+        onSuccess:(data, variables)=>{
+            variables.onSuccessPatch();
+            setStatus();
+        },
+        onError:(err)=>{
+            console.log("수정 실패 ", err);
+        }
+    })
+}
+
+export const useDeleteStudent = () => {
+    const {setStatus} = useStatusUpdate();
+    return useMutation({
+        mutationFn : (props)=> API.deleteStudent(props),
+        onSuccess:(data, variables)=>{
+            variables.onSuccessPatch();
+            setStatus()
+        },
+        onError:(err)=>{
+            console.log("삭제 실패 ", err);
         }
     })
 }

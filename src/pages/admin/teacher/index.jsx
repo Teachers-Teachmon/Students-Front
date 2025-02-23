@@ -51,11 +51,13 @@ export default function AdminTeacher() {
 
     const {mutate : deleteTeacher} = useDeleteTeacher();
     const deleteT = (id) =>{
+        console.log(value[id].teacher_id)
         if(!window.confirm('삭제하시겠습니까?')) return
-        deleteTeacher(id);
+        deleteTeacher(value[id].teacher_id);
         const newValue = {...value};
         delete newValue[id];
         setValue(newValue);
+        handleIsOption(id, false);
     }
     const addTeacher = ()=>{
         const newValue = {};
@@ -248,7 +250,7 @@ export default function AdminTeacher() {
                                         </S.Status>
                                         <S.Option src={OptionButton} alt={'option'} onClick={()=>handleIsOption(item, true)}/>
                                     {isOption && isOption[item].status &&
-                                        <S.Options $up = {isFirst === Number(item)+9 || isFirst === Number(item)+10 ? -60 : 40} onClick={(e) => e.stopPropagation()}>
+                                        <S.Options $up = {isFirst+9 === Number(item) || isFirst+10 === Number(item) ? -60 : 40} onClick={(e) => e.stopPropagation()}>
                                         <button onClick={()=>deleteT(item)}>삭제</button>
                                         <button onClick={()=>handleIsPatch(item, true)}>수정</button>
                                         </S.Options>}
