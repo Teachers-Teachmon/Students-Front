@@ -90,7 +90,7 @@ export default function AdminSupervision() {
 
         saveAssignment(changedData);
         setIsEditing(false);
-        queryClient.invalidateQueries(['getRanking', order, ""]);
+        queryClient.refetchQueries(['getRanking', order, teacher]);
     };
 
     function groupByWeek(dataArray) {
