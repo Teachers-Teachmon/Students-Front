@@ -3737,7 +3737,7 @@
     },
     {
       "name": "정유진",
-      "teacher_id": 1,
+      "teacher_id": 2,
       "SEVEN_PERIOD_COUNT": 2,
       "EIGHT_AND_ELEVEN_PERIOD_COUNT": 3,
       "NIGHT_COUNT": 3,
@@ -3746,18 +3746,24 @@
   ],
   "teacher": [
     {
-      "count" : 1,
-      "name" : "정유진",
-      "email" : "teacher026@bssm.hs.kr",
-      "role" : "ADMIN",
-      "teacher_id" : 1
+      "count": 1,
+      "name": "정유진",
+      "email": "teacher026@bssm.hs.kr",
+      "role": "ADMIN",
+      "teacher_id": 1
     },
     {
-      "count" : 1,
-      "name" : "정유진",
-      "email" : "teacher026@bssm.hs.kr",
-      "role" : "ADMIN",
-      "teacher_id" : 1
+      "count": 1,
+      "name": "정유진",
+      "email": "teacher026@bssm.hs.kr",
+      "role": "ADMIN",
+      "teacher_id": 2
+    },
+    {
+      "id": "de9b",
+      "name": "asfd",
+      "email": "afs",
+      "role": "TEACHER"
     }
   ],
   "teacher2": [
@@ -4108,56 +4114,56 @@
       {
         "status": "이석",
         "name": "김동욱",
-        "number":1101,
-        "id":1
+        "number": 1101,
+        "id": 1
       },
       {
         "status": "이석",
         "name": "허온",
-        "number":1102,
-        "id":2
+        "number": 1102,
+        "id": 2
       }
     ],
-    "2반" : [
+    "2반": [
       {
         "status": "이석",
         "name": "김동욱",
-        "number":1201,
-        "id":1
+        "number": 1201,
+        "id": 1
       },
       {
         "status": "이석",
         "name": "허온",
-        "number":1202,
-        "id":2
+        "number": 1202,
+        "id": 2
       }
     ],
-    "3반" : [
+    "3반": [
       {
         "status": "이석",
         "name": "김동욱",
-        "number":1301,
-        "id":1
+        "number": 1301,
+        "id": 1
       },
       {
         "status": "이석",
         "name": "허온",
-        "number":1302,
-        "id":2
+        "number": 1302,
+        "id": 2
       }
     ],
-    "4반" : [
+    "4반": [
       {
         "status": "이석",
         "name": "김동욱",
-        "number":1401,
-        "id":1
+        "number": 1401,
+        "id": 1
       },
       {
         "status": "이석",
         "name": "허온",
-        "number":1402,
-        "id":2
+        "number": 1402,
+        "id": 2
       }
     ]
   },

@@ -128,3 +128,22 @@ export const useCreateStudent = ()=>{
         }
     })
 }
+
+export const useGetLeaveStudent = () => {
+    return useQuery({
+        queryKey:['getLeaveStudent'],
+        queryFn: async () => {
+            const res = await API.getLeaveStudent();
+            return res.data || [];
+        }
+    })
+}
+
+export const useDeleteLeaveStudent = () =>{
+    return useMutation({
+        mutationFn : (props)=> API.deleteLeaveStudent(props),
+        onError:(err)=>{
+            console.log("삭제 실패 ", err);
+        }
+    })
+}

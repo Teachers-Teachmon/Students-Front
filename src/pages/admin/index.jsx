@@ -8,8 +8,10 @@ import Teacher from '../../assets/teacher.svg';
 import Supervision from '../../assets/supervision.svg';
 import SelfStudy from '../../assets/selfStudy.svg';
 import Left2 from '../../assets/left2.svg';
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import { useGetDailySupervision, useGetSupervisionRank } from '../../hooks/useSupervision.js';
+import { useGetLeaveStudent } from '../../hooks/useStudent.js';
+import { useDeleteLeaveStudent } from '../../hooks/useStudent.js';
 
 export default function Admin() {
 
@@ -33,7 +35,14 @@ export default function Admin() {
   //   "night_teacher": "정유진/me"
   // }
 
-  const { data: dayData } = useGetDailySupervision(day);
+  const { data: dayData = {} } = useGetDailySupervision(day);
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${month}/${day}`;
+  };
 
   const periodGroups = [
     { period: "7교시", studyKey: "7th_teacher", leaveKey: "7th_teacher" },
@@ -65,34 +74,44 @@ export default function Admin() {
   //     "rank": 4,
   //     "name": "정유진",
   //     "count": 36
-  //   },
-  //   {
-  //     "rank": 5,
-  //     "name": "최병준",
-  //     "count": 25
-  //   },
-  //   {
-  //     "rank": 6,
-  //     "name": "장나영",
-  //     "count": 21
   //   }
   // ]
 
-  const [leaveStudent, setLeaveStudent] = useState([
-    {
-      "weekday": "월",
-      "leaveId": 2,
-      "student": "1401 김동욱",
-    },
-    {
-      "weekday": "월",
-      "leaveId": 3,
-      "student": "1401 김동욱",
-    }
-  ]);
 
-  const handleDelete = (id) => {
-    setLeaveStudent(leaveStudent.filter(student => student.leaveId !== id));
+  // const [leaveStudent, setLeaveStudent] = useState([
+  //   {
+  //     "day": "2024-02-03",
+  //     "weekday": "월",
+  //     "leave_id": 2,
+  //     "student": "1401 김동욱",
+  //   },
+  //   {
+  //     "day": "2024-02-03",
+  //     "weekday": "월",
+  //     "leave_id": 3,
+  //     "student": "1401 김동욱",
+  //   }
+  // ]);
+
+  const [leaveStudent, setLeaveStudent] = useState([]);
+  const { data: leaveStudentData = [] } = useGetLeaveStudent();
+  const { mutate: deleteLeaveStudent } = useDeleteLeaveStudent();
+
+  useEffect(() => {
+    console.log(leaveStudentData);
+    setLeaveStudent(leaveStudentData);
+  }, [leaveStudentData]);
+  
+
+  const handleDelete = (leave_id) => {
+    deleteLeaveStudent(leave_id, {
+      onSuccess: () => {
+        setLeaveStudent(leaveStudent.filter(student => student.leave_id !== leave_id));
+      },
+      onError: (error) => {
+        console.error('삭제 실패:', error);
+      }
+    });
   };
 
   return (
@@ -119,7 +138,7 @@ export default function Admin() {
                       <S.DataCellSelf $length={6.5}>{(dayData.self_study_teacher?.[studyKey] || dayData[studyKey])?.replace("/me", "")}</S.DataCellSelf>
                       <S.DataCell $length={4}>{(dayData.leave_seat_teacher?.[leaveKey] || dayData[leaveKey])?.replace("/me", "")}</S.DataCell>
                     </S.Row>
-                  ))}
+                ))}
               </S.SupervisionData>
             </S.TodaySupervisionMain>
           </S.TodaySupervision>
@@ -167,14 +186,18 @@ export default function Admin() {
               <p onClick={() => { navigate('/admin/supervision') }}>자세히보기 <img src={Left} /></p>
             </S.SupervisionTotalTop>
             <S.SupervisionTotalMain>
-              {supervisionTotal.map((teacher) => (
-                <S.SupervisionTotalRow key={teacher.rank}>
+              {supervisionTotal.map((teacher, index) => (
+                <S.SupervisionTotalRow
+                  key={teacher.rank}
+                  $isLast={teacher.rank === 4 || teacher.rank === 8}
+                >
                   <S.SupervisionRank>{teacher.rank}위</S.SupervisionRank>
                   <S.SupervisionTeacher>{teacher.name}</S.SupervisionTeacher>
                   <S.SupervisionCount>{teacher.count}회</S.SupervisionCount>
                 </S.SupervisionTotalRow>
               ))}
             </S.SupervisionTotalMain>
+
           </S.SupervisionTotal>
           <S.LeaveStudent>
             <S.LeaveStudentTop>
@@ -182,10 +205,10 @@ export default function Admin() {
             </S.LeaveStudentTop>
             <S.LeaveStudentMain>
               {leaveStudent.map((student, index) => (
-                <S.LeaveStudentRow key={student.leaveId}>
-                  <S.LeaveStudentDate>{student.day} ({student.weekday})</S.LeaveStudentDate>
+                <S.LeaveStudentRow key={student.leave_id}>
+                  <S.LeaveStudentDate>{formatDate(student.day)} ({student.weekday})</S.LeaveStudentDate>
                   <S.LeaveStudentData>{student.student}</S.LeaveStudentData>
-                  <S.Confirm onClick={() => handleDelete(student.leaveId)}>삭제</S.Confirm>
+                  <S.Confirm onClick={() => handleDelete(student.leave_id)}>삭제</S.Confirm>
                 </S.LeaveStudentRow>
               ))}
             </S.LeaveStudentMain>

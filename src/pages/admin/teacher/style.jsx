@@ -159,11 +159,9 @@ export const Btn = styled.button`
     background-color: ${(props)=>props.$color};
     border-radius: 8px;
     padding: 8px 20px;
-    margin-left:  ${(props)=> props.$color === "#2E6FF2" ? " 20px" : "0"};
-    color: white;
-    &:hover {
-        background: ${(props)=> props.$color === "#2E6FF2" ? "#2a65dd" : "#f35d53"};
-    }
+    margin-left:  ${(props)=> props.$color === "#2E6FF2" ? " 10px" : "0"};
+    color: ${props=>props.$color === "#2E6FF2" ? "white" : "#999999"};
+    border: 2px solid ${props=>props.$color === "#2E6FF2" ? "#2E6FF2" : "#999999"};
 `
 export const Status = styled.div`
     display: flex;
@@ -174,7 +172,7 @@ export const Status = styled.div`
     padding: 2px 5px;
     cursor: pointer;
     width: max-content;
-    z-index: 100;
+    z-index: 10;
 `
 export const InputTeacher = styled.input`
     width: ${(props)=>props.$length}px;
@@ -194,5 +192,42 @@ export const Circle = styled.div`
 export const StatusText = styled.p`
     color: ${props=>props.$color};
     font-size: 16px;
+    
+`
+export const Option = styled.img`
+    width: 14px;
+    margin-left: 10px;
+    margin-right: 30px;
+    cursor: pointer;
+`
+export const Options = styled.div`
+    position: absolute;
+    top: 40px;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+    
+    button {
+        border: 1px;
+        padding: 10%;
+        width: 6.5vw;
+        background-color: #fff;
+        cursor: pointer;
+        border-right: 1px solid #cccccc;
+
+    }
+
+    button:hover {
+        background-color: #f0f0f0;
+    }
+
+    button{
+        border-right: none; 
+    }
     
 `

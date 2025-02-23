@@ -5,32 +5,37 @@ import {useNavigate} from "react-router-dom";
 import {useEffect, useRef, useState} from "react";
 import {useDebounce} from "../../../hooks/useDebounce.js";
 import {getTeacher} from "../../../api/teacher.js";
-import {usePatchTeacher} from "../../../hooks/useTeacher.js";
+import {usePatchTeacher, useDeleteTeacher, usePostTeacher} from "../../../hooks/useTeacher.js";
 import {useStatusUpdate} from "../../../zustand/statusUpdate.js";
 import StatusUpdate from "../../../components/status-update/index.jsx";
 import UpVersion from "../../../assets/upVersion.svg";
 import DownVersion from "../../../assets/downVersion.svg";
 import SearchBox from "../../../components/searchBox/index.jsx";
+import OptionButton from '../../../assets/OptionButton.svg';
 
 export default function AdminTeacher() {
     const navigate = useNavigate();
-    const [isPatch, setIsPatch] = useState(false);
     const [search, setSearch] = useState("");
     const debounce = useDebounce(search, 200);
     const [value, setValue] = useState([]);
     const {status} = useStatusUpdate();
     const [isOpen,setIsOpen] = useState([]);
     const [isCount, setIsCount] = useState(false);
+    const [isOption, setIsOption] = useState([]);
     useEffect(() => {
         const fetchData = async ()=>{
             const data = await getTeacher(debounce, isCount ? "ASC" : "DESC");
             setValue(
                 data.data.reduce((acc, item, index) => {
-                    acc[index + 1] = { ...item};
+                    acc[index + 1] = { ...item, isPatch : false};
                     return acc;
                 }, {})
             );
             setIsOpen(data.data.reduce((acc, item, index) => {
+                acc[index + 1] = { status: false };
+                return acc;
+            }, {}));
+            setIsOption(data.data.reduce((acc, item, index) => {
                 acc[index + 1] = { status: false };
                 return acc;
             }, {}));
@@ -43,7 +48,10 @@ export default function AdminTeacher() {
         newValue[fe_id][target] = v;
         setValue(newValue);
     }
-    const deleteTeacher = (id) =>{
+
+    const {mutate : deleteTeacher} = useDeleteTeacher();
+    const deleteT = (id) =>{
+        deleteTeacher(id);
         const newValue = {...value};
         delete newValue[id];
         setValue(newValue);
@@ -53,7 +61,7 @@ export default function AdminTeacher() {
         Object.keys(value).forEach((key) => {
             newValue[Number(key) + 1] = value[key];
         });
-        newValue[1] = { name: "", email: "" , count : 0, role : "TEACHER", teacher_id : null};
+        newValue[1] = { name: "", email: "" , count : 0, role : "TEACHER", teacher_id : null, isPatch : true};
         setValue(newValue);
         const newIsOpen = {};
         Object.keys(isOpen).forEach((key) => {
@@ -61,22 +69,26 @@ export default function AdminTeacher() {
         });
         newIsOpen[1] = {status : false};
         setIsOpen(newIsOpen);
+        const newIsOption = {};
+        Object.keys(isOption).forEach((key) => {
+            newIsOption[Number(key) + 1] = isOption[key];
+        });
+        newIsOption[1] = {status : false};
+        setIsOption(newIsOption);
     }
 
     const {mutate : patchTeacher} = usePatchTeacher();
-    const saveTeacher = () => {
+    const {mutate : postTeacher} = usePostTeacher();
+    const saveTeacher = (id) => {
         if(Object.keys(value).some((item)=>value[item].email === "" || value[item].name === "")){
             alert("값을 채워주세요")
             return;
         }
-        const newValue = [];
-        Object.keys(value).forEach((key) => {
-            newValue[Number(key - 1)] = value[key];
-        });
-        const onSuccessPatch = () => {
-            setIsPatch(false);
+        const onSuccessPatch = () =>{
+            handleIsPatch(id, false);
         }
-        patchTeacher({teachers: newValue, onSuccessPatch: onSuccessPatch});
+        if(!value[id].teacher_id) postTeacher({teachers: value[id], onSuccessPatch: onSuccessPatch});
+        else patchTeacher({teachers: value[id], onSuccessPatch: onSuccessPatch});
     }
 
 
@@ -84,7 +96,6 @@ export default function AdminTeacher() {
         setIsOpen(prevState =>
             Object.fromEntries(Object.keys(prevState).map(key => [key, { status: false }]))
         );
-        console.log(name, status)
         const newValue = {...value};
         newValue[name].role = status === "일반" ? "TEACHER" : "ADMIN";
         setValue(newValue);
@@ -94,6 +105,12 @@ export default function AdminTeacher() {
         const newIsOpen = {...isOpen};
         newIsOpen[id].status = !newIsOpen[id].status;
         setIsOpen(newIsOpen);
+    }
+    const handleIsOption = (id, status)=>{
+        const newIsOption = {...isOption};
+        newIsOption[id].status = status;
+        console.log(id, newIsOption)
+        setIsOption(newIsOption);
     }
     const parentRef = useRef(null);
     const childRefs = useRef([]);
@@ -130,24 +147,28 @@ export default function AdminTeacher() {
         };
     }, [childRefs.current.length]);
 
+    const handleIsPatch = (id, status)=>{
+        const newValue = {...value};
+        newValue[id].isPatch = status;
+        setValue(newValue);
+        handleIsOption(id, false);
+    }
   return (
     <S.Container>
         {Object.keys(isOpen).some((item)=>isOpen[item].status === true) &&
             <S.Black onClick={()=>setIsOpen(prevState => Object.fromEntries(Object.keys(prevState).map(key => [key, { status: false }])))} />}
+        {Object.keys(isOption).some((item)=>isOption[item].status === true) &&
+            <S.Black onClick={()=>setIsOption(prevState => Object.fromEntries(Object.keys(prevState).map(key => [key, { status: false }])))} />}
       <Header/>
       <S.Wrap>
         <S.Info>
             <h1>선생님 관리</h1>
             <S.InfoBtn>
                 <SquareBtn name={"돌아가기"} status={true} On={() => {
-                    if(isPatch) {
-                        if(confirm("정말로 이동하시겠습니까?")) navigate("/admin")
-                    }else navigate('/admin')
+                    navigate('/admin')
                 }} />
                 <SquareBtn name={"금지날짜"} status={true} On={() => {
-                    if(isPatch) {
-                        if(confirm("정말로 이동하시겠습니까?")) navigate('/admin/teacher/prohibition')
-                    }else navigate('/admin/teacher/prohibition')
+                    navigate('/admin/teacher/prohibition')
                 }} />
             </S.InfoBtn>
         </S.Info>
@@ -161,9 +182,7 @@ export default function AdminTeacher() {
                     </S.Array>
                 </div>
                 <div>
-                    {!isPatch && <S.Btn $color = {"#2E6FF2"} onClick={()=>{setIsPatch(true)}} >수정</S.Btn>}
-                    {isPatch && <S.Btn $color = {"#2E6FF2"} onClick={()=>{addTeacher()}} >+ 추가</S.Btn>}
-                    {isPatch && <S.Btn $color = {"#2E6FF2"} onClick={()=>{saveTeacher()}} >저장</S.Btn>}
+                    <S.Btn $color = {"#2E6FF2"} onClick={()=>{addTeacher()}} >+ 추가</S.Btn>
                 </div>
             </S.MainNav>
             <S.Table>
@@ -175,18 +194,18 @@ export default function AdminTeacher() {
                         <S.Box $length={110}>이메일</S.Box>
                     </div>
                     <div>
-                        <S.Box $length={isPatch ? 220 : 110}>권한</S.Box>
+                        <S.Box $length= { 150}>권한</S.Box>
                     </div>
                 </S.Standard>
                 <S.ContentBox ref={parentRef}>
                     {value && Object.keys(value).map((item)=>{
                         const color = value[item].role === "TEACHER" ? "#2E6FF2" : "#F87067";
-                        if(isPatch){
+                        if(value[item].isPatch){
                             return(
                                 <S.Content key={value[item].teacher_id}>
                                     <div>
                                         <S.UnBox></S.UnBox>
-                                        <S.Box2 $length={130}>{value[item].count}</S.Box2>
+                                        <S.Box2 $length={130}>{value[item].count}회</S.Box2>
                                         <S.InputTeacher $length={100} value={value[item].name} onChange={(e)=>{
                                             change(item, e.target.value, "name")
                                         }}/>
@@ -202,8 +221,9 @@ export default function AdminTeacher() {
                                             </S.Status>
                                             {isOpen && isOpen[item].status && <StatusUpdate up={isFirst === Number(item) ? 58 : -160} nowStatus={"TEACHER"} changeStatus={changeStatus} name={item}/>}
                                         </div>
-                                        <div style={{width:  120}}>
-                                            <S.Btn $color = {"#F87067"} onClick={()=>deleteTeacher(item)}>삭제</S.Btn>
+                                        <div style={{ display: "flex"}}>
+                                            <S.Btn $color = {"white"} onClick={()=>handleIsPatch(item, false)}>취소</S.Btn>
+                                            <S.Btn $color = {"#2E6FF2"} onClick={()=>saveTeacher(item)}>저장</S.Btn>
                                         </div>
                                     </div>
                                 </S.Content>
@@ -213,17 +233,22 @@ export default function AdminTeacher() {
                             <S.Content key={value[item].teacher_id}>
                                 <div>
                                     <S.UnBox></S.UnBox>
-                                    <S.Box2 $length={130}>{value[item].count}</S.Box2>
+                                    <S.Box2 $length={130}>{value[item].count}회</S.Box2>
                                     <S.Box2 $length={110}>{value[item].name}</S.Box2>
                                     <S.Box2 $length={110}>{value[item].email}</S.Box2>
                                 </div>
                                 <div>
-                                    <div style={{width:  110}}>
                                         <S.Status style={{cursor: "default"}} $color = {value[item].role === "TEACHER" ? "#ECF3FD" : "#FDF0EC"}>
                                             <S.Circle $color = {color}></S.Circle>
                                             <S.StatusText $color = {color}>{value[item].role === "TEACHER" ? "일반" : "관리자"}</S.StatusText>
                                         </S.Status>
-                                    </div>
+                                        <S.Option src={OptionButton} alt={'option'} onClick={()=>handleIsOption(item, true)}/>
+                                    {isOption && isOption[item].status &&
+                                        <S.Options onClick={(e) => e.stopPropagation()}>
+                                        <button onClick={()=>deleteT(item)}>삭제</button>
+                                        <button onClick={()=>handleIsPatch(item, true)}>수정</button>
+                                        </S.Options>}
+
                                 </div>
                             </S.Content>
                         )

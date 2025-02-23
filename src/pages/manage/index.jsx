@@ -92,7 +92,7 @@ export default function Manage(){
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
-    console.log(windowWidth)
+
     return(
         <S.ManageContainer>
             {isLoading || isFetching && !weekday && period && <Loading />}

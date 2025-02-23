@@ -113,8 +113,17 @@ export default function AdminSelfStudy() {
     };
 
     console.log('Payload:', payload);
-    mutate(payload);
+
+    mutate(payload, {
+      onSuccess: () => {
+        alert('저장이 완료되었습니다.');
+      },
+      onError: () => {
+        alert('저장에 실패했습니다. 다시 시도해주세요.');
+      }
+    });
   };
+
 
   const removeRow = (day, rowIndex) => {
     setSelectedRows(prev => {
@@ -181,6 +190,7 @@ export default function AdminSelfStudy() {
               <S.EditMainTop>
                 <S.TopData $length={9}>교시</S.TopData>
               </S.EditMainTop>
+
               {selectedRows[day]?.map((period, rowIndex) => {
                 const selectedPeriods = new Set(selectedRows[day].filter((_, i) => i !== rowIndex));
 
@@ -204,7 +214,10 @@ export default function AdminSelfStudy() {
                   </S.EditRow>
                 );
               })}
-              <S.PlusBtn onClick={() => addRow(day)}>+</S.PlusBtn>
+
+              {selectedRows[day].length < periods.length && (
+                <S.PlusBtn onClick={() => addRow(day)}>+</S.PlusBtn>
+              )}
             </S.EditMainData>
           ))}
 
