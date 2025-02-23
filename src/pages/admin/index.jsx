@@ -94,7 +94,6 @@ export default function Admin() {
   const handleDelete = (id) => {
     setLeaveStudent(leaveStudent.filter(student => student.leaveId !== id));
   };
-  console.log("dayData:", dayData);
 
   return (
     <S.Container>
