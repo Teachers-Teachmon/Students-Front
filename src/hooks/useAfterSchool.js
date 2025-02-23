@@ -43,12 +43,8 @@ export const useGetAfterSchoolClasses = (branch, weekday) => {
 }
 
 export const useBusinessTrip = () => {
-    const navigate = useNavigate();
     return useMutation({
         mutationFn: ({ day, period, afterSchoolId, branch }) => API.businessTrip(day, period, afterSchoolId, branch),
-        onSuccess: () => {
-            navigate('/after-school');
-        }
     });
 };
 

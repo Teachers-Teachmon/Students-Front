@@ -3,7 +3,7 @@ import Header from '../../../components/header/index.jsx';
 import SquareBtn from '../../../components/button/square/index.jsx';
 import LocationBox from '../../../components/modal/LocationBox/index.jsx';
 import { useState, useEffect } from 'react';
-import { useBusinessTrip, useGetStudentLocation, useGetBusinessTripStudents, useSetBusinessTripStudents, useGetAbleAfterSchool } from '../../../hooks/useAfterSchool.js';
+import { useGetStudentLocation, useGetBusinessTripStudents, useSetBusinessTripStudents, useGetAbleAfterSchool } from '../../../hooks/useAfterSchool.js';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { useLocation } from 'react-router-dom';
@@ -25,7 +25,7 @@ function DragStudent({ student }) {
     );
 }
 
-function DropZone({ classNumber, onDropStudent, children, enabled=true }) {
+function DropZone({ classNumber, onDropStudent, children, enabled }) {
     const [{ isOver, canDrop }, drop] = useDrop({
         accept: STUDENT_TYPE,
         canDrop: () => enabled,
@@ -58,16 +58,15 @@ export default function SeatAssignment() {
     const [assignedStudent, setAssignedStudent] = useState([]);
     const [locationMessage, setLocationMessage] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const { mutate: createBusinessTrip } = useBusinessTrip();
 
     useEffect(() => {
-        if (businessTripStudents) {
+        if (businessTripStudents && assignedStudent.length === 0) {
             const assigned = businessTripStudents.flatMap((classStudents, index) =>
                 classStudents.map(student => ({ ...student, classNumber: index + 1 }))
             );
             setAssignedStudent(assigned);
         }
-    }, []);
+    }, [businessTripStudents]);    
 
     const handleAssignStudent = (student, targetClassNumber) => {
         console.log("Assigning student", student, "to class", targetClassNumber);
@@ -79,22 +78,15 @@ export default function SeatAssignment() {
     };
 
     const handleSave = () => {
-        createBusinessTrip({
-            day: afterSchoolData.day || new Date(),
-            period: afterSchoolData.period,
-            afterSchoolId: afterSchoolData.id,
-            branch: afterSchoolData.branch
-        });
-
         const payload = assignedStudent.map(student => ({
             number: student.number,
-            class: student.classNumber
+            classNumber: String(student.classNumber)
         }));        
 
         mutate(payload, {
             onSuccess: async () => {
                 const res = await refetch();
-                setLocationMessage(res.data?.message || "학생 위치 불러오기 실패");
+                setLocationMessage((res && res.data) || "학생 위치 불러오기 실패");
                 setIsModalOpen(true);
             },
             onError: () => {
@@ -118,7 +110,7 @@ export default function SeatAssignment() {
                         {[1, 2, 3, 4].map((classNumber) => (
                             <S.ClassDivisionContent key={classNumber}>
                                 <span>{classNumber}반</span>
-                                <DropZone classNumber={classNumber} onDropStudent={handleAssignStudent} enabled={ableAfterSchool ? ableAfterSchool[classNumber - 1] : true}>
+                                <DropZone classNumber={classNumber} onDropStudent={handleAssignStudent} enabled={ableAfterSchool ? !ableAfterSchool[classNumber - 1] : false}>
                                     {assignedStudent
                                         .filter(student => student.classNumber === classNumber)
                                         .sort((a, b) => a.number - b.number)
@@ -132,7 +124,7 @@ export default function SeatAssignment() {
                     {isModalOpen && (
                         <S.ModalOverlay onClick={() => setIsModalOpen(false)}>
                             <S.Modal onClick={e => e.stopPropagation()}>
-                                <LocationBox data={locationMessage} closeModal={() => setIsModalOpen(false)} />
+                                <LocationBox data={locationMessage} closeModal={() => setIsModalOpen(false)} afterSchoolData={afterSchoolData} />
                             </S.Modal>
                         </S.ModalOverlay>
                     )}

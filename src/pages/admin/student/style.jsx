@@ -104,6 +104,45 @@ export const Box2 = styled.p`
         width: 40px;
     }
 `
+export const Option = styled.img`
+    width: 14px;
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+`
+export const Options = styled.div`
+    position: absolute;
+    top: ${(props)=>props.$up}px;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+    
+    button {
+        border: 1px;
+        padding: 10%;
+        width: 6.5vw;
+        background-color: #fff;
+        cursor: pointer;
+        border-right: 1px solid #cccccc;
+
+    }
+
+    button:hover {
+        background-color: #f0f0f0;
+    }
+
+    button{
+        border-right: none; 
+    }
+    
+`
 export const NoData = styled.div`
     width: 100%;
     height: 400px;
@@ -141,7 +180,7 @@ export const PatchBox = styled.div`
     justify-content: center;
     border-radius: 8px;
     position: absolute;
-    right: 30px;
+    right: 0;
     cursor: pointer;
 `
 export const Black = styled.div`
@@ -159,9 +198,11 @@ export const Btn = styled.button`
     background-color: ${(props)=>props.$color};
     border-radius: 8px;
     padding: 8px 20px;
-    margin-left: 20px;
-    color: white;
-    &:hover{
+    margin-left:  ${(props)=> props.$color === "#2E6FF2" ? " 10px" : "0"};
+    color: ${props=>props.$color === "#2E6FF2" ? "white" : "#999999"};
+    border: 2px solid ${props=>props.$color === "#2E6FF2" ? "#2E6FF2" : "#999999"};
+    transition: 0.1s;
+    & :hover{
         opacity: 0.8;
     }
 `

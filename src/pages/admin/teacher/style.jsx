@@ -45,16 +45,6 @@ export const MainNav = styled.div`
         align-items: center;
     }
 `
-export const InputBox= styled.div`
-    border: 1px solid #ccc;
-    width: 35%;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    font-size: 14px;
-    position: relative;
-    padding: 0 15px;
-`
 export const Array = styled.div`
     color: #2E6FF2;
     cursor: pointer;
@@ -65,14 +55,6 @@ export const Array = styled.div`
     gap: 5px;
     width: 120px;
     user-select: none;
-`
-export const Input = styled.input`
-    outline: none;
-    border: none;
-    width: 100%;
-    font-size: 16px;
-    border-radius: 8px;
-    padding: 10px 15px;
 `
 
 export const Table = styled.div`
@@ -159,10 +141,12 @@ export const Btn = styled.button`
     background-color: ${(props)=>props.$color};
     border-radius: 8px;
     padding: 8px 20px;
-    margin-left:  ${(props)=> props.$color === "#2E6FF2" ? " 20px" : "0"};
-    color: white;
-    &:hover {
-        background: ${(props)=> props.$color === "#2E6FF2" ? "#2a65dd" : "#f35d53"};
+    margin-left:  ${(props)=> props.$color === "#2E6FF2" ? " 10px" : "0"};
+    color: ${props=>props.$color === "#2E6FF2" ? "white" : "#999999"};
+    border: 2px solid ${props=>props.$color === "#2E6FF2" ? "#2E6FF2" : "#999999"};
+    transition: 0.1s;
+    & :hover{
+        opacity: 0.8;
     }
 `
 export const Status = styled.div`
@@ -174,7 +158,7 @@ export const Status = styled.div`
     padding: 2px 5px;
     cursor: pointer;
     width: max-content;
-    z-index: 100;
+    z-index: 8;
 `
 export const InputTeacher = styled.input`
     width: ${(props)=>props.$length}px;
@@ -194,5 +178,42 @@ export const Circle = styled.div`
 export const StatusText = styled.p`
     color: ${props=>props.$color};
     font-size: 16px;
+    
+`
+export const Option = styled.img`
+    width: 14px;
+    margin-left: 10px;
+    margin-right: 30px;
+    cursor: pointer;
+`
+export const Options = styled.div`
+    position: absolute;
+    top: ${(props)=>props.$up}px;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+    
+    button {
+        border: 1px;
+        padding: 10%;
+        width: 6.5vw;
+        background-color: #fff;
+        cursor: pointer;
+        border-right: 1px solid #cccccc;
+
+    }
+
+    button:hover {
+        background-color: #f0f0f0;
+    }
+
+    button{
+        border-right: none; 
+    }
     
 `

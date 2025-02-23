@@ -119,13 +119,49 @@ export const patchStudent = async ({studentID, status}) =>{
     }
 }
 //${API_ENDPOINTS.STUDENT}
-export const createStudent = async ({students, grade}) =>{
+export const putStudent = async ({students}) =>{
     try{
-        const res = await axiosInstance.patch(`${API_ENDPOINTS.STUDENT}/${grade}`, students);
+        const res = await axiosInstance.patch(`${API_ENDPOINTS.STUDENT}/${students.id}`, {
+            number : students.number,
+            name : students.name,
+        });
         if(res.status !== 200 && res.status !== 201){
             return Promise.reject({
                 status: res.status,
                 message: res.message || 'Request failed'
+            });
+        }
+        return res;
+    }catch (err){
+        return Promise.reject(err);
+    }
+}
+
+export const postStudent = async ({students}) =>{
+    try{
+        const res = await axiosInstance.post(`${API_ENDPOINTS.STUDENT}`, {
+            number : students.number,
+            name : students.name
+        });
+        if(res.status !== 200 && res.status !== 201){
+            return Promise.reject({
+                status: res.status,
+                message: res.message || 'Request failed'
+            });
+        }
+        return res;
+    }catch (err){
+        return Promise.reject(err);
+    }
+}
+
+export const deleteStudent = async (studentId) => {
+    try{
+        const res = await axiosInstance.delete(`${API_ENDPOINTS.STUDENT}/${studentId}`);
+        if(res.status !== 200){
+            return Promise.reject({
+                status: res.status,
+                message: res.message
             });
         }
         return res;

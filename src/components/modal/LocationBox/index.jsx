@@ -1,6 +1,6 @@
 import * as S from './style.jsx';
 import SquareBtn from '../../button/square';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 
 export default function LocationBox({ data, closeModal }) {
     const navigate = useNavigate();
