@@ -4,6 +4,7 @@ import Circle from '../../../components/button/circle/index.jsx';
 import SquareBtn from '../../../components/button/square/index.jsx';
 import SupervisionCreateModal from '../../../components/modal/supervisionCreate/index.jsx';
 import { useState, useEffect } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import SearchDropdown from '../../../components/dropdown/search/index.jsx';
 import { useGetAssignment, useSaveAutoAssignment } from '../../../hooks/useSupervision.js';
@@ -15,6 +16,7 @@ import { useGetRanking } from '../../../hooks/useSupervision.js'
 
 export default function AdminSupervision() {
     const navigate = useNavigate();
+    const queryClient = useQueryClient();
     const [selMonth, setSelMonth] = useState(new Date().getMonth());
     const [isEditing, setIsEditing] = useState(false);
     const [selectedTeacher, setSelectedTeacher] = useState({});
@@ -22,6 +24,8 @@ export default function AdminSupervision() {
     const [localData, setLocalData] = useState([]);
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [order, setOrder] = useState("ASC");
+    const { data: Ranking } = useGetRanking(order, teacher);
 
     const handleTeacherChange = (date, type, timeKey, newTeacher) => {
         setSelectedTeacher(prev => ({
@@ -86,6 +90,7 @@ export default function AdminSupervision() {
 
         saveAssignment(changedData);
         setIsEditing(false);
+        queryClient.invalidateQueries(['getRanking', order, ""]);
     };
 
     function groupByWeek(dataArray) {
@@ -125,8 +130,6 @@ export default function AdminSupervision() {
     const groupedData = groupByWeek(localData);
 
     const [teacher, setTeacher] = useState("");
-    const [order, setOrder] = useState("ASC");
-    const { data: Ranking } = useGetRanking(order, teacher);
     return (
         <S.Wrapper>
             {isLoading && <Loading />}
