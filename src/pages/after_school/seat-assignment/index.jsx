@@ -60,13 +60,13 @@ export default function SeatAssignment() {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
-        if (businessTripStudents) {
+        if (businessTripStudents && assignedStudent.length === 0) {
             const assigned = businessTripStudents.flatMap((classStudents, index) =>
                 classStudents.map(student => ({ ...student, classNumber: index + 1 }))
             );
             setAssignedStudent(assigned);
         }
-    }, []);
+    }, [businessTripStudents]);    
 
     const handleAssignStudent = (student, targetClassNumber) => {
         console.log("Assigning student", student, "to class", targetClassNumber);
