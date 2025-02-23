@@ -13,6 +13,7 @@ export const MainContent = styled.div`
     gap: ${(props) => (props.$isFullscreen ? "1rem" : "0")};
     @media (max-width: 400px) {
         width: 100%;
+        gap: 0.4rem;
     }
 `
 
@@ -35,6 +36,10 @@ export const ProgressBottom = styled.div`
   justify-content: space-between;
   font-weight: 600;
   color: #6F6F6F;
+
+  @media (max-width: 400px) {
+    font-size: 0.7rem;
+  }
 `
 
 export const MainMiddle = styled.div`
@@ -65,6 +70,10 @@ export const NextSup = styled.div`
     padding-left: 2%;
     overflow: hidden;
 
+    h3 {
+        white-space: nowrap;
+    }
+
     @media (max-width: 400px) {
         width: 90%;
     }
@@ -79,6 +88,10 @@ export const NexSupLeft = styled.div`
     
     @media screen and (min-width: 1920px) {
         font-size: 1.5rem;
+    }
+
+    @media (max-width: 400px) {
+        padding: 1rem;
     }
 `
 
@@ -165,8 +178,9 @@ export const MainBottom = styled.div`
     margin-top: 1%;
 
     @media (max-width: 400px) {
+        margin-top: 6%;
         flex-direction: column;
-        gap: 1rem;
+        gap: 2rem;
     }
 `
 
