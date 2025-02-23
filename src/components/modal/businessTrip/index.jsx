@@ -3,10 +3,12 @@ import Confirm from "../../button/confirm/index.jsx";
 import DateInput from '../../dateInput/index.jsx';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useBusinessTrip } from '../../../hooks/useAfterSchool.js';
 
 export default function BusinessTrip({ closeModal, selectedClass }) {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const navigate = useNavigate();
+    const { mutate: createBusinessTrip } = useBusinessTrip();
 
     const handleDateChange = (day) => {
         setSelectedDate(day || new Date());
@@ -17,6 +19,12 @@ export default function BusinessTrip({ closeModal, selectedClass }) {
             alert("출장 날짜를 입력해주세요.");
             return;
         }
+        createBusinessTrip({
+            day: selectedClass.day || new Date(),
+            period: selectedClass.period,
+            afterSchoolId: selectedClass.id,
+            branch: selectedClass.branch
+        });
         console.log(selectedDate, selectedClass);
         closeModal();
         navigate('/after-school/seat-assignment', { state: { day: selectedDate, grade: selectedClass.grade, id: selectedClass.id, name: selectedClass.name, branch: selectedClass.branch, period: selectedClass.period } });
