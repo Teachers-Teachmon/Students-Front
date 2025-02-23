@@ -9,6 +9,7 @@ import Supervision from '../../assets/supervision.svg';
 import SelfStudy from '../../assets/selfStudy.svg';
 import Left2 from '../../assets/left2.svg';
 import { useState } from 'react';
+import { useGetDailySupervision } from '../../hooks/useSupervision.js';
 
 export default function Admin() {
 
@@ -32,7 +33,7 @@ export default function Admin() {
   //   "night_teacher": "정유진/me"
   // }
 
-  const { data: dayData, isLoading, isError } = useGetDailySupervision(day);
+  const { dayData } = useGetDailySupervision(day);
 
   const periodGroups = [
     { period: "7교시", studyKey: "7th_teacher", leaveKey: "7th_teacher" },
