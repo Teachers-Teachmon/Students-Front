@@ -125,7 +125,7 @@ export default function AdminStudent() {
   const {mutate : deleteStudent} = useDeleteStudent();
   const deleteS = (id) =>{
     if(!window.confirm('삭제하시겠습니까?')) return
-    deleteStudent(id);
+    deleteStudent(value[id].id);
     const newValue = {...value};
     delete newValue[id];
     setValue(newValue);
