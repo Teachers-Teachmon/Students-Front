@@ -188,18 +188,3 @@ export const saveSelfStudy = async (saveList) => {
         return Promise.reject(err);
     }
 }
-
-export const getDay = async (day) => {
-    try {
-        const res = await axiosInstance.get(`${API_ENDPOINTS.SUPERVISION}/day/${day}`);
-        if (res.status !== 200 && res.status !== 201) {
-            return Promise.reject({
-                status: res.status,
-                message: res.message || 'Request failed'
-            });
-        }
-        return res;
-    } catch(err) {
-        return Promise.reject(err);
-    }
-}
