@@ -2,6 +2,7 @@ import * as API from '../api/student.js';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import {useNavigate} from "react-router-dom";
 import {useStatusUpdate} from "../zustand/statusUpdate.js";
+import { useQueryClient } from '@tanstack/react-query';
 
 export const useGetNowStudent = (grade) =>{
     return useQuery({
@@ -54,10 +55,12 @@ export const useGetStudentCount = () => {
 
 export const usePostMovement = () => {
     const navigate = useNavigate();
+    const queryClient = useQueryClient();
 
     return useMutation({
         mutationFn: (props) => API.postMovement(props),
         onSuccess: () => {
+            queryClient.invalidateQueries(['getMovement']);
             navigate('/manage/record', {state : 1});
         },
         onError: (err) => {

@@ -136,12 +136,7 @@ export default function Write({isModal, setIsModal}){
                                     status={true}
                                     On={() => {
                                         setIsModal(false);
-                                        postMovement({ selectStudentShow, dayComponent, time, place, cause }, {
-                                            onSuccess: () => {
-                                                queryClient.invalidateQueries(['getMovement', dayComponent]);
-                                            }
-                                        });
-                                    }}
+                                        postMovement({ selectStudentShow, dayComponent, time, place, cause })}}
                                 />
                             </S.Submit>
                         </>
