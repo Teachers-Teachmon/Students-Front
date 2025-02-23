@@ -394,7 +394,7 @@ export const SupervisionTotalMain = styled.div`
 `
 
 export const SupervisionTotalRow = styled.div`
-    height: 6.5vh;
+    height: 6.6vh;
     align-items: center;
     padding: 0% 6.5%;
     width: 100%;
