@@ -8,7 +8,7 @@ import Teacher from '../../assets/teacher.svg';
 import Supervision from '../../assets/supervision.svg';
 import SelfStudy from '../../assets/selfStudy.svg';
 import Left2 from '../../assets/left2.svg';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useGetDailySupervision, useGetSupervisionRank } from '../../hooks/useSupervision.js';
 import { useGetLeaveStudent } from '../../hooks/useStudent.js';
 import { getLeaveStudent } from '../../api/student.js';
