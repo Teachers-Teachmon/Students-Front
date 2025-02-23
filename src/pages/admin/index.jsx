@@ -11,6 +11,7 @@ import Left2 from '../../assets/left2.svg';
 import { useState, useEffect} from 'react';
 import { useGetDailySupervision, useGetSupervisionRank } from '../../hooks/useSupervision.js';
 import { useGetLeaveStudent } from '../../hooks/useStudent.js';
+import { useDeleteLeaveStudent } from '../../hooks/useStudent.js';
 
 export default function Admin() {
 
@@ -73,18 +74,19 @@ export default function Admin() {
   // const [leaveStudent, setLeaveStudent] = useState([
   //   {
   //     "weekday": "월",
-  //     "leaveId": 2,
+  //     "leave_id": 2,
   //     "student": "1401 김동욱",
   //   },
   //   {
   //     "weekday": "월",
-  //     "leaveId": 3,
+  //     "leave_id": 3,
   //     "student": "1401 김동욱",
   //   }
   // ]);
 
   const [leaveStudent, setLeaveStudent] = useState([]);
   const { data: leaveStudentData = [] } = useGetLeaveStudent();
+  const { mutate: deleteLeaveStudent } = useDeleteLeaveStudent();
 
   useEffect(() => {
     console.log(leaveStudentData);
@@ -92,8 +94,15 @@ export default function Admin() {
   }, [leaveStudentData]);
   
 
-  const handleDelete = (id) => {
-    setLeaveStudent(leaveStudent.filter(student => student.leaveId !== id));
+  const handleDelete = (leave_id) => {
+    deleteLeaveStudent(leave_id, {
+      onSuccess: () => {
+        setLeaveStudent(leaveStudent.filter(student => student.leave_id !== leave_id));
+      },
+      onError: (error) => {
+        console.error('삭제 실패:', error);
+      }
+    });
   };
 
   return (
@@ -120,7 +129,7 @@ export default function Admin() {
                       <S.DataCellSelf $length={6.5}>{(dayData.self_study_teacher?.[studyKey] || dayData[studyKey])?.replace("/me", "")}</S.DataCellSelf>
                       <S.DataCell $length={4}>{(dayData.leave_seat_teacher?.[leaveKey] || dayData[leaveKey])?.replace("/me", "")}</S.DataCell>
                     </S.Row>
-                  ))}
+                ))}
               </S.SupervisionData>
             </S.TodaySupervisionMain>
           </S.TodaySupervision>
@@ -187,10 +196,10 @@ export default function Admin() {
             </S.LeaveStudentTop>
             <S.LeaveStudentMain>
               {leaveStudent.map((student, index) => (
-                <S.LeaveStudentRow key={student.leaveId}>
+                <S.LeaveStudentRow key={student.leave_id}>
                   <S.LeaveStudentDate>{student.day} ({student.weekday})</S.LeaveStudentDate>
                   <S.LeaveStudentData>{student.student}</S.LeaveStudentData>
-                  <S.Confirm onClick={() => handleDelete(student.leaveId)}>삭제</S.Confirm>
+                  <S.Confirm onClick={() => handleDelete(student.leave_id)}>삭제</S.Confirm>
                 </S.LeaveStudentRow>
               ))}
             </S.LeaveStudentMain>
