@@ -78,10 +78,14 @@ export default function SeatAssignment() {
     };
 
     const handleSave = () => {
-        const payload = assignedStudent.map(student => ({
-            number: student.number,
-            classNumber: String(student.classNumber)
-        }));        
+        const payload = {
+            day: afterSchoolData.day,
+            period: afterSchoolData.period,
+            student: assignedStudent.map(student => ({
+                number: student.number,
+                classNumber: String(student.classNumber)
+            }))
+        }
 
         mutate(payload, {
             onSuccess: async () => {
