@@ -8,6 +8,7 @@ import ListChecksLogo from '../../assets/ListChecks.svg'
 import AdminSetting from '../../assets/AdminSetting.svg'
 import Logout from '../../assets/logout.svg'
 import {useLogout} from "../../hooks/useAuth.js";
+import useAuth from "../../zustand/auth.js";
 
 const MENU = [
   { label: '메인', path: '/main', logo: HouseLogo },
@@ -23,6 +24,8 @@ export default function Header() {
   const {mutate:logout} = useLogout();
   let username = localStorage.getItem('name');
   let userprofile = localStorage.getItem('profile');
+  const {role} = useAuth();
+
   return (
     <S.HeaderContainer>
       <S.Logo draggable="false" src={teachmonLogo} onClick={() => { navigate('/main') }} />
@@ -30,6 +33,9 @@ export default function Header() {
         {
           MENU.map((menu, index) => {
             const isActive = location.pathname.startsWith(menu.path);
+            if(menu.path === '/admin' && role !== 'ROLE_ADMIN') {
+              return null
+            }
             return (
               <S.MenuItem key={index} onClick={() => { navigate(menu.path) }} $active={isActive}>
                 <S.MenuIcon draggable="false" src={menu.logo} $active={isActive} />
