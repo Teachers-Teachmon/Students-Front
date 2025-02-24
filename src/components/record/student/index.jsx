@@ -23,13 +23,25 @@ export default function Student({ data, day }) {
             return newState;
         });
         if(status === "방과후"){
-            setIsModal(true);
-            setPeriod(period);
+            alert("아직 준비가 안됐어여...ㅠ")
+            // setIsModal(true);
+            // setPeriod(period);
             return;
         }
-        const studentName = typeof(name) === "object" ? name : name.slice(5, 8);
-        patchStudent({studentID: studentName, status: status, search:"search"})
+        if (Array.isArray(name)) {
+            if(name.length === 1){
+                patchStudent({studentID: name[0], status: status, search:"search"})
+            }else{
+                name.forEach(item=>{
+                    patchStudent({studentID: item, status: status, search:"search"})
+                })
+            }
+        }
+        else{
+            patchStudent({studentID: name, status: status, search:"search"})
+        }
         setAllCheck(false);
+        setIsCheck(isCheck.map(item => false));
     }
     const patchAfterSchool = (className) =>{
         patchStudent({studentID: className, status: "AFTER_SCHOOL"})
@@ -84,6 +96,8 @@ export default function Student({ data, day }) {
             }
         };
     }, [childRefs.current.length]);
+    console.log( data.filter((_, idx)=>isCheck[idx] === true)
+        .map((item)=> item.id))
     return (
         <S.StudentContainer>
             {isModal ? <StudentUpdateAfterSchool setIsModal = {setIsModal} day={day} period={period} patchAfterSchool={patchAfterSchool}/> : null}
@@ -131,8 +145,8 @@ export default function Student({ data, day }) {
                                             changeStatus={changeStatus}
                                             name={isCheck.some((value)=>value===true) ?
                                                 data.filter((_, idx)=>isCheck[idx] === true)
-                                                    .map((item)=> item.student)
-                                                : item.student}
+                                                    .map((item)=> item.id)
+                                                : item.id}
                                             up={isFirst === idx ? 58 : -160}
                                             period = {8}
                                         />}
@@ -167,7 +181,17 @@ export default function Student({ data, day }) {
                                 </S.Box2>
 
                                 <S.Box2 $length={90}>
-                                    {isOpen2[idx] && <StatusUpdate period = {10} changeStatus={changeStatus} name={item.student} up={isFirst === idx ? 58 : -160} left={-60} />}
+                                    {isOpen2[idx] &&
+                                        <StatusUpdate
+                                            changeStatus={changeStatus}
+                                            name={isCheck.some((value)=>value===true) ?
+                                                data.filter((_, idx)=>isCheck[idx] === true)
+                                                    .map((item)=> item.id)
+                                                : item.id}
+                                            up={isFirst === idx ? 58 : -160}
+                                            left={-60}
+                                            period = {10}
+                                        />}
                                     {item['10th_schedule'] === "방과후" ?
                                         <S.Status color={"#ECF3FD"} onClick={()=>handleIsOpen(idx, 2)}>
                                             <S.Circle color={"#2E6FF2"}></S.Circle>

@@ -958,36 +958,6 @@
       "10th_schedule": null,
       "11th_schedule": null,
       "id": "fac0"
-    },
-    {
-      "id": "da14",
-      "students": {
-        "id": "23",
-        "name": "허온",
-        "number": 1416,
-        "isPatch": true
-      },
-      "grade": 1
-    },
-    {
-      "id": "44ae",
-      "students": {
-        "name": "asdf",
-        "number": "1",
-        "isPatch": true,
-        "id": null
-      },
-      "grade": 1
-    },
-    {
-      "id": "e598",
-      "number": "1",
-      "name": "asdf"
-    },
-    {
-      "id": "c1c8",
-      "number": "1111",
-      "name": "ddd"
     }
   ],
   "student2": [
