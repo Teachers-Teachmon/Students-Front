@@ -37,6 +37,10 @@ export const useGetLocationFloor = (floor) =>{
         queryKey:['locationFloor', floor],
         queryFn: async () =>{
             const res = await API.getLocation(floor);
+            console.log(res);
+            if(res.status === 500){
+                return res.status;
+            }
             return res.data;
         },
     })
