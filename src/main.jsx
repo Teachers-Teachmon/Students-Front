@@ -20,7 +20,7 @@ import SupervisionCreate from './pages/admin/teacher/prohibition';
 import LoginLoading from './components/login';
 import Certification from "./components/check/certification.jsx";
 import NotCertification from "./components/check/notCertification.jsx";
-import Authorize from './components/check/authorize.jsx' // 인가는 개발중에 번거로울 수 있으므로 나중에 처리하기
+import Authorize from './components/check/authorize.jsx'
 import Error from './pages/error';
 import Loading from "./components/loading/index.jsx";
 import SeatAssignment from './pages/after_school/seat-assignment/index.jsx';
@@ -56,15 +56,17 @@ createRoot(document.getElementById('root')).render(
                             <AccessLimits />
                         </Suspense>
                     } />
-                    <Route path="/admin">
-                        <Route index element={<Admin />} />
-                        <Route path="after-school" element={<AdminAfterSchool />} />
-                        <Route path="self-study" element={<AdminSelfStudy />} />
-                        <Route path="student" element={<AdminStudent />} />
-                        <Route path="supervision" element={<AdminSupervision />} />
-                        <Route path="teacher" element={<AdminTeacher />} />
-                        <Route path="teacher/prohibition" element={<SupervisionCreate />} />
-                    </Route>
+                    {/*<Route element={<Authorize/>}>*/}
+                        <Route path="/admin">
+                            <Route index element={<Admin />} />
+                            <Route path="after-school" element={<AdminAfterSchool />} />
+                            <Route path="self-study" element={<AdminSelfStudy />} />
+                            <Route path="student" element={<AdminStudent />} />
+                            <Route path="supervision" element={<AdminSupervision />} />
+                            <Route path="teacher" element={<AdminTeacher />} />
+                            <Route path="teacher/prohibition" element={<SupervisionCreate />} />
+                        </Route>
+                    {/*</Route>*/}
                     <Route path="/after-school/seat-assignment" element={<SeatAssignment />} />
                 </Route>
                 <Route path="*" element={<Error />} />

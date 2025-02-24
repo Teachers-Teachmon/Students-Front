@@ -10,7 +10,6 @@ import Supervision1 from "../../../assets/method/supervision1.svg";
 import Supervision2 from "../../../assets/method/supervision2.svg";
 import Supervision3 from "../../../assets/method/supervision3.svg";
 import Supervision4 from "../../../assets/method/supervision4.svg";
-import Supervision5 from "../../../assets/method/supervision5.svg";
 import Location1 from '../../../assets/method/location1.svg'
 import Location2 from '../../../assets/method/location2.svg'
 import Location3 from '../../../assets/method/location3.svg'
@@ -58,10 +57,10 @@ export default  function Method(){
             ]
         },
         {
-            title:'자습감독 안내',
-            content: ['자습감독 항목에서는 자신의 자습감독 일정을 확인하고 다른선생님들의 일정이 궁금하다면 날짜를 클릭하여 확인할 수 있습니다.', '자습감독 교체는 자습감독 교체를 클릭 후 자신이 불가능한 날을 먼저선택해줍니다.다음으로 바꾸고 싶은 다른날의 선생님을 클릭해줍니다. 모달창에서 정보를 확인하시고 사유를 적어 요청을 보냅니다. (사유는 적지 않으셔도 괜찮습니다.)'],
+            title:'자습감독 안내(교체방법)',
+            content: ['자습감독 항목에서는 자신의 자습감독 일정을 확인하고 다른선생님들의 일정이 궁금하다면 날짜를 클릭하여 확인할 수 있습니다.', '자습감독 교체는 자습감독 교체를 클릭 후 자신이 불가능한 날을 먼저선택해줍니다.다음으로 바꾸고 싶은 다른날의 선생님을 클릭해줍니다. 모달창에서 정보를 확인하시고 사유를 적어 요청을 보냅니다.'],
             src:[
-                Supervision1, Supervision2, Supervision3, Supervision4, Supervision5
+                Supervision1, Supervision2, Supervision3, Supervision4
             ]
         },
         {
