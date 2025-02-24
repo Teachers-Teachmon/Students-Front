@@ -159,8 +159,12 @@ export default function AdminTeacher() {
     const handleIsPatch = (id, status, message) => {
         const newValue = { ...value };
         newValue[id].isPatch = status;
-        if(message === "delete" && !value[id].teacher_id){
-            delete newValue[id];
+        if (message === "delete") {
+            if (newValue[id].teacher_id) {
+                newValue[id] = { ...backUp[id], isPatch: false };
+            } else {
+                delete newValue[id];
+            }
         }
         setValue(newValue);
         handleIsOption(id, false);
