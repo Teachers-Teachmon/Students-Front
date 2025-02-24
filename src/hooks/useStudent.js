@@ -43,6 +43,10 @@ export const useGetLocationFloor = (floor) =>{
             }
             return res.data;
         },
+        onError: (error) => {
+            console.error(error);
+            return error.status;
+        }
     })
 }
 
