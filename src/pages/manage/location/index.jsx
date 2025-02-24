@@ -89,6 +89,8 @@ export default function Location() {
                             <S.Wrap>
                                 <S.Box>
                                     {isAllLoading || isFloorLoading ?
+                                        locationFloor === 500 ?
+                                            <div>오류남 ㅅㄱ</div> :
                                         isFloor[0] ? (
                                             <First width = {windowWidth} data = {locationFloor} set = {setIsModal} fake = {true}/>
                                         ) : isFloor[1] ? (
