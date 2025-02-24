@@ -233,19 +233,19 @@ export default function AdminStudent() {
                         <S.Btn $color={"#2E6FF2"} onClick={() => saveStudent(item)}>저장</S.Btn>
                       </S.PatchBox>
                     </S.Content>
-                  )
-                else if (isGrade[Number((String(value[item].number).slice(0, 1))) - 1]) {
-                  return (
-                    <S.Content key={item}>
-                      <S.UnBox></S.UnBox>
-                      <S.Box2 style={{ display: 'flex' }} $length={110}><p>{value[item].number}</p>{value[item].name}</S.Box2>
-                      <S.Option ref={(el) => (childRefs.current[item] = el)} src={OptionButton} alt={'option'} onClick={() => handleIsOption(item, true)} />
-                      {isOption && isOption[item].status &&
-                        <S.Options $up={isFirst + 8 === Number(item) || isFirst + 9 === Number(item) || isFirst + 10 === Number(item) ? -60 : 40} onClick={(e) => e.stopPropagation()}>
-                          <button onClick={() => deleteS(item)}>삭제</button>
-                          <button onClick={() => handleIsPatch(item, true)}>수정</button>
-                        </S.Options>}
-                    </S.Content>
+                )
+                else if(isGrade[Number((String(value[item].number).slice(0, 1)))-1]){
+                  return(
+                      <S.Content key={item}>
+                        <S.UnBox></S.UnBox>
+                        <S.Box2  style={{display:'flex'}} $length={110}><p>{value[item].number}</p>{value[item].name}</S.Box2>
+                        <S.Option ref={(el) => (childRefs.current[item] = el)} src={OptionButton} alt={'option'} onClick={()=>handleIsOption(item, true)}/>
+                        {isOption && isOption[item].status &&
+                            <S.Options $up = {isFirst+8 === Number(item) || isFirst+9 === Number(item) || isFirst+10 === Number(item) || isFirst+11 === Number(item)|| isFirst+12 === Number(item) ? -60 : 40} onClick={(e) => e.stopPropagation()}>
+                              <button onClick={()=>deleteS(item)}>삭제</button>
+                              <button onClick={()=>handleIsPatch(item, true)}>수정</button>
+                            </S.Options>}
+                      </S.Content>
                   )
                 }
               })}

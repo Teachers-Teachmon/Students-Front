@@ -4676,7 +4676,7 @@
     }
   ],
   "healthcheck": {},
-  "check": "Authentication Success",
+  "check" : "Authentication Success",
   "place": [
     {
       "name": "집",
