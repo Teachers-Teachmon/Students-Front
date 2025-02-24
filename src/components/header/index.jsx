@@ -33,7 +33,7 @@ export default function Header() {
         {
           MENU.map((menu, index) => {
             const isActive = location.pathname.startsWith(menu.path);
-            if(menu.path === '/admin' && role !== 'ROLE_ADMIN') {
+            if(menu.path === '/admin' && role !== 'ADMIN') {
               return null
             }
             return (
