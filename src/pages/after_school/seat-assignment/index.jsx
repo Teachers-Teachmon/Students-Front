@@ -60,13 +60,13 @@ export default function SeatAssignment() {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
-        if (businessTripStudents) {
+        if (businessTripStudents && assignedStudent.length === 0) {
             const assigned = businessTripStudents.flatMap((classStudents, index) =>
                 classStudents.map(student => ({ ...student, classNumber: index + 1 }))
             );
             setAssignedStudent(assigned);
         }
-    }, []);
+    }, [businessTripStudents]);    
 
     const handleAssignStudent = (student, targetClassNumber) => {
         console.log("Assigning student", student, "to class", targetClassNumber);
@@ -78,15 +78,19 @@ export default function SeatAssignment() {
     };
 
     const handleSave = () => {
-        const payload = assignedStudent.map(student => ({
-            number: student.number,
-            class: student.classNumber
-        }));        
+        const payload = {
+            day: afterSchoolData.day,
+            period: afterSchoolData.period,
+            student: assignedStudent.map(student => ({
+                number: student.number,
+                classNumber: String(student.classNumber)
+            }))
+        }
 
         mutate(payload, {
             onSuccess: async () => {
                 const res = await refetch();
-                setLocationMessage(res.data?.message || "학생 위치 불러오기 실패");
+                setLocationMessage((res && res.data) || "학생 위치 불러오기 실패");
                 setIsModalOpen(true);
             },
             onError: () => {
@@ -110,7 +114,7 @@ export default function SeatAssignment() {
                         {[1, 2, 3, 4].map((classNumber) => (
                             <S.ClassDivisionContent key={classNumber}>
                                 <span>{classNumber}반</span>
-                                <DropZone classNumber={classNumber} onDropStudent={handleAssignStudent} enabled={ableAfterSchool ? ableAfterSchool[classNumber - 1] : true}>
+                                <DropZone classNumber={classNumber} onDropStudent={handleAssignStudent} enabled={ableAfterSchool ? !ableAfterSchool[classNumber - 1] : false}>
                                     {assignedStudent
                                         .filter(student => student.classNumber === classNumber)
                                         .sort((a, b) => a.number - b.number)

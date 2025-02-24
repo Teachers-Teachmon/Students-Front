@@ -8,17 +8,20 @@ import Line from '../../../assets/line.svg';
 import Circle from '../../../components/button/circle/index.jsx';
 import { useGetSelfStudy } from '../../../hooks/useSupervision.js';
 import { useSaveSelfStudy } from '../../../hooks/useSupervision.js';
+import Loading from '../../../components/loading/index.jsx';
 
 export default function AdminSelfStudy() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState({});
   const week = ['MON', 'TUE', 'WED', 'THU'];
-  const periods = ['7교시', '8~9교시', '10~11교시'];
+  const periods = ['7교시', '8~9교시', '10~11교시', '야간'];
   const [branch, setBranch] = useState('1');
   const branches = [1, 2, 3, 4];
   const [isBranchOpen, setIsBranchOpen] = useState(false);
   const [grade, setGrade] = useState([true, false, false]);
   const [selectedGrade, setSelectedGrade] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+
 
 
   const [selectedRows, setSelectedRows] = useState({
@@ -112,17 +115,25 @@ export default function AdminSelfStudy() {
       THU: selectedRows.THU
     };
 
+    setIsLoading(true);
+  
     console.log('Payload:', payload);
-
+  
     mutate(payload, {
-      onSuccess: () => {
+      onSuccess: (data) => {
+        console.log("저장 성공 데이터:", data);
         alert('저장이 완료되었습니다.');
       },
-      onError: () => {
+      onError: (error) => {
+        console.log("저장 실패 에러:", error); 
         alert('저장에 실패했습니다. 다시 시도해주세요.');
+      },
+      onSettled: () => {
+        setIsLoading(false);
       }
     });
   };
+  
 
 
   const removeRow = (day, rowIndex) => {
@@ -154,6 +165,7 @@ export default function AdminSelfStudy() {
 
   return (
     <S.Container onClick={() => handleCloseBranch()}>
+      {isLoading && <Loading />}
       <Header />
       <S.Content>
         {Object.values(isOpen).some(isOpen => isOpen) && (
@@ -180,6 +192,7 @@ export default function AdminSelfStudy() {
             </S.GradeBtn>
           </div>
           <S.SquareBtn>
+            <SquareBtn name="돌아가기" status={true} On={() => navigate('/admin')} />
             <SquareBtn name="저장하기" status={true} On={handleSubmit} />
           </S.SquareBtn>
         </S.MainHeader>

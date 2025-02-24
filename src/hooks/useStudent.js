@@ -54,10 +54,12 @@ export const useGetStudentCount = () => {
 
 export const usePostMovement = () => {
     const navigate = useNavigate();
+    const queryClient = useQueryClient();
 
     return useMutation({
         mutationFn: (props) => API.postMovement(props),
         onSuccess: () => {
+            queryClient.invalidateQueries(['getMovement']);
             navigate('/manage/record', {state : 1});
         },
         onError: (err) => {

@@ -79,7 +79,15 @@ export default function SupervisionCreate() {
             }).filter(item => item !== null)
         );
         console.log('Payload:', payload);
-        mutate(payload);
+        mutate(payload, {
+            onSuccess: () => {
+                alert('금지날짜가 저장되었습니다.');
+                navigate('/admin/teacher');
+            },
+            onError: () => {
+                alert('금지날짜 저장에 실패했습니다.');
+            },
+        });
     };
     useEffect(() => {
         if (bannedList && Array.isArray(bannedList)) {
