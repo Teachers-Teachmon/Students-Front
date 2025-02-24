@@ -58,7 +58,8 @@ export const getLocation = async (floor) =>{
         }
         return res;
     }catch (err){
-        return Promise.reject(err);
+        console.log("여기에요")
+        return err;
     }
 }
 
