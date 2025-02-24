@@ -56,7 +56,7 @@ createRoot(document.getElementById('root')).render(
                             <AccessLimits />
                         </Suspense>
                     } />
-                    {/*<Route element={<Authorize/>}>*/}
+                    <Route element={<Authorize/>}>
                         <Route path="/admin">
                             <Route index element={<Admin />} />
                             <Route path="after-school" element={<AdminAfterSchool />} />
@@ -66,7 +66,7 @@ createRoot(document.getElementById('root')).render(
                             <Route path="teacher" element={<AdminTeacher />} />
                             <Route path="teacher/prohibition" element={<SupervisionCreate />} />
                         </Route>
-                    {/*</Route>*/}
+                    </Route>
                     <Route path="/after-school/seat-assignment" element={<SeatAssignment />} />
                 </Route>
                 <Route path="*" element={<Error />} />
