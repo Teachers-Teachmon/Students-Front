@@ -31,6 +31,17 @@ export const Box = styled.div`
         top: 75%;
     }
 `
+export const Error = styled.div`
+    z-index: 110;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0,0,0,0.5);
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+`
 export const FloorBox = styled.div`
     display: flex;
     flex-direction: row;

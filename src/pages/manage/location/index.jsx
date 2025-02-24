@@ -45,7 +45,7 @@ export default function Location() {
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, [windowWidth]);
-
+    console.log(locationFloor)
     return (
         <S.LocationContainer>
             <Header />
@@ -90,7 +90,7 @@ export default function Location() {
                                 <S.Box>
                                     {isAllLoading || isFloorLoading ?
                                         locationFloor === 500 ?
-                                            <div>오류남 ㅅㄱ</div> :
+                                            <S.Error>오류남 ㅅㄱ</S.Error> :
                                         isFloor[0] ? (
                                             <First width = {windowWidth} data = {locationFloor} set = {setIsModal} fake = {true}/>
                                         ) : isFloor[1] ? (
