@@ -153,7 +153,7 @@ export default function AdminTeacher() {
     const handleIsPatch = (id, status, message)=>{
         const newValue = {...value};
         newValue[id].isPatch = status;
-        if(message === "delete"){
+        if(message === "delete" && !value[id].teacher_id){
             delete newValue[id];
         }
         setValue(newValue);
@@ -225,7 +225,7 @@ export default function AdminTeacher() {
                                                 <S.Circle $color = {color}></S.Circle>
                                                 <S.StatusText $color = {color}>{value[item].role === "TEACHER" ? "일반" : "관리자"}</S.StatusText>
                                             </S.Status>
-                                            {isOpen && isOpen[item].status && <StatusUpdate up={isFirst === Number(item) ? 58 : -160} nowStatus={"TEACHER"} changeStatus={changeStatus} name={item}/>}
+                                            {isOpen && isOpen[item].status && <StatusUpdate up={isFirst === Number(item) || isFirst+1 === Number(item) ? 58 : -160} nowStatus={"TEACHER"} changeStatus={changeStatus} name={item}/>}
                                         </div>
                                         <div style={{ display: "flex"}}>
                                             <S.Btn $color = {"white"} onClick={()=>handleIsPatch(item, false, "delete")}>취소</S.Btn>
