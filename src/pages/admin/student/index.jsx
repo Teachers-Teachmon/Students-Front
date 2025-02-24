@@ -231,7 +231,7 @@ export default function AdminStudent() {
                         <S.Box2  style={{display:'flex'}} $length={110}><p>{value[item].number}</p>{value[item].name}</S.Box2>
                         <S.Option ref={(el) => (childRefs.current[item] = el)} src={OptionButton} alt={'option'} onClick={()=>handleIsOption(item, true)}/>
                         {isOption && isOption[item].status &&
-                            <S.Options $up = {isFirst+8 === Number(item) || isFirst+9 === Number(item) || isFirst+10 === Number(item) ? -60 : 40} onClick={(e) => e.stopPropagation()}>
+                            <S.Options $up = {isFirst+8 === Number(item) || isFirst+9 === Number(item) || isFirst+10 === Number(item) || isFirst+11 === Number(item)|| isFirst+12 === Number(item) ? -60 : 40} onClick={(e) => e.stopPropagation()}>
                               <button onClick={()=>deleteS(item)}>삭제</button>
                               <button onClick={()=>handleIsPatch(item, true)}>수정</button>
                             </S.Options>}
