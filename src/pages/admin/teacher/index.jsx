@@ -210,49 +210,102 @@ export default function AdminTeacher() {
                     </div>
                 </S.Standard>
                 <S.ContentBox ref={parentRef}>
-                    {value && Object.keys(value).map((item)=>{
-                        const color = value[item].role === "TEACHER" ? "#2E6FF2" : "#F87067";
-                        if(value[item].isPatch){
-                            return(
-                                <S.Content key={value[item].teacher_id}>
-                                    <div>
-                                        <S.UnBox></S.UnBox>
-                                        <S.Box2 $length={130}>{value[item].count}회</S.Box2>
-                                        <S.InputTeacher $length={100} value={value[item].name} onChange={(e)=>{
-                                            change(item, e.target.value, "name")
-                                        }}/>
-                                        <S.InputTeacher $length={270} value={value[item].email} onChange={(e)=>{
-                                            change(item, e.target.value, "email")
-                                        }}/>
-                                    </div>
-                                    <div>
-                                        <div ref={(el) => (childRefs.current[item] = el)} style={{ position:'relative'}}>
-                                            <S.Status  onClick={()=>handleIsOpen(item)} $color = {value[item].role === "TEACHER" ? "#ECF3FD" : "#FDF0EC"}>
-                                                <S.Circle $color = {color}></S.Circle>
-                                                <S.StatusText $color = {color}>{value[item].role === "TEACHER" ? "일반" : "관리자"}</S.StatusText>
-                                            </S.Status>
-                                            {isOpen && isOpen[item].status && <StatusUpdate up={isFirst === Number(item) || isFirst+1 === Number(item) ? 58 : -160} nowStatus={"TEACHER"} changeStatus={changeStatus} name={item}/>}
-                                        </div>
-                                        <div style={{ display: "flex"}}>
-                                            <S.Btn $color = {"white"} onClick={()=>handleIsPatch(item, false, "delete")}>취소</S.Btn>
-                                            <S.Btn $color = {"#2E6FF2"} onClick={()=>saveTeacher(item)}>저장</S.Btn>
-                                        </div>
-                                        <div>
-                                            <S.Status style={{ cursor: "default" }} $color={value[item].role === "TEACHER" ? "#ECF3FD" : "#FDF0EC"}>
-                                                <S.Circle $color={color}></S.Circle>
-                                                <S.StatusText $color={color}>{value[item].role === "TEACHER" ? "일반" : "관리자"}</S.StatusText>
-                                            </S.Status>
-                                            <S.Option ref={(el) => (childRefs.current[item] = el)} src={OptionButton} alt={'option'} onClick={() => handleIsOption(item, true)} />
-                                            {isOption && isOption[item].status &&
-                                                <S.Options $up={isFirst + 8 === Number(item) || isFirst + 9 === Number(item) || isFirst + 10 === Number(item) || isFirst + 11 === Number(item) || isFirst + 12 === Number(item) ? -60 : 40} onClick={(e) => e.stopPropagation()}>
-                                                    <button onClick={() => deleteT(item)}>삭제</button>
-                                                    <button onClick={() => handleIsPatch(item, true)}>수정</button>
-                                                </S.Options>}
+                    {value &&
+                        Object.keys(value).map((item) => {
+                            const color = value[item].role === "TEACHER" ? "#2E6FF2" : "#F87067";
 
+                            if (value[item].isPatch) {
+                                return (
+                                    <S.Content key={value[item].teacher_id}>
+                                        <div>
+                                            <S.UnBox></S.UnBox>
+                                            <S.Box2 $length={130}>{value[item].count}회</S.Box2>
+                                            <S.InputTeacher
+                                                $length={100}
+                                                value={value[item].name}
+                                                onChange={(e) => {
+                                                    change(item, e.target.value, "name");
+                                                }}
+                                            />
+                                            <S.InputTeacher
+                                                $length={270}
+                                                value={value[item].email}
+                                                onChange={(e) => {
+                                                    change(item, e.target.value, "email");
+                                                }}
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <div ref={(el) => (childRefs.current[item] = el)} style={{ position: "relative" }}>
+                                                <S.Status
+                                                    onClick={() => handleIsOpen(item)}
+                                                    $color={value[item].role === "TEACHER" ? "#ECF3FD" : "#FDF0EC"}
+                                                >
+                                                    <S.Circle $color={color}></S.Circle>
+                                                    <S.StatusText $color={color}>
+                                                        {value[item].role === "TEACHER" ? "일반" : "관리자"}
+                                                    </S.StatusText>
+                                                </S.Status>
+
+                                                {isOpen && isOpen[item]?.status && (
+                                                    <StatusUpdate
+                                                        up={isFirst === Number(item) || isFirst + 1 === Number(item) ? 58 : -160}
+                                                        nowStatus={"TEACHER"}
+                                                        changeStatus={changeStatus}
+                                                        name={item}
+                                                    />
+                                                )}
+                                            </div>
+
+                                            <div style={{ display: "flex" }}>
+                                                <S.Btn $color={"white"} onClick={() => handleIsPatch(item, false, "delete")}>
+                                                    취소
+                                                </S.Btn>
+                                                <S.Btn $color={"#2E6FF2"} onClick={() => saveTeacher(item)}>
+                                                    저장
+                                                </S.Btn>
+                                            </div>
+
+                                            <div>
+                                                <S.Status style={{ cursor: "default" }} $color={value[item].role === "TEACHER" ? "#ECF3FD" : "#FDF0EC"}>
+                                                    <S.Circle $color={color}></S.Circle>
+                                                    <S.StatusText $color={color}>
+                                                        {value[item].role === "TEACHER" ? "일반" : "관리자"}
+                                                    </S.StatusText>
+                                                </S.Status>
+
+                                                <S.Option
+                                                    ref={(el) => (childRefs.current[item] = el)}
+                                                    src={OptionButton}
+                                                    alt={"option"}
+                                                    onClick={() => handleIsOption(item, true)}
+                                                />
+
+                                                {isOption && isOption[item]?.status && (
+                                                    <S.Options
+                                                        $up={
+                                                            isFirst + 8 === Number(item) ||
+                                                            isFirst + 9 === Number(item) ||
+                                                            isFirst + 10 === Number(item) ||
+                                                            isFirst + 11 === Number(item) ||
+                                                            isFirst + 12 === Number(item)
+                                                                ? -60
+                                                                : 40
+                                                        }
+                                                        onClick={(e) => e.stopPropagation()}
+                                                    >
+                                                        <button onClick={() => deleteT(item)}>삭제</button>
+                                                        <button onClick={() => handleIsPatch(item, true)}>수정</button>
+                                                    </S.Options>
+                                                )}
+                                            </div>
                                         </div>
                                     </S.Content>
-                                )
-                            })}
+                                );
+                            }
+                            return null;
+                        })}
                         </S.ContentBox>
                     </S.Table>
                 </S.Main>
