@@ -145,8 +145,8 @@ export default function Student({ data, day }) {
                                             changeStatus={changeStatus}
                                             name={isCheck.some((value)=>value===true) ?
                                                 data.filter((_, idx)=>isCheck[idx] === true)
-                                                    .map((item)=> item.id)
-                                                : item.id}
+                                                    .map((item)=> item['8th_id'])
+                                                : item['8th_id']}
                                             up={isFirst === idx ? 58 : -160}
                                             period = {8}
                                         />}
@@ -186,8 +186,8 @@ export default function Student({ data, day }) {
                                             changeStatus={changeStatus}
                                             name={isCheck.some((value)=>value===true) ?
                                                 data.filter((_, idx)=>isCheck[idx] === true)
-                                                    .map((item)=> item.id)
-                                                : item.id}
+                                                    .map((item)=> item['10th_id'])
+                                                : item['10th_id']}
                                             up={isFirst === idx ? 58 : -160}
                                             left={-60}
                                             period = {10}
