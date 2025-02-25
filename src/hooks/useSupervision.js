@@ -27,10 +27,12 @@ export const useGetAssignment = (month) => {
 }
 
 export const useSaveAutoAssignment = () => {
+    const queryClient = useQueryClient();
     return useMutation({
         mutationFn: (props) => API.saveAutoAssignment(props),
         onSuccess: () => {
             console.log('Assignment 저장 성공');
+            queryClient.invalidateQueries(['getAssignment']);
         },
         onError: (err) => {
             console.error('Assignment 저장 실패:', err);
