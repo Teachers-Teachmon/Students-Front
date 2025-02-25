@@ -135,8 +135,7 @@ export default function Write({isModal, setIsModal}){
                                     name={"작성완료"}
                                     status={true}
                                     On={() => {
-                                        setIsModal(false);
-                                        postMovement({ selectStudentShow, dayComponent, time, place, cause })}}
+                                        postMovement({ selectStudentShow, dayComponent, time, place, cause, set : setIsModal(false) })}}
                                 />
                             </S.Submit>
                         </>
