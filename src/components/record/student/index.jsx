@@ -42,6 +42,8 @@ export default function Student({ data, day }) {
         }
         setAllCheck(false);
         setIsCheck(isCheck.map(item => false));
+        setIsOpen(isOpen.map(item=>false));
+        setIsOpen2(isOpen2.map(item=>false));
     }
     const patchAfterSchool = (className) =>{
         patchStudent({studentID: className, status: "AFTER_SCHOOL"})
