@@ -19,9 +19,9 @@ export const getMovement = async (day) =>{
     }
 }
 
-export const getMovementDetail = async (day, teacher_id, periodName) =>{
+export const getMovementDetail = async (day, teacher_id, periodName, place) =>{
     try{
-        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/leaveseat/detail?day=${day}&teacherId=${teacher_id}&period=${period[periodName]}`);
+        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/leaveseat/detail?day=${day}&teacherId=${teacher_id}&period=${period[periodName]}&place=${place}`);
         if(res.status !== 200 && res.status !== 201){
             return Promise.reject({
                 status: res.status,
@@ -37,7 +37,7 @@ export const getMovementDetail = async (day, teacher_id, periodName) =>{
 //${API_ENDPOINTS.DATA}
 export const getStudent = async (day, search) =>{
     try{
-        const res = await axiosInstance.get(`/student?day=${day}&search_query=${search}`);
+        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/student?day=${day}&search_query=${search}`);
         if(res.status !== 200 && res.status !== 201){
             return Promise.reject({
                 status: res.status,
