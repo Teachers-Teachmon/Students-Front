@@ -23,7 +23,7 @@ export default function Student({ data, day }) {
             return newState;
         });
         if(status === "방과후"){
-            alert("아직 준비가 안됐어여...ㅠ")
+            alert("아직 준비가 안됐어여...ㅠ 학생을 방과후로 바꾸고 싶으시다면 보강을 이용해주세요!")
             // setIsModal(true);
             // setPeriod(period);
             return;

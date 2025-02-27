@@ -12,8 +12,8 @@ export default function Movement({ day , isFirst}) {
     const [isModal, setIsModal] = useState(false);
     const {mutate : deleteMovement} = useDeleteMovement();
     const {name, role} = useAuth();
-    const getDetail = async (day, teacher_id, periodName) =>{
-        const res = await getMovementDetail(day, teacher_id, periodName);
+    const getDetail = async (day, teacher_id, periodName, place) =>{
+        const res = await getMovementDetail(day, teacher_id, periodName, place);
         setDetail(res.data);
         setIsModal(!isModal);
     }
@@ -34,7 +34,7 @@ export default function Movement({ day , isFirst}) {
                 {data && data.map((item) => {
                     return(
                         <>
-                            <S.Content key={item} onClick={()=>getDetail((day), item.teacher_id, item.period)}>
+                            <S.Content key={item} onClick={()=>getDetail((day), item.teacher_id, item.period, item.place)}>
                                 <S.UnBox></S.UnBox>
                                 <S.Box2 $length={110}>{item.period}</S.Box2>
                                 <S.Box2 $length={130}>{item.teacher_name}</S.Box2>
@@ -47,7 +47,7 @@ export default function Movement({ day , isFirst}) {
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             if(window.confirm('정말 삭제하시겠습니까?')){
-                                                deleteMovement({teacher_id : item.teacher_id, day, periodName : item.period});
+                                                deleteMovement({teacher_id : item.teacher_id, day, periodName : item.period, place: item.place});
                                             }
                                         }}
                                     >삭제</S.DeleteBox>  : null
