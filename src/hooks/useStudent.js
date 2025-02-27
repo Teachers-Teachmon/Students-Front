@@ -72,7 +72,6 @@ export const usePostMovement = () => {
             navigate('/manage/record', {state : 1});
         },
         onError: (err) => {
-            alert('이미 해당 교실에 이석중인 학생이 있습니다.');
             console.error('Movement 등록 실패:', err);
         },
     });

@@ -3,7 +3,7 @@ import X from '../../../assets/X.svg'
 import People from '../../../assets/User.svg'
 
 export default function DetailMovement({setIsModal, data}) {
-    console.log(data)
+
     return (
         <S.Black onClick={()=>setIsModal(false)}>
             <S.Content  onClick={(e) => e.stopPropagation()}>
