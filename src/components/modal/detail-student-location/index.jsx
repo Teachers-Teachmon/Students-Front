@@ -64,9 +64,8 @@ export default function DetailStudentLocation({data, setIsModal, floor}) {
                 break;
         }
         if(name === locationData.teacherName) check = true;
-        if(todaySupervision['first_grade'][periodName] === name) check = true;
-        if(todaySupervision['second_grade'][periodName] === name) check = true;
-        if(todaySupervision['third_grade'][periodName] === name) check = true;
+        if(todaySupervision['self_study_teacher'][periodName] === name) check = true;
+        if(todaySupervision['leave_seat_teacher'][periodName] === name) check = true;
         if(role === 'ADMIN') check = true;
 
         return check;
@@ -106,8 +105,7 @@ export default function DetailStudentLocation({data, setIsModal, floor}) {
                     </S.Students>
                 </S.Box>
                 <S.Close>
-                    {/*checkAuthor() &&*/}
-                    {locationData.status === "이석" &&
+                    {locationData.status === "이석" && checkAuthor() &&
                         <Confirm
                             text={"이석종료"}
                             color={"red"}
