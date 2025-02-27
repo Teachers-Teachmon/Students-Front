@@ -371,6 +371,28 @@
       }
     ]
   },
+  "after-schoolList" : [
+    {
+      "name": "자습",
+      "id": 633,
+      "type": "SELF_STUDY"
+    },
+    {
+      "name": "자습",
+      "id": 632,
+      "type": "SELF_STUDY"
+    },
+    {
+      "name": "자습",
+      "id": 631,
+      "type": "SELF_STUDY"
+    },
+    {
+      "name": "자습",
+      "id": 630,
+      "type": "SELF_STUDY"
+    }
+  ],
   "leaveseatDelete": {},
   "leave": [
     {
