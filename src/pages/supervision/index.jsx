@@ -5,12 +5,10 @@ import SquareBtn from '../../components/button/square/index.jsx';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGetAssignment } from '../../hooks/useSupervision.js';
-import Loading from '../../components/loading/index.jsx';
 
 export default function Supervision() {
     const navigate = useNavigate();
     const [selMonth, setSelMonth] = useState(new Date().getMonth());
-    const [dropdownOpen, setDropdownOpen] = useState({});
     const [localData, setLocalData] = useState([]);
 
     const { data: TeacherList, isLoading, isError } = useGetAssignment(selMonth + 1);     
@@ -59,12 +57,8 @@ export default function Supervision() {
 
     return (
         <S.Wrapper>
-            {/* {isLoading && <Loading />} */}
             <Header />
             <S.MainWrap>
-                {Object.values(dropdownOpen).some(status => status) && (
-                    <S.Black onClick={() => setDropdownOpen({})} />
-                )}
                 <S.MainHeader>
                     <h1>자습감독 일정</h1>
                     <S.Buttons>
