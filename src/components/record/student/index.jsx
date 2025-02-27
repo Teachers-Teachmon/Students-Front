@@ -23,9 +23,9 @@ export default function Student({ data, day }) {
             return newState;
         });
         if(status === "방과후"){
-            alert("아직 준비가 안됐어여...ㅠ")
-            // setIsModal(true);
-            // setPeriod(period);
+            // alert("아직 준비가 안됐어여...ㅠ")
+            setIsModal(true);
+            setPeriod(period);
             return;
         }
         if (Array.isArray(name)) {
