@@ -24,7 +24,7 @@ export default function Record() {
         location.state === 1, location.state === 2, location.state === 3
     ]);
     const [search, setSearch] = useState("");
-    const {today, day:dayComponent} = useDay();
+    const {today, recordDay, setRecordDay} = useDay();
     const [day, setDay] = useState(today);
     const debounce = useDebounce(search, 500);
     const [student, setStudent] = useState([]);
@@ -36,13 +36,13 @@ export default function Record() {
     }, []);
 
     useEffect(() => {
-        if(dayComponent){
+        if(recordDay){
             setIsFirst(false);
-            setDay(dayComponent);
+            setDay(recordDay);
         }
-    }, [dayComponent]);
+    }, [recordDay]);
 
-    console.log(dayComponent)
+    console.log(recordDay)
     useEffect(() => {
         const fetchData = async () => {
             const students = await getStudent(isFirst ? patchDay(day) : day, search);
@@ -70,7 +70,7 @@ export default function Record() {
                 <S.Main>
                     <S.MainNav>
                         <div>
-                            <DateInput />
+                            <DateInput onChange={setRecordDay} />
                             <CircleBtn name={"이석"} status={isMovement[0]}  On={()=>setIsMovement([true, false, false])}/>
                             <CircleBtn name={"이탈"} status={isMovement[1]} On={()=>setIsMovement([false, true, false])}/>
                             <CircleBtn name={"학생"} status={isMovement[2]} On={()=>setIsMovement([false, false, true])}/>

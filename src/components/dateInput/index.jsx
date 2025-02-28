@@ -3,16 +3,16 @@ import * as S from './style.jsx';
 import useDay from "../../zustand/day";
 import patchDay from "../../utils/patchDay.js";
 
-export default function DateInput({ onChange, isWrite }) {
-    const { setDay, setStart, setEnd, day, today, setWriteDay } = useDay();
+export default function DateInput({ onChange, isRecord }) {
+    const { setDay, setStart, setEnd, day, today, setRecordDay } = useDay();
     const newToday = new Date(patchDay(today));
     const initialDate = `${newToday.getFullYear()}년 ${newToday.getMonth() + 1}월 ${newToday.getDate()}일`;
     const [inputValue, setInputValue] = useState(initialDate);
     const [isFocused, setIsFocused] = useState(false);
 
     useEffect(() => {
-        if(isWrite){
-            setWriteDay(patchDay(today))
+        if(isRecord){
+            setRecordDay(patchDay(today));
         }
         else{
             setDay(patchDay(today));
@@ -30,8 +30,8 @@ export default function DateInput({ onChange, isWrite }) {
                 String(inputDate.getDate()).padStart(2, '0')
             }일`;
 
-            if (onChange) onChange(e.target.value);
-            else setDay(e.target.value);
+            onChange(e.target.value);
+            setDay(e.target.value);
             setInputValue(formattedDate);
         }
     };

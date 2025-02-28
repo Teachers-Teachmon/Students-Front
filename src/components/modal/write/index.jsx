@@ -24,7 +24,7 @@ export default function Write({ setIsModal}){
     const [selectStudent, setSelectStudent] = useState([]);
     const [selectStudentShow, setSelectStudentShow] = useState([]);
     const {mutate : postMovement} = usePostMovement();
-    const { writeDay, setWriteDay} = useDay();
+    const { day} = useDay();
     const debounceStudent = useDebounce(search, 150);
 
     useEffect(() => {
@@ -43,7 +43,7 @@ export default function Write({ setIsModal}){
                             {isOpen.some((status) => status === true) ?
                                 <S.Black onClick={()=>setIsOpen([false, false])}/> : null
                             }
-                            <DateInput onChange={setWriteDay} isWrite={true}/>
+                            <DateInput />
                             <S.Place>
                                 <Dropdown
                                     name={time}
@@ -132,7 +132,7 @@ export default function Write({ setIsModal}){
                                     name={"작성완료"}
                                     status={true}
                                     On={() => {
-                                        postMovement({ selectStudentShow, writeDay, time, place, cause, set : setIsModal(false) })}}
+                                        postMovement({ selectStudentShow, day, time, place, cause, set : setIsModal(false) })}}
                                 />
                             </S.Submit>
                         </>
