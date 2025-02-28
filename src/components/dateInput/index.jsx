@@ -3,7 +3,7 @@ import * as S from './style.jsx';
 import useDay from "../../zustand/day";
 import patchDay from "../../utils/patchDay.js";
 
-export default function DateInput({ onChange }) {
+export default function DateInput({ onChange, isWrite }) {
     const { setDay, setStart, setEnd, day, today, setWriteDay } = useDay();
     const newToday = new Date(patchDay(today));
     const initialDate = `${newToday.getFullYear()}년 ${newToday.getMonth() + 1}월 ${newToday.getDate()}일`;
@@ -11,10 +11,14 @@ export default function DateInput({ onChange }) {
     const [isFocused, setIsFocused] = useState(false);
 
     useEffect(() => {
-        setDay(patchDay(today));
-        setStart(patchDay(today));
-        setEnd(patchDay(today));
-        setWriteDay(patchDay(today))
+        if(isWrite){
+            setWriteDay(patchDay(today))
+        }
+        else{
+            setDay(patchDay(today));
+            setStart(patchDay(today));
+            setEnd(patchDay(today));
+        }
     }, []);
 
     const handleDateChange = (e) => {
