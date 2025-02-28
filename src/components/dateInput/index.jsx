@@ -25,10 +25,10 @@ export default function DateInput({ onChange }) {
             }월 ${
                 String(inputDate.getDate()).padStart(2, '0')
             }일`;
-            
-            setDay(e.target.value);
-            setInputValue(formattedDate);
+
             if (onChange) onChange(e.target.value);
+            else setDay(e.target.value);
+            setInputValue(formattedDate);
         }
     };
 
