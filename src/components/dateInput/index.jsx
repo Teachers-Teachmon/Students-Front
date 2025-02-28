@@ -4,7 +4,7 @@ import useDay from "../../zustand/day";
 import patchDay from "../../utils/patchDay.js";
 
 export default function DateInput({ onChange }) {
-    const { setDay, setStart, setEnd, day, today } = useDay();
+    const { setDay, setStart, setEnd, day, today, setWriteDay } = useDay();
     const newToday = new Date(patchDay(today));
     const initialDate = `${newToday.getFullYear()}년 ${newToday.getMonth() + 1}월 ${newToday.getDate()}일`;
     const [inputValue, setInputValue] = useState(initialDate);
@@ -14,6 +14,7 @@ export default function DateInput({ onChange }) {
         setDay(patchDay(today));
         setStart(patchDay(today));
         setEnd(patchDay(today));
+        setWriteDay(patchDay(today))
     }, []);
 
     const handleDateChange = (e) => {
