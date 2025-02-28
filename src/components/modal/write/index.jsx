@@ -43,7 +43,7 @@ export default function Write({ setIsModal}){
                             {isOpen.some((status) => status === true) ?
                                 <S.Black onClick={()=>setIsOpen([false, false])}/> : null
                             }
-                            <DateInput onChange={setWriteDay}/>
+                            <DateInput onChange={setWriteDay} isWrite={true}/>
                             <S.Place>
                                 <Dropdown
                                     name={time}
