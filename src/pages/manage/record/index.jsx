@@ -19,7 +19,6 @@ import SearchBox from "../../../components/searchBox/index.jsx";
 export default function Record() {
     const navigate = useNavigate();
     const location = useLocation();
-    console.log(location.state)
     const [isFirst, setIsFirst] = useState(true);
     const [isMovement, setIsMovement] = useState([
         location.state === 1, location.state === 2, location.state === 3
@@ -43,12 +42,12 @@ export default function Record() {
         }
     }, [dayComponent]);
 
+    console.log(dayComponent)
     useEffect(() => {
         const fetchData = async () => {
             const students = await getStudent(isFirst ? patchDay(day) : day, search);
             setStudent(students);
         };
-        console.log("업데이트함")
         fetchData();
     }, [debounce, day, status]);
     return (
