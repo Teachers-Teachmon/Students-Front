@@ -1,7 +1,5 @@
 import * as S from './style.jsx';
-import CircleBtn from "../../button/circle";
 import { useState, useEffect } from "react";
-import { useQueryClient } from "@tanstack/react-query";
 import Dropdown from "../../dropdown/nosearch";
 import SquareBtn from "../../button/square";
 import Search from '../../../assets/Search.svg'
@@ -12,8 +10,7 @@ import {useDebounce} from "../../../hooks/useDebounce.js";
 import {searchStudent, searchPlace} from "../../../api/search.js";
 import DateInput from "../../dateInput/index.jsx";
 
-export default function Write({isModal, setIsModal}){
-    const queryClient = useQueryClient();
+export default function Write({ setIsModal}){
     const [time, setTime] = useState("시간");
     const [place, setPlace] = useState("장소");
     const [isOpen, setIsOpen] = useState([false, false]);
@@ -27,7 +24,7 @@ export default function Write({isModal, setIsModal}){
     const [selectStudent, setSelectStudent] = useState([]);
     const [selectStudentShow, setSelectStudentShow] = useState([]);
     const {mutate : postMovement} = usePostMovement();
-    const {day: dayComponent} = useDay();
+    const { writeDay, setWriteDay} = useDay();
     const debounceStudent = useDebounce(search, 150);
 
     useEffect(() => {
@@ -46,7 +43,7 @@ export default function Write({isModal, setIsModal}){
                             {isOpen.some((status) => status === true) ?
                                 <S.Black onClick={()=>setIsOpen([false, false])}/> : null
                             }
-                            <DateInput />
+                            <DateInput onChange={setWriteDay}/>
                             <S.Place>
                                 <Dropdown
                                     name={time}
@@ -135,7 +132,7 @@ export default function Write({isModal, setIsModal}){
                                     name={"작성완료"}
                                     status={true}
                                     On={() => {
-                                        postMovement({ selectStudentShow, dayComponent, time, place, cause, set : setIsModal(false) })}}
+                                        postMovement({ selectStudentShow, writeDay, time, place, cause, set : setIsModal(false) })}}
                                 />
                             </S.Submit>
                         </>
