@@ -64,7 +64,7 @@ export const useCloseMovement = ()=>{
         onSuccess : (_, variables)=>{
             queryClient.setQueryData(['locationFloor', variables.floor], (oldData)=>{
                 const filteredData = Object.keys(oldData)
-                    .filter((key) => oldData[key].teacherId !== variables.teacherId && key !== variables.place)
+                    .filter((key) => key !== variables.place)
                     .reduce((acc, key) => {
                         acc[key] = oldData[key];
                         return acc;
