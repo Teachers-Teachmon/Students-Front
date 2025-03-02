@@ -67,9 +67,23 @@ export const usePostMovement = () => {
     return useMutation({
         mutationFn: (props) => API.postMovement(props),
         onSuccess: (data, variables) => {
-            variables.set();
-            console.log(variables)
-            queryClient.invalidateQueries(['getMovement', variables.recordDay]);
+            // variables.set();
+            if(variables.recordDay === variables.day){
+                console.log(data)
+                queryClient.setQueryData(['getMovement', variables.recordDay], (oldData) => {
+                    return [
+                        ...oldData,
+                        {
+                            teacher_name: variables.teacher_name,
+                            teacher_id: variables.teacher_id,
+                            place: variables.place,
+                            personnel: variables.selectStudentShow.length,
+                            period: variables.time,
+                            cause: variables.cause
+                        }
+                    ]
+                })
+            }
             navigate('/manage/record', {state : 1});
         },
         onError: (err) => {
