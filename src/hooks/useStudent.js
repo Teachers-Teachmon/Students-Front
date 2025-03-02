@@ -67,7 +67,6 @@ export const usePostMovement = () => {
     return useMutation({
         mutationFn: (props) => API.postMovement(props),
         onSuccess: (data, variables) => {
-            variables.set();
             if(variables.recordDay === variables.day){
                 queryClient.setQueryData(['getMovement', variables.recordDay], (oldData) => {
                     return [
