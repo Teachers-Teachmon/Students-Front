@@ -75,7 +75,7 @@ export const useCloseMovement = ()=>{
             });
             queryClient.setQueryData(['locationAll'], (oldData)=>{
                 const value = Object.keys(oldData[variables.floor-1]).filter((item)=>{
-                    if(item !== variables.place){
+                    if(item === variables.place){
                         return oldData[variables.floor-1][item]
                     }
                 })

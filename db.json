@@ -4455,6 +4455,34 @@
           "status": "이석"
         }
       ]
+    },
+    "학습준비실": {
+      "status": "이석",
+      "teacher": "티치몬",
+      "teacherId": 3,
+      "period": "SEVEN_PERIOD",
+      "students": [
+        {
+          "id": 35804,
+          "number": 3301,
+          "name": "김도건",
+          "status": "이석"
+        }
+      ]
+    },
+    "과학실": {
+      "status": "이석",
+      "teacher": "티치몬",
+      "teacherId": 3,
+      "period": "SEVEN_PERIOD",
+      "students": [
+        {
+          "id": 35804,
+          "number": 3301,
+          "name": "김도건",
+          "status": "이석"
+        }
+      ]
     }
   },
   "day": {
@@ -4961,7 +4989,7 @@
   "locationALL": [
     {
       "창의디자인실": "이석",
-      "id": "d405"
+      "학습준비실": "이석"
     },
     {
       "id": "b6e1"
