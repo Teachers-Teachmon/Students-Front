@@ -6,7 +6,8 @@
       "place": "창의디자인실",
       "personnel": 1,
       "period": "10~11교시",
-      "cause": "asd"
+      "cause": "asd",
+      "id": "3968"
     },
     {
       "teacher_name": "티치몬",
@@ -14,7 +15,27 @@
       "place": "학습",
       "personnel": 1,
       "period": "10~11교시",
-      "cause": "asd"
+      "cause": "asd",
+      "id": "0c91"
+    },
+    {
+      "id": "3e07",
+      "students": [],
+      "cause": "",
+      "day": "2025-03-02"
+    },
+    {
+      "id": "fcd0",
+      "students": [],
+      "cause": "",
+      "day": "2025-03-02"
+    },
+    {
+      "id": "ff6b",
+      "students": [],
+      "cause": "asdf",
+      "day": "2025-03-02",
+      "period": "EIGHT_AND_NINE_PERIOD"
     }
   ],
   "detail": {
@@ -354,22 +375,22 @@
   "after-schoolList": [
     {
       "name": "자습",
-      "id": 633,
+      "id": "633",
       "type": "SELF_STUDY"
     },
     {
       "name": "자습",
-      "id": 632,
+      "id": "632",
       "type": "SELF_STUDY"
     },
     {
       "name": "자습",
-      "id": 631,
+      "id": "631",
       "type": "SELF_STUDY"
     },
     {
       "name": "자습",
-      "id": 630,
+      "id": "630",
       "type": "SELF_STUDY"
     }
   ],
@@ -3772,126 +3793,144 @@
       "teacher_id": 29,
       "name": "호잇2",
       "email": "hoit@gmail.com",
-      "role": "TEACHER"
+      "role": "TEACHER",
+      "id": "5b0c"
     },
     {
       "count": 8,
       "teacher_id": 3,
       "name": "티치몬",
       "email": "teachmon08@gmail.com",
-      "role": "ADMIN"
+      "role": "ADMIN",
+      "id": "ed0e"
     },
     {
       "count": 13,
       "teacher_id": 4,
       "name": "박제현",
       "email": "huhonmcmc@gmail.com",
-      "role": "TEACHER"
+      "role": "TEACHER",
+      "id": "316b"
     },
     {
       "count": 13,
       "teacher_id": 20,
       "name": "이나영",
       "email": "jh.curious.mail@gmail.com",
-      "role": "TEACHER"
+      "role": "TEACHER",
+      "id": "73b2"
     },
     {
       "count": 13,
       "teacher_id": 18,
       "name": "박민하",
       "email": "huhondev@gmail.com",
-      "role": "TEACHER"
+      "role": "TEACHER",
+      "id": "c52d"
     },
     {
       "count": 13,
       "teacher_id": 17,
       "name": "정희철",
       "email": "dehgns12@gmail.com",
-      "role": "TEACHER"
+      "role": "TEACHER",
+      "id": "5ec8"
     },
     {
       "count": 13,
       "teacher_id": 14,
       "name": "박소영",
       "email": "24.039@bssm.hs.kr",
-      "role": "TEACHER"
+      "role": "TEACHER",
+      "id": "7285"
     },
     {
       "count": 13,
       "teacher_id": 13,
       "name": "이경숙",
       "email": "allergicproject@gmail.com",
-      "role": "TEACHER"
+      "role": "TEACHER",
+      "id": "2c60"
     },
     {
       "count": 13,
       "teacher_id": 11,
       "name": "김상화",
       "email": "bemik624@gmail.com",
-      "role": "TEACHER"
+      "role": "TEACHER",
+      "id": "0584"
     },
     {
       "count": 13,
       "teacher_id": 6,
       "name": "곽상미",
       "email": "joara080827@gmail.com",
-      "role": "TEACHER"
+      "role": "TEACHER",
+      "id": "8808"
     },
     {
       "count": 13,
       "teacher_id": 5,
       "name": "박건우",
       "email": "lian080408@gmail.com",
-      "role": "TEACHER"
+      "role": "TEACHER",
+      "id": "26fb"
     },
     {
       "count": 14,
       "teacher_id": 15,
       "name": "이정하",
       "email": "yundh008@gmail.com",
-      "role": "TEACHER"
+      "role": "TEACHER",
+      "id": "b827"
     },
     {
       "count": 14,
       "teacher_id": 16,
       "name": "정종근",
       "email": "24.061@bssm.hs.kr",
-      "role": "TEACHER"
+      "role": "TEACHER",
+      "id": "6b36"
     },
     {
       "count": 14,
       "teacher_id": 12,
       "name": "차수민",
       "email": "ohjooan7242@gmail.com",
-      "role": "TEACHER"
+      "role": "TEACHER",
+      "id": "9fdc"
     },
     {
       "count": 14,
       "teacher_id": 21,
       "name": "유근찬",
       "email": "beorrol123123@gmail.com",
-      "role": "TEACHER"
+      "role": "TEACHER",
+      "id": "7ed0"
     },
     {
       "count": 14,
       "teacher_id": 22,
       "name": "안정은",
       "email": "kimanna7242@gmail.com",
-      "role": "TEACHER"
+      "role": "TEACHER",
+      "id": "ac89"
     },
     {
       "count": 14,
       "teacher_id": 27,
       "name": "정종건",
       "email": "teacher049@bssm.hs.kr",
-      "role": "TEACHER"
+      "role": "TEACHER",
+      "id": "776e"
     },
     {
       "count": 15,
       "teacher_id": 26,
       "name": "이종호",
       "email": "teacher068@bssm.hs.kr",
-      "role": "TEACHER"
+      "role": "TEACHER",
+      "id": "b710"
     }
   ],
   "teacher2": [
@@ -4297,372 +4336,372 @@
   },
   "searchStudent": [
     {
-      "id": 1,
+      "id": "1",
       "name": "김동욱",
       "number": 1401
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "허온",
       "number": 1416
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "윤도훈",
       "number": 1410
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "오주현",
       "number": 1310
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "조아라",
       "number": 1314
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "강민제",
       "number": 3102
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "권세원",
       "number": 3202
     },
     {
-      "id": 8,
+      "id": "8",
       "name": "김도건",
       "number": 3301
     },
     {
-      "id": 9,
+      "id": "9",
       "name": "구윤하",
       "number": 3401
     },
     {
-      "id": 10,
+      "id": "10",
       "name": "공덕현",
       "number": 1101
     },
     {
-      "id": 11,
+      "id": "11",
       "name": "김우성",
       "number": 1104
     },
     {
-      "id": 12,
+      "id": "12",
       "name": "최정혁",
       "number": 1115
     },
     {
-      "id": 13,
+      "id": "13",
       "name": "서윤호",
       "number": 1206
     },
     {
-      "id": 14,
+      "id": "14",
       "name": "황준혁",
       "number": 1215
     },
     {
-      "id": 15,
+      "id": "15",
       "name": "박동현",
       "number": 1306
     },
     {
-      "id": 16,
+      "id": "16",
       "name": "김민석",
       "number": 1402
     },
     {
-      "id": 17,
+      "id": "17",
       "name": "양효준",
       "number": 1409
     },
     {
-      "id": 19,
+      "id": "19",
       "name": "조재민",
       "number": 1413
     },
     {
-      "id": 20,
+      "id": "20",
       "name": "김한결",
       "number": 1106
     },
     {
-      "id": 21,
+      "id": "21",
       "name": "이건우",
       "number": 1111
     },
     {
-      "id": 22,
+      "id": "22",
       "name": "박소은",
       "number": 1205
     },
     {
-      "id": 23,
+      "id": "23",
       "name": "김민재",
       "number": 1302
     },
     {
-      "id": 24,
+      "id": "24",
       "name": "김우찬",
       "number": 1303
     },
     {
-      "id": 25,
+      "id": "25",
       "name": "류승찬",
       "number": 1305
     },
     {
-      "id": 26,
+      "id": "26",
       "name": "안재민",
       "number": 1309
     },
     {
-      "id": 27,
+      "id": "27",
       "name": "조하민",
       "number": 1315
     },
     {
-      "id": 28,
+      "id": "28",
       "name": "김정훈",
       "number": 1403
     },
     {
-      "id": 29,
+      "id": "29",
       "name": "김현호",
       "number": 1404
     },
     {
-      "id": 30,
+      "id": "30",
       "name": "박선영",
       "number": 1405
     },
     {
-      "id": 31,
+      "id": "31",
       "name": "이승환",
       "number": 1411
     },
     {
-      "id": 32,
+      "id": "32",
       "name": "이하은",
       "number": 1412
     },
     {
-      "id": 33,
+      "id": "33",
       "name": "허세진",
       "number": 1415
     },
     {
-      "id": 34,
+      "id": "34",
       "name": "김태현",
       "number": 1105
     },
     {
-      "id": 35,
+      "id": "35",
       "name": "공재욱",
       "number": 1301
     },
     {
-      "id": 36,
+      "id": "36",
       "name": "김유찬",
       "number": 1304
     },
     {
-      "id": 37,
+      "id": "37",
       "name": "이효준",
       "number": 1312
     },
     {
-      "id": 38,
+      "id": "38",
       "name": "정태양",
       "number": 1313
     },
     {
-      "id": 39,
+      "id": "39",
       "name": "허동운",
       "number": 1414
     },
     {
-      "id": 40,
+      "id": "40",
       "name": "노유현",
       "number": 1107
     },
     {
-      "id": 41,
+      "id": "41",
       "name": "이수환",
       "number": 1112
     },
     {
-      "id": 42,
+      "id": "42",
       "name": "제성주",
       "number": 1114
     },
     {
-      "id": 43,
+      "id": "43",
       "name": "구현우",
       "number": 1201
     },
     {
-      "id": 44,
+      "id": "44",
       "name": "김현호",
       "number": 1203
     },
     {
-      "id": 45,
+      "id": "45",
       "name": "권민재",
       "number": 1102
     },
     {
-      "id": 46,
+      "id": "46",
       "name": "김예빈",
       "number": 1103
     },
     {
-      "id": 47,
+      "id": "47",
       "name": "박가은",
       "number": 1108
     },
     {
-      "id": 48,
+      "id": "48",
       "name": "서정현",
       "number": 1110
     },
     {
-      "id": 49,
+      "id": "49",
       "name": "이주영",
       "number": 1113
     },
     {
-      "id": 50,
+      "id": "50",
       "name": "최치현",
       "number": 1116
     },
     {
-      "id": 51,
+      "id": "51",
       "name": "김현우",
       "number": 1202
     },
     {
-      "id": 52,
+      "id": "52",
       "name": "진은성",
       "number": 1212
     },
     {
-      "id": 53,
+      "id": "53",
       "name": "한지원",
       "number": 1213
     },
     {
-      "id": 54,
+      "id": "54",
       "name": "황지영",
       "number": 1216
     },
     {
-      "id": 55,
+      "id": "55",
       "name": "방세준",
       "number": 1307
     },
     {
-      "id": 56,
+      "id": "56",
       "name": "심형도",
       "number": 1407
     },
     {
-      "id": 57,
+      "id": "57",
       "name": "방민준",
       "number": 1109
     },
     {
-      "id": 58,
+      "id": "58",
       "name": "문소정",
       "number": 1204
     },
     {
-      "id": 59,
+      "id": "59",
       "name": "안준환",
       "number": 1207
     },
     {
-      "id": 60,
+      "id": "60",
       "name": "윤건우",
       "number": 1208
     },
     {
-      "id": 61,
+      "id": "61",
       "name": "이재환",
       "number": 1209
     },
     {
-      "id": 62,
+      "id": "62",
       "name": "이정혁",
       "number": 1210
     },
     {
-      "id": 63,
+      "id": "63",
       "name": "이준호",
       "number": 1211
     },
     {
-      "id": 64,
+      "id": "64",
       "name": "황성민",
       "number": 1214
     },
     {
-      "id": 65,
+      "id": "65",
       "name": "심현진",
       "number": 1308
     },
     {
-      "id": 66,
+      "id": "66",
       "name": "윤대협",
       "number": 1311
     },
     {
-      "id": 67,
+      "id": "67",
       "name": "천현수",
       "number": 1316
     },
     {
-      "id": 68,
+      "id": "68",
       "name": "배성민",
       "number": 1406
     },
     {
-      "id": 69,
+      "id": "69",
       "name": "안민주",
       "number": 1408
     },
     {
-      "id": 70,
+      "id": "70",
       "name": "김민우",
       "number": 3105
     },
     {
-      "id": 71,
+      "id": "71",
       "name": "박수빈",
       "number": 3206
     },
     {
-      "id": 72,
+      "id": "72",
       "name": "양유빈",
       "number": 3307
     },
     {
-      "id": 73,
+      "id": "73",
       "name": "김강민",
       "number": 3403
     },
     {
-      "id": 74,
+      "id": "74",
       "name": "허허허",
       "number": 2102
     },
     {
-      "id": 75,
+      "id": "75",
       "name": "어쩔",
       "number": 1
     }
