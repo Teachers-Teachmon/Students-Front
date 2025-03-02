@@ -64,7 +64,7 @@ export const useCloseMovement = ()=>{
         onSuccess : (_, variables)=>{
             queryClient.setQueryData(['locationFloor', variables.floor], (oldData)=>{
                 const filteredData = Object.keys(oldData)
-                    .filter((key) => oldData[key].teacherId !== variables.teacherId)
+                    .filter((key) => oldData[key].teacherId !== variables.teacherId && key !== variables.place)
                     .reduce((acc, key) => {
                         acc[key] = oldData[key];
                         return acc;
@@ -72,7 +72,7 @@ export const useCloseMovement = ()=>{
 
                 variables.onSuccessPatch();
                 return filteredData
-            });//[{},{},{"3-1":"조퇴","3-2":"자습","3-3":"자습","3-4":"자습"},{}]
+            });
             queryClient.setQueryData(['locationAll'], (oldData)=>{
                 const value = Object.keys(oldData[variables.floor-1]).filter((item)=>{
                     if(item !== variables.place){
@@ -81,8 +81,6 @@ export const useCloseMovement = ()=>{
                 })
                 oldData[variables.floor-1] = value;
             })
-            queryClient.invalidateQueries(['locationAll']);
-            queryClient.invalidateQueries(['locationFloor', variables.floor]);
         },
         onError: (err) => {
             console.error('Leave 삭제 실패:', err);
