@@ -69,7 +69,8 @@ export const usePostMovement = () => {
         onSuccess: (data, variables) => {
             // variables.set();
             if(variables.recordDay === variables.day){
-                console.log(data)
+                console.log(variables)
+                console.log(data.data)
                 queryClient.setQueryData(['getMovement', variables.recordDay], (oldData) => {
                     return [
                         ...oldData,
