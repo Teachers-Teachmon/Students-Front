@@ -103,7 +103,6 @@ export default function Write({ setIsModal}){
                             <S.StudentBox>
                                 {selectStudent
                                     ? selectStudent.map((item, idx) => {
-                                        console.log(item)
                                         return(
                                             <S.Student
                                                 key={idx}
