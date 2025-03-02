@@ -1,119 +1,82 @@
 {
-  "leaveseat": [
+  "leaveseatData": [
     {
       "teacher_name": "티치몬",
       "teacher_id": 1,
       "place": "창의디자인실",
       "personnel": 1,
       "period": "10~11교시",
-      "cause": "asd",
-      "id": "3968"
+      "cause": "유진쌤 ㅎㅎㅎㅎ"
     },
     {
       "teacher_name": "티치몬",
       "teacher_id": 1,
-      "place": "학습",
+      "place": "과학실",
       "personnel": 1,
       "period": "10~11교시",
-      "cause": "asd",
-      "id": "0c91"
-    },
+      "cause": "afds"
+    }
+  ],
+  "leaveseat": [
     {
-      "id": "3e07",
+      "id": "9c94",
       "students": [],
       "cause": "",
       "day": "2025-03-02"
     },
     {
-      "id": "fcd0",
+      "id": "f6c8",
       "students": [],
       "cause": "",
       "day": "2025-03-02"
     },
     {
-      "id": "ff6b",
-      "students": [],
-      "cause": "asdf",
-      "day": "2025-03-02",
-      "period": "EIGHT_AND_NINE_PERIOD"
-    },
-    {
-      "id": "4638",
+      "id": "f36a",
       "students": [],
       "cause": "",
       "day": "2025-03-02"
     },
     {
-      "id": "e70d",
+      "id": "729b",
       "students": [],
       "cause": "",
       "day": "2025-03-02"
     },
     {
-      "id": "a3b4",
+      "id": "55cc",
       "students": [],
       "cause": "",
       "day": "2025-03-02"
     },
     {
-      "id": "4ed8",
+      "id": "69af",
+      "students": [],
+      "cause": "",
+      "day": "2025-03-15"
+    },
+    {
+      "id": "c8f3",
+      "students": [],
+      "cause": "",
+      "day": "2025-03-15"
+    },
+    {
+      "id": "ad78",
       "students": [],
       "cause": "",
       "day": "2025-03-02"
     },
     {
-      "id": "483f",
+      "id": "4807",
       "students": [],
       "cause": "",
-      "day": "2025-03-02"
+      "day": "2025-03-01"
     },
     {
-      "id": "bf40",
+      "id": "4a73",
       "students": [],
       "cause": "",
-      "day": "2025-03-02"
-    },
-    {
-      "id": "1d03",
-      "students": [],
-      "cause": "",
-      "day": "2025-03-02"
-    },
-    {
-      "id": "f12b",
-      "students": [],
-      "cause": "",
-      "day": "2025-03-02"
-    },
-    {
-      "id": "f0a0",
-      "students": [],
-      "cause": "",
-      "day": "2025-03-02"
-    },
-    {
-      "id": "b362",
-      "students": [],
-      "cause": "",
-      "day": "2025-03-02"
-    },
-    {
-      "id": "9de3",
-      "students": [],
-      "cause": "",
-      "day": "2025-03-02"
-    },
-    {
-      "id": "5399",
-      "students": [],
-      "cause": "",
-      "day": "2025-03-02"
-    },
-    {
-      "id": "19e6",
-      "students": [],
-      "cause": "",
-      "day": "2025-03-02"
+      "day": "2025-03-15"
     }
   ],
   "detail": {
