@@ -68,7 +68,8 @@ export const usePostMovement = () => {
         mutationFn: (props) => API.postMovement(props),
         onSuccess: (data, variables) => {
             variables.set();
-            queryClient.invalidateQueries(['getMovement']);
+            queryClient.invalidateQueries(['getMovement', variables.day]);
+            console.log(variables);
             navigate('/manage/record', {state : 1});
         },
         onError: (err) => {
