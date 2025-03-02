@@ -24,7 +24,7 @@ export default function Record() {
         location.state === 1, location.state === 2, location.state === 3
     ]);
     const [search, setSearch] = useState("");
-    const {today, recordDay, setRecordDay} = useDay();
+    const {today, recordDay, setRecordDay, day : dayComponent, setDay : setDayComponent} = useDay();
     const [day, setDay] = useState(today);
     const debounce = useDebounce(search, 500);
     const [student, setStudent] = useState([]);
@@ -32,6 +32,7 @@ export default function Record() {
     const {status} = useStatusUpdate();
 
     useEffect(() => {
+        setRecordDay(patchDay(day));
         if(!isMovement.some(item=>item === true)) setIsMovement([true, false, false]);
     }, []);
 
@@ -42,7 +43,7 @@ export default function Record() {
         }
     }, [recordDay]);
 
-    console.log(recordDay)
+
     useEffect(() => {
         const fetchData = async () => {
             const students = await getStudent(isFirst ? patchDay(day) : day, search);
@@ -88,7 +89,10 @@ export default function Record() {
                         <Student data={student} day={day}/>
                     ) : null}
                     {isModal ?
-                        <S.Black onClick={()=>setIsModal(false)}>
+                        <S.Black onClick={()=> {
+                            setDayComponent(recordDay);
+                            setIsModal(false)
+                        }}>
                             <Write isModal={isModal} setIsModal={setIsModal}/>
                         </S.Black>
                         :
