@@ -100,9 +100,9 @@ export const deleteLeave = async ({id}) =>{
     }
 }
 
-export const closeMovement = async ({teacherId, day, period})=>{
+export const closeMovement = async ({teacherId, day, period, place})=>{
     try{
-        const res = await axiosInstance.patch(`${API_ENDPOINTS.DATA}/leaveseat?teacherId=${teacherId}&day=${day}&period=${period}`);
+        const res = await axiosInstance.patch(`${API_ENDPOINTS.DATA}/leaveseat?teacherId=${teacherId}&day=${day}&period=${period}&place=${place}`);
         if(res.status !== 200 && res.status !== 201){
             return Promise.reject({
                 status: res.status,
