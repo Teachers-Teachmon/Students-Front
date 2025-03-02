@@ -30,7 +30,7 @@ export default function DateInput({ onChange, isRecord }) {
                 String(inputDate.getDate()).padStart(2, '0')
             }일`;
 
-            onChange(e.target.value);
+            if (onChange) onChange(e.target.value);
             setDay(e.target.value);
             setInputValue(formattedDate);
         }
