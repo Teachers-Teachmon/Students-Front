@@ -74,11 +74,12 @@ export const useCloseMovement = ()=>{
                 return filteredData
             });
             queryClient.setQueryData(['locationAll'], (oldData)=>{
-                const value = Object.keys(oldData[variables.floor-1]).filter((item)=>{
-                    if(item === variables.place){
-                        return oldData[variables.floor-1][item]
+                const value = Object.keys(oldData[variables.floor - 1]).reduce((acc, item) => {
+                    if (item !== variables.place) {
+                        acc[item] = oldData[variables.floor - 1][item]; // 필터링된 항목 추가
                     }
-                })
+                    return acc;
+                }, {});
                 oldData[variables.floor-1] = value;
             })
         },
