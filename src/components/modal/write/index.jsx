@@ -24,7 +24,7 @@ export default function Write({ setIsModal}){
     const [selectStudent, setSelectStudent] = useState([]);
     const [selectStudentShow, setSelectStudentShow] = useState([]);
     const {mutate : postMovement} = usePostMovement();
-    const { day} = useDay();
+    const { day, recordDay, setDay : setDayComponent} = useDay();
     const debounceStudent = useDebounce(search, 150);
 
     useEffect(() => {
@@ -131,7 +131,9 @@ export default function Write({ setIsModal}){
                                     name={"작성완료"}
                                     status={true}
                                     On={() => {
-                                        postMovement({ selectStudentShow, day, time, place, cause, set : setIsModal(false) })}}
+                                        postMovement({ selectStudentShow, day, time, place, cause, recordDay, set : setIsModal(false) })
+                                        setDayComponent(recordDay);
+                                    }}
                                 />
                             </S.Submit>
                         </>
