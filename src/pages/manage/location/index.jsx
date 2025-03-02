@@ -47,7 +47,7 @@ export default function Location() {
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, [windowWidth]);
-    console.log(locationFloor)
+
     return (
         <S.LocationContainer>
             <Header />
