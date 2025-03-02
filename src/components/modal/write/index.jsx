@@ -9,6 +9,7 @@ import useDay from "../../../zustand/day.js";
 import {useDebounce} from "../../../hooks/useDebounce.js";
 import {searchStudent, searchPlace} from "../../../api/search.js";
 import DateInput from "../../dateInput/index.jsx";
+import useAuth from "../../../zustand/auth.js";
 
 export default function Write({ setIsModal}){
     const [time, setTime] = useState("시간");
@@ -26,6 +27,7 @@ export default function Write({ setIsModal}){
     const {mutate : postMovement} = usePostMovement();
     const { day, recordDay, setDay : setDayComponent} = useDay();
     const debounceStudent = useDebounce(search, 150);
+    const {id, name} = useAuth();
 
     useEffect(() => {
         const fetchStudents = async () => {
@@ -131,7 +133,7 @@ export default function Write({ setIsModal}){
                                     name={"작성완료"}
                                     status={true}
                                     On={() => {
-                                        postMovement({ selectStudentShow, day, time, place, cause, recordDay, set : setIsModal(false) })
+                                        postMovement({ selectStudentShow, day, time, place, cause, recordDay,teacher_id : id, teacher_name : name,  set : setIsModal(false) })
                                         setDayComponent(recordDay);
                                     }}
                                 />
