@@ -63,10 +63,26 @@ export const useCloseMovement = ()=>{
         mutationFn : (props)=> API.closeMovement(props),
         onSuccess : (_, variables)=>{
             queryClient.setQueryData(['locationFloor', variables.floor], (oldData)=>{
+                let student;
                 const filteredData = Object.keys(oldData)
-                    .filter((key) => key !== variables.place)
+                    .filter((key) => {
+                        if(key === variables.place){
+                            student = oldData[key].students;
+                            student = student.map(item => ({
+                                ...item,
+                                classNum: String(item.number).slice(0, 1) + '-' + String(item.number).slice(1, 2)
+                            }))}
+                        return key !== variables.place;
+                    })
                     .reduce((acc, key) => {
                         acc[key] = oldData[key];
+                        student.forEach(item => {
+                            if(variables.floor === 4) return;
+                            if(key === item.classNum){
+                                delete item.classNum;
+                                acc[key].students.push(item)
+                            }
+                        })
                         return acc;
                     }, {});
 
