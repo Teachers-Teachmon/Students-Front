@@ -296,7 +296,7 @@ export default function Main() {
                                     <span>학년</span>
                                     <span>자습 인원</span>
                                     <span>이석 인원</span>
-                                    <span>조퇴/결석</span>
+                                    <span>조퇴</span>
                                 </S.StudentInfoHeader>
                                 <S.StudentInfoContent>
                                     {studentCount && studentCount?.map((data) => (
