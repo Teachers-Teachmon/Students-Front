@@ -56,31 +56,6 @@ export default function TeacherList({ closeModal, selectedDate }) {
         }
     }, [todayAfterSchoolTeacher]);
 
-    // const todayTeacher = {
-    //     "day": "2025년 1월 8일 (수)",
-    //     "7th_teacher": "정유진/me",
-    //     "self_study_teacher": {
-    //         "8th_teacher": "최병준",
-    //         "10th_teacher": "장나영"
-    //     },
-    //     "leave_seat_teacher": {
-    //         "8th_teacher": "최병준",
-    //         "10th_teacher": "장나영"
-    //     },
-    //     "night_teacher": "정유진/me"
-    // };
-    // const todayAfterSchoolTeacher = [
-    //     {
-    //         "period": "8~9교시",
-    //         "teacherName": "정유진",
-    //         "place": "객체지향프로그래밍실"
-    //     },
-    //     {
-    //         "period": "8~9교시",
-    //         "teacherName": "정유진",
-    //         "place": "객체지향프로그래밍실"
-    //     }
-    // ]
     const formatTeacherName = (teacher) => {
         if (!teacher) return "X";
         const isMe = teacher.includes("/me");
@@ -93,8 +68,20 @@ export default function TeacherList({ closeModal, selectedDate }) {
         { label: "10~11교시", key: "10th_teacher" },
         { label: "야간", key: "night_teacher" }
     ];
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === "ArrowLeft") {
+                handlePrevDay();
+            } else if (e.key === "ArrowRight") {
+                handleNextDay();
+            }
+        };
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [currentDate]);
+
     return (
-        <S.Container>
+        <S.Container tabIndex={0}>
             <S.HandleButton onClick={handlePrevDay}><img src={LeftGrayButton} /></S.HandleButton>
             <S.Wrapper>
                 <S.Header>
