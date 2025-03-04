@@ -43,7 +43,7 @@ export default function AdminStudent() {
     fetchData();
   }, [debounce, isGrade, status]);
 
-  const [isPatch, setIsPatch] = useState(false);
+
   const addStudent = () => {
     const newValue = {};
     Object.keys(value).forEach((key) => {
@@ -52,7 +52,7 @@ export default function AdminStudent() {
     newValue[1] = { name: "", number: "", isPatch: true, id: null };
 
     setValue(newValue);
-    console.log(newValue)
+
     const newIsOption = {};
     Object.keys(isOption).forEach((key) => {
       newIsOption[Number(key) + 1] = isOption[key];
@@ -80,15 +80,19 @@ export default function AdminStudent() {
   const { mutate: createStudent } = useCreateStudent();
   const { mutate: putStudent } = usePutStudent();
   const saveStudent = (id) => {
-    if (Object.keys(value).some((item) => value[item].number === "" || value[item].name === "")) {
+    if (value[id].name === '' || value[id].number === '') {
       alert("학번과 이름을 입력해주세요");
       return;
     }
 
     const grade = isGrade[0] ? 1 : isGrade[1] ? 2 : 3;
     const onSuccessPatch = () => {
-      setIsPatch(false);
+      value[id].isPatch = false;
+      setValue(Object.values(value).sort((a, b) => a.number - b.number));
+
     }
+
+    value[id].number = Number(value[id].number);
     if (!value[id].id) createStudent({ students: value[id], grade: grade, onSuccessPatch: onSuccessPatch });
     else putStudent({ students: value[id], onSuccessPatch: onSuccessPatch });
   }
@@ -163,41 +167,25 @@ export default function AdminStudent() {
         <S.Info>
           <h1>학생 관리</h1>
           <S.InfoBtn>
-            <SquareBtn name={"돌아가기"} status={true} On={() => {
-              if (isPatch) {
-                if (confirm("정말로 이동하시겠습니까?")) navigate("/admin")
-              } else navigate('/admin')
-            }} />
+            <SquareBtn name={"돌아가기"} status={true} On={() => {navigate('/admin')}} />
           </S.InfoBtn>
         </S.Info>
         <S.Main>
           <S.MainNav>
             <div>
               <CircleBtn name={"1학년"} status={isGrade[0]} On={() => {
-                if (isPatch) {
-                  if (confirm("정말로 이동하시겠습니까?")) setIsGrade([true, false, false])
-                } else {
-                  setIsGrade([true, false, false])
-                }
+                setIsGrade([true, false, false])
               }} />
               <CircleBtn name={"2학년"} status={isGrade[1]} On={() => {
-                if (isPatch) {
-                  if (confirm("정말로 이동하시겠습니까?")) setIsGrade([false, true, false])
-                } else {
-                  setIsGrade([false, true, false])
-                }
+                setIsGrade([false, true, false])
               }} />
               <CircleBtn name={"3학년"} status={isGrade[2]} On={() => {
-                if (isPatch) {
-                  if (confirm("정말로 이동하시겠습니까?")) setIsGrade([false, false, true])
-                } else {
-                  setIsGrade([false, false, true])
-                }
+                setIsGrade([false, false, true])
               }} />
               <SearchBox value={search} change={setSearch} target={"학생"} />
             </div>
             <div>
-              {!isPatch && <S.Btn $color={"#2E6FF2"} onClick={() => { addStudent() }} >+ 추가</S.Btn>}
+              <S.Btn $color={"#2E6FF2"} onClick={() => { addStudent() }} >+ 추가</S.Btn>
             </div>
           </S.MainNav>
           <S.Table>

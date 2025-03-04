@@ -139,12 +139,10 @@ export const usePatchStudent = () => {
 };
 
 export const useCreateStudent = ()=>{
-    const {setStatus} = useStatusUpdate();
     return useMutation({
         mutationFn : (props)=> API.postStudent(props),
         onSuccess:(data, variables)=>{
             variables.onSuccessPatch();
-            setStatus();
         },
         onError:(err)=>{
             console.log("생성 실패 ", err);
