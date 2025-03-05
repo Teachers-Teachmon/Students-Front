@@ -203,7 +203,7 @@ export default function AdminSupervision() {
                             <S.TableContent>
                                 <S.TableLeft>
                                     <div>날짜</div>
-                                    <div>학년</div>
+                                    <div>역할</div>
                                     <div>7교시</div>
                                     <div>8~9교시</div>
                                     <div>10~11교시</div>
