@@ -62,7 +62,14 @@ export default function ClassPrep({ closeModal, selectedClass }) {
             }
         }
 
-        createClassPrep(requestBody, {});
+        createClassPrep(requestBody, {
+            onSuccess: () => {
+                alert('방과후 보강이 완료되었습니다.');
+            },
+            onError: (error) => {
+                alert('방과후 보강에 실패하였습니다.');
+            }
+        });
         closeModal();
     };
 

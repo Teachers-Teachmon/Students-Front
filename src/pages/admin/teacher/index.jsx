@@ -1,12 +1,12 @@
 import * as S from './style.jsx'
 import Header from "../../../components/header/index.jsx";
 import SquareBtn from "../../../components/button/square/index.jsx";
-import {useNavigate} from "react-router-dom";
-import {useEffect, useRef, useState} from "react";
-import {useDebounce} from "../../../hooks/useDebounce.js";
-import {getTeacher} from "../../../api/teacher.js";
-import {usePatchTeacher, useDeleteTeacher, usePostTeacher} from "../../../hooks/useTeacher.js";
-import {useStatusUpdate} from "../../../zustand/statusUpdate.js";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { useDebounce } from "../../../hooks/useDebounce.js";
+import { getTeacher } from "../../../api/teacher.js";
+import { usePatchTeacher, useDeleteTeacher, usePostTeacher } from "../../../hooks/useTeacher.js";
+import { useStatusUpdate } from "../../../zustand/statusUpdate.js";
 import StatusUpdate from "../../../components/status-update/index.jsx";
 import UpVersion from "../../../assets/upVersion.svg";
 import DownVersion from "../../../assets/downVersion.svg";
@@ -18,19 +18,25 @@ export default function AdminTeacher() {
     const [search, setSearch] = useState("");
     const debounce = useDebounce(search, 200);
     const [value, setValue] = useState([]);
-    const {status} = useStatusUpdate();
-    const [isOpen,setIsOpen] = useState([]);
+    const { status } = useStatusUpdate();
+    const [isOpen, setIsOpen] = useState([]);
     const [isCount, setIsCount] = useState(false);
     const [isOption, setIsOption] = useState([]);
+    const [backUp, setBackUp] = useState({});
     useEffect(() => {
-        const fetchData = async ()=>{
+        const fetchData = async () => {
             const data = await getTeacher(debounce, isCount ? "ASC" : "DESC");
+            const newValue = data.data.reduce((acc, item, index) => {
+                acc[index + 1] = { ...item, isPatch: false };
+                return acc;
+            }, {});
             setValue(
                 data.data.reduce((acc, item, index) => {
-                    acc[index + 1] = { ...item, isPatch : false};
+                    acc[index + 1] = { ...item, isPatch: false };
                     return acc;
                 }, {})
             );
+            setBackUp(newValue);
             setIsOpen(data.data.reduce((acc, item, index) => {
                 acc[index + 1] = { status: false };
                 return acc;
@@ -43,75 +49,75 @@ export default function AdminTeacher() {
         fetchData();
     }, [debounce, status, isCount]);
 
-    const change = (fe_id, v, target)=>{
-        const newValue = {...value};
+    const change = (fe_id, v, target) => {
+        const newValue = { ...value };
         newValue[fe_id][target] = v;
         setValue(newValue);
     }
 
-    const {mutate : deleteTeacher} = useDeleteTeacher();
-    const deleteT = (id) =>{
+    const { mutate: deleteTeacher } = useDeleteTeacher();
+    const deleteT = (id) => {
         console.log(value[id].teacher_id)
-        if(!window.confirm('삭제하시겠습니까?')) return
+        if (!window.confirm('삭제하시겠습니까?')) return
         deleteTeacher(value[id].teacher_id);
-        const newValue = {...value};
+        const newValue = { ...value };
         delete newValue[id];
         setValue(newValue);
         handleIsOption(id, false);
     }
-    const addTeacher = ()=>{
+    const addTeacher = () => {
         const newValue = {};
         Object.keys(value).forEach((key) => {
             newValue[Number(key) + 1] = value[key];
         });
-        newValue[1] = { name: "", email: "" , count : 0, role : "TEACHER", teacher_id : null, isPatch : true};
+        newValue[1] = { name: "", email: "", count: 0, role: "TEACHER", teacher_id: null, isPatch: true };
         setValue(newValue);
         const newIsOpen = {};
         Object.keys(isOpen).forEach((key) => {
             newIsOpen[Number(key) + 1] = isOpen[key];
         });
-        newIsOpen[1] = {status : false};
+        newIsOpen[1] = { status: false };
         setIsOpen(newIsOpen);
         const newIsOption = {};
         Object.keys(isOption).forEach((key) => {
             newIsOption[Number(key) + 1] = isOption[key];
         });
-        newIsOption[1] = {status : false};
+        newIsOption[1] = { status: false };
         setIsOption(newIsOption);
     }
 
-    const {mutate : patchTeacher} = usePatchTeacher();
-    const {mutate : postTeacher} = usePostTeacher();
+    const { mutate: patchTeacher } = usePatchTeacher();
+    const { mutate: postTeacher } = usePostTeacher();
     const saveTeacher = (id) => {
-        if(Object.keys(value).some((item)=>value[item].email === "" || value[item].name === "")){
+        if (Object.keys(value).some((item) => value[item].email === "" || value[item].name === "")) {
             alert("값을 채워주세요")
             return;
         }
-        const onSuccessPatch = () =>{
+        const onSuccessPatch = () => {
             handleIsPatch(id, false);
         }
-        if(!value[id].teacher_id) postTeacher({teachers: value[id], onSuccessPatch: onSuccessPatch});
-        else patchTeacher({teachers: value[id], onSuccessPatch: onSuccessPatch});
+        if (!value[id].teacher_id) postTeacher({ teachers: value[id], onSuccessPatch: onSuccessPatch });
+        else patchTeacher({ teachers: value[id], onSuccessPatch: onSuccessPatch });
     }
 
 
-    const changeStatus= (name, status) => {
+    const changeStatus = (name, status) => {
         setIsOpen(prevState =>
             Object.fromEntries(Object.keys(prevState).map(key => [key, { status: false }]))
         );
-        const newValue = {...value};
+        const newValue = { ...value };
         newValue[name].role = status === "일반" ? "TEACHER" : "ADMIN";
         setValue(newValue);
 
     }
-    const handleIsOpen = (id)=>{
-        const newIsOpen = {...isOpen};
+    const handleIsOpen = (id) => {
+        const newIsOpen = { ...isOpen };
         newIsOpen[id].status = !newIsOpen[id].status;
         setIsOpen(newIsOpen);
     }
-    const handleIsOption = (id, status, message)=>{
+    const handleIsOption = (id, status, message) => {
 
-        const newIsOption = {...isOption};
+        const newIsOption = { ...isOption };
         newIsOption[id].status = status;
         setIsOption(newIsOption);
     }
@@ -150,11 +156,15 @@ export default function AdminTeacher() {
         };
     }, [childRefs.current.length]);
 
-    const handleIsPatch = (id, status, message)=>{
-        const newValue = {...value};
+    const handleIsPatch = (id, status, message) => {
+        const newValue = { ...value };
         newValue[id].isPatch = status;
-        if(message === "delete"){
-            delete newValue[id];
+        if (message === "delete") {
+            if (newValue[id].teacher_id) {
+                newValue[id] = { ...backUp[id], isPatch: false };
+            } else {
+                delete newValue[id];
+            }
         }
         setValue(newValue);
         handleIsOption(id, false);
@@ -225,7 +235,7 @@ export default function AdminTeacher() {
                                                 <S.Circle $color = {color}></S.Circle>
                                                 <S.StatusText $color = {color}>{value[item].role === "TEACHER" ? "일반" : "관리자"}</S.StatusText>
                                             </S.Status>
-                                            {isOpen && isOpen[item].status && <StatusUpdate up={isFirst === Number(item) ? 58 : -160} nowStatus={"TEACHER"} changeStatus={changeStatus} name={item}/>}
+                                            {isOpen && isOpen[item].status && <StatusUpdate up={isFirst === Number(item) || isFirst+1 === Number(item) ? 58 : -160} nowStatus={"TEACHER"} changeStatus={changeStatus} name={item}/>}
                                         </div>
                                         <div style={{ display: "flex"}}>
                                             <S.Btn $color = {"white"} onClick={()=>handleIsPatch(item, false, "delete")}>취소</S.Btn>
@@ -244,25 +254,25 @@ export default function AdminTeacher() {
                                     <S.Box2 $length={110}>{value[item].email}</S.Box2>
                                 </div>
                                 <div>
-                                        <S.Status style={{cursor: "default"}} $color = {value[item].role === "TEACHER" ? "#ECF3FD" : "#FDF0EC"}>
-                                            <S.Circle $color = {color}></S.Circle>
-                                            <S.StatusText $color = {color}>{value[item].role === "TEACHER" ? "일반" : "관리자"}</S.StatusText>
-                                        </S.Status>
-                                        <S.Option ref={(el) => (childRefs.current[item] = el)} src={OptionButton} alt={'option'} onClick={()=>handleIsOption(item, true)}/>
+                                    <S.Status style={{cursor: "default"}} $color = {value[item].role === "TEACHER" ? "#ECF3FD" : "#FDF0EC"}>
+                                        <S.Circle $color = {color}></S.Circle>
+                                        <S.StatusText $color = {color}>{value[item].role === "TEACHER" ? "일반" : "관리자"}</S.StatusText>
+                                    </S.Status>
+                                    <S.Option src={OptionButton} alt={'option'} onClick={()=>handleIsOption(item, true)}/>
                                     {isOption && isOption[item].status &&
                                         <S.Options $up = {isFirst+8 === Number(item) || isFirst+9 === Number(item) || isFirst+10 === Number(item) || isFirst+11 === Number(item)|| isFirst+12 === Number(item) ? -60 : 40} onClick={(e) => e.stopPropagation()}>
-                                        <button onClick={()=>deleteT(item)}>삭제</button>
-                                        <button onClick={()=>handleIsPatch(item, true)}>수정</button>
+                                            <button onClick={()=>deleteT(item)}>삭제</button>
+                                            <button onClick={()=>handleIsPatch(item, true)}>수정</button>
                                         </S.Options>}
 
                                 </div>
                             </S.Content>
                         )
                     })}
-                </S.ContentBox>
-            </S.Table>
-        </S.Main>
-      </S.Wrap>
-    </S.Container>
-  )
+                        </S.ContentBox>
+                    </S.Table>
+                </S.Main>
+            </S.Wrap>
+        </S.Container>
+    )
 }

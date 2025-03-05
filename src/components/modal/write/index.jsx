@@ -1,5 +1,4 @@
 import * as S from './style.jsx';
-import CircleBtn from "../../button/circle";
 import { useState, useEffect } from "react";
 import Dropdown from "../../dropdown/nosearch";
 import SquareBtn from "../../button/square";
@@ -10,8 +9,9 @@ import useDay from "../../../zustand/day.js";
 import {useDebounce} from "../../../hooks/useDebounce.js";
 import {searchStudent, searchPlace} from "../../../api/search.js";
 import DateInput from "../../dateInput/index.jsx";
+import useAuth from "../../../zustand/auth.js";
 
-export default function Write({isModal, setIsModal}){
+export default function Write({ setIsModal}){
     const [time, setTime] = useState("시간");
     const [place, setPlace] = useState("장소");
     const [isOpen, setIsOpen] = useState([false, false]);
@@ -25,8 +25,9 @@ export default function Write({isModal, setIsModal}){
     const [selectStudent, setSelectStudent] = useState([]);
     const [selectStudentShow, setSelectStudentShow] = useState([]);
     const {mutate : postMovement} = usePostMovement();
-    const {day: dayComponent} = useDay();
+    const { day, recordDay, setDay : setDayComponent} = useDay();
     const debounceStudent = useDebounce(search, 150);
+    const {id, name} = useAuth();
 
     useEffect(() => {
         const fetchStudents = async () => {
@@ -104,7 +105,6 @@ export default function Write({isModal, setIsModal}){
                             <S.StudentBox>
                                 {selectStudent
                                     ? selectStudent.map((item, idx) => {
-                                        console.log(item)
                                         return(
                                             <S.Student
                                                 key={idx}
@@ -133,7 +133,8 @@ export default function Write({isModal, setIsModal}){
                                     name={"작성완료"}
                                     status={true}
                                     On={() => {
-                                        postMovement({ selectStudentShow, dayComponent, time, place, cause });
+                                        postMovement({ selectStudentShow, day, time, place, cause, recordDay,teacher_id : id, teacher_name : name,  set : setIsModal(false) })
+                                        setDayComponent(recordDay);
                                     }}
                                 />
                             </S.Submit>

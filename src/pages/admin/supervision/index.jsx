@@ -4,6 +4,7 @@ import Circle from '../../../components/button/circle/index.jsx';
 import SquareBtn from '../../../components/button/square/index.jsx';
 import SupervisionCreateModal from '../../../components/modal/supervisionCreate/index.jsx';
 import { useState, useEffect } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import SearchDropdown from '../../../components/dropdown/search/index.jsx';
 import { useGetAssignment, useSaveAutoAssignment } from '../../../hooks/useSupervision.js';
@@ -15,6 +16,7 @@ import { useGetRanking } from '../../../hooks/useSupervision.js'
 
 export default function AdminSupervision() {
     const navigate = useNavigate();
+    const queryClient = useQueryClient();
     const [selMonth, setSelMonth] = useState(new Date().getMonth());
     const [isEditing, setIsEditing] = useState(false);
     const [selectedTeacher, setSelectedTeacher] = useState({});
@@ -22,6 +24,9 @@ export default function AdminSupervision() {
     const [localData, setLocalData] = useState([]);
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [order, setOrder] = useState("ASC");
+    const [teacher, setTeacher] = useState("");
+    const { data: Ranking } = useGetRanking(order, teacher);
 
     const handleTeacherChange = (date, type, timeKey, newTeacher) => {
         setSelectedTeacher(prev => ({
@@ -86,6 +91,7 @@ export default function AdminSupervision() {
 
         saveAssignment(changedData);
         setIsEditing(false);
+        queryClient.refetchQueries(['getRanking', order, teacher]);
     };
 
     function groupByWeek(dataArray) {
@@ -123,10 +129,6 @@ export default function AdminSupervision() {
         return grouped;
     }
     const groupedData = groupByWeek(localData);
-
-    const [teacher, setTeacher] = useState("");
-    const [order, setOrder] = useState("ASC");
-    const { data: Ranking } = useGetRanking(order, teacher);
     return (
         <S.Wrapper>
             {isLoading && <Loading />}
@@ -201,7 +203,7 @@ export default function AdminSupervision() {
                             <S.TableContent>
                                 <S.TableLeft>
                                     <div>날짜</div>
-                                    <div>학년</div>
+                                    <div>역할</div>
                                     <div>7교시</div>
                                     <div>8~9교시</div>
                                     <div>10~11교시</div>
@@ -269,7 +271,7 @@ export default function AdminSupervision() {
                                                     </S.TeacherList>
                                                     {["8th_teacher", "10th_teacher"].map((timeKey, timeIndex) => (
                                                         <S.TeacherList key={timeIndex}>
-                                                            {["self_study_teacehr", "leave_seat_teacher"].map((typeKey, typeIndex) => {
+                                                            {["self_study_teacher", "leave_seat_teacher"].map((typeKey, typeIndex) => {
                                                                 const teacherName = dayData[typeKey]?.[timeKey] ? dayData[typeKey][timeKey].split("/")[0] : "X";
                                                                 const uniqueKey = `${dayData.date}-${typeKey}-${timeKey}`;
 

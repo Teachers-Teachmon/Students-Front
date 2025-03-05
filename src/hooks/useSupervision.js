@@ -3,12 +3,10 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 export const useAutoAssignment = () => {
-    const navigate = useNavigate();
     const queryClient = useQueryClient();
     return useMutation({
         mutationFn: (props) => API.autoAssignment(props),
         onSuccess: () => {
-            navigate('/supervision/detail');
             queryClient.invalidateQueries(['getAssignment']);
             console.log('Assignment 성공');
         },
@@ -29,10 +27,12 @@ export const useGetAssignment = (month) => {
 }
 
 export const useSaveAutoAssignment = () => {
+    const queryClient = useQueryClient();
     return useMutation({
         mutationFn: (props) => API.saveAutoAssignment(props),
         onSuccess: () => {
             console.log('Assignment 저장 성공');
+            queryClient.invalidateQueries(['getAssignment']);
         },
         onError: (err) => {
             console.error('Assignment 저장 실패:', err);

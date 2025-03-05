@@ -15,6 +15,8 @@ import Loading from "../../../components/loading/index.jsx";
 import ZoomIn from "../../../assets/Zoom-in.svg";
 import ZoomOut from "../../../assets/Zoom-out.svg";
 import Reset from "../../../assets/reset.svg";
+import Error from '../../../assets/Error.svg'
+import ErrorText from '../../../assets/Error2.svg'
 
 export default function Location() {
     const navigate = useNavigate();
@@ -87,28 +89,35 @@ export default function Location() {
                         </S.Footer>
                         <TransformComponent>
                             <S.Wrap>
-                                <S.Box>
-                                    {isAllLoading || isFloorLoading ?
-                                        isFloor[0] ? (
-                                            <First width = {windowWidth} data = {locationFloor} set = {setIsModal} fake = {true}/>
-                                        ) : isFloor[1] ? (
-                                            <Second width = {windowWidth} data = {locationFloor} set = {setIsModal} fake = {true}/>
-                                        ) : isFloor[2] ? (
-                                            <Third width = {windowWidth} data = {locationFloor} set = {setIsModal} fake = {true}/>
-                                        ) : isFloor[3] ? (
-                                            <Fourth width = {windowWidth} data = {locationFloor} set = {setIsModal} fake = {true}/>
-                                        ) : null :
-                                        isFloor[0] ? (
-                                            <First width = {windowWidth} data = {locationFloor} set = {setIsModal}/>
-                                        ) : isFloor[1] ? (
-                                            <Second width = {windowWidth} data = {locationFloor} set = {setIsModal}/>
-                                        ) : isFloor[2] ? (
-                                            <Third width = {windowWidth} data = {locationFloor} set = {setIsModal}/>
-                                        ) : isFloor[3] ? (
-                                            <Fourth width = {windowWidth} data = {locationFloor} set = {setIsModal} />
-                                        ) : null
+                                {locationFloor === 500 ?
+                                        <S.Error>
+                                            <img src={Error} alt={'error'} />
+                                            <img src={ErrorText} alt={'error'} />
+                                            자습감독 선생님을 설정해주셔야합니다
+                                        </S.Error> :
+                                    <S.Box>
+                                        {isAllLoading || isFloorLoading ?
+                                            isFloor[0] ? (
+                                                <First width = {windowWidth} data = {locationFloor} set = {setIsModal} fake = {true}/>
+                                            ) : isFloor[1] ? (
+                                                <Second width = {windowWidth} data = {locationFloor} set = {setIsModal} fake = {true}/>
+                                            ) : isFloor[2] ? (
+                                                <Third width = {windowWidth} data = {locationFloor} set = {setIsModal} fake = {true}/>
+                                            ) : isFloor[3] ? (
+                                                <Fourth width = {windowWidth} data = {locationFloor} set = {setIsModal} fake = {true}/>
+                                            ) : null :
+                                            isFloor[0] ? (
+                                                <First width = {windowWidth} data = {locationFloor} set = {setIsModal}/>
+                                            ) : isFloor[1] ? (
+                                                <Second width = {windowWidth} data = {locationFloor} set = {setIsModal}/>
+                                            ) : isFloor[2] ? (
+                                                <Third width = {windowWidth} data = {locationFloor} set = {setIsModal}/>
+                                            ) : isFloor[3] ? (
+                                                <Fourth width = {windowWidth} data = {locationFloor} set = {setIsModal} />
+                                            ) : null
+                                        }
+                                    </S.Box>
                                     }
-                                </S.Box>
                             </S.Wrap>
                         </TransformComponent>
                     </>

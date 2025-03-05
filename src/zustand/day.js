@@ -7,10 +7,12 @@ const useDay = create((set) => ({
     start:'',
     end:'',
     select:false,
+    recordDay : '',
     setDay:(newDay)=>set({day : newDay}),
     setStart:(newStart)=>set({start : newStart}),
     setEnd:(newEnd)=>set({end : newEnd}),
-    setSelect:(newSelect)=>set({select : newSelect})
+    setSelect:(newSelect)=>set({select : newSelect}),
+    setRecordDay:(newRecordDay)=>set({recordDay : newRecordDay})
 }));
 
 export default useDay;

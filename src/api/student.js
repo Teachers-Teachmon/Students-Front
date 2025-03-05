@@ -58,7 +58,8 @@ export const getLocation = async (floor) =>{
         }
         return res;
     }catch (err){
-        return Promise.reject(err);
+        console.log("여기에요")
+        return err;
     }
 }
 
@@ -77,12 +78,12 @@ export const getStudentCount = async () => {
     }
 }
 
-export const postMovement = async ({selectStudentShow, dayComponent, time, place, cause}) =>{
+export const postMovement = async ({selectStudentShow, day, time, place, cause}) =>{
     try{
         const res = await axiosInstance.post(`${API_ENDPOINTS.STUDENT}/leaveseat`, {
             students:selectStudentShow,
             cause:cause,
-            day: dayComponent,
+            day: day,
             period: period[time],
             place: place.id
         });
@@ -92,9 +93,13 @@ export const postMovement = async ({selectStudentShow, dayComponent, time, place
                 message: res.message || 'Request failed'
             });
         }
+        if(res.status === 409){
+            alert('이미 해당 교실에 이석중인 학생이 있습니다.');
+        }
         return res;
 
     }catch (err){
+        alert('이미 해당 교실에 이석중인 학생이 있습니다.');
         return Promise.reject(err);
     }
 }

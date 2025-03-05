@@ -19,9 +19,9 @@ export const getMovement = async (day) =>{
     }
 }
 
-export const getMovementDetail = async (day, teacher_id, periodName) =>{
+export const getMovementDetail = async (day, teacher_id, periodName, place) =>{
     try{
-        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/leaveseat/detail?day=${day}&teacherId=${teacher_id}&period=${period[periodName]}`);
+        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/leaveseat/detail?day=${day}&teacherId=${teacher_id}&period=${period[periodName]}&place=${place}`);
         if(res.status !== 200 && res.status !== 201){
             return Promise.reject({
                 status: res.status,
@@ -68,10 +68,9 @@ export const getLeave = async (day) =>{
 }
 
 
-export const deleteMovement = async ({teacher_id, day, periodName}) =>{
-    console.log(teacher_id, day, periodName)
+export const deleteMovement = async ({teacher_id, day, periodName, place}) =>{
     try{
-        const res = await axiosInstance.delete(`${API_ENDPOINTS.DATA}/leaveseat?teacherId=${teacher_id}&day=${day}&period=${period[periodName]}`);
+        const res = await axiosInstance.delete(`${API_ENDPOINTS.DATA}/leaveseat?teacherId=${teacher_id}&day=${day}&period=${period[periodName]}&place=${place}`);
         if(res.status !== 200 && res.status !== 201){
             return Promise.reject({
                 status: res.status,
@@ -101,9 +100,9 @@ export const deleteLeave = async ({id}) =>{
     }
 }
 
-export const closeMovement = async ({teacherId, day, period})=>{
+export const closeMovement = async ({teacherId, day, period, place})=>{
     try{
-        const res = await axiosInstance.patch(`${API_ENDPOINTS.DATA}/leaveseat?teacherId=${teacherId}&day=${day}&period=${period}`);
+        const res = await axiosInstance.patch(`${API_ENDPOINTS.DATA}/leaveseat?teacherId=${teacherId}&day=${day}&period=${period}&place=${place}`);
         if(res.status !== 200 && res.status !== 201){
             return Promise.reject({
                 status: res.status,

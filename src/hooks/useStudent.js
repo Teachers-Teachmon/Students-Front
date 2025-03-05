@@ -37,8 +37,15 @@ export const useGetLocationFloor = (floor) =>{
         queryKey:['locationFloor', floor],
         queryFn: async () =>{
             const res = await API.getLocation(floor);
+            if(res.status === 500){
+                return res.status;
+            }
             return res.data;
         },
+        onError: (error) => {
+            console.error(error);
+            return error.status;
+        }
     })
 }
 
@@ -54,10 +61,26 @@ export const useGetStudentCount = () => {
 
 export const usePostMovement = () => {
     const navigate = useNavigate();
+    const queryClient = useQueryClient();
 
     return useMutation({
         mutationFn: (props) => API.postMovement(props),
-        onSuccess: () => {
+        onSuccess: (data, variables) => {
+            if(variables.recordDay === variables.day){
+                queryClient.setQueryData(['getMovement', variables.recordDay], (oldData) => {
+                    return [
+                        ...oldData,
+                        {
+                            teacher_name: variables.teacher_name,
+                            teacher_id: variables.teacher_id,
+                            place: variables.place.name,
+                            personnel: variables.selectStudentShow.length,
+                            period: variables.time,
+                            cause: variables.cause
+                        }
+                    ]
+                })
+            }
             navigate('/manage/record', {state : 1});
         },
         onError: (err) => {
@@ -116,12 +139,10 @@ export const usePatchStudent = () => {
 };
 
 export const useCreateStudent = ()=>{
-    const {setStatus} = useStatusUpdate();
     return useMutation({
         mutationFn : (props)=> API.postStudent(props),
         onSuccess:(data, variables)=>{
             variables.onSuccessPatch();
-            setStatus();
         },
         onError:(err)=>{
             console.log("생성 실패 ", err);

@@ -79,7 +79,7 @@ export const NextSup = styled.div`
     }
 `
 
-export const NexSupLeft = styled.div`
+export const NextSupLeft = styled.div`
     width: 50%;
     height: 100%;
     display: flex;
@@ -290,44 +290,6 @@ export const DetailButton = styled.button`
     text-decoration: underline;
   }
 `;
-
-export const BottomRightContent = styled.div`
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    overflow: hidden;
-`
-
-export const TeacherListTop = styled.div`
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    text-align: center;
-    font-size: 1.2rem;
-    font-weight: 500;
-    background-color: #C8DBFF;
-    padding: ${(props) => (props.$isFullscreen ? "1rem" : "0.36rem")};
-`
-
-export const TeacherListContent = styled.div`
-    display: grid;
-    grid-template-rows: auto;
-    grid-template-rows: 1fr 1fr 1fr;
-    text-align: center;
-    background: #FAFAFB;
-`
-
-export const TeacherTable = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    text-align: center;
-    background-color: white;
-    border-bottom: 1px solid #E2E2E2;
-    padding: 0.5rem;
-
-    p {
-        margin: 0;
-        padding: 0.5rem;
-    }
-`
 
 export const CalendarWrapper = styled.div`
     margin: 0 auto;

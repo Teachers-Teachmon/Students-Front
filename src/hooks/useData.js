@@ -32,7 +32,7 @@ export const useDeleteMovement = () => {
         mutationFn: (props) =>API.deleteMovement(props),
         onSuccess: (data, variables) => {
             queryClient.setQueryData(['getMovement', variables.day],(oldData)=>{
-                return oldData.filter((item)=>{return !(item.teacher_id === variables.teacher_id && item.period === variables.periodName)})
+                return oldData.filter((item)=>{return !(item.teacher_id === variables.teacher_id && item.period === variables.periodName && variables.place === item.place )})
             });
         },
         onError: (err) => {
@@ -63,22 +63,39 @@ export const useCloseMovement = ()=>{
         mutationFn : (props)=> API.closeMovement(props),
         onSuccess : (_, variables)=>{
             queryClient.setQueryData(['locationFloor', variables.floor], (oldData)=>{
+                let student;
                 const filteredData = Object.keys(oldData)
-                    .filter((key) => oldData[key].teacherId !== variables.teacherId)
+                    .filter((key) => {
+                        if(key === variables.place){
+                            student = oldData[key].students;
+                            student = student.map(item => ({
+                                ...item,
+                                classNum: String(item.number).slice(0, 1) + '-' + String(item.number).slice(1, 2)
+                            }))}
+                        return key !== variables.place;
+                    })
                     .reduce((acc, key) => {
                         acc[key] = oldData[key];
+                        student.forEach(item => {
+                            if(variables.floor === 4) return;
+                            if(key === item.classNum){
+                                delete item.classNum;
+                                acc[key].students.push(item)
+                            }
+                        })
                         return acc;
                     }, {});
 
                 variables.onSuccessPatch();
                 return filteredData
-            });[{},{},{"3-1":"조퇴","3-2":"자습","3-3":"자습","3-4":"자습"},{}]
+            });
             queryClient.setQueryData(['locationAll'], (oldData)=>{
-                const value = Object.keys(oldData[variables.floor-1]).filter((item)=>{
-                    if(item !== variables.place){
-                        return oldData[variables.floor-1][item]
+                const value = Object.keys(oldData[variables.floor - 1]).reduce((acc, item) => {
+                    if (item !== variables.place) {
+                        acc[item] = oldData[variables.floor - 1][item]; // 필터링된 항목 추가
                     }
-                })
+                    return acc;
+                }, {});
                 oldData[variables.floor-1] = value;
             })
         },

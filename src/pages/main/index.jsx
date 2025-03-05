@@ -61,7 +61,6 @@ export default function Main() {
     }
     const weeks = groupDatesByWeek(startDay, endDay);
     const { data: changeDay, isLoading: isLoadingChange, isError: isErrorChange } = useGetChangeRequest();
-    // const { data: todayTeacher, isLoading: isLoadingTeacher, isError: isErrorTeacher } = useGetDailySupervision(formattedDate);
     const { data: monthlySupervisionData, isLoading: isLoadingMonthlySupervision, isError: isErrorMonthlySupervision } = useGetMonthlySupervision(month + 1);
     const { data: monthlyAfterSchoolData, isLoading: isLoadingMonthlyAfterSchool, isError: isErrorMonthlyAfterSchool } = useGetMonthlyAfterSchool(month + 1);
     const { data: studentCount, isLoading: isLoadingCount, isError: isErrorCount } = useGetStudentCount();
@@ -91,13 +90,6 @@ export default function Main() {
         }
         console.log(completeRateData);
     }, [completeRateData, isLoadingRate]);
-
-    // const formatDateForUI = (date) => {
-    //     console.log(date);
-    //     date = new Date(date);
-    //     const dayNames = ['일', '월', '화', '수', '목', '금', '토'];
-    //     return `${date.getMonth() + 1}월 ${date.getDate()}일 (${dayNames[date.getDay()]})`;
-    // };
 
     const handlePrevMonth = () => {
         setCurrentDate(
@@ -173,12 +165,12 @@ export default function Main() {
                 <div style={{ display: "flex", flexDirection: "column", gap: isFullscreen ? "1.1rem" : "0" }}>
                     <S.MainMiddle>
                         <S.NextSup $isFullscreen={isFullscreen}>
-                            <S.NexSupLeft $isFullscreen={isFullscreen}>
+                            <S.NextSupLeft $isFullscreen={isFullscreen}>
                                 <h3>다음 자습감독 기간</h3>
                                 <S.NextSupDate>D - {nextDay === -1 ? "End" : nextDay === 0 ? "Day" : nextDay}</S.NextSupDate>
                                 <h2>{day}</h2>
                                 <h4>{period}</h4>
-                            </S.NexSupLeft>
+                            </S.NextSupLeft>
                             <S.GoToSupBtn $isFullscreen={isFullscreen} onClick={() => { navigate('/supervision') }}>자습감독<img src={Arrow} /></S.GoToSupBtn>
                         </S.NextSup>
 
@@ -304,7 +296,7 @@ export default function Main() {
                                     <span>학년</span>
                                     <span>자습 인원</span>
                                     <span>이석 인원</span>
-                                    <span>조퇴/결석</span>
+                                    <span>조퇴</span>
                                 </S.StudentInfoHeader>
                                 <S.StudentInfoContent>
                                     {studentCount && studentCount?.map((data) => (
@@ -317,40 +309,6 @@ export default function Main() {
                                     ))}
                                 </S.StudentInfoContent>
                             </S.StudentInfoWrap>
-                            {/* <h2>오늘의 자습감독 선생님</h2>
-                            {!isLoadingTeacher ? (
-                                <S.BottomRightContent>
-                                    <div>
-                                        <S.TeacherListTop $isFullscreen={isFullscreen}>
-                                            <span>{todayTeacher && formatDateForUI(todayTeacher.date)}</span>
-                                            <span>1학년</span>
-                                            <span>2학년</span>
-                                            <span>3학년</span>
-                                        </S.TeacherListTop>
-                                        <S.TeacherListContent>
-                                            {["7th_teacher", "8th_teacher", "10th_teacher"].map((period, index) => (
-                                                <S.TeacherTable key={index}>
-                                                    <p>{index === 0 ? "7교시" : index === 1 ? "8~9교시" : "10~11교시"}</p>
-                                                    {["first_grade", "second_grade", "third_grade"].map((grade, i) => {
-                                                        const teacher = todayTeacher[grade][period] ? todayTeacher[grade][period].replace("/me", "") : "X";
-                                                        const isMe = todayTeacher[grade][period] ? todayTeacher[grade][period].includes("/me") : false;
-                                                        return (
-                                                            <p key={i} style={{ color: isMe ? "#2E6FF2" : "", fontWeight: isMe ? "600" : "" }}>
-                                                                {teacher}
-                                                            </p>
-                                                        );
-                                                    })}
-                                                </S.TeacherTable>
-                                            ))}
-                                        </S.TeacherListContent>
-                                    </div>
-                                </S.BottomRightContent>
-                            ) : (
-                                <S.BottomRightContent>
-                                    <p>로딩중...</p>
-                                </S.BottomRightContent>
-                            )} */}
-
                         </S.BottomRight>
                     </S.MainBottom>
                 </div>
