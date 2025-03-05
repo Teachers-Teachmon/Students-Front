@@ -45,6 +45,12 @@ export const MainNav = styled.div`
     padding: 30px 20px;
     justify-content: space-between;
 `
+export const NoData = styled.p`
+    font-size: 14px;
+    font-weight: 500;
+    color: #667085;
+    text-align: center;
+`
 
 export const MainBox = styled.div`
     display: flex;
