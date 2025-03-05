@@ -14,7 +14,7 @@ export default function AdminSelfStudy() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState({});
   const week = ['MON', 'TUE', 'WED', 'THU'];
-  const periods = ['7교시', '8~9교시', '10~11교시'];
+  const periods = ['7교시', '8~9교시', '10~11교시', '야간'];
   const [branch, setBranch] = useState('1');
   const branches = [1, 2, 3, 4];
   const [isBranchOpen, setIsBranchOpen] = useState(false);
