@@ -11,7 +11,7 @@ export default function Supervision() {
     const [selMonth, setSelMonth] = useState(new Date().getMonth());
     const [localData, setLocalData] = useState([]);
 
-    const { data: TeacherList, isLoading, isError } = useGetAssignment(selMonth + 1);     
+    const { data: TeacherList, isLoading, isError } = useGetAssignment(selMonth + 1);
     useEffect(() => {
         console.log("TeacherList 데이터:", TeacherList);
         if (TeacherList?.data) {
@@ -109,7 +109,7 @@ export default function Supervision() {
                                                         <div>자습</div>
                                                         <div>이석</div>
                                                     </S.TableRightHeader>
-                                                    <S.TeacherList>
+                                                    {/* <S.TeacherList>
                                                         <div>
                                                             <S.TeacherName>
                                                                 {dayData["7th_teacher"] ? dayData["7th_teacher"].split("/")[0] : "X"}
@@ -120,8 +120,8 @@ export default function Supervision() {
                                                                 {dayData["7th_teacher"] ? dayData["7th_teacher"].split("/")[0] : "X"}
                                                             </S.TeacherName>
                                                         </div>
-                                                    </S.TeacherList>
-                                                    {["8th_teacher", "10th_teacher"].map((timeKey, timeIndex) => {
+                                                    </S.TeacherList> */}
+                                                    {["7th_teacher" ,"8th_teacher", "10th_teacher"].map((timeKey, timeIndex) => {
                                                         const selfTeacher = dayData.self_study_teacher?.[timeKey];
                                                         const leaveTeacher = dayData.leave_seat_teacher?.[timeKey];
                                                         const selfName = selfTeacher ? selfTeacher.split("/")[0] : "X";
