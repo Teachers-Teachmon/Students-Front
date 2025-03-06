@@ -77,12 +77,13 @@ export default function AdminSupervision() {
     const handleSave = () => {
         const changedData = localData.map(dayData => ({
             date: dayData.date,
-            "7th_teacher": parseInt(dayData["7th_teacher"]?.split("/")[1]),
             self_study: {
+                "7th_teacher": parseInt(dayData.self_study_teacher["7th_teacher"]?.split("/")[1]),
                 "8th_teacher": parseInt(dayData.self_study_teacher["8th_teacher"]?.split("/")[1]),
                 "10th_teacher": parseInt(dayData.self_study_teacher["10th_teacher"]?.split("/")[1])
             },
             leave_seat: {
+                "7th_teacher": parseInt(dayData.leave_seat_teacher["7th_teacher"]?.split("/")[1]),
                 "8th_teacher": parseInt(dayData.leave_seat_teacher["8th_teacher"]?.split("/")[1]),
                 "10th_teacher": parseInt(dayData.leave_seat_teacher["10th_teacher"]?.split("/")[1])
             },
