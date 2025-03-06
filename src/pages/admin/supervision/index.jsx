@@ -235,7 +235,7 @@ export default function AdminSupervision() {
                                                         <div>자습</div>
                                                         <div>이석</div>
                                                     </S.TableRightHeader>
-                                                    <S.TeacherList>
+                                                    {/* <S.TeacherList>
                                                         <div>
                                                             {isEditing ? (
                                                                 <SearchDropdown
@@ -268,8 +268,8 @@ export default function AdminSupervision() {
                                                                 </S.TeacherName>
                                                             )}
                                                         </div>
-                                                    </S.TeacherList>
-                                                    {["8th_teacher", "10th_teacher"].map((timeKey, timeIndex) => (
+                                                    </S.TeacherList> */}
+                                                    {["7th_teacher" ,"8th_teacher", "10th_teacher"].map((timeKey, timeIndex) => (
                                                         <S.TeacherList key={timeIndex}>
                                                             {["self_study_teacher", "leave_seat_teacher"].map((typeKey, typeIndex) => {
                                                                 const teacherName = dayData[typeKey]?.[timeKey] ? dayData[typeKey][timeKey].split("/")[0] : "X";
