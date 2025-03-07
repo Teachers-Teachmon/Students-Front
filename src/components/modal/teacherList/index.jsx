@@ -116,22 +116,22 @@ export default function TeacherList({ closeModal, selectedDate }) {
                                     <>
                                         {periods.map((item, idx) => {
                                             const { label, key } = item;
-                                            if (key === "7th_teacher") {
-                                                const seventhStr = todayTeacher && todayTeacher["7th_teacher"] ? todayTeacher["7th_teacher"] : "X";
-                                                const { name: seventhName, isMe: isMeSeventh } = formatTeacherName(seventhStr);
-                                                return (
-                                                    <S.TeacherTable key={idx}>
-                                                        <p>{label}</p>
-                                                        <p style={{ color: isMeSeventh ? "#2E6FF2" : "", fontWeight: isMeSeventh ? "bold" : "normal" }}>
-                                                            {seventhName}
-                                                        </p>
-                                                        <p style={{ color: isMeSeventh ? "#2E6FF2" : "", fontWeight: isMeSeventh ? "bold" : "normal" }}>
-                                                            {seventhName}
-                                                        </p>
-                                                    </S.TeacherTable>
-                                                );
-                                            }
-                                            else if (key === "night_teacher") {
+                                            // if (key === "7th_teacher") {
+                                            //     const seventhStr = todayTeacher && todayTeacher["7th_teacher"] ? todayTeacher["7th_teacher"] : "X";
+                                            //     const { name: seventhName, isMe: isMeSeventh } = formatTeacherName(seventhStr);
+                                            //     return (
+                                            //         <S.TeacherTable key={idx}>
+                                            //             <p>{label}</p>
+                                            //             <p style={{ color: isMeSeventh ? "#2E6FF2" : "", fontWeight: isMeSeventh ? "bold" : "normal" }}>
+                                            //                 {seventhName}
+                                            //             </p>
+                                            //             <p style={{ color: isMeSeventh ? "#2E6FF2" : "", fontWeight: isMeSeventh ? "bold" : "normal" }}>
+                                            //                 {seventhName}
+                                            //             </p>
+                                            //         </S.TeacherTable>
+                                            //     );
+                                            // }
+                                            if (key === "night_teacher") {
                                                 const nightStr = todayTeacher && todayTeacher.night_teacher ? todayTeacher.night_teacher : "X";
                                                 const { name: nightName, isMe: isMeNight } = formatTeacherName(nightStr);
                                                 return (
