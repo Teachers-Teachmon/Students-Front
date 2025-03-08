@@ -96,6 +96,9 @@ const FullPageComponent = () => {
             }
         };
         checkHealth();
+        if(window.innerWidth < 600){
+            navigate('/login');
+        }
     }, []);
 
     useEffect(()=>{
