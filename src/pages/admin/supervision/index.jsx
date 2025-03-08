@@ -154,9 +154,9 @@ export default function AdminSupervision() {
                         <S.Menu>
                             <S.MenuBox $width={50}>순위</S.MenuBox>
                             <S.MenuBox $width={70}>이름</S.MenuBox>
-                            <S.MenuBox $width={60}>7교시</S.MenuBox>
-                            <S.MenuBox $width={80}>8~11교시</S.MenuBox>
-                            <S.MenuBox $width={50}>야간</S.MenuBox>
+                            <S.MenuBox $width={60}>자습</S.MenuBox>
+                            <S.MenuBox $width={60}>이석</S.MenuBox>
+                            <S.MenuBox $width={60}>야간</S.MenuBox>
                             <S.MenuBox $width={35}>합계</S.MenuBox>
                         </S.Menu>
                     </S.DrawerHeader>
@@ -166,9 +166,9 @@ export default function AdminSupervision() {
                                 <S.TeacherBox key={item.teacher_id}>
                                     <S.MenuBox $width={50}>{item.rank}위</S.MenuBox>
                                     <S.MenuBox $width={70}>{item.name}</S.MenuBox>
-                                    <S.MenuBox $width={60}>{item.SEVEN_PERIOD_COUNT}회</S.MenuBox>
-                                    <S.MenuBox $width={80}>{item.EIGHT_AND_ELEVEN_PERIOD_COUNT}회</S.MenuBox>
-                                    <S.MenuBox $width={50}>{item.NIGHT_COUNT}회</S.MenuBox>
+                                    <S.MenuBox $width={60}>{item.SELF_STUDY_COUNT}회</S.MenuBox>
+                                    <S.MenuBox $width={60}>{item.LEAVE_SEAT_COUNT}회</S.MenuBox>
+                                    <S.MenuBox $width={60}>{item.NIGHT_COUNT}회</S.MenuBox>
                                     <S.MenuBox $width={35}>{item.total}회</S.MenuBox>
                                 </S.TeacherBox>
                             )
