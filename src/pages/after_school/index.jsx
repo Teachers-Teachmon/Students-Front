@@ -79,8 +79,8 @@ export default function After_school() {
             <S.Content>
                 <S.LeftContainer>
                     <S.TodayClasses>
-                        <h1>나의 오늘 방과후</h1>
-                        {myTodayClasses.length === 0 ? (
+                    <h1>나의 오늘 방과후</h1>
+                        {myTodayClasses.filter(cls => cls.name !== "자습").length === 0 ? (
                             <p>오늘은 방과후 수업이 없습니다.</p>
                         ) : (
                             myTodayClasses.map((cls, i) => (
