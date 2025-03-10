@@ -352,7 +352,7 @@ export default function SupervisionChange() {
                                                                             {teacherName}
                                                                         </div>
                                                                         <div
-                                                                            key={uniqueKey}
+                                                                            key={`${uniqueKey}-under`}
                                                                             onClick={() => {
                                                                                 if (teacherInfo && teacherInfo.includes('/me')) {
                                                                                     handleSelectTeacher(uniqueKey, teacherInfo ? parseInt(teacherInfo.split('/')[1]) || null : null, true, teacherName);
