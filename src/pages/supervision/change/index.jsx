@@ -25,7 +25,7 @@ export default function SupervisionChange() {
     const [selectedPeriod, setSelectedPeriod] = useState("");
     const [weeks, setWeeks] = useState([]);
     const { data: TeacherList = { data: [] }, isLoading, isError } = useGetMonthlySupervision(currentMonth);
-    const { data: fixedTeacherList, isLoading: isLoadingFixed, isError: isErrorFixed } = useGetFixedTeachers(selectedDay, selectedType, selectedPeriod);
+    const { data: fixedTeacherList, isLoading: isLoadingFixed, isError: isErrorFixed } = useGetFixedTeachers(selectedDay, selectedType, selectedPeriod, { enabled: (selectedDay && selectedType && selectedPeriod) });
     const { mutate: sendChangeRequest } = useSendChangeRequest();
 
     const convertPeriod = (periodKey) => {
