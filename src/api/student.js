@@ -34,7 +34,7 @@ export const schoolOutStudent = async (studentID) =>{
 
 export const getLocationAll = async ()=>{
     try{
-        const res = await axiosInstance.get(`/location/ALL`);
+        const res = await axiosInstance.get(`${API_ENDPOINTS.STUDENT}/location`);
         if(res.status!==200){
             return new Promise.reject({
                 status:res.status,
@@ -49,7 +49,7 @@ export const getLocationAll = async ()=>{
 
 export const getLocation = async (floor) =>{
     try {
-        const res = await axiosInstance.get(`/location`);
+        const res = await axiosInstance.get(`${API_ENDPOINTS.STUDENT}/location/${floor}`);
         if(res.status!==200){
             return new Promise.reject({
                 status:res.status,
