@@ -67,6 +67,14 @@ export const BottomProfile = styled.img`
     width: 24%;
     border-radius: 50%;
 `
+
+export const BottomText = styled.a`
+    white-space: nowrap;
+    cursor: pointer;
+    text-decoration: none;
+    color: blue;
+`
+
 export  const Logout = styled.div`
     margin-top: 20px;
     display: flex;
