@@ -22,8 +22,6 @@ export default function AdminSelfStudy() {
   const [selectedGrade, setSelectedGrade] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
 
-
-
   const [selectedRows, setSelectedRows] = useState({
     MON: [],
     TUE: [],
@@ -47,7 +45,6 @@ export default function AdminSelfStudy() {
   useEffect(() => {
     console.log("현재 selectedRows:", selectedRows);
   }, [selectedRows]);
-
 
   const mapPeriod = (p) => {
     switch (p) {
@@ -134,8 +131,6 @@ export default function AdminSelfStudy() {
     });
   };
   
-
-
   const removeRow = (day, rowIndex) => {
     setSelectedRows(prev => {
       const newRows = { ...prev };
