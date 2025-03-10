@@ -18,7 +18,7 @@ export const MainHeader = styled.div`
 
 export const Buttons = styled.div`
     display: flex;
-    gap: 10px;
+    gap: 1rem;
 `;
 
 export const Months = styled.div`

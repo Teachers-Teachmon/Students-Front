@@ -2,6 +2,7 @@ import Header from '../../components/header/index.jsx';
 import * as S from './style.jsx';
 import Circle from '../../components/button/circle/index.jsx';
 import SquareBtn from '../../components/button/square/index.jsx';
+import SearchBox from '../../components/searchBox/index.jsx';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGetAssignment } from '../../hooks/useSupervision.js';
@@ -10,6 +11,7 @@ export default function Supervision() {
     const navigate = useNavigate();
     const [selMonth, setSelMonth] = useState(new Date().getMonth());
     const [localData, setLocalData] = useState([]);
+    const [teacher, setTeacher] = useState("");
 
     const { data: TeacherList, isLoading, isError } = useGetAssignment(selMonth + 1);
     useEffect(() => {
@@ -62,6 +64,7 @@ export default function Supervision() {
                 <S.MainHeader>
                     <h1>자습감독 일정</h1>
                     <S.Buttons>
+                        <SearchBox up={100} target="이름" change={setTeacher}/>
                         <SquareBtn name="교체하기" status={true} On={() => { navigate('/supervision/change') }} />
                     </S.Buttons>
                 </S.MainHeader>
@@ -128,22 +131,22 @@ export default function Supervision() {
                                                         const leaveName = leaveTeacher ? leaveTeacher.split("/")[0] : "X";
                                                         return (
                                                             <S.TeacherList key={timeIndex}>
-                                                                <div>
+                                                                <div style={{ color: selfName === teacher ? "#2E6FF2" : "", fontWeight: selfName === teacher ? "500" : "normal" }}>
                                                                     <S.TeacherName>{selfName}</S.TeacherName>
                                                                 </div>
-                                                                <div>
+                                                                <div style={{ color: leaveName === teacher ? "#2E6FF2" : "", fontWeight: leaveName === teacher ? "500" : "normal" }}>
                                                                     <S.TeacherName>{leaveName}</S.TeacherName>
                                                                 </div>
                                                             </S.TeacherList>
                                                         );
                                                     })}
                                                     <S.TeacherList>
-                                                        <div>
+                                                        <div style={{ color: dayData.night_teacher ? dayData.night_teacher.split("/")[0] === teacher ? "#2E6FF2" : "" : null, fontWeight: dayData.night_teacher ? dayData.night_teacher.split("/")[0] === teacher ? "500" : "normal" : "normal" }}>
                                                             <S.TeacherName>
                                                                 {dayData.night_teacher ? dayData.night_teacher.split("/")[0] : "X"}
                                                             </S.TeacherName>
                                                         </div>
-                                                        <div>
+                                                        <div style={{ color: dayData.night_teacher ? dayData.night_teacher.split("/")[0] === teacher ? "#2E6FF2" : "" : null, fontWeight: dayData.night_teacher ? dayData.night_teacher.split("/")[0] === teacher ? "500" : "normal" : "normal" }}>
                                                             <S.TeacherName>
                                                                 {dayData.night_teacher ? dayData.night_teacher.split("/")[0] : "X"}
                                                             </S.TeacherName>
