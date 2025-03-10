@@ -239,7 +239,7 @@ export default function SupervisionChange() {
                                                             <div>이석</div>
                                                         </S.TableRightHeader>
                                                         <S.TeacherList>
-                                                            {['7th_teacher'].map((classKey) => ['common_teacher'].map((typeKey) => {
+                                                            {/* {['7th_teacher'].map((classKey) => ['common_teacher'].map((typeKey) => {
                                                                 if (dayData.empty) return <div key={`${dayData.day}-${typeKey}`} style={{ visibility: "hidden" }} />;
 
                                                                 const teacherInfo = dayData[classKey];
@@ -289,8 +289,8 @@ export default function SupervisionChange() {
                                                                         </div>
                                                                     </>
                                                                 )
-                                                            }))}
-                                                            {['8th_teacher', '10th_teacher'].map((classKey) =>
+                                                            }))} */}
+                                                            {['7th_teacher' ,'8th_teacher', '10th_teacher'].map((classKey) =>
                                                                 ['self_study_teacher', 'leave_seat_teacher',].map((typeKey) => {
                                                                     if (dayData.empty) return <div key={`${dayData.day}-${typeKey}`} style={{ visibility: "hidden" }} />;
                                                                     

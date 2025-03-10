@@ -14,7 +14,7 @@ export default function Manage(){
     const hour = new Date().getHours();
     const minute = new Date().getMinutes();
     const {today} = useDay();
-    const [day, setDay] = useState('');
+    const [day, setDay] = useState(today);
     const navigate = useNavigate()
     const [grade, setGrade] = useState([
         true,false,false
@@ -149,8 +149,8 @@ export default function Manage(){
                         </S.MainBox>
                     </S.MainNav>
                     <S.Section>
-                        {/*weekday ? <S.NoData>오늘은 방과후가 없습니다.</S.NoData> :*/}
-                        {
+                        {weekday ? <S.NoData>오늘은 방과후가 없습니다.</S.NoData> :
+                             student && student['1반']?.length === 0 && student['2반']?.length === 0 && student['3반']?.length === 0 && student['4반']?.length === 0 ? <S.NoData>데이터가 없습니다</S.NoData> :
                                 !isLoading && student ?
                                     <>
                                         <StudentGraph data={student['1반']} grade={gradeIndex()[0]} classNum = {1}/>

@@ -77,12 +77,13 @@ export default function AdminSupervision() {
     const handleSave = () => {
         const changedData = localData.map(dayData => ({
             date: dayData.date,
-            "7th_teacher": parseInt(dayData["7th_teacher"]?.split("/")[1]),
             self_study: {
+                "7th_teacher": parseInt(dayData.self_study_teacher["7th_teacher"]?.split("/")[1]),
                 "8th_teacher": parseInt(dayData.self_study_teacher["8th_teacher"]?.split("/")[1]),
                 "10th_teacher": parseInt(dayData.self_study_teacher["10th_teacher"]?.split("/")[1])
             },
             leave_seat: {
+                "7th_teacher": parseInt(dayData.leave_seat_teacher["7th_teacher"]?.split("/")[1]),
                 "8th_teacher": parseInt(dayData.leave_seat_teacher["8th_teacher"]?.split("/")[1]),
                 "10th_teacher": parseInt(dayData.leave_seat_teacher["10th_teacher"]?.split("/")[1])
             },
@@ -153,9 +154,9 @@ export default function AdminSupervision() {
                         <S.Menu>
                             <S.MenuBox $width={50}>순위</S.MenuBox>
                             <S.MenuBox $width={70}>이름</S.MenuBox>
-                            <S.MenuBox $width={60}>7교시</S.MenuBox>
-                            <S.MenuBox $width={80}>8~11교시</S.MenuBox>
-                            <S.MenuBox $width={50}>야간</S.MenuBox>
+                            <S.MenuBox $width={60}>자습</S.MenuBox>
+                            <S.MenuBox $width={60}>이석</S.MenuBox>
+                            <S.MenuBox $width={60}>야간</S.MenuBox>
                             <S.MenuBox $width={35}>합계</S.MenuBox>
                         </S.Menu>
                     </S.DrawerHeader>
@@ -165,9 +166,9 @@ export default function AdminSupervision() {
                                 <S.TeacherBox key={item.teacher_id}>
                                     <S.MenuBox $width={50}>{item.rank}위</S.MenuBox>
                                     <S.MenuBox $width={70}>{item.name}</S.MenuBox>
-                                    <S.MenuBox $width={60}>{item.SEVEN_PERIOD_COUNT}회</S.MenuBox>
-                                    <S.MenuBox $width={80}>{item.EIGHT_AND_ELEVEN_PERIOD_COUNT}회</S.MenuBox>
-                                    <S.MenuBox $width={50}>{item.NIGHT_COUNT}회</S.MenuBox>
+                                    <S.MenuBox $width={60}>{item.SELF_STUDY_COUNT}회</S.MenuBox>
+                                    <S.MenuBox $width={60}>{item.LEAVE_SEAT_COUNT}회</S.MenuBox>
+                                    <S.MenuBox $width={60}>{item.NIGHT_COUNT}회</S.MenuBox>
                                     <S.MenuBox $width={35}>{item.total}회</S.MenuBox>
                                 </S.TeacherBox>
                             )
@@ -235,7 +236,7 @@ export default function AdminSupervision() {
                                                         <div>자습</div>
                                                         <div>이석</div>
                                                     </S.TableRightHeader>
-                                                    <S.TeacherList>
+                                                    {/* <S.TeacherList>
                                                         <div>
                                                             {isEditing ? (
                                                                 <SearchDropdown
@@ -268,8 +269,8 @@ export default function AdminSupervision() {
                                                                 </S.TeacherName>
                                                             )}
                                                         </div>
-                                                    </S.TeacherList>
-                                                    {["8th_teacher", "10th_teacher"].map((timeKey, timeIndex) => (
+                                                    </S.TeacherList> */}
+                                                    {["7th_teacher" ,"8th_teacher", "10th_teacher"].map((timeKey, timeIndex) => (
                                                         <S.TeacherList key={timeIndex}>
                                                             {["self_study_teacher", "leave_seat_teacher"].map((typeKey, typeIndex) => {
                                                                 const teacherName = dayData[typeKey]?.[timeKey] ? dayData[typeKey][timeKey].split("/")[0] : "X";

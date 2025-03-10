@@ -1,4 +1,14 @@
 {
+  "teacherCount":[
+    {
+        "rank": 1,
+        "name": "티치몬",
+        "SELF_STUDY_COUNT": 10,
+        "LEAVE_SEAT_COUNT": 10,
+        "NIGHT_COUNT": 10,
+        "total": 10
+    }
+],
   "leaveseatData": [
     {
       "teacher_name": "티치몬",
