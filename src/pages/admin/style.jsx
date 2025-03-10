@@ -442,6 +442,8 @@ export const LeaveStudent = styled.div`
 export const LeaveStudentMain = styled.div`
     display: flex;
     flex-direction: column;
+    max-height: 1000vh;
+    overflow-y: auto;
 `
 export const LeaveStudentRow = styled.div`
     display: flex;
