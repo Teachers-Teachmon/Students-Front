@@ -159,13 +159,13 @@ export default function SupervisionChange() {
                 teacher_id: sender.teacherId,
                 day: `${senderInfo[3]}-${senderInfo[4]}-${senderInfo[5]}`,
                 period: convertPeriod(senderInfo[2]),
-                type: senderInfo[1] === "self_study_teacher" ? "SELF_STUDY_SUPERVISION" : senderInfo[1] === "leave_seat_teacher" ? "LEAVE_SEAT_SUPERVISON" : senderInfo[1] === "night_teacher" ? "NIGHT_SUPERVISION" : "COMMON_SUPERVISION"
+                type: senderInfo[1] === "self_study_teacher" ? "SELF_STUDY_SUPERVISION" : senderInfo[1] === "leave_seat_teacher" ? "LEAVE_SEAT_SUPERVISION" : senderInfo[1] === "night_teacher" ? "NIGHT_SUPERVISION" : "COMMON_SUPERVISION"
             },
             recipient: {
                 teacher_id: recipient.teacherId,
                 day: `${recipientInfo[3]}-${recipientInfo[4]}-${recipientInfo[5]}`,
                 period: convertPeriod(recipientInfo[2]),
-                type: recipientInfo[1] === "self_study_teacher" ? "SELF_STUDY_SUPERVISION" : recipientInfo[1] === "leave_seat_teacher" ? "LEAVE_SEAT_SUPERVISON" : recipientInfo[1] === "night_teacher" ? "NIGHT_SUPERVISION" : "COMMON_SUPERVISION"
+                type: recipientInfo[1] === "self_study_teacher" ? "SELF_STUDY_SUPERVISION" : recipientInfo[1] === "leave_seat_teacher" ? "LEAVE_SEAT_SUPERVISION" : recipientInfo[1] === "night_teacher" ? "NIGHT_SUPERVISION" : "COMMON_SUPERVISION"
             },
             cause: exchangeReason || "사유 없음"
         };
