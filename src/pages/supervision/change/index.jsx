@@ -71,7 +71,7 @@ export default function SupervisionChange() {
             if (!selectedTeacher.some(item => item.uniqueKey === uniqueKey)) {
                 setIsSelfSelected(true);
                 setSelectedDay(uniqueKey.split('-').slice(3).join('-'));
-                setselectedType(uniqueKey.split('-')[1] === "self_study_teacher" ? "SELF_STUDY_SUPERVISION" : uniqueKey.split('-')[1] === "leave_seat_teacher" ? "LEAVE_SEAT_TEACHER" : uniqueKey.split('-')[1] === "night_teacher" ? "NIGHT_SUPERVISION" : "COMMON_SUPERVISION");
+                setselectedType(uniqueKey.split('-')[1] === "self_study_teacher" ? "SELF_STUDY_SUPERVISION" : uniqueKey.split('-')[1] === "leave_seat_teacher" ? "LEAVE_SEAT_SUPERVISION" : uniqueKey.split('-')[1] === "night_teacher" ? "NIGHT_SUPERVISION" : "COMMON_SUPERVISION");
                 setSelectedPeriod(convertPeriod(uniqueKey.split('-')[2]));
                 setSelectedTeacher(prev => [...prev, { uniqueKey, teacherId, teacherName }]);
             } else {
