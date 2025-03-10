@@ -46,8 +46,8 @@ export default function Header() {
         }
       </S.NavList>
       <S.Bottom>
-        <S.BottomProfile src={userprofile} />
-        {username}
+          <S.BottomText href="링크">버그 제보</S.BottomText>
+        <S.BottomProfile src={userprofile}>{username}</S.BottomProfile>
       </S.Bottom>
         <S.Logout onClick={() => { logout() }}>
             <img draggable="false" src={Logout} alt={"logoutIcon"} width={24}/>
