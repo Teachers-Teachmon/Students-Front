@@ -57,37 +57,44 @@ export default function SupervisionChange() {
     }, [TeacherList]);
 
     const handleSelectTeacher = (uniqueKey, teacherId, isSelf, teacherName) => {
+        if (teacherName === "X") {
+            alert("미배정된 선생님과 교체할 수 없습니다.");
+            return;
+        }
+
+        const isAlreadySelected = selectedTeacher.some(item => item.uniqueKey === uniqueKey);
+        if (isAlreadySelected) {
+            if (isSelf) setIsSelfSelected(false);
+            setSelectedTeacher(prev => prev.filter(item => item.uniqueKey !== uniqueKey));
+            return;
+        }
 
         if (isSelf && selectedTeacher.some(item => item.teacherId === teacherId)) {
             alert("자신과 교체할 수 없습니다.");
             return;
         }
 
-        if (teacherName === "X") {
-            alert("미배정된 선생님과 교체할 수 없습니다.");
-            return
-        }
-
         if (isSelf) {
-            if (!selectedTeacher.some(item => item.uniqueKey === uniqueKey)) {
-                setIsSelfSelected(true);
-                setSelectedDay(uniqueKey.split('-').slice(3).join('-'));
-                setselectedType(uniqueKey.split('-')[1] === "self_study_teacher" ? "SELF_STUDY_SUPERVISION" : uniqueKey.split('-')[1] === "leave_seat_teacher" ? "LEAVE_SEAT_SUPERVISION" : uniqueKey.split('-')[1] === "night_teacher" ? "NIGHT_SUPERVISION" : "COMMON_SUPERVISION");
-                setSelectedPeriod(convertPeriod(uniqueKey.split('-')[2]));
-                setSelectedTeacher(prev => [...prev, { uniqueKey, teacherId, teacherName }]);
-            } else {
-                setIsSelfSelected(false);
-                setSelectedTeacher(prev => prev.filter(item => item.uniqueKey !== uniqueKey));
-            }
+            setIsSelfSelected(true);
+            const parts = uniqueKey.split('-');
+            setSelectedDay(parts.slice(3).join('-'));
+            const typeKey = parts[1];
+            const type =
+                typeKey === "self_study_teacher"
+                    ? "SELF_STUDY_SUPERVISION"
+                    : typeKey === "leave_seat_teacher"
+                        ? "LEAVE_SEAT_SUPERVISION"
+                        : typeKey === "night_teacher"
+                            ? "NIGHT_SUPERVISION"
+                            : "COMMON_SUPERVISION";
+            setselectedType(type);
+            setSelectedPeriod(convertPeriod(parts[2]));
+            setSelectedTeacher(prev => [...prev, { uniqueKey, teacherId, teacherName }]);
             return;
         }
 
-        setSelectedTeacher((prev) => {
-            const alreadySelected = prev.some(item => item.uniqueKey === uniqueKey);
-            const updated = alreadySelected
-                ? prev.filter(item => item.uniqueKey !== uniqueKey)
-                : [...prev, { uniqueKey, teacherId, teacherName }];
-
+        setSelectedTeacher(prev => {
+            const updated = [...prev, { uniqueKey, teacherId, teacherName }];
             if (updated.length === 2) {
                 setIsModalOpen(true);
             }
@@ -291,10 +298,10 @@ export default function SupervisionChange() {
                                                                     </>
                                                                 )
                                                             }))} */}
-                                                            {['7th_teacher' ,'8th_teacher', '10th_teacher'].map((classKey) =>
+                                                            {['7th_teacher', '8th_teacher', '10th_teacher'].map((classKey) =>
                                                                 ['self_study_teacher', 'leave_seat_teacher',].map((typeKey) => {
                                                                     if (dayData.empty) return <div key={`${dayData.day}-${typeKey}`} style={{ visibility: "hidden" }} />;
-                                                                    
+
                                                                     const teacherInfo = dayData?.[typeKey]?.[classKey];
                                                                     const teacherName = teacherInfo ? teacherInfo.split('/')[0] : "X";
                                                                     const uniqueKey = `${dayData.day}-${typeKey}-${classKey}-${dayData.date}`;
