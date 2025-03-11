@@ -53,10 +53,10 @@ export default function Movement({ day , isFirst}) {
                                     >삭제</S.DeleteBox>  : null
                                 }
                             </S.Content>
-                            {isModal ?<DetailMovement data={detail} setIsModal={setIsModal} /> : null}
                         </>
                     )
                 })}
+                {isModal ?<DetailMovement data={detail} setIsModal={setIsModal} /> : null}
             </S.ContentBox>
         </S.MovementContainer>
     )
