@@ -32,6 +32,7 @@ export default function SupervisionChange() {
         if (periodKey.includes("7th")) return "SEVEN_PERIOD";
         if (periodKey.includes("8th")) return "EIGHT_AND_NINE_PERIOD";
         if (periodKey.includes("10th")) return "TEN_AND_ELEVEN_PERIOD";
+        if (periodKey.includes("night")) return "NIGHT_PERIOD";
         return "";
     };
     const convertPeriodKorean = (periodKey) => {
