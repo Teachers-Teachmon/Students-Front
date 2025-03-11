@@ -46,8 +46,11 @@ export default function Header() {
         }
       </S.NavList>
       <S.Bottom>
-        <S.BottomProfile src={userprofile} />
-        {username}
+          <S.BottomText href="https://forms.gle/tmEfEqewhny9XTtM9" target = "_blank">버그 제보</S.BottomText>
+          <div>
+              <S.BottomProfile src={userprofile} />
+              <span>{username}</span>
+          </div>
       </S.Bottom>
         <S.Logout onClick={() => { logout() }}>
             <img draggable="false" src={Logout} alt={"logoutIcon"} width={24}/>

@@ -56,17 +56,33 @@ export const MenuIcon = styled.img`
 
 export const Bottom = styled.div`
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-weight: bold;
-    gap: 15%;
+    gap: 1rem;
     margin-top: auto;
+    flex-direction: column;
+    
+    div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        gap: 15%;
+    }
 `
 
 export const BottomProfile = styled.img`
     width: 24%;
     border-radius: 50%;
 `
+
+export const BottomText = styled.a`
+    white-space: nowrap;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    color: blue;
+`
+
 export  const Logout = styled.div`
     margin-top: 20px;
     display: flex;

@@ -13,7 +13,10 @@ export const Black = styled.div`
     background: rgb(0,0,0,0.4);
 `
 export const Content = styled.div`
-    width: 46%;
+    @media (max-width: 400px) {
+        width: 80%;
+    }
+        width: 46%;
     padding: 40px 50px;
     border-radius: 8px;
     background: white;
@@ -27,6 +30,11 @@ export const TitleBox = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    @media (max-width: 400px) {
+        & > h1{
+            font-size: 24px;
+        }
+    }
 `
 export const Box = styled.div`
     display: flex;
@@ -51,6 +59,11 @@ export const Teacher = styled.div`
     justify-content: flex-start;
     cursor: pointer;
     position: relative;
+    @media (max-width: 400px) {
+        & > img{
+            display: none;
+        }
+    }
 `
 export const Name = styled.p`
     font-size: 20px;
