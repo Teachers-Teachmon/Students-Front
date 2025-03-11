@@ -12,9 +12,7 @@ import OptionButton from '../../../assets/OptionButton.svg';
 import Square from '../../../components/button/square/index.jsx';
 import { useGetAfterSchoolClasses } from '../../../hooks/useAfterSchool.js';
 import { searchStudent, searchPlace, searchTeacher } from "../../../api/search.js";
-//import { useGetUploadUrl } from '../../../hooks/useAfterSchool.js';
 import { useSaveClass } from '../../../hooks/useAfterSchool.js';
-//import { useGetFlushClass } from '../../../hooks/useAfterSchool.js';
 import { useDebounce } from '../../../hooks/useDebounce.js';
 import { useUpload } from '../../../hooks/useAfterSchool.js';
 import { useFlush } from '../../../hooks/useAfterSchool.js';
@@ -66,7 +64,7 @@ export default function AdminAfterSchool() {
     }
 
     setSpreadsheetId(id);
-    setIsLoading(true); // 로딩 시작
+    setIsLoading(true);
 
     uploadMutation(id, {
       onError: (error) => {
@@ -80,7 +78,7 @@ export default function AdminAfterSchool() {
         alert("업로드가 성공적으로 완료되었습니다.");
       },
       onSettled: () => {
-        setIsLoading(false); // 로딩 종료
+        setIsLoading(false);
       },
     });
   };
@@ -95,7 +93,7 @@ export default function AdminAfterSchool() {
     }
 
     setSpreadsheetId(id);
-    setIsLoading(true); // 로딩 시작
+    setIsLoading(true);
 
     flushMutation(id, {
       onSuccess: () => {
@@ -106,7 +104,7 @@ export default function AdminAfterSchool() {
         console.error("동기화 에러:", error);
       },
       onSettled: () => {
-        setIsLoading(false); // 로딩 종료
+        setIsLoading(false);
       },
     });
   };
@@ -140,7 +138,7 @@ export default function AdminAfterSchool() {
           };
         })
       )
-      .flat(); // 중첩된 배열을 평탄화
+      .flat();
     let weekDay
     switch (weekday) {
       case 'MON':
@@ -520,11 +518,6 @@ export default function AdminAfterSchool() {
                       click={() => setDetailIsOpen([false, !detailIsOpen[1], false])}
                     />
                   </span>
-                  {/* <DropdownNS
-                                    name={selectedRows[selectedGrade].studentsNumber || "학생수"}
-                                    value={selectedRows[selectedGrade].studentsNumber}
-                                    onChange={(value) => handleInputChange(selectedGrade, selectedRows[selectedGrade].index, 'studentsNumber', value)}
-                                /> */}
                 </S.ModalLeft>
                 <S.ModalRight>
                   <span onClick={(e) => e.stopPropagation()}>
@@ -576,10 +569,6 @@ export default function AdminAfterSchool() {
                                     students: [...prev[selectedGrade].students, currentItem]
                                   }
                                 }))
-                                // setSelectStudent((prev) => ({
-                                //     ...prev,
-                                //     [`class${currentItem.number}`]: [...prev[`class${currentItem.number}`], currentItem],
-                                // }));
                                 setSearch("");
                               }}
                             >
@@ -686,43 +675,6 @@ export default function AdminAfterSchool() {
                       </S.ClassMain>
                     </S.Class>
                   }
-
-                  {/*<S.Class>*/}
-                  {/*    <S.ClassMain>*/}
-                  {/*        {selectedRows[selectedGrade].students.map((item, studentIdx) => {*/}
-                  {/*            console.log(selectedRows[selectedGrade].students)*/}
-                  {/*            return(*/}
-                  {/*                <S.Student key={studentIdx} onClick={()=>{*/}
-                  {/*                    setSelectedRows((prev) => ({*/}
-                  {/*                        ...prev,*/}
-                  {/*                        [selectedGrade]: {*/}
-                  {/*                            ...prev[selectedGrade],*/}
-                  {/*                            students: prev[selectedGrade].students.filter((currentItem) => currentItem.number !== item.number)*/}
-                  {/*                        }*/}
-                  {/*                    }))*/}
-                  {/*                }}>*/}
-                  {/*                    <h4>{item.number} {item.name}</h4>*/}
-                  {/*                </S.Student>*/}
-                  {/*            )*/}
-                  {/*        })}*/}
-                  {/*    </S.ClassMain>*/}
-                  {/*</S.Class>*/}
-                  {/*{Object.entries(selectStudent).map(([cls, students], idx) => (*/}
-                  {/*    <S.Class key={cls}>*/}
-                  {/*        <p>{idx + 1}반</p>*/}
-                  {/*        <S.ClassMain>*/}
-                  {/*            {students.length > 0 && students.map((item, studentIdx) => (*/}
-                  {/*                <S.Student key={studentIdx}*/}
-                  {/*                           onClick={() => setSelectStudent((prev) => ({*/}
-                  {/*                               ...prev,*/}
-                  {/*                               [cls]: prev[cls].filter((currentItem) => currentItem !== item),*/}
-                  {/*                           }))}>*/}
-                  {/*                    <h4>{item}</h4>*/}
-                  {/*                </S.Student>*/}
-                  {/*            ))}*/}
-                  {/*        </S.ClassMain>*/}
-                  {/*    </S.Class>*/}
-                  {/*))}*/}
                 </S.StudentBox>
               </span>
             </S.ModalMain>
