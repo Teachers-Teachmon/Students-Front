@@ -25,7 +25,7 @@ export default function SupervisionChange() {
     const [selectedPeriod, setSelectedPeriod] = useState("");
     const [weeks, setWeeks] = useState([]);
     const { data: TeacherList = { data: [] }, isLoading, isError } = useGetMonthlySupervision(currentMonth);
-    const { data: fixedTeacherList, isLoading: isLoadingFixed, isError: isErrorFixed } = useGetFixedTeachers(selectedDay, selectedType, selectedPeriod, { enabled: (selectedDay && selectedType && selectedPeriod) });
+    const { data: fixedTeacherList, isLoading: isLoadingFixed, isError: isErrorFixed } = useGetFixedTeachers(selectedDay, selectedType, selectedPeriod);
     const { mutate: sendChangeRequest } = useSendChangeRequest();
 
     const convertPeriod = (periodKey) => {
@@ -322,7 +322,7 @@ export default function SupervisionChange() {
                                                                     );
                                                                 })
                                                             )}
-                                                            {['night_teacher'].map((classKey) => ['common_teacher'].map((typeKey) => {
+                                                            {['night_teacher'].map((classKey) => ['night_teacher'].map((typeKey) => {
                                                                 if (dayData.empty) return <div key={`${dayData.day}-${typeKey}`} style={{ visibility: "hidden" }} />;
 
                                                                 const teacherInfo = dayData[classKey];
