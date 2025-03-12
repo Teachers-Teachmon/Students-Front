@@ -8,7 +8,7 @@ import Teacher from '../../assets/teacher.svg';
 import Supervision from '../../assets/supervision.svg';
 import SelfStudy from '../../assets/selfStudy.svg';
 import Left2 from '../../assets/left2.svg';
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { useGetDailySupervision, useGetSupervisionRank } from '../../hooks/useSupervision.js';
 import { useGetLeaveStudent } from '../../hooks/useStudent.js';
 import { useDeleteLeaveStudent } from '../../hooks/useStudent.js';
@@ -102,7 +102,7 @@ export default function Admin() {
     console.log(leaveStudentData);
     setLeaveStudent(leaveStudentData);
   }, [leaveStudentData]);
-  
+
 
   const handleDelete = (leave_id) => {
     deleteLeaveStudent(leave_id, {
@@ -136,10 +136,15 @@ export default function Admin() {
                   .map(({ period, studyKey, leaveKey }) => (
                     <S.Row key={period}>
                       <S.DataCell $length={19.5}>{period}</S.DataCell>
-                      <S.DataCellSelf $length={6.5}>{(dayData.self_study_teacher?.[studyKey] || dayData[studyKey])?.replace("/me", "")}</S.DataCellSelf>
+                      <S.DataCellSelf
+                        $length={6.5}
+                        $isCurrentUser={(dayData.self_study_teacher?.[studyKey] || dayData[studyKey])?.includes("/me")}
+                      >
+                        {(dayData.self_study_teacher?.[studyKey] || dayData[studyKey])?.replace("/me", "")}
+                      </S.DataCellSelf>
                       <S.DataCell $length={4}>{(dayData.leave_seat_teacher?.[leaveKey] || dayData[leaveKey])?.replace("/me", "")}</S.DataCell>
                     </S.Row>
-                ))}
+                  ))}
               </S.SupervisionData>
             </S.TodaySupervisionMain>
           </S.TodaySupervision>
