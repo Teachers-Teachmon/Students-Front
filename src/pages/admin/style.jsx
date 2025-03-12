@@ -103,7 +103,7 @@ export const DataCell = styled.div`
 
 export const DataCellSelf = styled.div`
     width: ${(props) => props.$length}vw;
-    color: #2E6FF2;
+    color: ${(props) => (props.$isCurrentUser ? '#2E6FF2' : 'black')};
 `
 
 export const AdminButtons = styled.div`
