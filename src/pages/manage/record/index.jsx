@@ -51,6 +51,13 @@ export default function Record() {
         };
         fetchData();
     }, [debounce, day, status]);
+
+    const [isPeriod, setIsPeriod] = useState([false, false, false]);
+    const periodHandler = (id) =>{
+        const newIsPeriod = [...isPeriod];
+        newIsPeriod[id] = !isPeriod[id];
+        setIsPeriod(newIsPeriod);
+    }
     return (
         <S.ManageContainer>
             <Header/>
@@ -80,9 +87,45 @@ export default function Record() {
                         {isMovement[2] ?
                             <SearchBox value={search} change={setSearch} target={"학생"} />
                             : null}
+                        {isMovement[0] &&
+                            <S.CheckBox>
+                                <div>
+                                    <input
+                                        type={'checkbox'}
+                                        value={isPeriod[0]}
+                                        onChange={()=>periodHandler(0)}
+                                    />
+                                    <label>7교시</label>
+                                </div>
+                                <div>
+                                    <input
+                                        type={'checkbox'}
+                                        value={isPeriod[1]}
+                                        onChange={()=>periodHandler(1)}
+                                    />
+                                    <label>8~9교시</label>
+                                </div>
+                                <div>
+                                    <input
+                                        type={'checkbox'}
+                                        value={isPeriod[2]}
+                                        onChange={()=>periodHandler(2)}
+                                    />
+                                    <label>10~11교시</label>
+                                </div>
+                            </S.CheckBox>}
                     </S.MainNav>
                     {isMovement[0] ? (
-                        <Movement day={day} isFirst={isFirst}/>
+                        <Movement isPeriod = {
+                            isPeriod.reduce((acc, value, index) => {
+                                if (value){
+                                    if(index === 0) acc.push("7교시");
+                                    else if(index === 1) acc.push("8~9교시");
+                                    else if(index === 2) acc.push("10~11교시");
+                                }
+                                return acc;
+                            }, [])
+                        } day={day} isFirst={isFirst}/>
                     ) : isMovement[1] ? (
                         <Leave day={day} isFirst={isFirst}/>
                     ) : isMovement[2] ? (
