@@ -7,7 +7,7 @@ import {getMovementDetail} from "../../../api/data.js";
 import patchDay from "../../../utils/patchDay.js";
 import Loading from "../../loading/index.jsx";
 
-export default function Movement({ day , isFirst}) {
+export default function Movement({ isPeriod, day , isFirst}) {
     const { data, isFetching, isError: movementError } = useGetMovement(isFirst ? patchDay(day) : day);
     const [isModal, setIsModal] = useState(false);
     const {mutate : deleteMovement} = useDeleteMovement();
@@ -32,29 +32,31 @@ export default function Movement({ day , isFirst}) {
             <S.ContentBox>
                 {data&& data.length === 0 ? <S.NoData>데이터가 없습니다</S.NoData> : null}
                 {data && data.map((item) => {
-                    return(
-                        <>
-                            <S.Content key={item} onClick={()=>getDetail((day), item.teacher_id, item.period, item.place)}>
-                                <S.UnBox></S.UnBox>
-                                <S.Box2 $length={110}>{item.period}</S.Box2>
-                                <S.Box2 $length={130}>{item.teacher_name}</S.Box2>
-                                <S.Box2 $length={110}>{item.personnel}명</S.Box2>
-                                <S.Box2 $length={200}>{item.place}</S.Box2>
-                                <S.Box2 $length={290}>{item.cause.slice(0, 20)}{item.cause.length > 20 ? '...' : ''}</S.Box2>
+                    if(isPeriod.includes(item.period) || isPeriod.length === 0){
+                        return(
+                            <>
+                                <S.Content key={item} onClick={()=>getDetail((day), item.teacher_id, item.period, item.place)}>
+                                    <S.UnBox></S.UnBox>
+                                    <S.Box2 $length={110}>{item.period}</S.Box2>
+                                    <S.Box2 $length={130}>{item.teacher_name}</S.Box2>
+                                    <S.Box2 $length={110}>{item.personnel}명</S.Box2>
+                                    <S.Box2 $length={200}>{item.place}</S.Box2>
+                                    <S.Box2 $length={290}>{item.cause.slice(0, 20)}{item.cause.length > 20 ? '...' : ''}</S.Box2>
 
-                                {name === item.teacher_name || role === "ADMIN" ?
-                                    <S.DeleteBox
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            if(window.confirm('정말 삭제하시겠습니까?')){
-                                                deleteMovement({teacher_id : item.teacher_id, day, periodName : item.period, place: item.place});
-                                            }
-                                        }}
-                                    >삭제</S.DeleteBox>  : null
-                                }
-                            </S.Content>
-                        </>
-                    )
+                                    {name === item.teacher_name || role === "ADMIN" ?
+                                        <S.DeleteBox
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                if(window.confirm('정말 삭제하시겠습니까?')){
+                                                    deleteMovement({teacher_id : item.teacher_id, day, periodName : item.period, place: item.place});
+                                                }
+                                            }}
+                                        >삭제</S.DeleteBox>  : null
+                                    }
+                                </S.Content>
+                            </>
+                        )
+                    }
                 })}
                 {isModal ?<DetailMovement data={detail} setIsModal={setIsModal} /> : null}
             </S.ContentBox>

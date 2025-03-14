@@ -21,6 +21,22 @@
     {
       "teacher_name": "티치몬",
       "teacher_id": 1,
+      "place": "창의디자인실",
+      "personnel": 1,
+      "period": "7교시",
+      "cause": "유진쌤 ㅎㅎㅎㅎ"
+    },
+    {
+      "teacher_name": "티치몬",
+      "teacher_id": 1,
+      "place": "창의디자인실",
+      "personnel": 1,
+      "period": "8~9교시",
+      "cause": "유진쌤 ㅎㅎㅎㅎ"
+    },
+    {
+      "teacher_name": "티치몬",
+      "teacher_id": 1,
       "place": "과학실",
       "personnel": 1,
       "period": "10~11교시",
