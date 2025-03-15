@@ -196,3 +196,12 @@ export const useDeleteLeaveStudent = () =>{
         }
     })
 }
+
+export const usePatchMovement = () =>{
+    return useMutation({
+        mutationFn : (props)=> API.patchMovement(props),
+        onError:(err)=>{
+            console.log("수정 실패 ", err);
+        }
+    })
+}

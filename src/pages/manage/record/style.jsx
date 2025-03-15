@@ -48,23 +48,16 @@ export const MainNav = styled.div`
         align-items: center;
     }
 `
-export const InputBox= styled.div`
-    border: 1px solid #ccc;
-    width: 30%;
-    border-radius: 8px;
+export const CheckBox = styled.div`
     display: flex;
-    justify-content: center;
-    font-size: 14px;
-    position: relative;
-    padding: 0 15px;
-`
-export const Input = styled.input`
-    outline: none;
-    border: none;
-    width: 100%;
-    font-size: 16px;
-    border-radius: 8px;
-    padding: 10px 15px;
+    align-items: center;
+    gap: 15px;
+    & > div{
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
 `
 
 export const Black = styled.div`

@@ -11,7 +11,7 @@ import {useDebounce} from "../../../hooks/useDebounce.js";
 // click = 드랍다운을 했다가 다시 누르면 닫히게 하는 함수
 // 예 : <SearchDropdown name={search2} isOpen={isOpen[0]} item={student} change={(event) => setSearch2(event)} click={() => setIsOpen([!isOpen[0]])} />
 
-export default function SearchDropdown({target, name, change, click, isOpen, axios, left}) {
+export default function SearchDropdown({target, name, change, click, isOpen, axios, left, isNull}) {
     const [search, setSearch] = useState("");
     const debounce = useDebounce(search, 500);
 
@@ -48,6 +48,7 @@ export default function SearchDropdown({target, name, change, click, isOpen, axi
                         placeholder={`${target}을(를) 입력`}
                         onChange={(e) => setSearch(e.target.value)}
                     ></S.Input>
+                    {item && isNull && <S.DropdownItem onClick={() => { change({"name": "X", "id": 0}) }} key={0} value={'X'}>X</S.DropdownItem>}
                     {item && item.map((currentItem) => {
                         console.log(currentItem);
                         return (
