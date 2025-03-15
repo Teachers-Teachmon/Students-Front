@@ -64,7 +64,7 @@ export default function Supervision() {
                 <S.MainHeader>
                     <h1>자습감독 일정</h1>
                     <S.Buttons>
-                        <SearchBox up={100} target="이름" change={setTeacher}/>
+                        <SearchBox up={100} target="이름" change={setTeacher} />
                         <SquareBtn name="교체하기" status={true} On={() => { navigate('/supervision/change') }} />
                     </S.Buttons>
                 </S.MainHeader>
@@ -124,7 +124,7 @@ export default function Supervision() {
                                                             </S.TeacherName>
                                                         </div>
                                                     </S.TeacherList> */}
-                                                    {["7th_teacher" ,"8th_teacher", "10th_teacher"].map((timeKey, timeIndex) => {
+                                                    {["7th_teacher", "8th_teacher", "10th_teacher"].map((timeKey, timeIndex) => {
                                                         const selfTeacher = dayData.self_study_teacher?.[timeKey];
                                                         const leaveTeacher = dayData.leave_seat_teacher?.[timeKey];
                                                         const selfName = selfTeacher ? selfTeacher.split("/")[0] : "X";

@@ -299,18 +299,20 @@ export default function SupervisionChange() {
                                                                 )
                                                             }))} */}
                                                             {['7th_teacher', '8th_teacher', '10th_teacher'].map((classKey) =>
-                                                                ['self_study_teacher', 'leave_seat_teacher',].map((typeKey) => {
+                                                                ['self_study_teacher', 'leave_seat_teacher'].map((typeKey) => {
                                                                     if (dayData.empty) return <div key={`${dayData.day}-${typeKey}`} style={{ visibility: "hidden" }} />;
 
                                                                     const teacherInfo = dayData?.[typeKey]?.[classKey];
                                                                     const teacherName = teacherInfo ? teacherInfo.split('/')[0] : "X";
                                                                     const uniqueKey = `${dayData.day}-${typeKey}-${classKey}-${dayData.date}`;
                                                                     const compareKey = `${uniqueKey.slice(-10)}-${convertType(uniqueKey.split('-')[1])}-${uniqueKey.split('-')[2]}`;
+                                                                    const isPastDay = new Date(dayData.date) < new Date();
 
                                                                     return (
                                                                         <div
                                                                             key={uniqueKey}
                                                                             onClick={() => {
+                                                                                if (isPastDay) return;
                                                                                 if (teacherInfo && teacherInfo.includes('/me')) {
                                                                                     handleSelectTeacher(uniqueKey, teacherInfo ? parseInt(teacherInfo.split('/')[1]) || null : null, true, teacherName);
                                                                                 } else {
@@ -318,12 +320,18 @@ export default function SupervisionChange() {
                                                                                     handleSelectTeacher(uniqueKey, teacherInfo ? parseInt(teacherInfo.split('/')[1]) || null : null, false, teacherName);
                                                                                 }
                                                                             }}
-                                                                            style={{
-                                                                                backgroundColor: selectedTeacher.some(t => t.uniqueKey === uniqueKey) ? '#2E6FF2' : '#FFF',
-                                                                                color: selectedTeacher.some(t => t.uniqueKey === uniqueKey) ? '#FFF' : '#000',
-                                                                                cursor: !isSelfSelected && !(teacherInfo && teacherInfo.includes('/me')) ? 'not-allowed' : 'pointer',
-                                                                                opacity: (disabledTeachers.includes(compareKey) || (!isSelfSelected && !(teacherInfo && teacherInfo.includes('/me')))) ? 0.5 : 1
-                                                                            }}
+                                                                            // style={{
+                                                                            //     backgroundColor: selectedTeacher.some(t => t.uniqueKey === uniqueKey) ? '#2E6FF2' : '#FFF',
+                                                                            //     color: selectedTeacher.some(t => t.uniqueKey === uniqueKey) ? '#FFF' : '#000',
+                                                                            //     cursor: !isSelfSelected && !(teacherInfo && teacherInfo.includes('/me')) ? 'not-allowed' : 'pointer',
+                                                                            //     opacity: (disabledTeachers.includes(compareKey) || (!isSelfSelected && !(teacherInfo && teacherInfo.includes('/me')))) ? 0.5 : 1
+                                                                            // }}
+                                                                                style={{
+                                                                                    backgroundColor: selectedTeacher.some(t => t.uniqueKey === uniqueKey) ? '#2E6FF2' : '#FFF',
+                                                                                    color: selectedTeacher.some(t => t.uniqueKey === uniqueKey) ? '#FFF' : '#000',
+                                                                                    cursor: (!isSelfSelected && !(teacherInfo && teacherInfo.includes('/me'))) || isPastDay ? 'not-allowed' : 'pointer',
+                                                                                    opacity: (disabledTeachers.includes(compareKey) || (!isSelfSelected && !(teacherInfo && teacherInfo.includes('/me')))) || isPastDay ? 0.5 : 1
+                                                                                }}
                                                                         >
                                                                             {teacherName}
                                                                         </div>
@@ -337,12 +345,14 @@ export default function SupervisionChange() {
                                                                 const teacherName = teacherInfo ? teacherInfo.split('/')[0] : "X";
                                                                 const uniqueKey = `${dayData.day}-${typeKey}-${classKey}-${dayData.date}`;
                                                                 const compareKey = `${uniqueKey.slice(-10)}-${convertType(uniqueKey.split('-')[1])}-${uniqueKey.split('-')[2]}`;
+                                                                const isPastDay = new Date(dayData.date) < new Date();
 
                                                                 return (
                                                                     <>
                                                                         <div
                                                                             key={uniqueKey}
                                                                             onClick={() => {
+                                                                                if (isPastDay) return;
                                                                                 if (teacherInfo && teacherInfo.includes('/me')) {
                                                                                     handleSelectTeacher(uniqueKey, teacherInfo ? parseInt(teacherInfo.split('/')[1]) || null : null, true, teacherName);
                                                                                 } else {
@@ -353,8 +363,8 @@ export default function SupervisionChange() {
                                                                             style={{
                                                                                 backgroundColor: selectedTeacher.some(t => t.uniqueKey === uniqueKey) ? '#2E6FF2' : '#FFF',
                                                                                 color: selectedTeacher.some(t => t.uniqueKey === uniqueKey) ? '#FFF' : '#000',
-                                                                                cursor: !isSelfSelected && !(teacherInfo && teacherInfo.includes('/me')) ? 'not-allowed' : 'pointer',
-                                                                                opacity: (disabledTeachers.includes(compareKey) || (!isSelfSelected && !(teacherInfo && teacherInfo.includes('/me')))) ? 0.5 : 1
+                                                                                cursor: (!isSelfSelected && !(teacherInfo && teacherInfo.includes('/me'))) || isPastDay ? 'not-allowed' : 'pointer',
+                                                                                opacity: (disabledTeachers.includes(compareKey) || (!isSelfSelected && !(teacherInfo && teacherInfo.includes('/me')))) || isPastDay ? 0.5 : 1
                                                                             }}
                                                                         >
                                                                             {teacherName}
@@ -362,6 +372,7 @@ export default function SupervisionChange() {
                                                                         <div
                                                                             key={`${uniqueKey}-under`}
                                                                             onClick={() => {
+                                                                                if (isPastDay) return;
                                                                                 if (teacherInfo && teacherInfo.includes('/me')) {
                                                                                     handleSelectTeacher(uniqueKey, teacherInfo ? parseInt(teacherInfo.split('/')[1]) || null : null, true, teacherName);
                                                                                 } else {
@@ -372,8 +383,8 @@ export default function SupervisionChange() {
                                                                             style={{
                                                                                 backgroundColor: selectedTeacher.some(t => t.uniqueKey === uniqueKey) ? '#2E6FF2' : '#FFF',
                                                                                 color: selectedTeacher.some(t => t.uniqueKey === uniqueKey) ? '#FFF' : '#000',
-                                                                                cursor: !isSelfSelected && !(teacherInfo && teacherInfo.includes('/me')) ? 'not-allowed' : 'pointer',
-                                                                                opacity: (disabledTeachers.includes(compareKey) || (!isSelfSelected && !(teacherInfo && teacherInfo.includes('/me')))) ? 0.5 : 1
+                                                                                cursor: (!isSelfSelected && !(teacherInfo && teacherInfo.includes('/me'))) || isPastDay ? 'not-allowed' : 'pointer',
+                                                                                opacity: (disabledTeachers.includes(compareKey) || (!isSelfSelected && !(teacherInfo && teacherInfo.includes('/me')))) || isPastDay ? 0.5 : 1
                                                                             }}
                                                                         >
                                                                             {teacherName}
