@@ -58,6 +58,18 @@ export const Content = styled.div`
         background: #fafafa;
     }
 `
+export const Black = styled.div`
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(0, 0, 0, 0.4);
+    z-index: 3;
+`
 export const DeleteBox = styled.div`
     padding: 6px 20px;
     background: #F87067;
@@ -72,5 +84,22 @@ export const DeleteBox = styled.div`
     font-weight: 500;
     &:hover {
         background: #ff4d4f;
+    }
+`
+export const PatchBox = styled.div`
+    padding: 6px 20px;
+    background: #bdbdbd;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    position: absolute;
+    right: 9%;
+    cursor: pointer;
+    font-weight: 500;
+
+    &:hover {
+        background: #b3b3b3;
     }
 `
