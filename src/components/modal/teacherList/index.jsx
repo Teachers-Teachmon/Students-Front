@@ -57,7 +57,7 @@ export default function TeacherList({ closeModal, selectedDate }) {
     }, [todayAfterSchoolTeacher]);
 
     const formatTeacherName = (teacher) => {
-        if (!teacher) return "X";
+        if (teacher === null || !teacher) return { name: "X", isMe: false };
         const isMe = teacher.includes("/me");
         const teacherName = teacher.replace("/me", "").trim();
         return { name: teacherName, isMe };
@@ -146,9 +146,8 @@ export default function TeacherList({ closeModal, selectedDate }) {
                                                     </S.TeacherTable>
                                                 );
                                             } else {
-                                                const studyStr = todayTeacher && todayTeacher.self_study_teacher ? todayTeacher.self_study_teacher[key] : "X";
-                                                const leaveStr = todayTeacher && todayTeacher.leave_seat_teacher ? todayTeacher.leave_seat_teacher[key] : "X";
-
+                                                const studyStr = todayTeacher && todayTeacher.self_study_teacher ? todayTeacher.self_study_teacher[key] : null;
+                                                const leaveStr = todayTeacher && todayTeacher.leave_seat_teacher ? todayTeacher.leave_seat_teacher[key] : null;
 
                                                 const { name: studyName, isMe: isMeStudy } = formatTeacherName(studyStr);
                                                 const { name: leaveName, isMe: isMeLeave } = formatTeacherName(leaveStr);
