@@ -1,6 +1,5 @@
 import * as S from '../../../pages/manage/location/style.jsx'
 import useLocation from "../../../zustand/locationDetail.js";
-import {Btn} from "../../../pages/manage/location/style.jsx";
 
 export default function First({width, set, data, fake}) {
     const elements = [
@@ -44,6 +43,7 @@ export default function First({width, set, data, fake}) {
         { id: 38, name: "강사대기실", x: 18, y: 52, width: 2.5, height: 4 },
         { id: 39, name: "음악실", x: 18, y: 56, width: 2.5, height: 5 },
         { id: 40, name: "음악준비실", x: 18, y: 61, width: 2.5, height: 4},
+        { id: 41, name: "외부", x: 90, y: 10, width: 8, height: 80 },
     ];
 
     const setPlace = useLocation((state) => state.setPlace);
