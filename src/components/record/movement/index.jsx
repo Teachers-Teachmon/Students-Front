@@ -32,7 +32,7 @@ export default function Movement({ isPeriod, day , isFirst}) {
                 <S.Box $length={130}>담당교사</S.Box>
                 <S.Box $length={110}>인원</S.Box>
                 <S.Box $length={200}>장소</S.Box>
-                <S.Box $length={240}>학생</S.Box>
+                <S.Box $length={240}>사유</S.Box>
             </S.Standard>
             <S.ContentBox>
                 {data&& data.length === 0 ? <S.NoData>데이터가 없습니다</S.NoData> : null}
@@ -49,22 +49,23 @@ export default function Movement({ isPeriod, day , isFirst}) {
                                     <S.Box2 $length={130}>{item.teacher_name}</S.Box2>
                                     <S.Box2 $length={110}>{item.personnel}명</S.Box2>
                                     <S.Box2 $length={200}>{item.place}</S.Box2>
-                                    <S.Box2 $length={290}>{item.students
-                                        .map((student) => `${student.number} ${student.name}`)
-                                        .join(", ")} {item.students.length > 3 ? '...' : ''}</S.Box2>
+                                    <S.Box2 $length={290}>{item.cause.slice(0, 20)}{item.cause.length > 20 ? '...' : ''}</S.Box2>
+                                    {/*<S.Box2 $length={290}>{item.students*/}
+                                    {/*    .map((student) => `${student.number} ${student.name}`)*/}
+                                    {/*    .join(", ")} {item.students.length > 3 ? '...' : ''}</S.Box2>*/}
 
                                     {name === item.teacher_name || role === "ADMIN" ?
                                         <>
-                                            <S.PatchBox
-                                                onClick={(e) => {
-                                                    e.stopPropagation();
-                                                    setIsModal2(true)
-                                                    getDetail((day), item.teacher_id, item.period, item.place)
-                                                    setDayComponent(recordDay)
-                                                    setPeriod(item.period)
-                                                    setStudents(item.students)
-                                                }}
-                                            >수정</S.PatchBox>
+                                            {/*<S.PatchBox*/}
+                                            {/*    onClick={(e) => {*/}
+                                            {/*        e.stopPropagation();*/}
+                                            {/*        setIsModal2(true)*/}
+                                            {/*        getDetail((day), item.teacher_id, item.period, item.place)*/}
+                                            {/*        setDayComponent(recordDay)*/}
+                                            {/*        setPeriod(item.period)*/}
+                                            {/*        setStudents(item.students)*/}
+                                            {/*    }}*/}
+                                            {/*>수정</S.PatchBox>*/}
                                             <S.DeleteBox
                                                 onClick={(e) => {
                                                     e.stopPropagation();
