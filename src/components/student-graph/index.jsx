@@ -1,5 +1,5 @@
 import * as S from './style.jsx'
-import {useState} from "react";
+import {useState, useRef} from "react";
 import StatusUpdate from "../status-update/index.jsx";
 import {usePatchStudent} from "../../hooks/useStudent.js";
 
@@ -49,12 +49,18 @@ export default function StudentGraph({data, grade, classNum}){
                 return "#CCBCFF"
         }
     }
+    const blackstudent = useRef(null);
     return(
         <S.StudentContainer>
             <S.Class>{classNum}반</S.Class>
             {data ?
                 <S.Graph  $seven = {data.length === 17}>
                     {data.map((el, idx) => {
+                        if (el.name === blackstudent.current) {
+                            return <></>;
+                        } else {
+                            blackstudent.current = el.name;
+                        }
                         return (
                             <S.Student $color={studentColor(el.status)} onClick={() => isClick(idx, el.status)}
                                        key={idx}>{/* 칸 색깔도 data에서 추출해서 사용*/}

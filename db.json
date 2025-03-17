@@ -5437,58 +5437,682 @@
   "schedule": {
     "1반": [
       {
-        "status": "이석",
-        "name": "김동욱",
-        "number": 1101,
-        "id": 1
+        "status": "SELF_STUDY",
+        "name": "구현우",
+        "number": 2101,
+        "id": 720689
       },
       {
-        "status": "이석",
+        "status": "SELF_STUDY",
+        "name": "구현우",
+        "number": 2101,
+        "id": 733802
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "구현우",
+        "number": 2101,
+        "id": 737195
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "구현우",
+        "number": 2101,
+        "id": 740588
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "김우찬",
+        "number": 2102,
+        "id": 790349
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "김유찬",
+        "number": 2103,
+        "id": 790350
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "김정훈",
+        "number": 2104,
+        "id": 790448
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "김한결",
+        "number": 2105,
+        "id": 790449
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "류승찬",
+        "number": 2106,
+        "id": 790351
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "문소정",
+        "number": 2107,
+        "id": 790664
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "박가은",
+        "number": 2108,
+        "id": 720690
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "박가은",
+        "number": 2108,
+        "id": 733803
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "박가은",
+        "number": 2108,
+        "id": 737196
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "박가은",
+        "number": 2108,
+        "id": 740589
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "박동현",
+        "number": 2109,
+        "id": 720691
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "박동현",
+        "number": 2109,
+        "id": 733804
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "박동현",
+        "number": 2109,
+        "id": 737197
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "박동현",
+        "number": 2109,
+        "id": 740590
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "박선영",
+        "number": 2110,
+        "id": 720692
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "박선영",
+        "number": 2110,
+        "id": 733805
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "박선영",
+        "number": 2110,
+        "id": 737198
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "박선영",
+        "number": 2110,
+        "id": 740591
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "심현진",
+        "number": 2111,
+        "id": 790451
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "이재환",
+        "number": 2112,
+        "id": 790352
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "조하민",
+        "number": 2113,
+        "id": 790353
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "허동운",
+        "number": 2114,
+        "id": 720693
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "허동운",
+        "number": 2114,
+        "id": 733806
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "허동운",
+        "number": 2114,
+        "id": 737199
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "허동운",
+        "number": 2114,
+        "id": 740592
+      },
+      {
+        "status": "AFTER_SCHOOL",
         "name": "허온",
-        "number": 1102,
-        "id": 2
+        "number": 2115,
+        "id": 790450
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "황준혁",
+        "number": 2116,
+        "id": 720694
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "황준혁",
+        "number": 2116,
+        "id": 733807
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "황준혁",
+        "number": 2116,
+        "id": 737200
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "황준혁",
+        "number": 2116,
+        "id": 740593
       }
     ],
     "2반": [
       {
-        "status": "이석",
-        "name": "김동욱",
-        "number": 1201,
-        "id": 1
+        "status": "SELF_STUDY",
+        "name": "공덕현",
+        "number": 2201,
+        "id": 720788
       },
       {
-        "status": "이석",
-        "name": "허온",
-        "number": 1202,
-        "id": 2
+        "status": "SELF_STUDY",
+        "name": "공덕현",
+        "number": 2201,
+        "id": 733901
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "공덕현",
+        "number": 2201,
+        "id": 737294
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "공덕현",
+        "number": 2201,
+        "id": 740687
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "권민재",
+        "number": 2202,
+        "id": 790452
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "김동욱",
+        "number": 2203,
+        "id": 790354
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "김민재",
+        "number": 2204,
+        "id": 790665
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "김현우",
+        "number": 2205,
+        "id": 790355
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "방세준",
+        "number": 2206,
+        "id": 790356
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "서정현",
+        "number": 2207,
+        "id": 790357
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "오주현",
+        "number": 2208,
+        "id": 790358
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "윤도훈",
+        "number": 2209,
+        "id": 790453
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "이정혁",
+        "number": 2210,
+        "id": 790454
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "이준호",
+        "number": 2211,
+        "id": 790556
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "이하은",
+        "number": 2212,
+        "id": 790455
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "조재민",
+        "number": 2213,
+        "id": 790359
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "허세진",
+        "number": 2214,
+        "id": 720789
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "허세진",
+        "number": 2214,
+        "id": 733902
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "허세진",
+        "number": 2214,
+        "id": 737295
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "허세진",
+        "number": 2214,
+        "id": 740688
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "황성민",
+        "number": 2215,
+        "id": 720790
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "황성민",
+        "number": 2215,
+        "id": 733903
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "황성민",
+        "number": 2215,
+        "id": 737296
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "황성민",
+        "number": 2215,
+        "id": 740689
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "황지영",
+        "number": 2216,
+        "id": 720791
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "황지영",
+        "number": 2216,
+        "id": 733904
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "황지영",
+        "number": 2216,
+        "id": 737297
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "황지영",
+        "number": 2216,
+        "id": 740690
       }
     ],
     "3반": [
       {
-        "status": "이석",
-        "name": "김동욱",
-        "number": 1301,
-        "id": 1
+        "status": "SELF_STUDY",
+        "name": "김예빈",
+        "number": 2301,
+        "id": 720695
       },
       {
-        "status": "이석",
-        "name": "허온",
-        "number": 1302,
-        "id": 2
+        "status": "SELF_STUDY",
+        "name": "김예빈",
+        "number": 2301,
+        "id": 733808
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "김예빈",
+        "number": 2301,
+        "id": 737201
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "김예빈",
+        "number": 2301,
+        "id": 740594
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "김현호",
+        "number": 2302,
+        "id": 790561
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "노유현",
+        "number": 2303,
+        "id": 790666
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "박소은",
+        "number": 2304,
+        "id": 720696
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "박소은",
+        "number": 2304,
+        "id": 733809
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "박소은",
+        "number": 2304,
+        "id": 737202
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "박소은",
+        "number": 2304,
+        "id": 740595
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "방민준",
+        "number": 2305,
+        "id": 790557
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "안재민",
+        "number": 2307,
+        "id": 790563
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "윤건우",
+        "number": 2308,
+        "id": 790668
+      },
+      {
+        "status": "LEAVE_SEAT",
+        "name": "이건우",
+        "number": 2309,
+        "id": 790667
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "이승환",
+        "number": 2310,
+        "id": 790558
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "이주영",
+        "number": 2311,
+        "id": 790562
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "이효준",
+        "number": 2312,
+        "id": 790456
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "정태양",
+        "number": 2313,
+        "id": 790560
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "진은성",
+        "number": 2314,
+        "id": 720697
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "진은성",
+        "number": 2314,
+        "id": 733810
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "진은성",
+        "number": 2314,
+        "id": 737203
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "진은성",
+        "number": 2314,
+        "id": 740596
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "최치현",
+        "number": 2315,
+        "id": 790559
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "한지원",
+        "number": 2316,
+        "id": 790457
       }
     ],
     "4반": [
       {
-        "status": "이석",
-        "name": "김동욱",
-        "number": 1401,
-        "id": 1
+        "status": "AFTER_SCHOOL",
+        "name": "공재욱",
+        "number": 2401,
+        "id": 790551
       },
       {
-        "status": "이석",
-        "name": "허온",
-        "number": 1402,
-        "id": 2
+        "status": "AFTER_SCHOOL",
+        "name": "김민석",
+        "number": 2402,
+        "id": 790552
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "김우성",
+        "number": 2403,
+        "id": 790553
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "김태현",
+        "number": 2404,
+        "id": 790660
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "김현호",
+        "number": 2405,
+        "id": 790661
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "배성민",
+        "number": 2406,
+        "id": 790554
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "안민주",
+        "number": 2408,
+        "id": 720698
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "안민주",
+        "number": 2408,
+        "id": 733811
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "안민주",
+        "number": 2408,
+        "id": 737204
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "안민주",
+        "number": 2408,
+        "id": 740597
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "안준환",
+        "number": 2409,
+        "id": 790662
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "양효준",
+        "number": 2410,
+        "id": 790458
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "이수환",
+        "number": 2411,
+        "id": 720699
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "이수환",
+        "number": 2411,
+        "id": 733812
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "이수환",
+        "number": 2411,
+        "id": 737205
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "이수환",
+        "number": 2411,
+        "id": 740598
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "제성주",
+        "number": 2412,
+        "id": 790555
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "조아라",
+        "number": 2413,
+        "id": 720700
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "조아라",
+        "number": 2413,
+        "id": 733813
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "조아라",
+        "number": 2413,
+        "id": 737206
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "조아라",
+        "number": 2413,
+        "id": 740599
+      },
+      {
+        "status": "AFTER_SCHOOL",
+        "name": "천현수",
+        "number": 2414,
+        "id": 790663
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "최정혁",
+        "number": 2415,
+        "id": 720701
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "최정혁",
+        "number": 2415,
+        "id": 733814
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "최정혁",
+        "number": 2415,
+        "id": 737207
+      },
+      {
+        "status": "SELF_STUDY",
+        "name": "최정혁",
+        "number": 2415,
+        "id": 740600
       }
     ]
   },
