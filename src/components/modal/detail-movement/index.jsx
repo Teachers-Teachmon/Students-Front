@@ -4,7 +4,7 @@ import People from '../../../assets/User.svg'
 
 export default function DetailMovement({setIsModal, data}) {
 
-    return (
+    return data && (
         <S.Black onClick={()=>setIsModal(false)}>
             <S.Content  onClick={(e) => e.stopPropagation()}>
                 <S.Title>
