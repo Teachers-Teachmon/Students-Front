@@ -84,7 +84,7 @@ export const postMovement = async ({selectStudentShow, day, time, place, cause})
             students:selectStudentShow,
             cause:cause,
             day: day,
-            period: period[time],
+            period: MovementPeriod[time],
             place: place.id
         });
         if(res.status !== 200 && res.status !== 201){
@@ -207,7 +207,7 @@ export const deleteLeaveStudent = async (leave_id) =>{
 }
 export const patchMovement = async ({selectStudentShow, day, time, place, cause}) =>{
     try{
-        const res = await axiosInstance.patch(`${API_ENDPOINTS.STUDENT}/leaveseat`, {
+        const res = await axiosInstance.patch(`${API_ENDPOINTS.STUDENT}/leaveseat/update`, {
             students:selectStudentShow,
             cause:cause,
             day: day,

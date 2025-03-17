@@ -9,27 +9,7 @@
         "total": 10
     }
 ],
-  "leaveseatData": [
-    {
-      "teacher_name": "티치몬",
-      "teacher_id": 1,
-      "place": "창의디자인실",
-      "personnel": 1,
-      "period": "10~11교시",
-      "students" : [
-        {
-          "id" : 23,
-          "name" : "허온",
-          "number" : 1416
-        },
-        {
-          "id" : 24,
-          "name" : "김동욱",
-          "number" : 1401
-        }
-      ],
-      "cause" : "전공동아리"
-    },
+  "leaveseatData":[
     {
       "teacher_name" : "누구",
       "teacher_id" : 1,
@@ -38,7 +18,7 @@
       "period" : "7교시",
       "students" : [
         {
-          "id" : 23,
+          "id" : 21,
           "name" : "허온",
           "number" : 1416
         },
@@ -48,48 +28,7 @@
           "number" : 1401
         }
       ],
-      "cause" : "전공동아리"
     },
-    {
-      "teacher_name": "티치몬",
-      "teacher_id": 1,
-      "place": "창의디자인실",
-      "personnel": 1,
-      "period": "10~11교시",
-      "students" : [
-        {
-          "id" : 23,
-          "name" : "허온",
-          "number" : 1416
-        },
-        {
-          "id" : 23,
-          "name" : "김동욱",
-          "number" : 1401
-        }
-      ],
-      "cause" : "전공동아리"
-    },
-    {
-      "teacher_name": "티치몬",
-      "teacher_id": 1,
-      "place": "창의디자인실",
-      "personnel": 1,
-      "period": "10~11교시",
-      "students" : [
-        {
-          "id" : 23,
-          "name" : "허온",
-          "number" : 1416
-        },
-        {
-          "id" : 23,
-          "name" : "김동욱",
-          "number" : 1401
-        }
-      ],
-      "cause" : "전공동아리"
-    }
   ],
   "leaveseatDetail": {"teacher_name":"정종건","place":"음악준비실","cause":"자격증 준비","students":["2315 최치현"]},
   "leaveseat": [
@@ -334,13 +273,13 @@
     }
   ],
   "detail": {
-    "teacher_name": "이정하",
-    "place": "베르실7",
-    "cause": "전공동아리",
-    "students": [
+    "teacher_name" : "이정하",
+    "place" : "베르실7",
+    "cause" : "전공동아리",
+    "students" : [
       "1416 허온",
-      "1401 김동욱",
-      "1410 윤도훈"
+      "1416 허온",
+      "1416 허온",
     ]
   },
   "assignment": {

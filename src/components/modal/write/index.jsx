@@ -17,12 +17,11 @@ export default function Write({ students, period, setIsModal ,isPatch, data}){
     const [isOpen, setIsOpen] = useState([false, false]);
     const [cause, setCause] = useState(isPatch ? data?.cause : "");
     const [search, setSearch] = useState("");
-    const t = ["7교시", "8~9교시", "10~11교시", ];
-    //"8~11교시", "7~11교시"
+    const t = ["7교시", "8~9교시", "10~11교시", "8~11교시", "7~11교시"];
 
     const [student, setStudent] = useState([]);
 
-    const [selectStudent, setSelectStudent] = useState(isPatch ? students.map((stu) => {return {number : stu.number, name : stu.name}}) : []);
+    const [selectStudent, setSelectStudent] = useState(isPatch ? students.map((stu) => {return {number : stu.number, name : stu.name, id: stu.id}}) : []);
     const [selectStudentShow, setSelectStudentShow] = useState(isPatch ? students.map((stu) => stu.id) : []);
     const {mutate : postMovement} = usePostMovement();
     const { day, recordDay, setDay : setDayComponent} = useDay();
@@ -125,9 +124,13 @@ export default function Write({ students, period, setIsModal ,isPatch, data}){
                                         <S.Student
                                             key={idx}
                                             onClick={() =>{
+                                                console.log(selectStudentShow)
                                                 setSelectStudentShow(
                                                     selectStudentShow.filter(
-                                                        (currentItem) => currentItem !== item.id
+                                                        (currentItem) => {
+                                                            console.log(currentItem, item)
+                                                            return currentItem !== item.id
+                                                        }
                                                     )
                                                 )
                                                 setSelectStudent(
