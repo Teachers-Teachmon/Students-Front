@@ -3,7 +3,7 @@ import X from '../../../assets/X.svg';
 import People from '../../../assets/User.svg';
 import RedPeople from '../../../assets/RedPeople.svg';
 import OrangePeople from '../../../assets/OrangePeople.svg';
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import StatusUpdate from "../../status-update";
 import useLocation from "../../../zustand/locationDetail.js";
 import {usePatchStudent} from "../../../hooks/useStudent.js";
@@ -71,6 +71,7 @@ export default function DetailStudentLocation({data, setIsModal, floor}) {
         return check;
 
     }
+    const blackstudent = useRef(null)
     return (
         locationData &&
         <S.Black onClick={()=>setIsModal(false)}>
@@ -91,6 +92,11 @@ export default function DetailStudentLocation({data, setIsModal, floor}) {
                     <S.RedText>* 이탈한 학생이 있다면 학생을 클릭하여 상태를 바꿔주세요</S.RedText>
                     <S.Students>
                         {locationData.students.map((item, idx)=>{
+                            if (item.name === blackstudent.current) {
+                                return <></>;
+                            } else {
+                                blackstudent.current = item.name;
+                            }
                             return(
                                 <>
                                     <S.Teacher key={idx} onClick={()=>isClick(idx)}>
