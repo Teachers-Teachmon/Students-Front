@@ -258,28 +258,26 @@ export const StudentList = styled.div`
     background: white;
     border: 1px solid #ccc;
     border-radius: 8px;
-    scrollbar-width: thin; /* Firefox */
-    scrollbar-color: #B0BEC5 #F5F5F5; /* 스크롤바 색상 (Foreground/Background) */
-
-    /* Chrome, Safari, Edge */
+    scrollbar-width: thin;
+    scrollbar-color: #B0BEC5 #F5F5F5;
 
     &::-webkit-scrollbar {
-        width: 8px; /* 스크롤바 너비 */
+        width: 8px;
     }
 
     &::-webkit-scrollbar-track {
-        background: #F5F5F5; /* 트랙 색상 */
-        border-radius: 8px; /* 트랙 둥글게 */
+        background: #F5F5F5;
+        border-radius: 8px;
     }
 
     &::-webkit-scrollbar-thumb {
-        background: #B0BEC5; /* 스크롤바 색상 */
-        border-radius: 8px; /* 스크롤바 둥글게 */
-        border: 2px solid #F5F5F5; /* 스크롤바와 트랙 간 간격 */
+        background: #B0BEC5;
+        border-radius: 8px;
+        border: 2px solid #F5F5F5;
     }
 
     &::-webkit-scrollbar-thumb:hover {
-        background: #90A4AE; /* Hover 시 스크롤바 색상 */
+        background: #90A4AE;
     }
     
 `

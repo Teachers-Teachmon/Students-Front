@@ -17,3 +17,9 @@ export const MovementPeriod = {
         "TEN_AND_ELEVEN_PERIOD"
     ]
 }
+
+export const periodName = {
+    "SEVEN_PERIOD": "7교시",
+    "EIGHT_AND_NINE_PERIOD": "8~9교시",
+    "TEN_AND_ELEVEN_PERIOD": "10~11교시"
+}

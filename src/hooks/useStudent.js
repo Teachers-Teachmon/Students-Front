@@ -2,6 +2,7 @@ import * as API from '../api/student.js';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import {useNavigate} from "react-router-dom";
 import {useStatusUpdate} from "../zustand/statusUpdate.js";
+import {MovementPeriod, periodName} from "../lib/period.js";
 
 export const useGetNowStudent = (grade) =>{
     return useQuery({
@@ -68,17 +69,71 @@ export const usePostMovement = () => {
         onSuccess: (data, variables) => {
             if(variables.recordDay === variables.day){
                 queryClient.setQueryData(['getMovement', variables.recordDay], (oldData) => {
-                    return [
-                        ...oldData,
-                        {
-                            teacher_name: variables.teacher_name,
-                            teacher_id: variables.teacher_id,
-                            place: variables.place.name,
-                            personnel: variables.selectStudentShow.length,
-                            period: variables.time,
-                            cause: variables.cause
-                        }
-                    ]
+                    let data2;
+                    if(MovementPeriod[variables.time].length > 2){
+                         data2 = [
+                            ...oldData,
+                             {
+                                 teacher_name: variables.teacher_name,
+                                 teacher_id: variables.teacher_id,
+                                 place: variables.place.name,
+                                 personnel: variables.selectStudentShow.length,
+                                 period: periodName[MovementPeriod[variables.time][0]],
+                                 students: variables.selectStudent
+                             },
+                             {
+                                 teacher_name: variables.teacher_name,
+                                 teacher_id: variables.teacher_id,
+                                 place: variables.place.name,
+                                 personnel: variables.selectStudentShow.length,
+                                 period: periodName[MovementPeriod[variables.time][1]],
+                                 students: variables.selectStudent
+                             },
+                             {
+                                 teacher_name: variables.teacher_name,
+                                 teacher_id: variables.teacher_id,
+                                 place: variables.place.name,
+                                 personnel: variables.selectStudentShow.length,
+                                 period: periodName[MovementPeriod[variables.time][2]],
+                                 students: variables.selectStudent
+                             }
+                        ]
+                    }
+                    else if(variables.time.length > 1){
+                        data2 =  [
+                            ...oldData,
+                            {
+                                teacher_name: variables.teacher_name,
+                                teacher_id: variables.teacher_id,
+                                place: variables.place.name,
+                                personnel: variables.selectStudentShow.length,
+                                period: periodName[MovementPeriod[variables.time][0]],
+                                students: variables.selectStudent
+                            },
+                            {
+                                teacher_name: variables.teacher_name,
+                                teacher_id: variables.teacher_id,
+                                place: variables.place.name,
+                                personnel: variables.selectStudentShow.length,
+                                period: periodName[MovementPeriod[variables.time][1]],
+                                students: variables.selectStudent
+                            }
+                        ]
+                    }
+                    else{
+                        data2 =  [
+                            ...oldData,
+                            {
+                                teacher_name: variables.teacher_name,
+                                teacher_id: variables.teacher_id,
+                                place: variables.place.name,
+                                personnel: variables.selectStudentShow.length,
+                                period: variables.time,
+                                students : variables.selectStudent
+                            }
+                        ]
+                    }
+                    return data2
                 })
             }
             navigate('/manage/record', {state : 1});
@@ -193,15 +248,6 @@ export const useDeleteLeaveStudent = () =>{
         mutationFn : (props)=> API.deleteLeaveStudent(props),
         onError:(err)=>{
             console.log("삭제 실패 ", err);
-        }
-    })
-}
-
-export const usePatchMovement = () =>{
-    return useMutation({
-        mutationFn : (props)=> API.patchMovement(props),
-        onError:(err)=>{
-            console.log("수정 실패 ", err);
         }
     })
 }

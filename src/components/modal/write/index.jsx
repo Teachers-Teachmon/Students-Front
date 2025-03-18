@@ -4,25 +4,25 @@ import Dropdown from "../../dropdown/nosearch";
 import SquareBtn from "../../button/square";
 import Search from '../../../assets/Search.svg'
 import SearchDropdown from '../../dropdown/search';
-import {usePatchMovement, usePostMovement} from '../../../hooks/useStudent.js';
+import  {usePostMovement} from '../../../hooks/useStudent.js';
+import {usePatchMovement} from '../../../hooks/useData.js';
 import useDay from "../../../zustand/day.js";
 import {useDebounce} from "../../../hooks/useDebounce.js";
 import {searchStudent, searchPlace} from "../../../api/search.js";
 import DateInput from "../../dateInput/index.jsx";
 import useAuth from "../../../zustand/auth.js";
 
-export default function Write({ students, period, setIsModal ,isPatch, data}){
+export default function Write({ isWriter, students, period, setIsModal ,isPatch, data}){
     const [time, setTime] = useState(isPatch ? period : "시간");
     const [place, setPlace] = useState( isPatch ? data?.place : "장소");
     const [isOpen, setIsOpen] = useState([false, false]);
     const [cause, setCause] = useState(isPatch ? data?.cause : "");
     const [search, setSearch] = useState("");
-    const t = ["7교시", "8~9교시", "10~11교시", ];
-    //"8~11교시", "7~11교시"
+    const t = ["7교시", "8~9교시", "10~11교시", "8~11교시", "7~11교시"];
 
     const [student, setStudent] = useState([]);
 
-    const [selectStudent, setSelectStudent] = useState(isPatch ? students.map((stu) => {return {number : stu.number, name : stu.name}}) : []);
+    const [selectStudent, setSelectStudent] = useState(isPatch ? students.map((stu) => {return {number : stu.number, name : stu.name, id: stu.id}}) : []);
     const [selectStudentShow, setSelectStudentShow] = useState(isPatch ? students.map((stu) => stu.id) : []);
     const {mutate : postMovement} = usePostMovement();
     const { day, recordDay, setDay : setDayComponent} = useDay();
@@ -91,7 +91,7 @@ export default function Write({ students, period, setIsModal ,isPatch, data}){
                                 type={"text"}
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
-                                placeholder={"학번을 입력해주세요"}
+                                placeholder={"학번이나 이름을 입력해주세요"}
                             />
                             <S.StudentList>
                                 {search && student &&
@@ -125,9 +125,13 @@ export default function Write({ students, period, setIsModal ,isPatch, data}){
                                         <S.Student
                                             key={idx}
                                             onClick={() =>{
+                                                console.log(selectStudentShow)
                                                 setSelectStudentShow(
                                                     selectStudentShow.filter(
-                                                        (currentItem) => currentItem !== item.id
+                                                        (currentItem) => {
+                                                            console.log(currentItem, item)
+                                                            return currentItem !== item.id
+                                                        }
                                                     )
                                                 )
                                                 setSelectStudent(
@@ -149,7 +153,7 @@ export default function Write({ students, period, setIsModal ,isPatch, data}){
                                 name={"작성완료"}
                                 status={true}
                                 On={() => {
-                                    patchMovement({ selectStudentShow, day, time, place, cause, recordDay,teacher_id : id, teacher_name : name,  set : setIsModal(false) })
+                                    patchMovement({ selectStudentShow, day, time, place, cause, recordDay,teacher_id : isWriter, teacher_name : name,  set : setIsModal(false) })
                                     setDayComponent(recordDay);
                                 }}
                             />
@@ -197,7 +201,7 @@ export default function Write({ students, period, setIsModal ,isPatch, data}){
                                     type={"text"}
                                     value={search}
                                     onChange={(e) => setSearch(e.target.value)}
-                                    placeholder={"학번을 입력해주세요"}
+                                    placeholder={"학번이나 이름을 입력해주세요"}
                                 />
                                 <S.StudentList>
                                     {search && student &&
@@ -255,7 +259,7 @@ export default function Write({ students, period, setIsModal ,isPatch, data}){
                                     name={"작성완료"}
                                     status={true}
                                     On={() => {
-                                        postMovement({ selectStudentShow, day, time, place, cause, recordDay,teacher_id : id, teacher_name : name,  set : setIsModal(false) })
+                                        postMovement({ selectStudentShow, day, time, place, cause, recordDay,teacher_id : id, teacher_name : name, selectStudent,  set : setIsModal(false) })
                                         setDayComponent(recordDay);
                                     }}
                                 />

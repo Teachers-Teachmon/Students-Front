@@ -84,7 +84,7 @@ export const postMovement = async ({selectStudentShow, day, time, place, cause})
             students:selectStudentShow,
             cause:cause,
             day: day,
-            period: period[time],
+            period: MovementPeriod[time],
             place: place.id
         });
         if(res.status !== 200 && res.status !== 201){
@@ -202,31 +202,6 @@ export const deleteLeaveStudent = async (leave_id) =>{
         return res;
 
     }catch (err){
-        return Promise.reject(err);
-    }
-}
-export const patchMovement = async ({selectStudentShow, day, time, place, cause}) =>{
-    try{
-        const res = await axiosInstance.patch(`${API_ENDPOINTS.STUDENT}/leaveseat`, {
-            students:selectStudentShow,
-            cause:cause,
-            day: day,
-            period: MovementPeriod[time],
-            place: place.id
-        });
-        if(res.status !== 200 && res.status !== 201){
-            return Promise.reject({
-                status: res.status,
-                message: res.message || 'Request failed'
-            });
-        }
-        if(res.status === 409){
-            alert('이미 해당 교실에 이석중인 학생이 있습니다. 이석 수정을 이용해주세요.');
-        }
-        return res;
-
-    }catch (err){
-        alert('이미 해당 교실에 이석중인 학생이 있습니다. 이석 수정을 이용해주세요.');
         return Promise.reject(err);
     }
 }

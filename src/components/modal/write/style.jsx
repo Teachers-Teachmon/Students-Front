@@ -64,6 +64,7 @@ export const StudentBox = styled.div`
     flex-flow: row wrap;
     gap: 5px;
     height: 90px;
+    overflow: auto;
 `
 export const Student = styled.div`
     border: 2px solid #2E6FF2;

@@ -95,7 +95,7 @@ export const PatchBox = styled.div`
     justify-content: center;
     border-radius: 8px;
     position: absolute;
-    right: 9%;
+    right: 8.5%;
     cursor: pointer;
     font-weight: 500;
 

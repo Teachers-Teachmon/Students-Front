@@ -1,7 +1,7 @@
 import * as S from './style.jsx';
 import Header from '../../../components/header/index.jsx';
 import DayBtn from '../../../components/button/circle/index.jsx';
-import { useState, useEffect } from 'react';
+import {useState, useEffect, useRef} from 'react';
 import DropdownNS from '../../../components/dropdown/nosearch/index.jsx';
 import DropdownS from '../../../components/dropdown/search/index.jsx';
 import Download from '../../../assets/Download.svg';
@@ -331,7 +331,7 @@ export default function AdminAfterSchool() {
 
 
   const [detailIsOpen, setDetailIsOpen] = useState([false, false, false]);
-
+  const isGrade = useRef(null);
 
 
   return (
@@ -461,6 +461,7 @@ export default function AdminAfterSchool() {
                           setOptions((prev) => ({ ...prev, [grade]: null }));
                           setSelectedGrade(grade);
                           setIsModalOpen(true);
+                          isGrade.current = grade
                         }}>자세히 보기</button>
                         <button onClick={() => {
                           handleDeleteRow(grade, index);
@@ -556,7 +557,7 @@ export default function AdminAfterSchool() {
                     {search && student &&
                       student
                         .filter(item =>
-                          !selectedRows[1].students.some(student => student.name === item.name))
+                          !selectedRows[isGrade.current].students.some(student => student.name === item.name))
                         .map((currentItem, index) => {
                           return (
                             <S.StudentItem
