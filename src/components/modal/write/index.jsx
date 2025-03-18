@@ -12,7 +12,7 @@ import {searchStudent, searchPlace} from "../../../api/search.js";
 import DateInput from "../../dateInput/index.jsx";
 import useAuth from "../../../zustand/auth.js";
 
-export default function Write({ students, period, setIsModal ,isPatch, data}){
+export default function Write({ isWriter, students, period, setIsModal ,isPatch, data}){
     const [time, setTime] = useState(isPatch ? period : "시간");
     const [place, setPlace] = useState( isPatch ? data?.place : "장소");
     const [isOpen, setIsOpen] = useState([false, false]);
@@ -153,7 +153,7 @@ export default function Write({ students, period, setIsModal ,isPatch, data}){
                                 name={"작성완료"}
                                 status={true}
                                 On={() => {
-                                    patchMovement({ selectStudentShow, day, time, place, cause, recordDay,teacher_id : id, teacher_name : name,  set : setIsModal(false) })
+                                    patchMovement({ selectStudentShow, day, time, place, cause, recordDay,teacher_id : isWriter, teacher_name : name,  set : setIsModal(false) })
                                     setDayComponent(recordDay);
                                 }}
                             />
