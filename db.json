@@ -6,7 +6,8 @@
       "SELF_STUDY_COUNT": 10,
       "LEAVE_SEAT_COUNT": 10,
       "NIGHT_COUNT": 10,
-      "total": 10
+      "total": 10,
+      "id": "8da6"
     }
   ],
   "leaveseatData": [
@@ -82,7 +83,8 @@
           "name": "허동운",
           "number": 2114
         }
-      ]
+      ],
+      "id": "f30e"
     }
   ],
   "leaveseatDetail": {
@@ -392,6 +394,325 @@
       ],
       "cause": "",
       "day": "2025-03-19"
+    },
+    {
+      "id": "1da7",
+      "students": [],
+      "cause": "",
+      "day": "2025-03-19"
+    },
+    {
+      "id": "ae95",
+      "students": [
+        "1"
+      ],
+      "cause": "aaa",
+      "day": "2025-03-19",
+      "period": [
+        "EIGHT_AND_NINE_PERIOD",
+        "TEN_AND_ELEVEN_PERIOD"
+      ]
+    },
+    {
+      "id": "9152",
+      "students": [
+        "1"
+      ],
+      "cause": "af",
+      "day": "2025-03-19",
+      "period": [
+        "EIGHT_AND_NINE_PERIOD",
+        "TEN_AND_ELEVEN_PERIOD"
+      ]
+    },
+    {
+      "id": "eefa",
+      "students": [
+        "1"
+      ],
+      "cause": "aa",
+      "day": "2025-03-19",
+      "period": [
+        "EIGHT_AND_NINE_PERIOD",
+        "TEN_AND_ELEVEN_PERIOD"
+      ]
+    },
+    {
+      "id": "c3fb",
+      "students": [
+        "2"
+      ],
+      "cause": "aa",
+      "day": "2025-03-19",
+      "period": [
+        "EIGHT_AND_NINE_PERIOD",
+        "TEN_AND_ELEVEN_PERIOD"
+      ]
+    },
+    {
+      "id": "71fb",
+      "students": [
+        "1"
+      ],
+      "cause": "aa",
+      "day": "2025-03-19",
+      "period": [
+        "EIGHT_AND_NINE_PERIOD",
+        "TEN_AND_ELEVEN_PERIOD"
+      ]
+    },
+    {
+      "id": "965a",
+      "students": [
+        "1"
+      ],
+      "cause": "aa",
+      "day": "2025-03-19",
+      "period": [
+        "EIGHT_AND_NINE_PERIOD",
+        "TEN_AND_ELEVEN_PERIOD"
+      ]
+    },
+    {
+      "id": "bfdd",
+      "students": [
+        "1"
+      ],
+      "cause": "asdf",
+      "day": "2025-03-19",
+      "period": [
+        "EIGHT_AND_NINE_PERIOD",
+        "TEN_AND_ELEVEN_PERIOD"
+      ]
+    },
+    {
+      "id": "efd4",
+      "students": [
+        "1"
+      ],
+      "cause": "asdf",
+      "day": "2025-03-19",
+      "period": [
+        "EIGHT_AND_NINE_PERIOD",
+        "TEN_AND_ELEVEN_PERIOD"
+      ]
+    },
+    {
+      "id": "1fb7",
+      "students": [
+        "1"
+      ],
+      "cause": "asdf",
+      "day": "2025-03-19",
+      "period": [
+        "EIGHT_AND_NINE_PERIOD",
+        "TEN_AND_ELEVEN_PERIOD"
+      ]
+    },
+    {
+      "id": "a8c7",
+      "students": [
+        "1"
+      ],
+      "cause": "",
+      "day": "2025-03-19",
+      "period": [
+        "EIGHT_AND_NINE_PERIOD",
+        "TEN_AND_ELEVEN_PERIOD"
+      ]
+    },
+    {
+      "id": "ed4c",
+      "students": [
+        "1"
+      ],
+      "cause": "a",
+      "day": "2025-03-19",
+      "period": [
+        "EIGHT_AND_NINE_PERIOD",
+        "TEN_AND_ELEVEN_PERIOD"
+      ]
+    },
+    {
+      "id": "bcfd",
+      "students": [
+        "2"
+      ],
+      "cause": "aa",
+      "day": "2025-03-19",
+      "period": [
+        "EIGHT_AND_NINE_PERIOD",
+        "TEN_AND_ELEVEN_PERIOD"
+      ]
+    },
+    {
+      "id": "e80e",
+      "students": [
+        "1"
+      ],
+      "cause": "a",
+      "day": "2025-03-19",
+      "period": [
+        "EIGHT_AND_NINE_PERIOD",
+        "TEN_AND_ELEVEN_PERIOD"
+      ]
+    },
+    {
+      "id": "e1f0",
+      "students": [
+        "1"
+      ],
+      "cause": "a",
+      "day": "2025-03-19",
+      "period": [
+        "EIGHT_AND_NINE_PERIOD",
+        "TEN_AND_ELEVEN_PERIOD"
+      ]
+    },
+    {
+      "id": "6b73",
+      "students": [
+        "2"
+      ],
+      "cause": "a",
+      "day": "2025-03-19",
+      "period": [
+        "EIGHT_AND_NINE_PERIOD",
+        "TEN_AND_ELEVEN_PERIOD"
+      ]
+    },
+    {
+      "id": "6e10",
+      "students": [
+        "1"
+      ],
+      "cause": "a",
+      "day": "2025-03-19",
+      "period": [
+        "EIGHT_AND_NINE_PERIOD",
+        "TEN_AND_ELEVEN_PERIOD"
+      ]
+    },
+    {
+      "id": "e2ec",
+      "students": [
+        "1"
+      ],
+      "cause": "a",
+      "day": "2025-03-19",
+      "period": [
+        "EIGHT_AND_NINE_PERIOD",
+        "TEN_AND_ELEVEN_PERIOD"
+      ]
+    },
+    {
+      "id": "e014",
+      "students": [
+        "1"
+      ],
+      "cause": "a",
+      "day": "2025-03-19",
+      "period": [
+        "EIGHT_AND_NINE_PERIOD",
+        "TEN_AND_ELEVEN_PERIOD"
+      ]
+    },
+    {
+      "id": "2cf7",
+      "students": [
+        "2"
+      ],
+      "cause": "",
+      "day": "2025-03-19",
+      "period": [
+        "EIGHT_AND_NINE_PERIOD",
+        "TEN_AND_ELEVEN_PERIOD"
+      ]
+    },
+    {
+      "id": "03cf",
+      "students": [
+        "2"
+      ],
+      "cause": "a",
+      "day": "2025-03-19",
+      "period": [
+        "SEVEN_PERIOD",
+        "EIGHT_AND_NINE_PERIOD",
+        "TEN_AND_ELEVEN_PERIOD"
+      ]
+    },
+    {
+      "id": "c25c",
+      "students": [
+        "1"
+      ],
+      "cause": "aa",
+      "day": "2025-03-19",
+      "period": [
+        "EIGHT_AND_NINE_PERIOD",
+        "TEN_AND_ELEVEN_PERIOD"
+      ]
+    },
+    {
+      "id": "6494",
+      "students": [
+        "1"
+      ],
+      "cause": "a",
+      "day": "2025-03-19",
+      "period": [
+        "EIGHT_AND_NINE_PERIOD",
+        "TEN_AND_ELEVEN_PERIOD"
+      ]
+    },
+    {
+      "id": "3060",
+      "students": [
+        "2"
+      ],
+      "cause": "aa",
+      "day": "2025-03-19",
+      "period": [
+        "EIGHT_AND_NINE_PERIOD",
+        "TEN_AND_ELEVEN_PERIOD"
+      ]
+    },
+    {
+      "id": "1cbe",
+      "students": [
+        "1"
+      ],
+      "cause": "a",
+      "day": "2025-03-19",
+      "period": [
+        "EIGHT_AND_NINE_PERIOD",
+        "TEN_AND_ELEVEN_PERIOD"
+      ]
+    },
+    {
+      "id": "f5ef",
+      "students": [
+        "1"
+      ],
+      "cause": "a",
+      "day": "2025-03-19",
+      "period": [
+        "EIGHT_AND_NINE_PERIOD",
+        "TEN_AND_ELEVEN_PERIOD"
+      ]
+    },
+    {
+      "id": "749c",
+      "students": [
+        "1"
+      ],
+      "cause": "aa",
+      "day": "2025-03-19",
+      "period": [
+        "EIGHT_AND_NINE_PERIOD",
+        "TEN_AND_ELEVEN_PERIOD"
+      ]
     }
   ],
   "detail": {
@@ -5136,347 +5457,347 @@
   },
   "studentManage": [
     {
-      "id": 76,
+      "id": "76",
       "name": "공덕현",
       "number": 1101
     },
     {
-      "id": 54,
+      "id": "54",
       "name": "권민재",
       "number": 1102
     },
     {
-      "id": 55,
+      "id": "55",
       "name": "김예빈",
       "number": 1103
     },
     {
-      "id": 14,
+      "id": "14",
       "name": "김우성",
       "number": 1104
     },
     {
-      "id": 43,
+      "id": "43",
       "name": "김태현",
       "number": 1105
     },
     {
-      "id": 29,
+      "id": "29",
       "name": "김한결",
       "number": 1106
     },
     {
-      "id": 49,
+      "id": "49",
       "name": "노유현",
       "number": 1107
     },
     {
-      "id": 56,
+      "id": "56",
       "name": "박가은",
       "number": 1108
     },
     {
-      "id": 66,
+      "id": "66",
       "name": "방민준",
       "number": 1109
     },
     {
-      "id": 57,
+      "id": "57",
       "name": "서정현",
       "number": 1110
     },
     {
-      "id": 30,
+      "id": "30",
       "name": "이건우",
       "number": 1111
     },
     {
-      "id": 50,
+      "id": "50",
       "name": "이수환",
       "number": 1112
     },
     {
-      "id": 58,
+      "id": "58",
       "name": "이주영",
       "number": 1113
     },
     {
-      "id": 51,
+      "id": "51",
       "name": "제성주",
       "number": 1114
     },
     {
-      "id": 77,
+      "id": "77",
       "name": "최정혁",
       "number": 1115
     },
     {
-      "id": 59,
+      "id": "59",
       "name": "최치현",
       "number": 1116
     },
     {
-      "id": 52,
+      "id": "52",
       "name": "구현우",
       "number": 1201
     },
     {
-      "id": 60,
+      "id": "60",
       "name": "김현우",
       "number": 1202
     },
     {
-      "id": 53,
+      "id": "53",
       "name": "김현호",
       "number": 1203
     },
     {
-      "id": 67,
+      "id": "67",
       "name": "문소정",
       "number": 1204
     },
     {
-      "id": 31,
+      "id": "31",
       "name": "박소은",
       "number": 1205
     },
     {
-      "id": 23,
+      "id": "23",
       "name": "서윤호",
       "number": 1206
     },
     {
-      "id": 22,
+      "id": "22",
       "name": "서윤호",
       "number": 1206
     },
     {
-      "id": 68,
+      "id": "68",
       "name": "안준환",
       "number": 1207
     },
     {
-      "id": 69,
+      "id": "69",
       "name": "윤건우",
       "number": 1208
     },
     {
-      "id": 70,
+      "id": "70",
       "name": "이재환",
       "number": 1209
     },
     {
-      "id": 71,
+      "id": "71",
       "name": "이정혁",
       "number": 1210
     },
     {
-      "id": 72,
+      "id": "72",
       "name": "이준호",
       "number": 1211
     },
     {
-      "id": 61,
+      "id": "61",
       "name": "진은성",
       "number": 1212
     },
     {
-      "id": 62,
+      "id": "62",
       "name": "한지원",
       "number": 1213
     },
     {
-      "id": 73,
+      "id": "73",
       "name": "황성민",
       "number": 1214
     },
     {
-      "id": 24,
+      "id": "24",
       "name": "황준혁",
       "number": 1215
     },
     {
-      "id": 63,
+      "id": "63",
       "name": "황지영",
       "number": 1216
     },
     {
-      "id": 44,
+      "id": "44",
       "name": "공재욱",
       "number": 1301
     },
     {
-      "id": 32,
+      "id": "32",
       "name": "김민재",
       "number": 1302
     },
     {
-      "id": 33,
+      "id": "33",
       "name": "김우찬",
       "number": 1303
     },
     {
-      "id": 45,
+      "id": "45",
       "name": "김유찬",
       "number": 1304
     },
     {
-      "id": 34,
+      "id": "34",
       "name": "류승찬",
       "number": 1305
     },
     {
-      "id": 25,
+      "id": "25",
       "name": "박동현",
       "number": 1306
     },
     {
-      "id": 64,
+      "id": "64",
       "name": "방세준",
       "number": 1307
     },
     {
-      "id": 74,
+      "id": "74",
       "name": "심현진",
       "number": 1308
     },
     {
-      "id": 35,
+      "id": "35",
       "name": "안재민",
       "number": 1309
     },
     {
-      "id": 1,
+      "id": "1",
       "name": "오주현",
       "number": 1310
     },
     {
-      "id": 75,
+      "id": "75",
       "name": "윤대협",
       "number": 1311
     },
     {
-      "id": 46,
+      "id": "46",
       "name": "이효준",
       "number": 1312
     },
     {
-      "id": 47,
+      "id": "47",
       "name": "정태양",
       "number": 1313
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "조아라",
       "number": 1314
     },
     {
-      "id": 36,
+      "id": "36",
       "name": "조하민",
       "number": 1315
     },
     {
-      "id": 82,
+      "id": "82",
       "name": "곽영빈",
       "number": 1401
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "김동욱",
       "number": 1401
     },
     {
-      "id": 83,
+      "id": "83",
       "name": "권길현",
       "number": 1402
     },
     {
-      "id": 26,
+      "id": "26",
       "name": "김민석",
       "number": 1402
     },
     {
-      "id": 84,
+      "id": "84",
       "name": "김원우",
       "number": 1403
     },
     {
-      "id": 37,
+      "id": "37",
       "name": "김정훈",
       "number": 1403
     },
     {
-      "id": 38,
+      "id": "38",
       "name": "김현호",
       "number": 1404
     },
     {
-      "id": 81,
+      "id": "81",
       "name": "김태훈",
       "number": 1404
     },
     {
-      "id": 39,
+      "id": "39",
       "name": "박선영",
       "number": 1405
     },
     {
-      "id": 65,
+      "id": "65",
       "name": "심형도",
       "number": 1407
     },
     {
-      "id": 27,
+      "id": "27",
       "name": "양효준",
       "number": 1409
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "윤도훈",
       "number": 1410
     },
     {
-      "id": 40,
+      "id": "40",
       "name": "이승환",
       "number": 1411
     },
     {
-      "id": 41,
+      "id": "41",
       "name": "이하은",
       "number": 1412
     },
     {
-      "id": 28,
+      "id": "28",
       "name": "조재민",
       "number": 1413
     },
     {
-      "id": 48,
+      "id": "48",
       "name": "허동운",
       "number": 1414
     },
     {
-      "id": 42,
+      "id": "42",
       "name": "허세진",
       "number": 1415
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "허온",
       "number": 1416
     },
     {
-      "id": 79,
+      "id": "79",
       "name": "허온",
       "number": 2115
     },
     {
-      "id": 80,
+      "id": "80",
       "name": "오주현",
       "number": 2208
     },
     {
-      "id": 78,
+      "id": "78",
       "name": "윤도훈",
       "number": 2209
     }
@@ -8431,11 +8752,18 @@
       "1-2": "자습",
       "1-3": "자습",
       "1-4": "자습",
-      "창의디자인실": "이석"
+      "창의디자인실": "이석",
+      "id": "5117"
     },
-    {},
-    {},
-    {}
+    {
+      "id": "ad82"
+    },
+    {
+      "id": "b00c"
+    },
+    {
+      "id": "a46b"
+    }
   ],
   "schedulePatch": {
     "item": {
