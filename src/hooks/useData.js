@@ -104,8 +104,12 @@ export const useCloseMovement = ()=>{
     })
 }
 export const usePatchMovement = () =>{
+    const queryClient = useQueryClient();
     return useMutation({
         mutationFn : (props)=> API.patchMovement(props),
+        onSuccess:(_, variables)=>{
+            queryClient.invalidateQueries(['getMovement', variables.day]);
+        },
         onError:(err)=>{
             console.log("수정 실패 ", err);
         }
