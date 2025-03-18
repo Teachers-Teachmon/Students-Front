@@ -120,7 +120,7 @@ export const patchMovement = async ({selectStudentShow, day, time, place, cause}
             students:selectStudentShow,
             cause:cause,
             day: day,
-            period: MovementPeriod[time],
+            period: period[time],
             place: place.id
         });
         if(res.status !== 200 && res.status !== 201){
