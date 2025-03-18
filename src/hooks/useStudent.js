@@ -76,7 +76,7 @@ export const usePostMovement = () => {
                             place: variables.place.name,
                             personnel: variables.selectStudentShow.length,
                             period: variables.time,
-                            cause: variables.cause
+                            students : variables.selectStudent
                         }
                     ]
                 })
@@ -193,15 +193,6 @@ export const useDeleteLeaveStudent = () =>{
         mutationFn : (props)=> API.deleteLeaveStudent(props),
         onError:(err)=>{
             console.log("삭제 실패 ", err);
-        }
-    })
-}
-
-export const usePatchMovement = () =>{
-    return useMutation({
-        mutationFn : (props)=> API.patchMovement(props),
-        onError:(err)=>{
-            console.log("수정 실패 ", err);
         }
     })
 }

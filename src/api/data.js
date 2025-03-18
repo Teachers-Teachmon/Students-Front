@@ -1,6 +1,6 @@
 import {API_ENDPOINTS} from "../lib/endpoints.js";
 import axiosInstance from "../lib/axiosInstance.js";
-import {period} from "../lib/period.js";
+import {MovementPeriod, period} from "../lib/period.js";
 
 //${API_ENDPOINTS.DATA}
 export const getMovement = async (day) =>{
@@ -111,6 +111,31 @@ export const closeMovement = async ({teacherId, day, period, place})=>{
         }
         return res;
     }catch (err){
+        return Promise.reject(err);
+    }
+}
+export const patchMovement = async ({selectStudentShow, day, time, place, cause}) =>{
+    try{
+        const res = await axiosInstance.patch(`${API_ENDPOINTS.DATA}/leaveseat/update`, {
+            students:selectStudentShow,
+            cause:cause,
+            day: day,
+            period: MovementPeriod[time],
+            place: place.id
+        });
+        if(res.status !== 200 && res.status !== 201){
+            return Promise.reject({
+                status: res.status,
+                message: res.message || 'Request failed'
+            });
+        }
+        if(res.status === 409){
+            alert('이미 해당 교실에 이석중인 학생이 있습니다. 이석 수정을 이용해주세요.');
+        }
+        return res;
+
+    }catch (err){
+        alert('이미 해당 교실에 이석중인 학생이 있습니다. 이석 수정을 이용해주세요.');
         return Promise.reject(err);
     }
 }

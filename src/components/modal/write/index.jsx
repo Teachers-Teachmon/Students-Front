@@ -4,7 +4,8 @@ import Dropdown from "../../dropdown/nosearch";
 import SquareBtn from "../../button/square";
 import Search from '../../../assets/Search.svg'
 import SearchDropdown from '../../dropdown/search';
-import {usePatchMovement, usePostMovement} from '../../../hooks/useStudent.js';
+import  {usePostMovement} from '../../../hooks/useStudent.js';
+import {usePatchMovement} from '../../../hooks/useData.js';
 import useDay from "../../../zustand/day.js";
 import {useDebounce} from "../../../hooks/useDebounce.js";
 import {searchStudent, searchPlace} from "../../../api/search.js";
@@ -258,7 +259,7 @@ export default function Write({ students, period, setIsModal ,isPatch, data}){
                                     name={"작성완료"}
                                     status={true}
                                     On={() => {
-                                        postMovement({ selectStudentShow, day, time, place, cause, recordDay,teacher_id : id, teacher_name : name,  set : setIsModal(false) })
+                                        postMovement({ selectStudentShow, day, time, place, cause, recordDay,teacher_id : id, teacher_name : name, selectStudent,  set : setIsModal(false) })
                                         setDayComponent(recordDay);
                                     }}
                                 />

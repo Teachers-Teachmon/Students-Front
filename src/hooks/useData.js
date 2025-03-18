@@ -1,6 +1,5 @@
 import * as API from '../api/data.js';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import {closeMovement} from "../api/data.js";
 
 // Movement 데이터 가져오기
 export const useGetMovement = (day) => {
@@ -102,5 +101,13 @@ export const useCloseMovement = ()=>{
         onError: (err) => {
             console.error('Leave 삭제 실패:', err);
         },
+    })
+}
+export const usePatchMovement = () =>{
+    return useMutation({
+        mutationFn : (props)=> API.patchMovement(props),
+        onError:(err)=>{
+            console.log("수정 실패 ", err);
+        }
     })
 }
