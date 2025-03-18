@@ -91,7 +91,7 @@ export default function Write({ students, period, setIsModal ,isPatch, data}){
                                 type={"text"}
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
-                                placeholder={"학번을 입력해주세요"}
+                                placeholder={"학번이나 이름을 입력해주세요"}
                             />
                             <S.StudentList>
                                 {search && student &&
@@ -201,7 +201,7 @@ export default function Write({ students, period, setIsModal ,isPatch, data}){
                                     type={"text"}
                                     value={search}
                                     onChange={(e) => setSearch(e.target.value)}
-                                    placeholder={"학번을 입력해주세요"}
+                                    placeholder={"학번이나 이름을 입력해주세요"}
                                 />
                                 <S.StudentList>
                                     {search && student &&
