@@ -57,7 +57,6 @@ export default function AdminTeacher() {
 
     const { mutate: deleteTeacher } = useDeleteTeacher();
     const deleteT = (id) => {
-        console.log(value[id].teacher_id)
         if (!window.confirm('삭제하시겠습니까?')) return
         deleteTeacher(value[id].teacher_id);
         const newValue = { ...value };
