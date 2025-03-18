@@ -23,6 +23,7 @@ export default function Movement({ isPeriod, day , isFirst}) {
     const [isModal2, setIsModal2] = useState(false);
     const [period, setPeriod] = useState();
     const [students, setStudents] = useState();
+    const [isWriter, setIsWriter] = useState("");
     return (
         <S.MovementContainer>
             {isFetching ? <Loading /> : null}
@@ -64,6 +65,7 @@ export default function Movement({ isPeriod, day , isFirst}) {
                                                     setDayComponent(recordDay)
                                                     setPeriod(item.period)
                                                     setStudents(item.students)
+                                                    setIsWriter(item.teacher_id)
                                                 }}
                                             >수정</S.PatchBox>
                                             <S.DeleteBox
@@ -88,7 +90,7 @@ export default function Movement({ isPeriod, day , isFirst}) {
                         setDayComponent(recordDay);
                         setIsModal2(false)
                     }}>
-                        <Write students = {students} period = {period} data={detail} isPatch = {true} isModal={isModal2} setIsModal={setIsModal2}/>
+                        <Write isWriter={isWriter} students = {students} period = {period} data={detail} isPatch = {true} isModal={isModal2} setIsModal={setIsModal2}/>
                     </S.Black>
                     :
                     null

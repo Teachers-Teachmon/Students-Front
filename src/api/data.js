@@ -21,7 +21,7 @@ export const getMovement = async (day) =>{
 
 export const getMovementDetail = async (day, teacher_id, periodName, place) =>{
     try{
-        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/leaveseat/detail?day=${day}&teacherId=${teacher_id}&period=${period[periodName]}&place=${place}`);
+        const res = await axiosInstance.get(`/detail?day=${day}&teacherId=${teacher_id}&period=${period[periodName]}&place=${place}`);
         if(res.status !== 200 && res.status !== 201){
             return Promise.reject({
                 status: res.status,
@@ -114,14 +114,15 @@ export const closeMovement = async ({teacherId, day, period, place})=>{
         return Promise.reject(err);
     }
 }
-export const patchMovement = async ({selectStudentShow, day, time, place, cause}) =>{
+export const patchMovement = async ({selectStudentShow, teacher_id, day, time, place, cause}) =>{
     try{
         const res = await axiosInstance.patch(`${API_ENDPOINTS.DATA}/leaveseat/update`, {
             students:selectStudentShow,
             cause:cause,
             day: day,
             period: period[time],
-            place: place.id
+            place: place,
+            teacher_id : teacher_id
         });
         if(res.status !== 200 && res.status !== 201){
             return Promise.reject({
