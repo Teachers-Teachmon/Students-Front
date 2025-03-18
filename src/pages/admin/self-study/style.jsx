@@ -23,16 +23,6 @@ export const MainContent = styled.div`
     align-items: start;
 `;
 
-// export const MainHeader = styled.div`
-//     display: flex;
-//     gap: 20px;
-
-//     div {
-//         display: flex;
-//         gap: 1rem;
-//     }
-// `;
-
 export const MainHeader = styled.div`
     display: flex;
     gap: 20px;
@@ -47,7 +37,6 @@ export const MainHeader = styled.div`
 export const SquareBtn = styled.div`
     margin-left: auto;
     display: flex;
-    //justify-content: flex-end;
 `;
 
 
@@ -101,7 +90,6 @@ export const EditMainTop = styled.div`
     width: 18vw;
     height: 6vh;
     gap: 10px;
-    //border-bottom: 1px solid #cccccc;
     background-color: #c9dbff;
     border-top-right-radius: 6px;
     border-top-left-radius: 6px;
@@ -165,8 +153,3 @@ export const Black = styled.div`
     top: 0;
     left: 0;
 `
-
-// export const SquareBtn = styled.div`
-//     display: flex;
-//     margin-left: 350px;
-// `
