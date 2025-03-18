@@ -17,7 +17,8 @@ export default function Write({ students, period, setIsModal ,isPatch, data}){
     const [isOpen, setIsOpen] = useState([false, false]);
     const [cause, setCause] = useState(isPatch ? data?.cause : "");
     const [search, setSearch] = useState("");
-    const t = ["7교시", "8~9교시", "10~11교시", "8~11교시", "7~11교시"];
+    const t = ["7교시", "8~9교시", "10~11교시", ];
+    //"8~11교시", "7~11교시"
 
     const [student, setStudent] = useState([]);
 

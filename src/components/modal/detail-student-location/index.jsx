@@ -3,7 +3,7 @@ import X from '../../../assets/X.svg';
 import People from '../../../assets/User.svg';
 import RedPeople from '../../../assets/RedPeople.svg';
 import OrangePeople from '../../../assets/OrangePeople.svg';
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import StatusUpdate from "../../status-update";
 import useLocation from "../../../zustand/locationDetail.js";
 import {usePatchStudent} from "../../../hooks/useStudent.js";
