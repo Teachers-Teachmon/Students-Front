@@ -1,36 +1,98 @@
 {
-  "teacherCount":[
+  "teacherCount": [
     {
-        "rank": 1,
-        "name": "티치몬",
-        "SELF_STUDY_COUNT": 10,
-        "LEAVE_SEAT_COUNT": 10,
-        "NIGHT_COUNT": 10,
-        "total": 10
+      "rank": 1,
+      "name": "티치몬",
+      "SELF_STUDY_COUNT": 10,
+      "LEAVE_SEAT_COUNT": 10,
+      "NIGHT_COUNT": 10,
+      "total": 10
     }
-],
-  "leaveseatData":[
+  ],
+  "leaveseatData": [
     {
-      "teacher_name" : "누구",
-      "teacher_id" : 1,
-      "place" : "베르실7/23",
-      "personnel" : 7,
-      "period" : "7교시",
-      "students" : [
+      "teacher_name": "유근찬",
+      "teacher_id": 69,
+      "place": "학부모회실",
+      "personnel": 13,
+      "period": "7교시",
+      "students": [
         {
-          "id" : 21,
-          "name" : "허온",
-          "number" : 1416
+          "id": 144,
+          "name": "한태영",
+          "number": 3116
         },
         {
-          "id" : 23,
-          "name" : "김동욱",
-          "number" : 1401
+          "id": 176,
+          "name": "김동욱",
+          "number": 3402
+        },
+        {
+          "id": 83,
+          "name": "권민재",
+          "number": 2202
+        },
+        {
+          "id": 135,
+          "name": "송윤서",
+          "number": 3107
+        },
+        {
+          "id": 188,
+          "name": "이지우",
+          "number": 3414
+        },
+        {
+          "id": 182,
+          "name": "박강은",
+          "number": 3408
+        },
+        {
+          "id": 149,
+          "name": "김영은",
+          "number": 3205
+        },
+        {
+          "id": 136,
+          "name": "오윤찬",
+          "number": 3108
+        },
+        {
+          "id": 77,
+          "name": "이재환",
+          "number": 2112
+        },
+        {
+          "id": 81,
+          "name": "황준혁",
+          "number": 2116
+        },
+        {
+          "id": 93,
+          "name": "이하은",
+          "number": 2212
+        },
+        {
+          "id": 78,
+          "name": "조하민",
+          "number": 2113
+        },
+        {
+          "id": 79,
+          "name": "허동운",
+          "number": 2114
         }
       ]
     }
   ],
-  "leaveseatDetail": {"teacher_name":"정종건","place":"음악준비실","cause":"자격증 준비","students":["2315 최치현"]},
+  "leaveseatDetail": {
+    "teacher_name": "정종건",
+    "place": "음악준비실",
+    "cause": "자격증 준비",
+    "students": [
+      "2315 최치현"
+    ]
+  },
   "leaveseat": [
     {
       "id": "9c94",
@@ -270,13 +332,73 @@
     },
     {
       "id": "0c96"
+    },
+    {
+      "id": "8f32",
+      "students": [],
+      "cause": "",
+      "day": "2025-03-19"
+    },
+    {
+      "id": "e3ce",
+      "students": [],
+      "cause": "",
+      "day": "2025-03-19"
+    },
+    {
+      "id": "d7b7",
+      "students": [],
+      "cause": "",
+      "day": "2025-03-19"
+    },
+    {
+      "id": "2dd1",
+      "students": [],
+      "cause": "",
+      "day": "2025-03-19"
+    },
+    {
+      "id": "0557",
+      "students": [],
+      "cause": "",
+      "day": "2025-03-19"
+    },
+    {
+      "id": "4bc3",
+      "students": [],
+      "cause": "",
+      "day": "2025-03-19"
+    },
+    {
+      "id": "9aba",
+      "students": [
+        "1"
+      ],
+      "cause": "",
+      "day": "2025-03-19"
+    },
+    {
+      "id": "9d13",
+      "students": [
+        "1"
+      ],
+      "cause": "",
+      "day": "2025-03-19"
+    },
+    {
+      "id": "acd2",
+      "students": [
+        "1"
+      ],
+      "cause": "",
+      "day": "2025-03-19"
     }
   ],
   "detail": {
-    "teacher_name" : "이정하",
-    "place" : "베르실7",
-    "cause" : "전공동아리",
-    "students" : [
+    "teacher_name": "이정하",
+    "place": "베르실7",
+    "cause": "전공동아리",
+    "students": [
       "1416 허온",
       "1416 허온",
       "1416 허온"
