@@ -100,6 +100,6 @@ export const PatchBox = styled.div`
     font-weight: 500;
 
     &:hover {
-        background: #b3b3b3;
+        background: #225acb;
     }
 `
