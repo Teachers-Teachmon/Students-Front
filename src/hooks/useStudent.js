@@ -68,73 +68,74 @@ export const usePostMovement = () => {
         mutationFn: (props) => API.postMovement(props),
         onSuccess: (data, variables) => {
             if(variables.recordDay === variables.day){
-                queryClient.setQueryData(['getMovement', variables.recordDay], (oldData) => {
-                    let data2;
-                    if(MovementPeriod[variables.time].length > 2){
-                         data2 = [
-                            ...oldData,
-                             {
-                                 teacher_name: variables.teacher_name,
-                                 teacher_id: variables.teacher_id,
-                                 place: variables.place.name,
-                                 personnel: variables.selectStudentShow.length,
-                                 period: periodName[MovementPeriod[variables.time][0]],
-                                 students: variables.selectStudent
-                             },
-                             {
-                                 teacher_name: variables.teacher_name,
-                                 teacher_id: variables.teacher_id,
-                                 place: variables.place.name,
-                                 personnel: variables.selectStudentShow.length,
-                                 period: periodName[MovementPeriod[variables.time][1]],
-                                 students: variables.selectStudent
-                             },
-                             {
-                                 teacher_name: variables.teacher_name,
-                                 teacher_id: variables.teacher_id,
-                                 place: variables.place.name,
-                                 personnel: variables.selectStudentShow.length,
-                                 period: periodName[MovementPeriod[variables.time][2]],
-                                 students: variables.selectStudent
-                             }
-                        ]
-                    }
-                    else if(variables.time.length > 1){
-                        data2 =  [
-                            ...oldData,
-                            {
-                                teacher_name: variables.teacher_name,
-                                teacher_id: variables.teacher_id,
-                                place: variables.place.name,
-                                personnel: variables.selectStudentShow.length,
-                                period: periodName[MovementPeriod[variables.time][0]],
-                                students: variables.selectStudent
-                            },
-                            {
-                                teacher_name: variables.teacher_name,
-                                teacher_id: variables.teacher_id,
-                                place: variables.place.name,
-                                personnel: variables.selectStudentShow.length,
-                                period: periodName[MovementPeriod[variables.time][1]],
-                                students: variables.selectStudent
-                            }
-                        ]
-                    }
-                    else{
-                        data2 =  [
-                            ...oldData,
-                            {
-                                teacher_name: variables.teacher_name,
-                                teacher_id: variables.teacher_id,
-                                place: variables.place.name,
-                                personnel: variables.selectStudentShow.length,
-                                period: variables.time,
-                                students : variables.selectStudent
-                            }
-                        ]
-                    }
-                    return data2
-                })
+                // queryClient.setQueryData(['getMovement', variables.recordDay], (oldData) => {
+                    // let data2;
+                    // if(MovementPeriod[variables.time].length > 2){
+                    //      data2 = [
+                    //         ...oldData,
+                    //          {
+                    //              teacher_name: variables.teacher_name,
+                    //              teacher_id: variables.teacher_id,
+                    //              place: variables.place.name,
+                    //              personnel: variables.selectStudentShow.length,
+                    //              period: periodName[MovementPeriod[variables.time][0]],
+                    //              students: variables.selectStudent
+                    //          },
+                    //          {
+                    //              teacher_name: variables.teacher_name,
+                    //              teacher_id: variables.teacher_id,
+                    //              place: variables.place.name,
+                    //              personnel: variables.selectStudentShow.length,
+                    //              period: periodName[MovementPeriod[variables.time][1]],
+                    //              students: variables.selectStudent
+                    //          },
+                    //          {
+                    //              teacher_name: variables.teacher_name,
+                    //              teacher_id: variables.teacher_id,
+                    //              place: variables.place.name,
+                    //              personnel: variables.selectStudentShow.length,
+                    //              period: periodName[MovementPeriod[variables.time][2]],
+                    //              students: variables.selectStudent
+                    //          }
+                    //     ]
+                    // }
+                    // else if(variables.time.length > 1){
+                    //     data2 =  [
+                    //         ...oldData,
+                    //         {
+                    //             teacher_name: variables.teacher_name,
+                    //             teacher_id: variables.teacher_id,
+                    //             place: variables.place.name,
+                    //             personnel: variables.selectStudentShow.length,
+                    //             period: periodName[MovementPeriod[variables.time][0]],
+                    //             students: variables.selectStudent
+                    //         },
+                    //         {
+                    //             teacher_name: variables.teacher_name,
+                    //             teacher_id: variables.teacher_id,
+                    //             place: variables.place.name,
+                    //             personnel: variables.selectStudentShow.length,
+                    //             period: periodName[MovementPeriod[variables.time][1]],
+                    //             students: variables.selectStudent
+                    //         }
+                    //     ]
+                    // }
+                    // else{
+                    //     data2 =  [
+                    //         ...oldData,
+                    //         {
+                    //             teacher_name: variables.teacher_name,
+                    //             teacher_id: variables.teacher_id,
+                    //             place: variables.place.name,
+                    //             personnel: variables.selectStudentShow.length,
+                    //             period: variables.time,
+                    //             students : variables.selectStudent
+                    //         }
+                    //     ]
+                    // }
+                    // return data2
+                // })
+                queryClient.invalidateQueries(['getMovement', variables.day]);
             }
             navigate('/manage/record', {state : 1});
         },
