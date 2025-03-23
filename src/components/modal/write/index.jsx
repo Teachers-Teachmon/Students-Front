@@ -25,7 +25,7 @@ export default function Write({ isWriter, students, period, setIsModal ,isPatch,
     const [selectStudent, setSelectStudent] = useState(isPatch ? students.map((stu) => {return {number : stu.number, name : stu.name, id: stu.id}}) : []);
     const [selectStudentShow, setSelectStudentShow] = useState(isPatch ? students.map((stu) => stu.id) : []);
     const {mutate : postMovement} = usePostMovement();
-    const { day, recordDay, setDay : setDayComponent} = useDay();
+    const { day, recordDay, setDay : setDayComponent, setRecordDay} = useDay();
     const debounceStudent = useDebounce(search, 150);
     const {id, name} = useAuth();
 
@@ -48,7 +48,7 @@ export default function Write({ isWriter, students, period, setIsModal ,isPatch,
                             <S.Black onClick={()=>setIsOpen([false, false])}/> : null
                         }
                         <div onClick={()=>alert('해당 사항은 수정하실 수 없습니다.')}>
-                            <DateInput />
+                            <DateInput  onChange = {setRecordDay} />
                         </div>
 
                         <S.Place>
@@ -153,7 +153,7 @@ export default function Write({ isWriter, students, period, setIsModal ,isPatch,
                                 name={"작성완료"}
                                 status={true}
                                 On={() => {
-                                    patchMovement({ selectStudentShow, day, time, place, cause, recordDay,teacher_id : isWriter, teacher_name : name,  set : setIsModal(false) })
+                                    patchMovement({ selectStudentShow, day : recordDay, time, place, cause, recordDay,teacher_id : isWriter, teacher_name : name,  set : setIsModal(false) })
                                     setDayComponent(recordDay);
                                 }}
                             />
