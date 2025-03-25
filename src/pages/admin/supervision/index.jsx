@@ -66,10 +66,8 @@ export default function AdminSupervision() {
     };
 
     const { data: TeacherList, isLoading, isError } = useGetAssignment(selMonth + 1);
-
     const { mutate: saveAssignment } = useSaveAutoAssignment();
     useEffect(() => {
-        console.log("TeacherList 데이터:", TeacherList);
         if (TeacherList?.data) {
             setLocalData(TeacherList.data);
         }
@@ -133,7 +131,7 @@ export default function AdminSupervision() {
     const groupedData = groupByWeek(localData);
     return (
         <S.Wrapper>
-            {/* {isLoading && <Loading />} */}
+            {isLoading && <Loading />}
             <Header />
             <S.MainWrap>
                 {Object.values(dropdownOpen).some(status => status) && (

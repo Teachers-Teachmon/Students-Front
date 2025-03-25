@@ -9,7 +9,6 @@ export default function StudentUpdateAfterSchool({setIsModal, day, period, patch
     const [isOpen, setIsOpen] = useState(false);
     const [className, setClassName] = useState("방과후");
     const {data : afterSchoolList = [], refetch} = useGetSupplementList(day, period);
-    console.log(afterSchoolList)
     useEffect(() => {
         if (day && period !== null) {
             refetch();

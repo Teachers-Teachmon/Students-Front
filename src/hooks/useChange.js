@@ -13,7 +13,6 @@ export const useGetMonthlySupervision = (month) => {
 }
 
 export const useGetFixedTeachers = (date, type, period) => {
-    console.log(date, type, period);
     return useQuery({
         queryKey: ['getFixedTeachers', date, type, period],
         queryFn: async () => {
@@ -29,7 +28,6 @@ export const useSendChangeRequest = () => {
         mutationFn: (props) => API.sendChangeRequest(props),
         onSuccess: () => {
             navigate('/supervision');
-            console.log('교체요청 보냄');
         },
         onError: (err) => {
             console.error('교체요청 실패:', err);

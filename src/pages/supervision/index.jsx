@@ -15,7 +15,6 @@ export default function Supervision() {
 
     const { data: TeacherList, isLoading, isError } = useGetAssignment(selMonth + 1);
     useEffect(() => {
-        console.log("TeacherList 데이터:", TeacherList);
         if (TeacherList?.data) {
             setLocalData(TeacherList.data);
         }

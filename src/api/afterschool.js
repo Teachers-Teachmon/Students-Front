@@ -98,7 +98,6 @@ export const classPrep = async ({originalAfterSchool, newAfterSchool}) => {
 };
 
 export const deleteClass = async (afterSchoolId) =>{
-    console.log(afterSchoolId)
     try{
         const res = await axiosInstance.delete(`${API_ENDPOINTS.AFTER_SCHOOL}/remove/${afterSchoolId}` );
         if(res.status !== 200){

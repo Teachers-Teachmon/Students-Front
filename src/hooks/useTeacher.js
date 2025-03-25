@@ -7,7 +7,6 @@ export const usePatchTeacher = () => {
     return useMutation({
         mutationFn: (props)=> API.patchTeacher(props),
         onSuccess: (data, variables) => {
-            console.log("성공")
             variables.onSuccessPatch();
             setStatus();
         },
@@ -22,7 +21,6 @@ export const usePostTeacher = () => {
     return useMutation({
         mutationFn: (props)=> API.postTeacher(props),
         onSuccess: (data, variables) => {
-            console.log("성공")
             variables.onSuccessPatch();
             setStatus();
         },
@@ -37,7 +35,6 @@ export const useDeleteTeacher = () => {
     return useMutation({
         mutationFn: (props)=> API.deleteTeacher(props),
         onSuccess: (data, variables) => {
-            console.log("성공")
             variables.onSuccessPatch();
             setStatus();
         },

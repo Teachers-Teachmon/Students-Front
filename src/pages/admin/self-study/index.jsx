@@ -32,7 +32,6 @@ export default function AdminSelfStudy() {
   const { data } = useGetSelfStudy(branch, selectedGrade);
 
   useEffect(() => {
-    console.log("API 응답 data:", data);
     if (data) {
       setSelectedRows({
         MON: data.MON || [],
@@ -42,9 +41,6 @@ export default function AdminSelfStudy() {
       });
     }
   }, [data])
-  useEffect(() => {
-    console.log("현재 selectedRows:", selectedRows);
-  }, [selectedRows]);
 
   const mapPeriod = (p) => {
     switch (p) {
@@ -114,11 +110,8 @@ export default function AdminSelfStudy() {
 
     setIsLoading(true);
   
-    console.log('Payload:', payload);
-  
     mutate(payload, {
       onSuccess: (data) => {
-        console.log("저장 성공 데이터:", data);
         alert('저장이 완료되었습니다.');
       },
       onError: (error) => {

@@ -125,11 +125,9 @@ export default function Write({ isWriter, students, period, setIsModal ,isPatch,
                                         <S.Student
                                             key={idx}
                                             onClick={() =>{
-                                                console.log(selectStudentShow)
                                                 setSelectStudentShow(
                                                     selectStudentShow.filter(
                                                         (currentItem) => {
-                                                            console.log(currentItem, item)
                                                             return currentItem !== item.id
                                                         }
                                                     )

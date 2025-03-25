@@ -31,7 +31,6 @@ function DropZone({ classNumber, onDropStudent, children, enabled }) {
         canDrop: () => enabled,
         drop: (item) => {
             if (enabled) {
-                console.log("Dropped on class", classNumber, "item:", item);
                 onDropStudent(item.student, classNumber);
             }
         },
@@ -69,12 +68,10 @@ export default function SeatAssignment() {
     }, [businessTripStudents]);    
 
     const handleAssignStudent = (student, targetClassNumber) => {
-        console.log("Assigning student", student, "to class", targetClassNumber);
         setAssignedStudent(prev => {
             const updated = prev.filter(s => s.number !== student.number);
             return [...updated, { ...student, classNumber: targetClassNumber }];
         });
-        console.log("Assigned students", assignedStudent);
     };
 
     const handleSave = () => {

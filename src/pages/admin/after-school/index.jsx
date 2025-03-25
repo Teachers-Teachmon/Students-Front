@@ -56,7 +56,6 @@ export default function AdminAfterSchool() {
 
   const handleUpload = async () => {
     const id = extractSpreadsheetId(spreadsheetUrl);
-    console.log("추출된 spreadSheetId:", id);
 
     if (!id) {
       alert("유효한 Spreadsheet 링크를 입력해주세요.");
@@ -85,7 +84,6 @@ export default function AdminAfterSchool() {
 
   const handleFlush = async () => {
     const id = extractSpreadsheetId(spreadsheetUrl);
-    console.log("추출된 spreadSheetId:", id);
 
     if (!id) {
       alert('유효한 Spreadsheet 링크를 입력해주세요.');
@@ -222,10 +220,6 @@ export default function AdminAfterSchool() {
       [grade]: [...prev[grade], { period: '', weekDay: weekday, teacherName: '', placeName: '', name: '', students: [] }],
     }));
   };
-
-  useEffect(() => {
-    console.log(grades)
-  }, [grades]);
 
   useEffect(() => {
     setIsOpen({
