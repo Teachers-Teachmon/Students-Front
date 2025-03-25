@@ -17,7 +17,6 @@ export const getTeacher = async (name, order) => {
 }
 
 export const patchTeacher = async (teacher) => {
-    console.log(teacher)
     try {
         const res = await axiosInstance.patch(`${API_ENDPOINTS.TEACHER}/${teacher.teachers.teacher_id}`, {
             name : teacher.teachers.name,

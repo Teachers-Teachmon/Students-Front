@@ -19,7 +19,6 @@ export default function Admin() {
 
   const now = new Date();
   const day = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
-  console.log(day);
 
   // const dayData = {
   //   "day": "2025년 1월 8일 (수)",
@@ -99,7 +98,6 @@ export default function Admin() {
   const { mutate: deleteLeaveStudent } = useDeleteLeaveStudent();
 
   useEffect(() => {
-    console.log(leaveStudentData);
     setLeaveStudent(leaveStudentData);
   }, [leaveStudentData]);
 

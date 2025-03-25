@@ -77,7 +77,19 @@ export default function Movement({ isPeriod, day , isFirst}) {
                                                 }}
                                             >삭제</S.DeleteBox>
                                         </>
-                                        : null
+                                        : <>
+                                         <S.PatchBox
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    setIsModal2(true)
+                                                    getDetail((day), item.teacher_id, item.period, item.place)
+                                                    setDayComponent(recordDay)
+                                                    setPeriod(item.period)
+                                                    setStudents(item.students)
+                                                    setIsWriter(item.teacher_id)
+                                                }}
+                                            >수정</S.PatchBox>
+                                        </>
                                     }
                                 </S.Content>
                             </>

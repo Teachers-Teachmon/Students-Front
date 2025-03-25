@@ -88,7 +88,6 @@ export default function Main() {
             setSupCount(completeRateData.completed);
             setSupTotal(completeRateData.total);
         }
-        console.log(completeRateData);
     }, [completeRateData, isLoadingRate]);
 
     const handlePrevMonth = () => {

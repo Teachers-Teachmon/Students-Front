@@ -58,7 +58,6 @@ export const getLocation = async (floor) =>{
         }
         return res;
     }catch (err){
-        console.log("여기에요")
         return err;
     }
 }
@@ -105,7 +104,6 @@ export const postMovement = async ({selectStudentShow, day, time, place, cause})
 }
 
 export const patchStudent = async ({studentID, status}) =>{
-    console.log(studentID, status)
     try{
         const res = await axiosInstance.patch(`${API_ENDPOINTS.STUDENT}/schedule`, {
             id: studentID,

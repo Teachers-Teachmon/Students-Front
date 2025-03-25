@@ -8,7 +8,6 @@ export const useAutoAssignment = () => {
         mutationFn: (props) => API.autoAssignment(props),
         onSuccess: () => {
             queryClient.invalidateQueries(['getAssignment']);
-            console.log('Assignment 성공');
         },
         onError: (err) => {
             console.error('Assignment 실패:', err);
@@ -31,7 +30,6 @@ export const useSaveAutoAssignment = () => {
     return useMutation({
         mutationFn: (props) => API.saveAutoAssignment(props),
         onSuccess: () => {
-            console.log('Assignment 저장 성공');
             queryClient.invalidateQueries(['getAssignment']);
         },
         onError: (err) => {
@@ -71,7 +69,6 @@ export const useGetDailySupervision = (day) => {
 }
 
 export const useGetCompleteRate = (percentage, total, completed) => {
-    console.log(percentage, total, completed);
     return useQuery({
         queryKey: ['getCompleteRate', percentage, total, completed],
         queryFn: async () => {

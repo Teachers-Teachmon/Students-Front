@@ -95,7 +95,6 @@ export const getDailySupervision = async (day) => {
 }
 
 export const getCompleteRate = async ({percentage, total, completed}) => {
-    console.log(percentage, total, completed);
     try {
         const res = await axiosInstance.get(`${API_ENDPOINTS.SUPERVISION}/completed`, {
             percentage: percentage,

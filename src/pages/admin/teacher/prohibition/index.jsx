@@ -80,7 +80,6 @@ export default function SupervisionCreate() {
                 return null;
             }).filter(item => item !== null)
         );
-        console.log('Payload:', payload);
         mutate(payload, {
             onSuccess: () => {
                 alert('금지날짜가 저장되었습니다.');

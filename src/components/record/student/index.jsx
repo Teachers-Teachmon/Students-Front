@@ -98,8 +98,6 @@ export default function Student({ data, day }) {
             }
         };
     }, [childRefs.current.length]);
-    console.log( data.filter((_, idx)=>isCheck[idx] === true)
-        .map((item)=> item.id))
     return (
         <S.StudentContainer>
             {isModal ? <StudentUpdateAfterSchool setIsModal = {setIsModal} day={day} period={period} patchAfterSchool={patchAfterSchool}/> : null}

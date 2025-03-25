@@ -88,7 +88,7 @@ export const DeleteBox = styled.div`
 `
 export const PatchBox = styled.div`
     padding: 6px 20px;
-    background: #bdbdbd;
+    background: #2E6FF2;
     color: white;
     display: flex;
     align-items: center;
@@ -100,6 +100,6 @@ export const PatchBox = styled.div`
     font-weight: 500;
 
     &:hover {
-        background: #b3b3b3;
+        background: #225acb;
     }
 `
