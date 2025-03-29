@@ -1,5 +1,4 @@
 import * as S from './style.jsx'
-import Header from '../../components/header/index.jsx'
 import CircleBtn from "../../components/button/circle"
 import SquareBtn from "../../components/button/square/index.jsx";
 import useDay from "../../zustand/day.js";
@@ -9,6 +8,7 @@ import Record from "../../assets/record.svg";
 import StudentGraph from '../../components/student-graph'
 import {useGetNowStudent} from "../../hooks/useStudent.js";
 import Loading from "../../components/loading/index.jsx";
+import Layout from "./layout.jsx";
 
 export default function Manage(){
     const hour = new Date().getHours();
@@ -94,10 +94,8 @@ export default function Manage(){
     }, []);
 
     return(
-        <S.ManageContainer>
-            {isLoading || isFetching && !weekday && period && <Loading />}
-            <Header />
-            <S.Wrap>
+        <Layout>
+                {isLoading || isFetching && !weekday && period && <Loading />}
                 <S.Info>
                     <h1>{day} {!weekday ? period : null}</h1>
                     <SquareBtn name={"학생위치"} status={true} On={()=>navigate('/manage/location')} />
@@ -168,7 +166,6 @@ export default function Manage(){
 
                     </S.Section>
                 </S.Main>
-            </S.Wrap>
-        </S.ManageContainer>
+        </Layout>
     )
 }

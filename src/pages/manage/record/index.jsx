@@ -1,5 +1,4 @@
 import * as S from './style.jsx'
-import Header from "../../../components/header/index.jsx";
 import SquareBtn from "../../../components/button/square/index.jsx";
 import {useLocation, useNavigate} from "react-router-dom";
 import CircleBtn from "../../../components/button/circle/index.jsx";
@@ -15,6 +14,7 @@ import patchDay from "../../../utils/patchDay.js";
 import Write from "../../../components/modal/write/index.jsx";
 import {useStatusUpdate} from "../../../zustand/statusUpdate.js";
 import SearchBox from "../../../components/searchBox/index.jsx";
+import Layout from "../layout.jsx";
 
 export default function Record() {
     const navigate = useNavigate();
@@ -59,9 +59,7 @@ export default function Record() {
         setIsPeriod(newIsPeriod);
     }
     return (
-        <S.ManageContainer>
-            <Header/>
-            <S.Wrap>
+        <Layout>
                 <S.Info>
                     {isMovement[0] ? (
                         <h1>이석</h1>
@@ -142,7 +140,6 @@ export default function Record() {
                         null
                     }
                 </S.Main>
-            </S.Wrap>
-        </S.ManageContainer>
+        </Layout>
     )
 }

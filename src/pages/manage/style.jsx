@@ -1,22 +1,5 @@
 import styled from "styled-components";
 
-export const ManageContainer = styled.div`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-start;
-`
-export const Wrap = styled.div`
-    width : 87%;
-    height: 100%;
-    padding: 40px 6%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    @media (max-width: 400px) {
-        width: 100%;
-    }
-`
 export const Info = styled.div`
     display: flex;
     justify-content: space-between;
