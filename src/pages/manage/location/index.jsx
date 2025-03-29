@@ -2,7 +2,7 @@ import * as S from './style.jsx'
 import Header from "../../../components/header/index.jsx";
 import CircleBtn from "../../../components/button/circle/index.jsx";
 import SquareBtn from "../../../components/button/square/index.jsx";
-import {useEffect, useState} from "react";
+import { useState} from "react";
 import { useNavigate } from "react-router-dom";
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import First from "../../../components/map/1st/index.jsx";
@@ -17,6 +17,7 @@ import ZoomOut from "../../../assets/Zoom-out.svg";
 import Reset from "../../../assets/reset.svg";
 import Error from '../../../assets/Error.svg'
 import ErrorText from '../../../assets/Error2.svg'
+import {useWidth} from "../../../zustand/width.js";
 
 export default function Location() {
     const navigate = useNavigate();
@@ -36,17 +37,7 @@ export default function Location() {
     const [isModal,setIsModal] = useState(false);
     const {data : locationAll, isFetching : isAllLoading} = useGetLocationAll();
     const {data : locationFloor, isFetching : isFloorLoading} = useGetLocationFloor(floor()[0]);
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-    useEffect(() => {
-        const handleResize = () => {
-            const width = window.innerWidth;
-            setWindowWidth(width);
-        };
-
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, [windowWidth]);
+    const {width} = useWidth();
 
     return (
         <S.LocationContainer>
@@ -98,22 +89,22 @@ export default function Location() {
                                     <S.Box>
                                         {isAllLoading || isFloorLoading ?
                                             isFloor[0] ? (
-                                                <First width = {windowWidth} data = {locationFloor} set = {setIsModal} fake = {true}/>
+                                                <First width = {width} data = {locationFloor} set = {setIsModal} fake = {true}/>
                                             ) : isFloor[1] ? (
-                                                <Second width = {windowWidth} data = {locationFloor} set = {setIsModal} fake = {true}/>
+                                                <Second width = {width} data = {locationFloor} set = {setIsModal} fake = {true}/>
                                             ) : isFloor[2] ? (
-                                                <Third width = {windowWidth} data = {locationFloor} set = {setIsModal} fake = {true}/>
+                                                <Third width = {width} data = {locationFloor} set = {setIsModal} fake = {true}/>
                                             ) : isFloor[3] ? (
-                                                <Fourth width = {windowWidth} data = {locationFloor} set = {setIsModal} fake = {true}/>
+                                                <Fourth width = {width} data = {locationFloor} set = {setIsModal} fake = {true}/>
                                             ) : null :
                                             isFloor[0] ? (
-                                                <First width = {windowWidth} data = {locationFloor} set = {setIsModal}/>
+                                                <First width = {width} data = {locationFloor} set = {setIsModal}/>
                                             ) : isFloor[1] ? (
-                                                <Second width = {windowWidth} data = {locationFloor} set = {setIsModal}/>
+                                                <Second width = {width} data = {locationFloor} set = {setIsModal}/>
                                             ) : isFloor[2] ? (
-                                                <Third width = {windowWidth} data = {locationFloor} set = {setIsModal}/>
+                                                <Third width = {width} data = {locationFloor} set = {setIsModal}/>
                                             ) : isFloor[3] ? (
-                                                <Fourth width = {windowWidth} data = {locationFloor} set = {setIsModal} />
+                                                <Fourth width = {width} data = {locationFloor} set = {setIsModal} />
                                             ) : null
                                         }
                                     </S.Box>
