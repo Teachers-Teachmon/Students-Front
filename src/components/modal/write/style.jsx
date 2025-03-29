@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import {CancelBlack} from "../../../styles/style.jsx";
 
 export const WriteContainer = styled.div`
-    width: 45%;
+    width: 50%;
     background: white;
     border: 2px solid #A0A0A0;
     border-radius: 10px;
@@ -12,12 +13,6 @@ export const WriteContainer = styled.div`
     z-index: 4;
     padding: 40px;
     gap: 30px;
-`
-
-export const Info = styled.div`
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
 `
 export const Place = styled.div`
     display: flex;
@@ -75,6 +70,10 @@ export const Student = styled.div`
     font-weight: 550;
     cursor: pointer;
     height: max-content;
+    width: 120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 `
 
 export const StudentList = styled.div`
@@ -121,11 +120,4 @@ export const StudentItem = styled.div`
         background: #F2F3F6;
     }
 `
-export const Black = styled.div`
-    width: 100vw;
-    height: 100vh;
-    z-index: 1;
-    position: absolute;
-    top: 0;
-    left: 0;
-`
+export const Black = styled(CancelBlack)``

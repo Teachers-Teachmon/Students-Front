@@ -1,20 +1,9 @@
 import styled from "styled-components";
+import * as S from '../../../pages/manage/record/style.jsx'
 
-export const StudentContainer = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    height: 90%;
-`
-export const Standard = styled.div`
-    width: 100%;
-    background: #f0f0f0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+export const StudentContainer = styled(S.Container)``
+export const Standard = styled(S.Standard)`
     justify-content: space-between;
-    border: 1px solid #EAECF0;
-    padding: 10px;
     z-index: 10;
     & > div{
         display: flex;
@@ -22,9 +11,7 @@ export const Standard = styled.div`
         justify-content: space-between;
     }
 `
-export const ContentBox = styled.div`
-    height: 100%;
-    overflow-y: auto;
+export const ContentBox = styled(S.ContentBox)`
     scrollbar-width: none;
 `
 export const UnBox = styled.div`
@@ -47,19 +34,8 @@ export const CheckBox = styled.input.attrs({ type: 'checkbox' })`
     border: 1px solid #D0D5DD;
     cursor: pointer;
 `;
-export const Box = styled.p`
-    font-size: 13px;
-    font-weight: 500;
-    color: #667085;
-    width: ${(props)=>props.$length}px;
-`
-export const NoData = styled.div`
-    width: 100%;
-    height: 400px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
+export const Box = styled(S.Box)``
+export const NoData = styled(S.NoData)``
 export const Content = styled.div`
     width: 100%;
     display: flex;
@@ -76,18 +52,13 @@ export const Content = styled.div`
         justify-content: space-between;
     }
 `
-export const Box2 = styled.div`
+export const Box2 = styled(S.Box2)`
     position: relative;
-    font-size: 16px;
-    font-weight: 500;
-    color: #667085;
-    width: ${(props)=>props.$length}px;
     margin-right: 65px;
     & > p{
         width: 40px;
     }
 `
-
 export const Status = styled.div`
     width: max-content;
     display: flex;

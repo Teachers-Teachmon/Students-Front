@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+const flexRow = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`
 export const Info = styled.div`
     display: flex;
     justify-content: space-between;
@@ -12,7 +17,6 @@ export const Info = styled.div`
     }
 `
 
-
 export const Main = styled.main`
     width: 100%;
     height: 90%;
@@ -20,13 +24,10 @@ export const Main = styled.main`
     border-radius: 8px;
 `
 
-export const MainNav = styled.div`
+export const MainNav = styled(flexRow)`
     width: 100%;
     height: 10%;
-    display: flex;
-    align-items: center;
     padding: 30px 20px;
-    justify-content: space-between;
 `
 export const NoData = styled.div`
     font-size: 14px;
@@ -48,29 +49,17 @@ export const MainBox = styled.div`
         gap: 5px;
     }
 `
-export const Grade = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+export const Grade = styled(flexRow)`
     gap: 10px;
 `
-export const Color = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+export const Color = styled(flexRow)`
     gap: 20px;
-    align-items: center;
     @media (max-width: 400px) {
         display: none;
     }
 `
-
-export const Colors = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+export const Colors = styled(flexRow)`
     gap: 5px;
-    align-items: center;
 `
 
 export const Status = styled.p`
@@ -110,17 +99,4 @@ export const Section = styled.section`
     @media (max-width: 400px) {
         overflow-y: scroll;
     }
-`
-
-export const Black = styled.div`
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgb(0, 0, 0, 0.4);
-    z-index: 3;
 `

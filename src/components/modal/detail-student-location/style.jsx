@@ -1,16 +1,8 @@
 import styled from "styled-components";
+import {Black as ModalBlack, CancelBlack} from '../../../styles/style.jsx';
 
-export const Black = styled.div`
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
+export const Black = styled(ModalBlack)`
     z-index: 10;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgb(0,0,0,0.4);
 `
 export const Content = styled.div`
     @media (max-width: 400px) {
@@ -95,10 +87,4 @@ export const Students = styled.div`
     gap: 10px;
     justify-content: flex-start;
 `
-export const UnBox = styled.div`
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
-`
+export const UnBox = styled(CancelBlack)``

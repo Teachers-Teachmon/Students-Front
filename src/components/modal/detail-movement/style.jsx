@@ -1,17 +1,7 @@
 import styled from "styled-components";
+import {Black as ModalBlack} from '../../../styles/style.jsx';
 
-export const Black = styled.div`
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgb(0,0,0,0.4);
-`
+export const Black = styled(ModalBlack)``
 export const Content = styled.div`
     width: 45%;
     @media (max-width: 400px) {

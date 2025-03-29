@@ -1,5 +1,5 @@
 import * as S from './style.jsx'
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import DetailMovement from "../../modal/detail-movement/index.jsx";
 import {useDeleteMovement, useGetMovement} from "../../../hooks/useData.js";
 import useAuth from "../../../zustand/auth.js"
@@ -105,10 +105,7 @@ export default function Movement({ isPeriod, day , isFirst}) {
                 })}
                 {isModal ?<DetailMovement data={detail} setIsModal={setIsModal} /> : null}
                 {isModal2 && detail?
-                    <S.Black onClick={()=> {
-                        setDayComponent(recordDay);
-                        setIsModal2(false)
-                    }}>
+                    <S.Black>
                         <Write isWriter={isWriter} students = {students} period = {period} data={detail} isPatch = {true} isModal={isModal2} setIsModal={setIsModal2}/>
                     </S.Black>
                     :

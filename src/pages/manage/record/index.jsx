@@ -133,10 +133,7 @@ export default function Record() {
                         <Student data={student} day={day}/>
                     ) : null}
                     {isModal ?
-                        <S.Black onClick={()=> {
-                            setDayComponent(recordDay);
-                            setIsModal(false)
-                        }}>
+                        <S.Black>
                             <Write isModal={isModal} setIsModal={setIsModal}/>
                         </S.Black>
                         :

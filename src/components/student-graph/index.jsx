@@ -52,7 +52,7 @@ export default function StudentGraph({data, grade, classNum}){
     const blackstudent = useRef(null);
     return(
         <S.StudentContainer>
-            <S.Class>{classNum}반</S.Class>
+            <h2>{classNum}반</h2>
             {data ?
                 <S.Graph  $seven = {data.length === 17}>
                     {data.map((el, idx) => {

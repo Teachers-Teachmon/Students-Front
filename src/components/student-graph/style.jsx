@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { darken } from 'polished';
+import {CancelBlack} from "../../styles/style.jsx";
 
 export const StudentContainer = styled.div`
     width: 50%;
@@ -12,8 +13,6 @@ export const StudentContainer = styled.div`
     @media (max-width: 400px) {
         width: 100%;
     }
-`
-export const Class = styled.h2`
 `
 export const Graph = styled.div`
     ${(props)=>props.$seven ? "margin-top: 6%;" : null};
@@ -44,11 +43,6 @@ export const Student = styled.div`
         font-size: 12px;
     }
 `
-export const Black = styled.div`
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
+export const Black = styled(CancelBlack)`
     z-index: 1;
 `
