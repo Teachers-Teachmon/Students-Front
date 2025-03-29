@@ -26,10 +26,14 @@ export default function DetailMovement({setIsModal, data}) {
                     <S.BlueText>학생 {data.students.length}명</S.BlueText>
                     <S.Students>
                         {data.students.map((item) => {
+                            const split = item.split(" ");
                            return (
                                <S.Teacher key={item}>
                                    <img src={People} alt={"people"} width={28}/>
-                                   <S.Name>{ item}</S.Name>
+                                   <S.Name>
+                                       <span>{split[0]}</span>
+                                       <span>{split[1]}</span>
+                                   </S.Name>
                                </S.Teacher>
                            )
                         })}

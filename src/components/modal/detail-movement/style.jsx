@@ -14,12 +14,18 @@ export const Black = styled.div`
 `
 export const Content = styled.div`
     width: 45%;
+    @media (max-width: 400px) {
+        width: 80%;
+        
+    }
     padding: 30px;
     border-radius: 8px;
     background: white;
     display: flex;
     flex-direction: column;
     gap:25px;
+    max-height: 82%;
+    overflow: auto;
 `
 
 export const Title = styled.div`
@@ -45,9 +51,18 @@ export const Teacher = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    & > img{
+        @media (width < 400px) {
+            display: none;
+        }
+    }
 `
 export const Name = styled.p`
     font-size: 20px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     font-weight: 500;
 `
 export const Reason = styled.p`

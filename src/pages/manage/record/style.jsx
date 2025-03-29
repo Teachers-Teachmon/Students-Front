@@ -27,14 +27,14 @@ export const MainNav = styled.div`
     &>div:first-child{
         width: 70%;
         display: flex;
-        gap: 15px;
+        gap: 10px;
         align-items: center;
     }
 `
 export const CheckBox = styled.div`
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
     & > div{
         cursor: pointer;
         display: flex;

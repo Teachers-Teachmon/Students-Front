@@ -95,7 +95,7 @@ export const PatchBox = styled.div`
     justify-content: center;
     border-radius: 8px;
     position: absolute;
-    right: 8.5%;
+    ${props=>props.$disabled ? "right: 15px" : "right: 8.5%"};
     cursor: pointer;
     font-weight: 500;
 

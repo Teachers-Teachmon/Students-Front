@@ -15,6 +15,8 @@ import Write from "../../../components/modal/write/index.jsx";
 import {useStatusUpdate} from "../../../zustand/statusUpdate.js";
 import SearchBox from "../../../components/searchBox/index.jsx";
 import Layout from "../layout.jsx";
+import MOBILE from "../../../utils/mobile.js";
+import {useWidth} from "../../../zustand/width.js";
 
 export default function Record() {
     const navigate = useNavigate();
@@ -58,6 +60,7 @@ export default function Record() {
         newIsPeriod[id] = !isPeriod[id];
         setIsPeriod(newIsPeriod);
     }
+    const {width} = useWidth();
     return (
         <Layout>
                 <S.Info>
@@ -70,7 +73,7 @@ export default function Record() {
                     ) : null}
                     <S.InfoBtn>
                         <SquareBtn name={"돌아가기"} status={true} On={() => navigate('/manage')} />
-                        {isMovement[0] && window.innerWidth > 400 && <SquareBtn name={"이석작성"} status={true} On={()=>setIsModal(!isModal)} />}
+                        {isMovement[0] && width > MOBILE && <SquareBtn name={"이석작성"} status={true} On={()=>setIsModal(!isModal)} />}
                     </S.InfoBtn>
                 </S.Info>
                 <S.Main>
@@ -93,7 +96,7 @@ export default function Record() {
                                         value={isPeriod[0]}
                                         onChange={()=>periodHandler(0)}
                                     />
-                                    <label>7교시</label>
+                                    <label>{width > MOBILE ? "7교시" : "7"}</label>
                                 </div>
                                 <div>
                                     <input
@@ -101,7 +104,7 @@ export default function Record() {
                                         value={isPeriod[1]}
                                         onChange={()=>periodHandler(1)}
                                     />
-                                    <label>8~9교시</label>
+                                    <label>{width > MOBILE ? "8~9교시" : "8"}</label>
                                 </div>
                                 <div>
                                     <input
@@ -109,7 +112,7 @@ export default function Record() {
                                         value={isPeriod[2]}
                                         onChange={()=>periodHandler(2)}
                                     />
-                                    <label>10~11교시</label>
+                                    <label>{width > MOBILE ? "10~11교시" : "10"}</label>
                                 </div>
                             </S.CheckBox>}
                     </S.MainNav>
