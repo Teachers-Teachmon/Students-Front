@@ -1,57 +1,26 @@
 import styled from "styled-components";
+import * as S from '../style.jsx';
+import {Black as ModalBlack} from '../../../styles/style.jsx';
 
-export const ManageContainer = styled.div`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-start;
-`
-export const Wrap = styled.div`
-    width : 87%;
-    height: 100%;
-    padding: 40px 6%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    @media (max-width: 400px) {
-        width: 100%;
-    }
-`
-export const Info = styled.div`
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    align-items: center;
-`
+export const Info = styled(S.Info)``
 export const InfoBtn = styled.div`
     display: flex;
     justify-content: space-between;
     gap: 14px;
 `
-export const Main = styled.main`
-    width: 100%;
-    height: 90%;
-    border: 2px solid #EAECF0;
-    border-radius: 8px;
-`
-export const MainNav = styled.div`
-    width: 100%;
-    height: 10%;
-    display: flex;
-    align-items: center;
-    padding: 30px 20px;
-    justify-content: space-between;
+export const Main = styled(S.Main)``
+export const MainNav = styled(S.MainNav)`
     &>div:first-child{
         width: 70%;
         display: flex;
-        gap: 15px;
+        gap: 10px;
         align-items: center;
     }
 `
 export const CheckBox = styled.div`
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
     & > div{
         cursor: pointer;
         display: flex;
@@ -60,15 +29,50 @@ export const CheckBox = styled.div`
     }
 `
 
-export const Black = styled.div`
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
+export const Black = styled(ModalBlack)`
+    z-index: 3;
+`
+export const Container = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+`
+export const Standard = styled.div`
+    width: 100%;
+    background: #f0f0f0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    border: 1px solid #EAECF0;
+    padding: 10px;
+`
+export const ContentBox = styled.div`
+    height: 100%;
+    overflow-y: auto;
+`
+export const UnBox = styled.div`
+    width: 80px;
+    height: 25px;
+`
+export const Box = styled.p`
+    font-size: 13px;
+    font-weight: 500;
+    color: #667085;
+    width: ${(props)=>props.$length}px;
+`
+
+export const Box2 = styled.p`
+    font-size: 16px;
+    font-weight: 500;
+    color: #667085;
+    width: ${(props)=>props.$length}px;
+`
+export const NoData = styled.div`
+    width: 100%;
+    height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgb(0, 0, 0, 0.4);
-    z-index: 3;
 `

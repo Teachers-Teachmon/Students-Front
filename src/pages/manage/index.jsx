@@ -1,5 +1,4 @@
 import * as S from './style.jsx'
-import Header from '../../components/header/index.jsx'
 import CircleBtn from "../../components/button/circle"
 import SquareBtn from "../../components/button/square/index.jsx";
 import useDay from "../../zustand/day.js";
@@ -9,6 +8,9 @@ import Record from "../../assets/record.svg";
 import StudentGraph from '../../components/student-graph'
 import {useGetNowStudent} from "../../hooks/useStudent.js";
 import Loading from "../../components/loading/index.jsx";
+import Layout from "./layout.jsx";
+import MOBILE from "../../utils/mobile.js";
+import {useWidth} from "../../zustand/width.js";
 
 export default function Manage(){
     const hour = new Date().getHours();
@@ -27,35 +29,25 @@ export default function Manage(){
     const {data : student, isLoading, isFetching} = useGetNowStudent(gradeIndex()[0]);
 
     const [weekday, setWeekday] = useState(false);
+
+    let period;
+    const changeClass = () =>{
+        const time = hour * 60 + minute;
+        if(time >= 0 && time <= 16 * 60 + 9) period = "7교시";
+        else if(time >= 16 * 60 + 10 && time <= 18*60 + 9) period = "8~9교시"
+        else if(time >= 18*60 + 10 && time <= 24*60) period = "10~11교시"
+    }
+
     // 렌더링시 오늘의 날짜를 계산해서 보여줌
     useEffect(() => {
+        changeClass();
         const pattern = /(\d{4}-\d{2}-\d{2})\s(\w+)/;
         const match = today.match(pattern);
-        switch (match[2]) {
-            case 'Monday':
-                setDay(`${today.slice(5, 7)}월 ${today.slice(8, 10)}일 (월)`);
-                break;
-            case 'Tuesday':
-                setDay(`${today.slice(5, 7)}월 ${today.slice(8, 10)}일 (화)`);
-                break;
-            case 'Wednesday':
-                setDay(`${today.slice(5, 7)}월 ${today.slice(8, 10)}일 (수)`);
-                break;
-            case 'Thursday':
-                setDay(`${today.slice(5, 7)}월 ${today.slice(8, 10)}일 (목)`);
-                break;
-            case 'Friday':
-                setDay(`${today.slice(5, 7)}월 ${today.slice(8, 10)}일 (금)`);
-                setWeekday(true);
-                break;
-            case 'Saturday':
-                setDay(`${today.slice(5, 7)}월 ${today.slice(8, 10)}일 (토)`);
-                setWeekday(true);
-                break;
-            case 'Sunday':
-                setDay(`${today.slice(5, 7)}월 ${today.slice(8, 10)}일 (일)`);
-                setWeekday(true);
-                break;
+        const dayNames = ['월', '화', '수', '목', '금', '토', '일'];
+        const dayIndex = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].indexOf(match[2]);
+        if (dayIndex !== -1) {
+            setDay(`${today.slice(5, 7)}월 ${today.slice(8, 10)}일 (${dayNames[dayIndex]})`);
+            if (dayIndex >= 4) setWeekday(true);
         }
     }, []);
 
@@ -66,38 +58,11 @@ export default function Manage(){
         newGrade[idx] = true;
         setGrade(newGrade);
     }
-
-    let period;
-    const changeClass = () =>{
-        const time = hour * 60 + minute;
-        if(time >= 0 && time <= 16 * 60 + 9){
-            period = "7교시";
-        }else if(time >= 16 * 60 + 10 && time <= 18*60 + 9){
-            period = "8~9교시"
-        }else if(time >= 18*60 + 10 && time <= 24*60) {
-            period = "10~11교시"
-        }else {
-            period = null
-        }
-    }
-    changeClass();
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-    useEffect(() => {
-        const handleResize = () => {
-            const width = window.innerWidth;
-            setWindowWidth(width);
-        };
-
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
+    const {width : windowWidth} = useWidth();
 
     return(
-        <S.ManageContainer>
-            {isLoading || isFetching && !weekday && period && <Loading />}
-            <Header />
-            <S.Wrap>
+        <Layout>
+                {isLoading || isFetching && !weekday && period && <Loading />}
                 <S.Info>
                     <h1>{day} {!weekday ? period : null}</h1>
                     <SquareBtn name={"학생위치"} status={true} On={()=>navigate('/manage/location')} />
@@ -106,9 +71,9 @@ export default function Manage(){
                     <S.MainNav>
                         <S.MainBox>
                             <S.Grade>
-                                <CircleBtn name={windowWidth > 400 ? "1학년" : "1"} status={grade[0]} On={()=>changeGrade(0)} />
-                                <CircleBtn name={windowWidth > 400 ? "2학년" : "2"} status={grade[1]} On={()=>changeGrade(1)} />
-                                <CircleBtn name={windowWidth > 400 ? "3학년" : "3"} status={grade[2]} On={()=>changeGrade(2)} />
+                                <CircleBtn name={windowWidth > MOBILE ? "1학년" : "1"} status={grade[0]} On={()=>changeGrade(0)} />
+                                <CircleBtn name={windowWidth > MOBILE ? "2학년" : "2"} status={grade[1]} On={()=>changeGrade(1)} />
+                                <CircleBtn name={windowWidth > MOBILE ? "3학년" : "3"} status={grade[2]} On={()=>changeGrade(2)} />
                             </S.Grade>
                             <S.Color>
                                 <S.Colors>
@@ -135,15 +100,15 @@ export default function Manage(){
                         </S.MainBox>
                         <S.MainBox>
                             <S.Record onClick={()=>navigate('/manage/record', {state:1})}>
-                                {windowWidth > 400 && <img src={Record} alt="" />}
+                                {windowWidth > MOBILE && <img src={Record} alt="" />}
                                 <p>이석</p>
                             </S.Record>
                             <S.Record onClick={()=>navigate('/manage/record', {state: 2})}>
-                                {windowWidth > 400 && <img src={Record} alt="" />}
+                                {windowWidth > MOBILE && <img src={Record} alt="" />}
                                 <p>이탈</p>
                             </S.Record>
                             <S.Record onClick={()=>navigate('/manage/record', {state: 3})}>
-                                {windowWidth > 400 && <img src={Record} alt="" />}
+                                {windowWidth > MOBILE && <img src={Record} alt="" />}
                                 <p>학생</p>
                             </S.Record>
                         </S.MainBox>
@@ -168,7 +133,6 @@ export default function Manage(){
 
                     </S.Section>
                 </S.Main>
-            </S.Wrap>
-        </S.ManageContainer>
+        </Layout>
     )
 }

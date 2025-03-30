@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Black as ModalBlack} from '../../../styles/style.jsx';
 
 export const LocationContainer = styled.div`
     width: 100%;
@@ -31,20 +32,14 @@ export const Box = styled.div`
         top: 75%;
     }
 `
-export const Error = styled.div`
+export const Error = styled(ModalBlack)`
     z-index: 110;
     position: absolute;
     width: 100%;
     height: 100%;
-    top: 0;
-    left: 0;
     gap: 20px;
-    background-color: rgb(0, 0, 0, 0.5);
-    display: flex;
     color: #e1e1e1;
-    justify-content: center;
     flex-direction: column;
-    align-items: center;
 `
 export const FloorBox = styled.div`
     display: flex;

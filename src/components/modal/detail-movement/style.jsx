@@ -1,25 +1,21 @@
 import styled from "styled-components";
+import {Black as ModalBlack} from '../../../styles/style.jsx';
 
-export const Black = styled.div`
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgb(0,0,0,0.4);
-`
+export const Black = styled(ModalBlack)``
 export const Content = styled.div`
     width: 45%;
+    @media (max-width: 400px) {
+        width: 80%;
+        
+    }
     padding: 30px;
     border-radius: 8px;
     background: white;
     display: flex;
     flex-direction: column;
     gap:25px;
+    max-height: 82%;
+    overflow: auto;
 `
 
 export const Title = styled.div`
@@ -45,9 +41,18 @@ export const Teacher = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    & > img{
+        @media (width < 400px) {
+            display: none;
+        }
+    }
 `
 export const Name = styled.p`
     font-size: 20px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     font-weight: 500;
 `
 export const Reason = styled.p`

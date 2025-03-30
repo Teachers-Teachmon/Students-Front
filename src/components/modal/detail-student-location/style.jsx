@@ -1,22 +1,16 @@
 import styled from "styled-components";
+import {Black as ModalBlack, CancelBlack} from '../../../styles/style.jsx';
 
-export const Black = styled.div`
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
+export const Black = styled(ModalBlack)`
     z-index: 10;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgb(0,0,0,0.4);
 `
 export const Content = styled.div`
     @media (max-width: 400px) {
         width: 80%;
     }
-        width: 46%;
+        width: 48%;
+    max-height: 90%;
+    overflow: auto;
     padding: 40px 50px;
     border-radius: 8px;
     background: white;
@@ -65,10 +59,20 @@ export const Teacher = styled.div`
         }
     }
 `
-export const Name = styled.p`
+export const Name = styled.div`
     font-size: 20px;
     font-weight: 500;
     color: ${(props)=>props.$color};
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 105px;
+    & > span:first-child{
+        width: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 `
 export const RedText = styled.p`
     font-size: 16px;
@@ -80,13 +84,7 @@ export const Students = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 10px;
     justify-content: flex-start;
 `
-export const UnBox = styled.div`
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
-`
+export const UnBox = styled(CancelBlack)``

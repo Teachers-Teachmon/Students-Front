@@ -1,42 +1,13 @@
 import styled from "styled-components";
+import * as S from '../../../pages/manage/record/style.jsx'
 
-export const LeaveContainer = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    height: 90%;
-`
-export const Standard = styled.div`
-    width: 100%;
-    background: #f0f0f0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    border: 1px solid #EAECF0;
-    padding: 10px;
-`
-export const ContentBox = styled.div`
-    height: 100%;
-    overflow-y: auto;
-`
-export const UnBox = styled.div`
-    width: 80px;
-    height: 25px;
-`
-export const Box = styled.p`
-    font-size: 13px;
-    font-weight: 500;
-    color: #667085;
-    width: ${(props)=>props.$length}px;
-`
-export const NoData = styled.div`
-    width: 100%;
-    height: 400px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
+export const LeaveContainer = styled(S.Container)``
+export const Standard = styled(S.Standard)``
+export const ContentBox = styled(S.ContentBox)``
+export const UnBox = styled(S.UnBox)``
+export const Box = styled(S.Box)``
+export const NoData = styled(S.NoData)``
+export const Box2 = styled(S.Box2)``
 export const Content = styled.div`
     width: 100%;
     display: flex;
@@ -48,13 +19,6 @@ export const Content = styled.div`
     transition: 0.1s;
     position: relative;
 `
-export const Box2 = styled.p`
-    font-size: 16px;
-    font-weight: 500;
-    color: #667085;
-    width: ${(props)=>props.$length}px;
-`
-
 export const DeleteBox = styled.div`
     padding: 6px 20px;
     background: #F87067;

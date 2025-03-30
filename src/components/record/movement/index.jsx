@@ -8,6 +8,8 @@ import patchDay from "../../../utils/patchDay.js";
 import Loading from "../../loading/index.jsx";
 import Write from "../../modal/write/index.jsx";
 import useDay from "../../../zustand/day.js";
+import {useWidth} from "../../../zustand/width.js";
+import MOBILE from "../../../utils/mobile.js";
 
 export default function Movement({ isPeriod, day , isFirst}) {
     const { data, isFetching, isError: movementError } = useGetMovement(isFirst ? patchDay(day) : day);
@@ -24,6 +26,8 @@ export default function Movement({ isPeriod, day , isFirst}) {
     const [period, setPeriod] = useState();
     const [students, setStudents] = useState();
     const [isWriter, setIsWriter] = useState("");
+    const {width} = useWidth();
+
     return (
         <S.MovementContainer>
             {isFetching ? <Loading /> : null}
@@ -33,7 +37,7 @@ export default function Movement({ isPeriod, day , isFirst}) {
                 <S.Box $length={130}>담당교사</S.Box>
                 <S.Box $length={110}>인원</S.Box>
                 <S.Box $length={200}>장소</S.Box>
-                <S.Box $length={240}>학생</S.Box>
+                {width > MOBILE && <S.Box $length={240}>학생</S.Box>}
             </S.Standard>
             <S.ContentBox>
                 {data&& data.length === 0 ? <S.NoData>데이터가 없습니다</S.NoData> : null}
@@ -50,10 +54,12 @@ export default function Movement({ isPeriod, day , isFirst}) {
                                     <S.Box2 $length={130}>{item.teacher_name}</S.Box2>
                                     <S.Box2 $length={110}>{item.personnel}명</S.Box2>
                                     <S.Box2 $length={200}>{item.place}</S.Box2>
-                                    <S.Box2 $length={290}>{item.students
-                                        .slice(0,5)
-                                        .map((student, idx) =>`${student.number} ${student.name}`)
-                                        .join(", ")} {item.students.length > 3 ? '...' : ''}</S.Box2>
+                                    {width > MOBILE &&
+                                        <S.Box2 $length={290}>{item.students
+                                            .slice(0,5)
+                                            .map((student, idx) =>`${student.number} ${student.name}`)
+                                            .join(", ")} {item.students.length > 3 ? '...' : ''}</S.Box2>
+                                    }
 
                                     {name === item.teacher_name || role === "ADMIN" ?
                                         <>
@@ -79,6 +85,7 @@ export default function Movement({ isPeriod, day , isFirst}) {
                                         </>
                                         : <>
                                          <S.PatchBox
+                                             $disabled = {true}
                                                 onClick={(e) => {
                                                     e.stopPropagation();
                                                     setIsModal2(true)
@@ -98,10 +105,7 @@ export default function Movement({ isPeriod, day , isFirst}) {
                 })}
                 {isModal ?<DetailMovement data={detail} setIsModal={setIsModal} /> : null}
                 {isModal2 && detail?
-                    <S.Black onClick={()=> {
-                        setDayComponent(recordDay);
-                        setIsModal2(false)
-                    }}>
+                    <S.Black>
                         <Write isWriter={isWriter} students = {students} period = {period} data={detail} isPatch = {true} isModal={isModal2} setIsModal={setIsModal2}/>
                     </S.Black>
                     :

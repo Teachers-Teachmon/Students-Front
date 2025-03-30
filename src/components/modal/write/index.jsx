@@ -40,7 +40,7 @@ export default function Write({ isWriter, students, period, setIsModal ,isPatch,
     const {mutate : patchMovement} = usePatchMovement();
     if(isPatch){
         return data && (
-            <S.WriteContainer onClick={(e)=>e.stopPropagation()}>
+            <S.WriteContainer>
                 <>
                     <h1>이석작성</h1>
                     <>
@@ -162,7 +162,7 @@ export default function Write({ isWriter, students, period, setIsModal ,isPatch,
         )
     }
     else return (
-        <S.WriteContainer onClick={(e)=>e.stopPropagation()}>
+        <S.WriteContainer>
                 <>
                     <h1>이석작성</h1>
                         <>
@@ -245,7 +245,7 @@ export default function Write({ isWriter, students, period, setIsModal ,isPatch,
                                                     )
                                                 }}
                                             >
-                                                <p> {item.number} {item.name}</p>
+                                                <span>{item.number}</span><span>{item.name}</span>
                                             </S.Student>
                                         )
                                     })

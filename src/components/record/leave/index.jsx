@@ -4,8 +4,8 @@ import useAuth from "../../../zustand/auth.js";
 import patchDay from "../../../utils/patchDay.js";
 import Loading from "../../loading/index.jsx";
 
-export default function Leave({day, isFirst, onDeleteSuccess}) {
-    const {data , isFetching , leaveError} = useGetLeave(isFirst ? patchDay(day) : day);
+export default function Leave({day, isFirst}) {
+    const {data , isFetching} = useGetLeave(isFirst ? patchDay(day) : day);
     const {mutate : deleteLeave} = useDeleteLeave()
     const {name, role} = useAuth();
     return (
