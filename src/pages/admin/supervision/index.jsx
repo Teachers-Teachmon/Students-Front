@@ -235,40 +235,6 @@ export default function AdminSupervision() {
                                                         <div>자습</div>
                                                         <div>이석</div>
                                                     </S.TableRightHeader>
-                                                    {/* <S.TeacherList>
-                                                        <div>
-                                                            {isEditing ? (
-                                                                <SearchDropdown
-                                                                    target="선생님"
-                                                                    name={selectedTeacher[`${dayData.date}-common_teacher-7th_teacher`]?.name || dayData["7th_teacher"] ? dayData["7th_teacher"].split("/")[0] : "X"}
-                                                                    axios={(event) => searchTeacher(event)}
-                                                                    isOpen={dropdownOpen[`${dayData.date}-common_teacher-7th_teacher-left`] || false}
-                                                                    change={(value) => handleTeacherChange(dayData.date, "common_teacher", "7th_teacher", value)}
-                                                                    click={() => toggleDropdown(`${dayData.date}-common_teacher-7th_teacher-left`)}
-                                                                />
-                                                            ) : (
-                                                                <S.TeacherName>
-                                                                    {dayData["7th_teacher"] ? dayData["7th_teacher"].split("/")[0] : "X"}
-                                                                </S.TeacherName>
-                                                            )}
-                                                        </div>
-                                                        <div>
-                                                            {isEditing ? (
-                                                                <SearchDropdown
-                                                                    target="선생님"
-                                                                    name={selectedTeacher[`${dayData.date}-common_teacher-7th_teacher`]?.name || dayData["7th_teacher"] ? dayData["7th_teacher"].split("/")[0] : "X"}
-                                                                    axios={(event) => searchTeacher(event)}
-                                                                    isOpen={dropdownOpen[`${dayData.date}-common_teacher-7th_teacher-right`] || false}
-                                                                    change={(value) => handleTeacherChange(dayData.date, "common_teacher", "7th_teacher", value)}
-                                                                    click={() => toggleDropdown(`${dayData.date}-common_teacher-7th_teacher-right`)}
-                                                                />
-                                                            ) : (
-                                                                <S.TeacherName>
-                                                                    {dayData["7th_teacher"] ? dayData["7th_teacher"].split("/")[0] : "X"}
-                                                                </S.TeacherName>
-                                                            )}
-                                                        </div>
-                                                    </S.TeacherList> */}
                                                     {["7th_teacher" ,"8th_teacher", "10th_teacher"].map((timeKey, timeIndex) => (
                                                         <S.TeacherList key={timeIndex}>
                                                             {["self_study_teacher", "leave_seat_teacher"].map((typeKey, typeIndex) => {

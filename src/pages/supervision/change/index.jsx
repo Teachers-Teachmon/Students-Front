@@ -247,57 +247,6 @@ export default function SupervisionChange() {
                                                             <div>이석</div>
                                                         </S.TableRightHeader>
                                                         <S.TeacherList>
-                                                            {/* {['7th_teacher'].map((classKey) => ['common_teacher'].map((typeKey) => {
-                                                                if (dayData.empty) return <div key={`${dayData.day}-${typeKey}`} style={{ visibility: "hidden" }} />;
-
-                                                                const teacherInfo = dayData[classKey];
-                                                                const teacherName = teacherInfo ? teacherInfo.split('/')[0] : "X";
-                                                                const uniqueKey = `${dayData.day}-${typeKey}-${classKey}-${dayData.date}`;
-                                                                const compareKey = `${uniqueKey.slice(-10)}-${convertType(uniqueKey.split('-')[1])}-${uniqueKey.split('-')[2]}`;
-
-                                                                return (
-                                                                    <>
-                                                                        <div
-                                                                            key={uniqueKey}
-                                                                            onClick={() => {
-                                                                                if (teacherInfo && teacherInfo.includes('/me')) {
-                                                                                    handleSelectTeacher(uniqueKey, teacherInfo ? parseInt(teacherInfo.split('/')[1]) || null : null, true, teacherName);
-                                                                                } else {
-                                                                                    if (!isSelfSelected) return;
-                                                                                    handleSelectTeacher(uniqueKey, teacherInfo ? parseInt(teacherInfo.split('/')[1]) || null : null, false, teacherName);
-                                                                                }
-                                                                            }}
-                                                                            style={{
-                                                                                backgroundColor: selectedTeacher.some(t => t.uniqueKey === uniqueKey) ? '#2E6FF2' : '#FFF',
-                                                                                color: selectedTeacher.some(t => t.uniqueKey === uniqueKey) ? '#FFF' : '#000',
-                                                                                cursor: !isSelfSelected && !(teacherInfo && teacherInfo.includes('/me')) ? 'not-allowed' : 'pointer',
-                                                                                opacity: (disabledTeachers.includes(compareKey) || (!isSelfSelected && !(teacherInfo && teacherInfo.includes('/me')))) ? 0.5 : 1
-                                                                            }}
-                                                                        >
-                                                                            {teacherName}
-                                                                        </div>
-                                                                        <div
-                                                                            key={uniqueKey}
-                                                                            onClick={() => {
-                                                                                if (teacherInfo && teacherInfo.includes('/me')) {
-                                                                                    handleSelectTeacher(uniqueKey, teacherInfo ? parseInt(teacherInfo.split('/')[1]) || null : null, true, teacherName);
-                                                                                } else {
-                                                                                    if (!isSelfSelected) return;
-                                                                                    handleSelectTeacher(uniqueKey, teacherInfo ? parseInt(teacherInfo.split('/')[1]) || null : null, false, teacherName);
-                                                                                }
-                                                                            }}
-                                                                            style={{
-                                                                                backgroundColor: selectedTeacher.some(t => t.uniqueKey === uniqueKey) ? '#2E6FF2' : '#FFF',
-                                                                                color: selectedTeacher.some(t => t.uniqueKey === uniqueKey) ? '#FFF' : '#000',
-                                                                                cursor: !isSelfSelected && !(teacherInfo && teacherInfo.includes('/me')) ? 'not-allowed' : 'pointer',
-                                                                                opacity: (disabledTeachers.includes(compareKey) || (!isSelfSelected && !(teacherInfo && teacherInfo.includes('/me')))) ? 0.5 : 1
-                                                                            }}
-                                                                        >
-                                                                            {teacherName}
-                                                                        </div>
-                                                                    </>
-                                                                )
-                                                            }))} */}
                                                             {['7th_teacher', '8th_teacher', '10th_teacher'].map((classKey) =>
                                                                 ['self_study_teacher', 'leave_seat_teacher'].map((typeKey) => {
                                                                     if (dayData.empty) return <div key={`${dayData.day}-${typeKey}`} style={{ visibility: "hidden" }} />;
@@ -320,18 +269,12 @@ export default function SupervisionChange() {
                                                                                     handleSelectTeacher(uniqueKey, teacherInfo ? parseInt(teacherInfo.split('/')[1]) || null : null, false, teacherName);
                                                                                 }
                                                                             }}
-                                                                            // style={{
-                                                                            //     backgroundColor: selectedTeacher.some(t => t.uniqueKey === uniqueKey) ? '#2E6FF2' : '#FFF',
-                                                                            //     color: selectedTeacher.some(t => t.uniqueKey === uniqueKey) ? '#FFF' : '#000',
-                                                                            //     cursor: !isSelfSelected && !(teacherInfo && teacherInfo.includes('/me')) ? 'not-allowed' : 'pointer',
-                                                                            //     opacity: (disabledTeachers.includes(compareKey) || (!isSelfSelected && !(teacherInfo && teacherInfo.includes('/me')))) ? 0.5 : 1
-                                                                            // }}
-                                                                                style={{
-                                                                                    backgroundColor: selectedTeacher.some(t => t.uniqueKey === uniqueKey) ? '#2E6FF2' : '#FFF',
-                                                                                    color: selectedTeacher.some(t => t.uniqueKey === uniqueKey) ? '#FFF' : '#000',
-                                                                                    cursor: (!isSelfSelected && !(teacherInfo && teacherInfo.includes('/me'))) || isPastDay ? 'not-allowed' : 'pointer',
-                                                                                    opacity: (disabledTeachers.includes(compareKey) || (!isSelfSelected && !(teacherInfo && teacherInfo.includes('/me')))) || isPastDay ? 0.5 : 1
-                                                                                }}
+                                                                            style={{
+                                                                                backgroundColor: selectedTeacher.some(t => t.uniqueKey === uniqueKey) ? '#2E6FF2' : '#FFF',
+                                                                                color: selectedTeacher.some(t => t.uniqueKey === uniqueKey) ? '#FFF' : '#000',
+                                                                                cursor: (!isSelfSelected && !(teacherInfo && teacherInfo.includes('/me'))) || isPastDay ? 'not-allowed' : 'pointer',
+                                                                                opacity: (disabledTeachers.includes(compareKey) || (!isSelfSelected && !(teacherInfo && teacherInfo.includes('/me')))) || isPastDay ? 0.5 : 1
+                                                                            }}
                                                                         >
                                                                             {teacherName}
                                                                         </div>
