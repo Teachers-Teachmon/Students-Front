@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
   base: '/',
   server: {
-    allowedHosts: ['teachmon.kro.kr'],
+    allowedHosts: ['teachmon.kro.kr', 'teachers.kro.kr'],
     host: '0.0.0.0',
     port: 5173,
     proxy: {
