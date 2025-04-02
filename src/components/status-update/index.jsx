@@ -54,15 +54,15 @@ export default function StatusUpdate({changeStatus, name, nowStatus, up, left, p
                             <Circle color={"#2E6FF2"}></Circle>
                             <StatusText color={"#2E6FF2"}>방과후</StatusText>
                         </Status>
-                        <Status color={"#ECFDF3"} onClick={()=>changeStatus(name, "자습")}>
+                        <Status color={"#ECFDF3"} onClick={()=>changeStatus(name, "자습", period)}>
                             <Circle color={"#14BA6D"}></Circle>
                             <StatusText color={"#14BA6D"}>자습</StatusText>
                         </Status>
-                        <Status color={"#FFF6E4"} onClick={()=>changeStatus(name, "조퇴")}>
+                        <Status color={"#FFF6E4"} onClick={()=>changeStatus(name, "조퇴", period)}>
                             <Circle color={"#FF9000"}></Circle>
                             <StatusText color={"#FF9000"}>조퇴</StatusText>
                         </Status>
-                        <Status color={"#FDF0EC"} onClick={()=>changeStatus(name, "이탈")}>
+                        <Status color={"#FDF0EC"} onClick={()=>changeStatus(name, "이탈", period)}>
                             <Circle color={"#F87067"}></Circle>
                             <StatusText color={"#F87067"}>이탈</StatusText>
                         </Status>

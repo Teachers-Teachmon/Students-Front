@@ -103,11 +103,12 @@ export const postMovement = async ({selectStudentShow, day, time, place, cause})
     }
 }
 
-export const patchStudent = async ({studentID, status}) =>{
+export const patchStudent = async ({studentID, status, periodName}) =>{
     try{
         const res = await axiosInstance.patch(`${API_ENDPOINTS.STUDENT}/schedule`, {
             id: studentID,
-            status: status
+            status: status,
+            period : period[periodName]
         });
         if(res.status !== 200 && res.status !== 201){
             return Promise.reject({
