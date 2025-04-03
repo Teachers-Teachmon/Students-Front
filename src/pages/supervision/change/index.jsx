@@ -255,7 +255,7 @@ export default function SupervisionChange() {
                                                                     const teacherName = teacherInfo ? teacherInfo.split('/')[0] : "X";
                                                                     const uniqueKey = `${dayData.day}-${typeKey}-${classKey}-${dayData.date}`;
                                                                     const compareKey = `${uniqueKey.slice(-10)}-${convertType(uniqueKey.split('-')[1])}-${uniqueKey.split('-')[2]}`;
-                                                                    const isPastDay = new Date(dayData.date) < new Date();
+                                                                    const isPastDay = new Date(dayData.date) <= new Date();
 
                                                                     return (
                                                                         <div
@@ -288,7 +288,7 @@ export default function SupervisionChange() {
                                                                 const teacherName = teacherInfo ? teacherInfo.split('/')[0] : "X";
                                                                 const uniqueKey = `${dayData.day}-${typeKey}-${classKey}-${dayData.date}`;
                                                                 const compareKey = `${uniqueKey.slice(-10)}-${convertType(uniqueKey.split('-')[1])}-${uniqueKey.split('-')[2]}`;
-                                                                const isPastDay = new Date(dayData.date) < new Date();
+                                                                const isPastDay = new Date(dayData.date) <= new Date();
 
                                                                 return (
                                                                     <>
