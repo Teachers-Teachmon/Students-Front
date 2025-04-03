@@ -111,18 +111,6 @@ export default function Supervision() {
                                                         <div>자습</div>
                                                         <div>이석</div>
                                                     </S.TableRightHeader>
-                                                    {/* <S.TeacherList>
-                                                        <div>
-                                                            <S.TeacherName>
-                                                                {dayData["7th_teacher"] ? dayData["7th_teacher"].split("/")[0] : "X"}
-                                                            </S.TeacherName>
-                                                        </div>
-                                                        <div>
-                                                            <S.TeacherName>
-                                                                {dayData["7th_teacher"] ? dayData["7th_teacher"].split("/")[0] : "X"}
-                                                            </S.TeacherName>
-                                                        </div>
-                                                    </S.TeacherList> */}
                                                     {["7th_teacher", "8th_teacher", "10th_teacher"].map((timeKey, timeIndex) => {
                                                         const selfTeacher = dayData.self_study_teacher?.[timeKey];
                                                         const leaveTeacher = dayData.leave_seat_teacher?.[timeKey];
