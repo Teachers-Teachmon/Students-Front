@@ -77,10 +77,14 @@ export const getStudentCount = async () => {
     }
 }
 
-export const postMovement = async ({selectStudentShow, day, time, place, cause}) =>{
+export const postMovement = async ({selectStudentShow,selectOrganization, day, time, place, cause}) =>{
+    console.log(selectStudentShow)
+    let organization = selectOrganization.map(item => item.member).flat();
+    organization = organization.map(item=>item.id)
+    const students = [...new Set([...selectStudentShow, ...organization])];
     try{
         const res = await axiosInstance.post(`${API_ENDPOINTS.STUDENT}/leaveseat`, {
-            students:selectStudentShow,
+            students:students,
             cause:cause,
             day: day,
             period: MovementPeriod[time],
@@ -98,7 +102,7 @@ export const postMovement = async ({selectStudentShow, day, time, place, cause})
         return res;
 
     }catch (err){
-        alert('이미 해당 교실에 이석중인 학생이 있습니다. 이석 수정을 이용해주세요.');
+        alert(err);
         return Promise.reject(err);
     }
 }
