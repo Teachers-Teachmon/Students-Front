@@ -11,6 +11,7 @@ import {useDebounce} from "../../../hooks/useDebounce.js";
 import {searchStudent, searchPlace} from "../../../api/search.js";
 import DateInput from "../../dateInput/index.jsx";
 import useAuth from "../../../zustand/auth.js";
+import {Organization} from './data.js'
 
 export default function Write({ isWriter, students, period, setIsModal ,isPatch, data}){
     const [time, setTime] = useState(isPatch ? period : "시간");
@@ -38,6 +39,8 @@ export default function Write({ isWriter, students, period, setIsModal ,isPatch,
     }, [debounceStudent]);
 
     const {mutate : patchMovement} = usePatchMovement();
+    const [isOrganization, setIsOrganization] = useState(false);
+    const [selectOrganization, setSelectOrganization]= useState([]);
     if(isPatch){
         return data && (
             <S.WriteContainer>
@@ -193,71 +196,139 @@ export default function Write({ isWriter, students, period, setIsModal ,isPatch,
                                 onChange={(event) => setCause(event.target.value)}
                                 placeholder={"사유를 입력해주세요"}
                             />
-                            <S.InputBox>
-                                <img src={Search} alt={"검색아이콘"} width={20} />
-                                <S.Input
-                                    type={"text"}
-                                    value={search}
-                                    onChange={(e) => setSearch(e.target.value)}
-                                    placeholder={"학번이나 이름을 입력해주세요"}
-                                />
-                                <S.StudentList>
-                                    {search && student &&
-                                        student.map((currentItem) => {
-                                            if (selectStudentShow.includes(currentItem.id)) {
-                                                return null;
-                                            }
-                                            else {
-                                                return (
-                                                    <S.StudentItem
-                                                        onClick={() => {
-                                                            setSelectStudentShow((prev) => [...prev, currentItem.id]);
-                                                            setSelectStudent((prev) => [...prev, currentItem]);
-                                                            setSearch("");
+                            <>
+                                <S.ToggleContainer
+                                    onClick={()=>setIsOrganization(!isOrganization)}
+                                >
+                                    <div className={`toggle-container ${isOrganization ? "toggle--checked" : null}`}/>
+                                    <div className={`toggle-circle ${isOrganization ? "toggle--checked" : null}`}/>
+                                    <p style={{ userSelect: 'none' }}>단체로 이동 시 눌러주세요(단체, 개인 동시에 가능해요)</p>
+                                </S.ToggleContainer>
+
+                            </>
+                            {!isOrganization ?
+                                <S.InputBox>
+                                    <img src={Search} alt={"검색아이콘"} width={20} />
+                                    <S.Input
+                                        type={"text"}
+                                        value={search}
+                                        onChange={(e) => setSearch(e.target.value)}
+                                        placeholder={"학번이나 이름을 입력해주세요"}
+                                    />
+                                    <S.StudentList>
+                                        {search && student &&
+                                            student.map((currentItem) => {
+                                                if (selectStudentShow.includes(currentItem.id)) {
+                                                    return null;
+                                                }
+                                                else {
+                                                    return (
+                                                        <S.StudentItem
+                                                            onClick={() => {
+                                                                setSelectStudentShow((prev) => [...prev, currentItem.id]);
+                                                                setSelectStudent((prev) => [...prev, currentItem]);
+                                                                setSearch("");
+                                                            }}
+                                                            key={currentItem.id}
+                                                            value={currentItem}
+                                                        >
+                                                            {currentItem.number} {currentItem.name}
+                                                        </S.StudentItem>
+                                                    );
+                                                }
+                                            })
+                                        }
+                                    </S.StudentList>
+                                </S.InputBox> :
+                                <S.Organization>
+                                    <img src={Search} alt={"검색아이콘"} width={20} />
+                                    <S.Input
+                                        type={"text"}
+                                        value={search}
+                                        onChange={(e) => setSearch(e.target.value)}
+                                        placeholder={"학년/반이나 전공동아리를 입력해주세요"}
+                                    />
+                                    <S.StudentList>
+                                        {search &&
+                                            Organization.map((currentItem) => {
+                                                if (
+                                                    selectOrganization.map(item=>item.name).includes(currentItem.name) ||
+                                                    !currentItem.name.includes(search)
+                                                ) {
+                                                    return null;
+                                                }
+                                                else {
+                                                    return (
+                                                        <S.StudentItem
+                                                            onClick={() => {
+                                                                setSelectOrganization((prev) => [...prev, currentItem]);
+                                                                setSearch("");
+                                                            }}
+                                                            key={currentItem.id}
+                                                            value={currentItem}
+                                                        >
+                                                            {currentItem.name}
+                                                        </S.StudentItem>
+                                                    );
+                                                }
+                                            })
+                                        }
+                                    </S.StudentList>
+                                </S.Organization>
+                            }
+                                <S.StudentBox>
+                                    {!isOrganization ?
+                                        selectStudent && selectStudent.map((item, idx) => {
+                                                return(
+                                                    <S.Student
+                                                        key={idx}
+                                                        onClick={() =>{
+                                                            setSelectStudentShow(
+                                                                selectStudentShow.filter(
+                                                                    (currentItem) => currentItem !== item.id
+                                                                )
+                                                            )
+                                                            setSelectStudent(
+                                                                selectStudent.filter(
+                                                                    (currentItem) => currentItem !== item
+                                                                )
+                                                            )
                                                         }}
-                                                        key={currentItem.id}
-                                                        value={currentItem}
                                                     >
-                                                        {currentItem.number} {currentItem.name}
-                                                    </S.StudentItem>
-                                                );
-                                            }
-                                        })
-                                    }
-                                </S.StudentList>
-                            </S.InputBox>
-                            <S.StudentBox>
-                                {selectStudent
-                                    ? selectStudent.map((item, idx) => {
-                                        return(
-                                            <S.Student
-                                                key={idx}
-                                                onClick={() =>{
-                                                    setSelectStudentShow(
-                                                        selectStudentShow.filter(
-                                                            (currentItem) => currentItem !== item.id
+                                                        <span>{item.number}</span><span>{item.name}</span>
+                                                    </S.Student>
+                                                )
+                                            })
+                                        : selectOrganization && selectOrganization.map((item, idx)=>{
+                                            return(
+                                                <S.Student
+                                                    key={idx}
+                                                    onClick={() =>{
+                                                        setSelectOrganization(
+                                                            selectOrganization.filter(
+                                                                (currentItem) => currentItem.id !== item.id
+                                                            )
                                                         )
-                                                    )
-                                                    setSelectStudent(
-                                                        selectStudent.filter(
-                                                            (currentItem) => currentItem !== item
-                                                        )
-                                                    )
-                                                }}
-                                            >
-                                                <span>{item.number}</span><span>{item.name}</span>
-                                            </S.Student>
-                                        )
+                                                    }}
+                                                >
+                                                    <span>{item.name}</span>
+                                                </S.Student>
+                                            )
                                     })
-                                    : null}
-                            </S.StudentBox>
+
+
+                                    }
+                                </S.StudentBox>
+
+
+
                             <S.Submit>
                                 <SquareBtn name={"취소"} status={false} On={() => setIsModal(false)} />
                                 <SquareBtn
                                     name={"작성완료"}
                                     status={true}
                                     On={() => {
-                                        postMovement({ selectStudentShow, day, time, place, cause, recordDay,teacher_id : id, teacher_name : name, selectStudent,  set : setIsModal(false) })
+                                        postMovement({ selectStudentShow, selectOrganization , day, time, place, cause, recordDay,teacher_id : id, teacher_name : name, selectStudent,  set : setIsModal(false) })
                                         setDayComponent(recordDay);
                                     }}
                                 />

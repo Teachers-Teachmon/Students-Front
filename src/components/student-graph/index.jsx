@@ -1,7 +1,8 @@
 import * as S from './style.jsx'
-import {useState, useRef} from "react";
+import {useState, useRef, useEffect} from "react";
 import StatusUpdate from "../status-update/index.jsx";
 import {usePatchStudent} from "../../hooks/useStudent.js";
+import useDay from "../../zustand/day.js";
 
 export default function StudentGraph({data, grade, classNum}){
     const [isOpen, setIsOpen] = useState([
@@ -19,13 +20,17 @@ export default function StudentGraph({data, grade, classNum}){
         setIsOpen(newIsOpen);
     }
     const {mutate : patchStudent} = usePatchStudent();
+    const {period, updatePeriod} = useDay();
+    useEffect(() => {
+        updatePeriod();
+    }, []);
     // 상태 업데이트 하는 함수, 상태업데이트하고 다시 불러오기
     const changeStatus= (name, status) => {
         setIsOpen(prevState => {
             const newState = prevState.map(() => false);
             return newState;
         });
-        patchStudent({studentID: name, status: status, grade : grade, class : classNum})
+        patchStudent({studentID: name, status: status, grade : grade, class : classNum, periodName : period})
     }
 
     // 상태에 따라 색깔변환

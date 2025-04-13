@@ -11,7 +11,6 @@ export default function Student({ data, day }) {
     const [isOpen2, setIsOpen2] = useState(data.length ? data.map(() => false) : [])
     const {mutate : patchStudent} = usePatchStudent();
     const [isModal, setIsModal] = useState(false);
-    const [period, setPeriod] = useState("");
     useEffect(() => {
         setIsCheck(data.map(() => false));
     }, [data]);
@@ -30,15 +29,15 @@ export default function Student({ data, day }) {
         }
         if (Array.isArray(name)) {
             if(name.length === 1){
-                patchStudent({studentID: name[0], status: status, search:"search"})
+                patchStudent({studentID: name[0], status: status, search:"search", periodName:period})
             }else{
                 name.forEach(item=>{
-                    patchStudent({studentID: item, status: status, search:"search"})
+                    patchStudent({studentID: item, status: status, search:"search", periodName:period})
                 })
             }
         }
         else{
-            patchStudent({studentID: name, status: status, search:"search"})
+            patchStudent({studentID: name, status: status, search:"search", periodName:period})
         }
         setAllCheck(false);
         setIsCheck(isCheck.map(item => false));
@@ -148,7 +147,7 @@ export default function Student({ data, day }) {
                                                     .map((item)=> item['8th_id'])
                                                 : item['8th_id']}
                                             up={isFirst === idx ? 58 : -160}
-                                            period = {8}
+                                            period = {"8~9교시"}
                                         />}
                                     {item['8th_schedule'] === "방과후" ?
                                         <S.Status color={"#ECF3FD"} onClick={()=>handleIsOpen(idx)}>
@@ -190,7 +189,7 @@ export default function Student({ data, day }) {
                                                 : item['10th_id']}
                                             up={isFirst === idx ? 58 : -160}
                                             left={-60}
-                                            period = {10}
+                                            period = {"10~11교시"}
                                         />}
                                     {item['10th_schedule'] === "방과후" ?
                                         <S.Status color={"#ECF3FD"} onClick={()=>handleIsOpen(idx, 2)}>

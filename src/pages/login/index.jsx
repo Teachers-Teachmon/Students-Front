@@ -22,7 +22,7 @@ export default function Login(){
         <LoginContainer>
             <Main>
                 <img src={Logo} alt={"logo"} width={300} />
-                <LoginBtn onClick={()=>window.location.href = "https://teachmon.kro.kr/oauth2/authorization/google"}>
+                <LoginBtn onClick={()=>window.location.href = "https://teachmon-test.kro.kr/oauth2/authorization/google"}>
                     Google로 로그인
                     <GoogleIcon src={Google} alt={"googleIcon"} width={24} />
                 </LoginBtn>

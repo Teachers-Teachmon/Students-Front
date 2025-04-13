@@ -13,9 +13,7 @@ import MOBILE from "../../utils/mobile.js";
 import {useWidth} from "../../zustand/width.js";
 
 export default function Manage(){
-    const hour = new Date().getHours();
-    const minute = new Date().getMinutes();
-    const {today} = useDay();
+    const {today, period, updatePeriod} = useDay();
     const [day, setDay] = useState(today);
     const navigate = useNavigate()
     const [grade, setGrade] = useState([
@@ -30,17 +28,9 @@ export default function Manage(){
 
     const [weekday, setWeekday] = useState(false);
 
-    let period;
-    const changeClass = () =>{
-        const time = hour * 60 + minute;
-        if(time >= 0 && time <= 16 * 60 + 9) period = "7교시";
-        else if(time >= 16 * 60 + 10 && time <= 18*60 + 9) period = "8~9교시"
-        else if(time >= 18*60 + 10 && time <= 24*60) period = "10~11교시"
-    }
 
     // 렌더링시 오늘의 날짜를 계산해서 보여줌
     useEffect(() => {
-        changeClass();
         const pattern = /(\d{4}-\d{2}-\d{2})\s(\w+)/;
         const match = today.match(pattern);
         const dayNames = ['월', '화', '수', '목', '금', '토', '일'];
@@ -49,6 +39,7 @@ export default function Manage(){
             setDay(`${today.slice(5, 7)}월 ${today.slice(8, 10)}일 (${dayNames[dayIndex]})`);
             if (dayIndex >= 4) setWeekday(true);
         }
+        updatePeriod();
     }, []);
 
 
@@ -59,7 +50,6 @@ export default function Manage(){
         setGrade(newGrade);
     }
     const {width : windowWidth} = useWidth();
-
     return(
         <Layout>
                 {isLoading || isFetching && !weekday && period && <Loading />}

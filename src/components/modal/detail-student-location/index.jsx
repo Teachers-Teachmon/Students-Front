@@ -23,7 +23,10 @@ export default function DetailStudentLocation({data, setIsModal, floor}) {
             return data[location.place];
         }
     };
-    const {today} = useDay();
+    useEffect(() => {
+        updatePeriod();
+    }, []);
+    const {today, period, updatePeriod} = useDay();
     const {mutate : patchStudent} = usePatchStudent();
     const locationData = setLocation();
     const {mutate : closeMovement} = useCloseMovement();
@@ -44,7 +47,7 @@ export default function DetailStudentLocation({data, setIsModal, floor}) {
             const newState = prevState.map(() => false);
             return newState;
         });
-        patchStudent({studentID: idx, status: status, floor: floor, place:location.place})
+        patchStudent({studentID: idx, status: status, floor: floor, place:location.place, periodName : period});
     }
     const {data : todaySupervision, isFetching} = useGetDailySupervision(patchDay(today));
     const {name, role} = useAuth();
