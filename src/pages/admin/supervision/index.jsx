@@ -47,7 +47,7 @@ export default function AdminSupervision() {
                         ...dayData,
                         [type]: {
                             ...dayData[type],
-                            [timeKey]:  newTeacher === 'X' ? null : newTeacher ? `${newTeacher.name}/${newTeacher.id}` : `X/0`
+                            [timeKey]: newTeacher === 'X' ? null : newTeacher ? `${newTeacher.name}/${newTeacher.id}` : `X/0`
                         }
                     };
                 }
@@ -73,20 +73,26 @@ export default function AdminSupervision() {
         }
     }, [TeacherList]);
 
+    const parseIdOrNull = (str) => {
+        const raw = str?.split("/")[1];
+        const id = raw != null ? Number(raw) : NaN;
+        return id > 0 ? id : null;
+    };
+
     const handleSave = () => {
         const changedData = localData.map(dayData => ({
             date: dayData.date,
             self_study: {
-                "7th_teacher": parseInt(dayData.self_study_teacher["7th_teacher"]?.split("/")[1]),
-                "8th_teacher": parseInt(dayData.self_study_teacher["8th_teacher"]?.split("/")[1]),
-                "10th_teacher": parseInt(dayData.self_study_teacher["10th_teacher"]?.split("/")[1])
+                "7th_teacher": parseIdOrNull(dayData.self_study_teacher["7th_teacher"]),
+                "8th_teacher": parseIdOrNull(dayData.self_study_teacher["8th_teacher"]),
+                "10th_teacher": parseIdOrNull(dayData.self_study_teacher["10th_teacher"])
             },
             leave_seat: {
-                "7th_teacher": parseInt(dayData.leave_seat_teacher["7th_teacher"]?.split("/")[1]),
-                "8th_teacher": parseInt(dayData.leave_seat_teacher["8th_teacher"]?.split("/")[1]),
-                "10th_teacher": parseInt(dayData.leave_seat_teacher["10th_teacher"]?.split("/")[1])
+                "7th_teacher": parseIdOrNull(dayData.leave_seat_teacher["7th_teacher"]),
+                "8th_teacher": parseIdOrNull(dayData.leave_seat_teacher["8th_teacher"]),
+                "10th_teacher": parseIdOrNull(dayData.leave_seat_teacher["10th_teacher"])
             },
-            night_teacher: parseInt(dayData.night_teacher?.split("/")[1])
+            night_teacher: parseIdOrNull(dayData.night_teacher)
         }));
 
         saveAssignment(changedData);
@@ -235,7 +241,7 @@ export default function AdminSupervision() {
                                                         <div>자습</div>
                                                         <div>이석</div>
                                                     </S.TableRightHeader>
-                                                    {["7th_teacher" ,"8th_teacher", "10th_teacher"].map((timeKey, timeIndex) => (
+                                                    {["7th_teacher", "8th_teacher", "10th_teacher"].map((timeKey, timeIndex) => (
                                                         <S.TeacherList key={timeIndex}>
                                                             {["self_study_teacher", "leave_seat_teacher"].map((typeKey, typeIndex) => {
                                                                 const teacherName = dayData[typeKey]?.[timeKey] ? dayData[typeKey][timeKey].split("/")[0] : "X";
