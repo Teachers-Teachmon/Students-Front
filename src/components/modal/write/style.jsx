@@ -65,12 +65,12 @@ export const Student = styled.div`
     border: 2px solid #2E6FF2;
     color: #2E6FF2;
     background: white;
-    padding: 7px 12px;
+    padding: 7px 20px;
     border-radius: 30px;
     font-weight: 550;
     cursor: pointer;
     height: max-content;
-    width: 120px;
+    width: max-content;
     display: flex;
     justify-content: space-between;
     align-items: center;

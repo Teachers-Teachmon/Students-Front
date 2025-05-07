@@ -78,7 +78,6 @@ export const getStudentCount = async () => {
 }
 
 export const postMovement = async ({selectStudentShow,selectOrganization, day, time, place, cause}) =>{
-    console.log(selectStudentShow)
     let organization = selectOrganization.map(item => item.member).flat();
     organization = organization.map(item=>item.id)
     const students = [...new Set([...selectStudentShow, ...organization])];

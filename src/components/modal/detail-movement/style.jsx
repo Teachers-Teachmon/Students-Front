@@ -49,7 +49,8 @@ export const Teacher = styled.div`
 `
 export const Name = styled.p`
     font-size: 20px;
-    width: 100px;
+    width: max-content;
+    gap: 5px;
     display: flex;
     align-items: center;
     justify-content: space-between;

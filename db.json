@@ -85,14 +85,128 @@
         }
       ],
       "id": "f30e"
-    }
+    },
+      {
+        "teacher_name": "유근찬",
+        "teacher_id": 69,
+        "place": "학부모회실",
+        "personnel": 5,
+        "period": "10~11교시",
+        "students": [
+
+          {
+            "id": 77,
+            "name": "이재환",
+            "number": 2112
+          },
+          {
+            "id": 81,
+            "name": "황준혁",
+            "number": 2116
+          },
+          {
+            "id": 93,
+            "name": "이하은",
+            "number": 2212
+          },
+          {
+            "id": 78,
+            "name": "조하민",
+            "number": 2113
+          },
+          {
+            "id": 79,
+            "name": "허동운",
+            "number": 2114
+          }
+        ],
+        "id": "f30e"
+      },
+        {
+          "teacher_name": "유근찬",
+          "teacher_id": 69,
+          "place": "학부모회실",
+          "personnel": 13,
+          "period": "8~9교시",
+          "students": [
+            {
+              "id": 144,
+              "name": "한태영",
+              "number": 3116
+            },
+            {
+              "id": 176,
+              "name": "김동욱",
+              "number": 3402
+            },
+            {
+              "id": 83,
+              "name": "권민재",
+              "number": 2202
+            },
+            {
+              "id": 135,
+              "name": "송윤서",
+              "number": 3107
+            },
+            {
+              "id": 188,
+              "name": "이지우",
+              "number": 3414
+            },
+            {
+              "id": 182,
+              "name": "박강은",
+              "number": 3408
+            },
+            {
+              "id": 149,
+              "name": "김영은",
+              "number": 3205
+            },
+            {
+              "id": 136,
+              "name": "오윤찬",
+              "number": 3108
+            },
+            {
+              "id": 77,
+              "name": "이재환",
+              "number": 2112
+            },
+            {
+              "id": 81,
+              "name": "황준혁",
+              "number": 2116
+            },
+            {
+              "id": 93,
+              "name": "이하은",
+              "number": 2212
+            },
+            {
+              "id": 78,
+              "name": "조하민",
+              "number": 2113
+            },
+            {
+              "id": 79,
+              "name": "허동운",
+              "number": 2114
+            }
+          ],
+          "id": "f30e"
+        }
   ],
   "leaveseatDetail": {
     "teacher_name": "정종건",
     "place": "음악준비실",
     "cause": "자격증 준비",
     "students": [
-      "2315 최치현"
+      "2315 최치현",
+      "3304 김은혜",
+      "3308 박초영",
+      "3402 김동욱"
     ]
   },
   "leaveseat": [
