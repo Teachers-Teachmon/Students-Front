@@ -58,7 +58,7 @@ export default function Movement({ isPeriod, day , isFirst}) {
                                         <S.Box2 $length={290}>{item.students
                                             .slice(0,5)
                                             .map((student, idx) =>`${student.number} ${student.name}`)
-                                            .join(", ")} {item.students.length > 3 ? '...' : ''}</S.Box2>
+                                            .join(", ")} {item.students.length > 5 ? '...' : ''}</S.Box2>
                                     }
 
                                     {name === item.teacher_name || role === "ADMIN" ?
