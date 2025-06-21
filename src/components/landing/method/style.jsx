@@ -13,6 +13,8 @@ export const Wrap = styled.div`
     flex-direction: column;
     padding: 6% 10%;
     gap: 20px;
+    overflow: hidden;
+    max-height: 90vh;
     justify-content: space-around;
 `
 export const Main = styled.main`
