@@ -12,6 +12,8 @@ export const Wrap = styled.div`
     display: flex;
     align-items: center;
     padding: 3% 10%;
+    overflow: hidden;
+    max-height: 90vh;
     justify-content: space-between;
 `
 export const Img = styled.img`

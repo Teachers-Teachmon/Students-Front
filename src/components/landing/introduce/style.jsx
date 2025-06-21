@@ -10,6 +10,8 @@ export const Wrap = styled.div`
     height: 90vh;
     display: flex;
     gap: 130px;
+    overflow: hidden;
+    max-height: 90vh;
     align-items: center;
 `
 

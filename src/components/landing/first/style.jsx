@@ -10,6 +10,8 @@ export const Wrap = styled.div`
     height: 90vh;
     display: flex;
     padding: 3% 6%;
+    overflow: hidden;
+    max-height: 90vh;
     flex-direction: column;
     justify-content: space-around;
 `

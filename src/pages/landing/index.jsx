@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import fullpage from 'fullpage.js';
 import styled from 'styled-components';
 import LandingHeader from "../../components/header/landing/index.jsx";
@@ -20,6 +20,7 @@ const FullPageWrapper = styled.div`
             justify-content: center;
             align-items: center;
             height: 100vh;
+            overflow: hidden;
             transition: background-color 0.5s ease;
         }
     }
@@ -34,7 +35,7 @@ const FullPageWrapper = styled.div`
 const FullPageComponent = () => {
     const [fpInstance, setFpInstance] = useState(null);
     const [isAnimation, setIsAnimation] = useState([false, false]);
-    const [isScrolling, setIsScrolling] = useState(false); // 스크롤 상태 추가
+    const isScrolling = useRef(false);
     const [currentSection, setCurrentSection] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -49,17 +50,20 @@ const FullPageComponent = () => {
                 navigation: true,
                 credits: false,
                 anchors: ['메인', '소개', '역할', '기능', '사용방법'],
-                onLeave: (origin, destination, direction) => {
-                    if (isScrolling) return;
-                    setIsScrolling(true);
-                    setCurrentSection(destination.index);
+                onLeave: (origin, destination) => {
+                    if (isScrolling.current) return;
 
+                    isScrolling.current = true;
+                    fullpage_api.setAllowScrolling(false); // 스크롤 차단
+
+                    setCurrentSection(destination.index);
                     setIsAnimation([destination.index === 1, destination.index === 2]);
 
                     setTimeout(() => {
-                        setIsScrolling(false);
-                    }, 1000);
-                },
+                        isScrolling.current = false;
+                        fullpage_api.setAllowScrolling(true); // 스크롤 다시 허용
+                    }, 1000); // 2초 후 해제
+                }
             });
 
             setFpInstance(instance);
