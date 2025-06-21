@@ -28,12 +28,15 @@ export default function Write({ isWriter, students, period, setIsModal ,isPatch,
     const {mutate : postMovement} = usePostMovement();
     const { day, recordDay, setDay : setDayComponent, setRecordDay} = useDay();
     const debounceStudent = useDebounce(search, 150);
+    const [isLoading, setIsLoading] = useState(false);
     const {id, name} = useAuth();
 
     useEffect(() => {
         const fetchStudents = async () => {
+            setIsLoading(true)
             const students = await searchStudent(search);
             setStudent(students);
+            setIsLoading(false);
         };
         fetchStudents();
     }, [debounceStudent]);
@@ -41,6 +44,32 @@ export default function Write({ isWriter, students, period, setIsModal ,isPatch,
     const {mutate : patchMovement} = usePatchMovement();
     const [isOrganization, setIsOrganization] = useState(false);
     const [selectOrganization, setSelectOrganization]= useState([]);
+    const enterStudent = (e) =>{
+        if (e.key === "Enter") {
+            e.preventDefault();
+            if(isLoading) return;
+            console.log(student[0])
+            setSelectStudentShow((prev) => [...prev, student[0].id]);
+            setSelectStudent((prev) => [...prev, student[0]]);
+            setSearch("");
+        }
+    }
+    const enterOrganization = (e) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            if(isLoading) return;
+            for (const currentItem of Organization) {
+                const isAlreadySelected = selectOrganization.map(item => item.name).includes(currentItem.name);
+                const isMatchSearch = currentItem.name.includes(search);
+
+                if (!isAlreadySelected && isMatchSearch) {
+                    setSelectOrganization((prev) => [...prev, currentItem]);
+                    break;
+                }
+            }
+            setSearch("");
+        }
+    }
     if(isPatch){
         return data && (
             <S.WriteContainer>
@@ -95,6 +124,7 @@ export default function Write({ isWriter, students, period, setIsModal ,isPatch,
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
                                 placeholder={"학번이나 이름을 입력해주세요"}
+                                onKeyDown={(e) => enterStudent(e)}
                             />
                             <S.StudentList>
                                 {search && student &&
@@ -214,6 +244,7 @@ export default function Write({ isWriter, students, period, setIsModal ,isPatch,
                                         value={search}
                                         onChange={(e) => setSearch(e.target.value)}
                                         placeholder={"학번이나 이름을 입력해주세요"}
+                                        onKeyDown={(e) =>enterStudent(e)}
                                     />
                                     <S.StudentList>
                                         {search && student &&
@@ -247,6 +278,7 @@ export default function Write({ isWriter, students, period, setIsModal ,isPatch,
                                         value={search}
                                         onChange={(e) => setSearch(e.target.value)}
                                         placeholder={"학년/반이나 전공동아리를 입력해주세요"}
+                                        onKeyDown={(e) =>enterOrganization(e)}
                                     />
                                     <S.StudentList>
                                         {search &&

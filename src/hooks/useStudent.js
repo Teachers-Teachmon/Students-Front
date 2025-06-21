@@ -141,6 +141,12 @@ export const usePostMovement = () => {
         },
         onError: (err) => {
             console.error('Movement 등록 실패:', err);
+            if(err.status === 409){
+                alert('이미 해당 교실에 이석중인 학생이 있습니다. 이석 수정을 이용해주세요.');
+            }
+            else{
+                alert(err)
+            }
         },
     });
 };
