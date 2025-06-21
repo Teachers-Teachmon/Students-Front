@@ -89,19 +89,12 @@ export const postMovement = async ({selectStudentShow,selectOrganization, day, t
             period: MovementPeriod[time],
             place: place.id
         });
-        if(res.status !== 200 && res.status !== 201){
-            return Promise.reject({
-                status: res.status,
-                message: res.message || 'Request failed'
-            });
-        }
         if(res.status === 409){
             alert('이미 해당 교실에 이석중인 학생이 있습니다. 이석 수정을 이용해주세요.');
         }
         return res;
 
     }catch (err){
-        alert(err);
         return Promise.reject(err);
     }
 }
