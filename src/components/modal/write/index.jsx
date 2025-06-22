@@ -50,9 +50,14 @@ export default function Write({ isWriter, students, period, setIsModal ,isPatch,
             e.preventDefault();
             if(isLoading) return;
             if(selectStudentShow.includes(student[0].id)) return;
+            if(isEnter) return;
+            setIsEnter(true);
             setSelectStudentShow((prev) => [...prev, student[0].id]);
             setSelectStudent((prev) => [...prev, student[0]]);
-            setSearch("");
+            setTimeout(() => {
+                setSearch("");
+                setIsEnter(false)
+            }, 100);
         }
     }
     const enterOrganization = (e) => {
