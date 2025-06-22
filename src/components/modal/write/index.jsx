@@ -48,7 +48,6 @@ export default function Write({ isWriter, students, period, setIsModal ,isPatch,
         if (e.key === "Enter") {
             e.preventDefault();
             if(isLoading) return;
-            console.log(student[0])
             setSelectStudentShow((prev) => [...prev, student[0].id]);
             setSelectStudent((prev) => [...prev, student[0]]);
             setSearch("");
@@ -124,7 +123,7 @@ export default function Write({ isWriter, students, period, setIsModal ,isPatch,
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
                                 placeholder={"학번이나 이름을 입력해주세요"}
-                                onKeyDown={(e) => enterStudent(e)}
+                                onKeyUp={(e) => enterStudent(e)}
                             />
                             <S.StudentList>
                                 {search && student &&
@@ -244,7 +243,7 @@ export default function Write({ isWriter, students, period, setIsModal ,isPatch,
                                         value={search}
                                         onChange={(e) => setSearch(e.target.value)}
                                         placeholder={"학번이나 이름을 입력해주세요"}
-                                        onKeyDown={(e) =>enterStudent(e)}
+                                        onKeyUp={(e) =>enterStudent(e)}
                                     />
                                     <S.StudentList>
                                         {search && student &&
