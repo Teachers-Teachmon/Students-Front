@@ -33,7 +33,7 @@ export const Reason= styled.textarea`
 
 export const InputBox= styled.div`
     border: 1px solid #ccc;
-    width: 250px;
+    width: 300px;
     border-radius: 8px;
     padding: 10px 15px;
     display: flex;

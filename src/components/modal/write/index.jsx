@@ -23,6 +23,7 @@ export default function Write({ isWriter, students, period, setIsModal ,isPatch,
 
     const [student, setStudent] = useState([]);
 
+    const [isEnter, setIsEnter] = useState(false);
     const [selectStudent, setSelectStudent] = useState(isPatch ? students.map((stu) => {return {number : stu.number, name : stu.name, id: stu.id}}) : []);
     const [selectStudentShow, setSelectStudentShow] = useState(isPatch ? students.map((stu) => stu.id) : []);
     const {mutate : postMovement} = usePostMovement();
@@ -48,6 +49,7 @@ export default function Write({ isWriter, students, period, setIsModal ,isPatch,
         if (e.key === "Enter") {
             e.preventDefault();
             if(isLoading) return;
+            if(selectStudentShow.includes(student[0].id)) return;
             setSelectStudentShow((prev) => [...prev, student[0].id]);
             setSelectStudent((prev) => [...prev, student[0]]);
             setSearch("");
@@ -56,7 +58,9 @@ export default function Write({ isWriter, students, period, setIsModal ,isPatch,
     const enterOrganization = (e) => {
         if (e.key === "Enter") {
             e.preventDefault();
-            if(isLoading) return;
+            if(isEnter || !search || isLoading ) return;
+
+            setIsEnter(true);
             for (const currentItem of Organization) {
                 const isAlreadySelected = selectOrganization.map(item => item.name).includes(currentItem.name);
                 const isMatchSearch = currentItem.name.includes(search);
@@ -66,7 +70,10 @@ export default function Write({ isWriter, students, period, setIsModal ,isPatch,
                     break;
                 }
             }
-            setSearch("");
+            setTimeout(() => {
+                setSearch("");
+                setIsEnter(false)
+            }, 100);
         }
     }
     if(isPatch){
@@ -122,8 +129,8 @@ export default function Write({ isWriter, students, period, setIsModal ,isPatch,
                                 type={"text"}
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
-                                placeholder={"학번이나 이름을 입력해주세요"}
-                                onKeyUp={(e) => enterStudent(e)}
+                                placeholder={"학번이나 이름을 입력하고 엔터를 눌러주세요"}
+                                onKeyDown={(e) => enterStudent(e)}
                             />
                             <S.StudentList>
                                 {search && student &&
@@ -242,8 +249,8 @@ export default function Write({ isWriter, students, period, setIsModal ,isPatch,
                                         type={"text"}
                                         value={search}
                                         onChange={(e) => setSearch(e.target.value)}
-                                        placeholder={"학번이나 이름을 입력해주세요"}
-                                        onKeyUp={(e) =>enterStudent(e)}
+                                        placeholder={"학번이나 이름을 입력하고 엔터를 눌러주세요"}
+                                        onKeyDown={(e) => enterStudent(e) }
                                     />
                                     <S.StudentList>
                                         {search && student &&
