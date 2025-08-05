@@ -29,6 +29,7 @@ export default function Header() {
   return (
     <S.HeaderContainer>
       <S.Logo draggable="false" src={teachmonLogo} onClick={() => { navigate('/main') }} />
+      <S.Hr/>
       <S.NavList>
         {
           MENU.map((menu, index) => {
