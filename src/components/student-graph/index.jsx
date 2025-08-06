@@ -54,25 +54,50 @@ export default function StudentGraph({data, grade, classNum}){
                 return "#CCBCFF"
         }
     }
-    const blackstudent = useRef(null);
-    return(
+
+  function removeDuplicates(arr) {
+    const seen = new Set();
+    return arr.filter((item) => {
+      const key = `${item.name}-${item.number}`;
+      if (seen.has(key)) {
+        return false; // 이미 있으면 걸러냄
+      }
+      seen.add(key);
+      return true; // 처음 보는 항목은 통과
+    });
+  }
+  useEffect(() => {
+    if(data){
+      setPurifyStudent(removeDuplicates(data));
+    }
+  }, [data]);
+    const numberReaderLeft = [0, 8];
+    const numberReaderRight = [7];
+    const directionReader = (number) =>{
+      if(purifyStudent && numberReaderLeft.includes(number)){
+        return -20;
+      }
+      else if(purifyStudent && numberReaderRight.includes(number) || number === purifyStudent.length - 1){
+        return -80;
+      }
+      else {
+        return -50;
+      }
+    }
+  const [purifyStudent, setPurifyStudent] = useState([]);
+  return(
         <S.StudentContainer>
             <h2>{classNum}반</h2>
-            {data ?
-                <S.Graph  $seven = {data.length === 17}>
-                    {data.map((el, idx) => {
-                        if (el.name === blackstudent.current) {
-                            return <></>;
-                        } else {
-                            blackstudent.current = el.name;
-                        }
+            {purifyStudent ?
+                <S.Graph  $seven = {purifyStudent.length === 17}>
+                    {purifyStudent.map((el, idx) => {
                         return (
                             <S.Student $color={studentColor(el.status)} onClick={() => isClick(idx, el.status)}
                                        key={idx}>{/* 칸 색깔도 data에서 추출해서 사용*/}
                                 <p>{String(el.number).slice(2, 4)}</p>
                                 <p>{el.name}</p>
                                 {isOpen[idx] ?
-                                    <StatusUpdate changeStatus={changeStatus} name={el.id} nowStatus={el.status} up={-180}/>
+                                    <StatusUpdate changeStatus={changeStatus} name={el.id} nowStatus={el.status} up={-180} left={directionReader(idx)}/>
                                     : null
                                 }
                             </S.Student>

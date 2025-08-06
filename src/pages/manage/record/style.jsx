@@ -1,12 +1,23 @@
 import styled from "styled-components";
 import * as S from '../style.jsx';
 import {Black as ModalBlack} from '../../../styles/style.jsx';
+import {mq} from "../../../styles/media.js";
 
 export const Info = styled(S.Info)``
 export const InfoBtn = styled.div`
     display: flex;
     justify-content: space-between;
     gap: 14px;
+    ${mq.mobile}{
+      width: 80%;
+    }
+`
+export const BtnBox = styled.div`
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    align-items: center;
+  width: 100%;
 `
 export const Main = styled(S.Main)``
 export const MainNav = styled(S.MainNav)`
@@ -16,6 +27,10 @@ export const MainNav = styled(S.MainNav)`
         gap: 10px;
         align-items: center;
     }
+  ${mq.mobile}{
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `
 export const CheckBox = styled.div`
     display: flex;
@@ -55,6 +70,9 @@ export const ContentBox = styled.div`
 export const UnBox = styled.div`
     width: 80px;
     height: 25px;
+  ${mq.mobile}{
+    width: 30px;
+  }
 `
 export const Box = styled.p`
     font-size: 13px;

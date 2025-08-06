@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Header from "../../components/header/index.jsx";
+import {mq} from "../../styles/media.js";
 
 export default function Layout({children}) {
     return (
@@ -25,7 +26,7 @@ export const Wrap = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    @media (max-width: 400px) {
-        width: 100%;
+    ${mq.mobile}{
+      width: 100%;
     }
 `

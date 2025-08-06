@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {mq} from "../../styles/media.js";
 
 export const HeaderContainer = styled.div`
     width: 13%;
@@ -9,8 +10,8 @@ export const HeaderContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    @media (max-width: 400px) {
-        display: none;
+    ${mq.mobile}{
+      display: none;
     }
 `
 

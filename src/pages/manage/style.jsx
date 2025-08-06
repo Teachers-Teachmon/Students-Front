@@ -1,4 +1,5 @@
 import styled, {css, keyframes} from "styled-components";
+import {mq} from "../../styles/media.js";
 
 const flexRow = styled.div`
     display: flex;
@@ -11,9 +12,9 @@ export const Info = styled.div`
     width: 100%;
     align-items: center;
     & > h1{
-        @media (max-width: 400px) {
-            font-size: 28px;
-        }
+      ${mq.mobile}{
+        font-size: 28px;
+      }
     }
 `
 export const InfoNew = styled.div`
@@ -26,15 +27,15 @@ export const InfoNew = styled.div`
     align-items: center;
   }
     & > div > img{
-      width: 32px;
+      width: 36px;
     }
     & > div > h1{
-      font-size: 24px;
+      font-size: 28px;
       font-weight: 550;
       color: #9CA4BA;
-        @media (max-width: 400px) {
-            font-size: 28px;
-        }
+      ${mq.mobile}{
+        font-size: 28px;
+      }
     }
 `
 
@@ -42,6 +43,7 @@ export const Main = styled.main`
     width: 100%;
     height: 90%;
     border: 2px solid #EAECF0;
+  overflow: hidden;
     border-radius: 8px;
 `
 
@@ -49,6 +51,11 @@ export const MainNav = styled(flexRow)`
     width: 100%;
     height: 10%;
     padding: 30px 20px;
+  ${mq.mobile}{
+    padding: 20px;
+    gap: 10px;
+    height: auto;
+  }
 `
 export const NoData = styled.div`
     font-size: 14px;
@@ -68,8 +75,8 @@ export const MainBox = styled.div`
   position: relative;
     gap: 20px;
   align-items: center;
-    @media (max-width: 400px) {
-        gap: 5px;
+    ${mq.mobile}{
+      gap: 5px;
     }
 `
 export const Grade = styled(flexRow)`
@@ -110,8 +117,8 @@ export const Color = styled(flexRow)`
   border-radius: 8px;
   right: 0;
     gap: 20px;
-    @media (max-width: 400px) {
-        display: none;
+    ${mq.mobile}{
+      display: none;
     }
 `
 export const Colors = styled(flexRow)`
@@ -141,10 +148,9 @@ export const Record = styled.div`
     &:hover {
         background: #2a65dd;
     }
-    @media (max-width: 400px) {
-        padding: 4px;
-        font-size: 12px;
-        border-radius: 4px;
+    ${mq.mobile}{
+      border-radius: 8px;
+      padding: 3px 10px;
     }
 `
 export const Question = styled.div`
@@ -161,19 +167,12 @@ export const Question = styled.div`
     background: #2a65dd;
   }
 `
-export const  RecordBtnBox = styled.div`
-    display: flex;
-    gap: 4px;
-  flex-direction: column;
-  align-items: center;
-  font-size: 12px;
-`
 export const Section = styled.section`
     width: 100%;
     height: 90%;
     display: flex;
     flex-flow: wrap row;
-    @media (max-width: 400px) {
-        overflow-y: scroll;
+    ${mq.mobile}{
+      overflow-y: scroll;
     }
 `

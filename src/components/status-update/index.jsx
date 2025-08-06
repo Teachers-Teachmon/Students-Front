@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {mq} from "../../styles/media.js";
 export default function StatusUpdate({changeStatus, name, nowStatus, up, left, period}) {
     const now = () =>{
         switch(nowStatus){
@@ -112,6 +113,9 @@ export const Circle = styled.div`
     height: 10px;
     border-radius: 100%;
     background: ${(props)=> props.color};
+  ${mq.mobile}{
+    display: none;
+  }
 `
 export const StatusText = styled.p`
     color: ${props=>props.color};

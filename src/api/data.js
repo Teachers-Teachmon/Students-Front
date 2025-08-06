@@ -5,7 +5,7 @@ import {MovementPeriod, period} from "../lib/period.js";
 //${API_ENDPOINTS.DATA}
 export const getMovement = async (day) =>{
     try{
-        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/leaveseat?day=${day}`);
+        const res = await axiosInstance.get(`/leave`);
         if(res.status !== 200 && res.status !== 201){
             return Promise.reject({
                 status: res.status,
@@ -21,7 +21,7 @@ export const getMovement = async (day) =>{
 
 export const getMovementDetail = async (day, teacher_id, periodName, place) =>{
     try{
-        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/leaveseat/detail?day=${day}&teacherId=${teacher_id}&period=${period[periodName]}&place=${place}`);
+        const res = await axiosInstance.get(`/detail`);
         if(res.status !== 200 && res.status !== 201){
             return Promise.reject({
                 status: res.status,
@@ -37,7 +37,7 @@ export const getMovementDetail = async (day, teacher_id, periodName, place) =>{
 //${API_ENDPOINTS.DATA}
 export const getStudent = async (day, search) =>{
     try{
-        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/student?day=${day}&search_query=${search}`);
+        const res = await axiosInstance.get(`/student`);
         if(res.status !== 200 && res.status !== 201){
             return Promise.reject({
                 status: res.status,
@@ -53,7 +53,7 @@ export const getStudent = async (day, search) =>{
 
 export const getLeave = async (day) =>{
     try{
-        const res = await axiosInstance.get(`${API_ENDPOINTS.DATA}/leave?day=${day}`);
+        const res = await axiosInstance.get(`/leave`);
         if(res.status !== 200 && res.status !== 201){
             return Promise.reject({
                 status: res.status,

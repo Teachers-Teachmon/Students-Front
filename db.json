@@ -1229,7 +1229,13 @@
       "student": "1401 김동욱",
       "period": "7교시",
       "teacher_name": "이정하",
-      "id": "cb46"
+      "id": "cb46",
+      "personnel" : 6,
+      "place" : "학부모회실",
+      "students" : [
+        {"number" :  2209, "name" : "이정하"},
+        {"number" :  2210, "name" : "이정하"}
+      ]
     }
   ],
   "leaveDelete": {},
@@ -7339,31 +7345,31 @@
         "id": 740588
       },
       {
-        "status": "AFTER_SCHOOL",
+        "status": "SELF_STUDY",
         "name": "김우찬",
         "number": 2102,
         "id": 790349
       },
       {
-        "status": "AFTER_SCHOOL",
+        "status": "SELF_STUDY",
         "name": "김유찬",
         "number": 2103,
         "id": 790350
       },
       {
-        "status": "AFTER_SCHOOL",
+        "status": "SELF_STUDY",
         "name": "김정훈",
         "number": 2104,
         "id": 790448
       },
       {
-        "status": "AFTER_SCHOOL",
+        "status": "SELF_STUDY",
         "name": "김한결",
         "number": 2105,
         "id": 790449
       },
       {
-        "status": "AFTER_SCHOOL",
+        "status": "SELF_STUDY",
         "name": "류승찬",
         "number": 2106,
         "id": 790351
@@ -7499,24 +7505,6 @@
         "name": "황준혁",
         "number": 2116,
         "id": 720694
-      },
-      {
-        "status": "SELF_STUDY",
-        "name": "황준혁",
-        "number": 2116,
-        "id": 733807
-      },
-      {
-        "status": "SELF_STUDY",
-        "name": "황준혁",
-        "number": 2116,
-        "id": 737200
-      },
-      {
-        "status": "SELF_STUDY",
-        "name": "황준혁",
-        "number": 2116,
-        "id": 740593
       }
     ],
     "2반": [

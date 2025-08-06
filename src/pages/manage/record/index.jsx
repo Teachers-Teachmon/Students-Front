@@ -72,7 +72,15 @@ export default function Record() {
                         <h1>학생</h1>
                     ) : null}
                     <S.InfoBtn>
+                      { width <= MOBILE ?
+                        <S.BtnBox>
+                          <CircleBtn name={"이석"} status={isMovement[0]}  On={()=>setIsMovement([true, false, false])}/>
+                          <CircleBtn name={"이탈"} status={isMovement[1]} On={()=>setIsMovement([false, true, false])}/>
+                          <CircleBtn name={"학생"} status={isMovement[2]} On={()=>setIsMovement([false, false, true])}/>
+                        </S.BtnBox>
+                         :
                         <SquareBtn name={"돌아가기"} status={true} On={() => navigate('/manage')} />
+                      }
                         {isMovement[0] && width > MOBILE && <SquareBtn name={"이석작성"} status={true} On={()=>setIsModal(!isModal)} />}
                     </S.InfoBtn>
                 </S.Info>
@@ -80,9 +88,13 @@ export default function Record() {
                     <S.MainNav>
                         <div>
                             <DateInput onChange={setRecordDay} />
-                            <CircleBtn name={"이석"} status={isMovement[0]}  On={()=>setIsMovement([true, false, false])}/>
-                            <CircleBtn name={"이탈"} status={isMovement[1]} On={()=>setIsMovement([false, true, false])}/>
-                            <CircleBtn name={"학생"} status={isMovement[2]} On={()=>setIsMovement([false, false, true])}/>
+                          {width > MOBILE &&
+                            <>
+                              <CircleBtn name={"이석"} status={isMovement[0]}  On={()=>setIsMovement([true, false, false])}/>
+                              <CircleBtn name={"이탈"} status={isMovement[1]} On={()=>setIsMovement([false, true, false])}/>
+                              <CircleBtn name={"학생"} status={isMovement[2]} On={()=>setIsMovement([false, false, true])}/>
+                            </>
+                          }
                         </div>
 
                         {isMovement[2] ?
@@ -96,7 +108,7 @@ export default function Record() {
                                         value={isPeriod[0]}
                                         onChange={()=>periodHandler(0)}
                                     />
-                                    <label>{width > MOBILE ? "7교시" : "7"}</label>
+                                    <label>7교시</label>
                                 </div>
                                 <div>
                                     <input
@@ -104,7 +116,7 @@ export default function Record() {
                                         value={isPeriod[1]}
                                         onChange={()=>periodHandler(1)}
                                     />
-                                    <label>{width > MOBILE ? "8~9교시" : "8"}</label>
+                                    <label>8~9교시</label>
                                 </div>
                                 <div>
                                     <input
@@ -112,7 +124,7 @@ export default function Record() {
                                         value={isPeriod[2]}
                                         onChange={()=>periodHandler(2)}
                                     />
-                                    <label>{width > MOBILE ? "10~11교시" : "10"}</label>
+                                    <label>10~11교시</label>
                                 </div>
                             </S.CheckBox>}
                     </S.MainNav>

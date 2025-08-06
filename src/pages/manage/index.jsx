@@ -60,7 +60,7 @@ export default function Manage(){
                 <S.InfoNew>
                   <div>
                     <img src={Calender} />
-                    <h1>{day} {!weekday ? period : null}</h1>
+                    <h1>{day}</h1>
                   </div>
                   <SquareBtn name={"학생위치"} status={true} On={()=>navigate('/manage/location')} />
                 </S.InfoNew>
@@ -86,9 +86,11 @@ export default function Manage(){
                                 {windowWidth > MOBILE && <img src={Record} alt="" />}
                                 <p>학생</p>
                             </S.Record>
+                          {windowWidth > MOBILE &&
                           <S.Question  onClick={()=>setIsQuestion(!isQuestion)}>
-                            {windowWidth > MOBILE && <img src={Question} alt="" />}
+                             <img src={Question} alt="" />
                           </S.Question>
+                          }
                           {isQuestion &&
                             <S.Color $isAnimation={isQuestion}>
                               <S.Colors>

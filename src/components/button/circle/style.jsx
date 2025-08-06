@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {mq} from "../../../styles/media.js";
 
 export const CircleContainer = styled.div`
     max-width: 150px;
@@ -16,10 +17,10 @@ export const CircleContainer = styled.div`
         background: ${(props)=>props.$status ?"white" : "#2a65dd"};
         color: ${(props)=>props.$status ? "#2E6FF2" : "white"};
     }
-    @media (max-width: 400px) {
-        width: 30px;
-        padding: 0;
-    }
+   ${mq.mobile}{
+     border-radius: 8px;
+     padding: 3px 10px;
+   }
 `
 export const Name = styled.p`
     font-weight: 500;

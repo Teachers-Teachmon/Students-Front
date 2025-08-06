@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {mq} from "../../../styles/media.js";
 
 export const SquareContainer = styled.div`
     width: 120px;
@@ -15,9 +16,9 @@ export const SquareContainer = styled.div`
     &:hover {
         background: ${(props)=> props.$status ? "#2a65dd" : "#fbfbfb"};
     }
-    @media (max-width: 400px) {
-        width: 80px;
-        padding: 6px 10px;
+    ${mq.mobile}{
+      width: 80px;
+      padding: 6px 10px;
     }
 `
 export const Name = styled.p`

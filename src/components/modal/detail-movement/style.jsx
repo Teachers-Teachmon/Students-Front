@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import {Black as ModalBlack} from '../../../styles/style.jsx';
+import {mq} from "../../../styles/media.js";
 
 export const Black = styled(ModalBlack)``
 export const Content = styled.div`
     width: 45%;
-    @media (max-width: 400px) {
+    ${mq.mobile}{
         width: 80%;
-        
     }
     padding: 30px;
     border-radius: 8px;
@@ -42,8 +42,8 @@ export const Teacher = styled.div`
     align-items: center;
     justify-content: flex-start;
     & > img{
-        @media (width < 400px) {
-            display: none;
+        ${mq.mobile}{
+          display: none;
         }
     }
 `

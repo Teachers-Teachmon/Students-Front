@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {Black as ModalBlack} from '../../../styles/style.jsx';
+import {mq} from "../../../styles/media.js";
 
 export const LocationContainer = styled.div`
     width: 100%;
@@ -16,8 +17,8 @@ export const Wrap = styled.div`
     flex-direction: column;
     justify-content: space-between;
     position: relative;
-    @media (max-width: 400px) {
-        width: 100vw;
+    ${mq.mobile}{
+      width: 100vw;
     }
 `
 export const Box = styled.div`
@@ -27,9 +28,9 @@ export const Box = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    @media (max-width: 400px) {
-        width: 110%;
-        top: 75%;
+    ${mq.mobile}{
+      width: 110%;
+      top: 75%;
     }
 `
 export const Error = styled(ModalBlack)`
@@ -63,10 +64,10 @@ export const All = styled.div`
     border-radius: 100px;
     border: 2px solid #2E6FF2;
     color: #2E6FF2;
-    @media (max-width: 400px) {
-        font-size: 10px;
-        width: 18px;
-        height: 18px;
+    ${mq.mobile}{
+      font-size: 10px;
+      width: 18px;
+      height: 18px;
     }
     
 `
@@ -79,10 +80,10 @@ export const Info = styled.div`
     justify-content: space-between;
     align-items: center;
     z-index: 5;
-    @media (max-width: 400px) {
-        left: 0;
-        width: 100%;
-        justify-content: space-around;
+    ${mq.mobile}{
+      left: 0;
+      width: 100%;
+      justify-content: space-around;
     }
 `
 export const Footer = styled.div`
@@ -93,8 +94,8 @@ export const Footer = styled.div`
     align-items: center;
     z-index: 5;
     gap: 10px;
-    @media (max-width: 400px) {
-        left: 10%;
+    ${mq.mobile}{
+      left: 10%;
     }
 `
 export const Element = styled.div`
@@ -112,11 +113,11 @@ export const Element = styled.div`
     font-size: 10px;
     border: 1px solid black;
     text-align: center;
-    @media (max-width: 400px) {
-        font-size: 4px;
-        height: ${(props)=>props.$height/2}%;
-        top: ${(props)=>props.$top/2}%;
-        border: 0.5px solid black;
+    ${mq.mobile}{
+      font-size: 4px;
+      height: ${(props)=>props.$height/2}%;
+      top: ${(props)=>props.$top/2}%;
+      border: 0.5px solid black;
     }
 `
 export const Btn = styled.div`
@@ -128,8 +129,8 @@ export const Btn = styled.div`
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
     cursor: pointer;
     background-color: white;
-    @media (max-width: 400px) {
-        width: 40px;
-        font-size: 10px;
+    ${mq.mobile}{
+      width: 40px;
+      font-size: 10px;
     }
 `
