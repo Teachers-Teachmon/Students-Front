@@ -2,11 +2,11 @@ import styled from "styled-components";
 import Header from "../../components/header/index.jsx";
 import {mq} from "../../styles/media.js";
 
-export default function Layout({children}) {
+export default function Layout({children, none}) {
     return (
         <ManageContainer>
             <Header />
-            <Wrap>
+            <Wrap $none={none}>
                 {children}
             </Wrap>
         </ManageContainer>
@@ -22,7 +22,7 @@ export const ManageContainer = styled.div`
 export const Wrap = styled.div`
     width : 87%;
     height: 100%;
-    padding: 40px 6%;
+    ${(props)=>props.$none ? "padding: 0;": "padding: 40px 6%;"}
     display: flex;
     flex-direction: column;
     justify-content: space-between;

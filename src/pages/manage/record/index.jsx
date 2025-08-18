@@ -81,7 +81,7 @@ export default function Record() {
                          :
                         <SquareBtn name={"돌아가기"} status={true} On={() => navigate('/manage')} />
                       }
-                        {isMovement[0] && width > MOBILE && <SquareBtn name={"이석작성"} status={true} On={()=>setIsModal(!isModal)} />}
+                        {isMovement[0] && width > MOBILE && <SquareBtn name={"이석작성"} status={true} On={()=>navigate('/manage/form/time')} />}
                     </S.InfoBtn>
                 </S.Info>
                 <S.Main>

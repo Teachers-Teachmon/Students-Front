@@ -60,7 +60,7 @@ export default function Manage(){
                 <S.InfoNew>
                   <div>
                     <img src={Calender} />
-                    <h1>{day}</h1>
+                    <h1>{day} {!weekday ? period : null}</h1>
                   </div>
                   <SquareBtn name={"학생위치"} status={true} On={()=>navigate('/manage/location')} />
                 </S.InfoNew>

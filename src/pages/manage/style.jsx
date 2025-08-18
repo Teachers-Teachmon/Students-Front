@@ -113,7 +113,7 @@ export const Color = styled(flexRow)`
     $isAnimation
       ? css`${fadeInBounce} 0.3s ease-in-out both`
       : 'none'};
-  top: -3rem;
+  bottom: -3rem;
   border-radius: 8px;
   right: 0;
     gap: 20px;
