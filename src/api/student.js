@@ -4,18 +4,18 @@ import {period, MovementPeriod} from "../lib/period.js";
 
 //${API_ENDPOINTS.STUDENT}
 export const getNowStudent = async (grade) =>{
-    try{
-        const res = await axiosInstance.get(`/schedule`);
-        if(res.status!==200){
-            return new Promise.reject({
-                status:res.status,
-                message:res.message
-            })
-        }
-        return res;
-    }catch (err){
-        return new Promise.reject(err);
+  try{
+    const res = await axiosInstance.get(`${API_ENDPOINTS.STUDENT}/schedule/${grade}`);
+    if(res.status!==200){
+      return new Promise.reject({
+        status:res.status,
+        message:res.message
+      })
     }
+    return res;
+  }catch (err){
+    return new Promise.reject(err);
+  }
 }
 export const schoolOutStudent = async (studentID) =>{
     try{
