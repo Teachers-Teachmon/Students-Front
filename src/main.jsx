@@ -30,6 +30,7 @@ import AdminSelfStudy from './pages/admin/self-study/index.jsx'
 import AdminStudent from './pages/admin/student/index.jsx'
 import AdminSupervision from './pages/admin/supervision/index.jsx'
 import AdminTeacher from './pages/admin/teacher/index.jsx'
+import Form from './pages/manage/record/form'
 const AccessLimits = lazy(()=>import("./pages/accessLimits/index.jsx"))
 
 const client = new QueryClient();
@@ -51,6 +52,7 @@ createRoot(document.getElementById('root')).render(
                     <Route path="/supervision" element={<Supervision />} />
                     <Route path="/supervision/change" element={<SupervisionChange />} />
                     <Route path="/after-school" element={<After />} />
+                    <Route path={"/manage/form/:id"} element={<Form />}/>
                     <Route path={"/limit"} element={
                         <Suspense fallback={<Loading />}>
                             <AccessLimits />

@@ -60,44 +60,48 @@ export default function Movement({ isPeriod, day , isFirst}) {
                                             .map((student, idx) =>`${student.number} ${student.name}`)
                                             .join(", ")} {item.students.length > 5 ? '...' : ''}</S.Box2>
                                     }
-
-                                    {name === item.teacher_name || role === "ADMIN" ?
-                                        <>
+                                  {width > MOBILE &&
+                                    <>
+                                      {
+                                        name === item.teacher_name || role === "ADMIN" ?
+                                          <>
                                             <S.PatchBox
-                                                onClick={(e) => {
-                                                    e.stopPropagation();
-                                                    setIsModal2(true)
-                                                    getDetail((day), item.teacher_id, item.period, item.place)
-                                                    setDayComponent(recordDay)
-                                                    setPeriod(item.period)
-                                                    setStudents(item.students)
-                                                    setIsWriter(item.teacher_id)
-                                                }}
+                                              onClick={(e) => {
+                                                e.stopPropagation();
+                                                setIsModal2(true)
+                                                getDetail((day), item.teacher_id, item.period, item.place)
+                                                setDayComponent(recordDay)
+                                                setPeriod(item.period)
+                                                setStudents(item.students)
+                                                setIsWriter(item.teacher_id)
+                                              }}
                                             >수정</S.PatchBox>
                                             <S.DeleteBox
-                                                onClick={(e) => {
-                                                    e.stopPropagation();
-                                                    if(window.confirm('정말 삭제하시겠습니까?')){
-                                                        deleteMovement({teacher_id : item.teacher_id, day, periodName : item.period, place: item.place});
-                                                    }
-                                                }}
+                                              onClick={(e) => {
+                                                e.stopPropagation();
+                                                if(window.confirm('정말 삭제하시겠습니까?')){
+                                                  deleteMovement({teacher_id : item.teacher_id, day, periodName : item.period, place: item.place});
+                                                }
+                                              }}
                                             >삭제</S.DeleteBox>
-                                        </>
-                                        : <>
-                                         <S.PatchBox
-                                             $disabled = {true}
-                                                onClick={(e) => {
-                                                    e.stopPropagation();
-                                                    setIsModal2(true)
-                                                    getDetail((day), item.teacher_id, item.period, item.place)
-                                                    setDayComponent(recordDay)
-                                                    setPeriod(item.period)
-                                                    setStudents(item.students)
-                                                    setIsWriter(item.teacher_id)
-                                                }}
+                                          </>
+                                          : <>
+                                            <S.PatchBox
+                                              $disabled = {true}
+                                              onClick={(e) => {
+                                                e.stopPropagation();
+                                                setIsModal2(true)
+                                                getDetail((day), item.teacher_id, item.period, item.place)
+                                                setDayComponent(recordDay)
+                                                setPeriod(item.period)
+                                                setStudents(item.students)
+                                                setIsWriter(item.teacher_id)
+                                              }}
                                             >수정</S.PatchBox>
-                                        </>
-                                    }
+                                          </>
+                                      }
+                                    </>
+                                  }
                                 </S.Content>
                             </>
                         )

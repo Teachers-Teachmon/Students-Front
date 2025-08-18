@@ -1,11 +1,16 @@
 import styled from "styled-components";
 import {Black as ModalBlack} from '../../../styles/style.jsx';
 import * as S from '../../../pages/manage/record/style.jsx'
+import {mq} from "../../../styles/media.js";
 
 export const MovementContainer = styled(S.Container)``
 export const Standard = styled(S.Standard)``
 export const ContentBox = styled(S.ContentBox)``
-export const UnBox = styled(S.UnBox)``
+export const UnBox = styled(S.UnBox)`
+  ${mq.mobile}{
+    width: 30px;
+  }
+`
 export const Box = styled(S.Box)``
 export const Box2 = styled(S.Box2)``
 export const NoData = styled(S.NoData)``

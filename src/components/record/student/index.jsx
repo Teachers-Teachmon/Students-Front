@@ -3,6 +3,8 @@ import {useState, useRef, useEffect} from "react";
 import StatusUpdate from "../../status-update/index.jsx";
 import {usePatchStudent} from "../../../hooks/useStudent.js";
 import StudentUpdateAfterSchool from "../../modal/student-update-after-school/index.jsx";
+import MOBILE from "../../../utils/mobile.js";
+import {useWidth} from "../../../zustand/width.js";
 
 export default function Student({ data, day }) {
     const [isCheck, setIsCheck] = useState([]);
@@ -97,6 +99,7 @@ export default function Student({ data, day }) {
             }
         };
     }, [childRefs.current.length]);
+    const {width} = useWidth();
     return (
         <S.StudentContainer>
             {isModal ? <StudentUpdateAfterSchool setIsModal = {setIsModal} day={day} period={period} patchAfterSchool={patchAfterSchool}/> : null}
@@ -114,8 +117,8 @@ export default function Student({ data, day }) {
                     <S.Box $length={510}>학번/이름</S.Box>
                 </div>
                 <div>
-                    <S.Box $length={150}>8~9교시</S.Box>
-                    <S.Box $length={150}>10~11교시</S.Box>
+                    <S.Box $length={width < MOBILE ? 90 : 150}>8~9교시</S.Box>
+                    <S.Box $length={width < MOBILE ? 90 : 150}>10~11교시</S.Box>
                 </div>
             </S.Standard>
             <S.ContentBox ref = {parentRef} >
@@ -188,7 +191,7 @@ export default function Student({ data, day }) {
                                                     .map((item)=> item['10th_id'])
                                                 : item['10th_id']}
                                             up={isFirst === idx ? 58 : -160}
-                                            left={-60}
+                                            left={width < MOBILE ? -80 : -60}
                                             period = {"10~11교시"}
                                         />}
                                     {item['10th_schedule'] === "방과후" ?

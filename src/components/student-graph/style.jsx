@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { darken } from 'polished';
 import {CancelBlack} from "../../styles/style.jsx";
+import {mq} from "../../styles/media.js";
 
 export const StudentContainer = styled.div`
     width: 50%;
@@ -10,8 +11,8 @@ export const StudentContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    @media (max-width: 400px) {
-        width: 100%;
+    ${mq.mobile}{
+      width: 100%;
     }
 `
 export const Graph = styled.div`
@@ -39,8 +40,8 @@ export const Student = styled.div`
         background-color: ${(props) =>
                 props.$color === "#ffffff" ? null : darken(0.1, props.$color || "#ffffff")};
     }
-    @media (max-width: 400px) {
-        font-size: 12px;
+    ${mq.mobile}{
+      font-size: 12px;
     }
 `
 export const Black = styled(CancelBlack)`

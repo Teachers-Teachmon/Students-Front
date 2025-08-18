@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {mq} from "../../styles/media.js";
 
 export const HeaderContainer = styled.div`
     width: 13%;
@@ -9,8 +10,8 @@ export const HeaderContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    @media (max-width: 400px) {
-        display: none;
+    ${mq.mobile}{
+      display: none;
     }
 `
 
@@ -18,10 +19,16 @@ export const Logo = styled.img`
     cursor: pointer;
     width: 90%;
 `
-
+export const Hr = styled.div`
+  width: calc(100% - 24px);
+  height: 1px;
+  margin-top: 15%;
+  background-color: #9CA4BA;
+`
 export const NavList = styled.div`
-    margin-top: 20%;
+    margin-top: 15%;
     display: flex;
+  padding: 0 12px;
     flex-direction: column;
     gap: 16px;
     width: 100%;
@@ -30,28 +37,29 @@ export const NavList = styled.div`
 
 export const MenuItem = styled.div`
     width: 100%;
-    padding: 7% 20%;
+    padding: 5% 15%;
     text-align: center;
     cursor: pointer;
     display: flex;
     align-items: center;
     transition: 0.2s;
+    border-radius: 12px;
     &:hover {
-        background-color: #dce4ff;
+        background-color: ${({ $active }) => ($active ? '#A2C2FF' : '#dce4ff')};
     }
     background-color: ${({ $active }) => ($active ? '#C7DAFF' : '')};
-    color: ${({ $active }) => ($active ? '#2E6FF2' : '')};
-    font-weight: ${({ $active }) => ($active ? 'bold' : '')};
+    color: ${({ $active }) => ($active ? '#2E6FF2' : '#9CA4BA')};
+    font-weight: 500;
 `
 
 export const MenuIcon = styled.img`
     width: 24px;
-    height: 24px;
+    height:24px;
     margin-right: 8px;
-    filter: ${({ $active }) => ($active 
-        ? 'invert(30%) sepia(83%) saturate(2500%) hue-rotate(210deg) brightness(93%) contrast(97%)'
-        : 'none'
-    )}; // 다른 색상의 SVG를 가져오지 않고 filter로 색변경 하기(GPT 참고)
+  filter: ${({ $active }) =>
+    $active
+      ? 'invert(44%) sepia(91%) saturate(5326%) hue-rotate(209deg) brightness(92%) contrast(92%)'
+      : 'none'}; // 다른 색상의 SVG를 가져오지 않고 filter로 색변경 하기(GPT 참고)
 `
 
 export const Bottom = styled.div`

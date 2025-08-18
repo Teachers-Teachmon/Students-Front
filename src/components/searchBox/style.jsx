@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {mq} from "../../styles/media.js";
 
 export const InputBox= styled.div`
     border: 1px solid #ccc;
@@ -9,12 +10,13 @@ export const InputBox= styled.div`
     font-size: 14px;
     position: relative;
     padding: 0 15px;
-    @media  (max-width: 400px) {
-        padding: 0 2px;
+    ${mq.mobile}{
+      padding: 0 2px;
+      width: 100%;
     }
     & > img{
-        @media  (max-width: 400px) {
-            display: none;
+        ${mq.mobile}{
+          display: none;
         }
     }
 `

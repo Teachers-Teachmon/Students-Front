@@ -11,6 +11,8 @@ import Loading from "../../components/loading/index.jsx";
 import Layout from "./layout.jsx";
 import MOBILE from "../../utils/mobile.js";
 import {useWidth} from "../../zustand/width.js";
+import Calender from "../../assets/caleander.svg";
+import Question from "../../assets/quetion.svg";
 
 export default function Manage(){
     const {today, period, updatePeriod} = useDay();
@@ -50,13 +52,18 @@ export default function Manage(){
         setGrade(newGrade);
     }
     const {width : windowWidth} = useWidth();
+
+    const [isQuestion, setIsQuestion] = useState(false);
     return(
         <Layout>
                 {isLoading || isFetching && !weekday && period && <Loading />}
-                <S.Info>
+                <S.InfoNew>
+                  <div>
+                    <img src={Calender} />
                     <h1>{day} {!weekday ? period : null}</h1>
-                    <SquareBtn name={"학생위치"} status={true} On={()=>navigate('/manage/location')} />
-                </S.Info>
+                  </div>
+                  <SquareBtn name={"학생위치"} status={true} On={()=>navigate('/manage/location')} />
+                </S.InfoNew>
                 <S.Main>
                     <S.MainNav>
                         <S.MainBox>
@@ -65,28 +72,6 @@ export default function Manage(){
                                 <CircleBtn name={windowWidth > MOBILE ? "2학년" : "2"} status={grade[1]} On={()=>changeGrade(1)} />
                                 <CircleBtn name={windowWidth > MOBILE ? "3학년" : "3"} status={grade[2]} On={()=>changeGrade(2)} />
                             </S.Grade>
-                            <S.Color>
-                                <S.Colors>
-                                    <S.Status>방과후 : </S.Status>
-                                    <S.ColorBox color={"white"}></S.ColorBox>
-                                </S.Colors>
-                                <S.Colors>
-                                    <S.Status>이석 : </S.Status>
-                                    <S.ColorBox color={"#CCBCFF"}></S.ColorBox>
-                                </S.Colors>
-                                <S.Colors>
-                                    <S.Status>조퇴 : </S.Status>
-                                    <S.ColorBox color={"#FFDC93"}></S.ColorBox>
-                                </S.Colors>
-                                <S.Colors>
-                                    <S.Status>이탈 : </S.Status>
-                                    <S.ColorBox color={"#FF938C"}></S.ColorBox>
-                                </S.Colors>
-                                <S.Colors>
-                                    <S.Status>자습 : </S.Status>
-                                    <S.ColorBox color={"#72FAAA"}></S.ColorBox>
-                                </S.Colors>
-                            </S.Color>
                         </S.MainBox>
                         <S.MainBox>
                             <S.Record onClick={()=>navigate('/manage/record', {state:1})}>
@@ -101,6 +86,35 @@ export default function Manage(){
                                 {windowWidth > MOBILE && <img src={Record} alt="" />}
                                 <p>학생</p>
                             </S.Record>
+                          {windowWidth > MOBILE &&
+                          <S.Question  onClick={()=>setIsQuestion(!isQuestion)}>
+                             <img src={Question} alt="" />
+                          </S.Question>
+                          }
+                          {isQuestion &&
+                            <S.Color $isAnimation={isQuestion}>
+                              <S.Colors>
+                                <S.Status>방과후 : </S.Status>
+                                <S.ColorBox color={"white"}></S.ColorBox>
+                              </S.Colors>
+                              <S.Colors>
+                                <S.Status>이석 : </S.Status>
+                                <S.ColorBox color={"#CCBCFF"}></S.ColorBox>
+                              </S.Colors>
+                              <S.Colors>
+                                <S.Status>조퇴 : </S.Status>
+                                <S.ColorBox color={"#FFDC93"}></S.ColorBox>
+                              </S.Colors>
+                              <S.Colors>
+                                <S.Status>이탈 : </S.Status>
+                                <S.ColorBox color={"#FF938C"}></S.ColorBox>
+                              </S.Colors>
+                              <S.Colors>
+                                <S.Status>자습 : </S.Status>
+                                <S.ColorBox color={"#72FAAA"}></S.ColorBox>
+                              </S.Colors>
+                            </S.Color>
+                          }
                         </S.MainBox>
                     </S.MainNav>
                     <S.Section>

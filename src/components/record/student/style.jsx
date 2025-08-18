@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import * as S from '../../../pages/manage/record/style.jsx'
+import {mq} from "../../../styles/media.js";
 
 export const StudentContainer = styled(S.Container)``
 export const Standard = styled(S.Standard)`
@@ -8,7 +9,8 @@ export const Standard = styled(S.Standard)`
     & > div{
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-end;
+      width: 50%;
     }
 `
 export const ContentBox = styled(S.ContentBox)`
@@ -20,6 +22,9 @@ export const UnBox = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    ${mq.mobile}{
+      margin-right: 10px;
+    }
 `
 export const Black = styled.div`
     position: fixed;
@@ -49,12 +54,19 @@ export const Content = styled.div`
     & > div{
         display: flex;
         align-items: center;
-        justify-content: space-between;
+      justify-content: flex-end;
+      width: 50%;
     }
+  ${mq.mobile}{
+    justify-content: flex-end;
+  }
 `
 export const Box2 = styled(S.Box2)`
     position: relative;
     margin-right: 65px;
+  ${mq.mobile}{
+    margin-right: 0;
+  }
     & > p{
         width: 40px;
     }
@@ -74,6 +86,9 @@ export const Circle = styled.div`
     height: 10px;
     border-radius: 100%;
     background: ${(props)=> props.color};
+    ${mq.mobile}{
+      display: none;
+    }
 `
 export const StatusText = styled.p`
     color: ${props=>props.color};

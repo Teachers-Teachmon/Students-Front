@@ -5,7 +5,7 @@ import {period, MovementPeriod} from "../lib/period.js";
 //${API_ENDPOINTS.STUDENT}
 export const getNowStudent = async (grade) =>{
     try{
-        const res = await axiosInstance.get(`${API_ENDPOINTS.STUDENT}/schedule/${grade}`);
+        const res = await axiosInstance.get(`/schedule`);
         if(res.status!==200){
             return new Promise.reject({
                 status:res.status,
