@@ -1,17 +1,26 @@
 import styled from "styled-components";
 
 export const TimeContainer = styled.div`
-    display: grid;
   width: 100%;
-    grid-template-rows: 10fr 1fr; /* ← 세로로 3:1 비율 */
     gap: 1.5rem;
     align-items: center;
-    background-color: #ffffff;
-    padding: 3rem 15rem;
+    padding: 1.5rem 10rem;
     position: relative;
     border-radius: 0.8rem;
     height: 100%;
 `;
+export const Wrap = styled.div`
+  display: grid;
+  width: 100%;
+  grid-template-rows: 10fr 1fr; /* ← 세로로 3:1 비율 */
+  gap: 1.5rem;
+  align-items: center;
+  border: 1px solid #C4C4C4;
+  padding: 3rem 5rem;
+  position: relative;
+  border-radius: 0.8rem;
+  height: 100%;
+`
 export const ImgBox = styled.div`
     position: absolute;
     top: 2rem;

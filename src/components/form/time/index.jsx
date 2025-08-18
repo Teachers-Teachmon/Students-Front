@@ -39,6 +39,7 @@ export default function Time() {
   return (
     <Layout none={true}>
     <S.TimeContainer>
+      <S.Wrap>
       <S.ImgBox onClick={handleBack}>
         <img src={BackArrow}  alt="backIcon" />
       </S.ImgBox>
@@ -95,6 +96,7 @@ export default function Time() {
       <S.Btn onClick={handleTime}>
         다음으로
       </S.Btn>
+      </S.Wrap>
     </S.TimeContainer>
     </Layout>
   )

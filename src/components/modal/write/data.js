@@ -652,11 +652,6 @@ export const Organization = [
                 "number": 3104
             },
             {
-                "id": 133,
-                "name": "김예진",
-                "number": 3105
-            },
-            {
                 "id": 134,
                 "name": "박강원",
                 "number": 3106
