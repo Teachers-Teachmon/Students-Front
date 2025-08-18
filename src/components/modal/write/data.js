@@ -1,6 +1,6 @@
 export const Organization = [
     {name : '1학년1반', id: 'o11',member : [{
-            "id": 1,
+            "id": 190,
             "name": "강준영",
             "number": 1101
         },
